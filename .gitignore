@@ -1,5 +1,7 @@
 syntax: glob
 
+wwwroot/css/**
+
 ### VisualStudio ###
 
 # Tool Runtime Dir
