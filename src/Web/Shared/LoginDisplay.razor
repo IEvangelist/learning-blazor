@@ -7,7 +7,7 @@
 <AuthorizeView>
     <Authorized>
         Hello, @context.User.Identity.Name!
-        <button class="nav-link btn btn-link" @onclick="BeginLogout">Log out</button>
+        <button class="mt-4 bg-gradient-to-br from-green-600 to-green-500 hover:from-green-500 hover:to-green-600 text-white p-2 rounded border border-green-600" @onclick="BeginLogout">Log out</button>
     </Authorized>
     <NotAuthorized>
         <a href="authentication/login">Log in</a>

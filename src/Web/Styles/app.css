@@ -1,0 +1,7 @@
+﻿@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.tableheader {
+    @apply p-2 border-b-4 border-purple-600 text-left uppercase text-sm tracking-wider;
+}

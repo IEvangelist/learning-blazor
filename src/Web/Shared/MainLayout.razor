@@ -1,18 +1,17 @@
-﻿@inherits LayoutComponentBase
+﻿  
+@inherits LayoutComponentBase
 
-<div class="page">
-    <div class="sidebar">
+<div class="relative mb-16">
+    <div class="flex justify-between absolute inset-x-0 top-0">
         <NavMenu />
+        <a class="uppercase mt-6 ml-8 text-white pb-2 border-b-4 mr-6 border-purple-700 hover:border-green-400" href="http://blazor.net" target="_blank">Learn about Blazor</a>
     </div>
+    <svg viewBox="0 0 1440 375" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="gradient"><stop offset="5%" stop-color="#9900ef88"></stop><stop offset="95%" stop-color="#9900ef88"></stop></linearGradient></defs><path d="M 0,500 C 0,500 0,166 0,166 C 168,182.53333333333333 336,199.06666666666666 477,209 C 618,218.93333333333334 732,222.2666666666667 888,214 C 1044,205.7333333333333 1242,185.86666666666665 1440,166 C 1440,166 1440,500 1440,500 Z" stroke="none" stroke-width="0" fill="url(#gradient)" class="transition-all duration-300 ease-in-out delay-150" transform="rotate(-180 720 250)"></path><defs><linearGradient id="gradient"><stop offset="5%" stop-color="#9900efff"></stop><stop offset="95%" stop-color="#9900efff"></stop></linearGradient></defs><path d="M 0,500 C 0,500 0,333 0,333 C 165.2,350.8666666666667 330.4,368.7333333333333 497,362 C 663.6,355.2666666666667 831.5999999999999,323.93333333333334 989,315 C 1146.4,306.06666666666666 1293.2,319.5333333333333 1440,333 C 1440,333 1440,500 1440,500 Z" stroke="none" stroke-width="0" fill="url(#gradient)" class="transition-all duration-300 ease-in-out delay-150" transform="rotate(-180 720 250)"></path></svg>
+    <span class="text-white font-bold inset-x-0 text-center absolute top-40 text-5xl text-shadow-xl">Blazor + <span class="text-cyan-500 bg-white p-2 rounded text-shadow-none">Tailwind</span></span>
 
-    <div class="main">
-        <div class="top-row px-4 auth">
-            <LoginDisplay />
-            <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
-        </div>
+    <SurveyPrompt Title="How is Blazor working for you?" />
+</div>
 
-        <div class="content px-4">
-            @Body
-        </div>
-    </div>
+<div class="px-8 container mx-auto">
+    @Body
 </div>

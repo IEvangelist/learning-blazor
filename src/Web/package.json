@@ -1,0 +1,14 @@
+{
+    "scripts": {
+        "buildcss:dev": "cross-env TAILWIND_MODE=build postcss -o ./wwwroot/css/app.css ./Styles/*.css",
+        "buildcss:release": "cross-env NODE_ENV=production postcss -o ./wwwroot/css/app.css ./Styles/*.css"
+    },
+    "devDependencies": {
+        "cross-env": "^7.0.3",
+        "autoprefixer": "^10.2.6",
+        "postcss": "^8.3.5",
+        "postcss-cli": "^8.3.1",
+        "tailwindcss": "^2.1.4",
+        "cssnano": "^5.0.6"
+    }
+}
