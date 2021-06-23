@@ -21,11 +21,8 @@ env:
 
 jobs:
   build:
-    name: build-${{matrix.os}}
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest, macOS-latest]
+    name: build
+    runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
