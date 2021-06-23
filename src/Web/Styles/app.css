@@ -9,3 +9,7 @@
 .nav-links {
     @apply uppercase mt-6 ml-8 mr-6 text-white pb-2 border-b-4 border-purple-700 hover:border-green-400;
 }
+
+.green-button {
+    @apply mt-4 bg-gradient-to-br from-green-600 to-green-500 hover:from-green-500 hover:to-green-600 text-white p-2 rounded border border-green-600;
+}

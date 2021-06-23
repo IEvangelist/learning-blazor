@@ -3,15 +3,20 @@
 
 <h1 class="text-4xl font-bold mb-4">Counter</h1>
 
-<p>Current count: @currentCount</p>
+<input type="number" @bind-value="_incrementAmount" />
 
-<button class="mt-4 bg-gradient-to-br from-green-600 to-green-500 hover:from-green-500 hover:to-green-600 text-white p-2 rounded border border-green-600" @onclick="IncrementCount">Click me</button>
+<p>Current count: @_currentCount</p>
+
+<button class="green-button" @onclick="IncrementCount">
+    Increment
+</button>
 
 @code {
-    private int currentCount = 0;
+    private int _currentCount = 0;
+    private int _incrementAmount = 1;
 
     private void IncrementCount()
     {
-        currentCount++;
+        _currentCount = _currentCount + _incrementAmount;
     }
 }
