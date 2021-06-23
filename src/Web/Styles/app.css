@@ -5,3 +5,7 @@
 .tableheader {
     @apply p-2 border-b-4 border-purple-600 text-left uppercase text-sm tracking-wider;
 }
+
+.nav-links {
+    @apply uppercase mt-6 ml-8 mr-6 text-white pb-2 border-b-4 border-purple-700 hover:border-green-400;
+}

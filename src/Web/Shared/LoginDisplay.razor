@@ -6,11 +6,11 @@
 
 <AuthorizeView>
     <Authorized>
-        Hello, @context.User.Identity.Name!
+        Hello, @(context.User?.Identity?.Name ?? "❔")
         <button class="mt-4 bg-gradient-to-br from-green-600 to-green-500 hover:from-green-500 hover:to-green-600 text-white p-2 rounded border border-green-600" @onclick="BeginLogout">Log out</button>
     </Authorized>
     <NotAuthorized>
-        <a href="authentication/login">Log in</a>
+        <a href="authentication/login" class="nav-links">Log in</a>
     </NotAuthorized>
 </AuthorizeView>
 
