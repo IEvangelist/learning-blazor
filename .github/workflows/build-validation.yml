@@ -9,6 +9,12 @@ on:
     - '**.json'
     - '**.razor'
     - '**.csproj'
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: 'The reason for running the workflow'
+        required: true
+        default: 'Manual run'
 
 env:
   DOTNET_VERSION: '6.0.100-preview.5' # set this to the dot net version to use
@@ -23,6 +29,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+
+    - name: 'Print manual run reason'
+      if: ${{ github.event_name == 'workflow_dispatch' }}
+      run: |
+        echo 'Reason: ${{ github.event.inputs.reason }}'
+
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
