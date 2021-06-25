@@ -1,4 +1,4 @@
-﻿@inject IJokeService JokeService
+﻿@inject IJokeFactory JokeFactory
 
 <div class="flex flex-col justify-center sm:py-12">
     <div class="relative py-3 sm:max-w-xl sm:mx-auto">
@@ -58,8 +58,7 @@
 
         try
         {
-            Joke? joke = await JokeService.GetJokeAsync();
-            _jokeText = joke?.Text;
+            _jokeText = await JokeFactory.GetRandomJokeAsync();
         }
         finally
         {

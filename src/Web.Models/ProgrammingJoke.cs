@@ -5,16 +5,11 @@ using System;
 
 namespace Learning.Blazor.Models
 {
-    public abstract record Joke(JokeKind Kind)
-    {
-        public abstract string Text { get; }
-    }
-
     public record ProgrammingJoke(
         string Setup,
-        string Punchline) : Joke(JokeKind.TwoPart)
+        string Punchline)
     {
-        public override string Text =>
+        public string Text =>
             $"{Setup}{Environment.NewLine}{Punchline}";
     }
 }

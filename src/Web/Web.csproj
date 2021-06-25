@@ -14,6 +14,10 @@
     <PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0-preview.5.21301.5" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Web.Services\Web.Services.csproj" />
+  </ItemGroup>
+
   <Target Name="CheckForNpm" BeforeTargets="NpmInstall">
     <Exec Command="npm -v" ContinueOnError="true">
       <Output TaskParameter="ExitCode" PropertyName="ErrorCode" />

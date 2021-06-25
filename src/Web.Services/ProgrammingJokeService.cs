@@ -5,41 +5,35 @@ using System;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text.Json;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
 using Learning.Blazor.Models;
+using Microsoft.Extensions.Logging;
 
 namespace Learning.Blazor.Services
 {
-    public class ProgrammingJokeService : IJokeService
+    internal class ProgrammingJokeService : IJokeService
     {
         private readonly HttpClient _httpClient;
         private readonly ILogger<ProgrammingJokeService> _logger;
-
-        JsonSerializerOptions _options = new()
+        private readonly JsonSerializerOptions _options = new()
         {
             PropertyNameCaseInsensitive = true
         };
 
         public ProgrammingJokeService(
             HttpClient httpClient,
-            ILogger<ProgrammingJokeService> logger)
-        {
-            _httpClient = httpClient;
-            _logger = logger;
-        }
+            ILogger<ProgrammingJokeService> logger) =>
+            (_httpClient, _logger) = (httpClient, logger);
 
-        public async Task<Joke?> GetJokeAsync()
+        async Task<string?> IJokeService.GetJokeAsync()
         {
             try
             {
                 // An array with a single joke is returned
-                Joke[]? jokes = await _httpClient.GetFromJsonAsync<ProgrammingJoke[]>(
+                ProgrammingJoke[]? jokes = await _httpClient.GetFromJsonAsync<ProgrammingJoke[]>(
                     "https://official-joke-api.appspot.com/jokes/programming/random", _options);
 
-                return jokes?[0];
+                return jokes?[0].Text;
             }
             catch (Exception ex)
             {

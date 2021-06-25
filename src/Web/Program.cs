@@ -1,3 +1,6 @@
+// Copyright (c) 2021 David Pine. All rights reserved.
+//  Licensed under the MIT License.
+
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -15,8 +18,12 @@ namespace Learning.Blazor
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("#app");
 
-            builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
-            builder.Services.AddClientServices();
+            builder.Services.AddScoped(
+                _ => new HttpClient
+                {
+                    BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)
+                });
+            builder.Services.AddClientServices(builder.Configuration);
             builder.Services.AddMsalAuthentication(options =>
             {
                 builder.Configuration.Bind("AzureAdB2C", options.ProviderOptions.Authentication);

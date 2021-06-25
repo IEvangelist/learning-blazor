@@ -1,0 +1,36 @@
+﻿// Copyright (c) 2021 David Pine. All rights reserved.
+//  Licensed under the MIT License.
+
+using System;
+using System.Net.Http;
+using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
+
+namespace Learning.Blazor.Services
+{
+    internal class DadJokeService : IJokeService
+    {
+        private readonly HttpClient _httpClient;
+        private readonly ILogger<DadJokeService> _logger;
+
+        public DadJokeService(
+            IHttpClientFactory httpClientFactory,
+            ILogger<DadJokeService> logger) =>
+            (_httpClient, _logger) =
+                (httpClientFactory.CreateClient(nameof(DadJokeService)), logger);
+
+        async Task<string?> IJokeService.GetJokeAsync()
+        {
+            try
+            {
+                return await _httpClient.GetStringAsync("https://icanhazdadjoke.com/");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Error getting something fun to say: {Error}", ex);
+            }
+
+            return null;
+        }
+    }
+}
