@@ -21,6 +21,9 @@ namespace Learning.Blazor.Services
             (_httpClient, _logger) =
                 (httpClientFactory.CreateClient(nameof(ChuckNorrisJokeService)), logger);
 
+        JokeSourceDetails IJokeService.SourceDetails =>
+            new(JokeSource.ChuckNorrisInternetDatabase, new Uri("https://www.icndb.com/"));
+
         async Task<string?> IJokeService.GetJokeAsync()
         {
             try

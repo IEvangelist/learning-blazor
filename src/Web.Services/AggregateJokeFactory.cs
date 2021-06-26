@@ -4,6 +4,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Learning.Blazor.Extensions;
+using Learning.Blazor.Models;
 
 namespace Learning.Blazor.Services
 {
@@ -14,10 +15,15 @@ namespace Learning.Blazor.Services
         public AggregateJokeFactory(IEnumerable<IJokeService> jokeServices) =>
             _jokeServices = jokeServices;
 
-        async Task<string> IJokeFactory.GetRandomJokeAsync()
+        async Task<(string, JokeSourceDetails)> IJokeFactory.GetRandomJokeAsync()
         {
             IJokeService? randomJokeService = _jokeServices.RandomElement();
-            return await randomJokeService.GetJokeAsync() ?? "There is nothing funny about this.";
+
+            string joke =
+                await randomJokeService.GetJokeAsync()
+                ?? "There is nothing funny about this.";
+
+            return (joke, randomJokeService.SourceDetails);
         }
     }
 }

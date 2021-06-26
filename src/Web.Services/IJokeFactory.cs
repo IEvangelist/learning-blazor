@@ -2,11 +2,12 @@
 //  Licensed under the MIT License.
 
 using System.Threading.Tasks;
+using Learning.Blazor.Models;
 
 namespace Learning.Blazor.Services
 {
     public interface IJokeFactory
     {
-        Task<string> GetRandomJokeAsync();
+        Task<(string, JokeSourceDetails)> GetRandomJokeAsync();
     }
 }

@@ -4,6 +4,7 @@
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Learning.Blazor.Models;
 using Microsoft.Extensions.Logging;
 
 namespace Learning.Blazor.Services
@@ -18,6 +19,9 @@ namespace Learning.Blazor.Services
             ILogger<DadJokeService> logger) =>
             (_httpClient, _logger) =
                 (httpClientFactory.CreateClient(nameof(DadJokeService)), logger);
+
+        JokeSourceDetails IJokeService.SourceDetails =>
+            new(JokeSource.ICanHazDadJoke, new Uri("https://icanhazdadjoke.com/"));
 
         async Task<string?> IJokeService.GetJokeAsync()
         {

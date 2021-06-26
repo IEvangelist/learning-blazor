@@ -3,7 +3,9 @@
 
 namespace Learning.Blazor.Models
 {
-    public record ChuckNorrisJoke(string Type, Value Value);
+    public record ChuckNorrisJoke(
+        string Type,
+        Value Value);
 
     public record Value(int Id)
     {

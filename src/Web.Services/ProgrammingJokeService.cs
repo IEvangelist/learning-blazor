@@ -25,6 +25,10 @@ namespace Learning.Blazor.Services
             ILogger<ProgrammingJokeService> logger) =>
             (_httpClient, _logger) = (httpClient, logger);
 
+        JokeSourceDetails IJokeService.SourceDetails =>
+            new(JokeSource.OfficialJokeApiProgramming,
+                new Uri("https://official-joke-api.appspot.com/"));
+
         async Task<string?> IJokeService.GetJokeAsync()
         {
             try

@@ -10,7 +10,20 @@
 </head>
 
 <body>
-    <div id="app">Loading...</div>
+    <div id="app">
+        <script>
+            if (browser && browser.webRequest) {
+                browser.webRequest.onBeforeRequest.addListener(
+                    e => {
+                        if (e) {
+
+                        }
+                    }
+                );
+            }
+        </script>
+    Loading...
+    </div>
 
     <div id="blazor-error-ui" class="bg-yellow-100 bottom-0 left-0 fixed text-yellow-900 w-full z-50 pt-2.5 pr-5 pb-3 pl-5 border-t-2 border-yellow-800 hidden">
         <div class="flex justify-between">
