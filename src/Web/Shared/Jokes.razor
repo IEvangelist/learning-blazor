@@ -17,9 +17,14 @@
                             }
                             else if (_jokeText is not null)
                             {
-                                <span>
-                                    @_jokeText &mdash; @_sourceDetails.ToString()
-                                </span>
+                                <blockquote>
+                                    @_jokeText
+                                    <cite>
+                                        <a href="@(_sourceDetails.Site.ToString())" target="_blank">
+                                            &mdash; @(_sourceDetails.Source.ToString())
+                                        </a>
+                                    </cite>
+                                </blockquote>
                             }
                         </p>
                     </div>
