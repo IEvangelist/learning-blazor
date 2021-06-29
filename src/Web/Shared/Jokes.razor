@@ -1,37 +1,23 @@
 ﻿@inject IJokeFactory JokeFactory
 
-<div class="flex flex-col justify-center sm:py-12">
-    <div class="relative py-3 sm:max-w-xl sm:mx-auto">
-        <div class="absolute inset-0 bg-gradient-to-r from-cyan-400 to-sky-500 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
-        <div class="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
-            <div class="max-w-md mx-auto">
-                <div class="divide-y divide-gray-200">
-                    <div class="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
-                        <p class="font-mono">
-                            @if (_isLoadingJoke)
-                            {
-                                <svg class="animate-spin -ml-1 mr-3 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 48 48">
-                                    <circle class="opacity-25" cx="24" cy="24" r="10" stroke="currentColor" stroke-width="4"></circle>
-                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                                </svg>
-                            }
-                            else if (_jokeText is not null)
-                            {
-                                <blockquote>
-                                    @_jokeText
-                                    <cite>
-                                        <a href="@(_sourceDetails.Site.ToString())" target="_blank">
-                                            &mdash; @(_sourceDetails.Source.ToString())
-                                        </a>
-                                    </cite>
-                                </blockquote>
-                            }
-                        </p>
-                    </div>
-                </div>
-            </div>
+<div class="content">
+    @if (_isLoadingJoke)
+    {
+        <div class="fa-3x">
+            <i class="fas fa-sync fa-spin"></i>
         </div>
-    </div>
+    }
+    else if (_jokeText is not null)
+    {
+        <blockquote class="has-text-black">
+            <span>@_jokeText</span>
+            <cite>
+                <a href="@(_sourceDetails.Site.ToString())" target="_blank">
+                    &mdash; @(_sourceDetails.Source.ToString())
+                </a>
+            </cite>
+        </blockquote>
+    }
 </div>
 
 @code {

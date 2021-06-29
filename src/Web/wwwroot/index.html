@@ -5,30 +5,45 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>learning-blazor</title>
+    <link href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css" rel="stylesheet">
     <link href="css/app.css" rel="stylesheet" />
     <base href="/" />
+    <script src="https://kit.fontawesome.com/b5bcf1e25a.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
     <div id="app">
-        <script>
-            if (browser && browser.webRequest) {
-                browser.webRequest.onBeforeRequest.addListener(
-                    e => {
-                        if (e) {
-
-                        }
-                    }
-                );
-            }
-        </script>
-    Loading...
+        <section class="hero is-fullheight">
+            <div class="hero-body">
+                <div class="container has-text-centered">
+                    <div class="fa-3x">
+                        Blazor WebAssembly: Loading...
+                        <i class="fas fa-sync fa-spin"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
 
-    <div id="blazor-error-ui" class="bg-yellow-100 bottom-0 left-0 fixed text-yellow-900 w-full z-50 pt-2.5 pr-5 pb-3 pl-5 border-t-2 border-yellow-800 hidden">
-        <div class="flex justify-between">
-            <span>An unhandled error has occurred. <a href="" class="cursor-pointer underline hover:no-underline">Reload</a></span>
-            <a>🗙</a>
+    <div id="blazor-error-ui">
+        <div class="modal is-active">
+            <div class="modal-background"></div>
+            <div class="modal-content">
+                <article class="message is-warning is-medium">
+                    <div class="message-header">
+                        <p>
+                            <span class="icon">
+                                <i class="fas fa-exclamation-circle"></i>
+                            </span>
+                            <span>Error</span>
+                        </p>
+                    </div>
+                    <div class="message-body">
+                        An unhandled error has occurred.
+                    </div>
+                </article>
+            </div>
+            <button class="modal-close is-large" aria-label="close"></button>
         </div>
     </div>
     <script src="_content/Microsoft.Authentication.WebAssembly.Msal/AuthenticationService.js"></script>

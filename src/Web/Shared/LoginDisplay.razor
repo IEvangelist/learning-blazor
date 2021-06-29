@@ -4,17 +4,29 @@
 @inject NavigationManager Navigation
 @inject SignOutSessionStateManager SignOutManager
 
-<AuthorizeView>
-    <Authorized>
-        Hello, @(context.User?.Identity?.Name ?? "❔")
-        <button class="mt-4 bg-gradient-to-br from-green-600 to-green-500 hover:from-green-500 hover:to-green-600 text-white p-2 rounded border border-green-600" @onclick="BeginLogout">Log out</button>
-    </Authorized>
-    <NotAuthorized>
-        <a href="authentication/login" class="nav-links">Log in</a>
-    </NotAuthorized>
-</AuthorizeView>
+<span class="navbar-item">
+    <AuthorizeView>
+        <Authorized>
+            Hello, @(context.User?.Identity?.Name ?? "❔")
+            <button class="button is-info is-rounded level-item" @onclick="BeginLogout">
+                <span class="icon">
+                    <i class="fas fa-sign-out-alt"></i>
+                </span>
+                <span>Log out</span>
+            </button>
+        </Authorized>
+        <NotAuthorized>
+            <a href="authentication/login" class="button is-info is-rounded level-item">
+                <span class="icon">
+                    <i class="fas fa-sign-in-alt"></i>
+                </span>
+                <span>Log in</span>
+            </a>
+        </NotAuthorized>
+    </AuthorizeView>
+</span>
 
-@code{
+@code {
     private async Task BeginLogout(MouseEventArgs args)
     {
         await SignOutManager.SetSignOutState();
