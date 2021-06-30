@@ -14,6 +14,9 @@ namespace Learning.Blazor.Models
         public string? Joke
         {
             get => _joke;
+
+            // The _joke contains HTML with first-rate typesetting
+            // replace the named entity with the double quote string.
             set => _joke = value?.Replace("&quot;", "\"");
         }
     }

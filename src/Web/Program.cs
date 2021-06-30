@@ -18,18 +18,30 @@ namespace Learning.Blazor
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("#app");
 
-            builder.Services.AddScoped(
-                _ => new HttpClient
-                {
-                    BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)
-                });
-            builder.Services.AddClientServices(builder.Configuration);
-            builder.Services.AddMsalAuthentication(options =>
-            {
-                builder.Configuration.Bind("AzureAdB2C", options.ProviderOptions.Authentication);
-            });
+            ConfigureServices(
+                builder.Services,
+                builder.Configuration,
+                builder.HostEnvironment);
 
             await builder.Build().RunAsync();
+        }
+
+        static void ConfigureServices(
+            IServiceCollection services,
+            IConfiguration configuration,
+            IWebAssemblyHostEnvironment hostEnvironment)
+        {
+            services.AddScoped(
+                _ => new HttpClient
+                {
+                    BaseAddress = new Uri(hostEnvironment.BaseAddress)
+                });
+            services.AddClientServices(configuration);
+            services.AddTwitterComponent(configuration);
+            services.AddMsalAuthentication(options =>
+            {
+                configuration.Bind("AzureAdB2C", options.ProviderOptions.Authentication);
+            });
         }
     }
 }

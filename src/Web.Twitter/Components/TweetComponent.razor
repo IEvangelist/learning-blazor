@@ -1,0 +1,45 @@
+﻿<div class="box">
+    <div class="tags has-addons">
+        @foreach (var track in _tracks)
+        {
+            <span class="tag is-rounded clickable"
+              title="Click to remove '@(track)'." @onclick="(() => RemoveTrack(track))">
+                @track
+                <a class="tag is-delete" @onclick="(() => RemoveTrack(track))"></a>
+            </span>
+        }
+    </div>
+</div>
+
+<div class="buttons has-addons">
+    @{
+        string isLoading = _isStreaming.HasValue ? "" : "is-loading";
+    }
+    <button id="startButton" class="button is-rounded is-small is-info @isLoading"
+            @onclick="Start" disabled="@(!_isStreaming)">
+        <span class="icon">
+            <i class="fas fa-play"></i>
+        </span>
+    </button>
+    <button id="stopButton" class="button is-rounded is-small is-info @isLoading"
+            @onclick="Stop" disabled="@(_isStreaming)">
+        <span class="icon">
+            <i class="fas fa-stop"></i>
+        </span>
+    </button>
+    <button id="pauseButton" class="button is-rounded is-small is-info @isLoading"
+            @onclick="Pause" disabled="@(_isStreaming)">
+        <span class="icon">
+            <i class="fas fa-pause"></i>
+        </span>
+    </button>
+</div>
+
+<ul id="tweets" class="reversed no-bullets">
+    @foreach (var tweet in _tweets)
+    {
+        <li>@(new MarkupString(tweet.HTML))</li>
+    }
+</ul>
+
+<span>@_streamingStatus</span>
