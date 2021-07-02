@@ -27,7 +27,7 @@ namespace Learning.Blazor.Twitter.Services
         /// <summary>
         /// Removes the track from listening on the Twitter stream.
         /// A track is a string that represents either a
-        /// <code>#hashtag</code> or <code>@handle</code>.
+        /// <c>#hashtag</c> or <c>@handle</c>.
         /// </summary>
         /// <param name="tracks">The tracks to add.</param>
         void RemoveTrack([NotNull] string track);
@@ -35,7 +35,7 @@ namespace Learning.Blazor.Twitter.Services
         /// <summary>
         /// Adds tracks to listen on from our Twitter stream.
         /// A track is a string that represents either:
-        /// <code>#hashtag</code> or <code>@handle</code>
+        /// <c>#hashtag</c> or <c>@handle</c>.
         /// </summary>
         /// <param name="tracks">The tracks to add.</param>
         void AddTracks([NotNull] ISet<string> tracks);

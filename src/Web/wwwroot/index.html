@@ -4,21 +4,26 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="twitter:widgets:theme" content="dark">
+
     <title>learning-blazor</title>
+
     <link href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css" rel="stylesheet">
     <link href="css/app.css" rel="stylesheet" />
+
     <base href="/" />
+
     <script src="https://kit.fontawesome.com/b5bcf1e25a.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
     <div id="app">
-        <section class="hero is-fullheight">
+        <section id="splash" class="hero is-fullheight">
             <div class="hero-body">
                 <div class="container has-text-centered">
-                    <div class="fa-3x">
-                        Blazor WebAssembly: Loading...
-                        <i class="fas fa-sync fa-spin"></i>
+                    <img src="media/blazor-logo.png" class="blazor-logo mb-5" />
+                    <div class="fa-3x is-family-code">
+                        <span class="has-text-weight-bold">Blazor WebAssembly:</span> Loading... <i class="fas fa-sync fa-spin"></i>
                     </div>
                 </div>
             </div>
@@ -39,14 +44,16 @@
                         </p>
                     </div>
                     <div class="message-body">
-                        An unhandled error has occurred.
+                        An unhandled error has occurred. <a class="button" href="/">Reload</a>
                     </div>
                 </article>
             </div>
             <button class="modal-close is-large" aria-label="close"></button>
         </div>
     </div>
+
     <script src="_content/Microsoft.Authentication.WebAssembly.Msal/AuthenticationService.js"></script>
+    <script src="_content/Web.Twitter/twitter-component.js"></script>
     <script src="_framework/blazor.webassembly.js"></script>
 </body>
 

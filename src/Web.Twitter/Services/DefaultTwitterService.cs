@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,6 +17,9 @@ namespace Learning.Blazor.Twitter.Services
 {
     internal sealed class DefaultTwitterService : ITwitterService
     {
+        private static readonly object s_locker = new();
+        private static bool s_isInitialized = false;
+
         private readonly ILogger<DefaultTwitterService> _logger;
         private readonly IFilteredStream _filteredStream;
 
@@ -34,24 +38,27 @@ namespace Learning.Blazor.Twitter.Services
 
         private void InitializeStream()
         {
-            _filteredStream.AddCustomQueryParameter("omit_script", "true");
+            lock (s_locker)
+            {
+                if (s_isInitialized)
+                {
+                    return;
+                }
 
-            //_filteredStream.KeepAliveReceived += async (o, e) =>
-            //    await SendStatusUpdateAsync("Keep alive recieved...");
-            //_filteredStream.LimitReached += async (o, e) =>
-            //    await SendStatusUpdateAsync($"Limit receached, missed {e.NumberOfTweetsNotReceived:#,#} tweets...");
-            //_filteredStream.JsonObjectReceived += async (o, e) =>
-            //    await SendStatusUpdateAsync($"JSON recieved {e.Json}...");
-            //_filteredStream.UnmanagedEventReceived += async (o, e) =>
-            //    await SendStatusUpdateAsync($"Unexpected JSON message recieved {e.JsonMessageReceived}...");
+                // The script is loaded only once, registered in our twitter-componenet.js
+                // No need to have each individual tweet have the script embedded within it.
+                _filteredStream.AddCustomQueryParameter("omit_script", "true");
 
-            _filteredStream.DisconnectMessageReceived += OnDisconnectedMessageReceived;
-            _filteredStream.MatchingTweetReceived += OnMatchingTweetReceived;
-            _filteredStream.StreamStarted += OnStreamStarted;
-            _filteredStream.StreamStopped += OnStreamStopped;
-            _filteredStream.StreamResumed += OnStreamResumed;
-            _filteredStream.StreamPaused += OnStreamPaused;
-            _filteredStream.WarningFallingBehindDetected += OnFallingBehindDetected;
+                _filteredStream.DisconnectMessageReceived += OnDisconnectedMessageReceived;
+                _filteredStream.MatchingTweetReceived += OnMatchingTweetReceived;
+                _filteredStream.StreamStarted += OnStreamStarted;
+                _filteredStream.StreamStopped += OnStreamStopped;
+                _filteredStream.StreamResumed += OnStreamResumed;
+                _filteredStream.StreamPaused += OnStreamPaused;
+                _filteredStream.WarningFallingBehindDetected += OnFallingBehindDetected;
+
+                s_isInitialized = true;
+            }
         }
 
         /// <inheritdoc />
@@ -95,7 +102,19 @@ namespace Learning.Blazor.Twitter.Services
             if (_filteredStream is not { StreamState: StreamState.Running })
             {
                 _logger.LogInformation("Starting tweet stream.");
-                await _filteredStream.StartMatchingAllConditionsAsync();
+
+                await TweetReceived(
+                    new TweetContents
+                    {
+                        HTML = @"<blockquote class=""twitter-tweet"" style=""width: 400px;"" data-dnt=""true"">
+<p lang=""en"" dir=""ltr""></p>
+
+<a href=""https://twitter.com/davidpine7/status/1410259973519597570""></a>
+
+</blockquote>"
+                    });
+                // TODO: watch https://github.com/linvi/tweetinvi/pull/1130
+                //await _filteredStream.StartMatchingAllConditionsAsync();
             }
         }
 
@@ -109,7 +128,7 @@ namespace Learning.Blazor.Twitter.Services
             }
         }
 
-        public async ValueTask DisposeAsync()
+        async ValueTask IAsyncDisposable.DisposeAsync()
         {
             if (_filteredStream is IAsyncDisposable asyncDisposable)
             {
@@ -148,21 +167,24 @@ namespace Learning.Blazor.Twitter.Services
                 return;
             }
 
-            await TweetReceived(
-                new TweetContents
-                {
-                    IsOffTopic = isOffTopic,
-                    AuthorName = tweet.AuthorName,
-                    AuthorURL = tweet.AuthorURL,
-                    CacheAge = tweet.CacheAge,
-                    Height = tweet.Height,
-                    HTML = tweet.HTML,
-                    ProviderURL = tweet.ProviderURL,
-                    Type = tweet.Type,
-                    URL = tweet.URL,
-                    Version = tweet.Version,
-                    Width = tweet.Width
-                });
+            if (TweetReceived is { })
+            {
+                await TweetReceived(
+                    new TweetContents
+                    {
+                        IsOffTopic = isOffTopic,
+                        AuthorName = tweet.AuthorName,
+                        AuthorURL = tweet.AuthorURL,
+                        CacheAge = tweet.CacheAge,
+                        Height = tweet.Height,
+                        HTML = tweet.HTML,
+                        ProviderURL = tweet.ProviderURL,
+                        Type = tweet.Type,
+                        URL = tweet.URL,
+                        Version = tweet.Version,
+                        Width = tweet.Width
+                    });
+            }
         }
 
         private async void OnDisconnectedMessageReceived(object? sender, DisconnectedEventArgs? args)

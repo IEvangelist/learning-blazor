@@ -26,6 +26,7 @@ namespace Learning.Blazor.Twitter.Components
                 "@davidpine7"
             };
 
+        private bool _showTracksModal = false;
         private StreamingStatus? _streamingStatus;
         private bool? _isStreaming => _streamingStatus is { /* "something" */ };
 
@@ -40,10 +41,11 @@ namespace Learning.Blazor.Twitter.Components
 
         protected override async Task OnInitializedAsync()
         {
-            await _twitterService.StartTweetStreamAsync();
-
             _twitterService.StatusUpdated += OnStatusUpdated;
             _twitterService.TweetReceived += OnTweetReceived;
+
+            // await Task.CompletedTask;
+            await _twitterService.StartTweetStreamAsync();
         }
 
         private Task OnStatusUpdated(StreamingStatus status) =>
@@ -61,7 +63,8 @@ namespace Learning.Blazor.Twitter.Components
 
                 // We need to tell the Twitter HTML to render correctly.
                 // This is a Twitter thing, not a Blazor thing...
-                await _javaScript.RenderTwitterCardsAsync();
+                // We interop with JavaScript, calling functions from our .NET code.
+                await _javaScript.RenderTweetsAsync();
             });
 
         private void RemoveTrack(string track)

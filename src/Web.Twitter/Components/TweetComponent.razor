@@ -1,45 +1,55 @@
-﻿<div class="box">
-    <div class="tags has-addons">
-        @foreach (var track in _tracks)
-        {
-            <span class="tag is-rounded clickable"
-              title="Click to remove '@(track)'." @onclick="(() => RemoveTrack(track))">
-                @track
-                <a class="tag is-delete" @onclick="(() => RemoveTrack(track))"></a>
+﻿<div class="card">
+    <header class="card-header">
+        <p class="card-header-title">
+            Tweets
+        </p>
+        <button class="card-header-icon" aria-label="Twitter">
+            <span class="icon">
+                <i class="fab fa-twitter"></i>
             </span>
-        }
+        </button>
+    </header>
+
+    <div class="card-content">
+        <ul id="tweets" class="reversed no-bullets">
+            @foreach (var tweet in _tweets)
+            {
+                <li>@(new MarkupString(tweet.HTML))</li>
+            }
+        </ul>
     </div>
+
+    <footer class="card-footer">
+        @{
+            string isLoading = _isStreaming.HasValue ? "" : "is-loading";
+        }
+        <a id="startButton" class="card-footer-item @isLoading"
+                @onclick="Start" disabled="@(!_isStreaming)">
+            <span class="icon">
+                <i class="fas fa-play"></i>
+            </span>
+        </a>
+        <a id="stopButton" class="card-footer-item @isLoading"
+                @onclick="Stop" disabled="@(_isStreaming)">
+            <span class="icon">
+                <i class="fas fa-stop"></i>
+            </span>
+        </a>
+        <a id="pauseButton" class="card-footer-item @isLoading"
+                @onclick="Pause" disabled="@(_isStreaming)">
+            <span class="icon">
+                <i class="fas fa-pause"></i>
+            </span>
+        </a>
+        <a class="card-footer-item @isLoading"
+                @onclick="@(() => _showTracksModal = true)" disabled="@(_isStreaming)">
+            <span class="icon">
+                <i class="fas fa-cog"></i>
+            </span>
+        </a>
+    </footer>
 </div>
 
-<div class="buttons has-addons">
-    @{
-        string isLoading = _isStreaming.HasValue ? "" : "is-loading";
-    }
-    <button id="startButton" class="button is-rounded is-small is-info @isLoading"
-            @onclick="Start" disabled="@(!_isStreaming)">
-        <span class="icon">
-            <i class="fas fa-play"></i>
-        </span>
-    </button>
-    <button id="stopButton" class="button is-rounded is-small is-info @isLoading"
-            @onclick="Stop" disabled="@(_isStreaming)">
-        <span class="icon">
-            <i class="fas fa-stop"></i>
-        </span>
-    </button>
-    <button id="pauseButton" class="button is-rounded is-small is-info @isLoading"
-            @onclick="Pause" disabled="@(_isStreaming)">
-        <span class="icon">
-            <i class="fas fa-pause"></i>
-        </span>
-    </button>
-</div>
-
-<ul id="tweets" class="reversed no-bullets">
-    @foreach (var tweet in _tweets)
-    {
-        <li>@(new MarkupString(tweet.HTML))</li>
-    }
-</ul>
+<TwitterTracksModalComponent IsActive="_showTracksModal" Tracks=_tracks />
 
 <span>@_streamingStatus</span>

@@ -1,3 +1,11 @@
 #blazor-error-ui {
     display: none;
 }
+
+#splash .blazor-logo {
+    max-width: 10rem;
+}
+
+html {
+    overflow: hidden;
+}

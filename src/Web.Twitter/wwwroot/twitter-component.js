@@ -1,18 +1,12 @@
-﻿const sayHello = (message) => {
-    if (message) {
-        console.log(message);
-    }
-}
-
-const nudgeTwitterCard = () => {
+﻿const renderTweets = () => {
     if (this.twttr && this.twttr.widgets) {
         this.twttr.widgets.load();
     }
 }
 
+// Register the twitter object, with a single function available in it.
 window.twitter = {
-    sayHello,
-    nudgeTwitterCard
+    renderTweets
 };
 
 // Register the twitter-provided widget to render the DOM updates.
