@@ -1,0 +1,15 @@
+﻿<div class="columns">
+    <div class="column">
+        <figure class="image is-5by4">
+            @if (_weather is null)
+            {
+                <i class="fas fa-sync fa-spin fa-3x"></i>
+            }
+            else
+            {
+                <img src="media/weather/@(_weather.ToImageName()).png" />
+            }
+        </figure>
+    </div>
+    <div class="column is-three-quarters"></div>
+</div>

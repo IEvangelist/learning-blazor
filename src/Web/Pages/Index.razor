@@ -1,22 +1,20 @@
 ﻿@page "/"
 
-<div class="tile is-ancestor">
+<div id="index" class="tile is-ancestor">
   <div class="tile is-vertical is-11">
     <div class="tile">
       <div class="tile is-parent is-vertical">
         <article class="tile is-child notification is-primary">
-          <p class="title">Jokes</p>
+          <p class="title"><i class="fas fa-smile-wink pr-3"></i> Jokes</p>
           <Jokes />
         </article>
         <article class="tile is-child notification is-warning">
-          <p class="title">Have I Been Pwned</p>
-          <p class="subtitle">Bottom tile</p>
+          <p class="title"><i class="fas fa-user-shield pr-3"></i> Have I Been Pwned</p>
         </article>
       </div>
       <div class="tile is-parent">
-        <article class="tile is-child notification">
-          <p class="title">Chat</p>
-          <p class="subtitle">With an image</p>
+        <article class="tile is-child notification is-info">
+          <p class="title"><i class="fas fa-comments pr-3"></i> Chat</p>
           <figure class="image is-4by3">
             <img src="https://bulma.io/images/placeholders/640x480.png">
           </figure>
@@ -25,16 +23,15 @@
     </div>
     <div class="tile is-parent">
       <article class="tile is-child notification is-danger">
-        <p class="title">Weather</p>
-        <p class="subtitle">Aligned with the right tile</p>
-        <div class="content">
-          <!-- Content -->
-        </div>
+        <p class="title">
+        <span><i class="fas fa-cloud-sun-rain pr-3"></i> Weather</span>
+        </p>
+        <WeatherComponent />
       </article>
     </div>
   </div>
   <div class="tile is-parent">
-    <article class="tile is-child notification is-info">
+    <article class="tile is-child notification p-0">
       <TweetComponent />
     </article>
   </div>
