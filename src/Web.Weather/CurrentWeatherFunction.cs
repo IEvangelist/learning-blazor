@@ -1,34 +1,53 @@
-using System.IO;
+// Copyright (c) 2021 David Pine. All rights reserved.
+//  Licensed under the MIT License.
+
+using System.Linq;
 using System.Threading.Tasks;
+using Learning.Blazor.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
+using Web.Weather.Services;
 
 namespace Web.Weather
 {
     public class CurrentWeatherFunction
     {
-        [FunctionName(nameof(Current))]
-        public async Task<IActionResult> Current(
-            [HttpTrigger(AuthorizationLevel.Function, "get", Route = null)] HttpRequest req,
-            ILogger log)
+        private readonly IWeatherService _weatherService;
+        private readonly ILogger<CurrentWeatherFunction> _logger;
+
+        public CurrentWeatherFunction(
+            IWeatherService weatherService,
+            ILogger<CurrentWeatherFunction> logger)
         {
-            log.LogInformation("C# HTTP trigger function processed a request.");
+            _weatherService = weatherService;
+            _logger = logger;
+        }
 
-            string name = req.Query["name"];
+        [FunctionName("weather")]
+        public async Task<IActionResult> Current(
+            [HttpTrigger(
+                AuthorizationLevel.Function, "get",
+                Route = "current/{units}")] HttpRequest req,
+            Coordinates coordinates,
+            string units)
+        {
+            _logger.LogInformation(
+                "Getting weather for: {Coords} in {Units}",
+                coordinates, units);
 
-            string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
-            dynamic data = JsonConvert.DeserializeObject(requestBody);
-            name ??= data?.name;
+            CurrentWeather weather =
+                await _weatherService.GetCurrentWeatherAsync(
+                    coordinates, units);
 
-            string responseMessage = string.IsNullOrEmpty(name)
-                ? "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response."
-                : $"Hello, {name}. This HTTP triggered function executed successfully.";
+            _logger.LogInformation(
+                "Weather is {Desc} in {Loc}",
+                weather?.Weather?.FirstOrDefault()?.Description,
+                weather?.Name);
 
-            return new OkObjectResult(responseMessage);
+            return new OkObjectResult(weather);
         }
     }
 }

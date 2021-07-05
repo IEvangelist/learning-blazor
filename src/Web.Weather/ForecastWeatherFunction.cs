@@ -11,9 +11,11 @@ namespace Web.Weather
 {
     public class ForecastWeatherFunction
     {
-        [FunctionName(nameof(Forecast))]
+        [FunctionName("weather")]
         public async Task<IActionResult> Forecast(
-            [HttpTrigger(AuthorizationLevel.Function, "get", Route = null)] HttpRequest req,
+            [HttpTrigger(
+                AuthorizationLevel.Function, "get",
+                Route = "forecast")] HttpRequest req,
             ILogger log)
         {
             log.LogInformation("C# HTTP trigger function processed a request.");

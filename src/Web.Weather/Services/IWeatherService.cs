@@ -6,7 +6,7 @@ using Learning.Blazor.Models;
 
 namespace Web.Weather.Services
 {
-    internal interface IWeatherService
+    public interface IWeatherService
     {
         Task<CurrentWeather> GetCurrentWeatherAsync(
             Coordinates coordinates, string units);
