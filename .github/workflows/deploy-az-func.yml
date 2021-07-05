@@ -1,8 +1,10 @@
 name: Build and deploy .NET Core application to Function App learning-blazor-weather
+
 on:
   push:
     branches:
     - main
+
 env:
   AZURE_FUNCTIONAPP_NAME: learning-blazor-weather
   AZURE_FUNCTIONAPP_PACKAGE_PATH: src/Web.Weather/published
@@ -10,19 +12,25 @@ env:
   DOTNET_CORE_VERSION: 6.0.x
   WORKING_DIRECTORY: src/Web.Weather
   DOTNET_CORE_VERSION_INPROC: 6.0.x
+
 jobs:
+
   build-and-deploy:
+
     runs-on: ubuntu-latest
+
     steps:
     - uses: actions/checkout@v2
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: ${{ env.DOTNET_CORE_VERSION }}
+        include-prerelease: true
     - name: Setup .NET Core (for inproc extensions)
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: ${{ env.DOTNET_CORE_VERSION_INPROC }}
+        include-prerelease: true
     - name: Restore
       run: dotnet restore "${{ env.WORKING_DIRECTORY }}"
     - name: Build
