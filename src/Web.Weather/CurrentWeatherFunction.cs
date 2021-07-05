@@ -26,7 +26,7 @@ namespace Web.Weather
             _logger = logger;
         }
 
-        [FunctionName("weather")]
+        [FunctionName("currentweather")]
         public async Task<IActionResult> Current(
             [HttpTrigger(
                 AuthorizationLevel.Function, "get",

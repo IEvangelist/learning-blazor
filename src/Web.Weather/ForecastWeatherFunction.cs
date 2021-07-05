@@ -11,7 +11,7 @@ namespace Web.Weather
 {
     public class ForecastWeatherFunction
     {
-        [FunctionName("weather")]
+        [FunctionName("forecastweather")]
         public async Task<IActionResult> Forecast(
             [HttpTrigger(
                 AuthorizationLevel.Function, "get",
