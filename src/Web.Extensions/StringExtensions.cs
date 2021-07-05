@@ -11,7 +11,5 @@ namespace Learning.Blazor.Extensions
 {
     public static class StringExtensions
     {
-        public static TValue ParseOrDefault<TValue>(string? strValue) =>
-
     }
 }
