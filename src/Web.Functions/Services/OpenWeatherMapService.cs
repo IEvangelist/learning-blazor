@@ -28,7 +28,7 @@ namespace Learning.Blazor.Functions.Services
             var requestUrl =
                 $"{baseApiUrl}weather?lat={lat}&lon={lon}&appid={apiKey}&units={units}";
 
-            return _httpClient.GetFromJsonAsync<CurrentWeather>(requestUrl);
+            return _httpClient.GetFromJsonAsync<CurrentWeather?>(requestUrl);
         }
 
         public Task<ForecastWeather?> GetForecastWeatherAsync(
@@ -39,7 +39,7 @@ namespace Learning.Blazor.Functions.Services
             var requestUrl =
                 $"{baseApiUrl}onecall?lat={lat}&lon={lon}&appid={apiKey}&units={units}&exclude=current,minutely,hourly";
 
-            return _httpClient.GetFromJsonAsync<ForecastWeather>(requestUrl);
+            return _httpClient.GetFromJsonAsync<ForecastWeather?>(requestUrl);
         }
     }
 }

@@ -30,17 +30,18 @@ namespace Learning.Blazor.Functions
         public async Task<IActionResult> Current(
             [HttpTrigger(
                 AuthorizationLevel.Function, "get",
-                Route = "current/{units}")] HttpRequest req,
-            Coordinates coordinates,
+                Route = "currentweather/{latitude}/{longitude}/{units}")] HttpRequest req,
+            decimal latitude,
+            decimal longitude,
             string units)
         {
             _logger.LogInformation(
-                "Getting weather for: {Coords} in {Units}",
-                coordinates, units);
+                "Getting weather for: {Lat} {Lon} in {Units}",
+                latitude, longitude, units);
 
             CurrentWeather? weather =
                 await _weatherService.GetCurrentWeatherAsync(
-                    coordinates, units);
+                    new(latitude, longitude), units ?? "imperial");
 
             _logger.LogInformation(
                 "Weather is {Desc} in {Loc}",

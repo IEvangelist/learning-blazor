@@ -1,36 +1,23 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 //  Licensed under the MIT License.
 
-using System;
-using System.Linq;
 using Learning.Blazor.Functions;
 using Learning.Blazor.Functions.Extensions;
-using Microsoft.Azure.WebJobs;
-using Microsoft.Azure.WebJobs.Hosting;
+using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-[assembly: WebJobsStartup(typeof(Startup))]
+[assembly: FunctionsStartup(typeof(Startup))]
 namespace Learning.Blazor.Functions
 {
-    internal class Startup : IWebJobsStartup
+    internal class Startup : FunctionsStartup
     {
-        public void Configure(IWebJobsBuilder builder)
+        public override void Configure(IFunctionsHostBuilder builder)
         {
-            var descriptor = builder.Services.FirstOrDefault(
-                serviceDescriptor =>
-                    serviceDescriptor.ServiceType == typeof(IConfiguration));
-            if (descriptor?.ImplementationInstance is IConfigurationRoot configuration)
-            {
-                builder.Services
+            IConfiguration configuration = builder.GetContext().Configuration;
+            builder.Services
                     .AddOpenWeatherMapServices(configuration)
                     .BuildServiceProvider(true);
-            }
-            else
-            {
-                throw new ApplicationException(
-                    "The function requires a valid IConfigurationRoot instance.");
-            }
         }
     }
 }
