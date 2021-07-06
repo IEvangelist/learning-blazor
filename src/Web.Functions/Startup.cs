@@ -17,7 +17,9 @@ namespace Learning.Blazor.Functions
     {
         public void Configure(IWebJobsBuilder builder)
         {
-            var descriptor = builder.Services.FirstOrDefault(d => d.ServiceType == typeof(IConfiguration));
+            var descriptor = builder.Services.FirstOrDefault(
+                serviceDescriptor =>
+                    serviceDescriptor.ServiceType == typeof(IConfiguration));
             if (descriptor?.ImplementationInstance is IConfigurationRoot configuration)
             {
                 builder.Services
@@ -26,12 +28,9 @@ namespace Learning.Blazor.Functions
             }
             else
             {
-                throw new ApplicationException("The function requires a valid IConfigurationRoot instance.");
+                throw new ApplicationException(
+                    "The function requires a valid IConfigurationRoot instance.");
             }
         }
-
-        IServiceCollection ConfigureServices(
-            IServiceCollection services, IConfiguration configuration) =>
-            services;
     }
 }
