@@ -4,14 +4,14 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Learning.Blazor.Models;
+using Learning.Blazor.Functions.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Extensions.Logging;
-using Web.Weather.Services;
 
-namespace Web.Weather
+namespace Learning.Blazor.Functions
 {
     public class CurrentWeatherFunction
     {
@@ -38,7 +38,7 @@ namespace Web.Weather
                 "Getting weather for: {Coords} in {Units}",
                 coordinates, units);
 
-            CurrentWeather weather =
+            CurrentWeather? weather =
                 await _weatherService.GetCurrentWeatherAsync(
                     coordinates, units);
 
@@ -51,4 +51,3 @@ namespace Web.Weather
         }
     }
 }
-

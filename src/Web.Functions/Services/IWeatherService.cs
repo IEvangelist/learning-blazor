@@ -4,14 +4,14 @@
 using System.Threading.Tasks;
 using Learning.Blazor.Models;
 
-namespace Web.Weather.Services
+namespace Learning.Blazor.Functions.Services
 {
     public interface IWeatherService
     {
-        Task<CurrentWeather> GetCurrentWeatherAsync(
+        Task<CurrentWeather?> GetCurrentWeatherAsync(
             Coordinates coordinates, string units);
 
-        Task<ForecastWeather> GetForecastWeatherAsync(
+        Task<ForecastWeather?> GetForecastWeatherAsync(
             Coordinates coordinates, string units);
     }
 }

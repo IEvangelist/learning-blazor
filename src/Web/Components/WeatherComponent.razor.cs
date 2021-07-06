@@ -1,7 +1,6 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 //  Licensed under the MIT License.
 
-using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Learning.Blazor.Extensions;
@@ -13,10 +12,9 @@ namespace Learning.Blazor.Components
 {
     public sealed partial class WeatherComponent
     {
-        private Coordinates _coordinates;
-
-        private CurrentWeather _currentWeather;
-        private Weather _weather;
+        private Coordinates _coordinates = null!;
+        private CurrentWeather _currentWeather = null!;
+        private Weather _weather = null!;
 
         [Inject]
         public IJSRuntime JavaScript { get; set; } = null!;
@@ -67,19 +65,16 @@ namespace Learning.Blazor.Components
                     }
                 }
             };
-            _weather = _currentWeather.Weather.FirstOrDefault();
+            _weather = _currentWeather.Weather[0]!;
+
+            await InvokeAsync(StateHasChanged);
         }
 
         [JSInvokable]
         public async Task OnErrorRequestingCooridnates(
             int code, string message)
         {
-
-        }
-
-        private void GetCoords()
-        {
-
+            await Task.CompletedTask;
         }
     }
 }

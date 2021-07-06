@@ -14,6 +14,6 @@ namespace Learning.Blazor.Extensions
             value is null ? null : Serialize(value, s_options);
 
         public static T? FromJson<T>(this string? json) =>
-            string.IsNullOrWhiteSpace(json) ? default : Deserialize<T>(json, s_options);
+            json is null or { Length: 0 } ? default : Deserialize<T>(json, s_options);
     }
 }

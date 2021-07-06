@@ -2,12 +2,13 @@
 //  Licensed under the MIT License.
 
 using System.Net.Http;
+using System.Net.Http.Json;
 using System.Threading.Tasks;
+using Learning.Blazor.Functions.Options;
 using Learning.Blazor.Models;
 using Microsoft.Extensions.Options;
-using Web.Weather.Options;
 
-namespace Web.Weather.Services
+namespace Learning.Blazor.Functions.Services
 {
     internal class OpenWeatherMapService : IWeatherService
     {
@@ -19,7 +20,7 @@ namespace Web.Weather.Services
             IOptions<OpenWeatherMapOptions> options) =>
             (_httpClient, _openWeatherMapOptions) = (httpClient, options.Value);
 
-        public Task<CurrentWeather> GetCurrentWeatherAsync(
+        public Task<CurrentWeather?> GetCurrentWeatherAsync(
             Coordinates coordinates, string units)
         {
             var (apiKey, baseApiUrl)= _openWeatherMapOptions;
@@ -27,10 +28,10 @@ namespace Web.Weather.Services
             var requestUrl =
                 $"{baseApiUrl}weather?lat={lat}&lon={lon}&appid={apiKey}&units={units}";
 
-            return Task.FromResult(null as CurrentWeather);
+            return _httpClient.GetFromJsonAsync<CurrentWeather>(requestUrl);
         }
 
-        public Task<ForecastWeather> GetForecastWeatherAsync(
+        public Task<ForecastWeather?> GetForecastWeatherAsync(
             Coordinates coordinates, string units)
         {
             var (apiKey, baseApiUrl) = _openWeatherMapOptions;
@@ -38,7 +39,7 @@ namespace Web.Weather.Services
             var requestUrl =
                 $"{baseApiUrl}onecall?lat={lat}&lon={lon}&appid={apiKey}&units={units}&exclude=current,minutely,hourly";
 
-            return Task.FromResult(null as ForecastWeather);
+            return _httpClient.GetFromJsonAsync<ForecastWeather>(requestUrl);
         }
     }
 }
