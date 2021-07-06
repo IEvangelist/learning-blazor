@@ -8,7 +8,7 @@ namespace Learning.Blazor.Functions.Options
         /// <summary>
         /// Get a free API key: https://openweathermap.org/
         /// </summary>
-        public string ApiKey { get; set; }
+        public string ApiKey { get; set; } = null!;
 
         /// <summary>
         /// Defaults to: "https://api.openweathermap.org/data/2.5/"
