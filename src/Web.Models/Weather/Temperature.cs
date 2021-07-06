@@ -5,9 +5,10 @@ using System.Text.Json.Serialization;
 
 namespace Learning.Blazor.Models
 {
-    public record Clouds
+    public record Temperature : FeelsLike
     {
-        [JsonPropertyName("all")]
-        public int All { get; init; }
+        [JsonPropertyName("min")] public double Min { get; init; }
+
+        [JsonPropertyName("max")] public double Max { get; init; }
     }
 }

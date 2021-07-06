@@ -1,10 +1,10 @@
 // Copyright (c) 2021 David Pine. All rights reserved.
 //  Licensed under the MIT License.
 
-using System.Linq;
+using System;
 using System.Threading.Tasks;
-using Learning.Blazor.Models;
 using Learning.Blazor.Functions.Services;
+using Learning.Blazor.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
@@ -13,14 +13,14 @@ using Microsoft.Extensions.Logging;
 
 namespace Learning.Blazor.Functions
 {
-    public class CurrentWeatherFunction
+    public class WeatherFunctions
     {
         private readonly IWeatherService _weatherService;
-        private readonly ILogger<CurrentWeatherFunction> _logger;
+        private readonly ILogger<WeatherFunctions> _logger;
 
-        public CurrentWeatherFunction(
+        public WeatherFunctions(
             IWeatherService weatherService,
-            ILogger<CurrentWeatherFunction> logger)
+            ILogger<WeatherFunctions> logger)
         {
             _weatherService = weatherService;
             _logger = logger;
@@ -30,7 +30,8 @@ namespace Learning.Blazor.Functions
         public async Task<IActionResult> Current(
             [HttpTrigger(
                 AuthorizationLevel.Function, "get",
-                Route = "currentweather/{latitude}/{longitude}/{units}")] HttpRequest req,
+                Route = "currentweather/{lang}/{latitude}/{longitude}/{units}")] HttpRequest req,
+            string lang,
             decimal latitude,
             decimal longitude,
             string units)
@@ -39,16 +40,20 @@ namespace Learning.Blazor.Functions
                 "Getting weather for: {Lat} {Lon} in {Units}",
                 latitude, longitude, units);
 
-            CurrentWeather? weather =
-                await _weatherService.GetCurrentWeatherAsync(
-                    new(latitude, longitude), units ?? "imperial");
+            try
+            {
+                WeatherDetails? weather =
+                    await _weatherService.GetWeatherAsync(
+                        new(latitude, longitude), units, lang);
 
-            _logger.LogInformation(
-                "Weather is {Desc} in {Loc}",
-                weather?.Weather?.FirstOrDefault()?.Description,
-                weather?.Name);
+                return new OkObjectResult(weather);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, ex.Message);
 
-            return new OkObjectResult(weather);
+                return new StatusCodeResult(500);
+            }
         }
     }
 }

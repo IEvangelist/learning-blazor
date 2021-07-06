@@ -28,7 +28,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Extensions", "src\Web.E
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Twitter", "src\Web.Twitter\Web.Twitter.csproj", "{7115B231-2AC6-4BC9-BDC1-AD10BAD1CF86}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.Functions", "src\Web.Functions\Web.Functions.csproj", "{2DE9FBD9-09B9-41D8-9E5D-33BA259A4132}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Functions", "src\Web.Functions\Web.Functions.csproj", "{2DE9FBD9-09B9-41D8-9E5D-33BA259A4132}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.Api", "src\Web.Api\Web.Api.csproj", "{BB30AABB-F71F-4F90-A44E-BA84DCADA310}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -60,6 +62,10 @@ Global
 		{2DE9FBD9-09B9-41D8-9E5D-33BA259A4132}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2DE9FBD9-09B9-41D8-9E5D-33BA259A4132}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2DE9FBD9-09B9-41D8-9E5D-33BA259A4132}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB30AABB-F71F-4F90-A44E-BA84DCADA310}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB30AABB-F71F-4F90-A44E-BA84DCADA310}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB30AABB-F71F-4F90-A44E-BA84DCADA310}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB30AABB-F71F-4F90-A44E-BA84DCADA310}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -71,6 +77,7 @@ Global
 		{888F337B-936E-429C-9899-46A3D792D710} = {8F145111-7A3B-41B1-9296-F3BE4C7DE84F}
 		{7115B231-2AC6-4BC9-BDC1-AD10BAD1CF86} = {8F145111-7A3B-41B1-9296-F3BE4C7DE84F}
 		{2DE9FBD9-09B9-41D8-9E5D-33BA259A4132} = {8F145111-7A3B-41B1-9296-F3BE4C7DE84F}
+		{BB30AABB-F71F-4F90-A44E-BA84DCADA310} = {8F145111-7A3B-41B1-9296-F3BE4C7DE84F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B464D63B-2CBF-4514-9CD7-2A9371E8404D}

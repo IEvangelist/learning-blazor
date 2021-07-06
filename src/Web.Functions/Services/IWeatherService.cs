@@ -8,10 +8,7 @@ namespace Learning.Blazor.Functions.Services
 {
     public interface IWeatherService
     {
-        Task<CurrentWeather?> GetCurrentWeatherAsync(
-            Coordinates coordinates, string units);
-
-        Task<ForecastWeather?> GetForecastWeatherAsync(
-            Coordinates coordinates, string units);
+        Task<WeatherDetails?> GetWeatherAsync(
+            Coordinates coordinates, string? units, string? lang);
     }
 }

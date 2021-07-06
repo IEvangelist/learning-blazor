@@ -1,6 +1,8 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 //  Licensed under the MIT License.
 
+using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
@@ -20,26 +22,33 @@ namespace Learning.Blazor.Functions.Services
             IOptions<OpenWeatherMapOptions> options) =>
             (_httpClient, _openWeatherMapOptions) = (httpClient, options.Value);
 
-        public Task<CurrentWeather?> GetCurrentWeatherAsync(
-            Coordinates coordinates, string units)
+        public Task<WeatherDetails?> GetWeatherAsync(
+            Coordinates coordinates, string? units, string? lang)
         {
-            var (apiKey, baseApiUrl)= _openWeatherMapOptions;
-            var (lat, lon) = coordinates;
-            var requestUrl =
-                $"{baseApiUrl}weather?lat={lat}&lon={lon}&appid={apiKey}&units={units}";
+            (string apiKey, string baseApiUrl) = _openWeatherMapOptions;
+            (decimal lat, decimal lon) = coordinates;
 
-            return _httpClient.GetFromJsonAsync<CurrentWeather?>(requestUrl);
-        }
+            // Sensible defaults.
+            units ??= "imperial";
+            lang ??= "en";
 
-        public Task<ForecastWeather?> GetForecastWeatherAsync(
-            Coordinates coordinates, string units)
-        {
-            var (apiKey, baseApiUrl) = _openWeatherMapOptions;
-            var (lat, lon) = coordinates;
-            var requestUrl =
-                $"{baseApiUrl}onecall?lat={lat}&lon={lon}&appid={apiKey}&units={units}&exclude=current,minutely,hourly";
+            Dictionary<string, object> queryStringParameters = new()
+            {
+                ["lat"] = lat,
+                ["lon"] = lon,
+                ["appid"] = apiKey,
+                ["units"] = units,
+                ["lang"] = lang,
+                ["exclude"] = "minutely"
+            };
 
-            return _httpClient.GetFromJsonAsync<ForecastWeather?>(requestUrl);
+            string? queryString =
+                string.Join("&", queryStringParameters.Select(kvp => $"{kvp.Key}={kvp.Value}"));
+
+            string? requestUrl =
+                $"{baseApiUrl}onecall?{queryString}";
+
+            return _httpClient.GetFromJsonAsync<WeatherDetails?>(requestUrl);
         }
     }
 }

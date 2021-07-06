@@ -28,7 +28,7 @@ namespace Learning.Blazor.Extensions
                     { "50d", "05" }, { "50n", "35" }
                 };
 
-        internal static string ToImageName(this Weather weather) =>
+        internal static string ToImageName(this WeatherWordingAndIcon weather) =>
             s_iconToImageMap.TryGetValue(
                 weather.Icon, out string? value)
             ? value : "";

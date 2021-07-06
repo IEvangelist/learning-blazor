@@ -14,7 +14,7 @@ namespace Learning.Blazor.Components
     {
         private Coordinates _coordinates = null!;
         private CurrentWeather _currentWeather = null!;
-        private Weather _weather = null!;
+        private WeatherWordingAndIcon _weather = null!;
 
         [Inject]
         public IJSRuntime JavaScript { get; set; } = null!;
@@ -56,7 +56,7 @@ namespace Learning.Blazor.Components
                     TempMin = 54,
                     TempMax = 86
                 },
-                Weather = new Weather[]
+                Weather = new WeatherWordingAndIcon[]
                 {
                     new()
                     {

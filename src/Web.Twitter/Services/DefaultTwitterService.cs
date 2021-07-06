@@ -188,7 +188,7 @@ namespace Learning.Blazor.Twitter.Services
 
         private async void OnDisconnectedMessageReceived(object? sender, DisconnectedEventArgs? args)
         {
-            var status = $"Twitter stream disconnected: {args?.DisconnectMessage}";
+            string? status = $"Twitter stream disconnected: {args?.DisconnectMessage}";
 
             _logger.LogWarning(status, args);
 
@@ -206,9 +206,9 @@ namespace Learning.Blazor.Twitter.Services
 
         private async void OnStreamStopped(object? sender, StreamStoppedEventArgs args)
         {
-            var disconnectMessage = args.DisconnectMessage?.ToString() ?? "no disconnection reason";
-            var errorMessage = args.Exception?.Message ?? "no error (clean stop).";
-            var status = $"Twitter stream stopped {disconnectMessage}: {errorMessage}";
+            string? disconnectMessage = args.DisconnectMessage?.ToString() ?? "no disconnection reason";
+            string? errorMessage = args.Exception?.Message ?? "no error (clean stop).";
+            string? status = $"Twitter stream stopped {disconnectMessage}: {errorMessage}";
 
             _logger.LogInformation(status);
 
@@ -235,7 +235,7 @@ namespace Learning.Blazor.Twitter.Services
 
         private async void OnFallingBehindDetected(object? sender, WarningFallingBehindEventArgs args)
         {
-            var status = $"Twitter stream falling behind: {args.WarningMessage}.";
+            string? status = $"Twitter stream falling behind: {args.WarningMessage}.";
 
             _logger.LogInformation(status);
 
