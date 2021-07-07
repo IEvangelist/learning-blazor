@@ -36,7 +36,7 @@ namespace Learning.Blazor
                 {
                     BaseAddress = new Uri(hostEnvironment.BaseAddress)
                 });
-            services.AddClientServices(configuration);
+            services.AddJokeServices(configuration);
             services.AddTwitterComponent(configuration);
             services.AddMsalAuthentication(options =>
             {

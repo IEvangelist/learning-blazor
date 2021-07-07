@@ -13,7 +13,7 @@ namespace Learning.Blazor.Components
     public sealed partial class WeatherComponent
     {
         private Coordinates _coordinates = null!;
-        private CurrentWeather _currentWeather = null!;
+        private WeatherDetails _weatherDetails = null!;
         private WeatherWordingAndIcon _weather = null!;
 
         [Inject]
@@ -42,30 +42,12 @@ namespace Learning.Blazor.Components
 
             await Task.CompletedTask;
 
-            _currentWeather = new()
+            _weatherDetails = new();
+            _weather = new()
             {
-                Name = "Pewaukee",
-                Coord = new Coord()
-                {
-                    Lat = latitude,
-                    Lon = longitude
-                },
-                Main = new Main()
-                {
-                    Temp = 84,
-                    TempMin = 54,
-                    TempMax = 86
-                },
-                Weather = new WeatherWordingAndIcon[]
-                {
-                    new()
-                    {
-                        Icon = "01d",
-                        Description = "Sunny"
-                    }
-                }
+                Icon = "01d",
+                Description = "Sunny"
             };
-            _weather = _currentWeather.Weather[0]!;
 
             await InvokeAsync(StateHasChanged);
         }

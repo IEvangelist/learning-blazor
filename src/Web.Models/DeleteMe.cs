@@ -3,6 +3,7 @@
 
 using System.ComponentModel;
 
+// TODO: delete if we upgrade to anything above .NET Core 3.1
 namespace System.Runtime.CompilerServices
 {
     [EditorBrowsable(EditorBrowsableState.Never)]

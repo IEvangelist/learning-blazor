@@ -4,7 +4,7 @@
 using System.Threading.Tasks;
 using Learning.Blazor.Models;
 
-namespace Learning.Blazor.Services
+namespace Learning.Blazor.JokeServices
 {
     internal interface IJokeService
     {

@@ -1,6 +1,6 @@
 using System;
 
-namespace Web.Api
+namespace Learning.Blazor.Api
 {
     public class WeatherForecast
     {

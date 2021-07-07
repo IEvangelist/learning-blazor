@@ -5,8 +5,9 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Learning.Blazor.Extensions;
 using Learning.Blazor.Models;
+using Learning.Blazor.JokeServices;
 
-namespace Learning.Blazor.Services
+namespace Learning.Blazor.JokeServices
 {
     internal class AggregateJokeFactory : IJokeFactory
     {

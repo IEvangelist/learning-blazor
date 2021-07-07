@@ -1,21 +1,15 @@
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.Identity.Web;
 using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Learning.Blazor.Extensions;
+using Learning.Blazor.Api.Extensions;
 
-namespace Web.Api
+namespace Learning.Blazor.Api
 {
     public class Startup
     {
@@ -31,6 +25,9 @@ namespace Web.Api
         {
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddMicrosoftIdentityWebApi(Configuration.GetSection("AzureAd"));
+
+            services.AddJokeServices(Configuration);
+            services.AddApiServices(Configuration);
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

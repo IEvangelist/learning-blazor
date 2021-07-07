@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Web.Api
+namespace Learning.Blazor.Api
 {
     public class Program
     {

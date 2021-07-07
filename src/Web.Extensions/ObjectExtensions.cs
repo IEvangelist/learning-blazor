@@ -10,10 +10,12 @@ namespace Learning.Blazor.Extensions
             PropertyNameCaseInsensitive = true
         };
 
-        public static string? ToJson<T>(this T value) where T : class =>
-            value is null ? null : Serialize(value, s_options);
+        public static string? ToJson<T>(
+            this T value, JsonSerializerOptions? options = null) where T : class =>
+            value is null ? null : Serialize(value, options ?? s_options);
 
-        public static T? FromJson<T>(this string? json) where T : class =>
-            json is null or { Length: 0 } ? default : Deserialize<T>(json, s_options);
+        public static T? FromJson<T>(
+            this string? json, JsonSerializerOptions? options = null) where T : class =>
+            json is null or { Length: 0 } ? default : Deserialize<T>(json, options ?? s_options);
     }
 }

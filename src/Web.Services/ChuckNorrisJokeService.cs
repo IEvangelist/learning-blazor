@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Learning.Blazor.Models;
 using Microsoft.Extensions.Logging;
 
-namespace Learning.Blazor.Services
+namespace Learning.Blazor.JokeServices
 {
     internal class ChuckNorrisJokeService : IJokeService
     {
