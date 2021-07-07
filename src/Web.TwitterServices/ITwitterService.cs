@@ -7,9 +7,9 @@ using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using Learning.Blazor.Models;
 
-namespace Learning.Blazor.Twitter.Services
+namespace Learning.Blazor.TwitterServices
 {
-    internal interface ITwitterService : IAsyncDisposable
+    public interface ITwitterService : IAsyncDisposable
     {
         /// <summary>
         /// The event that is fired when a tweet arrives from the stream.

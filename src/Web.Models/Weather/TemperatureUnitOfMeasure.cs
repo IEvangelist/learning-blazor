@@ -10,18 +10,18 @@ namespace Learning.Blazor.Models
     public enum TemperatureUnitOfMeasure
     {
         /// <summary>
-        /// Representing the temperature in °K (degrees Kelvin)
+        /// Representing the temperature in °F (degrees Fahrenheit)
         /// </summary>
-        Standard,
+        Imperial = 0,
 
         /// <summary>
         /// Representing the temperature in °C (degrees Celcius)
         /// </summary>
-        Metric,
+        Metric = 1,
 
         /// <summary>
-        /// Representing the temperature in °F (degrees Fahrenheit)
+        /// Representing the temperature in °K (degrees Kelvin)
         /// </summary>
-        Imperial
+        Standard = 2
     }
 }

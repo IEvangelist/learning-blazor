@@ -1,31 +1,27 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 //  Licensed under the MIT License.
 
-
-using Learning.Blazor.Models;
+using TempUom = Learning.Blazor.Models.TemperatureUnitOfMeasure;
 
 namespace Learning.Blazor.Api.Services
 {
     internal class DefaultTemperatureUnitConversionService
         : ITemperatureUnitConversionService
     {
-        /// <summary>
-        /// Some formulas found in:
-        ///   https://www.realifewebdesigns.com/web-programming/convert-metric-imperial.asp
-        /// </summary>
-        public double ConvertValue(
-            double value,
-            TemperatureUnitOfMeasure sourceUom,
-            TemperatureUnitOfMeasure targetUom) => (sourceUom, targetUom) switch
+        public double ConvertValue(double value,TempUom sourceUom, TempUom targetUom) =>
+            (sourceUom, targetUom) switch
             {
-                (TemperatureUnitOfMeasure.Metric, TemperatureUnitOfMeasure.Imperial) => value * 1.8 + 32,
-                (TemperatureUnitOfMeasure.Metric, TemperatureUnitOfMeasure.Standard) => value,
+                // °C to °F or °K
+                (TempUom.Metric, TempUom.Imperial) => value * 1.8 + 32,
+                (TempUom.Metric, TempUom.Standard) => value + 273.15,
 
-                (TemperatureUnitOfMeasure.Imperial, TemperatureUnitOfMeasure.Metric) => (value - 32) * 0.55,
-                (TemperatureUnitOfMeasure.Imperial, TemperatureUnitOfMeasure.Standard) => value,
+                // °F to °C or °K
+                (TempUom.Imperial, TempUom.Metric) => (value - 32) * 0.55,
+                (TempUom.Imperial, TempUom.Standard) => (value - 32) * 5 / 9 + 273.15,
 
-                (TemperatureUnitOfMeasure.Standard, TemperatureUnitOfMeasure.Imperial) => value,
-                (TemperatureUnitOfMeasure.Standard, TemperatureUnitOfMeasure.Metric) => value,
+                // °K to °F or °C
+                (TempUom.Standard, TempUom.Imperial) => (value - 273.15) * 9 / 5 + 32,
+                (TempUom.Standard, TempUom.Metric) => value - 273.15,
 
                 _ => value
             };

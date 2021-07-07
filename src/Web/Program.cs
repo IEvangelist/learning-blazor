@@ -3,45 +3,37 @@
 
 using System;
 using System.Net.Http;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Learning.Blazor;
 using Learning.Blazor.Extensions;
 
-namespace Learning.Blazor
+const string ServerApi = nameof(ServerApi);
+
+var builder = WebAssemblyHostBuilder.CreateDefault(args);
+builder.RootComponents.Add<App>("#app");
+
+ConfigureServices(
+    builder.Services,
+    builder.Configuration,
+    builder.HostEnvironment);
+
+await builder.Build().RunAsync();
+
+static void ConfigureServices(
+    IServiceCollection services,
+    IConfiguration configuration,
+    IWebAssemblyHostEnvironment hostEnvironment)
 {
-    public class Program
+    var serverUrl = configuration["ServerApi"];
+
+    services.AddHttpClient(ServerApi, client => client.BaseAddress = new Uri(serverUrl));
+    services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient(ServerApi));
+
+    services.AddTwitterComponent(configuration);
+    services.AddMsalAuthentication(options =>
     {
-        public static async Task Main(string[] args)
-        {
-            var builder = WebAssemblyHostBuilder.CreateDefault(args);
-            builder.RootComponents.Add<App>("#app");
-
-            ConfigureServices(
-                builder.Services,
-                builder.Configuration,
-                builder.HostEnvironment);
-
-            await builder.Build().RunAsync();
-        }
-
-        static void ConfigureServices(
-            IServiceCollection services,
-            IConfiguration configuration,
-            IWebAssemblyHostEnvironment hostEnvironment)
-        {
-            services.AddScoped(
-                _ => new HttpClient
-                {
-                    BaseAddress = new Uri(hostEnvironment.BaseAddress)
-                });
-            services.AddJokeServices(configuration);
-            services.AddTwitterComponent(configuration);
-            services.AddMsalAuthentication(options =>
-            {
-                configuration.Bind("AzureAdB2C", options.ProviderOptions.Authentication);
-            });
-        }
-    }
+        configuration.Bind("AzureAdB2C", options.ProviderOptions.Authentication);
+    });
 }

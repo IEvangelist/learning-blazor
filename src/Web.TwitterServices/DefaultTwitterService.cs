@@ -6,13 +6,14 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
+using Learning.Blazor.Extensions;
 using Learning.Blazor.Models;
 using Microsoft.Extensions.Logging;
 using Tweetinvi.Events;
 using Tweetinvi.Models;
 using Tweetinvi.Streaming;
 
-namespace Learning.Blazor.Twitter.Services
+namespace Learning.Blazor.TwitterServices
 {
     internal sealed class DefaultTwitterService : ITwitterService
     {
@@ -102,18 +103,19 @@ namespace Learning.Blazor.Twitter.Services
             {
                 _logger.LogInformation("Starting tweet stream.");
 
-                await TweetReceived(
-                    new TweetContents
-                    {
-                        HTML = @"<blockquote class=""twitter-tweet"" style=""width: 400px;"" data-dnt=""true"">
-<p lang=""en"" dir=""ltr""></p>
+//                await TweetReceived(
+//                    new TweetContents
+//                    {
+//                        HTML = @"<blockquote class=""twitter-tweet"" style=""width: 400px;"" data-dnt=""true"">
+//<p lang=""en"" dir=""ltr""></p>
 
-<a href=""https://twitter.com/davidpine7/status/1410259973519597570""></a>
+//<a href=""https://twitter.com/davidpine7/status/1410259973519597570""></a>
 
-</blockquote>"
-                    });
+//</blockquote>"
+//                    });
+
                 // TODO: watch https://github.com/linvi/tweetinvi/pull/1130
-                //await _filteredStream.StartMatchingAllConditionsAsync();
+                await _filteredStream.StartMatchingAllConditionsAsync();
             }
         }
 
@@ -127,17 +129,8 @@ namespace Learning.Blazor.Twitter.Services
             }
         }
 
-        async ValueTask IAsyncDisposable.DisposeAsync()
-        {
-            if (_filteredStream is IAsyncDisposable asyncDisposable)
-            {
-                await asyncDisposable.ConfigureAwait(false).DisposeAsync();
-            }
-            else if (_filteredStream is IDisposable disposable)
-            {
-                disposable.Dispose();
-            }
-        }
+        ValueTask IAsyncDisposable.DisposeAsync() =>
+            _filteredStream.TryDisposeAsync();
 
         private async void OnNonMatchingTweetReceived(
             object? sender, TweetEventArgs? args) =>
@@ -166,7 +159,7 @@ namespace Learning.Blazor.Twitter.Services
                 return;
             }
 
-            if (TweetReceived is { })
+            if (TweetReceived is not null)
             {
                 await TweetReceived(
                     new TweetContents

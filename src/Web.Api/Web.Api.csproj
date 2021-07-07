@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <RootNamespace>Learning.Blazor.Api</RootNamespace>
@@ -11,15 +11,18 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.0-preview.5.21301.17" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="6.0.0-preview.5.21301.17" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Protocols.MessagePack" Version="6.0.0-preview.5.21301.17" />
+    <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="6.0.0-preview.5.21301.17" />
     <PackageReference Include="Microsoft.Extensions.Http.Polly" Version="6.0.0-preview.5.21301.17" />
-    <PackageReference Include="Microsoft.Identity.Web" Version="1.1.0" />
+    <PackageReference Include="Microsoft.Identity.Web" Version="1.14.0" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.14" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.4" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Web.Extensions\Web.Extensions.csproj" />
-    <ProjectReference Include="..\Web.Services\Web.Services.csproj" />
+    <ProjectReference Include="..\Web.JokeServices\Web.JokeServices.csproj" />
+    <ProjectReference Include="..\Web.TwitterServices\Web.TwitterServices.csproj" />
   </ItemGroup>
 
 </Project>

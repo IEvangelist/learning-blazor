@@ -3,12 +3,14 @@
 
 using System;
 using System.Net.Http;
+using Learning.Blazor.Api.Options;
+using Learning.Blazor.Api.Services;
+using Learning.Blazor.Extensions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Polly;
 using Polly.Contrib.WaitAndRetry;
-using Learning.Blazor.Extensions;
-using Learning.Blazor.Api.Services;
+using Polly.Retry;
 
 namespace Learning.Blazor.Api.Extensions
 {
@@ -17,20 +19,31 @@ namespace Learning.Blazor.Api.Extensions
         internal static IServiceCollection AddApiServices(
             this IServiceCollection services, IConfiguration configuration)
         {
+            static AsyncRetryPolicy<HttpResponseMessage> GetRetryPolicy(
+                PolicyBuilder<HttpResponseMessage> builder) =>
+                builder.WaitAndRetryAsync(
+                    // See: https://brooker.co.za/blog/2015/03/21/backoff.html
+                    // Uses the "Jitter" algorithm
+                    Backoff.DecorrelatedJitterBackoffV2(
+                            medianFirstRetryDelay: TimeSpan.FromSeconds(1),
+                            retryCount: 5));
+
             services.AddHttpClient("Web.Functions")
-                .AddTransientHttpErrorPolicy(_ =>
-                    (IAsyncPolicy<HttpResponseMessage>)
-                        Policy.Handle<Exception>()
-                            .WaitAndRetryAsync(
-                                // See: https://brooker.co.za/blog/2015/03/21/backoff.html
-                                // Uses the "Jitter" algorithm
-                                Backoff.DecorrelatedJitterBackoffV2(
-                                    medianFirstRetryDelay: TimeSpan.FromSeconds(1),
-                                    retryCount: 5)));
+                .AddTransientHttpErrorPolicy(GetRetryPolicy);
+
+            services.AddStackExchangeRedisCache(options =>
+            {
+                options.Configuration =
+                    configuration["RedisCacheOptions:ConnectionString"];
+            });
 
             services.AddScoped<WeatherFunctionClientService>();
+            services.Configure<WebFunctionsOptions>(
+                configuration.GetSection(nameof(WebFunctionsOptions)));
 
             services.AddJokeServices(configuration);
+            services.AddTwitterServices(configuration);
+            services.AddHostedService<TwitterWorkerService>();
 
             return services;
         }

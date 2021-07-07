@@ -45,7 +45,14 @@
                         </p>
                     </div>
                     <div class="message-body">
-                        An unhandled error has occurred. <a class="button" href="/">Reload</a>
+                        An unhandled error has occurred.
+                        <button class="button is-danger is-pulled-right"
+                           onClick="window.location.reload(true)">
+                            <span class="icon">
+                                <i class="fas fa-redo"></i>
+                            </span>
+                            <span>Reload</span>
+                        </button>
                     </div>
                 </article>
             </div>

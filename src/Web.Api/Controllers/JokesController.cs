@@ -1,7 +1,7 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 //  Licensed under the MIT License.
 
-using Learning.Blazor.Api.Services;
+using Learning.Blazor.JokeServices;
 using Learning.Blazor.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -16,38 +16,37 @@ namespace Learning.Blazor.Api.Controllers
     [
         //Authorize,
         ApiController,
-        Route("api/weather")
+        Route("api/jokes")
     ]
-    public class WeatherController : ControllerBase
+    public class JokesController : ControllerBase
     {
-        private readonly WeatherFunctionClientService _weatherFunctionClientService;
-        private readonly ILogger<WeatherController> _logger;
+        private readonly IJokeFactory _jokeFactory;
+        private readonly ILogger<JokesController> _logger;
 
         // The Web API will only accept tokens:
         //   1) for users, and
         //   2) having the "access_as_user" scope for this API
         static readonly string[] s_scopeRequiredByApi = new string[] { "access_as_user" };
 
-        public WeatherController(
-            WeatherFunctionClientService weatherFunctionClientService,
-            ILogger<WeatherController> logger) =>
-            (_weatherFunctionClientService, _logger) =
-                (weatherFunctionClientService, logger);
+        public JokesController(
+            IJokeFactory jokeFactory,
+            ILogger<JokesController> logger) =>
+            (_jokeFactory, _logger) = (jokeFactory, logger);
 
         [
-            HttpPost,
-            Route("latest"),
+            HttpGet,
+            Route("random"),
             Produces(MediaTypeNames.Application.Json)
         ]
-        public async Task<IActionResult> Post(
-            [FromBody] WeatherRequest request)
+        public async Task<IActionResult> Get()
         {
             //HttpContext.VerifyUserHasAnyAcceptedScope(s_scopeRequiredByApi);
 
             _logger.LogInformation("{DateTime}: Getting weather", DateTime.UtcNow);
 
-            WeatherDetails weatherDetails = await _weatherFunctionClientService.GetWeatherAsync(request);
-            return new JsonResult(weatherDetails);
+            JokeResponse joke = await _jokeFactory.GetRandomJokeAsync();
+
+            return new JsonResult(joke);
         }
     }
 }

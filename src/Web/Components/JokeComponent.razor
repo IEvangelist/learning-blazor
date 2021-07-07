@@ -1,4 +1,4 @@
-﻿@inject IJokeFactory JokeFactory
+﻿@inject HttpClient Http
 
 <div class="content">
     @if (_isLoadingJoke)
@@ -34,7 +34,9 @@
 
         try
         {
-            (_jokeText, _sourceDetails) = await JokeFactory.GetRandomJokeAsync();
+            (_jokeText, _sourceDetails) =
+                await Http.GetFromJsonAsync<JokeResponse>(
+                    "api/jokes/random");
         }
         finally
         {

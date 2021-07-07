@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -9,12 +9,15 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.0-preview.5.21301.17" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.0-preview.5.21301.17" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="6.0.0-preview.5.21301.17" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Protocols.MessagePack" Version="6.0.0-preview.5.21301.17" />
     <PackageReference Include="Microsoft.Authentication.WebAssembly.Msal" Version="6.0.0-preview.5.21301.17" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="6.0.0-preview.5.21301.5" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0-preview.5.21301.5" />
+    <PackageReference Include="System.Net.Http.Json" Version="6.0.0-preview.5.21301.5" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Web.Services\Web.Services.csproj" />
     <ProjectReference Include="..\Web.Twitter\Web.Twitter.csproj" />
   </ItemGroup>
 

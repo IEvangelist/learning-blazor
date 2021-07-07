@@ -6,8 +6,10 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Learning.Blazor.Models;
 using Learning.Blazor.Twitter.Extensions;
-using Learning.Blazor.Twitter.Services;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+using Microsoft.AspNetCore.SignalR.Client;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.JSInterop;
 
@@ -29,62 +31,82 @@ namespace Learning.Blazor.Twitter.Components
         private bool _showTracksModal = false;
         private StreamingStatus? _streamingStatus;
         private bool? _isStreaming => _streamingStatus is { /* "something" */ };
+        private HubConnection _hubConnection = null!;
 
         [Inject]
-        public IJSRuntime _javaScript { get; set; } = null!;
+        private IJSRuntime _javaScript { get; set; } = null!;
 
         [Inject]
-        private ITwitterService _twitterService { get; set; } = null!;
+        private NavigationManager _navigationManager { get; set; } = null!;
 
         [Inject]
         private ILogger<TweetComponent> _logger { get; set; } = null!;
 
+        [Inject]
+        private IAccessTokenProvider _tokenProvider { get; set; } = null!;
+
         protected override async Task OnInitializedAsync()
         {
-            _twitterService.StatusUpdated += OnStatusUpdated;
-            _twitterService.TweetReceived += OnTweetReceived;
+            await Task.CompletedTask;
 
-            // await Task.CompletedTask;
-            await _twitterService.StartTweetStreamAsync();
+            // _hubConnection = new HubConnectionBuilder()
+            //     .WithUrl(new Uri("https://localhost:5002/notifictions")/*,
+            //         options => options.AccessTokenProvider = GetAccessTokenValueAsync*/)
+            //     .WithAutomaticReconnect()
+            //     .AddMessagePackProtocol()
+            //     .Build();
+            // 
+            // _hubConnection.On<Notification<StreamingStatus>>("StatusUpdated", OnStatusUpdated);
+            // _hubConnection.On<Notification<TweetContents>>("TweetReceived", OnTweetReceived);
+            // 
+            // await _hubConnection.StartAsync();
+            // await _hubConnection.InvokeAsync("StartTweetStream");
         }
 
-        private Task OnStatusUpdated(StreamingStatus status) =>
+        private async Task<string?> GetAccessTokenValueAsync()
+        {
+            AccessTokenResult? result = await _tokenProvider.RequestAccessToken();
+            return result.TryGetToken(out AccessToken? accessToken) ? accessToken.Value : null;
+        }
+
+        private Task OnStatusUpdated(Notification<StreamingStatus> status) =>
             InvokeAsync(() =>
             {
                 _streamingStatus = status;
                 StateHasChanged();
             });
 
-        private Task OnTweetReceived(TweetContents tweet) =>
+        private Task OnTweetReceived(Notification<TweetContents> tweet) =>
             InvokeAsync(async () =>
             {
                 _tweets?.Add(tweet);
-                StateHasChanged();
 
                 // We need to tell the Twitter HTML to render correctly.
                 // This is a Twitter thing, not a Blazor thing...
                 // We interop with JavaScript, calling functions from our .NET code.
                 await _javaScript.RenderTweetsAsync();
+
+                StateHasChanged();
             });
 
-        private void RemoveTrack(string track)
+        private async Task RemoveTrack(string track)
         {
             _ = _tracks.Remove(track);
-            _twitterService.RemoveTrack(track);
 
-            StateHasChanged();
+            await _hubConnection.InvokeAsync("RemoveTrack", track);
+            await InvokeAsync(StateHasChanged);
         }
 
-        private async Task Start() =>
-            await _twitterService.StartTweetStreamAsync();
+        private Task Start() =>
+            _hubConnection.InvokeAsync("StartTweetStream");
 
-        private void Stop() =>
-            _twitterService.StopTweetStream();
+        private Task Stop() =>
+            _hubConnection.InvokeAsync("StopTweetStream");
 
-        private void Pause() =>
-            _twitterService.PauseTweetStream();
+        private Task Pause() =>
+            _hubConnection.InvokeAsync("PauseTweetStream");
 
         ValueTask IAsyncDisposable.DisposeAsync() =>
-            _twitterService.DisposeAsync();
+            _hubConnection.DisposeAsync();
     }
 }
