@@ -12,11 +12,12 @@ namespace Learning.Blazor.Extensions
     {
         static readonly JsonSerializerOptions s_options = new()
         {
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
             PropertyNameCaseInsensitive = true
         };
 
         public static string? ToJson<T>(
-            this T value, JsonSerializerOptions? options = null) where T : class =>
+            this T value, JsonSerializerOptions? options = null) =>
             value is null ? null : Serialize(value, options ?? s_options);
 
         public static T? FromJson<T>(

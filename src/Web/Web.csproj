@@ -18,10 +18,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Web.LocalStorage\Web.LocalStorage.csproj" />
     <ProjectReference Include="..\Web.TwitterComponents\Web.TwitterComponents.csproj" />
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="TagHelpers\" />
     <Folder Include="wwwroot\media\weather\" />
   </ItemGroup>
 

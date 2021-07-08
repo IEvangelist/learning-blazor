@@ -35,6 +35,8 @@ static void ConfigureServices(
     services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient(ServerApi));
 
     services.AddTwitterComponent(configuration);
+    services.AddLocalStorage();
+
     services.AddMsalAuthentication(options =>
     {
         configuration.Bind("AzureAdB2C", options.ProviderOptions.Authentication);
