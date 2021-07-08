@@ -4,4 +4,17 @@
 
 This repository is the application detailed in the "Learning Blazor: Build Single-Page Apps with WebAssembly and C#" O'Reilly Media book by David Pine.
 
+Featuring:
+
+- C# 10
+- .NET 6
+- Blazor WebAssembly
+- Azure Functions &mdash; .NET
+- ASP.NET Core Web API
+- SignalR Core
+- Polly
+- Swagger / OpenAPI
+- Twitter API
+- OpenWeatherMap API
+
 > [💡 Ideas](https://gist.github.com/IEvangelist/d43abafb64d207bff25e60769e986bbd) for the application to include.
