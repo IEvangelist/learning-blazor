@@ -4,7 +4,7 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Components;
 
-namespace Learning.Blazor.Twitter.Components
+namespace Learning.Blazor.TwitterComponents.Components
 {
     public sealed partial class TwitterTracksModalComponent
     {

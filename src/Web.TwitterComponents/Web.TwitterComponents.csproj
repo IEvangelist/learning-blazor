@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <RootNamespace>Learning.Blazor.Twitter</RootNamespace>
+    <RootNamespace>Learning.Blazor.TwitterComponents</RootNamespace>
     <RazorLangVersion>5.0</RazorLangVersion>
     <Nullable>enable</Nullable>
   </PropertyGroup>

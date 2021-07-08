@@ -4,7 +4,7 @@
 using System.Threading.Tasks;
 using Microsoft.JSInterop;
 
-namespace Learning.Blazor.Twitter.Extensions
+namespace Learning.Blazor.TwitterComponents.Extensions
 {
     internal static class JSRuntimeExtensions
     {

@@ -16,9 +16,6 @@ on:
         required: true
         default: 'Manual run'
 
-env:
-  DOTNET_VERSION: '6.0.x' # set this to the dot net version to use
-
 jobs:
   build:
     name: build
@@ -32,10 +29,14 @@ jobs:
       run: |
         echo 'Reason: ${{ github.event.inputs.reason }}'
 
-    - name: Setup .NET Core
+    - name: Setup .NET 3.1
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: ${{ env.DOTNET_VERSION }}
+        dotnet-version: 3.1.x
+    - name: Setup .NET 6.0
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 6.0.x
         include-prerelease: true
 
     - name: Install dependencies

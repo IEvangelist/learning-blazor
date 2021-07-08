@@ -9,9 +9,6 @@ on:
   schedule:
     - cron: '31 4 * * 5'
 
-env:
-  DOTNET_VERSION: '6.0.x' # set this to the dot net version to use
-
 jobs:
   analyze:
     name: Analyze
@@ -46,10 +43,14 @@ jobs:
     # ℹ️ Command-line programs to run using the OS shell.
     # 📚 https://git.io/JvXDl
 
-    - name: Setup .NET Core
+    - name: Setup .NET 3.1
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: ${{ env.DOTNET_VERSION }}
+        dotnet-version: 3.1.x
+    - name: Setup .NET 6.0
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 6.0.x
         include-prerelease: true
 
     - name: Install dependencies

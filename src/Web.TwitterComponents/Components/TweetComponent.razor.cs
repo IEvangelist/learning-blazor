@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Learning.Blazor.Models;
-using Learning.Blazor.Twitter.Extensions;
+using Learning.Blazor.TwitterComponents.Extensions;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.AspNetCore.SignalR.Client;
@@ -13,7 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.JSInterop;
 
-namespace Learning.Blazor.Twitter.Components
+namespace Learning.Blazor.TwitterComponents.Components
 {
     public sealed partial class TweetComponent : IAsyncDisposable
     {

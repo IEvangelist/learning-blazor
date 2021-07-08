@@ -9,9 +9,7 @@ env:
   AZURE_FUNCTIONAPP_NAME: learning-blazor-functions
   AZURE_FUNCTIONAPP_PACKAGE_PATH: src/Web.Functions/published
   CONFIGURATION: Release
-  DOTNET_CORE_VERSION: 3.1.x
   WORKING_DIRECTORY: src/Web.Functions
-  DOTNET_CORE_VERSION_INPROC: ''
 
 jobs:
   deploy-azure-function:
@@ -21,15 +19,10 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Setup .NET Core
+    - name: Setup .NET 3.1
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: ${{ env.DOTNET_CORE_VERSION }}
-
-    - name: Setup .NET Core (for inproc extensions)
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: ${{ env.DOTNET_CORE_VERSION_INPROC }}
+        dotnet-version: 3.1.x
 
     - name: Restore
       run: dotnet restore "${{ env.WORKING_DIRECTORY }}"
