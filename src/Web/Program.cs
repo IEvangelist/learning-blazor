@@ -6,6 +6,7 @@ using System.Net.Http;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Learning.Blazor;
 using Learning.Blazor.Extensions;
 
@@ -13,6 +14,8 @@ const string ServerApi = nameof(ServerApi);
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
+
+builder.Logging.SetMinimumLevel(LogLevel.Information);
 
 ConfigureServices(
     builder.Services,

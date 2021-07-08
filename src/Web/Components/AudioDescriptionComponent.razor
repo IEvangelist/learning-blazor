@@ -1,0 +1,67 @@
+﻿<span class="navbar-item">
+    <button class="button is-light level-item"
+        @onclick=@(() => _modal.Show())>
+        <span class="icon">
+            <i class="fas fa-audio-description"></i>
+        </span>
+        <span>Audio</span>
+    </button>
+</span>
+
+<ModalComponent @ref="_modal" OnDismissed=@OnDismissed>
+    <TitleContent>
+        <span class="icon">
+            <i class="fas fa-cogs"></i>
+        </span>
+        <span class="pr-2">Settings</span>
+    </TitleContent>
+
+    <BodyContent>
+        <form>
+            <div class="field">
+                <label for="range">Voice speed: @_voiceSpeed</label>
+                <input type="range" min="@_voiceSpeeds.Min()" max="@_voiceSpeeds.Max()"
+                       step=".25" class="slider is-fullwidth is-info" id="range" list="speeds"
+                       value="@_voiceSpeed"
+                       @onchange="(args => _voiceSpeed = double.TryParse(args.Value.ToString(), out var speed) ? speed : 1)">
+                <datalist id="speeds">
+                    @foreach (var speed in _voiceSpeeds)
+                    {
+                        <option value="@speed">speed</option>
+                    }
+                </datalist>
+            </div>
+            <div class="field">
+                <p class="control has-icons-left">
+                    <span class="select">
+                        <select id="voices" @bind="@_voice">
+                        <option selected>Auto</option>
+                        @if (_voices is { Count: > 0 })
+                        {
+                            @foreach (var voice in _voices)
+                            {
+                                <option selected="@voice.Default" value="@voice.Name">
+                                    @voice.Name
+                                </option>
+                            }
+                        }
+                        </select>
+                    </span>
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-globe"></i>
+                    </span>
+                </p>
+            </div>
+        </form>
+    </BodyContent>
+
+    <ButtonContent>
+        <button class="button is-success is-large"
+            @onclick=@(() => _modal.Confirm())>
+            <span class="icon">
+                <i class="fas fa-check"></i>
+            </span>
+            <span>Ok</span>
+        </button>
+    </ButtonContent>
+</ModalComponent>

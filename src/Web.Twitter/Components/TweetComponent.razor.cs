@@ -47,7 +47,18 @@ namespace Learning.Blazor.Twitter.Components
 
         protected override async Task OnInitializedAsync()
         {
-            await Task.CompletedTask;
+            await Task.Delay(TimeSpan.FromSeconds(5));
+
+
+            await OnTweetReceived(new Notification<TweetContents>(NotificationType.Tweet, new TweetContents
+            {
+                HTML = @"<blockquote class=""twitter-tweet"" style=""width: 400px;"" data-dnt=""true"">
+<p lang=""en"" dir=""ltr""></p>
+
+<a href=""https://twitter.com/davidpine7/status/1410259973519597570""></a>
+
+</blockquote>"
+            }));
 
             // _hubConnection = new HubConnectionBuilder()
             //     .WithUrl(new Uri("https://localhost:5002/notifictions")/*,

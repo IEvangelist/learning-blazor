@@ -103,19 +103,10 @@ namespace Learning.Blazor.TwitterServices
             {
                 _logger.LogInformation("Starting tweet stream.");
 
-//                await TweetReceived(
-//                    new TweetContents
-//                    {
-//                        HTML = @"<blockquote class=""twitter-tweet"" style=""width: 400px;"" data-dnt=""true"">
-//<p lang=""en"" dir=""ltr""></p>
-
-//<a href=""https://twitter.com/davidpine7/status/1410259973519597570""></a>
-
-//</blockquote>"
-//                    });
+                await Task.CompletedTask;
 
                 // TODO: watch https://github.com/linvi/tweetinvi/pull/1130
-                await _filteredStream.StartMatchingAllConditionsAsync();
+                //await _filteredStream.StartMatchingAllConditionsAsync();
             }
         }
 

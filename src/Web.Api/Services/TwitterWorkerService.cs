@@ -39,13 +39,11 @@ namespace Learning.Blazor.Api.Services
 
         private Task OnStatusUpdated(StreamingStatus status) =>
             _hubContext.Clients.All.SendAsync(
-                "StatusUpdated", new Notification<StreamingStatus>(
-                    NotificationType.StreamingStatus, status));
+                "StatusUpdated", Notification<StreamingStatus>.FromStatus(status));
 
         private Task OnTweetReceived(TweetContents tweet) =>
             _hubContext.Clients.All.SendAsync(
-                "TweetReceived", new Notification<TweetContents>(
-                    NotificationType.Tweet, tweet));
+                "TweetReceived", Notification<TweetContents>.FromTweet(tweet));
 
         ValueTask IAsyncDisposable.DisposeAsync() => _twitterService.DisposeAsync();
     }

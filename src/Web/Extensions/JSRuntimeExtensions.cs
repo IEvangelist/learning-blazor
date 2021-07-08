@@ -14,9 +14,18 @@ namespace Learning.Blazor.Extensions
             string successMethodName,
             string errorMethodName) where T : class =>
             jsRuntime!.InvokeVoidAsync(
-                "site.getCoordinates",
+                "app.getClientCoordinates",
                 DotNetObjectReference.Create(dotnetObj),
                 successMethodName,
                 errorMethodName);
+
+        internal static async ValueTask<string> GetClientVoices<T>(
+            this IJSRuntime javaScript,
+            T dotnetObj,
+            string callbackMethodName) where T : class =>
+            await javaScript.InvokeAsync<string>(
+                "app.getClientVoices",
+                DotNetObjectReference.Create(dotnetObj),
+                callbackMethodName);
     }
 }

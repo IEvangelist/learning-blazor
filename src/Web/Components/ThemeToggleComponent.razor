@@ -1,10 +1,15 @@
 ﻿<span class="navbar-item">
-    <i class="fas fa-3x fa-toggle-@(_toggleClass) is-clickable has-text-dark"
-        @onclick=@ToggleTheme></i>
+    <button class="button is-light level-item"
+        @onclick=@ToggleTheme>
+        <span class="icon">
+            <i class="fas fa-@(_toggleClass)"></i>
+        </span>
+        <span>@(IsLightTheme ? "Light" : "Dark")</span>
+    </button>
 </span>
 
 @code {
-    private string _toggleClass => IsLightTheme ? "on" : "off";
+    private string _toggleClass => IsLightTheme ? "moon" : "sun";
 
     [Parameter]
     public bool IsLightTheme { get; set; } = true;

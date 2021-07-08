@@ -32,9 +32,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Functions", "src\Web.Fu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Api", "src\Web.Api\Web.Api.csproj", "{BB30AABB-F71F-4F90-A44E-BA84DCADA310}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.TwitterServices", "src\Web.TwitterServices\Web.TwitterServices.csproj", "{369662BB-3CFF-4F0D-8036-91847637A4BB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.TwitterServices", "src\Web.TwitterServices\Web.TwitterServices.csproj", "{369662BB-3CFF-4F0D-8036-91847637A4BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.Abstractions", "src\Web.Abstractions\Web.Abstractions.csproj", "{3144FC57-9173-42FF-A503-18073C80588C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Abstractions", "src\Web.Abstractions\Web.Abstractions.csproj", "{3144FC57-9173-42FF-A503-18073C80588C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

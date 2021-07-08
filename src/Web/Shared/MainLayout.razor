@@ -2,16 +2,24 @@
 
 <section class="hero is-fullheight">
   <div class="hero-head">
-    <header class="navbar">
+    <header class="navbar is-fixed-top">
       <div class="container">
         <div class="navbar-brand">
           <a class="navbar-item">
-          <img src="media/blazor-logo.png" alt="Logo">
+            <img src="media/blazor-logo.png" height="128" alt="Logo">
           </a>
+
+          <a role="button" class="navbar-burger" aria-label="menu"
+            aria-expanded="false" data-target="navbar">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
         </div>
-        <div class="navbar-menu">
+        <div id="navbar" class="navbar-menu">
           <div class="navbar-end">
             <ThemeToggleComponent />
+            <AudioDescriptionComponent />
             <NotificationComponent />
             <LanguageSelectionComponent />
             <LoginDisplay />
