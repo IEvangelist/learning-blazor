@@ -26,7 +26,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Models", "src\Web.Model
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Extensions", "src\Web.Extensions\Web.Extensions.csproj", "{888F337B-936E-429C-9899-46A3D792D710}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Twitter", "src\Web.Twitter\Web.Twitter.csproj", "{7115B231-2AC6-4BC9-BDC1-AD10BAD1CF86}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.TwitterComponents", "src\Web.TwitterComponents\Web.TwitterComponents.csproj", "{7115B231-2AC6-4BC9-BDC1-AD10BAD1CF86}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Functions", "src\Web.Functions\Web.Functions.csproj", "{2DE9FBD9-09B9-41D8-9E5D-33BA259A4132}"
 EndProject

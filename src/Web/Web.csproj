@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Web.Twitter\Web.Twitter.csproj" />
+    <ProjectReference Include="..\Web.Twitter\Web.TwitterComponents.csproj" />
   </ItemGroup>
 
   <ItemGroup>
