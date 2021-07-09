@@ -1,10 +1,12 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
-//  Licensed under the MIT License.
+// Licensed under the MIT License.
 
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Learning.Blazor.Extensions;
+using Learning.Blazor.LocalStorage;
 using Learning.Blazor.Models;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Logging;
@@ -14,6 +16,8 @@ namespace Learning.Blazor.Components
 {
     public sealed partial class AudioDescriptionComponent
     {
+        private const string PreferencesStorageKey = "client-voice-preferences";
+
         private readonly IList<double> _voiceSpeeds =
             Enumerable.Range(0, 12).Select(i => (i + 1) * .25).ToList();
 
@@ -24,6 +28,9 @@ namespace Learning.Blazor.Components
         private ModalComponent _modal = null!;
 
         [Inject]
+        public ILocalStorage LocalStorage { get; set; } = null!;
+
+        [Inject]
         public IJSRuntime JavaScript { get; set; } = null!;
 
         [Inject]
@@ -31,6 +38,13 @@ namespace Learning.Blazor.Components
 
         protected override async Task OnInitializedAsync()
         {
+            var preferences =
+                await LocalStorage.GetAsync<ClientVoicePreferences>(PreferencesStorageKey);
+            if (preferences is not null)
+            {
+                (_voice, _voiceSpeed) = preferences;
+            }
+
             await UpdateClientVoices(
                 await JavaScript.GetClientVoices(this, nameof(UpdateClientVoices)));
         }
@@ -39,7 +53,7 @@ namespace Learning.Blazor.Components
         public Task UpdateClientVoices(string voicesJson) =>
             InvokeAsync(() =>
             {
-                List<SpeechSynthesisVoice>? voices =
+                var voices =
                     voicesJson.FromJson<List<SpeechSynthesisVoice>>();
                 if (voices is { Count: > 0 })
                 {
@@ -49,9 +63,26 @@ namespace Learning.Blazor.Components
                 }
             });
 
+        private void OnVoiceSpeedChange(ChangeEventArgs args) =>
+            _voiceSpeed = double.TryParse(
+                args?.Value?.ToString() ?? "1", out var speed) ? speed : 1;
+
         private async Task Show() => await _modal.Show();
-        private async Task Confirm() => await _modal.Confirm();
+
+        private async Task Confirm()
+        {
+            await LocalStorage.SetAsync(
+                PreferencesStorageKey,
+                new ClientVoicePreferences(_voice, _voiceSpeed));
+
+            await _modal.Confirm();
+        }
+
         private void OnDismissed(DismissalReason reason) =>
             Logger.LogWarning("User '{Reason}' the audio description modal.", reason);
+
+        public record ClientVoicePreferences(
+            [property: JsonPropertyName("voice")] string Voice,
+            [property: JsonPropertyName("voiceSpeed")] double VoiceSpeed);
     }
 }

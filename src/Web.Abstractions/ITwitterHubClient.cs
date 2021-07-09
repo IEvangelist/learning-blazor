@@ -1,7 +1,5 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
-//  Licensed under the MIT License.
-
-using System;
+// Licensed under the MIT License.
 
 namespace Learning.Blazor.Abstractions
 {

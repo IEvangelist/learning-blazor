@@ -1,5 +1,5 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
-//  Licensed under the MIT License.
+// Licensed under the MIT License.
 
 using System;
 using System.Threading;
@@ -21,20 +21,20 @@ namespace Learning.Blazor.Api.Extensions
         {
             TItem result;
 
-            byte[]? bytes = await distributedCache.GetAsync(key, token);
+            var bytes = await distributedCache.GetAsync(key, token);
             if (bytes is { Length: > 0 })
             {
-                string? json = UTF8.GetString(bytes);
+                var json = UTF8.GetString(bytes);
                 result = json.FromJson<TItem>()!;
             }
             else
             {
                 result = await factory().ConfigureAwait(false);
 
-                string? json = result.ToJson()!;
+                var json = result.ToJson()!;
                 bytes = UTF8.GetBytes(json);
 
-                DistributedCacheEntryOptions options = new DistributedCacheEntryOptions
+                var options = new DistributedCacheEntryOptions
                 {
                     AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(5)
                 }.SetSlidingExpiration(TimeSpan.FromMinutes(1));

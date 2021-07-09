@@ -34,7 +34,7 @@ namespace Learning.Blazor.JokeServices
             try
             {
                 // An array with a single joke is returned
-                ProgrammingJoke[]? jokes = await _httpClient.GetFromJsonAsync<ProgrammingJoke[]>(
+                var jokes = await _httpClient.GetFromJsonAsync<ProgrammingJoke[]>(
                     "https://official-joke-api.appspot.com/jokes/programming/random", _options);
 
                 return jokes?[0].Text;

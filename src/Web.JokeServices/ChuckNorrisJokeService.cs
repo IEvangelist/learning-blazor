@@ -1,5 +1,5 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
-//  Licensed under the MIT License.
+// Licensed under the MIT License.
 
 using System;
 using System.Net.Http;
@@ -28,7 +28,7 @@ namespace Learning.Blazor.JokeServices
         {
             try
             {
-                ChuckNorrisJoke? result = await _httpClient.GetFromJsonAsync<ChuckNorrisJoke>(
+                var result = await _httpClient.GetFromJsonAsync<ChuckNorrisJoke>(
                     "https://api.icndb.com/jokes/random?limitTo=[nerdy]");
 
                 return result?.Value?.Joke;

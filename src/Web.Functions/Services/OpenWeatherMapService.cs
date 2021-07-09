@@ -1,5 +1,5 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
-//  Licensed under the MIT License.
+// Licensed under the MIT License.
 
 using System.Collections.Generic;
 using System.Linq;
@@ -25,8 +25,8 @@ namespace Learning.Blazor.Functions.Services
         public Task<WeatherDetails?> GetWeatherAsync(
             Coordinates coordinates, string? units, string? lang)
         {
-            (string apiKey, string baseApiUrl) = _openWeatherMapOptions;
-            (decimal lat, decimal lon) = coordinates;
+            (var apiKey, var baseApiUrl) = _openWeatherMapOptions;
+            (var lat, var lon) = coordinates;
 
             // Sensible defaults.
             units ??= "imperial";
@@ -42,10 +42,10 @@ namespace Learning.Blazor.Functions.Services
                 ["exclude"] = "minutely"
             };
 
-            string? queryString =
+            var queryString =
                 string.Join("&", queryStringParameters.Select(kvp => $"{kvp.Key}={kvp.Value}"));
 
-            string? requestUrl =
+            var requestUrl =
                 $"{baseApiUrl}onecall?{queryString}";
 
             return _httpClient.GetFromJsonAsync<WeatherDetails?>(requestUrl);

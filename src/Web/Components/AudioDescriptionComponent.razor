@@ -1,6 +1,6 @@
 ﻿<span class="navbar-item">
     <button class="button is-light level-item"
-        @onclick=@(() => _modal.Show())>
+        @onclick=Show>
         <span class="icon">
             <i class="fas fa-audio-description"></i>
         </span>
@@ -23,7 +23,7 @@
                 <input type="range" min="@_voiceSpeeds.Min()" max="@_voiceSpeeds.Max()"
                        step=".25" class="slider is-fullwidth is-info" id="range" list="speeds"
                        value="@_voiceSpeed"
-                       @onchange="(args => _voiceSpeed = double.TryParse(args.Value.ToString(), out var speed) ? speed : 1)">
+                       @onchange=@OnVoiceSpeedChange>
                 <datalist id="speeds">
                     @foreach (var speed in _voiceSpeeds)
                     {
@@ -34,7 +34,7 @@
             <div class="field">
                 <p class="control has-icons-left">
                     <span class="select">
-                        <select id="voices" @bind="@_voice">
+                        <select id="voices" @bind=_voice>
                         <option selected>Auto</option>
                         @if (_voices is { Count: > 0 })
                         {
@@ -57,7 +57,7 @@
 
     <ButtonContent>
         <button class="button is-success is-large"
-            @onclick=@(() => _modal.Confirm())>
+            @onclick=Confirm>
             <span class="icon">
                 <i class="fas fa-check"></i>
             </span>

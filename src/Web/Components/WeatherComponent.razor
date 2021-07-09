@@ -1,15 +1,38 @@
 ﻿<div class="columns">
-    <div class="column">
-        <figure class="image is-5by4">
-            @if (_weather is null)
-            {
-                <i class="fas fa-sync fa-spin fa-3x"></i>
-            }
-            else
-            {
-                <img src="media/weather/@(_weather.ToImageName()).png" />
-            }
-        </figure>
+    <div class="column is-half">
+        @if (_state is ComponentState.Loaded)
+        {
+            var weather = _model!;
+            <div class="box">
+                <article class="media">
+                    <div class="media-left">
+                        <figure class="image is-128x128">
+                            <img src=@(weather.ImagePath) alt="Current weather visual">
+                        </figure>
+                    </div>
+                    <div class="media-content">
+                        <div class="content has-text-left">
+                            <p>
+                                <strong>@weather.Main</strong> <small>johnsmith</small>
+                                <br>
+                                @weather.Description
+                            </p>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        }
+        else
+        {
+            var isLoading = _state is ComponentState.Loading;
+            <button class='button is-info @(isLoading ? "is-loading" : "")'
+                @onclick=@TryGetClientCoordinates disabled=@isLoading>
+                <span class="icon">
+                    <i class="fas fa-redo"></i>
+                </span>
+                <span>Retry</span>
+            </button>
+        }
     </div>
     <div class="column is-three-quarters"></div>
 </div>

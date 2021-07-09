@@ -1,5 +1,5 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
-//  Licensed under the MIT License.
+// Licensed under the MIT License.
 
 using System;
 using System.Collections.Generic;
@@ -73,7 +73,7 @@ namespace Learning.Blazor.TwitterServices
         {
             StopTweetStream();
 
-            foreach (string? track in tracks.Where(_ => _ is not null))
+            foreach (var track in tracks.Where(_ => _ is not null))
             {
                 if (add)
                 {
@@ -144,7 +144,7 @@ namespace Learning.Blazor.TwitterServices
                 return;
             }
 
-            IOEmbedTweet? tweet = await iTweet.GenerateOEmbedTweetAsync();
+            var tweet = await iTweet.GenerateOEmbedTweetAsync();
             if (tweet is null)
             {
                 return;
@@ -172,7 +172,7 @@ namespace Learning.Blazor.TwitterServices
 
         private async void OnDisconnectedMessageReceived(object? sender, DisconnectedEventArgs? args)
         {
-            string? status = $"Twitter stream disconnected: {args?.DisconnectMessage}";
+            var status = $"Twitter stream disconnected: {args?.DisconnectMessage}";
 
             _logger.LogWarning(status, args);
 
@@ -190,9 +190,9 @@ namespace Learning.Blazor.TwitterServices
 
         private async void OnStreamStopped(object? sender, StreamStoppedEventArgs args)
         {
-            string? disconnectMessage = args.DisconnectMessage?.ToString() ?? "no disconnection reason";
-            string? errorMessage = args.Exception?.Message ?? "no error (clean stop).";
-            string? status = $"Twitter stream stopped {disconnectMessage}: {errorMessage}";
+            var disconnectMessage = args.DisconnectMessage?.ToString() ?? "no disconnection reason";
+            var errorMessage = args.Exception?.Message ?? "no error (clean stop).";
+            var status = $"Twitter stream stopped {disconnectMessage}: {errorMessage}";
 
             _logger.LogInformation(status);
 
@@ -219,7 +219,7 @@ namespace Learning.Blazor.TwitterServices
 
         private async void OnFallingBehindDetected(object? sender, WarningFallingBehindEventArgs args)
         {
-            string? status = $"Twitter stream falling behind: {args.WarningMessage}.";
+            var status = $"Twitter stream falling behind: {args.WarningMessage}.";
 
             _logger.LogInformation(status);
 

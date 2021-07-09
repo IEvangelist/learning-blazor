@@ -1,8 +1,36 @@
 ﻿<span class="navbar-item">
-    <button class="button is-light level-item">
+    <button class="button is-light level-item" @onclick=Show>
         <span class="icon">
             <i class="fas fa-bullhorn"></i>
         </span>
         <span>Notifications</span>
    </button>
 </span>
+
+<div class="quickview @_showClass">
+  <header class="quickview-header">
+    <p class="title">
+    <span class="icon">
+            <i class="fas fa-bullhorn"></i>
+        </span>
+        <span>Notifications</span></p>
+    <span class="delete" @onclick=Dismiss></span>
+  </header>
+
+  <div class="quickview-body">
+    <div class="quickview-block">
+      ...
+    </div>
+  </div>
+
+  <footer class="quickview-footer">
+
+  </footer>
+</div>
+
+@code {
+    private bool _show = false;
+    private string _showClass => _show ? "is-active" : "";
+    private void Show() => _show = true;
+    private void Dismiss() => _show = false;
+}

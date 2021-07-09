@@ -1,7 +1,6 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
-//  Licensed under the MIT License.
+// Licensed under the MIT License.
 
-using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 
 namespace Learning.Blazor.LocalStorage
@@ -12,8 +11,7 @@ namespace Learning.Blazor.LocalStorage
 
         ValueTask RemoveAsync(string key);
 
-        [return: MaybeNull]
-        ValueTask<TItem> GetAsync<TItem>(string key) where TItem : class;
+        ValueTask<TItem?> GetAsync<TItem>(string key) where TItem : class;
 
         ValueTask SetAsync<TItem>(string key, TItem item);
     }

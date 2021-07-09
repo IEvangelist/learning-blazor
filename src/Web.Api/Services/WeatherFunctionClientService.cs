@@ -1,5 +1,5 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
-//  Licensed under the MIT License.
+// Licensed under the MIT License.
 
 using System;
 using System.Net.Http;
@@ -33,8 +33,8 @@ namespace Learning.Blazor.Api.Services
                 request.Key,
                 async () =>
                 {
-                    string requestUrl = request.ToFormattedUrl(_functions.WeatherFunctionUrlFormat);
-                    WeatherDetails? details =
+                    var requestUrl = request.ToFormattedUrl(_functions.WeatherFunctionUrlFormat);
+                    var details =
                         await _httpClient.GetFromJsonAsync<WeatherDetails>(requestUrl);
 
                     return details!;

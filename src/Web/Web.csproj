@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
+    <BlazorWebAssemblyLoadAllGlobalizationData>true</BlazorWebAssemblyLoadAllGlobalizationData>
     <RootNamespace>Learning.Blazor</RootNamespace>
     <Nullable>enable</Nullable>
   </PropertyGroup>
@@ -13,6 +14,7 @@
     <PackageReference Include="Microsoft.AspNetCore.SignalR.Protocols.MessagePack" Version="6.0.0-preview.5.21301.17" />
     <PackageReference Include="Microsoft.Authentication.WebAssembly.Msal" Version="6.0.0-preview.5.21301.17" />
     <PackageReference Include="Microsoft.Extensions.Http" Version="6.0.0-preview.5.21301.5" />
+    <PackageReference Include="Microsoft.Extensions.Localization" Version="6.0.0-preview.5.21301.17" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0-preview.5.21301.5" />
     <PackageReference Include="System.Net.Http.Json" Version="6.0.0-preview.5.21301.5" />
   </ItemGroup>
@@ -23,7 +25,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="TagHelpers\" />
     <Folder Include="wwwroot\media\weather\" />
   </ItemGroup>
 

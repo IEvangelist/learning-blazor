@@ -1,5 +1,5 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
-//  Licensed under the MIT License.
+// Licensed under the MIT License.
 
 using Learning.Blazor.TwitterServices;
 using Microsoft.Extensions.Configuration;
@@ -23,7 +23,7 @@ namespace Learning.Blazor.Extensions
                         configuration["Authentication:Twitter:AccessToken"],
                         configuration["Authentication:Twitter:AccessTokenSecret"]);
 
-                    IFilteredStream? stream = client.Streams.CreateFilteredStream();
+                    var stream = client.Streams.CreateFilteredStream();
                     stream.StallWarnings = true;
 
                     return stream;

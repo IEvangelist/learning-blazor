@@ -1,5 +1,5 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
-//  Licensed under the MIT License.
+// Licensed under the MIT License.
 
 using Learning.Blazor.Functions;
 using Learning.Blazor.Functions.Extensions;
@@ -14,7 +14,7 @@ namespace Learning.Blazor.Functions
     {
         public override void Configure(IFunctionsHostBuilder builder)
         {
-            IConfiguration configuration = builder.GetContext().Configuration;
+            var configuration = builder.GetContext().Configuration;
             builder.Services
                     .AddOpenWeatherMapServices(configuration)
                     .BuildServiceProvider(true);

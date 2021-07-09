@@ -1,8 +1,7 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
-//  Licensed under the MIT License.
+// Licensed under the MIT License.
 
 using System;
-using System.Linq;
 using System.Collections.Generic;
 using Learning.Blazor.Models;
 
@@ -30,7 +29,7 @@ namespace Learning.Blazor.Extensions
 
         internal static string ToImageName(this WeatherWordingAndIcon weather) =>
             s_iconToImageMap.TryGetValue(
-                weather.Icon, out string? value)
+                weather.Icon, out var value)
             ? value : "";
     }
 }

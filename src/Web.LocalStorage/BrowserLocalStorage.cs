@@ -1,7 +1,6 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
-//  Licensed under the MIT License.
+// Licensed under the MIT License.
 
-using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using Learning.Blazor.Extensions;
 using Microsoft.JSInterop;
@@ -23,19 +22,16 @@ namespace Learning.Blazor.LocalStorage
         ValueTask ILocalStorage.RemoveAsync(string key) =>
             _jSRuntime.InvokeVoidAsync("localStorage.removeItem", key);
 
-        [return: MaybeNull]
-        async ValueTask<TItem> ILocalStorage.GetAsync<TItem>(string key) where TItem : class
+        async ValueTask<TItem?> ILocalStorage.GetAsync<TItem>(string key) where TItem : class
         {
-            string? json = await _jSRuntime.InvokeAsync<string?>("localStorage.getItem", key);
-            if (json is { Length: > 0 })
-            {
-                return json.FromJson<TItem>()!;
-            }
-
-            return default!;
+            var json = await _jSRuntime.InvokeAsync<string?>("localStorage.getItem", key);
+            return json is { Length: > 0 } ? json.FromJson<TItem>() : default!;
         }
 
-        ValueTask ILocalStorage.SetAsync<TItem>(string key, TItem item) =>
-            _jSRuntime.InvokeVoidAsync("localStorage.setItem", key, item.ToJson() ?? "");
+        ValueTask ILocalStorage.SetAsync<TItem>(string key, TItem item)
+        {
+            var json = item.ToJson() ?? "";
+            return _jSRuntime.InvokeVoidAsync("localStorage.setItem", key, json);
+        }
     }
 }

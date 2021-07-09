@@ -1,5 +1,5 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
-//  Licensed under the MIT License.
+// Licensed under the MIT License.
 
 using System;
 using System.Collections.Generic;
@@ -9,7 +9,6 @@ using Learning.Blazor.TwitterComponents.Extensions;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.AspNetCore.SignalR.Client;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.JSInterop;
 
@@ -76,8 +75,8 @@ namespace Learning.Blazor.TwitterComponents.Components
 
         private async Task<string?> GetAccessTokenValueAsync()
         {
-            AccessTokenResult? result = await _tokenProvider.RequestAccessToken();
-            return result.TryGetToken(out AccessToken? accessToken) ? accessToken.Value : null;
+            var result = await _tokenProvider.RequestAccessToken();
+            return result.TryGetToken(out var accessToken) ? accessToken.Value : null;
         }
 
         private Task OnStatusUpdated(Notification<StreamingStatus> status) =>

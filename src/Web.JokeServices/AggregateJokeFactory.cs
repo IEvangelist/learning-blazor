@@ -1,11 +1,10 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
-//  Licensed under the MIT License.
+// Licensed under the MIT License.
 
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Learning.Blazor.Extensions;
 using Learning.Blazor.Models;
-using Learning.Blazor.JokeServices;
 
 namespace Learning.Blazor.JokeServices
 {
@@ -18,9 +17,9 @@ namespace Learning.Blazor.JokeServices
 
         async Task<(string, JokeSourceDetails)> IJokeFactory.GetRandomJokeAsync()
         {
-            IJokeService? randomJokeService = _jokeServices.RandomElement();
+            var randomJokeService = _jokeServices.RandomElement();
 
-            string joke =
+            var joke =
                 await randomJokeService.GetJokeAsync()
                 ?? "There is nothing funny about this.";
 

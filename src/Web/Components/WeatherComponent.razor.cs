@@ -1,23 +1,23 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
-//  Licensed under the MIT License.
+// Licensed under the MIT License.
 
 using System.Net.Http;
 using System.Net.Http.Json;
-using System.Text;
 using System.Threading.Tasks;
+using Learning.Blazor.ComponentModels;
 using Learning.Blazor.Extensions;
 using Learning.Blazor.Models;
+using Learning.Blazor.Services;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
-using static System.Globalization.CultureInfo;
 
 namespace Learning.Blazor.Components
 {
     public sealed partial class WeatherComponent
     {
         private Coordinates _coordinates = null!;
-        private WeatherDetails? _weatherDetails = null!;
-        private WeatherWordingAndIcon? _weather = null!;
+        private WeatherComponentModel? _model = null!;
+        private ComponentState _state;
 
         [Inject]
         public IJSRuntime JavaScript { get; set; } = null!;
@@ -25,16 +25,28 @@ namespace Learning.Blazor.Components
         [Inject]
         public HttpClient Http { get; set; } = null!;
 
+        [Inject]
+        internal CultureService CultureService { get; set; } = null!;
+
+        [Inject]
+        internal SpeedUnitConversionService SpeedConversion { get; set; } = null!;
+
+        [Inject]
+        internal TemperatureUnitConversionService TemperatureConversion { get; set; } = null!;
+
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
             if (firstRender)
             {
-                await JavaScript.GetCoordinatesAsync(
-                    this,
-                    nameof(OnCoordinatesPermitted),
-                    nameof(OnErrorRequestingCooridnates));
+                await TryGetClientCoordinates();
             }
         }
+
+        private async Task TryGetClientCoordinates() =>
+            await JavaScript.GetCoordinatesAsync(
+                this,
+                nameof(OnCoordinatesPermitted),
+                nameof(OnErrorRequestingCooridnates));
 
         [JSInvokable]
         public async Task OnCoordinatesPermitted(
@@ -42,21 +54,27 @@ namespace Learning.Blazor.Components
         {
             _coordinates = new(latitude, longitude);
 
-            string lang = CurrentCulture.TwoLetterISOLanguageName;
+            var lang = CultureService.CurrentCulture.TwoLetterISOLanguageName;
+            var unit = CultureService.MeasurementSystem;
+
             WeatherRequest request = new()
             {
                 Language = lang,
                 Latitude = latitude,
                 Longitude = longitude,
-                Units = TemperatureUnitOfMeasure.Imperial
+                Units = unit
             };
 
-            using HttpResponseMessage response = await Http.PostAsJsonAsync("api/weather/latest", request);
-            _weatherDetails = await response.Content.ReadFromJsonAsync<WeatherDetails?>();
-
-            if (_weatherDetails is { Current: { Weather: { Count: > 0 } } })
+            using var response = await Http.PostAsJsonAsync("api/weather/latest", request);
+            var weatherDetails = await response.Content.ReadFromJsonAsync<WeatherDetails?>();
+            if (weatherDetails is not null)
             {
-                _weather = _weatherDetails.Current.Weather[0];
+                _model = new(weatherDetails);
+                _state = ComponentState.Loaded;
+            }
+            else
+            {
+                _state = ComponentState.Error;
             }
 
             await InvokeAsync(StateHasChanged);
@@ -67,6 +85,8 @@ namespace Learning.Blazor.Components
             int code, string message)
         {
             await Task.CompletedTask;
+
+            _state = ComponentState.Error;
         }
     }
 }

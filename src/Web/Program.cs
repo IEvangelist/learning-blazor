@@ -1,28 +1,45 @@
 // Copyright (c) 2021 David Pine. All rights reserved.
-//  Licensed under the MIT License.
+// Licensed under the MIT License.
 
 using System;
+using System.Globalization;
 using System.Net.Http;
+using Learning.Blazor;
+using Learning.Blazor.Extensions;
+using Learning.Blazor.LocalStorage;
+using Learning.Blazor.Services;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Learning.Blazor;
-using Learning.Blazor.Extensions;
 
 const string ServerApi = nameof(ServerApi);
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
 
-builder.Logging.SetMinimumLevel(LogLevel.Information);
+if (builder.HostEnvironment.IsDevelopment())
+{
+    builder.Logging.SetMinimumLevel(LogLevel.Debug);
+}
 
 ConfigureServices(
     builder.Services,
     builder.Configuration,
     builder.HostEnvironment);
 
-await builder.Build().RunAsync();
+await using var host = builder.Build();
+
+var localStorage = host.Services.GetRequiredService<ILocalStorage>();
+var clientCulture = await localStorage.GetAsync<string>("client-culture");
+if (clientCulture is not null)
+{
+    CultureInfo culture = new(clientCulture);
+    CultureInfo.DefaultThreadCurrentCulture = culture;
+    CultureInfo.DefaultThreadCurrentUICulture = culture;
+}
+
+await host.RunAsync();
 
 static void ConfigureServices(
     IServiceCollection services,
@@ -34,8 +51,14 @@ static void ConfigureServices(
     services.AddHttpClient(ServerApi, client => client.BaseAddress = new Uri(serverUrl));
     services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient(ServerApi));
 
+    services.AddSingleton<CultureService>();
+    services.AddTransient<TemperatureUnitConversionService>();
+    services.AddTransient<SpeedUnitConversionService>();
+
     services.AddTwitterComponent(configuration);
     services.AddLocalStorage();
+
+    services.AddLocalization();
 
     services.AddMsalAuthentication(options =>
     {

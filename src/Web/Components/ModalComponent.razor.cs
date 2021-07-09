@@ -1,5 +1,5 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
-//  Licensed under the MIT License.
+// Licensed under the MIT License.
 
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
@@ -31,9 +31,14 @@ namespace Learning.Blazor.Components
         public DismissalReason Reason { get; private set; }
 
         public Task Dismiss(DismissalReason reason) =>
-            InvokeAsync(() =>
+            InvokeAsync(async () =>
             {
                 (IsActive, Reason) = (false, reason);
+
+                if (OnDismissed.HasDelegate)
+                {
+                    await OnDismissed.InvokeAsync(Reason);
+                }
 
                 StateHasChanged();
             });

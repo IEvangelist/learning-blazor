@@ -1,0 +1,28 @@
+﻿// Copyright (c) 2021 David Pine. All rights reserved.
+// Licensed under the MIT License.
+
+using System;
+
+namespace Learning.Blazor.Extensions
+{
+    public static class NumberExtensions
+    {
+        private static readonly string[] s_cardinals =
+            { "N", "NE", "E", "SE", "S", "SW", "W", "NW", "N" };
+
+        private static readonly string[] s_verboseCardinals =
+            { "North", "North East", "East", "South East", "South", "South West", "West", "North West", "North" };
+
+        private static readonly DateTime s_epochDateTime =
+            new(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
+
+        public static DateTime FromUnixTimeStamp(this double unixTimeStamp) =>
+            s_epochDateTime.AddSeconds(unixTimeStamp).ToLocalTime();
+
+        public static string ToCardinal(this int degrees) =>
+            s_cardinals[(int)Math.Round((double)degrees % 360 / 45)];
+
+        public static string ToVerboseCardinal(this int degrees) =>
+            s_verboseCardinals[(int)Math.Round((double)degrees % 360 / 45)];
+    }
+}
