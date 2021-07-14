@@ -1,17 +1,12 @@
 // Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
-using System;
 using System.Globalization;
-using System.Net.Http;
 using Learning.Blazor;
 using Learning.Blazor.Extensions;
 using Learning.Blazor.LocalStorage;
 using Learning.Blazor.Services;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 
 const string ServerApi = nameof(ServerApi);
 
@@ -54,14 +49,13 @@ static void ConfigureServices(
     services.AddSingleton<CultureService>();
     services.AddTransient<TemperatureUnitConversionService>();
     services.AddTransient<SpeedUnitConversionService>();
+    services.AddTransient(typeof(IWeatherStringFormatterService<>), typeof(WeatherStringFormatterService<>));
 
     services.AddTwitterComponent(configuration);
     services.AddLocalStorage();
 
     services.AddLocalization();
 
-    services.AddMsalAuthentication(options =>
-    {
-        configuration.Bind("AzureAdB2C", options.ProviderOptions.Authentication);
-    });
+    services.AddMsalAuthentication(
+        options => configuration.Bind("AzureAdB2C", options.ProviderOptions.Authentication));
 }

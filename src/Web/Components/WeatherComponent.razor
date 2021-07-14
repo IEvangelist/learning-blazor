@@ -1,4 +1,6 @@
-﻿<div class="columns">
+﻿@inherits LocalizableComponentBase<WeatherComponent>
+
+<div class="columns">
     <div class="column is-half">
         @if (_state is ComponentState.Loaded)
         {
@@ -13,9 +15,15 @@
                     <div class="media-content">
                         <div class="content has-text-left">
                             <p>
-                                <strong>@weather.Main</strong> <small>johnsmith</small>
+                                <strong>@weather.Main</strong>
                                 <br>
-                                @weather.Description
+                                <span>
+                                    @weather.Description
+                                </span>
+                                @{
+                                    FormattableString temp = $"{weather:t}";
+                                }
+                                <span>temp.ToString(Formmatter)</span>
                             </p>
                         </div>
                     </div>

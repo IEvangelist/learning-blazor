@@ -1,14 +1,15 @@
 ﻿@inject NavigationManager Navigation
+@inherits LocalizableComponentBase<NotFoundPage>
 
 <div class="container is-fluid">
-    <h1 class="is-size-2">404 - page not found</h1>
-    <p class="lead">Not sure what you're looking for, but it's not here...</p>
+    <h1 class="is-size-2">@Localizer["NotFound"]</h1>
+    <p class="lead">@Localizer["NotSureWhatYouAreLookingFor"]</p>
     <button class="button is-rounded is-large" @onclick="GoHome">
         <span class="icon">
             <i class="fas fa-home" aria-hidden="true"></i>
         </span>
         <span>
-            Home
+            @Localizer["Home"]
         </span>
     </button>
 </div>

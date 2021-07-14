@@ -34,9 +34,14 @@
 
         try
         {
-            (_jokeText, _sourceDetails) =
+            var response =
                 await Http.GetFromJsonAsync<JokeResponse>(
                     "api/jokes/random");
+
+            if (response is not null)
+            {
+                (_jokeText, _sourceDetails) = response;
+            }
         }
         finally
         {

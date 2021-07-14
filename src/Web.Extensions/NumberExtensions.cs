@@ -11,7 +11,7 @@ namespace Learning.Blazor.Extensions
             { "N", "NE", "E", "SE", "S", "SW", "W", "NW", "N" };
 
         private static readonly string[] s_verboseCardinals =
-            { "North", "North East", "East", "South East", "South", "South West", "West", "North West", "North" };
+            { "North", "Northeast", "East", "Southeast", "South", "Southwest", "West", "Northwest", "North" };
 
         private static readonly DateTime s_epochDateTime =
             new(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);

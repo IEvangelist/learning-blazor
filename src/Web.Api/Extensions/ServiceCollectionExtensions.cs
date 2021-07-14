@@ -1,13 +1,9 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
-using System;
-using System.Net.Http;
 using Learning.Blazor.Api.Options;
 using Learning.Blazor.Api.Services;
 using Learning.Blazor.Extensions;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Polly;
 using Polly.Contrib.WaitAndRetry;
 using Polly.Retry;
@@ -31,11 +27,9 @@ namespace Learning.Blazor.Api.Extensions
             services.AddHttpClient("Web.Functions")
                 .AddTransientHttpErrorPolicy(GetRetryPolicy);
 
-            services.AddStackExchangeRedisCache(options =>
-            {
-                options.Configuration =
-                    configuration["RedisCacheOptions:ConnectionString"];
-            });
+            services.AddStackExchangeRedisCache(
+                options => options.Configuration =
+                    configuration["RedisCacheOptions:ConnectionString"]);
 
             services.AddScoped<WeatherFunctionClientService>();
             services.Configure<WebFunctionsOptions>(

@@ -1,9 +1,6 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Learning.Blazor.Models;
 using Learning.Blazor.TwitterComponents.Extensions;
 using Microsoft.AspNetCore.Components;
@@ -59,15 +56,15 @@ namespace Learning.Blazor.TwitterComponents.Components
 </blockquote>"
             }));
 
-            // _hubConnection = new HubConnectionBuilder()
-            //     .WithUrl(new Uri("https://localhost:5002/notifictions")/*,
-            //         options => options.AccessTokenProvider = GetAccessTokenValueAsync*/)
-            //     .WithAutomaticReconnect()
-            //     .AddMessagePackProtocol()
-            //     .Build();
-            // 
-            // _hubConnection.On<Notification<StreamingStatus>>("StatusUpdated", OnStatusUpdated);
-            // _hubConnection.On<Notification<TweetContents>>("TweetReceived", OnTweetReceived);
+            _hubConnection = new HubConnectionBuilder()
+                .WithUrl(new Uri("https://localhost:5002/notifictions")/*,
+                     options => options.AccessTokenProvider = GetAccessTokenValueAsync*/)
+                .WithAutomaticReconnect()
+                //.AddMessagePackProtocol()
+                .Build();
+
+            _hubConnection.On<Notification<StreamingStatus>>("StatusUpdated", OnStatusUpdated);
+            _hubConnection.On<Notification<TweetContents>>("TweetReceived", OnTweetReceived);
             // 
             // await _hubConnection.StartAsync();
             // await _hubConnection.InvokeAsync("StartTweetStream");

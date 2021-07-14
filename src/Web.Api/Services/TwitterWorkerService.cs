@@ -1,14 +1,10 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
-using System;
-using System.Threading;
-using System.Threading.Tasks;
 using Learning.Blazor.Api.Hubs;
 using Learning.Blazor.Models;
 using Learning.Blazor.TwitterServices;
 using Microsoft.AspNetCore.SignalR;
-using Microsoft.Extensions.Hosting;
 
 namespace Learning.Blazor.Api.Services
 {

@@ -1,19 +1,12 @@
 // Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
-using System;
-using System.Linq;
 using System.Net.Mime;
 using Learning.Blazor.Api.Extensions;
 using Learning.Blazor.Api.Hubs;
 using Learning.Blazor.Extensions;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.ResponseCompression;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Identity.Web;
 using Microsoft.OpenApi.Models;
 
@@ -39,17 +32,12 @@ namespace Learning.Blazor.Api
             services.AddJokeServices(_configuration);
             services.AddApiServices(_configuration);
 
-            services.AddCors(options =>
-            {
-                options.AddPolicy(
+            services.AddCors(
+                options => options.AddPolicy(
                     name: CorsPolicy,
-                    builder =>
-                    {
-                        builder.AllowAnyOrigin()
-                            .AllowAnyMethod()
-                            .AllowAnyHeader();
-                    });
-            });
+                    builder => builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()));
 
             services.AddControllers();
             services.AddSwaggerGen(options =>
@@ -82,8 +70,8 @@ namespace Learning.Blazor.Api
             app.UseCors(CorsPolicy);
             app.UseRouting();
 
-            //app.UseAuthentication();
-            //app.UseAuthorization();
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

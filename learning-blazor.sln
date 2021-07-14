@@ -19,7 +19,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.github\workflows\build-validation.yml = .github\workflows\build-validation.yml
 		.github\workflows\codeql-analysis.yml = .github\workflows\codeql-analysis.yml
 		.github\workflows\deploy-az-func.yml = .github\workflows\deploy-az-func.yml
+		global.json = global.json
 		LICENSE = LICENSE
+		.github\workflows\machine-translation.yml = .github\workflows\machine-translation.yml
 		README.md = README.md
 	EndProjectSection
 EndProject
@@ -39,7 +41,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.TwitterServices", "src\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Abstractions", "src\Web.Abstractions\Web.Abstractions.csproj", "{3144FC57-9173-42FF-A503-18073C80588C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.LocalStorage", "src\Web.LocalStorage\Web.LocalStorage.csproj", "{2D8C9FC2-7D37-4D1E-8653-6907E8C8EC35}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.LocalStorage", "src\Web.LocalStorage\Web.LocalStorage.csproj", "{2D8C9FC2-7D37-4D1E-8653-6907E8C8EC35}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

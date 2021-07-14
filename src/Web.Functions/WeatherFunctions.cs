@@ -4,7 +4,6 @@
 using System;
 using System.Threading.Tasks;
 using Learning.Blazor.Functions.Services;
-using Learning.Blazor.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;

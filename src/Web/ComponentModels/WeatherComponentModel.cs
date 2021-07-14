@@ -20,10 +20,9 @@ namespace Learning.Blazor.ComponentModels
         public double FeelsLike => _currentWeather.FeelsLike;
         public double HighTemp => _todaysDaily.Temperature.Max;
         public double LowTemp => _todaysDaily.Temperature.Min;
-        public string Wind =>
-            $"{_currentWeather.WindSpeed:#} {_currentWeather.WindDegree.ToCardinal()}";
-        public string WindVerbose =>
-            $"{_currentWeather.WindSpeed:#} MPH to the {_currentWeather.WindDegree.ToVerboseCardinal()}";
+        public MeasurementSystem MeasurementSystem => _weatherDetails.MeasurementSystem;
+        public double WindSpeed => _currentWeather.WindSpeed;
+        public int WindDegree => _currentWeather.WindDegree;
 
         public WeatherComponentModel(WeatherDetails weatherDetails)
         {

@@ -1,15 +1,11 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
-using System.Collections.Generic;
-using System.Linq;
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 using Learning.Blazor.Extensions;
 using Learning.Blazor.LocalStorage;
 using Learning.Blazor.Models;
 using Microsoft.AspNetCore.Components;
-using Microsoft.Extensions.Logging;
 using Microsoft.JSInterop;
 
 namespace Learning.Blazor.Components
@@ -26,15 +22,6 @@ namespace Learning.Blazor.Components
         private double _voiceSpeed = 1;
 
         private ModalComponent _modal = null!;
-
-        [Inject]
-        public ILocalStorage LocalStorage { get; set; } = null!;
-
-        [Inject]
-        public IJSRuntime JavaScript { get; set; } = null!;
-
-        [Inject]
-        public ILogger<AudioDescriptionComponent> Logger { get; set; } = null!;
 
         protected override async Task OnInitializedAsync()
         {

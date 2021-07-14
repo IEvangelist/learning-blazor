@@ -1,9 +1,7 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
-using System.Net.Http;
 using System.Net.Http.Json;
-using System.Threading.Tasks;
 using Learning.Blazor.ComponentModels;
 using Learning.Blazor.Extensions;
 using Learning.Blazor.Models;
@@ -20,19 +18,13 @@ namespace Learning.Blazor.Components
         private ComponentState _state;
 
         [Inject]
-        public IJSRuntime JavaScript { get; set; } = null!;
+        public IWeatherStringFormatterService<WeatherComponent> Formatter { get; set; } = null!;
 
         [Inject]
         public HttpClient Http { get; set; } = null!;
 
         [Inject]
         internal CultureService CultureService { get; set; } = null!;
-
-        [Inject]
-        internal SpeedUnitConversionService SpeedConversion { get; set; } = null!;
-
-        [Inject]
-        internal TemperatureUnitConversionService TemperatureConversion { get; set; } = null!;
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {

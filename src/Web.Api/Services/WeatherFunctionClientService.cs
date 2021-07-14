@@ -1,10 +1,6 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
-using System;
-using System.Net.Http;
-using System.Net.Http.Json;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
 using Microsoft.Extensions.Caching.Memory;
 using Learning.Blazor.Extensions;
@@ -36,6 +32,12 @@ namespace Learning.Blazor.Api.Services
                     var requestUrl = request.ToFormattedUrl(_functions.WeatherFunctionUrlFormat);
                     var details =
                         await _httpClient.GetFromJsonAsync<WeatherDetails>(requestUrl);
+
+                    // We need to ensure that the weather details model and return their measurement system.
+                    if (details is not null)
+                    {
+                        details.MeasurementSystem = request.Units;
+                    }
 
                     return details!;
                 });

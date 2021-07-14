@@ -1,0 +1,33 @@
+name: Azure Translation
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+    - '**.en.resx'
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+  translate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Resource translator
+        id: resource-translator
+        uses: IEvangelist/resource-translator@v2.1.4
+        with:
+          subscriptionKey: ${{ secrets.AZURE_TRANSLATOR_SUBSCRIPTION_KEY }}
+          endpoint: ${{ secrets.AZURE_TRANSLATOR_ENDPOINT }}
+          region: ${{ secrets.AZURE_TRANSLATOR_REGION }}
+          sourceLocale: 'en'
+
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@v3.4.1
+        if: ${{ steps.resource-translator.outputs.has-new-translations }} == 'true'
+        with:
+          title: '${{ steps.resource-translator.outputs.summary-title }}'
+          body: '${{ steps.resource-translator.outputs.summary-details }}'
