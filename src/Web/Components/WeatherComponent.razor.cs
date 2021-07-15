@@ -1,7 +1,9 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
+using System.Net.Http;
 using System.Net.Http.Json;
+using System.Threading.Tasks;
 using Learning.Blazor.ComponentModels;
 using Learning.Blazor.Extensions;
 using Learning.Blazor.Models;

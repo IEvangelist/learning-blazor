@@ -1,6 +1,7 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Components;
 
 namespace Learning.Blazor.TwitterComponents.Components
@@ -13,8 +14,7 @@ namespace Learning.Blazor.TwitterComponents.Components
         [Parameter]
         public bool IsActive { get; set; } = true;
 
-        // TODO: https://github.com/dotnet/aspnetcore/blob/main/src/Components/Components/src/EditorRequiredAttribute.cs
-        [Parameter/*, EditorRequired*/]
+        [Parameter, EditorRequired]
         public ISet<string> Tracks { get; set; } = null!;
 
         private void Dismiss() => IsActive = false;

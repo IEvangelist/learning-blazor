@@ -9,7 +9,11 @@ namespace Learning.Blazor.Extensions
     public static class ServiceCollectionExtensions
     {
         public static IServiceCollection AddLocalStorage(
-            this IServiceCollection services) =>
-            services.AddScoped<ILocalStorage, BrowserLocalStorage>();
+            this IServiceCollection services)
+        {
+            services.AddLogging();
+
+            return services.AddScoped<ILocalStorage, BrowserLocalStorage>();
+        }
     }
 }

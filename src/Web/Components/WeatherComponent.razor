@@ -15,15 +15,9 @@
                     <div class="media-content">
                         <div class="content has-text-left">
                             <p>
-                                <strong>@weather.Main</strong>
-                                <br>
-                                <span>
-                                    @weather.Description
-                                </span>
-                                @{
-                                    FormattableString temp = $"{weather:t}";
-                                }
-                                <span>temp.ToString(Formmatter)</span>
+                                <strong>@weather.Description</strong>
+                                <span>@weather.Main</span>
+                                <span>@string.Format(Formatter, "{0:t}", weather)</span>
                             </p>
                         </div>
                     </div>

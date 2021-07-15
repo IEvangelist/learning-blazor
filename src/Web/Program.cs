@@ -1,12 +1,17 @@
 // Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
+using System;
 using System.Globalization;
+using System.Net.Http;
 using Learning.Blazor;
 using Learning.Blazor.Extensions;
 using Learning.Blazor.LocalStorage;
 using Learning.Blazor.Services;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 const string ServerApi = nameof(ServerApi);
 
