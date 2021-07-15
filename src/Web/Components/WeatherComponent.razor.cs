@@ -16,7 +16,7 @@ namespace Learning.Blazor.Components
     public sealed partial class WeatherComponent
     {
         private Coordinates _coordinates = null!;
-        private WeatherComponentModel? _model = null!;
+        private WeatherComponentModel<WeatherComponent>? _model = null!;
         private ComponentState _state;
 
         [Inject]
@@ -63,7 +63,7 @@ namespace Learning.Blazor.Components
             var weatherDetails = await response.Content.ReadFromJsonAsync<WeatherDetails?>();
             if (weatherDetails is not null)
             {
-                _model = new(weatherDetails);
+                _model = new WeatherComponentModel<WeatherComponent>(weatherDetails, Formatter);
                 _state = ComponentState.Loaded;
             }
             else

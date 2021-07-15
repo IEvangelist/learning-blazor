@@ -14,7 +14,10 @@ namespace Learning.Blazor.Models
         [JsonPropertyName("end")] public double End { get; init; }
         [JsonPropertyName("description")] public string Description { get; init; } = null!;
 
+        [JsonIgnore]
         public DateTime StartDate => Start.FromUnixTimeStamp();
+
+        [JsonIgnore]
         public DateTime EndDate => End.FromUnixTimeStamp();
     }
 }

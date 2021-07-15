@@ -11,6 +11,7 @@ namespace Learning.Blazor.Models
     {
         [JsonPropertyName("dt")] public double Dt { get; init; }
 
+        [JsonIgnore]
         public DateTime DateTime => Dt.FromUnixTimeStamp();
     }
 }

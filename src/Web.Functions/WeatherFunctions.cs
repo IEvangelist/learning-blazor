@@ -3,6 +3,7 @@
 
 using System;
 using System.Threading.Tasks;
+using Learning.Blazor.Extensions;
 using Learning.Blazor.Functions.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -45,7 +46,7 @@ namespace Learning.Blazor.Functions
                     await _weatherService.GetWeatherAsync(
                         new(latitude, longitude), units, lang);
 
-                return new OkObjectResult(weather);
+                return new OkObjectResult(weather?.ToJson());
             }
             catch (Exception ex)
             {

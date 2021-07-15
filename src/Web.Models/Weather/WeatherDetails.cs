@@ -18,6 +18,7 @@ namespace Learning.Blazor.Models
         [JsonPropertyName("daily")] public IList<DailyWeather> Daily { get; init; } = Array.Empty<DailyWeather>();
         [JsonPropertyName("alerts")] public IList<Alert> Alerts { get; init; } = Array.Empty<Alert>();
 
+        [JsonIgnore]
         public MeasurementSystem MeasurementSystem { get; internal set; }
     }
 }

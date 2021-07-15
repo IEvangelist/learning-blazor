@@ -11,18 +11,26 @@ namespace Learning.Blazor.Models
     {
         [JsonPropertyName("sunrise")]
         public double Sunrise { get; init; }
+
+        [JsonIgnore]
         public DateTime SunriseDateTime => Sunrise.FromUnixTimeStamp();
 
         [JsonPropertyName("sunset")]
         public double Sunset { get; init; }
+
+        [JsonIgnore]
         public DateTime SunsetDateTime => Sunset.FromUnixTimeStamp();
 
         [JsonPropertyName("moonrise")]
         public double Moonrise { get; init; }
+
+        [JsonIgnore]
         public DateTime MoonriseDateTime => Moonrise.FromUnixTimeStamp();
 
         [JsonPropertyName("moonset")]
         public double Moonset { get; init; }
+
+        [JsonIgnore]
         public DateTime MoonsetDateTime => Moonset.FromUnixTimeStamp();
 
         /// <summary>

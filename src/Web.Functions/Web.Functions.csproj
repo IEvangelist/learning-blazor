@@ -16,6 +16,7 @@
     <PackageReference Include="System.Net.Http.Json" Version="3.2.1" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Web.Extensions\Web.Extensions.csproj" />
     <ProjectReference Include="..\Web.Models\Web.Models.csproj" />
   </ItemGroup>
   <ItemGroup>
