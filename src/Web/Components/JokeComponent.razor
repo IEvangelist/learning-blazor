@@ -1,4 +1,5 @@
 ﻿@inject HttpClient Http
+@inject ILogger<JokeComponent> Logger
 
 <div class="content">
     @if (_isLoadingJoke)
@@ -42,6 +43,10 @@
             {
                 (_jokeText, _sourceDetails) = response;
             }
+        }
+        catch (Exception ex)
+        {
+            Logger.LogError(ex, ex.Message);
         }
         finally
         {

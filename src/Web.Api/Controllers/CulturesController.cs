@@ -30,6 +30,7 @@ namespace Learning.Blazor.Api.Controllers
 
         [
             HttpGet,
+            Route("all"),
             Produces(MediaTypeNames.Application.Json)
         ]
         public async Task<IActionResult> Get()

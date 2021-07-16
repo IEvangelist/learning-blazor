@@ -1,7 +1,9 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Net.Http;
@@ -25,17 +27,26 @@ namespace Learning.Blazor.Components
 
         protected override async Task OnInitializedAsync()
         {
-            var azureCultures =
-                await Http.GetFromJsonAsync<AzureTranslationCultures>(
-                    "api/cultures",
-                    DefaultJsonSerialization.Options);
-
-            if (azureCultures is not null)
+            try
             {
-                _supportedCultures =
-                    CultureInfo.GetCultures(CultureTypes.SpecificCultures)
-                    .Where(culture =>
-                        azureCultures.Translation.ContainsKey(culture.TwoLetterISOLanguageName));
+                var azureCultures =
+                    await Http.GetFromJsonAsync<AzureTranslationCultures>(
+                        "api/cultures/all",
+                        DefaultJsonSerialization.Options);
+
+                if (azureCultures is not null)
+                {
+                    _supportedCultures =
+                        CultureInfo.GetCultures(CultureTypes.SpecificCultures)
+                            .Where(culture =>
+                                azureCultures.Translation.ContainsKey(
+                                    culture.TwoLetterISOLanguageName));
+                }
+            }
+            catch (Exception ex) when (Debugger.IsAttached)
+            {
+                Logger.LogError(ex, ex.Message, ex.StackTrace);
+                Debugger.Break();
             }
         }
 

@@ -1,8 +1,10 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
+using Learning.Blazor.Extensions;
 using Learning.Blazor.JokeServices;
 using Learning.Blazor.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -12,7 +14,7 @@ using System.Threading.Tasks;
 namespace Learning.Blazor.Api.Controllers
 {
     [
-        //Authorize,
+        AllowAnonymous,
         ApiController,
         Route("api/jokes")
     ]
@@ -44,7 +46,7 @@ namespace Learning.Blazor.Api.Controllers
 
             JokeResponse joke = await _jokeFactory.GetRandomJokeAsync();
 
-            return new JsonResult(joke);
+            return new JsonResult(joke, DefaultJsonSerialization.Options);
         }
     }
 }

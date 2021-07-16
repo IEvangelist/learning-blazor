@@ -59,14 +59,14 @@ namespace Learning.Blazor.Components
                 Units = unit
             };
 
-            using var response = await Http.PostAsJsonAsync("api/weather/latest", request);
-            var weatherDetails = await response.Content.ReadFromJsonAsync<WeatherDetails?>();
-            if (weatherDetails is not null)
-            {
-                _model = new WeatherComponentModel<WeatherComponent>(weatherDetails, Formatter);
-                _state = ComponentState.Loaded;
-            }
-            else
+            //using var response = await Http.PostAsJsonAsync("api/weather/latest", request);
+            //var weatherDetails = await response.Content.ReadFromJsonAsync<WeatherDetails?>();
+            //if (weatherDetails is not null)
+            //{
+            //    _model = new WeatherComponentModel<WeatherComponent>(weatherDetails, Formatter);
+            //    _state = ComponentState.Loaded;
+            //}
+            //else
             {
                 _state = ComponentState.Error;
             }

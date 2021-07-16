@@ -19,6 +19,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.github\workflows\build-validation.yml = .github\workflows\build-validation.yml
 		.github\workflows\codeql-analysis.yml = .github\workflows\codeql-analysis.yml
 		.github\workflows\deploy-az-func.yml = .github\workflows\deploy-az-func.yml
+		.github\workflows\deploy-az-webapi.yml = .github\workflows\deploy-az-webapi.yml
 		global.json = global.json
 		LICENSE = LICENSE
 		.github\workflows\machine-translation.yml = .github\workflows\machine-translation.yml

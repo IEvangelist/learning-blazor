@@ -3,8 +3,6 @@
   <PropertyGroup>
     <RootNamespace>Learning.Blazor.Api</RootNamespace>
     <TargetFramework>net6.0</TargetFramework>
-    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-    <DockerfileContext>..\..</DockerfileContext>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 

@@ -2,7 +2,7 @@
   "$schema": "https://schema.management.azure.com/schemas/2018-05-01/subscriptionDeploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "metadata": {
-    "_dependencyType": "appService.container"
+    "_dependencyType": "appService.linux"
   },
   "parameters": {
     "resourceGroupName": {
@@ -21,7 +21,7 @@
     },
     "resourceName": {
       "type": "string",
-      "defaultValue": "learning-blazor-api",
+      "defaultValue": "learning-blazor-webapi",
       "metadata": {
         "description": "Name of the main resource to be created by this template."
       }
@@ -36,8 +36,7 @@
   },
   "variables": {
     "appServicePlan_name": "[concat('Plan', uniqueString(concat(parameters('resourceName'), subscription().subscriptionId)))]",
-    "appServicePlan_ResourceId": "[concat('/subscriptions/', subscription().subscriptionId, '/resourceGroups/', parameters('resourceGroupName'), '/providers/Microsoft.Web/serverFarms/', variables('appServicePlan_name'))]",
-    "appServiceContainer_name": "['Container', uniqueString(concat(parameters('resourceName'), subscription().subscriptionId)))]"
+    "appServicePlan_ResourceId": "[concat('/subscriptions/', subscription().subscriptionId, '/resourceGroups/', parameters('resourceGroupName'), '/providers/Microsoft.Web/serverFarms/', variables('appServicePlan_name'))]"
   },
   "resources": [
     {
@@ -79,12 +78,23 @@
                 "reserved": false,
                 "serverFarmId": "[variables('appServicePlan_ResourceId')]",
                 "siteConfig": {
-                  "linuxFxVersion": "DOCKER|nginx"
+                  "linuxFxVersion": "DOTNETCORE|2.1"
                 }
               },
               "identity": {
                 "type": "SystemAssigned"
-              }
+              },
+              "resources": [
+                {
+                  "name": "appsettings",
+                  "type": "config",
+                  "apiVersion": "2015-08-01",
+                  "dependsOn": [
+                    "[concat('Microsoft.Web/Sites/', parameters('resourceName'))]"
+                  ],
+                  "properties": {}
+                }
+              ]
             },
             {
               "location": "[parameters('resourceLocation')]",
@@ -97,19 +107,6 @@
                 "sku": "Standard",
                 "workerSizeId": "0",
                 "reserved": true
-              }
-            },
-            {
-              "location": "[parameters('resourceLocation')]",
-              "name": "[variables('appServiceContainer_name')]",
-              "type": "Microsoft.ContainerRegistry/registries",
-              "apiVersion": "2017-10-01",
-              "sku": {
-                "name": "Standard"
-              },
-              "properties": {
-                "tenantId": "[subscription().tenantId]",
-                "adminUserEnabled": false
               }
             }
           ]
