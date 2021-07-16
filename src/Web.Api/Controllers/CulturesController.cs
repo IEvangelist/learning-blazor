@@ -36,8 +36,12 @@ namespace Learning.Blazor.Api.Controllers
         public async Task<IActionResult> Get()
         {
             var cultures = await _cache.GetOrCreateAsync(nameof(CulturesController),
-                async () =>
+                async options =>
                 {
+                    // These rarely ever change, cache aggressively.
+                    options.SetSlidingExpiration(TimeSpan.FromDays(1));
+                    options.SetAbsoluteExpiration(TimeSpan.FromDays(3));
+
                     using var client = _httpClientFactory.CreateClient();
                     client.BaseAddress = new Uri("https://api.cognitive.microsofttranslator.com");
 

@@ -117,6 +117,6 @@ namespace Learning.Blazor.TwitterComponents.Components
             _hubConnection.InvokeAsync("PauseTweetStream");
 
         ValueTask IAsyncDisposable.DisposeAsync() =>
-            _hubConnection.DisposeAsync();
+            _hubConnection?.DisposeAsync() ?? ValueTask.CompletedTask;
     }
 }

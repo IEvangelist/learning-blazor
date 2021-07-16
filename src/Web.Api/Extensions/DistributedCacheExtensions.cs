@@ -15,7 +15,7 @@ namespace Learning.Blazor.Api.Extensions
         internal static async Task<TItem> GetOrCreateAsync<TItem>(
             this IDistributedCache distributedCache,
             string key,
-            Func<Task<TItem>> factory,
+            Func<DistributedCacheEntryOptions, Task<TItem>> factory,
             CancellationToken token = default)
             where TItem : class
         {
@@ -29,15 +29,15 @@ namespace Learning.Blazor.Api.Extensions
             }
             else
             {
-                result = await factory().ConfigureAwait(false);
-
-                var json = result.ToJson()!;
-                bytes = UTF8.GetBytes(json);
-
                 var options = new DistributedCacheEntryOptions
                 {
                     AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(5)
                 }.SetSlidingExpiration(TimeSpan.FromMinutes(1));
+
+                result = await factory(options).ConfigureAwait(false);
+
+                var json = result.ToJson()!;
+                bytes = UTF8.GetBytes(json);
 
                 await distributedCache.SetAsync(key, bytes, options, token);
             }

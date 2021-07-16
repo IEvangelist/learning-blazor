@@ -1,11 +1,11 @@
 ﻿@inherits LocalizableComponentBase<LanguageSelectionComponent>
 
 <span class="navbar-item">
-    <button class="button is-light level-item" @onclick=Show>
+    <button class="button level-item is-rounded"
+        title=@Localizer["Language"] @onclick=Show>
         <span class="icon">
             <i class="fas fa-language"></i>
         </span>
-        <span>@Localizer["Language"]</span>
     </button>
 </span>
 
