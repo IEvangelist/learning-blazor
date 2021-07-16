@@ -15,8 +15,8 @@
                     <div class="media-content">
                         <div class="content has-text-left">
                             <p>
-                                <strong class="block">@weather.Description</strong>
-                                <span class="block">@weather.Main</span>
+                                <strong class="block">@weather.Main</strong>
+                                <span class="block">@weather.Description</span>
                                 <span class="block is-family-code">@weather.Temperature</span>
                             </p>
                         </div>
@@ -27,13 +27,9 @@
         else
         {
             var isLoading = _state is ComponentState.Loading;
-            <button class='button is-info @(isLoading ? "is-loading" : "")'
-                @onclick=@TryGetClientCoordinates disabled=@isLoading>
-                <span class="icon">
-                    <i class="fas fa-redo"></i>
-                </span>
-                <span>Retry</span>
-            </button>
+            <div class="fa-3x">
+                <i class="fas fa-sync fa-spin"></i>
+            </div>
         }
     </div>
     <div class="column is-three-quarters"></div>

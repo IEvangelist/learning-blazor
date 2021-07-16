@@ -28,6 +28,8 @@ namespace Learning.Blazor.Api.Extensions
                             medianFirstRetryDelay: TimeSpan.FromSeconds(1),
                             retryCount: 5));
 
+            services.AddHttpClient();
+
             services.AddHttpClient("Web.Functions")
                 .AddTransientHttpErrorPolicy(GetRetryPolicy);
 

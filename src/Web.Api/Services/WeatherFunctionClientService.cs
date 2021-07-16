@@ -35,7 +35,8 @@ namespace Learning.Blazor.Api.Services
                 {
                     var requestUrl = request.ToFormattedUrl(_functions.WeatherFunctionUrlFormat);
                     var details =
-                        await _httpClient.GetFromJsonAsync<WeatherDetails>(requestUrl);
+                        await _httpClient.GetFromJsonAsync<WeatherDetails>(
+                            requestUrl, DefaultJsonSerialization.Options);
 
                     // We need to ensure that the weather details model and return their measurement system.
                     if (details is not null)

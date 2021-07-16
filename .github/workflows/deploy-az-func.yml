@@ -3,7 +3,7 @@ name: Deploy Weather Function
 on:
   push:
     branches:
-    - main
+    - v1.0
 
 env:
   AZURE_FUNCTIONAPP_NAME: learning-blazor-functions

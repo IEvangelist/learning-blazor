@@ -48,7 +48,8 @@ namespace Learning.Blazor.Functions.Services
             var requestUrl =
                 $"{baseApiUrl}onecall?{queryString}";
 
-            return _httpClient.GetFromJsonAsync<WeatherDetails?>(requestUrl);
+            return _httpClient.GetFromJsonAsync<WeatherDetails?>(
+                requestUrl, DefaultJsonSerialization.Options);
         }
     }
 }

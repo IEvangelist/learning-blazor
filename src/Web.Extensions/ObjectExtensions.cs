@@ -10,19 +10,13 @@ namespace Learning.Blazor.Extensions
 {
     public static class ObjectExtensions
     {
-        static readonly JsonSerializerOptions s_options = new()
-        {
-            PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-            PropertyNameCaseInsensitive = true
-        };
-
         public static string? ToJson<T>(
             this T value, JsonSerializerOptions? options = null) =>
-            value is null ? null : Serialize(value, options ?? s_options);
+            value is null ? null : Serialize(value, options ?? DefaultJsonSerialization.Options);
 
         public static T? FromJson<T>(
             this string? json, JsonSerializerOptions? options = null) where T : class =>
-            json is null or { Length: 0 } ? default : Deserialize<T>(json, options ?? s_options);
+            json is null or { Length: 0 } ? default : Deserialize<T>(json, options ?? DefaultJsonSerialization.Options);
 
         public static async ValueTask TryDisposeAsync(this object obj)
         {

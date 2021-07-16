@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text.Json;
 using System.Threading.Tasks;
+using Learning.Blazor.Extensions;
 using Learning.Blazor.Models;
 using Microsoft.Extensions.Logging;
 
@@ -15,10 +16,6 @@ namespace Learning.Blazor.JokeServices
     {
         private readonly HttpClient _httpClient;
         private readonly ILogger<ProgrammingJokeService> _logger;
-        private readonly JsonSerializerOptions _options = new()
-        {
-            PropertyNameCaseInsensitive = true
-        };
 
         public ProgrammingJokeService(
             HttpClient httpClient,
@@ -35,7 +32,8 @@ namespace Learning.Blazor.JokeServices
             {
                 // An array with a single joke is returned
                 var jokes = await _httpClient.GetFromJsonAsync<ProgrammingJoke[]>(
-                    "https://official-joke-api.appspot.com/jokes/programming/random", _options);
+                    "https://official-joke-api.appspot.com/jokes/programming/random",
+                    DefaultJsonSerialization.Options);
 
                 return jokes?[0].Text;
             }

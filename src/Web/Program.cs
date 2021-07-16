@@ -31,7 +31,7 @@ ConfigureServices(
 await using var host = builder.Build();
 
 var localStorage = host.Services.GetRequiredService<ILocalStorage>();
-var clientCulture = await localStorage.GetAsync<string>("client-culture");
+var clientCulture = await localStorage.GetAsync<string>(StorageKeys.ClientCulture);
 if (clientCulture is not null)
 {
     CultureInfo culture = new(clientCulture);
@@ -46,7 +46,7 @@ static void ConfigureServices(
     IConfiguration configuration,
     IWebAssemblyHostEnvironment hostEnvironment)
 {
-    var serverUrl = configuration["ServerApi"];
+    var serverUrl = configuration.GetValue<string>("WebApiServerUrl");
 
     services.AddHttpClient(ServerApi, client => client.BaseAddress = new Uri(serverUrl));
     services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient(ServerApi));

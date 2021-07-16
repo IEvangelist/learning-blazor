@@ -1,10 +1,65 @@
 ﻿@inherits LocalizableComponentBase<LanguageSelectionComponent>
 
 <span class="navbar-item">
-    <button class="button is-light level-item">
+    <button class="button is-light level-item" @onclick=Show>
         <span class="icon">
             <i class="fas fa-language"></i>
         </span>
         <span>@Localizer["Language"]</span>
     </button>
 </span>
+
+<ModalComponent @ref="_modal" OnDismissed=@OnDismissed>
+    <TitleContent>
+        <span class="icon pr-2">
+            <i class="fas fa-cogs"></i>
+        </span>
+        <span>@Localizer["Language"]</span>
+    </TitleContent>
+
+    <BodyContent>
+        <form>
+            <div class="field">
+                <p class="control has-icons-left">
+                    <span class="select is-medium">
+                        <select id="languages" @bind=_selectedCulture>
+                        @if (_supportedCultures?.Any() ?? false)
+                        {
+                            var lcid = Culture.CurrentCulture.LCID;
+                            @foreach (var culture in _supportedCultures.OrderBy(c => c.Name))
+                            {
+                                <option selected="@(lcid == culture.LCID)"
+                                    value="@culture">
+                                    @(ToDisplayName(culture))
+                                </option>
+                            }
+                        }
+                        </select>
+                    </span>
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-globe"></i>
+                    </span>
+                </p>
+            </div>
+        </form>
+    </BodyContent>
+
+    <ButtonContent>
+        <div class="buttons are-large">
+        <button class="button is-success"
+            @onclick=Confirm>
+            <span class="icon">
+                <i class="fas fa-check"></i>
+            </span>
+            <span>@Localizer["Okay"]</span>
+        </button>
+        <button class="button is-danger"
+            @onclick=@(() => _modal.Cancel())>
+            <span class="icon">
+                <i class="fas fa-times"></i>
+            </span>
+            <span>@Localizer["Cancel"]</span>
+        </button>
+        </div>
+    </ButtonContent>
+</ModalComponent>

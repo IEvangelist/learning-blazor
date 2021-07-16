@@ -5,6 +5,7 @@ using System;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
+using Learning.Blazor.Extensions;
 using Learning.Blazor.Models;
 using Microsoft.Extensions.Logging;
 
@@ -29,7 +30,7 @@ namespace Learning.Blazor.JokeServices
             try
             {
                 var result = await _httpClient.GetFromJsonAsync<ChuckNorrisJoke>(
-                    "https://api.icndb.com/jokes/random?limitTo=[nerdy]");
+                    "https://api.icndb.com/jokes/random?limitTo=[nerdy]", DefaultJsonSerialization.Options);
 
                 return result?.Value?.Joke;
             }

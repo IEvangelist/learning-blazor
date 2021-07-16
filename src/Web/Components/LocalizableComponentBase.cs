@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 using Learning.Blazor.LocalStorage;
+using Learning.Blazor.Services;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
@@ -13,6 +14,9 @@ namespace Learning.Blazor.Components
     {
         [Inject]
         public IStringLocalizer<T> Localizer { get; set; } = null!;
+
+        [Inject]
+        public CultureService Culture { get; set; } = null!;
 
         [Inject]
         public ILogger<T> Logger { get; set; } = null!;

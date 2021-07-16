@@ -15,8 +15,6 @@ namespace Learning.Blazor.Components
 {
     public sealed partial class AudioDescriptionComponent
     {
-        private const string PreferencesStorageKey = "client-voice-preferences";
-
         private readonly IList<double> _voiceSpeeds =
             Enumerable.Range(0, 12).Select(i => (i + 1) * .25).ToList();
 
@@ -29,7 +27,7 @@ namespace Learning.Blazor.Components
         protected override async Task OnInitializedAsync()
         {
             var preferences =
-                await LocalStorage.GetAsync<ClientVoicePreferences>(PreferencesStorageKey);
+                await LocalStorage.GetAsync<ClientVoicePreference>(StorageKeys.ClientVoice);
             if (preferences is not null)
             {
                 (_voice, _voiceSpeed) = preferences;
@@ -62,8 +60,8 @@ namespace Learning.Blazor.Components
         private async Task Confirm()
         {
             await LocalStorage.SetAsync(
-                PreferencesStorageKey,
-                new ClientVoicePreferences(_voice, _voiceSpeed));
+                StorageKeys.ClientVoice,
+                new ClientVoicePreference(_voice, _voiceSpeed));
 
             await _modal.Confirm();
         }
@@ -71,7 +69,7 @@ namespace Learning.Blazor.Components
         private void OnDismissed(DismissalReason reason) =>
             Logger.LogWarning("User '{Reason}' the audio description modal.", reason);
 
-        public record ClientVoicePreferences(
+        public record ClientVoicePreference(
             [property: JsonPropertyName("voice")] string Voice,
             [property: JsonPropertyName("voiceSpeed")] double VoiceSpeed);
     }

@@ -1,8 +1,7 @@
 ﻿@inherits LocalizableComponentBase<AudioDescriptionComponent>
 
 <span class="navbar-item">
-    <button class="button is-light level-item"
-        @onclick=Show>
+    <button class="button is-light level-item" @onclick=Show>
         <span class="icon">
             <i class="fas fa-audio-description"></i>
         </span>
@@ -35,7 +34,7 @@
             </div>
             <div class="field">
                 <p class="control has-icons-left">
-                    <span class="select">
+                    <span class="select is-medium">
                         <select id="voices" @bind=_voice>
                         <option selected>@Localizer["Auto"]</option>
                         @if (_voices is { Count: > 0 })
