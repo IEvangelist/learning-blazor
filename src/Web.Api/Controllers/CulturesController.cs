@@ -35,7 +35,7 @@ namespace Learning.Blazor.Api.Controllers
         ]
         public async Task<IActionResult> Get()
         {
-            var cultures = await _cache.GetOrCreateAsync(nameof(CulturesController),
+            var cultures = await _cache.GetOrCreateAsync(CacheKeys.AzureCultures,
                 async options =>
                 {
                     // These rarely ever change, cache aggressively.

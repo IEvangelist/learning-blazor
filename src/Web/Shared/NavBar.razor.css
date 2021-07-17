@@ -1,0 +1,11 @@
+﻿.twitter {
+    color: var(--twitter-blue)
+}
+
+.pwned {
+    color: var(--pwned)
+}
+
+.chat {
+    color: var(--signalr-blue)
+}

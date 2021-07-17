@@ -1,41 +1,45 @@
 ﻿@inherits LayoutComponentBase
+@inject IStringLocalizer<MainLayout> Localizer
 
 <section class="hero is-fullheight-with-navbar">
-  <div class="hero-head">
-    <header class="navbar is-fixed-top">
-      <div class="container">
-        <div class="navbar-brand">
-          <a class="navbar-item">
-            <img src="media/blazor-logo.png" height="128" alt="Logo">
-          </a>
+    <div class="hero-head">
+        <header class="navbar is-fixed-top">
+            <div class="container">
+                <div class="navbar-brand">
+                    <NavLink class="navbar-item" href="" Match="NavLinkMatch.All">
+                        <span class="pr-2">
+                            <img src="media/blazor-logo.png" height="128" alt="Logo">
+                        </span>
+                        <span>@Localizer["Home"]</span>
+                    </NavLink>
 
-          <a role="button" class="navbar-burger" aria-label="menu"
-            aria-expanded="false" data-target="navbar">
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-        </a>
-        </div>
-        <div id="navbar" class="navbar-menu">
-          <div class="navbar-start">
-            <NavBar />
-          </div>
-          <div class="navbar-end">
-            <ThemeToggleComponent />
-            <AudioDescriptionComponent />
-            <NotificationComponent />
-            <LanguageSelectionComponent />
-            <LoginDisplay />
-          </div>
-        </div>
-      </div>
-    </header>
-  </div>
-
-  <div class="hero-body">
-    <div class="container has-text-centered mx-5">
-      @Body
+                    <a role="button" class="navbar-burger" aria-label="menu"
+                       aria-expanded="false" data-target="navbar">
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                    </a>
+                </div>
+                <div id="navbar" class="navbar-menu">
+                    <div class="navbar-start">
+                        <NavBar />
+                    </div>
+                    <div class="navbar-end">
+                        <ThemeToggleComponent />
+                        <AudioDescriptionComponent />
+                        <LanguageSelectionComponent />
+                        <NotificationComponent />
+                        <LoginDisplay />
+                    </div>
+                </div>
+            </div>
+        </header>
     </div>
-  </div>
+
+    <div class="hero-body">
+        <div class="container has-text-centered mx-5">
+            @Body
+        </div>
+    </div>
 
 </section>

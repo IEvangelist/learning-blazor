@@ -1,17 +1,17 @@
 ﻿@inherits LocalizableComponentBase<ThemeToggleComponent>
 
 <span class="navbar-item">
-    <button class="button is-light level-item"
-        @onclick=@ToggleTheme>
+    <button class="button is-@(_buttonClass) is-rounded level-item"
+        title=@(Localizer[IsLightTheme ? "Light" : "Dark"]) @onclick=@ToggleTheme>
         <span class="icon">
-            <i class="fas fa-@(_toggleClass)"></i>
+            <i class="fas fa-@(_iconClass)"></i>
         </span>
-        <span>@(Localizer[IsLightTheme ? "Light" : "Dark"])</span>
     </button>
 </span>
 
 @code {
-    private string _toggleClass => IsLightTheme ? "moon" : "sun";
+    private string _buttonClass => IsLightTheme ? "dark" : "light";
+    private string _iconClass => IsLightTheme ? "moon" : "sun";
 
     [Parameter]
     public bool IsLightTheme { get; set; } = true;

@@ -8,15 +8,20 @@
     <AuthorizeView>
         <Authorized>
             Hello, @(context.User?.Identity?.Name ?? "❔")
-            <button class="button is-info is-rounded level-item" @onclick="BeginLogout">
+            <button class="button is-rounded level-item" @onclick="BeginLogout">
                 <span class="icon">
                     <i class="fas fa-sign-out-alt"></i>
                 </span>
                 <span>Log out</span>
             </button>
         </Authorized>
+        <Authorizing>
+            <button class="button is-rounded is-loading level-item" disabled>
+                Logging in
+            </button>
+        </Authorizing>
         <NotAuthorized>
-            <a href="authentication/login" class="button is-info level-item">
+            <a href="authentication/login" class="button is-rounded level-item">
                 <span class="icon">
                     <i class="fas fa-sign-in-alt"></i>
                 </span>

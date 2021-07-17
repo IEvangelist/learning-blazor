@@ -45,6 +45,7 @@ namespace Learning.Blazor.Api.Services
             _hubContext.Clients.All.SendAsync(
                 "TweetReceived", Notification<TweetContents>.FromTweet(tweet));
 
-        ValueTask IAsyncDisposable.DisposeAsync() => _twitterService.DisposeAsync();
+        ValueTask IAsyncDisposable.DisposeAsync() =>
+            _twitterService?.DisposeAsync() ?? ValueTask.CompletedTask;
     }
 }

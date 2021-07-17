@@ -59,8 +59,11 @@ namespace Learning.Blazor.Components
 
         private async Task Confirm()
         {
-            await LocalStorage.SetAsync(
-                StorageKeys.ClientCulture, _selectedCulture.Name);
+            if (_selectedCulture is not null)
+            {
+                await LocalStorage.SetAsync(
+                    StorageKeys.ClientCulture, _selectedCulture.Name);
+            }
 
             await _modal.Confirm();
 

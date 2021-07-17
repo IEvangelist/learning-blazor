@@ -26,12 +26,12 @@ namespace Learning.Blazor.Api.Services
             IDistributedCache cache,
             IOptions<WebFunctionsOptions> options) =>
             (_httpClient, _cache, _functions) =
-                (httpClientFactory.CreateClient("Web.Functions"), cache, options.Value);
+                (httpClientFactory.CreateClient(HttpClientNames.WebFunctionsClient), cache, options.Value);
 
         public Task<WeatherDetails> GetWeatherAsync(WeatherRequest request) =>
             _cache.GetOrCreateAsync(
                 request.Key,
-                async () =>
+                async _ =>
                 {
                     var requestUrl = request.ToFormattedUrl(_functions.WeatherFunctionUrlFormat);
                     var details =

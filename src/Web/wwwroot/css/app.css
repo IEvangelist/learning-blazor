@@ -1,3 +1,9 @@
+:root {
+    --twitter-blue: #6cadde;
+    --pwned-blue: rgba(58,154,196,.5);
+    --signalr-blue: #59b4d9;
+}
+
 #blazor-error-ui {
     display: none;
 }

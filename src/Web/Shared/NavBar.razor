@@ -1,26 +1,20 @@
 ﻿@inherits LocalizableComponentBase<NavBar>
 
-<NavLink class="navbar-item" href="" Match="NavLinkMatch.All">
-    <span class="icon">
-        <i class="fas fa-home"></i>
-    </span>
-    <span>@Localizer["Home"]</span>
-</NavLink>
 <NavLink class="navbar-item" href="/chat" Match="NavLinkMatch.Prefix">
-    <span class="icon">
-        <i class="fas fa-comments"></i>
+    <span class="icon pr-2">
+        <i class="chat fas fa-comments"></i>
     </span>
     <span>@Localizer["Chat"]</span>
 </NavLink>
 <NavLink class="navbar-item" href="/tweets" Match="NavLinkMatch.Prefix">
-    <span class="icon">
-        <i class="fab fa-twitter"></i>
+    <span class="icon pr-2">
+        <i class="twitter fab fa-twitter"></i>
     </span>
     <span>@Localizer["Tweets"]</span>
 </NavLink>
 <NavLink class="navbar-item" href="/pwned" Match="NavLinkMatch.Prefix">
-    <span class="icon">
-        <i class="fab fa-twitter"></i>
+    <span class="icon pr-2">
+        <i class="pwned fas fa-user-shield"></i>
     </span>
-    <span>Pwned</span>
+    <span>Pwned?!</span>
 </NavLink>
