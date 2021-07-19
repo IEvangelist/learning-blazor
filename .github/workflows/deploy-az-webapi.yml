@@ -1,13 +1,14 @@
 name: Deploy Web API
+
 on:
   push:
     branches:
     - main
 
 env:
-  AZURE_WEBAPP_NAME: learning-blazor-webapi
+  AZURE_WEBAPP_NAME: learningblazor-api
   AZURE_WEBAPP_PACKAGE_PATH: src/Web.Api/publish
-  AZURE_WEBAPP_PUBLISH_PROFILE: ${{ secrets.learning_blazor_webapi_5f0a }}
+  AZURE_WEBAPP_PUBLISH_PROFILE: ${{ secrets.learningblazor_api_9db5 }}
   CONFIGURATION: Release
   DOTNET_CORE_VERSION: 6.0.x
   WORKING_DIRECTORY: src/Web.Api
@@ -19,7 +20,7 @@ jobs:
     - uses: actions/checkout@v2
     - uses: actions/setup-dotnet@v1.8.0
       with:
-        include-prerelease: true
+        include-prerelease: True
         dotnet-version: ${{ env.DOTNET_CORE_VERSION }}
     - name: Restore
       run: dotnet restore "${{ env.WORKING_DIRECTORY }}"

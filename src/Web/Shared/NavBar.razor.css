@@ -3,7 +3,7 @@
 }
 
 .pwned {
-    color: var(--pwned)
+    color: red; /*var(--pwned)*/
 }
 
 .chat {
