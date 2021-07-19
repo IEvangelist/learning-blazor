@@ -1,9 +1,9 @@
-FROM mcr.microsoft.com/dotnet/aspnet:6.0.0-preview.6-focal AS base
+FROM mcr.microsoft.com/dotnet/aspnet:6.0-focal AS base
 WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 
-FROM mcr.microsoft.com/dotnet/sdk:6.0.0-preview.6-focal AS build
+FROM mcr.microsoft.com/dotnet/sdk:6.0-focal AS build
 WORKDIR /src
 COPY ["src/Web.Api/Web.Api.csproj", "src/Web.Api/"]
 COPY ["src/Web.JokeServices/Web.JokeServices.csproj", "src/Web.JokeServices/"]
