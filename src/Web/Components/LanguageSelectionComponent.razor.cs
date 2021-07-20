@@ -18,7 +18,9 @@ namespace Learning.Blazor.Components
 {
     public partial class LanguageSelectionComponent
     {
-        private IEnumerable<CultureInfo> _supportedCultures = null!;
+        private IReadOnlySet<(CultureInfo Culture, KeyValuePair<string, AzureCulture> AzureCulture)>
+            _supportedCultures = null!;
+
         private CultureInfo _selectedCulture = null!;
         private ModalComponent _modal = null!;
 
@@ -38,9 +40,12 @@ namespace Learning.Blazor.Components
                 {
                     _supportedCultures =
                         CultureInfo.GetCultures(CultureTypes.SpecificCultures)
-                            .Where(culture =>
-                                azureCultures.Translation.ContainsKey(
-                                    culture.TwoLetterISOLanguageName));
+                            .Join(
+                                azureCultures.Translation,
+                                culture => culture.TwoLetterISOLanguageName,
+                                azureCultureKvp => azureCultureKvp.Key,
+                                (culture, azureCulture) => (culture, azureCulture))
+                            .ToHashSet();
                 }
             }
             catch (Exception ex) when (Debugger.IsAttached)
@@ -50,24 +55,34 @@ namespace Learning.Blazor.Components
             }
         }
 
-        private string ToDisplayName(CultureInfo? culture) =>
-            culture is not null
-                ? $"{culture.Name} - {culture.NativeName} ({culture.TwoLetterISOLanguageName})"
+        private static string ToDisplayName(
+            (CultureInfo Culture, KeyValuePair<string, AzureCulture> AzureCulture)? culturePair)
+        {
+            var (hasValue, value) = culturePair;
+            return hasValue
+                ? $"{value.AzureCulture.Value.Name} ({value.Culture.TwoLetterISOLanguageName})"
                 : "";
+        }
 
         private async Task Show() => await _modal.Show();
 
         private async Task Confirm()
         {
-            if (_selectedCulture is not null)
+            var forceRefresh = false;
+            if (_selectedCulture is not null &&
+                _selectedCulture != Culture.CurrentCulture)
             {
+                forceRefresh = true;
                 await LocalStorage.SetAsync(
                     StorageKeys.ClientCulture, _selectedCulture.Name);
             }
 
             await _modal.Confirm();
 
-            Navigation.NavigateTo(Navigation.Uri, forceLoad: true);
+            if (forceRefresh)
+            {
+                Navigation.NavigateTo(Navigation.Uri, forceLoad: true);
+            }
         }
 
         private void OnDismissed(DismissalReason reason) =>

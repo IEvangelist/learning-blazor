@@ -1,3 +1,63 @@
 ﻿@page "/pwned"
+@inherits LocalizableComponentBase<Pwned>
 
-Have I been Pwned?
+<section>
+    <h2 class="pwned-logo is-size-4">';--have i been pwned?</h2>
+    <p>
+        <span>
+            <strong>Have I been Pwned?</strong> is a service offered by Troy Hunt,
+            that provides an API over a massive collection of
+            carefully currated security breaches from around the world.
+        </span>
+        <span>
+            With this powerful API, and a few simple Blazor forms we can exercise this service
+            to discover whether or not our emails, and/or passwords have been compromised as
+            part of a data secerity breach.
+        </span>
+    </p>
+    <EditForm Model=Model OnValidSubmit="(async context => await OnValidSubmitAsync(context))">
+        <DataAnnotationsValidator />
+        <ValidationSummary Model=Model />
+
+        <div class="field">
+            <label for="email">@localize["Email"]</label>
+            <p class="control has-icons-left has-icons-right">
+                <InputText id="email" @bind-Value=Model.EmailAddress class="input" />
+                <span class="icon is-small is-left">
+                    <i class="fas fa-envelope"></i>
+                </span>
+                <span class="icon is-small is-right">
+                    <i class="fas fa-check"></i>
+                </span>
+            </p>
+            <ValidationMessage class="help is-danger" For=@(() => Model.EmailAddress) />
+        </div>
+
+    </EditForm>
+
+    <div class="pwned-results">
+        @if (_state is ComponentState.Loading)
+        {
+            <div class="fa-3x">
+                <i class="fas fa-sync fa-spin"></i>
+            </div>
+        }
+        else if (_breaches is { Length: > 0 })
+        {
+            <span>Yikes, you have been "pwned"!</span>
+            foreach (BreachHeader breach in _breaches)
+            {
+                <div @bind=breach.Name>
+                    @breach.Name
+                </div>
+            }
+        }
+        else
+        {
+            <div>
+                No breaches found for: @Model.EmailAddress
+            </div>
+        }
+    </div>
+</section>
+
