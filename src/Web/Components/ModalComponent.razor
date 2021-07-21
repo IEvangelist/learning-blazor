@@ -1,6 +1,6 @@
 ﻿<div class="modal @_isActiveClass">
     <div class="modal-background" @onclick=@Cancel></div>
-    <div class="modal-card">
+    <div class="modal-card has-text-left">
         <header class="modal-card-head">
             <p class="modal-card-title ">
                 @TitleContent
@@ -12,8 +12,10 @@
             @BodyContent
         </section>
 
-        <footer class="modal-card-foot has-text-right">
-            @ButtonContent
+        <footer class="modal-card-foot">
+            <div class="is-pulled-right">
+                @ButtonContent
+            </div>
         </footer>
     </div>
 </div>

@@ -1,11 +1,14 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
+using System;
 using System.Net.Mime;
 using System.Threading.Tasks;
+using Learning.Blazor.Api.Extensions;
 using Learning.Blazor.Api.Services;
 using Learning.Blazor.Extensions;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Distributed;
 
 namespace Learning.Blazor.Api.Controllers
 {
@@ -16,8 +19,11 @@ namespace Learning.Blazor.Api.Controllers
     public class PwnedController : ControllerBase
     {
         private readonly PwnedService _pwnedService;
+        private readonly IDistributedCache _cache;
 
-        public PwnedController(PwnedService pwnedService) => _pwnedService = pwnedService;
+        public PwnedController(
+            PwnedService pwnedService, IDistributedCache cache) =>
+            (_pwnedService, _cache) = (pwnedService, cache);
 
         [
             HttpGet,
@@ -26,7 +32,14 @@ namespace Learning.Blazor.Api.Controllers
         ]
         public async Task<IActionResult> BreachesFor([FromRoute] string email)
         {
-            var breaches = await _pwnedService.GetBreachesAsync(email);
+            var breaches = await _cache.GetOrCreateAsync($"breach:{email}", async options =>
+            {
+                options.AbsoluteExpirationRelativeToNow = TimeSpan.FromDays(1);
+
+                var breaches = await _pwnedService.GetBreachesAsync(email);
+                return breaches!;
+            });
+
             return new JsonResult(breaches, DefaultJsonSerialization.Options);
         }
 
@@ -37,8 +50,14 @@ namespace Learning.Blazor.Api.Controllers
         ]
         public async Task<IActionResult> BreachFor([FromRoute] string name)
         {
-            // TODO: cache these very aggressively
-            var breach = await _pwnedService.GetBreachDetailsAsync(name);
+            var breach = await _cache.GetOrCreateAsync(name, async options =>
+            {
+                options.AbsoluteExpirationRelativeToNow = TimeSpan.FromDays(7);
+
+                var breach = await _pwnedService.GetBreachDetailsAsync(name);
+                return breach!;
+            });
+            
             return new JsonResult(breach, DefaultJsonSerialization.Options);
         }
 

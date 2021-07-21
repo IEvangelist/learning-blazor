@@ -102,7 +102,7 @@
     </section>
 </div>
 
-<ModalComponent @ref="_modal">
+<ModalComponent @ref="_modal" OnDismissed=OnDismissed>
     <TitleContent>
         <span class="icon pr-2">
             <i class="fas fa-info-circle"></i>
@@ -119,15 +119,41 @@
         }
         else
         {
-            <span>
-                @(new MarkupString(_breach.Description))
-            </span>
+            <div class="media pb-4">
+                <div class="media-left">
+                    <figure class="image is-dark is-96x96">
+                        <img src="@_breach.LogoPath" alt=@_breach.Name>
+                    </figure>
+                </div>
+                <div class="media-content">
+                    <p class="title is-4">@_breach.Name</p>
+                    <p class="subtitle is-6"><a href=@_breach.Domain>@_breach.Domain</a></p>
+                    <p class="subtitle is-6">@_breach.BreachDate.ToShortDateString()</p>
+                </div>
+            </div>
+
+            <div class="content">
+                <span>
+                    @(new MarkupString(_breach.Description))
+                </span>
+                <strong>
+                    @($"pwn's: {@_breach.PwnCount.ToString("N0", Culture.CurrentCulture)}")
+                </strong>
+            </div>
+            <div class="content">
+                <div class="tags are-medium">
+                    @foreach (var tag in _breach.DataClasses)
+                    {
+                        <span class="tag is-info">@tag</span>
+                    }
+                </div>
+            </div>
         }
     </BodyContent>
 
     <ButtonContent>
         <button class="button is-success is-large"
-            @onclick=Confirm>
+                @onclick=Confirm>
             <span class="icon">
                 <i class="fas fa-check"></i>
             </span>

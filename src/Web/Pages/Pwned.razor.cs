@@ -55,6 +55,7 @@ namespace Learning.Blazor.Pages
             _model.EmailAddress = null!;
             _breaches = Array.Empty<BreachHeader>();
             _state = ComponentState.Unknown;
+            _editContext?.MarkAsUnmodified();
         }
 
         private async ValueTask OnValidSubmitAsync(EditContext _)
@@ -86,11 +87,12 @@ namespace Learning.Blazor.Pages
                 $"api/pwned/breach/{breachName}", DefaultJsonSerialization.Options);
         }
 
-        private async Task Confirm()
-        {
-            await _modal.Confirm();
+        private async Task Confirm() => await _modal.Confirm();
 
+        private void OnDismissed(DismissalReason reason)
+        {
             _breach = null!;
+            _ = InvokeAsync(StateHasChanged);
         }
     }
 }

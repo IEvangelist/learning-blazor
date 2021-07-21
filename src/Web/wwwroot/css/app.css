@@ -29,3 +29,11 @@ html {
     padding: 1rem;
     color: red;
 }
+
+.image {
+    object-fit: contain;
+}
+
+    .image.is-dark {
+        background-color: #363636;
+    }
