@@ -37,6 +37,7 @@ namespace Learning.Blazor.Api.Controllers
         ]
         public async Task<IActionResult> BreachFor([FromRoute] string name)
         {
+            // TODO: cache these very aggressively
             var breach = await _pwnedService.GetBreachDetailsAsync(name);
             return new JsonResult(breach, DefaultJsonSerialization.Options);
         }

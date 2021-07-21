@@ -8,6 +8,7 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 using Learning.Blazor.ComponentModels;
+using Learning.Blazor.Components;
 using Learning.Blazor.Extensions;
 using Learning.Blazor.Models;
 using Microsoft.AspNetCore.Components;
@@ -21,9 +22,11 @@ namespace Learning.Blazor.Pages
         private EditContext? _editContext;
         private bool _isFormInvalid;
         private BreachHeader[] _breaches = Array.Empty<BreachHeader>();
+        private BreachDetails? _breach = null!;
         private ComponentState _state = ComponentState.Unknown;
         private PwnedComponenetModel _model = null!;
         private string? _filter = null!;
+        private ModalComponent _modal = null!;
 
         private IEnumerable<BreachHeader> _filteredBreaches =>
             _filter is null
@@ -37,12 +40,7 @@ namespace Learning.Blazor.Pages
 
         protected override void OnInitialized()
         {
-            if (_model == null)
-            {
-                _model = new PwnedComponenetModel();
-            }
-
-            _editContext = new(_model);
+            _editContext = new(_model ??= new());
             _editContext.OnFieldChanged += OnModelChanged;
         }
 
@@ -78,6 +76,21 @@ namespace Learning.Blazor.Pages
             {
                 await InvokeAsync(StateHasChanged);
             }
+        }
+
+        private async Task Show(string breachName)
+        {
+            await _modal.Show();
+
+            _breach = await Http.GetFromJsonAsync<BreachDetails>(
+                $"api/pwned/breach/{breachName}", DefaultJsonSerialization.Options);
+        }
+
+        private async Task Confirm()
+        {
+            await _modal.Confirm();
+
+            _breach = null!;
         }
     }
 }
