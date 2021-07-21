@@ -19,3 +19,13 @@ html {
 #index {
     /*max-height:*/
 }
+
+.control.is-fullwidth {
+    width: 100%;
+}
+
+.validation-message {
+    align-self: center;
+    padding: 1rem;
+    color: red;
+}

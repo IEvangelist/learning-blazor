@@ -1,63 +1,103 @@
 ﻿@page "/pwned"
 @inherits LocalizableComponentBase<Pwned>
 
-<section>
-    <h2 class="pwned-logo is-size-4">';--have i been pwned?</h2>
-    <p>
-        <span>
-            <strong>Have I been Pwned?</strong> is a service offered by Troy Hunt,
-            that provides an API over a massive collection of
-            carefully currated security breaches from around the world.
-        </span>
-        <span>
-            With this powerful API, and a few simple Blazor forms we can exercise this service
-            to discover whether or not our emails, and/or passwords have been compromised as
-            part of a data secerity breach.
-        </span>
-    </p>
-    <EditForm Model=Model OnValidSubmit="(async context => await OnValidSubmitAsync(context))">
-        <DataAnnotationsValidator />
-        <ValidationSummary Model=Model />
+<div class="columns">
+    <section class="column is-half is-offset-one-quarter">
+        <h2 class="pwned-logo is-size-4 is-family-code has-text-white has-background-primary-dark box">
+            ';--have i been pwned?
+        </h2>
 
-        <div class="field">
-            <label for="email">@localize["Email"]</label>
-            <p class="control has-icons-left has-icons-right">
-                <InputText id="email" @bind-Value=Model.EmailAddress class="input" />
-                <span class="icon is-small is-left">
-                    <i class="fas fa-envelope"></i>
+        @{
+            var isLoading = _state is ComponentState.Loading;
+            var loadingClass = isLoading ? "is-loading" : "";
+        }
+
+        <EditForm Model=_model OnValidSubmit="(async context => await OnValidSubmitAsync(context))" class="pb-4">
+            <DataAnnotationsValidator />
+            <ValidationSummary Model=_model />
+
+            <div class="field has-addons">
+                <p class="is-fullwidth control has-icons-left @(loadingClass)">
+                    <InputText id="email" @bind-Value=_model.EmailAddress class="input is-large"
+                               DisplayName=@localize["EmailAddress"] placeholder=@localize["EmailAddress"] />
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-envelope"></i>
+                    </span>
+                </p>
+                <div class="control">
+                    <button type="submit" class="button is-danger is-large @(loadingClass)" disabled="@(_isFormInvalid)">
+                        <span class="icon">
+                            <i class="fas fa-question"></i>
+                        </span>
+                        <span>pwned</span>
+                    </button>
+                </div>
+
+                <ValidationMessage For=@(() => _model.EmailAddress) />
+            </div>
+
+        </EditForm>
+
+        <article class="panel is-info">
+            <p class="panel-heading has-text-left">
+                <span>
+                    @localize["Breaches"]
                 </span>
-                <span class="icon is-small is-right">
-                    <i class="fas fa-check"></i>
+                <span class="is-pulled-right">
+                    @if (_breaches is { Length: > 0 })
+                    {
+                        <span class="field is-grouped is-grouped-multiline">
+                            <span class="control">
+                                <span class="tags are-medium has-addons">
+                                    <span class="tag is-danger">pwned</span>
+                                    <span class="tag is-dark">@_breaches.Length</span>
+                                </span>
+                            </span>
+                            <span class="control">
+                                <span class="tags is-clickable are-medium has-addons" @onclick=Reset>
+                                    <span class="tag is-primary">reset</span>
+                                    <span class="tag is-dark">
+                                        <i class="fas fa-redo-alt" aria-hidden="true"></i>
+                                    </span>
+                                </span>
+                            </span>
+                        </span>
+                    }
                 </span>
             </p>
-            <ValidationMessage class="help is-danger" For=@(() => Model.EmailAddress) />
-        </div>
-
-    </EditForm>
-
-    <div class="pwned-results">
-        @if (_state is ComponentState.Loading)
-        {
-            <div class="fa-3x">
-                <i class="fas fa-sync fa-spin"></i>
+            <div class="panel-block">
+                <p class="control has-icons-left">
+                    <input class="input is-medium" type="text"
+                           @bind=_filter @bind:event="oninput"
+                           disabled=@(_breaches is null or { Length: 0 })
+                           placeholder=@localize["Filter"]>
+                    <span class="icon is-left">
+                        <i class="fas fa-filter" aria-hidden="true"></i>
+                    </span>
+                </p>
             </div>
-        }
-        else if (_breaches is { Length: > 0 })
-        {
-            <span>Yikes, you have been "pwned"!</span>
-            foreach (BreachHeader breach in _breaches)
+
+            @if (_breaches is { Length: > 0 })
             {
-                <div @bind=breach.Name>
-                    @breach.Name
-                </div>
+                foreach (BreachHeader breach in _filteredBreaches)
+                {
+                    <a class="panel-block">
+                        <span class="panel-icon">
+                            <i class="fas fa-exclamation-circle" aria-hidden="true"></i>
+                        </span>
+                        @breach.Name
+                    </a>
+                }
             }
-        }
-        else
-        {
-            <div>
-                No breaches found for: @Model.EmailAddress
-            </div>
-        }
-    </div>
-</section>
-
+            else if (_state is ComponentState.Loaded)
+            {
+                <a class="panel-block" disabled>
+                    <span class="panel-icon">
+                        <i class="fas fa-check" aria-hidden="true"></i>
+                    </span>
+                    @localize["NoBreachesFormat", _model.EmailAddress!];
+                </a>
+            }
+        </article>
+    </section>
+</div>

@@ -58,9 +58,9 @@ namespace Learning.Blazor.Components
         private static string ToDisplayName(
             (CultureInfo Culture, KeyValuePair<string, AzureCulture> AzureCulture)? culturePair)
         {
-            var (hasValue, value) = culturePair;
+            var (hasValue, (cultureInfo, (twoLetterISO, azureCulture))) = culturePair;
             return hasValue
-                ? $"{value.AzureCulture.Value.Name} ({value.Culture.TwoLetterISOLanguageName})"
+                ? $"{cultureInfo.DisplayName} ({twoLetterISO}: {azureCulture.Name})"
                 : "";
         }
 

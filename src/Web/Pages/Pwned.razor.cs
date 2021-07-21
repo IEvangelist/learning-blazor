@@ -2,10 +2,13 @@
 // Licensed under the MIT License.
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 using Learning.Blazor.ComponentModels;
+using Learning.Blazor.Extensions;
 using Learning.Blazor.Models;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
@@ -18,22 +21,28 @@ namespace Learning.Blazor.Pages
         private EditContext? _editContext;
         private bool _isFormInvalid;
         private BreachHeader[] _breaches = Array.Empty<BreachHeader>();
-        private ComponentState _state = ComponentState.Loaded;
+        private ComponentState _state = ComponentState.Unknown;
+        private PwnedComponenetModel _model = null!;
+        private string? _filter = null!;
+
+        private IEnumerable<BreachHeader> _filteredBreaches =>
+            _filter is null
+                ? _breaches
+                : _breaches.Where(
+                    breach => breach.Name.Contains(
+                        _filter, StringComparison.OrdinalIgnoreCase));
 
         [Inject]
         public HttpClient Http { get; set; } = null!;
 
-        [Parameter]
-        public PwnedComponenetModel Model { get; set; } = null!;
-
         protected override void OnInitialized()
         {
-            if (Model == null)
+            if (_model == null)
             {
-                Model = new PwnedComponenetModel();
+                _model = new PwnedComponenetModel();
             }
 
-            _editContext = new(Model);
+            _editContext = new(_model);
             _editContext.OnFieldChanged += OnModelChanged;
         }
 
@@ -43,21 +52,26 @@ namespace Learning.Blazor.Pages
             StateHasChanged();
         }
 
-        private async ValueTask OnValidSubmitAsync(EditContext context)
+        private void Reset()
+        {
+            _model.EmailAddress = null!;
+            _breaches = Array.Empty<BreachHeader>();
+            _state = ComponentState.Unknown;
+        }
+
+        private async ValueTask OnValidSubmitAsync(EditContext _)
         {
             try
             {
                 _state = ComponentState.Loading;
-                //if (context?.Validate() ?? false)
-                {
-                    var email = Model.EmailAddress;
-                    _breaches = (await Http.GetFromJsonAsync<BreachHeader[]>($"api/breaches/{email}"))!;
-                }
+                _breaches = (await Http.GetFromJsonAsync<BreachHeader[]>(
+                    $"api/pwned/breaches/{_model.EmailAddress}", DefaultJsonSerialization.Options))!;
+
+                _state = ComponentState.Loaded;
             }
             catch (Exception ex)
             {
                 Logger.LogError(ex, ex.Message);
-
                 _state = ComponentState.Error;
             }
             finally

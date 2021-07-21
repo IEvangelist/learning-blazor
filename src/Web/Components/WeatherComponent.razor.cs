@@ -60,7 +60,9 @@ namespace Learning.Blazor.Components
             };
 
             using var response = await Http.PostAsJsonAsync("api/weather/latest", request);
-            var weatherDetails = await response.Content.ReadFromJsonAsync<WeatherDetails?>();
+            var weatherDetails =
+                await response.Content.ReadFromJsonAsync<WeatherDetails?>(
+                    DefaultJsonSerialization.Options);
             if (weatherDetails is not null)
             {
                 _model = new WeatherComponentModel<WeatherComponent>(weatherDetails, Formatter);

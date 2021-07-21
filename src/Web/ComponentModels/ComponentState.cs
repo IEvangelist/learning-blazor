@@ -5,6 +5,7 @@ namespace Learning.Blazor.ComponentModels
 {
     public enum ComponentState
     {
+        Unknown,
         Loading,
         Loaded,
         Error
