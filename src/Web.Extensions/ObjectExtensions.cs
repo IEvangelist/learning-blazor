@@ -18,7 +18,7 @@ namespace Learning.Blazor.Extensions
             this string? json, JsonSerializerOptions? options = null) where T : class =>
             json is null or { Length: 0 } ? default : Deserialize<T>(json, options ?? DefaultJsonSerialization.Options);
 
-        public static async ValueTask TryDisposeAsync(this object obj)
+        public static async ValueTask TryDisposeAsync(this object? obj)
         {
             if (obj is IAsyncDisposable asyncDisposable)
             {

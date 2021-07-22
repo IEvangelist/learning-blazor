@@ -1,3 +1,34 @@
 ﻿@page "/tweets"
+@inherits LocalizableComponentBase<Tweets>
 
-Tweets
+<div class="columns">
+    <div class="column is-half is-offset-one-quarter">
+        <article class="panel is-info has-text-centered">
+            <p class="panel-heading">
+                <span class="icon pr-2">
+                <i class="fab fa-twitter"></i>
+            </span>
+            <span>@localize["TwitterFeed"]</span>
+            </p>
+            <div class="panel-block">
+                <p class="control has-icons-left">
+                    <input class="input is-info" type="text" placeholder="Search">
+                    <span class="icon is-left">
+                        <i class="fas fa-search" aria-hidden="true"></i>
+                    </span>
+                </p>
+            </div>
+
+            <a class="panel-block">
+                <span class="panel-icon">
+                    <i class="fas fa-book" aria-hidden="true"></i>
+                </span>
+                bulma
+            </a>
+
+            <TweetsComponent Tweets=_tweets />
+
+        </article>
+
+    </div>
+</div>

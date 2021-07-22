@@ -2,15 +2,12 @@
 // Licensed under the MIT License.
 
 using Learning.Blazor.DataAnnotations;
-using Learning.Blazor.Pages;
 
 namespace Learning.Blazor.ComponentModels
 {
     public class PwnedComponenetModel
     {
-        [
-            RegexEmailAddress
-        ]
+        [RegexEmailAddress]
         public string? EmailAddress { get; set; } = null!;
 
         public string? PlainTextPassword { get; set; } = null!;

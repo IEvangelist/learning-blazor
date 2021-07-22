@@ -29,6 +29,19 @@ const getClientVoices = (dotnetObj, callbackMethodName) => {
     return JSON.stringify(voices.map(v => ({ Name: v.name, Lang: v.lang, Default: v.default })));
 }
 
+const getClientPrefersColorScheme = (color, dotnetObj, callbackMethodName) => {
+    let media = window.matchMedia(`(prefers-color-scheme: ${color})`);
+    if (media) {
+        media.onchange = args => {
+            dotnetObj.invokeMethodAsync(
+                callbackMethodName,
+                args.matches);
+        };
+    }
+
+    return media.matches;
+}
+
 const speak = (message, defaultVoice, voiceSpeed, lang) => {
     const utterance = new SpeechSynthesisUtterance(message);
     const voices = window.speechSynthesis.getVoices();
@@ -49,6 +62,7 @@ const speak = (message, defaultVoice, voiceSpeed, lang) => {
 window.app = {
     getClientCoordinates,
     getClientVoices,
+    getClientPrefersColorScheme,
     speak
 };
 

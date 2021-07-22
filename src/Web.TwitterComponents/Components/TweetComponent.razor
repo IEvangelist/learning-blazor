@@ -1,55 +1,7 @@
-﻿<div class="card">
-    <header class="card-header">
-        <p class="card-header-title">
-            Tweets
-        </p>
-        <button class="card-header-icon" aria-label="Twitter">
-            <span class="icon">
-                <i class="fab fa-twitter"></i>
-            </span>
-        </button>
-    </header>
-
-    <div class="card-content">
-        <ul id="tweets" class="reversed no-bullets">
-            @foreach (var tweet in _tweets)
-            {
-                <li>@(new MarkupString(tweet.HTML))</li>
-            }
-        </ul>
+﻿@if (Tweet is not null)
+{
+    MarkupString markup = new(Tweet.HTML);
+    <div>
+        @markup
     </div>
-
-    <footer class="card-footer">
-        @{
-            string isLoading = _isStreaming.HasValue ? "" : "is-loading";
-        }
-        <a id="startButton" class="card-footer-item @isLoading"
-                @onclick="Start" disabled="@(!_isStreaming)">
-            <span class="icon">
-                <i class="fas fa-play"></i>
-            </span>
-        </a>
-        <a id="stopButton" class="card-footer-item @isLoading"
-                @onclick="Stop" disabled="@(_isStreaming)">
-            <span class="icon">
-                <i class="fas fa-stop"></i>
-            </span>
-        </a>
-        <a id="pauseButton" class="card-footer-item @isLoading"
-                @onclick="Pause" disabled="@(_isStreaming)">
-            <span class="icon">
-                <i class="fas fa-pause"></i>
-            </span>
-        </a>
-        <a class="card-footer-item @isLoading"
-                @onclick="@(() => _showTracksModal = true)" disabled="@(_isStreaming)">
-            <span class="icon">
-                <i class="fas fa-cog"></i>
-            </span>
-        </a>
-    </footer>
-</div>
-
-<TwitterTracksModalComponent IsActive="_showTracksModal" Tracks=_tracks />
-
-<span>@_streamingStatus</span>
+}

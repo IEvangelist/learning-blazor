@@ -5,6 +5,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Learning.Blazor.Api.Hubs;
+using Learning.Blazor.Extensions;
 using Learning.Blazor.Models;
 using Learning.Blazor.TwitterServices;
 using Microsoft.AspNetCore.SignalR;
@@ -38,14 +39,14 @@ namespace Learning.Blazor.Api.Services
         }
 
         private Task OnStatusUpdated(StreamingStatus status) =>
-            _hubContext.Clients.All.SendAsync(
+            _hubContext.Clients.Group("Tweets").SendAsync(
                 "StatusUpdated", Notification<StreamingStatus>.FromStatus(status));
 
         private Task OnTweetReceived(TweetContents tweet) =>
-            _hubContext.Clients.All.SendAsync(
+            _hubContext.Clients.Group("Tweets").SendAsync(
                 "TweetReceived", Notification<TweetContents>.FromTweet(tweet));
 
         ValueTask IAsyncDisposable.DisposeAsync() =>
-            _twitterService?.DisposeAsync() ?? ValueTask.CompletedTask;
+            _twitterService.TryDisposeAsync();
     }
 }

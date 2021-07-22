@@ -57,6 +57,18 @@ namespace Learning.Blazor.TwitterServices
                 _filteredStream.StreamPaused += OnStreamPaused;
                 _filteredStream.WarningFallingBehindDetected += OnFallingBehindDetected;
 
+                AddTracks(new HashSet<string>(StringComparer.OrdinalIgnoreCase)
+                {
+                    "#Blazor",
+                    "#WebAssembly",
+                    "#wasm",
+                    "#csharp",
+                    "#dotnet",
+                    "@dotnet",
+                    "@aspnet",
+                    "@davidpine7"
+                });
+
                 s_isInitialized = true;
             }
         }
@@ -93,6 +105,11 @@ namespace Learning.Blazor.TwitterServices
             {
                 _logger.LogInformation("Pausing tweet stream.");
                 _filteredStream.Pause();
+                _logger.LogInformation("Paused tweet stream.");
+            }
+            else
+            {
+                _logger.LogWarning("Unable to pause tweet stream.");
             }
         }
 
@@ -102,11 +119,12 @@ namespace Learning.Blazor.TwitterServices
             if (_filteredStream is not { StreamState: StreamState.Running })
             {
                 _logger.LogInformation("Starting tweet stream.");
-
-                await Task.CompletedTask;
-
-                // TODO: watch https://github.com/linvi/tweetinvi/pull/1130
-                //await _filteredStream.StartMatchingAllConditionsAsync();
+                await _filteredStream.StartMatchingAnyConditionAsync();
+                _logger.LogInformation("Started tweet stream.");
+            }
+            else
+            {
+                _logger.LogWarning("Unable to start tweet stream.");
             }
         }
 
@@ -117,6 +135,11 @@ namespace Learning.Blazor.TwitterServices
             {
                 _logger.LogInformation("Stopping tweet stream.");
                 _filteredStream.Stop();
+                _logger.LogInformation("Stoppied tweet stream.");
+            }
+            else
+            {
+                _logger.LogWarning("Unable to stop tweet stream.");
             }
         }
 
@@ -135,23 +158,28 @@ namespace Learning.Blazor.TwitterServices
         {
             if (iTweet is null)
             {
+                _logger.LogError("Unable to broadcast tweet");
                 return;
             }
 
             // If Twitter thinks this might be sensitive, filter it out.
             if (iTweet.PossiblySensitive)
             {
+                _logger.LogWarning("Ignoring sensitive tweet: {Tweet}", iTweet.FullText);
                 return;
             }
 
             var tweet = await iTweet.GenerateOEmbedTweetAsync();
             if (tweet is null)
             {
+                _logger.LogWarning("Unable to parse OEmbed tweet");
                 return;
             }
 
             if (TweetReceived is not null)
             {
+                _logger.LogWarning("Successfully broadcasting tweet: {Tweet}", tweet.HTML);
+
                 await TweetReceived(
                     new TweetContents
                     {
@@ -226,11 +254,16 @@ namespace Learning.Blazor.TwitterServices
             await SendStatusUpdateAsync(status);
         }
 
-        private Task SendStatusUpdateAsync(string status) =>
-            StatusUpdated?.Invoke(
-                new StreamingStatus(
+        private Task SendStatusUpdateAsync(string status)
+        {
+            _logger.LogInformation(status);
+
+            StreamingStatus streamingStatus = new(
                     IsStreaming: _filteredStream.StreamState == StreamState.Running,
-                    Message: status))
+                    Message: status);
+
+            return StatusUpdated?.Invoke(streamingStatus)
                 ?? Task.CompletedTask;
+        }
     }
 }

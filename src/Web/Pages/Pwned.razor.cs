@@ -19,12 +19,13 @@ namespace Learning.Blazor.Pages
 {
     public partial class Pwned
     {
+        private readonly PwnedComponenetModel _model = new();
+
         private EditContext? _editContext;
         private bool _isFormInvalid;
         private BreachHeader[] _breaches = Array.Empty<BreachHeader>();
         private BreachDetails? _breach = null!;
         private ComponentState _state = ComponentState.Unknown;
-        private PwnedComponenetModel _model = null!;
         private string? _filter = null!;
         private ModalComponent _modal = null!;
 
@@ -38,10 +39,19 @@ namespace Learning.Blazor.Pages
         [Inject]
         public HttpClient Http { get; set; } = null!;
 
-        protected override void OnInitialized()
+        protected override async Task OnInitializedAsync()
         {
-            _editContext = new(_model ??= new());
+            _editContext = new(_model);
             _editContext.OnFieldChanged += OnModelChanged;
+
+            if (Navigation.TryParseQueryString<string>("email", out var emailAddress))
+            {
+                _model.EmailAddress = emailAddress;
+                if (_editContext.Validate())
+                {
+                    await OnValidSubmitAsync(_editContext);
+                }
+            }
         }
 
         private void OnModelChanged(object? sender, FieldChangedEventArgs e)

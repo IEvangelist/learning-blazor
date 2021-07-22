@@ -6,13 +6,14 @@ using Learning.Blazor.Localization;
 using Learning.Blazor.LocalStorage;
 using Learning.Blazor.Services;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Routing;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
 using Microsoft.JSInterop;
 
 namespace Learning.Blazor.Components
 {
-    public class LocalizableComponentBase<T> : ComponentBase
+    public class LocalizableComponentBase<T> : ComponentBase, IDisposable
     {
         private readonly Lazy<FallbackLocalizer<T>> _lazyFallbackLocalizer = null!;
 
@@ -24,6 +25,9 @@ namespace Learning.Blazor.Components
 
         [Inject]
         public IStringLocalizer<T> Localizer { get; set; } = null!;
+
+        [Inject]
+        public NavigationManager Navigation { get; set; } = null!;
 
         [Inject]
         public CultureService Culture { get; set; } = null!;
@@ -51,6 +55,15 @@ namespace Learning.Blazor.Components
         private static FallbackLocalizer<T> FallbackLocalizerFactory(
             LocalizableComponentBase<T> @this) =>
             new(@this.Localizer, @this.SharedLocalizer);
+
+        public virtual void Dispose()
+        {
+            Navigation!.LocationChanged -= OnLocationChanged;
+        }
+
+        protected virtual void OnLocationChanged(object? sender, LocationChangedEventArgs args)
+        {
+        }
 
         protected class FallbackLocalizer<TComponent>
         {

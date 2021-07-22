@@ -1,0 +1,9 @@
+﻿.reversed {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.no-bullets {
+    list-style-type: none;
+    padding-left: 0;
+}

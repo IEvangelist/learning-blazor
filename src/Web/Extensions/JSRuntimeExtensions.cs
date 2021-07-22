@@ -27,5 +27,15 @@ namespace Learning.Blazor.Extensions
                 "app.getClientVoices",
                 DotNetObjectReference.Create(dotnetObj),
                 callbackMethodName);
+
+        internal static async ValueTask<bool> GetCurrentDarkThemePreference<T>(
+            this IJSRuntime javaScript,
+            T dotnetObj,
+            string callbackMethodName) where T : class =>
+            await javaScript.InvokeAsync<bool>(
+                "app.getClientPrefersColorScheme",
+                "dark",
+                DotNetObjectReference.Create(dotnetObj),
+                callbackMethodName);
     }
 }

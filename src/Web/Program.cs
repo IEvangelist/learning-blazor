@@ -23,12 +23,17 @@ if (builder.HostEnvironment.IsDevelopment())
     builder.Logging.SetMinimumLevel(LogLevel.Debug);
 }
 
-ConfigureServices(
+var serverUrl = ConfigureServices(
     builder.Services,
     builder.Configuration,
     builder.HostEnvironment);
 
 await using var host = builder.Build();
+
+var factory =
+    host.Services.GetRequiredService<ILoggerFactory>();
+var logger = factory.CreateLogger("Learning.Blazor.Program");
+logger.LogInformation("Using Web API server url: {Url}", serverUrl);
 
 var localStorage = host.Services.GetRequiredService<ILocalStorage>();
 var clientCulture = await localStorage.GetAsync<string>(StorageKeys.ClientCulture);
@@ -41,7 +46,7 @@ if (clientCulture is not null)
 
 await host.RunAsync();
 
-static void ConfigureServices(
+static string ConfigureServices(
     IServiceCollection services,
     IConfiguration configuration,
     IWebAssemblyHostEnvironment hostEnvironment)
@@ -63,4 +68,6 @@ static void ConfigureServices(
 
     services.AddMsalAuthentication(
         options => configuration.Bind("AzureAdB2C", options.ProviderOptions.Authentication));
+
+    return serverUrl;
 }

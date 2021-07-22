@@ -136,9 +136,13 @@
                 <span>
                     @(new MarkupString(_breach.Description))
                 </span>
-                <strong>
-                    @($"pwn's: {@_breach.PwnCount.ToString("N0", Culture.CurrentCulture)}")
-                </strong>
+            </div>
+            <div class="content">
+                <blockquote>
+                    <strong>
+                        @($"pwn's: {@_breach.PwnCount.ToString("N0", Culture.CurrentCulture)}")
+                    </strong>
+                </blockquote>
             </div>
             <div class="content">
                 <div class="tags are-medium">

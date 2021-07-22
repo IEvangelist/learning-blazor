@@ -24,7 +24,6 @@ namespace Learning.Blazor.Components
         private CultureInfo _selectedCulture = null!;
         private ModalComponent _modal = null!;
 
-        [Inject] NavigationManager Navigation { get; set; } = null!;
         [Inject] HttpClient Http { get; set; } = null!;
 
         protected override async Task OnInitializedAsync()
@@ -40,6 +39,8 @@ namespace Learning.Blazor.Components
                 {
                     _supportedCultures =
                         CultureInfo.GetCultures(CultureTypes.SpecificCultures)
+                            .Where(culture =>
+                                azureCultures.Translation.ContainsKey(culture.TwoLetterISOLanguageName))
                             .Join(
                                 azureCultures.Translation,
                                 culture => culture.TwoLetterISOLanguageName,
