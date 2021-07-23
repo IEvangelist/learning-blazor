@@ -5,8 +5,7 @@ using Learning.Blazor.Api;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-using var host = Host.CreateDefaultBuilder(args)
+await Host.CreateDefaultBuilder(args)
     .ConfigureWebHostDefaults(webBuilder => webBuilder.UseStartup<Startup>())
-    .Build();
-
-await host.RunAsync();
+    .Build()
+    .RunAsync();

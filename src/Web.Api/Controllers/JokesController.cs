@@ -7,6 +7,7 @@ using Learning.Blazor.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Microsoft.Identity.Web.Resource;
 using System;
 using System.Net.Mime;
 using System.Threading.Tasks;
@@ -14,7 +15,6 @@ using System.Threading.Tasks;
 namespace Learning.Blazor.Api.Controllers
 {
     [
-        AllowAnonymous,
         ApiController,
         Route("api/jokes")
     ]
@@ -22,11 +22,6 @@ namespace Learning.Blazor.Api.Controllers
     {
         private readonly IJokeFactory _jokeFactory;
         private readonly ILogger<JokesController> _logger;
-
-        // The Web API will only accept tokens:
-        //   1) for users, and
-        //   2) having the "access_as_user" scope for this API
-        static readonly string[] s_scopeRequiredByApi = new string[] { "access_as_user" };
 
         public JokesController(
             IJokeFactory jokeFactory,
@@ -40,7 +35,7 @@ namespace Learning.Blazor.Api.Controllers
         ]
         public async Task<IActionResult> Get()
         {
-            //HttpContext.VerifyUserHasAnyAcceptedScope(s_scopeRequiredByApi);
+            HttpContext.VerifyUserHasAnyAcceptedScope("User.ApiAccess");
 
             _logger.LogInformation("{DateTime}: Getting weather", DateTime.UtcNow);
 

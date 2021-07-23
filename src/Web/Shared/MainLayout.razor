@@ -22,13 +22,21 @@
                 </div>
                 <div id="navbar" class="navbar-menu">
                     <div class="navbar-start">
-                        <NavBar />
+                        <AuthorizeView>
+                            <Authorized>
+                                <NavBar />
+                            </Authorized>
+                        </AuthorizeView>
                     </div>
                     <div class="navbar-end">
-                        <ThemeToggleComponent />
-                        <AudioDescriptionComponent />
-                        <LanguageSelectionComponent />
-                        <NotificationComponent />
+                        <AuthorizeView>
+                            <Authorized>
+                                <ThemeToggleComponent />
+                                <AudioDescriptionComponent />
+                                <LanguageSelectionComponent />
+                                <NotificationComponent />
+                            </Authorized>
+                        </AuthorizeView>
                         <LoginDisplay />
                     </div>
                 </div>
@@ -39,6 +47,18 @@
     <div class="hero-body">
         <div class="container has-text-centered is-fluid mx-5">
             @Body
+
+            @*<AuthorizeView>
+                <Authorizing>
+                    <LoadingIndicator Message=@Localizer["LoggingIn"] />
+                </Authorizing>
+                <Authorized>
+                    
+                </Authorized>
+                <NotAuthorized>
+                    <RedirectToLogin />
+                </NotAuthorized>
+            </AuthorizeView>*@
         </div>
     </div>
 

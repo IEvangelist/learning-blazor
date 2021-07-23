@@ -1,0 +1,9 @@
+﻿<img src="media/blazor-logo.png" class="blazor-logo mb-5" />
+<div class="fa-3x is-family-code">
+    @Message <i class="fas fa-sync fa-spin"></i>
+</div>
+
+@code {
+    [Parameter]
+    public string Message { get; set; } = "Loading, please wait...";
+}

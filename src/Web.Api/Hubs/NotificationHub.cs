@@ -3,10 +3,13 @@
 
 using System.Threading.Tasks;
 using Learning.Blazor.TwitterServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
+using Microsoft.Identity.Web.Resource;
 
 namespace Learning.Blazor.Api.Hubs
 {
+    [Authorize, RequiredScope(new[] { "User.ApiAccess" })]
     public class NotificationHub : Hub
     {
         private readonly ITwitterService _twitterService;

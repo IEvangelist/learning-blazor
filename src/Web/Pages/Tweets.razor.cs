@@ -30,8 +30,8 @@ namespace Learning.Blazor.Pages
             var notificationHub =
                 new Uri($"{Config["WebApiServerUrl"]}/notifications");
             _hubConnection = new HubConnectionBuilder()
-                .WithUrl(notificationHub/*,
-                     options => options.AccessTokenProvider = GetAccessTokenValueAsync*/)
+                .WithUrl(notificationHub,
+                     options => options.AccessTokenProvider = GetAccessTokenValueAsync)
                 .WithAutomaticReconnect()
                 .AddMessagePackProtocol()
                 .Build();

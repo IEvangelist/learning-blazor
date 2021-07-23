@@ -36,6 +36,10 @@ namespace Learning.Blazor.Api
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddMicrosoftIdentityWebApi(_configuration.GetSection("AzureAdB2C"));
 
+            services.Configure<JwtBearerOptions>(
+                JwtBearerDefaults.AuthenticationScheme,
+                options => options.TokenValidationParameters.NameClaimType = "name");
+
             services.AddJokeServices(_configuration);
             services.AddApiServices(_configuration);
 
@@ -74,11 +78,11 @@ namespace Learning.Blazor.Api
 
             app.UseHttpsRedirection();
 
-            app.UseCors(CorsPolicy);
             app.UseRouting();
+            app.UseCors(CorsPolicy);
 
-            //app.UseAuthentication();
-            //app.UseAuthorization();
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

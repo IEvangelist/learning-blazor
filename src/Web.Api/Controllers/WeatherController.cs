@@ -7,6 +7,7 @@ using Learning.Blazor.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Microsoft.Identity.Web.Resource;
 using System;
 using System.Net.Mime;
 using System.Threading.Tasks;
@@ -37,7 +38,7 @@ namespace Learning.Blazor.Api.Controllers
         public async Task<IActionResult> Post(
             [FromBody] WeatherRequest request)
         {
-            //HttpContext.VerifyUserHasAnyAcceptedScope(s_scopeRequiredByApi);
+            HttpContext.VerifyUserHasAnyAcceptedScope("User.ApiAccess");
 
             _logger.LogInformation("{DateTime}: Getting weather", DateTime.UtcNow);
 
