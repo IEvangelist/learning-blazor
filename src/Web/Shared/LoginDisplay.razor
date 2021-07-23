@@ -12,8 +12,8 @@
             </button>
         </Authorizing>
         <Authorized>
-            Hello, @(context.User?.Identity?.Name ?? "❔")
-            <button class="button is-rounded level-item" @onclick="OnLogOut">
+            <button class="button is-rounded level-item has-tooltip-right has-tooltip-info"
+                data-tooltip=@(context.User?.Identity?.Name) @onclick="OnLogOut">
                 <span class="icon">
                     <i class="fas fa-sign-out-alt"></i>
                 </span>

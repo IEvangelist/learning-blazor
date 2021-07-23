@@ -22,17 +22,19 @@
     <link type="text/css" href="https://unpkg.com/bulma-prefers-dark"
           rel="preload" as="style" onload="this.rel='stylesheet'">
 
-    <link href="css/app.css" rel="stylesheet" />
-    <link href="_content/Web.TwitterComponents/twitter-component.css" rel="stylesheet" />
+    <link href="/css/app.css" rel="stylesheet" />
+    <link href="/_content/Web.TwitterComponents/twitter-component.css" rel="stylesheet" />
 
-    <link href="manifest.json" rel="manifest" />
-    <link rel="apple-touch-icon" sizes="512x512" href="icon-512.png" />
-    <link rel="apple-touch-icon" sizes="192x192" href="icon-192.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="apple-touch-icon" sizes="512x512" href="/icon-512.png" />
+    <link rel="apple-touch-icon" sizes="192x192" href="/icon-192.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/icon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icon-16.png">
 
     <base href="/" />
 
     <script src="https://kit.fontawesome.com/b5bcf1e25a.js" crossorigin="anonymous"></script>
-    <script src="js/app.js"></script>
+    <script src="/js/app.js"></script>
 </head>
 
 <body>
@@ -78,9 +80,9 @@
         </div>
     </div>
 
-    <script src="_content/Microsoft.Authentication.WebAssembly.Msal/AuthenticationService.js"></script>
-    <script src="_content/Web.TwitterComponents/twitter-component.js"></script>
-    <script src="_framework/blazor.webassembly.js"></script>
+    <script src="/_content/Microsoft.Authentication.WebAssembly.Msal/AuthenticationService.js"></script>
+    <script src="/_content/Web.TwitterComponents/twitter-component.js"></script>
+    <script src="/_framework/blazor.webassembly.js"></script>
     <script>navigator.serviceWorker.register('service-worker.js');</script>
 </body>
 
