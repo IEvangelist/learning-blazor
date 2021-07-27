@@ -41,6 +41,7 @@ namespace Learning.Blazor.Components
                         CultureInfo.GetCultures(CultureTypes.SpecificCultures)
                             .Where(culture =>
                                 azureCultures.Translation.ContainsKey(culture.TwoLetterISOLanguageName))
+                            .DistinctBy(culture => culture.TwoLetterISOLanguageName)
                             .Join(
                                 azureCultures.Translation,
                                 culture => culture.TwoLetterISOLanguageName,
@@ -59,9 +60,9 @@ namespace Learning.Blazor.Components
         private static string ToDisplayName(
             (CultureInfo Culture, KeyValuePair<string, AzureCulture> AzureCulture)? culturePair)
         {
-            var (hasValue, (cultureInfo, (twoLetterISO, azureCulture))) = culturePair;
+            var (hasValue, (_, (twoLetterISO, azureCulture))) = culturePair;
             return hasValue
-                ? $"{cultureInfo.DisplayName} ({twoLetterISO}: {azureCulture.Name})"
+                ? $"{azureCulture.Name} ({twoLetterISO})"
                 : "";
         }
 

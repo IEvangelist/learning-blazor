@@ -37,3 +37,18 @@ html {
     .image.is-dark {
         background-color: #363636;
     }
+
+
+@media (prefers-color-scheme: dark) {
+    .modal-card-body {
+        background-color: #242424;
+    }
+
+    .panel-block:not(:last-child) {
+        border-bottom-color: #363636;
+    }
+
+    .content blockquote {
+        color: #fff !important;
+    }
+}

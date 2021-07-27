@@ -1,40 +1,29 @@
 ﻿@page "/"
+@inherits LocalizableComponentBase<Index>
 
 <div id="index" class="tile is-ancestor">
     <div class="tile is-vertical is-11">
         <div class="tile">
-            <div class="tile is-parent is-vertical">
-                <article class="tile is-child notification is-primary">
-                    <p class="title"><i class="fas fa-smile-wink pr-3"></i> Jokes</p>
-                    <JokeComponent />
-                </article>
-                <article class="tile is-child notification is-warning">
-                    <p class="title">
-                        <span><i class="fas fa-user-shield pr-3"></i> Have I Been Pwned</span>
-                    </p>
-                    <HaveIBeenPwnedComponent />
-                </article>
-            </div>
             <div class="tile is-parent">
                 <article class="tile is-child notification is-info">
-                    <p class="title"><i class="fas fa-comments pr-3"></i> Chat</p>
-
+                    <p class="title">💬 Chat</p>
+                </article>
+            </div>
+            <div class="tile is-parent is-vertical">
+                <article class="tile is-child notification is-primary">
+                    <p class="title">🤓 Jokes</p>
+                    <JokeComponent />
                 </article>
             </div>
         </div>
         <div class="tile is-parent">
             <article class="tile is-child notification is-danger">
                 <p class="title">
-                    <span><i class="fas fa-cloud-sun-rain pr-3"></i> Weather</span>
+                    <span>🌤 Weather</span>
                 </p>
                 <WeatherComponent />
             </article>
         </div>
-    </div>
-    <div class="tile is-parent">
-        <article class="tile is-child notification p-0">
-            
-        </article>
     </div>
 </div>
 
