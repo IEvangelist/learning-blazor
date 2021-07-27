@@ -51,6 +51,8 @@ namespace Learning.Blazor.Api.Extensions
             services.Configure<WebFunctionsOptions>(
                 configuration.GetSection(nameof(WebFunctionsOptions)));
 
+            services.AddSingleton<WeatherLanguageService>();
+
             services.AddJokeServices(configuration);
             services.AddTwitterServices(configuration);
             services.AddHostedService<TwitterWorkerService>();
