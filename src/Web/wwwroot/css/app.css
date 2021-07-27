@@ -2,6 +2,14 @@
     --twitter-blue: #6cadde;
     --pwned-blue: rgba(58,154,196,.5);
     --signalr-blue: #59b4d9;
+    --dotnet-purple-primary: #512bd4;
+    --dotnet-purple-gradient-9: #7014e8;
+    --dotnet-purple-gradient-100: #4931de;
+    --dotnet-purple-light: #dfd8f7;
+    --dotnet-purple-dark: #2b0b98;
+    --dotnet-gray-light: #e5e5e1;
+    --dotnet-gray: #969696;
+    --dotnet-gray-dark: #505050;
 }
 
 #blazor-error-ui {
@@ -18,6 +26,10 @@ html {
 
 #index {
     /*max-height:*/
+}
+
+.is-blazor-bg {
+    background-color: var(--dotnet-purple-primary);
 }
 
 .control.is-fullwidth {
@@ -51,4 +63,32 @@ html {
     .content blockquote {
         color: #fff !important;
     }
+}
+
+.is-centered {
+    margin: 0 auto;
+    text-align: center;
+}
+
+/*
+    See:
+      https://jarv.is/notes/css-waving-hand-emoji
+*/
+.wave {
+    animation-name: wave-animation;
+    animation-duration: 2.0s;
+    animation-iteration-count: infinite;
+    transform-origin: 70% 70%;
+    display: inline-block;
+}
+
+@keyframes wave-animation {
+    0% { transform: rotate( 0.0deg) }
+   10% { transform: rotate(10.0deg) }  /* The following five values can be played with to make the waving more or less extreme */
+   20% { transform: rotate(-18.0deg) }
+   30% { transform: rotate(10.0deg) }
+   40% { transform: rotate(-2.0deg) }
+   50% { transform: rotate(10.0deg) }
+   60% { transform: rotate( 0.0deg) }  /* Reset for the last half to pause */
+  100% { transform: rotate( 0.0deg) }
 }

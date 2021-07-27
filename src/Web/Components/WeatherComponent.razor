@@ -18,10 +18,17 @@
                                 <strong class="block">@weather.Main</strong>
                                 <span class="block">@weather.Description</span>
                                 <span class="block is-family-code">@weather.Temperature</span>
+                                <span><i class="fas fa-wind"></i> @weather.WindSpeed <sup>@(localize[weather.WindDegree.ToVerboseCardinal()])</sup></span>
                             </p>
                         </div>
                     </div>
                 </article>
+                <div class="columns">
+                    @foreach (DailyWeather daily in weather.DailyWeather)
+                    {
+                        <div class="columns">@daily.</div>
+                    }
+                </div>
             </div>
         }
         else

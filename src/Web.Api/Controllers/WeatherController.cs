@@ -17,7 +17,8 @@ using System.Threading.Tasks;
 namespace Learning.Blazor.Api.Controllers
 {
     [
-        AllowAnonymous,
+        Authorize,
+        RequiredScope(new[] { "User.ApiAccess" }),
         ApiController,
         Route("api/weather")
     ]
@@ -42,8 +43,6 @@ namespace Learning.Blazor.Api.Controllers
         public async Task<IActionResult> Post(
             [FromBody] WeatherRequest request)
         {
-            HttpContext.VerifyUserHasAnyAcceptedScope("User.ApiAccess");
-
             _logger.LogInformation("{DateTime}: Getting weather", DateTime.UtcNow);
 
             var weatherDetails = await _weatherFunctionClientService.GetWeatherAsync(request);

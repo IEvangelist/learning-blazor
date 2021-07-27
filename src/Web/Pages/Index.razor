@@ -2,24 +2,27 @@
 @inherits LocalizableComponentBase<Index>
 
 <div id="index" class="tile is-ancestor">
-    <div class="tile is-vertical is-11">
+    <div class="tile is-vertical is-centered is-7">
         <div class="tile">
             <div class="tile is-parent">
-                <article class="tile is-child notification is-info">
-                    <p class="title">💬 Chat</p>
+                <article class="tile is-child notification is-danger">
+                    <p class="title is-family-monospace"><emoji class="wave">🖐🏽</emoji> @localize["Hi"]</p>
+                    <p class="has-text-black is-family-monospace is-size-5">
+                        @localize["ThankYou"]
+                    </p>
                 </article>
             </div>
             <div class="tile is-parent is-vertical">
-                <article class="tile is-child notification is-primary">
-                    <p class="title">🤓 Jokes</p>
+                <article class="tile is-child notification is-info">
+                    <p class="title">🤓 @localize["Jokes"]</p>
                     <JokeComponent />
                 </article>
             </div>
         </div>
         <div class="tile is-parent">
-            <article class="tile is-child notification is-danger">
+            <article class="tile is-child notification is-blazor-bg">
                 <p class="title">
-                    <span>🌤 Weather</span>
+                    <span>🔥 Blazor-@localize["Weather"]</span>
                 </p>
                 <WeatherComponent />
             </article>

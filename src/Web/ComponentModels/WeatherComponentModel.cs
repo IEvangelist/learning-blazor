@@ -1,6 +1,8 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
+using System.Collections.Generic;
+using System.Linq;
 using Learning.Blazor.Extensions;
 using Learning.Blazor.Models;
 using Learning.Blazor.Services;
@@ -26,6 +28,7 @@ namespace Learning.Blazor.ComponentModels
         public MeasurementSystem MeasurementSystem => _weatherDetails.MeasurementSystem;
         public double WindSpeed => _currentWeather.WindSpeed;
         public int WindDegree => _currentWeather.WindDegree;
+        public IReadOnlyList<DailyWeather> DailyWeather => _weatherDetails.Daily.ToList().AsReadOnly();
 
         public WeatherComponentModel(
             WeatherDetails weatherDetails,
@@ -37,5 +40,7 @@ namespace Learning.Blazor.ComponentModels
             _todaysDaily = _weatherDetails.Daily[0];
             _weatherStringFormatter = weatherStringFormatter;
         }
+
+        public string GetFontAwesomeClass(DailyWeather daily) => _weather.ToFontAwesomeClass();
     }
 }

@@ -4,7 +4,6 @@
 using Learning.Blazor.Extensions;
 using Learning.Blazor.JokeServices;
 using Learning.Blazor.Models;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Identity.Web.Resource;
