@@ -5,6 +5,13 @@ on:
     branches: [ main ]
     paths:
     - '**.en.resx'
+    - '**.razor.en.resx'
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: 'The reason for running the workflow'
+        required: true
+        default: 'Manual run'
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -16,9 +23,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: 'Print manual run reason'
+        if: ${{ github.event_name == 'workflow_dispatch' }}
+        run: |
+          echo 'Reason: ${{ github.event.inputs.reason }}'
+
       - name: Resource translator
         id: resource-translator
-        uses: IEvangelist/resource-translator@v2.1.4
+        uses: IEvangelist/resource-translator@v2.1.5
         with:
           subscriptionKey: ${{ secrets.AZURE_TRANSLATOR_SUBSCRIPTION_KEY }}
           endpoint: ${{ secrets.AZURE_TRANSLATOR_ENDPOINT }}
