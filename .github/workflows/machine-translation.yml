@@ -25,7 +25,7 @@ jobs:
           endpoint: ${{ secrets.AZURE_TRANSLATOR_ENDPOINT }}
           region: ${{ secrets.AZURE_TRANSLATOR_REGION }}
           sourceLocale: 'en'
-          toLocales: '["af","al","ar","az""bg","ca","cz","da","de","el","en","eu","fa","fi","fr","gl","he","hi","hr","hu","id","it","ja","kr","la","lt","mk","no","nl","pl","pt","pt_br","ro","ru","sv","sk","sl","es","sr","th","tr","uk","vi","zh_cn","zh_tw","zu"]'
+          toLocales: '["af","ar","az""bg","ca","cs","da","de","el","fa","fi","fr","he","hi","hr","hu","id","it","ja","ko","la","lt","mk","nb","nl","pl","pt-PT","pt","ro","ru","sv","sk","sl","es","sr-Cyrl","sr-Latn","th","tr","uk","vi","zh-Hans","zh-Hant"]'
 
       - name: Create pull request
         uses: peter-evans/create-pull-request@v3.4.1
