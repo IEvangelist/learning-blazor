@@ -3,8 +3,8 @@
 
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using Learning.Blazor.BrowserModels;
 using Learning.Blazor.Extensions;
 using Learning.Blazor.Models;
 using Microsoft.AspNetCore.Components;
@@ -68,9 +68,5 @@ namespace Learning.Blazor.Components
 
         private void OnDismissed(DismissalReason reason) =>
             Logger.LogWarning("User '{Reason}' the audio description modal.", reason);
-
-        public record ClientVoicePreference(
-            [property: JsonPropertyName("voice")] string Voice,
-            [property: JsonPropertyName("voiceSpeed")] double VoiceSpeed);
     }
 }

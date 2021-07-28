@@ -5,6 +5,7 @@ using System;
 using System.Globalization;
 using System.Net.Http;
 using Learning.Blazor;
+using Learning.Blazor.BrowserModels;
 using Learning.Blazor.Extensions;
 using Learning.Blazor.Handlers;
 using Learning.Blazor.LocalStorage;
@@ -32,12 +33,19 @@ var serverUrl = ConfigureServices(
 await using var host = builder.Build();
 
 var localStorage = host.Services.GetRequiredService<ILocalStorage>();
-var clientCulture = await localStorage.GetAsync<string>(StorageKeys.ClientCulture);
+var clientCulture = await localStorage.GetAsync<ClientLocalePreference>(StorageKeys.ClientCulture);
 if (clientCulture is not null)
 {
-    CultureInfo culture = new(clientCulture);
-    CultureInfo.DefaultThreadCurrentCulture = culture;
-    CultureInfo.DefaultThreadCurrentUICulture = culture;
+    try
+    {
+        CultureInfo culture = CultureInfo.GetCultureInfo(clientCulture.LCID);
+        CultureInfo.DefaultThreadCurrentCulture = culture;
+        CultureInfo.DefaultThreadCurrentUICulture = culture;
+    }
+    catch (Exception)
+    {
+        // Can't set the culture I guess.
+    }
 }
 
 await host.RunAsync();

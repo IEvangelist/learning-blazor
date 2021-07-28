@@ -5,5 +5,6 @@ namespace Learning.Blazor.Models
 {
     public record StreamingStatus(
         bool IsStreaming,
-        string Message);
+        string Message,
+        string[] Tracks);
 }

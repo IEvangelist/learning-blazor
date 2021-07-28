@@ -28,7 +28,7 @@ namespace Learning.Blazor.ComponentModels
         public MeasurementSystem MeasurementSystem => _weatherDetails.MeasurementSystem;
         public double WindSpeed => _currentWeather.WindSpeed;
         public int WindDegree => _currentWeather.WindDegree;
-        public IReadOnlyList<DailyWeather> DailyWeather => _weatherDetails.Daily.ToList().AsReadOnly();
+        public IReadOnlyList<DailyWeather> DailyWeather => _weatherDetails.Daily.Skip(1).ToList().AsReadOnly();
 
         public WeatherComponentModel(
             WeatherDetails weatherDetails,
@@ -41,6 +41,9 @@ namespace Learning.Blazor.ComponentModels
             _weatherStringFormatter = weatherStringFormatter;
         }
 
-        public string GetFontAwesomeClass(DailyWeather daily) => _weather.ToFontAwesomeClass();
+        public string GetDailyFontAwesomeClass(DailyWeather daily) => daily.Weather[0].ToFontAwesomeClass();
+        public string GetDailyImagePath(DailyWeather daily) => $"media/weather/{daily.Weather[0]?.ToImageName() ?? "01"}.png";
+        public string GetDailyHigh(DailyWeather daily) => string.Format(_weatherStringFormatter, "{0:t}", daily.Temperature.Max);
+        public string GetDailyLow(DailyWeather daily) => string.Format(_weatherStringFormatter, "{0:t}", daily.Temperature.Min);
     }
 }

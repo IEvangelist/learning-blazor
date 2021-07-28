@@ -5,6 +5,7 @@ on:
     branches: [ main ]
     paths:
     - '**.en.resx'
+    - '**.razor.en.resx'
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -24,6 +25,7 @@ jobs:
           endpoint: ${{ secrets.AZURE_TRANSLATOR_ENDPOINT }}
           region: ${{ secrets.AZURE_TRANSLATOR_REGION }}
           sourceLocale: 'en'
+          toLocales: '["af","al","ar","az""bg","ca","cz","da","de","el","en","eu","fa","fi","fr","gl","he","hi","hr","hu","id","it","ja","kr","la","lt","mk","no","nl","pl","pt","pt_br","ro","ru","sv","sk","sl","es","sr","th","tr","uk","vi","zh_cn","zh_tw","zu"]'
 
       - name: Create pull request
         uses: peter-evans/create-pull-request@v3.4.1

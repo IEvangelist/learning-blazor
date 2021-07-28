@@ -31,8 +31,10 @@ namespace Learning.Blazor.Api.Services
         public Task<WeatherDetails> GetWeatherAsync(WeatherRequest request) =>
             _cache.GetOrCreateAsync(
                 request.Key,
-                async _ =>
+                async options =>
                 {
+                    options.AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(9);
+
                     var requestUrl = request.ToFormattedUrl(_functions.WeatherFunctionUrlFormat);
                     var details =
                         await _httpClient.GetFromJsonAsync<WeatherDetails>(

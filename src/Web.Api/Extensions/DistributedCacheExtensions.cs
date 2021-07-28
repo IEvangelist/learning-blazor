@@ -12,6 +12,9 @@ namespace Learning.Blazor.Api.Extensions
 {
     internal static class DistributedCacheExtensions
     {
+        /// <summary>
+        /// The default <see cref="DistributedCacheEntryOptions.AbsoluteExpirationRelativeToNow"/> is 5 mins.
+        /// </summary>
         internal static async Task<TItem> GetOrCreateAsync<TItem>(
             this IDistributedCache distributedCache,
             string key,

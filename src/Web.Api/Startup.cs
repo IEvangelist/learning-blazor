@@ -52,6 +52,7 @@ namespace Learning.Blazor.Api
 
             services.AddControllers();
             services.AddSwaggerGen(options =>
+            {
                 options.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Title = "Web.Api",
@@ -61,7 +62,29 @@ namespace Learning.Blazor.Api
                         Name = "MIT License",
                         Url = new Uri("https://opensource.org/licenses/MIT")
                     }
-                }));
+                });
+                //options.AddSecurityDefinition("ApiAccess", new OpenApiSecurityScheme
+                //{
+                //    Name = "auth8",
+                //    Type = SecuritySchemeType.Http,
+                //    Scheme = JwtBearerDefaults.AuthenticationScheme,
+                //    In = ParameterLocation.Header
+                //});
+                //options.AddSecurityRequirement(new OpenApiSecurityRequirement
+                //{
+                //    {
+                //        new OpenApiSecurityScheme
+                //        {
+                //            Reference = new OpenApiReference
+                //            {
+                //                Id = "ApiAccess",
+                //                Type = ReferenceType.SecurityScheme
+                //            }
+                //        },
+                //        Array.Empty<string>()
+                //    }
+                //});
+            });
 
             services.AddSignalR(options => options.EnableDetailedErrors = true)
                     .AddMessagePackProtocol();

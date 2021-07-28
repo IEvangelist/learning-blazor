@@ -7,9 +7,9 @@
         <article class="panel is-info has-text-centered">
             <p class="panel-heading">
                 <span class="icon pr-2">
-                <i class="fab fa-twitter"></i>
-            </span>
-            <span>@localize["TwitterFeed"]</span>
+                    <i class=@_streamingFontAwesomeClass></i>
+                </span>
+                <span>@localize["TwitterFeed"]</span>
             </p>
             <div class="panel-block">
                 <p class="control has-icons-left">
@@ -20,15 +20,22 @@
                 </p>
             </div>
 
-            <a class="panel-block">
-                <span class="panel-icon">
-                    <i class="fas fa-book" aria-hidden="true"></i>
-                </span>
-                bulma
-            </a>
+            <div class="panel-block has-text-centered">
+                <div class="tags">
+                    @if (_streamingStatus is { Tracks: {  Length: > 0 } })
+                    {
+                        foreach (var track in _streamingStatus.Tracks)
+                        {
+                            var style = track.StartsWith("@") ? "is-primary" : "is-link";
+                            <span class="tag @style">@track</span>
+                        }
+                    }
+                </div>
+            </div>
 
-            <TweetsComponent Tweets=_tweets />
-
+            <div class="panel-block has-text-centered">
+                <TweetsComponent Tweets=_tweets.ToArray() />
+            </div>
         </article>
 
     </div>

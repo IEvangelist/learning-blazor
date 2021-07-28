@@ -1,8 +1,10 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
+using System;
 using System.Net.Http;
 using System.Net.Http.Json;
+using System.Timers;
 using System.Threading.Tasks;
 using Learning.Blazor.ComponentModels;
 using Learning.Blazor.Extensions;
@@ -13,11 +15,12 @@ using Microsoft.JSInterop;
 
 namespace Learning.Blazor.Components
 {
-    public sealed partial class WeatherComponent
+    public sealed partial class WeatherComponent : IDisposable
     {
         private Coordinates _coordinates = null!;
         private WeatherComponentModel<WeatherComponent>? _model = null!;
         private ComponentState _state;
+        private Timer _timer = null!;
 
         [Inject]
         public IWeatherStringFormatterService<WeatherComponent> Formatter { get; set; } = null!;
@@ -25,14 +28,27 @@ namespace Learning.Blazor.Components
         [Inject]
         public HttpClient Http { get; set; } = null!;
 
-        [Inject]
-        internal CultureService CultureService { get; set; } = null!;
-
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
             if (firstRender)
             {
                 await TryGetClientCoordinates();
+
+                _timer = new Timer
+                {
+                    Interval = TimeSpan.FromMinutes(10).TotalMilliseconds,
+                    AutoReset = true
+                };
+                _timer.Elapsed += OnTimerElapsed;
+                _timer.Start();
+            }
+        }
+
+        private async void OnTimerElapsed(object sender, ElapsedEventArgs args)
+        {
+            if (_coordinates is not null)
+            {
+                await OnCoordinatesPermitted(_coordinates.Longitude, _coordinates.Latitude);
             }
         }
 
@@ -48,8 +64,8 @@ namespace Learning.Blazor.Components
         {
             _coordinates = new(latitude, longitude);
 
-            var lang = CultureService.CurrentCulture.TwoLetterISOLanguageName;
-            var unit = CultureService.MeasurementSystem;
+            var lang = Culture.CurrentCulture.TwoLetterISOLanguageName;
+            var unit = Culture.MeasurementSystem;
 
             WeatherRequest request = new()
             {
@@ -83,6 +99,16 @@ namespace Learning.Blazor.Components
             await Task.CompletedTask;
 
             _state = ComponentState.Error;
+        }
+
+        void IDisposable.Dispose()
+        {
+            if (_timer is { Enabled: true })
+            {
+                _timer.Stop();
+                _timer.Elapsed -= OnTimerElapsed;
+                _timer.Dispose();
+            }
         }
     }
 }

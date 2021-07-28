@@ -120,7 +120,16 @@
   <data name="Breaches" xml:space="preserve">
     <value>Breaches</value>
   </data>
-  <data name="Passwords" xml:space="preserve">
-    <value>Passwords</value>
+  <data name="EmailAddress" xml:space="preserve">
+    <value>Email address</value>
+  </data>
+  <data name="Filter" xml:space="preserve">
+    <value>Filter</value>
+  </data>
+  <data name="InvalidEmailAddress" xml:space="preserve">
+    <value>This email is invalid</value>
+  </data>
+  <data name="NoBreachesFormat" xml:space="preserve">
+    <value>No breaches found for {0}.</value>
   </data>
 </root>

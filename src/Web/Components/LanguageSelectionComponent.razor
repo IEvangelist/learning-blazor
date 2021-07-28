@@ -26,6 +26,8 @@
                         @if (_supportedCultures?.Any() ?? false)
                         {
                             var lcid = Culture.CurrentCulture.LCID;
+                            Logger.LogInformation("Current culture LCID: {id}", lcid);
+
                             @foreach (var (culture, azureCulture)
                                 in _supportedCultures.OrderBy(c => c.Culture.Name))
                             {

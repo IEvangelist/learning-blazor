@@ -9,6 +9,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
+using Learning.Blazor.BrowserModels;
 using Learning.Blazor.Extensions;
 using Learning.Blazor.Models;
 using Microsoft.AspNetCore.Components;
@@ -76,7 +77,9 @@ namespace Learning.Blazor.Components
             {
                 forceRefresh = true;
                 await LocalStorage.SetAsync(
-                    StorageKeys.ClientCulture, _selectedCulture.Name);
+                    StorageKeys.ClientCulture,
+                    new ClientLocalePreference(
+                        _selectedCulture.TwoLetterISOLanguageName, _selectedCulture.LCID));
             }
 
             await _modal.Confirm();

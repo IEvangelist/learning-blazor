@@ -2,167 +2,19 @@
 @attribute [Authorize]
 @inherits LocalizableComponentBase<Pwned>
 
-<div class="columns">
-    <section class="column is-half is-offset-one-quarter">
-        <h2 class="pwned-logo is-size-4 is-family-code has-text-white has-background-primary-dark box">
-            ';--have i been pwned?
-        </h2>
-
-        @{
-            var isLoading = _state is ComponentState.Loading;
-            var loadingClass = isLoading ? "is-loading" : "";
-        }
-
-        <EditForm Model=_model OnValidSubmit="(async context => await OnValidSubmitAsync(context))" class="pb-4">
-            <DataAnnotationsValidator />
-            <ValidationSummary Model=_model />
-
-            <div class="field has-addons">
-                <p class="is-fullwidth control has-icons-left @(loadingClass)">
-                    <InputText id="email" @bind-Value=_model.EmailAddress class="input is-large"
-                               DisplayName=@localize["EmailAddress"] placeholder=@localize["EmailAddress"] />
-                    <span class="icon is-small is-left">
-                        <i class="fas fa-envelope"></i>
-                    </span>
-                </p>
-                <div class="control">
-                    <button type="submit" class="button is-danger is-large @(loadingClass)" disabled="@(_isFormInvalid)">
-                        <span class="icon">
-                            <i class="fas fa-question"></i>
-                        </span>
-                        <span>pwned</span>
-                    </button>
-                </div>
-
-                <ValidationMessage For=@(() => _model.EmailAddress) />
+<div class="tile is-ancestor">
+    <div class="tile is-vertical is-centered is-7">
+        <div class="tile">
+            <div class="tile is-parent is-clickable" @onclick=@NavigateToBreaches>
+                <article class="tile is-child notification is-warning">
+                    <p class="title">🤬 @localize["Breaches"]</p>
+                </article>
             </div>
-
-        </EditForm>
-
-        <article class="panel is-info">
-            <p class="panel-heading has-text-left">
-                <span>
-                    @localize["Breaches"]
-                </span>
-                <span class="is-pulled-right">
-                    @if (_breaches is { Length: > 0 })
-                    {
-                        <span class="field is-grouped is-grouped-multiline">
-                            <span class="control">
-                                <span class="tags are-medium has-addons">
-                                    <span class="tag is-danger">pwned</span>
-                                    <span class="tag is-dark">@_breaches.Length</span>
-                                </span>
-                            </span>
-                            <span class="control">
-                                <span class="tags is-clickable are-medium has-addons" @onclick=Reset>
-                                    <span class="tag is-primary">reset</span>
-                                    <span class="tag is-dark">
-                                        <i class="fas fa-redo-alt" aria-hidden="true"></i>
-                                    </span>
-                                </span>
-                            </span>
-                        </span>
-                    }
-                </span>
-            </p>
-            <div class="panel-block">
-                <p class="control has-icons-left">
-                    <input class="input is-medium" type="text"
-                           @bind=_filter @bind:event="oninput"
-                           disabled=@(_breaches is null or { Length: 0 })
-                           placeholder=@localize["Filter"]>
-                    <span class="icon is-left">
-                        <i class="fas fa-filter" aria-hidden="true"></i>
-                    </span>
-                </p>
+            <div class="tile is-parent is-clickable" @onclick=@NavigateToPasswords>
+                <article class="tile is-child notification is-danger">
+                    <p class="title">🔑 @localize["Passwords"]</p>
+                </article>
             </div>
-
-            @if (_breaches is { Length: > 0 })
-            {
-                foreach (BreachHeader breach in _filteredBreaches)
-                {
-                    <a class="panel-block" @onclick=@(async _ => await Show(breach.Name))>
-                        <span class="panel-icon">
-                            <i class="fas fa-exclamation-circle" aria-hidden="true"></i>
-                        </span>
-                        @breach.Name
-                    </a>
-                }
-            }
-            else if (_state is ComponentState.Loaded)
-            {
-                <a class="panel-block" disabled>
-                    <span class="panel-icon">
-                        <i class="fas fa-check" aria-hidden="true"></i>
-                    </span>
-                    @localize["NoBreachesFormat", _model.EmailAddress!];
-                </a>
-            }
-        </article>
-    </section>
+        </div>
+    </div>
 </div>
-
-<ModalComponent @ref="_modal" OnDismissed=OnDismissed>
-    <TitleContent>
-        <span class="icon pr-2">
-            <i class="fas fa-info-circle"></i>
-        </span>
-        <span>@localize["Details"]</span>
-    </TitleContent>
-
-    <BodyContent>
-        @if (_breach is null)
-        {
-            <div class="fa-3x">
-                <i class="fas fa-sync fa-spin"></i>
-            </div>
-        }
-        else
-        {
-            <div class="media pb-4">
-                <div class="media-left">
-                    <figure class="image is-dark is-96x96">
-                        <img src="@_breach.LogoPath" alt=@_breach.Name>
-                    </figure>
-                </div>
-                <div class="media-content">
-                    <p class="title is-4">@_breach.Name</p>
-                    <p class="subtitle is-6"><a href=@_breach.Domain>@_breach.Domain</a></p>
-                    <p class="subtitle is-6">@_breach.BreachDate.ToShortDateString()</p>
-                </div>
-            </div>
-
-            <div class="content">
-                <span>
-                    @(new MarkupString(_breach.Description))
-                </span>
-            </div>
-            <div class="content">
-                <blockquote>
-                    <strong>
-                        @($"pwn's: {@_breach.PwnCount.ToString("N0", Culture.CurrentCulture)}")
-                    </strong>
-                </blockquote>
-            </div>
-            <div class="content">
-                <div class="tags are-medium">
-                    @foreach (var tag in _breach.DataClasses)
-                    {
-                        <span class="tag is-info">@tag</span>
-                    }
-                </div>
-            </div>
-        }
-    </BodyContent>
-
-    <ButtonContent>
-        <button class="button is-success is-large"
-                @onclick=Confirm>
-            <span class="icon">
-                <i class="fas fa-check"></i>
-            </span>
-            <span>@localize["Okay"]</span>
-        </button>
-    </ButtonContent>
-</ModalComponent>

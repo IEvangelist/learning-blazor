@@ -23,6 +23,12 @@ namespace Learning.Blazor.TwitterServices
         private readonly ILogger<DefaultTwitterService> _logger;
         private readonly IFilteredStream _filteredStream;
 
+        private HashSet<long> _tweetIds = new();
+        private Stack<TweetContents> _latestTweets = new(3);
+
+        public IReadOnlyCollection<TweetContents>? LastThreeTweets => _latestTweets;
+        public StreamingStatus? CurrentStatus { get; private set; }
+
         public DefaultTwitterService(
             ILogger<DefaultTwitterService> logger,
             IFilteredStream filteredStream)
@@ -176,25 +182,40 @@ namespace Learning.Blazor.TwitterServices
                 return;
             }
 
+            var latestTweet = new TweetContents
+            {
+                IsOffTopic = isOffTopic,
+                Id = iTweet.Id,
+                AuthorName = tweet.AuthorName,
+                AuthorURL = tweet.AuthorURL,
+                CacheAge = tweet.CacheAge,
+                Height = tweet.Height,
+                HTML = tweet.HTML,
+                ProviderURL = tweet.ProviderURL,
+                Type = tweet.Type,
+                URL = tweet.URL,
+                Version = tweet.Version,
+                Width = tweet.Width
+            };
+
+            lock (s_locker)
+            {
+                if (_tweetIds.Add(latestTweet.Id))
+                {
+                    if (_latestTweets is { Count: > 0 })
+                    {
+                        _ = _latestTweets.Pop();
+                    }
+                    _latestTweets.Push(latestTweet);
+                    _tweetIds = new(_latestTweets.Select(t => t.Id));
+                }
+            }
+
             if (TweetReceived is not null)
             {
                 _logger.LogWarning("Successfully broadcasting tweet: {Tweet}", tweet.HTML);
 
-                await TweetReceived(
-                    new TweetContents
-                    {
-                        IsOffTopic = isOffTopic,
-                        AuthorName = tweet.AuthorName,
-                        AuthorURL = tweet.AuthorURL,
-                        CacheAge = tweet.CacheAge,
-                        Height = tweet.Height,
-                        HTML = tweet.HTML,
-                        ProviderURL = tweet.ProviderURL,
-                        Type = tweet.Type,
-                        URL = tweet.URL,
-                        Version = tweet.Version,
-                        Width = tweet.Width
-                    });
+                await TweetReceived(latestTweet);
             }
         }
 
@@ -258,11 +279,12 @@ namespace Learning.Blazor.TwitterServices
         {
             _logger.LogInformation(status);
 
-            StreamingStatus streamingStatus = new(
+            CurrentStatus = new(
                     IsStreaming: _filteredStream.StreamState == StreamState.Running,
-                    Message: status);
+                    Message: status,
+                    Tracks: _filteredStream.Tracks.Keys.ToArray());
 
-            return StatusUpdated?.Invoke(streamingStatus)
+            return StatusUpdated?.Invoke(CurrentStatus)
                 ?? Task.CompletedTask;
         }
     }

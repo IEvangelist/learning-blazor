@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 using System;
-using System.Linq;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Learning.Blazor.Models;
 using Microsoft.AspNetCore.Components;
@@ -15,9 +15,15 @@ namespace Learning.Blazor.Pages
 {
     public sealed partial class Tweets : IAsyncDisposable
     {
-        private TweetContents[] _tweets = Array.Empty<TweetContents>();
+        private HashSet<TweetContents> _tweets = new();
         private StreamingStatus? _streamingStatus;
         private HubConnection _hubConnection = null!;
+
+        private string _streamingFontAwesomeClass =>
+            _hubConnection is { State: HubConnectionState.Connected } &&
+            _streamingStatus is { IsStreaming: true }
+                ? "fas fa-link has-text-primary"
+                : "fas fa-unlink has-text-warning";
 
         [Inject]
         public IAccessTokenProvider TokenProvider { get; set; } = null!;
@@ -61,8 +67,7 @@ namespace Learning.Blazor.Pages
         private Task OnTweetReceived(Notification<TweetContents> tweet) =>
             InvokeAsync(() =>
             {
-                _tweets = _tweets.Append(tweet).ToArray();
-
+                _ = _tweets.Add(tweet);
                 StateHasChanged();
             });
 

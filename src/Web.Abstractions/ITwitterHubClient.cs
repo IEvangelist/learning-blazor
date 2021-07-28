@@ -10,7 +10,5 @@ namespace Learning.Blazor.Abstractions
         public ValueTask JoinTwitterGroup();
 
         public ValueTask LeaveTwitterGroup();
-
-        public ValueTask TweetReceived
     }
 }

@@ -69,7 +69,7 @@ namespace Learning.Blazor.Services
                 MeasurementSystem target,
                 TemperatureUnitConversionService temperatureUnitConversionService)
             {
-                var tempUom = target == MeasurementSystem.Imperial ? "℉" : "℃";
+                var tempUom = target == MeasurementSystem.Imperial ? "°F" : "°C";
 
                 // Examples:
                 //     Imperial:    73 °F

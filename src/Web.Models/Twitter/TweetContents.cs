@@ -5,6 +5,7 @@ namespace Learning.Blazor.Models
 {
     public record TweetContents
     {
+        public long Id { get; init; }
         public bool IsOffTopic { get; init; }
         public string AuthorName { get; init; } = null!;
         public string AuthorURL { get; init; } = null!;

@@ -9,6 +9,7 @@ using Learning.Blazor.Extensions;
 using Learning.Blazor.Models;
 using Learning.Blazor.TwitterServices;
 using Microsoft.AspNetCore.SignalR;
+using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Hosting;
 
 namespace Learning.Blazor.Api.Services

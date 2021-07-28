@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 using System.Threading.Tasks;
+using Learning.Blazor.Models;
 using Learning.Blazor.TwitterServices;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
@@ -17,8 +18,24 @@ namespace Learning.Blazor.Api.Hubs
         public NotificationHub(ITwitterService twitterService) =>
             _twitterService = twitterService;
 
-        public Task JoinTweets() =>
-            Groups.AddToGroupAsync(Context.ConnectionId, "Tweets");
+        public async Task JoinTweets()
+        {
+            await Groups.AddToGroupAsync(Context.ConnectionId, "Tweets");
+
+            if (_twitterService.CurrentStatus is not null)
+            {
+                await Clients.Caller.SendAsync(
+                    "StatusUpdated", Notification<StreamingStatus>.FromStatus(_twitterService.CurrentStatus));
+            }
+            if (_twitterService.LastThreeTweets is { Count: > 0 })
+            {
+                foreach (var tweet in _twitterService.LastThreeTweets)
+                {
+                    await Clients.Caller.SendAsync(
+                        "TweetReceived", Notification<TweetContents>.FromTweet(tweet));
+                }
+            }
+        }
 
         public Task LeaveTweets() =>
             Groups.RemoveFromGroupAsync(Context.ConnectionId, "Tweets");

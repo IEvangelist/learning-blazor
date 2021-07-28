@@ -11,6 +11,9 @@ namespace Learning.Blazor.TwitterServices
 {
     public interface ITwitterService : IAsyncDisposable
     {
+        IReadOnlyCollection<TweetContents>? LastThreeTweets { get; }
+        StreamingStatus? CurrentStatus { get; }
+
         /// <summary>
         /// The event that is fired when a tweet arrives from the stream.
         /// Allows for async event handlers, who receive the <see cref="TweetContents"/>
