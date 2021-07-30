@@ -62,6 +62,12 @@ namespace Learning.Blazor
         public Task StartTweetStreamAsync() =>
             _hubConnection.InvokeAsync("StartTweetStream");
 
+        public Task JoinChatAsync(string room) =>
+            _hubConnection.InvokeAsync("JoinChat", room);
+
+        public Task LeaveChatAsync(string room) =>
+            _hubConnection.InvokeAsync("LeaveChat", room);
+
         public IDisposable SubscribeToStatusUpdated(
             Func<Notification<StreamingStatus>, Task> onStatusUpdated) =>
             _hubConnection.On("StatusUpdated", onStatusUpdated);
@@ -69,5 +75,21 @@ namespace Learning.Blazor
         public IDisposable SubscribeToTweetReceived(
             Func<Notification<TweetContents>, Task> onTweetReceived) =>
             _hubConnection.On("TweetReceived", onTweetReceived);
+
+        public IDisposable SubscribeToUserLoggedIn(
+            Func<Notification<Actor>, Task> onUserLoggedIn) =>
+            _hubConnection.On("UserLoggedIn", onUserLoggedIn);
+
+        public IDisposable SubscribeToUserLoggedOut(
+            Func<Notification<Actor>, Task> onUserLoggedOut) =>
+            _hubConnection.On("UserLoggedOut", onUserLoggedOut);
+
+        public IDisposable SubscribeToUserTyping(
+            Func<Notification<ActorAction>, Task> onUserTyping) =>
+            _hubConnection.On("UserTyping", onUserTyping);
+
+        public IDisposable SubscribeToMessageReceived(
+            Func<Notification<ActorMessage>, Task> onMessageReceived) =>
+            _hubConnection.On("MessageReceived", onMessageReceived);
     }
 }

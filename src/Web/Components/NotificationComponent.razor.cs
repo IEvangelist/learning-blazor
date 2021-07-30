@@ -4,11 +4,12 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Learning.Blazor.Models;
 using Microsoft.AspNetCore.Components;
 
 namespace Learning.Blazor.Components
 {
-    public partial class NotificationComponent : IAsyncDisposable
+    public sealed partial class NotificationComponent : IAsyncDisposable
     {
         private readonly Stack<IDisposable> _subscriptions = new();
 
@@ -17,13 +18,15 @@ namespace Learning.Blazor.Components
 
         protected override async Task OnInitializedAsync()
         {
-            _subscriptions.Push(HubConnection.SubscribeToStatusUpdated(OnStatusUpdated));
-            _subscriptions.Push(HubConnection.SubscribeToTweetReceived(OnTweetReceived));
+            _subscriptions.Push(HubConnection.SubscribeToUserLoggedIn(OnUserLoggedIn));
+            _subscriptions.Push(HubConnection.SubscribeToUserLoggedOut(OnUserLoggedOut));
 
             await HubConnection.StartAsync();
-            await HubConnection.JoinTweetsAsync();
-            await HubConnection.StartTweetStreamAsync();
         }
+
+        private Task OnUserLoggedIn(Notification<Actor> arg) => throw new NotImplementedException();
+
+        private Task OnUserLoggedOut(Notification<Actor> arg) => throw new NotImplementedException();
 
         async ValueTask IAsyncDisposable.DisposeAsync()
         {
