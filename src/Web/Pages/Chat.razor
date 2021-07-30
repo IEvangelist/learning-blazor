@@ -7,12 +7,12 @@
         @foreach (var (id, message) in _messages)
         {
             <li id="@message.Id" class="@(message.IsGreeting ? "greeting" : "")">
-                <div class="gutter pr-lg-2 text-muted">@message.User</div>
+                <div class="gutter pr-lg-2 text-muted">@message.UserName</div>
                 <div class="arrow-container">
                     <span class="arrow arrow2"></span>
                     <span class="arrow arrow1"></span>
                 </div>
-                <div class="message pl-lg-2 @(OwnsMessage(message.User) ? "canEdit" : "")"
+                <div class="message pl-lg-2 @(OwnsMessage(message.UserName) ? "canEdit" : "")"
                  @onclick="@(async () => await StartEdit(message))">
                     @{
                         MarkupString messageMarkup = new(message.Text);
