@@ -120,6 +120,9 @@
   <data name="East" xml:space="preserve">
     <value>East</value>
   </data>
+  <data name="FilterTweets" xml:space="preserve">
+    <value>Filter Tweets</value>
+  </data>
   <data name="North" xml:space="preserve">
     <value>North</value>
   </data>

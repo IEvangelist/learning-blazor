@@ -22,9 +22,9 @@ namespace Learning.Blazor.TwitterServices
 
         private readonly ILogger<DefaultTwitterService> _logger;
         private readonly IFilteredStream _filteredStream;
+        private readonly Stack<TweetContents> _latestTweets = new(3);
 
         private HashSet<long> _tweetIds = new();
-        private Stack<TweetContents> _latestTweets = new(3);
 
         public IReadOnlyCollection<TweetContents>? LastThreeTweets => _latestTweets;
         public StreamingStatus? CurrentStatus { get; private set; }

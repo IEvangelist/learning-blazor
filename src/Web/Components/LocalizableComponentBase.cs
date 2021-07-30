@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 using System;
+using System.Threading.Tasks;
 using Learning.Blazor.Localization;
 using Learning.Blazor.LocalStorage;
 using Learning.Blazor.Services;
@@ -15,16 +16,8 @@ namespace Learning.Blazor.Components
 {
     public class LocalizableComponentBase<T> : ComponentBase, IDisposable
     {
-        private readonly Lazy<FallbackLocalizer<T>> _lazyFallbackLocalizer = null!;
-
-        public LocalizableComponentBase() =>
-            _lazyFallbackLocalizer = new(() => FallbackLocalizerFactory(this));
-
         [Inject]
-        public IStringLocalizer<SharedResource> SharedLocalizer { get; set; } = null!;
-
-        [Inject]
-        public IStringLocalizer<T> Localizer { get; set; } = null!;
+        private CoalescingStringLocalizer<T> CoalescingStringLocalizer { get; set; } = null!;
 
         [Inject]
         public NavigationManager Navigation { get; set; } = null!;
@@ -50,44 +43,22 @@ namespace Learning.Blazor.Components
         /// This is intended to be used from within HTML templates only.
         /// Example: <c>&lt;h1&gt;@localize["Important Title"]&lt;/h1&gt;</c>
         /// </remarks>
-        protected FallbackLocalizer<T> localize => _lazyFallbackLocalizer.Value;
-
-        private static FallbackLocalizer<T> FallbackLocalizerFactory(
-            LocalizableComponentBase<T> @this) =>
-            new(@this.Localizer, @this.SharedLocalizer);
+        internal CoalescingStringLocalizer<T> localize => CoalescingStringLocalizer;
 
         public virtual void Dispose()
         {
-            Navigation!.LocationChanged -= OnLocationChanged;
+            if (Navigation is not null)
+            {
+                Navigation.LocationChanged -= OnLocationChanged;
+            }
+
+            GC.SuppressFinalize(this);
         }
 
-        protected virtual void OnLocationChanged(object? sender, LocationChangedEventArgs args)
-        {
-        }
+        private async void OnLocationChanged(object? sender, LocationChangedEventArgs args) =>
+            await OnLocationChangedAsync(args);
 
-        protected class FallbackLocalizer<TComponent>
-        {
-            private readonly IStringLocalizer<T> _localizer = null!;
-            private readonly IStringLocalizer<SharedResource> _sharedLocalizer = null!;
-
-            public FallbackLocalizer(
-                IStringLocalizer<T> localizer,
-                IStringLocalizer<SharedResource> sharedLocalizer) =>
-                (_localizer, _sharedLocalizer) = (localizer, sharedLocalizer);
-
-            /// <summary>
-            /// Gets the localized content for the current subcomponent,
-            /// relying on the contextually appropriate <see cref="IStringLocalizer{T}"/> implementation.
-            /// </summary>
-            internal LocalizedString this[string name] =>
-                _localizer[name] ?? _sharedLocalizer[name] ?? new(name, name);
-
-            /// <summary>
-            /// Gets the localized content for the current subcomponent,
-            /// relying on the contextually appropriate <see cref="IStringLocalizer{T}"/> implementation.
-            /// </summary>
-            internal LocalizedString this[string name, params object[] arguments] =>
-                _localizer[name, arguments] ?? _sharedLocalizer[name, arguments] ?? new(name, name);
-        }
+        protected virtual ValueTask OnLocationChangedAsync(LocationChangedEventArgs args) =>
+            ValueTask.CompletedTask;
     }
 }

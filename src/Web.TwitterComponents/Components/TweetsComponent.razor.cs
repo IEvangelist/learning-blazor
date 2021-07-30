@@ -18,7 +18,26 @@ namespace Learning.Blazor.TwitterComponents.Components
         [Parameter]
         public TweetContents[] Tweets { get; set; } = Array.Empty<TweetContents>();
 
+        [Parameter]
+        public string? Filter { get; set; } = null!;
+
         protected override async Task OnParametersSetAsync() =>
             await JavaScript.RenderTweetsAsync();
+
+        private static bool TweetMatchesFilter(string? filter, TweetContents tweet)
+        {
+            if (filter is null or { Length: 0 })
+            {
+                return true;
+            }
+
+            if (tweet is null)
+            {
+                return false;
+            }
+
+            return tweet.AuthorName.Contains(filter, StringComparison.OrdinalIgnoreCase)
+                || tweet.HTML.Contains(filter, StringComparison.OrdinalIgnoreCase);
+        }
     }
 }

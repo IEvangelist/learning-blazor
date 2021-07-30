@@ -25,14 +25,16 @@ namespace Learning.Blazor.Api.Hubs
             if (_twitterService.CurrentStatus is not null)
             {
                 await Clients.Caller.SendAsync(
-                    "StatusUpdated", Notification<StreamingStatus>.FromStatus(_twitterService.CurrentStatus));
+                    "StatusUpdated",
+                    Notification<StreamingStatus>.FromStatus(_twitterService.CurrentStatus));
             }
             if (_twitterService.LastThreeTweets is { Count: > 0 })
             {
                 foreach (var tweet in _twitterService.LastThreeTweets)
                 {
                     await Clients.Caller.SendAsync(
-                        "TweetReceived", Notification<TweetContents>.FromTweet(tweet));
+                        "TweetReceived",
+                        Notification<TweetContents>.FromTweet(tweet));
                 }
             }
         }
@@ -42,6 +44,12 @@ namespace Learning.Blazor.Api.Hubs
 
         public Task StartTweetStream() =>
             _twitterService.StartTweetStreamAsync();
+
+        public Task JoinChat(string room) =>
+            Groups.AddToGroupAsync(Context.ConnectionId, room);
+
+        public Task LeaveChat(string room) =>
+            Groups.RemoveFromGroupAsync(Context.ConnectionId, room);
 
         /* Additional notification hub functionality 
          * defined in TwitterWorkerService.cs:

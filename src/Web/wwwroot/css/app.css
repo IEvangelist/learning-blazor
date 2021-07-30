@@ -30,6 +30,7 @@ html {
 
 .is-blazor-bg {
     background-color: var(--dotnet-purple-primary);
+    color: #fff;
 }
 
 .control.is-fullwidth {

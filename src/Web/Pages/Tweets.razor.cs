@@ -6,55 +6,35 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Learning.Blazor.Models;
 using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.AspNetCore.SignalR.Client;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace Learning.Blazor.Pages
 {
     public sealed partial class Tweets : IAsyncDisposable
     {
-        private HashSet<TweetContents> _tweets = new();
+        private readonly HashSet<TweetContents> _tweets = new();
+        private readonly Stack<IDisposable> _subscriptions = new();
+
         private StreamingStatus? _streamingStatus;
-        private HubConnection _hubConnection = null!;
+        private string? _filter = null!;
 
         private string _streamingFontAwesomeClass =>
-            _hubConnection is { State: HubConnectionState.Connected } &&
+            HubConnection is { State: HubConnectionState.Connected } &&
             _streamingStatus is { IsStreaming: true }
                 ? "fas fa-link has-text-primary"
                 : "fas fa-unlink has-text-warning";
 
         [Inject]
-        public IAccessTokenProvider TokenProvider { get; set; } = null!;
-
-        [Inject]
-        public IConfiguration Config { get; set; } = null!;
+        public SingleHubConnection HubConnection { get; set; } = null!;
 
         protected override async Task OnInitializedAsync()
         {
-            var notificationHub =
-                new Uri($"{Config["WebApiServerUrl"]}/notifications");
-            _hubConnection = new HubConnectionBuilder()
-                .WithUrl(notificationHub,
-                     options => options.AccessTokenProvider = GetAccessTokenValueAsync)
-                .WithAutomaticReconnect()
-                .AddMessagePackProtocol()
-                .Build();
+            _subscriptions.Push(HubConnection.SubscribeToStatusUpdated(OnStatusUpdated));
+            _subscriptions.Push(HubConnection.SubscribeToTweetReceived(OnTweetReceived));
 
-            _hubConnection.On<Notification<StreamingStatus>>("StatusUpdated", OnStatusUpdated);
-            _hubConnection.On<Notification<TweetContents>>("TweetReceived", OnTweetReceived);
-
-            await _hubConnection.StartAsync();
-
-            await _hubConnection.InvokeAsync("JoinTweets");
-            await _hubConnection.InvokeAsync("StartTweetStream");
-        }
-
-        private async Task<string?> GetAccessTokenValueAsync()
-        {
-            var result = await TokenProvider.RequestAccessToken();
-            return result.TryGetToken(out var accessToken) ? accessToken.Value : null;
+            await HubConnection.StartAsync();
+            await HubConnection.JoinTweetsAsync();
+            await HubConnection.StartTweetStreamAsync();
         }
 
         private Task OnStatusUpdated(Notification<StreamingStatus> status) =>
@@ -73,10 +53,14 @@ namespace Learning.Blazor.Pages
 
         async ValueTask IAsyncDisposable.DisposeAsync()
         {
-            if (_hubConnection is not null)
+            if (HubConnection is not null)
             {
-                await _hubConnection.InvokeAsync("LeaveTweets");
-                await _hubConnection.DisposeAsync();
+                await HubConnection.LeaveTweetsAsync();
+            }
+
+            while (_subscriptions.TryPop(out var disposable))
+            {
+                disposable.Dispose();
             }
         }
     }

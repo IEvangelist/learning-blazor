@@ -1,8 +1,6 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
-using Learning.Blazor.Extensions;
-using Learning.Blazor.ComponentModels;
 using Learning.Blazor.Models;
 using Microsoft.Extensions.Localization;
 using System;
@@ -46,59 +44,27 @@ namespace Learning.Blazor.Services
                 "ww"    wind verbose
              */
 
-            var source = MeasurementSystem.Imperial;
             var target = _cultureService.MeasurementSystem;
 
             return format switch
             {
                 // Temperatures
                 "t" when arg is double temp =>
-                    ToLocalizedTemperature(
-                        temp, source, target, _temperatureUnitConversionService),
-
-                // Wind speeds
-                //"w" => ToLocalizedWindSpeed(model.WindSpeed, model.WindDegree, source, target, _localizer, _speedUnitConversionService, false),
-                //"ww" => ToLocalizedWindSpeed(model.WindSpeed, model.WindDegree, source, target, _localizer, _speedUnitConversionService, true),
+                    ToLocalizedTemperature(temp, target),
 
                 _ => null!
             };
 
             static string ToLocalizedTemperature(
                 double temp,
-                MeasurementSystem source,
-                MeasurementSystem target,
-                TemperatureUnitConversionService temperatureUnitConversionService)
+                MeasurementSystem target)
             {
                 var tempUom = target == MeasurementSystem.Imperial ? "°F" : "°C";
 
                 // Examples:
-                //     Imperial:    73 °F
-                //     Metric:      23 °C
-                return $"{temperatureUnitConversionService.ConvertValue(temp, source, target)} {tempUom}";
-            }
-
-            static string ToLocalizedWindSpeed(
-                double speed,
-                int degrees,
-                MeasurementSystem source,
-                MeasurementSystem target,
-                IStringLocalizer<T> localizer,
-                SpeedUnitConversionService speedUnitConversionService,
-                bool isVerbose)
-            {
-                var speedUom = target == MeasurementSystem.Imperial ? "MPH" : "KPH";
-                var cardinal = isVerbose ? degrees.ToVerboseCardinal() : degrees.ToCardinal();
-
-                // Examples:
-                //     Verbose:     7 MPH to the Northwest
-                //     Short-hand:  7 NW
-                return isVerbose
-                    ? localizer[
-                        $"{{0}} {speedUom} to the {cardinal}",
-                        speedUnitConversionService.ConvertValue(speed, source, target)]
-                    : localizer[
-                        $"{{0}} {cardinal}",
-                        speedUnitConversionService.ConvertValue(speed, source, target)];
+                //     Imperial:    73°F
+                //     Metric:      23°C
+                return $"{(int)temp}{tempUom}";
             }
         }
     }

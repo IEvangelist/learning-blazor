@@ -13,7 +13,10 @@
             </p>
             <div class="panel-block">
                 <p class="control has-icons-left">
-                    <input class="input is-info" type="text" placeholder="Search">
+                    <input class="input is-info" type="text"
+                        @bind=_filter @bind:event="oninput"
+                        disabled=@(_tweets is null or { Count: 0 })
+                        placeholder="@localize["FilterTweets"]">
                     <span class="icon is-left">
                         <i class="fas fa-search" aria-hidden="true"></i>
                     </span>
@@ -21,7 +24,7 @@
             </div>
 
             <div class="panel-block has-text-centered">
-                <div class="tags">
+                <div class="tags are-medium">
                     @if (_streamingStatus is { Tracks: {  Length: > 0 } })
                     {
                         foreach (var track in _streamingStatus.Tracks)
@@ -34,7 +37,7 @@
             </div>
 
             <div class="panel-block has-text-centered">
-                <TweetsComponent Tweets=_tweets.ToArray() />
+                <TweetsComponent Tweets=_tweets!.ToArray() Filter=@_filter />
             </div>
         </article>
 

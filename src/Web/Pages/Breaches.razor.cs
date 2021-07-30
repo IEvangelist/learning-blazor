@@ -13,6 +13,7 @@ using Learning.Blazor.Extensions;
 using Learning.Blazor.Models;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
+using Microsoft.AspNetCore.Components.Routing;
 using Microsoft.Extensions.Logging;
 
 namespace Learning.Blazor.Pages
@@ -55,6 +56,20 @@ namespace Learning.Blazor.Pages
             }
 
             await (_emailInput?.Element?.FocusAsync(preventScroll: true) ?? ValueTask.CompletedTask);
+        }
+
+        protected override async ValueTask OnLocationChangedAsync(LocationChangedEventArgs args)
+        {
+            if (Navigation.TryParseQueryString<string>("email", out var emailAddress) &&
+                _model.EmailAddress != emailAddress &&
+                _editContext is not null)
+            {
+                _model.EmailAddress = emailAddress;
+                if (_editContext.Validate())
+                {
+                    await OnValidSubmitAsync(_editContext);
+                }
+            }
         }
 
         private void OnModelChanged(object? sender, FieldChangedEventArgs e)

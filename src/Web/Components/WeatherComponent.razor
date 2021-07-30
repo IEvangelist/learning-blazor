@@ -1,57 +1,61 @@
 ﻿@inherits LocalizableComponentBase<WeatherComponent>
 
-<div class="columns has-text-centered">
-    @if (_state is ComponentState.Loaded)
-    {
-        var weather = _model!;
-        <div class="column is-one-third">
-            <div class="box">
-                <article class="media">
-                    <div class="media-left">
-                        <figure class="image is-128x128">
-                            <img src=@(weather.ImagePath) alt="@localize["Current weather visual"]">
-                        </figure>
-                    </div>
-                    <div class="media-content">
-                        <div class="content has-text-left">
-                            <div>
-                                <span class="title">@weather.Temperature</span>
-                                <span class="heading">@(weather.HighTemp) | @(weather.LowTemp)</span>
-                                <span class="heading">@weather.Description</span>
-                                <span class="heading"><i class="fas fa-wind"></i> @weather.WindSpeed <sup>@(localize[weather.WindDegree.ToVerboseCardinal()])</sup></span>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-            </div>
-        </div>
-        <div class="column">
-            <div class="level">
-                @foreach (DailyWeather daily in weather.DailyWeather)
-                {
-                    <div class="level-item has-text-centered">
-                        <div>
-                            <p class="heading is-size-6 is-underlined">@daily.DateTime.ToString("MMM d")</p>
-                            <p class="title">
-                                <figure class="image is-64x64">
-                                    <img src=@weather.GetDailyImagePath(daily) alt="@daily.Weather[0].Description">
+<AuthorizeView>
+    <Authorized>
+        <div class="columns has-text-centered">
+            @if (_state is ComponentState.Loaded)
+            {
+                var weather = _model!;
+                <div class="column is-one-third">
+                    <div class="box">
+                        <article class="media">
+                            <div class="media-left">
+                                <figure class="image is-128x128">
+                                    <img src=@(weather.ImagePath) alt="@localize["Current weather visual"]">
                                 </figure>
-                            </p>
-                            <p class="heading">@daily.Weather[0].Main</p>
-                            <p class="heading has-text-weight-bold">@weather.GetDailyHigh(daily)</p>
-                            <p class="heading has-text-weight-bold">@weather.GetDailyLow(daily)</p>
-                        </div>
+                            </div>
+                            <div class="media-content">
+                                <div class="content has-text-left">
+                                    <div>
+                                        <span class="title">@weather.Temperature</span>
+                                        <span class="heading">@(weather.HighTemp) | @(weather.LowTemp)</span>
+                                        <span class="heading">@weather.Description</span>
+                                        <span class="heading"><i class="fas fa-wind"></i> @weather.WindSpeed <sup>@(localize[weather.WindDegree.ToVerboseCardinal()])</sup></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
                     </div>
-                }
-            </div>
+                </div>
+                <div class="column">
+                    <div class="level">
+                        @foreach (DailyWeather daily in weather.DailyWeather)
+                        {
+                            <div class="level-item has-text-centered">
+                                <div>
+                                    <p class="heading is-size-6 is-underlined">@daily.DateTime.ToString("MMM d")</p>
+                                    <p class="title">
+                                        <figure class="image is-64x64">
+                                            <img src=@weather.GetDailyImagePath(daily) alt="@daily.Weather[0].Description">
+                                        </figure>
+                                    </p>
+                                    <p class="heading">@daily.Weather[0].Main</p>
+                                    <p class="heading has-text-weight-bold">@weather.GetDailyHigh(daily)</p>
+                                    <p class="heading has-text-weight-bold">@weather.GetDailyLow(daily)</p>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="column is-full">
+                    <div class="fa-3x">
+                        <i class="fas fa-sync fa-spin"></i>
+                    </div>
+                </div>
+            }
         </div>
-    }
-    else
-    {
-        <div class="column is-full">
-            <div class="fa-3x">
-                <i class="fas fa-sync fa-spin"></i>
-            </div>
-        </div>
-    }
-</div>
+    </Authorized>
+</AuthorizeView>

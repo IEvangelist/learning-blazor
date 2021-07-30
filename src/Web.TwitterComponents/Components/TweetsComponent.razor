@@ -1,7 +1,8 @@
 ﻿<ul id="tweets" class="reversed no-bullets">
     @foreach (var tweet in Tweets)
     {
-        <li>
+        var isHiddenClass = TweetMatchesFilter(Filter, tweet) ? "" : "is-hidden";
+        <li class="@isHiddenClass">
             <TweetComponent Tweet=tweet />
         </li>
     }

@@ -5,11 +5,9 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
-using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
-using Learning.Blazor.BrowserModels;
 using Learning.Blazor.Extensions;
 using Learning.Blazor.Models;
 using Microsoft.AspNetCore.Components;
@@ -19,7 +17,7 @@ namespace Learning.Blazor.Components
 {
     public partial class LanguageSelectionComponent
     {
-        private IReadOnlySet<(CultureInfo Culture, KeyValuePair<string, AzureCulture> AzureCulture)>
+        private HashSet<(CultureInfo Culture, AzureCulture AzureCulture)>
             _supportedCultures = null!;
 
         private CultureInfo _selectedCulture = null!;
@@ -36,20 +34,8 @@ namespace Learning.Blazor.Components
                         "api/cultures/all",
                         DefaultJsonSerialization.Options);
 
-                if (azureCultures is not null)
-                {
-                    _supportedCultures =
-                        CultureInfo.GetCultures(CultureTypes.SpecificCultures)
-                            .Where(culture =>
-                                azureCultures.Translation.ContainsKey(culture.TwoLetterISOLanguageName))
-                            .DistinctBy(culture => culture.TwoLetterISOLanguageName)
-                            .Join(
-                                azureCultures.Translation,
-                                culture => culture.TwoLetterISOLanguageName,
-                                azureCultureKvp => azureCultureKvp.Key,
-                                (culture, azureCulture) => (culture, azureCulture))
-                            .ToHashSet();
-                }
+                _supportedCultures =
+                    Culture.MapClientSupportedCultures(azureCultures?.Translation);
             }
             catch (Exception ex) when (Debugger.IsAttached)
             {
@@ -59,11 +45,11 @@ namespace Learning.Blazor.Components
         }
 
         private static string ToDisplayName(
-            (CultureInfo Culture, KeyValuePair<string, AzureCulture> AzureCulture)? culturePair)
+            (CultureInfo Culture, AzureCulture AzureCulture)? culturePair)
         {
-            var (hasValue, (_, (twoLetterISO, azureCulture))) = culturePair;
+            var (hasValue, (culture, azureCulture)) = culturePair;
             return hasValue
-                ? $"{azureCulture.Name} ({twoLetterISO})"
+                ? $"{azureCulture.Name} ({culture.Name})"
                 : "";
         }
 
@@ -77,9 +63,7 @@ namespace Learning.Blazor.Components
             {
                 forceRefresh = true;
                 await LocalStorage.SetAsync(
-                    StorageKeys.ClientCulture,
-                    new ClientLocalePreference(
-                        _selectedCulture.TwoLetterISOLanguageName, _selectedCulture.LCID));
+                    StorageKeys.ClientCulture, _selectedCulture.Name);
             }
 
             await _modal.Confirm();
