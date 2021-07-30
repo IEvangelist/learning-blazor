@@ -68,6 +68,12 @@ namespace Learning.Blazor
         public Task LeaveChatAsync(string room) =>
             _hubConnection.InvokeAsync("LeaveChat", room);
 
+        public Task PostOrUpdateMessageAsync(string room, string message, Guid? id = default) =>
+            _hubConnection.InvokeAsync("PostOrUpdateMessage", room, message, id);
+
+        public Task ToggleUserIsTypingAsync(bool isTyping) =>
+            _hubConnection.InvokeAsync("ToggleUserIsTyping", isTyping);
+
         public IDisposable SubscribeToStatusUpdated(
             Func<Notification<StreamingStatus>, Task> onStatusUpdated) =>
             _hubConnection.On("StatusUpdated", onStatusUpdated);
