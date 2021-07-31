@@ -73,9 +73,6 @@
   <data name="Northwest" xml:space="preserve">
     <value>βορειοδυτικός</value>
   </data>
-  <data name="Okay" xml:space="preserve">
-    <value>Εντάξει</value>
-  </data>
   <data name="South" xml:space="preserve">
     <value>Νότια</value>
   </data>

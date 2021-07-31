@@ -62,6 +62,6 @@
     <value>{0} a quitté la salle de discussion.</value>
   </data>
   <data name="WelcomeToChatRoom" xml:space="preserve">
-    <value>Bienvenue dans la salle de discussion « {0} ».</value>
+    <value>Bonjour, bienvenue dans la salle de discussion « {0} ».</value>
   </data>
 </root>

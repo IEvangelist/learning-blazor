@@ -62,6 +62,6 @@
     <value>{0} on poistunut chattihuoneesta.</value>
   </data>
   <data name="WelcomeToChatRoom" xml:space="preserve">
-    <value>Tervetuloa "{0}" -keskusteluhuoneeseen.</value>
+    <value>Hei, tervetuloa {0} keskusteluhuoneeseen.</value>
   </data>
 </root>

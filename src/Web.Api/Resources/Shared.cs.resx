@@ -62,6 +62,6 @@
     <value>{0} opustil chatovací místnost.</value>
   </data>
   <data name="WelcomeToChatRoom" xml:space="preserve">
-    <value>Vítejte v chatovací místnosti {0} "{0}".</value>
+    <value>Ahoj, vítejte v chatovací místnosti {0} "{0}".</value>
   </data>
 </root>

@@ -73,9 +73,6 @@
   <data name="Northwest" xml:space="preserve">
     <value>شمال غربی</value>
   </data>
-  <data name="Okay" xml:space="preserve">
-    <value>باشه</value>
-  </data>
   <data name="South" xml:space="preserve">
     <value>جنوب</value>
   </data>

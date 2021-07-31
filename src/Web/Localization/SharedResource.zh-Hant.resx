@@ -73,9 +73,6 @@
   <data name="Northwest" xml:space="preserve">
     <value>西北</value>
   </data>
-  <data name="Okay" xml:space="preserve">
-    <value>好</value>
-  </data>
   <data name="South" xml:space="preserve">
     <value>南</value>
   </data>
