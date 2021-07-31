@@ -27,7 +27,7 @@ namespace Learning.Blazor.Api.Hubs
             (_twitterService, _localizer) = (twitterService, localizer);
 
         public override Task OnConnectedAsync() =>
-            Clients.Others.SendAsync(
+            Clients.All.SendAsync(
                 HubServerEventNames.UserLoggedIn, Notification<Actor>.FromAlert(new(_userName)));
 
         public override Task OnDisconnectedAsync(Exception? ex) =>

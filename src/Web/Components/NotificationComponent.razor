@@ -1,41 +1,48 @@
 ﻿@inherits LocalizableComponentBase<NotificationComponent>
 
 <span class="navbar-item">
-    <button class="button is-danger is-rounded level-item"
-        title=@localize["Notifications"] @onclick=Show>
+    <button class="button is-danger is-rounded"
+            title=@localize["Notifications"] @onclick=Show>
+        @{
+            var count = _notifications?.Count(notification => !notification.IsDismissed);
+            if (count > 0)
+            {
+                <span class="badge is-success">@count</span>
+            }
+        }
         <span class="icon">
             <i class="fas fa-bell"></i>
         </span>
-   </button>
+    </button>
 </span>
 
-<div class="quickview @_showClass">
-  <header class="quickview-header">
-    <p class="title">
-    <span class="icon">
-            <i class="fas fa-bullhorn"></i>
-        </span>
-        <span>Notifications</span></p>
-    <span class="delete" @onclick=Dismiss></span>
-  </header>
+<div class="quickview has-background-dark @_showClass">
+    <header class="quickview-header has-background-danger-dark">
+        <p class="title is-size-4 has-text-black">
+            <span class="icon pr-2">
+                <i class="fas fa-bullhorn"></i>
+            </span>
+            <span>@localize["Notifications"]</span>
+        </p>
+        <span class="delete" @onclick=Dismiss></span>
+    </header>
 
-  <div class="quickview-body">
-    <div class="quickview-block px-4">
-      @if (_notifications is { Count: > 0 })
-      {
-          foreach (var notification in _notifications.Where(n => !n.IsDismissed))
-          {
-              <div class="notification">
-                  <button class="delete" @onclick=@(_ => DismissNotification(notification))></button>
-                  @notification.Text
-              </div>
-          }
-      }
+    <div class="quickview-body">
+        <div class="quickview-block px-4">
+            @if (_notifications is { Count: > 0 })
+            {
+                foreach (var notification in _notifications.Where(n => !n.IsDismissed))
+                {
+                    <div class="notification">
+                        <button class="delete" @onclick=@(_ => DismissNotification(notification))></button>
+                        @notification.Text
+                    </div>
+                }
+            }
+        </div>
     </div>
-  </div>
 
-  <footer class="quickview-footer">
-
-  </footer>
+    <footer class="quickview-footer has-background-light">
+    </footer>
 </div>
 

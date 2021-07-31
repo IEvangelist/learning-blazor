@@ -50,6 +50,8 @@ namespace Learning.Blazor.Pages
 
             await HubConnection.StartAsync(this);
             await HubConnection.JoinChatAsync(Room ?? DefaultRoomName);
+
+            await _messageInput.FocusAsync();
         }
 
         async Task OnMessageReceivedAsync(Notification<ActorMessage> message) =>

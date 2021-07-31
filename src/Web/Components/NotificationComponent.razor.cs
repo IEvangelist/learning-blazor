@@ -45,6 +45,8 @@ namespace Learning.Blazor.Components
                     IsDismissed = false,
                     NotificationType = notification.Type
                 });
+
+                StateHasChanged();
             });
 
         private Task OnUserLoggedOut(Notification<Actor> notification) =>
@@ -59,21 +61,21 @@ namespace Learning.Blazor.Components
                     IsDismissed = false,
                     NotificationType = notification.Type
                 });
+
+                StateHasChanged();
             });
 
         private void Show() => _show = true;
 
         private void Dismiss() => _show = false;
 
-        private void DismissNotification(NotificationComponentModel notificationModel)
-        {
+        private void DismissNotification(NotificationComponentModel notificationModel) =>
             _notifications =
                 _notifications.Select(
                     notification =>
                         notification == notificationModel
                             ? (notification with { IsDismissed = true }) : notification)
                     .ToList();
-        }
 
         async ValueTask IAsyncDisposable.DisposeAsync()
         {
