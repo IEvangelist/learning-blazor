@@ -120,6 +120,9 @@
   <data name="Chat" xml:space="preserve">
     <value>Chat</value>
   </data>
+  <data name="Home" xml:space="preserve">
+    <value>Home</value>
+  </data>
   <data name="Tweets" xml:space="preserve">
     <value>Tweets</value>
   </data>

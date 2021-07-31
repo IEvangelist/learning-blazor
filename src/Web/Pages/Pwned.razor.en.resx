@@ -120,6 +120,9 @@
   <data name="Breaches" xml:space="preserve">
     <value>Breaches</value>
   </data>
+  <data name="LOL" xml:space="preserve">
+    <value>Laugh out loud</value>
+  </data>
   <data name="Passwords" xml:space="preserve">
     <value>Passwords</value>
   </data>

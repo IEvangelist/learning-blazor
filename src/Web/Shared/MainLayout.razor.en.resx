@@ -123,4 +123,7 @@
   <data name="LoggingIn" xml:space="preserve">
     <value>Logging in, please wait.</value>
   </data>
+  <data name="LoggingOut" xml:space="preserve">
+    <value>Logging out, please wait.</value>
+  </data>
 </root>

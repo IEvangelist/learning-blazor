@@ -124,6 +124,6 @@
     <value>404 - page not found</value>
   </data>
   <data name="NotSureWhatYouAreLookingFor" xml:space="preserve">
-    <value>Not sure what you're looking for, but it's not here.</value>
+    <value>I'm not sure what you're looking for, but it's not here.</value>
   </data>
 </root>

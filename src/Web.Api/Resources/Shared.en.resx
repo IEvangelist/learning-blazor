@@ -121,6 +121,6 @@
     <value>{0} has left the chat room.</value>
   </data>
   <data name="WelcomeToChatRoom" xml:space="preserve">
-    <value>Welcome to the {0} chat room.</value>
+    <value>Welcome to the "{0}" chat room.</value>
   </data>
 </root>
