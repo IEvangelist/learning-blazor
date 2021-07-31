@@ -62,6 +62,6 @@
     <value>{0} elhagyta a csevegőszobát.</value>
   </data>
   <data name="WelcomeToChatRoom" xml:space="preserve">
-    <value>Üdvözöljük a {0} chat szobában.</value>
+    <value>Üdvözöljük a "{0}" csevegőszobában.</value>
   </data>
 </root>

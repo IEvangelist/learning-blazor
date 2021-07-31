@@ -62,6 +62,6 @@
     <value>{0} paliko pokalbių kambarį.</value>
   </data>
   <data name="WelcomeToChatRoom" xml:space="preserve">
-    <value>Sveiki atvykę į {0} pokalbių kambarį.</value>
+    <value>Sveiki atvykę į pokalbių kambarį "{0}".</value>
   </data>
 </root>

@@ -62,6 +62,6 @@
     <value>{0} е напуснала чата.</value>
   </data>
   <data name="WelcomeToChatRoom" xml:space="preserve">
-    <value>Добре дошли в {0} чат стая.</value>
+    <value>Добре дошли в чата "{0}".</value>
   </data>
 </root>

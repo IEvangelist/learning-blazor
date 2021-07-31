@@ -62,6 +62,6 @@
     <value>{0} sohbet odasından çıktı.</value>
   </data>
   <data name="WelcomeToChatRoom" xml:space="preserve">
-    <value>{0} sohbet odasına hoş geldiniz.</value>
+    <value>"{0}" sohbet odasına hoş geldiniz.</value>
   </data>
 </root>
