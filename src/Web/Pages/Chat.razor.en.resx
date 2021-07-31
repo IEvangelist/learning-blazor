@@ -121,13 +121,13 @@
     <value>Chat message</value>
   </data>
   <data name="MultiplePeopleAreTyping" xml:space="preserve">
-    <value>Multiple people are typing.</value>
+    <value>Multiple people are typing...</value>
   </data>
   <data name="Send" xml:space="preserve">
     <value>Send</value>
   </data>
   <data name="TwoUsersAreTypingFormat" xml:space="preserve">
-    <value>{0} and {1} are typing.</value>
+    <value>{0} and {1} are typing...</value>
   </data>
   <data name="UserIsTypingFormat" xml:space="preserve">
     <value>{0} is typing.</value>

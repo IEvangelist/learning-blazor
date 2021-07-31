@@ -120,6 +120,9 @@
   <data name="Home" xml:space="preserve">
     <value>Home</value>
   </data>
+  <data name="NoPlaceLike" xml:space="preserve">
+    <value>Home</value>
+  </data>
   <data name="NotFound" xml:space="preserve">
     <value>404 - page not found</value>
   </data>
