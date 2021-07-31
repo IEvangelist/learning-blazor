@@ -62,6 +62,6 @@
     <value>{0} چت روم را ترک کرده است.</value>
   </data>
   <data name="WelcomeToChatRoom" xml:space="preserve">
-    <value>به چت روم "{0}" خوش آمدید.</value>
+    <value>سلام، به چت روم "{0}" خوش آمدید.</value>
   </data>
 </root>

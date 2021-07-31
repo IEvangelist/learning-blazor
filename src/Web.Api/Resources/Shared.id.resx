@@ -62,6 +62,6 @@
     <value>{0} telah meninggalkan ruang obrolan.</value>
   </data>
   <data name="WelcomeToChatRoom" xml:space="preserve">
-    <value>Selamat datang di ruang obrolan "{0}".</value>
+    <value>Hai, selamat datang di ruang obrolan "{0}".</value>
   </data>
 </root>

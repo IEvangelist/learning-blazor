@@ -62,6 +62,6 @@
     <value>{0} ha sortit de la sala de xat.</value>
   </data>
   <data name="WelcomeToChatRoom" xml:space="preserve">
-    <value>Benvinguts a la sala de xat "{0}".</value>
+    <value>Hola, benvinguts a la sala de xat "{0}".</value>
   </data>
 </root>

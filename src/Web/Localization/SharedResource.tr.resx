@@ -73,9 +73,6 @@
   <data name="Northwest" xml:space="preserve">
     <value>kuzeybatı</value>
   </data>
-  <data name="Okay" xml:space="preserve">
-    <value>Tamam</value>
-  </data>
   <data name="South" xml:space="preserve">
     <value>Güney</value>
   </data>

@@ -73,9 +73,6 @@
   <data name="Northwest" xml:space="preserve">
     <value>북서</value>
   </data>
-  <data name="Okay" xml:space="preserve">
-    <value>그래</value>
-  </data>
   <data name="South" xml:space="preserve">
     <value>남쪽</value>
   </data>

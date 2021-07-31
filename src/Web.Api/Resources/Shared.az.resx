@@ -62,6 +62,6 @@
     <value>{0} söhbət otağını tərk edib.</value>
   </data>
   <data name="WelcomeToChatRoom" xml:space="preserve">
-    <value>"{0}" söhbət otağına xoş gəlmisiniz.</value>
+    <value>Salam, "{0}" söhbət otağına xoş gəlmisiniz.</value>
   </data>
 </root>

@@ -62,6 +62,6 @@
     <value>{0} je napustio sobu za razgovor.</value>
   </data>
   <data name="WelcomeToChatRoom" xml:space="preserve">
-    <value>Dobrodošli u "{0}" chat sobu.</value>
+    <value>Pozdrav, dobrodošli u "{0}" chat sobu.</value>
   </data>
 </root>

@@ -62,6 +62,6 @@
     <value>{0} έφυγε από το δωμάτιο συνομιλίας.</value>
   </data>
   <data name="WelcomeToChatRoom" xml:space="preserve">
-    <value>Καλώς ήρθατε στο δωμάτιο συνομιλίας "{0}".</value>
+    <value>Γεια σας, καλώς ήρθατε στο δωμάτιο συνομιλίας "{0}".</value>
   </data>
 </root>

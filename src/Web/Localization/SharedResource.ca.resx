@@ -73,9 +73,6 @@
   <data name="Northwest" xml:space="preserve">
     <value>nord-oest</value>
   </data>
-  <data name="Okay" xml:space="preserve">
-    <value>Bé</value>
-  </data>
   <data name="South" xml:space="preserve">
     <value>Sud</value>
   </data>
