@@ -62,6 +62,6 @@
     <value>{0} ha lasciato la chat room.</value>
   </data>
   <data name="WelcomeToChatRoom" xml:space="preserve">
-    <value>Benvenuti nella chat room {0}' di {0}.</value>
+    <value>Benvenuti nella chat room "{0}".</value>
   </data>
 </root>

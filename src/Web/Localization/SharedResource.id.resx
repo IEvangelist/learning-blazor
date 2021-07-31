@@ -73,6 +73,9 @@
   <data name="Northwest" xml:space="preserve">
     <value>barat laut</value>
   </data>
+  <data name="Okay" xml:space="preserve">
+    <value>Oke</value>
+  </data>
   <data name="South" xml:space="preserve">
     <value>Selatan</value>
   </data>

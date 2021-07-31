@@ -73,6 +73,9 @@
   <data name="Northwest" xml:space="preserve">
     <value>tây bắc</value>
   </data>
+  <data name="Okay" xml:space="preserve">
+    <value>Ok</value>
+  </data>
   <data name="South" xml:space="preserve">
     <value>Hướng nam</value>
   </data>

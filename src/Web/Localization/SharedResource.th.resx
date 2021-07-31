@@ -73,6 +73,9 @@
   <data name="Northwest" xml:space="preserve">
     <value>ทิศตะวันตกเฉียงเหนือ</value>
   </data>
+  <data name="Okay" xml:space="preserve">
+    <value>โอเค งั้นมาเริ่มกันเลย</value>
+  </data>
   <data name="South" xml:space="preserve">
     <value>ใต้</value>
   </data>

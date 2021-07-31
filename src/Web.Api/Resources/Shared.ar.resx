@@ -62,6 +62,6 @@
     <value>{0} غادر غرفة المحادثة</value>
   </data>
   <data name="WelcomeToChatRoom" xml:space="preserve">
-    <value>مرحبا بكم في غرفة الدردشة {0}.</value>
+    <value>مرحبا بكم في غرفة الدردشة "{0}".</value>
   </data>
 </root>

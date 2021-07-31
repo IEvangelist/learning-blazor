@@ -73,6 +73,9 @@
   <data name="Northwest" xml:space="preserve">
     <value>उत्तर पश्चिम</value>
   </data>
+  <data name="Okay" xml:space="preserve">
+    <value>ठीक</value>
+  </data>
   <data name="South" xml:space="preserve">
     <value>दक्षिण</value>
   </data>

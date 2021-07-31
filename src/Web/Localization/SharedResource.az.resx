@@ -73,6 +73,9 @@
   <data name="Northwest" xml:space="preserve">
     <value>Şimal-Qərb</value>
   </data>
+  <data name="Okay" xml:space="preserve">
+    <value>Yaxşı</value>
+  </data>
   <data name="South" xml:space="preserve">
     <value>Cənub</value>
   </data>
