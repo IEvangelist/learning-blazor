@@ -2,86 +2,86 @@
 @attribute [Authorize]
 @inherits LocalizableComponentBase<Chat>
 
-<div class="pb-4 chat-list">
-    <transition-group name="list" tag="ul" class="chat-messages">
-        @foreach (var (id, message) in _messages)
-        {
-            <li id="@message.Id" class="@(message.IsGreeting ? "greeting" : "")">
-                <div class="gutter pr-lg-2 text-muted">@message.UserName</div>
-                <div class="arrow-container">
-                    <span class="arrow arrow2"></span>
-                    <span class="arrow arrow1"></span>
-                </div>
-                <div class="message pl-lg-2 @(OwnsMessage(message.UserName) ? "canEdit" : "")"
-                 @onclick="@(async () => await StartEdit(message))">
-                    @{
-                        MarkupString messageMarkup = new(message.Text);
-                        <span>
-                            @messageMarkup
-                        </span>
-                        @if (message.IsEdit)
-                        {
-                            <span class="pl-2 text-muted">
-                                <span class="tag is-info">edited</span>
-                            </span>
-                        }
-                    }
-                </div>
-            </li>
-        }
-    </transition-group>
-</div>
+<AuthorizeView>
+    @if (context.User is not null)
+    {
+        _user = context.User;
+        <div class="is-hidden">@_user?.Identity?.Name</div>
+    }
+    </AuthorizeView>
 
-<footer class="footer">
-    <div class="has-text-centered">
-        <section class="fluid-container">
-            <div class="columns">
-                <div class="column is-10">
-                    <div class="field has-addons">
-                        <div class="control">
-                            <input class="input is-large is-fullwidth"
-                                   type="text" placeholder=@localize["ChatMessage"]
-                                   @ref="_messageInput"
-                                   @bind-value="@_message" @oninput="@InitiateDebounceUserIsTyping"
-                                   @onkeyup="@(args => OnKeyUp(args))" autocomplete="off">
-                        </div>
-                        <div class="control">
-                            <a class="button is-info" @onclick="@SendMessage">
-                                @localize["Send"]
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="column">
-                    <div class="emoji is-pulled-right">
-                        @foreach (var emoji in new[] { "🤣", "🤬", "🤘" })
-                        {
-                            <span class="is-clickable is-size-3"
-                              @onclick="@(() => AppendToMessage(emoji))">
-                                @emoji
-                            </span>
-                        }
-                    </div>
-                </div>
-            </div>
-            <div>
-                @{
-                    string UsersTypingText(string[]? usersTyping) => usersTyping?.Length switch
-                    {
-                        0 => "&nbsp;",
-                        1 => $"💬 {localize["UserIsTypingFormat", usersTyping[0]]}",
-                        2 => $"💬 {localize["TwoUsersAreTypingFormat", usersTyping[0], usersTyping[1]]}",
-                        _ => $"💬 {localize["MultiplePeopleAreTyping"]}"
-                    };
-
-                    var usersTyping = _usersTyping?.Select(a => a.UserName)?.ToArray();
-                    MarkupString isTypingMarkup = new(UsersTypingText(usersTyping));
-
-                    <span class="text-muted @(_usersTyping is { Count: > 0 } ? "flashing" : "")">
-                        @isTypingMarkup
+    <div class="columns">
+        <section class="column is-10 is-offset-1">
+            <div class="field has-addons">
+                <div class="control is-fullwidth has-icons-left">
+                    <input class="input is-large" spellcheck="true"
+                       type="text" placeholder=@localize["ChatMessage"]
+                       @ref="_messageInput"
+                       @bind-value="@_message" @oninput="@InitiateDebounceUserIsTyping"
+                       @onkeyup="@(args => OnKeyUp(args))" autocomplete="off">
+                    <span class="icon is-small is-left">
+                        <i class="fas">💬</i>
                     </span>
-                }
+                </div>
+                <div class="control">
+                    <a class="button is-info is-large" @onclick="@SendMessage">
+                        @localize["Send"]
+                    </a>
+                </div>
             </div>
-        </section>
-    </div>
-</footer>
+
+            <article class="panel is-info">
+                <p class="panel-heading has-text-left">
+                    <span>
+                        @localize["Messages"]
+                    </span>
+                    <span class="is-pulled-right">
+                        @{
+                        string UsersTypingText(string[]? usersTyping) => usersTyping?.Length switch
+                        {
+                            0 => "&nbsp;",
+                            1 => $"💬 {localize["UserIsTypingFormat", usersTyping[0]]}",
+                            2 => $"💬 {localize["TwoUsersAreTypingFormat", usersTyping[0], usersTyping[1]]}",
+                            _ => $"💬 {localize["MultiplePeopleAreTyping"]}"
+                        };
+
+                        var usersTyping = _usersTyping?.Select(a => a.UserName)?.ToArray();
+                        MarkupString isTypingMarkup = new(UsersTypingText(usersTyping));
+
+                        <span class="has-text-grey-light @(_usersTyping is { Count: > 0 } ? "is-flashing" : "")">
+                            @isTypingMarkup
+                        </span>
+                    }
+                </span>
+            </p>
+
+            @foreach (var (id, message) in _messages.Reverse())
+            {
+                var isClickable = OwnsMessage(message.UserName) ? "" : "is-unselectable";
+                <a id="@message.Id" class="panel-block is-size-5 @(isClickable) @(message.IsGreeting ? "greeting" : "")"
+                    @onclick="@(async () => await StartEdit(message))">
+                    <span>
+                        @message.UserName
+                    </span>
+                    <span class="panel-icon px-4">
+                        <i class="fas fa-chevron-right" aria-hidden="true"></i>
+                    </span>
+                    <span class="pl-2">
+                        @{
+                            MarkupString messageMarkup = new(message.Text);
+                            <span>
+                                @messageMarkup
+                            </span>
+                            @if (message.IsEdit)
+                            {
+                                <span class="pl-2">
+                                    <span class="tag is-info">edited</span>
+                                </span>
+                            }
+                        }
+                    </span>
+                </a>
+            }
+        </article>
+    </section>
+</div>

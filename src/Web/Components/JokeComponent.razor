@@ -1,31 +1,27 @@
 ﻿@inject HttpClient Http
 @inject ILogger<JokeComponent> Logger
 
-<AuthorizeView>
-    <Authorized>
-        <div class="content">
-            @if (_isLoadingJoke)
-            {
-                <div class="fa-3x">
-                    <i class="fas fa-sync fa-spin"></i>
-                </div>
-            }
-            else if (_jokeText is not null)
-            {
-                <blockquote class="has-text-black">
-                    <span class="pb-4">@_jokeText</span>
-                    <br>
-                    <cite>
-                        &mdash;
-                        <a href="@(_sourceDetails.Site.ToString())" target="_blank">
-                            @(_sourceDetails.Source.ToString())
-                        </a>
-                    </cite>
-                </blockquote>
-            }
+<div class="content">
+    @if (_isLoadingJoke)
+    {
+        <div class="fa-3x">
+            <i class="fas fa-sync fa-spin"></i>
         </div>
-    </Authorized>
-</AuthorizeView>
+    }
+    else if (_jokeText is not null)
+    {
+        <blockquote class="has-text-black">
+            <span class="pb-4">@_jokeText</span>
+            <br>
+            <cite>
+                &mdash;
+                <a href="@(_sourceDetails.Site.ToString())" target="_blank">
+                    @(_sourceDetails.Source.ToString())
+                </a>
+            </cite>
+        </blockquote>
+    }
+</div>
 
 @code {
     private string? _jokeText = null;

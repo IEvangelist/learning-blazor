@@ -59,11 +59,24 @@ const speak = (message, defaultVoice, voiceSpeed, lang) => {
     window.speechSynthesis.speak(utterance);
 };
 
+const scrollIntoView = (selector) => {
+    try {
+        const element = document.querySelector(selector);
+        if (element) {
+            element.scrollTop = element.scrollHeight;
+        }
+    }
+    catch (error) {
+        console.log(error);
+    }
+};
+
 window.app = {
     getClientCoordinates,
     getClientVoices,
     getClientPrefersColorScheme,
-    speak
+    speak,
+    scrollIntoView
 };
 
 // Prevent client from speaking when user closes tab or window.

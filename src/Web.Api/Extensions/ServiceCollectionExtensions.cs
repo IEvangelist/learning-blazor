@@ -57,7 +57,7 @@ namespace Learning.Blazor.Api.Extensions
             services.AddTwitterServices(configuration);
             services.AddHostedService<TwitterWorkerService>();
 
-            services.AddLocalization(options => options.ResourcesPath = "Resources");
+            services.AddLocalization();
 
             return services;
         }

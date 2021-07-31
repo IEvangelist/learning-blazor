@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net.Mime;
 using Learning.Blazor.Api.Extensions;
 using Learning.Blazor.Api.Hubs;
+using Learning.Blazor.Api.Localization;
 using Learning.Blazor.Extensions;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -103,6 +104,15 @@ namespace Learning.Blazor.Api
 
             app.UseRouting();
             app.UseCors(CorsPolicy);
+
+            app.UseResponseCompression();
+
+            var localizationOptions = new RequestLocalizationOptions()
+                .SetDefaultCulture(Cultures.Default)
+                .AddSupportedCultures(Cultures.Supported)
+                .AddSupportedUICultures(Cultures.Supported);
+
+            app.UseRequestLocalization(localizationOptions);
 
             app.UseAuthentication();
             app.UseAuthorization();

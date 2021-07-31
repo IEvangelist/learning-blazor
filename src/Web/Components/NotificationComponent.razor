@@ -1,6 +1,8 @@
-﻿<span class="navbar-item">
+﻿@inherits LocalizableComponentBase<NotificationComponent>
+
+<span class="navbar-item">
     <button class="button is-danger is-rounded level-item"
-        title="Notifications" @onclick=Show>
+        title=@localize["Notifications"] @onclick=Show>
         <span class="icon">
             <i class="fas fa-bell"></i>
         </span>
@@ -19,7 +21,16 @@
 
   <div class="quickview-body">
     <div class="quickview-block px-4">
-      ...
+      @if (_notifications is { Count: > 0 })
+      {
+          foreach (var notification in _notifications.Where(n => !n.IsDismissed))
+          {
+              <div class="notification">
+                  <button class="delete" @onclick=@(_ => DismissNotification(notification))></button>
+                  @notification.Text
+              </div>
+          }
+      }
     </div>
   </div>
 
@@ -28,9 +39,3 @@
   </footer>
 </div>
 
-@code {
-    private bool _show = false;
-    private string _showClass => _show ? "is-active" : "";
-    private void Show() => _show = true;
-    private void Dismiss() => _show = false;
-}

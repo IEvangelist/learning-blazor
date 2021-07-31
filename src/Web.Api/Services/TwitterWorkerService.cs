@@ -4,6 +4,7 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Learning.Blazor.Abstractions.RealTime;
 using Learning.Blazor.Api.Hubs;
 using Learning.Blazor.Extensions;
 using Learning.Blazor.Models;
@@ -40,11 +41,11 @@ namespace Learning.Blazor.Api.Services
 
         private Task OnStatusUpdated(StreamingStatus status) =>
             _hubContext.Clients.Group("Tweets").SendAsync(
-                "StatusUpdated", Notification<StreamingStatus>.FromStatus(status));
+                HubServerEventNames.StatusUpdated, Notification<StreamingStatus>.FromStatus(status));
 
         private Task OnTweetReceived(TweetContents tweet) =>
             _hubContext.Clients.Group("Tweets").SendAsync(
-                "TweetReceived", Notification<TweetContents>.FromTweet(tweet));
+                HubServerEventNames.TweetReceived, Notification<TweetContents>.FromTweet(tweet));
 
         ValueTask IAsyncDisposable.DisposeAsync() =>
             _twitterService.TryDisposeAsync();

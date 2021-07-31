@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -26,6 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Web.Abstractions\Web.Abstractions.csproj" />
     <ProjectReference Include="..\Web.Extensions\Web.Extensions.csproj" />
     <ProjectReference Include="..\Web.LocalStorage\Web.LocalStorage.csproj" />
     <ProjectReference Include="..\Web.TwitterComponents\Web.TwitterComponents.csproj" />

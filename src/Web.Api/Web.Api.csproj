@@ -22,6 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Web.Abstractions\Web.Abstractions.csproj" />
     <ProjectReference Include="..\Web.Extensions\Web.Extensions.csproj" />
     <ProjectReference Include="..\Web.JokeServices\Web.JokeServices.csproj" />
     <ProjectReference Include="..\Web.TwitterServices\Web.TwitterServices.csproj" />

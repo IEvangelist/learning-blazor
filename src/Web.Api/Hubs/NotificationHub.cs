@@ -3,6 +3,7 @@
 
 using System;
 using System.Threading.Tasks;
+using Learning.Blazor.Abstractions.RealTime;
 using Learning.Blazor.Api.Resources;
 using Learning.Blazor.Models;
 using Learning.Blazor.TwitterServices;
@@ -27,30 +28,30 @@ namespace Learning.Blazor.Api.Hubs
 
         public override Task OnConnectedAsync() =>
             Clients.Others.SendAsync(
-                "UserLoggedIn", Notification<Actor>.FromAlert(new(_userName)));
+                HubServerEventNames.UserLoggedIn, Notification<Actor>.FromAlert(new(_userName)));
 
         public override Task OnDisconnectedAsync(Exception? ex) =>
             Clients.Others.SendAsync(
-                "UserLoggedOut", Notification<Actor>.FromAlert(new(_userName)));
+                HubServerEventNames.UserLoggedOut, Notification<Actor>.FromAlert(new(_userName)));
 
         public Task ToggleUserTyping(bool isTyping) =>
             Clients.Others.SendAsync(
-                "UserTyping", Notification<ActorAction>.FromAlert(new(_userName, isTyping)));
+                HubServerEventNames.UserTyping, Notification<ActorAction>.FromAlert(new(_userName, isTyping)));
 
         public Task PostOrUpdateMessage(string room, string message, Guid? id = default!) =>
             Clients.Groups(room).SendAsync(
-                "MessageReceived",
+                HubServerEventNames.MessageReceived,
                 Notification<ActorMessage>.FromChat(
                     new(id ?? Guid.NewGuid(), message, _userName, IsEdit: id.HasValue)));
 
         public async Task JoinTweets()
         {
-            await Groups.AddToGroupAsync(Context.ConnectionId, "Tweets");
+            await Groups.AddToGroupAsync(Context.ConnectionId, HubGroupNames.Tweets);
 
             if (_twitterService.CurrentStatus is not null)
             {
                 await Clients.Caller.SendAsync(
-                    "StatusUpdated",
+                    HubServerEventNames.StatusUpdated,
                     Notification<StreamingStatus>.FromStatus(_twitterService.CurrentStatus));
             }
             if (_twitterService.LastThreeTweets is { Count: > 0 })
@@ -58,14 +59,14 @@ namespace Learning.Blazor.Api.Hubs
                 foreach (var tweet in _twitterService.LastThreeTweets)
                 {
                     await Clients.Caller.SendAsync(
-                        "TweetReceived",
+                        HubServerEventNames.TweetReceived,
                         Notification<TweetContents>.FromTweet(tweet));
                 }
             }
         }
 
         public Task LeaveTweets() =>
-            Groups.RemoveFromGroupAsync(Context.ConnectionId, "Tweets");
+            Groups.RemoveFromGroupAsync(Context.ConnectionId, HubGroupNames.Tweets);
 
         public Task StartTweetStream() =>
             _twitterService.StartTweetStreamAsync();
@@ -74,9 +75,9 @@ namespace Learning.Blazor.Api.Hubs
         {
             await Groups.AddToGroupAsync(Context.ConnectionId, room);
             await Clients.Groups(room).SendAsync(
-                "MessageReceived",
+                HubServerEventNames.MessageReceived,
                 Notification<ActorMessage>.FromChat(
-                    new(Id: null, Text: _localizer["WelcomeToChatRoom", room],
+                    new(Id: Guid.NewGuid(), Text: _localizer["WelcomeToChatRoom", room],
                         UserName: "👋", IsGreeting: true)));
         }
 
@@ -84,9 +85,9 @@ namespace Learning.Blazor.Api.Hubs
         {
             await Groups.RemoveFromGroupAsync(Context.ConnectionId, room);
             await Clients.Groups(room).SendAsync(
-                "MessageReceived",
+                HubServerEventNames.MessageReceived,
                 Notification<ActorMessage>.FromChat(
-                    new(Id: null, Text: _localizer["HasLeftTheChatRoom", _userName],
+                    new(Id: Guid.NewGuid(), Text: _localizer["HasLeftTheChatRoom", _userName],
                         UserName: "🤖")));
         }
 

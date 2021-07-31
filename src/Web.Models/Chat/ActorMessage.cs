@@ -6,7 +6,7 @@ using System;
 namespace Learning.Blazor.Models
 {
     public record ActorMessage(
-        Guid? Id, string Text, string UserName,
+        Guid Id, string Text, string UserName,
         bool IsGreeting = false, bool IsEdit = false)
         : Actor(UserName);
 }

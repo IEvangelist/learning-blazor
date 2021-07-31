@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Identity.Web.Resource;
 using System;
+using System.Globalization;
 using System.Net.Mime;
 using System.Threading.Tasks;
 
@@ -35,6 +36,12 @@ namespace Learning.Blazor.Api.Controllers
         public async Task<IActionResult> Get()
         {
             HttpContext.VerifyUserHasAnyAcceptedScope("User.ApiAccess");
+
+            var locale = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+            if (locale is not null)
+            {
+
+            }
 
             _logger.LogInformation("{DateTime}: Getting weather", DateTime.UtcNow);
 

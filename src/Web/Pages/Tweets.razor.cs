@@ -29,22 +29,24 @@ namespace Learning.Blazor.Pages
 
         protected override async Task OnInitializedAsync()
         {
-            _subscriptions.Push(HubConnection.SubscribeToStatusUpdated(OnStatusUpdated));
-            _subscriptions.Push(HubConnection.SubscribeToTweetReceived(OnTweetReceived));
+            _subscriptions.Push(
+                HubConnection.SubscribeToStatusUpdated(OnStatusUpdatedAsync));
+            _subscriptions.Push(
+                HubConnection.SubscribeToTweetReceived(OnTweetReceivedAsync));
 
-            await HubConnection.StartAsync();
+            await HubConnection.StartAsync(this);
             await HubConnection.JoinTweetsAsync();
             await HubConnection.StartTweetStreamAsync();
         }
 
-        private Task OnStatusUpdated(Notification<StreamingStatus> status) =>
+        private Task OnStatusUpdatedAsync(Notification<StreamingStatus> status) =>
             InvokeAsync(() =>
             {
                 _streamingStatus = status;
                 StateHasChanged();
             });
 
-        private Task OnTweetReceived(Notification<TweetContents> tweet) =>
+        private Task OnTweetReceivedAsync(Notification<TweetContents> tweet) =>
             InvokeAsync(() =>
             {
                 _ = _tweets.Add(tweet);
@@ -56,6 +58,7 @@ namespace Learning.Blazor.Pages
             if (HubConnection is not null)
             {
                 await HubConnection.LeaveTweetsAsync();
+                await HubConnection.StopAsync(this);
             }
 
             while (_subscriptions.TryPop(out var disposable))

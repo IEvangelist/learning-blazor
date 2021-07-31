@@ -47,9 +47,9 @@ html {
     object-fit: contain;
 }
 
-    .image.is-dark {
+/*    .image.is-dark {
         background-color: #363636;
-    }
+    }*/
 
 
 @media (prefers-color-scheme: dark) {
@@ -92,4 +92,35 @@ html {
    50% { transform: rotate(10.0deg) }
    60% { transform: rotate( 0.0deg) }  /* Reset for the last half to pause */
   100% { transform: rotate( 0.0deg) }
+}
+
+.emoji {
+    transition: ease-in-out all .5s;
+}
+
+    .emoji > span:hover {
+        filter: brightness(150%);
+    }
+
+.is-flashing {
+    animation: flash ease-in-out 1.5s infinite;
+}
+
+@keyframes flash {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: .2
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.panel {
+    max-height: calc(100vh - 24rem);
+    overflow-x: auto;
 }

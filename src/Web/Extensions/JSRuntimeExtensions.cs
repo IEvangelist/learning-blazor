@@ -37,5 +37,11 @@ namespace Learning.Blazor.Extensions
                 "dark",
                 DotNetObjectReference.Create(dotnetObj),
                 callbackMethodName);
+
+        internal static async ValueTask ScrollIntoViewAsync(
+            this IJSRuntime javaScript,
+            string selector) =>
+            await javaScript.InvokeVoidAsync(
+                "app.scrollIntoView", selector);
     }
 }

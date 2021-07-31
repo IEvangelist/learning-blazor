@@ -26,7 +26,15 @@ namespace Learning.Blazor.Extensions
             services.AddScoped<ApiAccessAuthorizationMessageHandler>();
 
             services.AddHttpClient(
-                ServerApi, client => client.BaseAddress = new Uri(serverUrl))
+                ServerApi, (serviceProvider, client) =>
+                {
+                    client.BaseAddress = new Uri(serverUrl);
+
+                    var cultureService = serviceProvider.GetRequiredService<CultureService>();
+
+                    client.DefaultRequestHeaders.AcceptLanguage.ParseAdd(
+                        cultureService.CurrentCulture.TwoLetterISOLanguageName);
+                })
                 .AddHttpMessageHandler<ApiAccessAuthorizationMessageHandler>();
 
             services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient(ServerApi));
@@ -51,7 +59,7 @@ namespace Learning.Blazor.Extensions
             services.AddTransient(
                 typeof(IWeatherStringFormatterService<>), typeof(WeatherStringFormatterService<>));
 
-            services.AddSingleton<SingleHubConnection>();
+            services.AddScoped<SingleHubConnection>();
 
             services.AddTwitterComponent(configuration);
             services.AddLocalStorage();
