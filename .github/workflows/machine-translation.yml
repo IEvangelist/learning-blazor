@@ -30,7 +30,7 @@ jobs:
 
       - name: Resource translator
         id: resource-translator
-        uses: IEvangelist/resource-translator@v2.1.6-preview-2
+        uses: IEvangelist/resource-translator@v2.1.6-preview-3
         with:
           subscriptionKey: ${{ secrets.AZURE_TRANSLATOR_SUBSCRIPTION_KEY }}
           endpoint: ${{ secrets.AZURE_TRANSLATOR_ENDPOINT }}

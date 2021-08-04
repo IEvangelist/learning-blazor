@@ -121,9 +121,9 @@
     <value>Updated on {0} at {1}</value>
   </data>
   <data name="UserLoggedInFormat" xml:space="preserve">
-    <value>{0} logged in.</value>
+    <value>{0} just logged in.</value>
   </data>
   <data name="UserLoggedOutFormat" xml:space="preserve">
-    <value>{0} logged out.</value>
+    <value>{0} just logged out.</value>
   </data>
 </root>
