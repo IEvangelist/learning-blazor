@@ -25,7 +25,7 @@ namespace Learning.Blazor.Pages
                 : "fas fa-unlink has-text-warning";
 
         [Inject]
-        public SingleHubConnection HubConnection { get; set; } = null!;
+        public SharedHubConnection HubConnection { get; set; } = null!;
 
         protected override async Task OnInitializedAsync()
         {

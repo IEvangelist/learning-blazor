@@ -37,7 +37,7 @@ namespace Learning.Blazor.Pages
         public string? Room { get; set; } = DefaultRoomName;
 
         [Inject]
-        public SingleHubConnection HubConnection { get; set; } = null!;
+        public SharedHubConnection HubConnection { get; set; } = null!;
 
         public Chat() => _debouceTimer.Elapsed += OnDebouceElapsed;
 

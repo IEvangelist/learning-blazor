@@ -3,17 +3,17 @@
 <span class="navbar-item">
     <button class="button is-danger is-rounded"
             title=@localize["Notifications"] @onclick=Show>
-        @{
-            var count = _notifications?.Count(notification => !notification.IsDismissed);
-            if (count > 0)
-            {
-                <span class="badge is-success">@count</span>
-            }
-        }
         <span class="icon">
             <i class="fas fa-bell"></i>
         </span>
     </button>
+    @{
+        var count = _notifications?.Count(notification => !notification.IsDismissed);
+        if (count > 0)
+        {
+            <span class="badge is-success" style="right: .8rem; top: .8rem;">@count</span>
+        }
+    }
 </span>
 
 <div class="quickview has-background-dark @_showClass">
@@ -28,7 +28,7 @@
     </header>
 
     <div class="quickview-body">
-        <div class="quickview-block px-4">
+        <div class="quickview-block p-4">
             @if (_notifications is { Count: > 0 })
             {
                 foreach (var notification in _notifications.Where(n => !n.IsDismissed))
@@ -43,6 +43,15 @@
     </div>
 
     <footer class="quickview-footer has-background-light">
+        @{
+            var (hasValue, dateTime) = _latestNotificationDateTime;
+            if (hasValue)
+            {
+                @localize["UpdatedOnFormat",
+                    dateTime.ToShortDateString(),
+                    dateTime.ToShortTimeString()]
+            }
+        }
     </footer>
 </div>
 

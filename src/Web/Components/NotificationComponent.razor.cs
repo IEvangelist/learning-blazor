@@ -17,11 +17,12 @@ namespace Learning.Blazor.Components
 
         private List<NotificationComponentModel> _notifications = new();
         private bool _show = false;
+        private DateTime? _latestNotificationDateTime = null!;
 
         private string _showClass => _show ? "is-active" : "";
 
         [Inject]
-        public SingleHubConnection HubConnection { get; set; } = null!;
+        public SharedHubConnection HubConnection { get; set; } = null!;
 
         protected override async Task OnInitializedAsync()
         {
@@ -46,6 +47,8 @@ namespace Learning.Blazor.Components
                     NotificationType = notification.Type
                 });
 
+                _latestNotificationDateTime = DateTime.Now;
+
                 StateHasChanged();
             });
 
@@ -61,6 +64,8 @@ namespace Learning.Blazor.Components
                     IsDismissed = false,
                     NotificationType = notification.Type
                 });
+
+                _latestNotificationDateTime = DateTime.Now;
 
                 StateHasChanged();
             });

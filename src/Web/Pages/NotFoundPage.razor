@@ -1,9 +1,10 @@
 ﻿@inherits LocalizableComponentBase<NotFoundPage>
 
 <div class="container is-fluid">
-    <h1 class="is-size-2">@localize["NotFound"]</h1>
-    <p class="lead">@localize["NotSureWhatYouAreLookingFor"]</p>
-    <button class="button is-rounded is-large" @onclick="GoHome">
+    <h1 class="is-size-2 has-text-danger-dark has-background-warning box">@localize["NotFound"]</h1>
+    <span class="shrugging is-size-7-rem" title="#IncludeEveryone"></span>
+    <p class="lead is-size-3 pb-4">@localize["NotSureWhatYouAreLookingFor"]</p>
+    <button class="button is-rounded is-primary is-large" @onclick="GoHome">
         <span class="icon">
             <i class="fas fa-home" aria-hidden="true"></i>
         </span>

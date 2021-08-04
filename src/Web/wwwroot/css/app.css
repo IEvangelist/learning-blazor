@@ -1,4 +1,4 @@
-:root {
+﻿:root {
     --twitter-blue: #6cadde;
     --pwned-blue: rgba(58,154,196,.5);
     --signalr-blue: #59b4d9;
@@ -10,6 +10,10 @@
     --dotnet-gray-light: #e5e5e1;
     --dotnet-gray: #969696;
     --dotnet-gray-dark: #505050;
+}
+
+.is-size-7-rem {
+    font-size: 7rem !important;
 }
 
 #blazor-error-ui {
@@ -52,6 +56,10 @@ html {
     }*/
 
 
+.is-unselectable {
+    cursor: not-allowed;
+}
+
 @media (prefers-color-scheme: dark) {
     .modal-card-body {
         background-color: #242424;
@@ -63,6 +71,10 @@ html {
 
     .content blockquote {
         color: #fff !important;
+    }
+
+    .quickview-header {
+        border-bottom: 1px solid #4a4a4a;
     }
 }
 
@@ -84,14 +96,37 @@ html {
 }
 
 @keyframes wave-animation {
-    0% { transform: rotate( 0.0deg) }
-   10% { transform: rotate(10.0deg) }  /* The following five values can be played with to make the waving more or less extreme */
-   20% { transform: rotate(-18.0deg) }
-   30% { transform: rotate(10.0deg) }
-   40% { transform: rotate(-2.0deg) }
-   50% { transform: rotate(10.0deg) }
-   60% { transform: rotate( 0.0deg) }  /* Reset for the last half to pause */
-  100% { transform: rotate( 0.0deg) }
+    0% {
+        transform: rotate( 0.0deg)
+    }
+
+    10% {
+        transform: rotate(10.0deg)
+    }
+    /* The following five values can be played with to make the waving more or less extreme */
+    20% {
+        transform: rotate(-18.0deg)
+    }
+
+    30% {
+        transform: rotate(10.0deg)
+    }
+
+    40% {
+        transform: rotate(-2.0deg)
+    }
+
+    50% {
+        transform: rotate(10.0deg)
+    }
+
+    60% {
+        transform: rotate( 0.0deg)
+    }
+    /* Reset for the last half to pause */
+    100% {
+        transform: rotate( 0.0deg)
+    }
 }
 
 .emoji {
@@ -123,4 +158,459 @@ html {
 .panel {
     max-height: calc(100vh - 20rem);
     overflow-x: auto;
+}
+
+.shrugging {
+    font-size: 1.5em;
+    display: inline-block;
+    transition: all 0.5s ease-in-out;
+}
+
+    .shrugging:after {
+        -webkit-animation: shrug 12s linear infinite;
+        -moz-animation: shrug 12s linear infinite;
+        -o-animation: shrug 12s linear infinite;
+        animation: shrug 12s linear infinite;
+        display: inline-block;
+        content: "🤷🏿‍♂️";
+    }
+
+@-webkit-keyframes shrug {
+    0% {
+        content: "🤷🏿‍♂️";
+    }
+
+    8.33% {
+        content: "🤷🏿‍♀️";
+    }
+
+    16.67% {
+        content: "🤷🏾‍♂️";
+    }
+
+    25.00% {
+        content: "🤷🏾‍♀️";
+    }
+
+    33.33% {
+        content: "🤷🏽‍♂️";
+    }
+
+    41.67% {
+        content: "🤷🏽‍♀️";
+    }
+
+    50.00% {
+        content: "🤷🏼‍♂️";
+    }
+
+    58.33% {
+        content: "🤷🏼‍♀️";
+    }
+
+    66.67% {
+        content: "🤷🏻‍♂️";
+    }
+
+    75.00% {
+        content: "🤷🏻‍♀️";
+    }
+
+    83.33% {
+        content: "🤷‍♂️";
+    }
+
+    91.67% {
+        content: "🤷‍♀️";
+    }
+
+    100.00% {
+        content: "🤷🏿‍♂️";
+    }
+}
+
+@-moz-keyframes shrug {
+    0% {
+        content: "🤷🏿‍♂️";
+    }
+
+    8.33% {
+        content: "🤷🏿‍♀️";
+    }
+
+    16.67% {
+        content: "🤷🏾‍♂️";
+    }
+
+    25.00% {
+        content: "🤷🏾‍♀️";
+    }
+
+    33.33% {
+        content: "🤷🏽‍♂️";
+    }
+
+    41.67% {
+        content: "🤷🏽‍♀️";
+    }
+
+    50.00% {
+        content: "🤷🏼‍♂️";
+    }
+
+    58.33% {
+        content: "🤷🏼‍♀️";
+    }
+
+    66.67% {
+        content: "🤷🏻‍♂️";
+    }
+
+    75.00% {
+        content: "🤷🏻‍♀️";
+    }
+
+    83.33% {
+        content: "🤷‍♂️";
+    }
+
+    91.67% {
+        content: "🤷‍♀️";
+    }
+
+    100.00% {
+        content: "🤷🏿‍♂️";
+    }
+}
+
+@-o-keyframes shrug {
+    0% {
+        content: "🤷🏿‍♂️";
+    }
+
+    8.33% {
+        content: "🤷🏿‍♀️";
+    }
+
+    16.67% {
+        content: "🤷🏾‍♂️";
+    }
+
+    25.00% {
+        content: "🤷🏾‍♀️";
+    }
+
+    33.33% {
+        content: "🤷🏽‍♂️";
+    }
+
+    41.67% {
+        content: "🤷🏽‍♀️";
+    }
+
+    50.00% {
+        content: "🤷🏼‍♂️";
+    }
+
+    58.33% {
+        content: "🤷🏼‍♀️";
+    }
+
+    66.67% {
+        content: "🤷🏻‍♂️";
+    }
+
+    75.00% {
+        content: "🤷🏻‍♀️";
+    }
+
+    83.33% {
+        content: "🤷‍♂️";
+    }
+
+    91.67% {
+        content: "🤷‍♀️";
+    }
+
+    100.00% {
+        content: "🤷🏿‍♂️";
+    }
+}
+
+@keyframes shrug {
+    0% {
+        content: "🤷🏿‍♂️";
+    }
+
+    8.33% {
+        content: "🤷🏿‍♀️";
+    }
+
+    16.67% {
+        content: "🤷🏾‍♂️";
+    }
+
+    25.00% {
+        content: "🤷🏾‍♀️";
+    }
+
+    33.33% {
+        content: "🤷🏽‍♂️";
+    }
+
+    41.67% {
+        content: "🤷🏽‍♀️";
+    }
+
+    50.00% {
+        content: "🤷🏼‍♂️";
+    }
+
+    58.33% {
+        content: "🤷🏼‍♀️";
+    }
+
+    66.67% {
+        content: "🤷🏻‍♂️";
+    }
+
+    75.00% {
+        content: "🤷🏻‍♀️";
+    }
+
+    83.33% {
+        content: "🤷‍♂️";
+    }
+
+    91.67% {
+        content: "🤷‍♀️";
+    }
+
+    100.00% {
+        content: "🤷🏿‍♂️";
+    }
+}
+
+.all-devs {
+    font-size: 1.5em;
+    display: inline-block;
+    transition: all 0.5s ease-in-out;
+}
+
+    .all-devs:hover {
+        transition: all .2s ease-in-out;
+        transform: scale(1.5);
+    }
+
+    .all-devs:after {
+        -webkit-animation: change 12s linear infinite;
+        -moz-animation: change 12s linear infinite;
+        -o-animation: change 12s linear infinite;
+        animation: change 12s linear infinite;
+        display: inline-block;
+        content: "👨🏿‍💻";
+    }
+
+@-webkit-keyframes change {
+    0% {
+        content: "👨🏿‍💻";
+    }
+
+    8.33% {
+        content: "👩‍💻";
+    }
+
+    16.67% {
+        content: "👨‍💻";
+    }
+
+    25.00% {
+        content: "👩🏻‍💻";
+    }
+
+    33.33% {
+        content: "👨🏻‍💻";
+    }
+
+    41.67% {
+        content: "👩🏼‍💻";
+    }
+
+    50.00% {
+        content: "👨🏼‍💻";
+    }
+
+    58.33% {
+        content: "👩🏽‍💻";
+    }
+
+    66.67% {
+        content: "👨🏽‍💻";
+    }
+
+    75.00% {
+        content: "👩🏾‍💻";
+    }
+
+    83.33% {
+        content: "👨🏾‍💻";
+    }
+
+    91.67% {
+        content: "👩🏿‍💻";
+    }
+
+    100.00% {
+        content: "👨🏿‍💻";
+    }
+}
+
+@-moz-keyframes change {
+    8.33% {
+        content: "👩‍💻";
+    }
+
+    16.67% {
+        content: "👨‍💻";
+    }
+
+    25.00% {
+        content: "👩🏻‍💻";
+    }
+
+    33.33% {
+        content: "👨🏻‍💻";
+    }
+
+    41.67% {
+        content: "👩🏼‍💻";
+    }
+
+    50.00% {
+        content: "👨🏼‍💻";
+    }
+
+    58.33% {
+        content: "👩🏽‍💻";
+    }
+
+    66.67% {
+        content: "👨🏽‍💻";
+    }
+
+    75.00% {
+        content: "👩🏾‍💻";
+    }
+
+    83.33% {
+        content: "👨🏾‍💻";
+    }
+
+    91.67% {
+        content: "👩🏿‍💻";
+    }
+
+    100.00% {
+        content: "👨🏿‍💻";
+    }
+}
+
+@-o-keyframes change {
+    8.33% {
+        content: "👩‍💻";
+    }
+
+    16.67% {
+        content: "👨‍💻";
+    }
+
+    25.00% {
+        content: "👩🏻‍💻";
+    }
+
+    33.33% {
+        content: "👨🏻‍💻";
+    }
+
+    41.67% {
+        content: "👩🏼‍💻";
+    }
+
+    50.00% {
+        content: "👨🏼‍💻";
+    }
+
+    58.33% {
+        content: "👩🏽‍💻";
+    }
+
+    66.67% {
+        content: "👨🏽‍💻";
+    }
+
+    75.00% {
+        content: "👩🏾‍💻";
+    }
+
+    83.33% {
+        content: "👨🏾‍💻";
+    }
+
+    91.67% {
+        content: "👩🏿‍💻";
+    }
+
+    100.00% {
+        content: "👨🏿‍💻";
+    }
+}
+
+@keyframes change {
+    8.33% {
+        content: "👩‍💻";
+    }
+
+    16.67% {
+        content: "👨‍💻";
+    }
+
+    25.00% {
+        content: "👩🏻‍💻";
+    }
+
+    33.33% {
+        content: "👨🏻‍💻";
+    }
+
+    41.67% {
+        content: "👩🏼‍💻";
+    }
+
+    50.00% {
+        content: "👨🏼‍💻";
+    }
+
+    58.33% {
+        content: "👩🏽‍💻";
+    }
+
+    66.67% {
+        content: "👨🏽‍💻";
+    }
+
+    75.00% {
+        content: "👩🏾‍💻";
+    }
+
+    83.33% {
+        content: "👨🏾‍💻";
+    }
+
+    91.67% {
+        content: "👩🏿‍💻";
+    }
+
+    100.00% {
+        content: "👨🏿‍💻";
+    }
 }

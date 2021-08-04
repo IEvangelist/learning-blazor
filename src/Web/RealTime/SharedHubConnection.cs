@@ -17,24 +17,27 @@ using Microsoft.Extensions.Logging;
 
 namespace Learning.Blazor
 {
-    public class SingleHubConnection
+    public sealed class SharedHubConnection : IAsyncDisposable
     {
         private readonly Guid _id = Guid.NewGuid();
         private readonly IAccessTokenProvider _tokenProvider = null!;
         private readonly IConfiguration _configuration = null!;
-        private readonly ILogger<SingleHubConnection> _logger = null!;
+        private readonly ILogger<SharedHubConnection> _logger = null!;
         private readonly CultureService _cultureService = null!;
         private readonly HubConnection _hubConnection = null!;
         private readonly SemaphoreSlim _lock = new(1, 1);
         private readonly HashSet<ComponentBase> _activeComponents = new();
 
+        /// <summary>
+        /// Indicates the state of the <see cref="HubConnection"/> to the server.
+        /// </summary>
         public HubConnectionState State => _hubConnection.State;
 
-        public SingleHubConnection(
+        public SharedHubConnection(
             IAccessTokenProvider tokenProvider,
             IConfiguration configuration,
             CultureService cultureService,
-            ILogger<SingleHubConnection> logger)
+            ILogger<SharedHubConnection> logger)
         {
             (_tokenProvider, _configuration, _cultureService, _logger) =
                 (tokenProvider, configuration, cultureService, logger);
@@ -54,12 +57,49 @@ namespace Learning.Blazor
                 .WithAutomaticReconnect()
                 .AddMessagePackProtocol()
                 .Build();
+
+            _hubConnection.Closed += OnHubConnectionClosedAsync;
+            _hubConnection.Reconnected += OnHubConnectionReconnectedAsync;
+            _hubConnection.Reconnecting += OnHubConnectionReconnectingAsync;
+        }
+
+        private Task OnHubConnectionClosedAsync(Exception? exception)
+        {
+            _logger.LogInformation(
+                exception, "{Id}: Hub connection closed: {Exception}", _id, exception);
+
+            return Task.CompletedTask;
+        }
+
+        private Task OnHubConnectionReconnectedAsync(string? message)
+        {
+            _logger.LogInformation(
+                "{Id}: Hub connection reconnected: {Message}", _id, message);
+
+            return Task.CompletedTask;
+        }
+
+        private Task OnHubConnectionReconnectingAsync(Exception? exception)
+        {
+            _logger.LogInformation(
+                exception, "{Id}: Hub connection closed: {Exception}", _id, exception);
+
+            return Task.CompletedTask;
         }
 
         private async Task<string?> GetAccessTokenValueAsync()
         {
             var result = await _tokenProvider.RequestAccessToken();
-            return result.TryGetToken(out var accessToken) ? accessToken.Value : null;
+            if (result.TryGetToken(out var accessToken))
+            {
+                return accessToken.Value;
+            }
+
+            _logger.LogWarning(
+                "Unable to get the access token. '{Status}' - Return URL: {Url}",
+                result.Status, result.RedirectUrl);
+
+            return null;
         }
 
         public async Task StartAsync(ComponentBase component, CancellationToken token = default)
@@ -166,5 +206,23 @@ namespace Learning.Blazor
         public IDisposable SubscribeToMessageReceived(
             Func<Notification<ActorMessage>, Task> onMessageReceived) =>
             _hubConnection.On(HubServerEventNames.MessageReceived, onMessageReceived);
+
+        async ValueTask IAsyncDisposable.DisposeAsync()
+        {
+            if (_hubConnection is not null)
+            {
+                _hubConnection.Closed -= OnHubConnectionClosedAsync;
+                _hubConnection.Reconnected -= OnHubConnectionReconnectedAsync;
+                _hubConnection.Reconnecting -= OnHubConnectionReconnectingAsync;
+
+                await _hubConnection.StopAsync();
+                await _hubConnection.DisposeAsync();
+            }
+
+            if (_lock is not null)
+            {
+                _lock.Dispose();
+            }
+        }
     }
 }

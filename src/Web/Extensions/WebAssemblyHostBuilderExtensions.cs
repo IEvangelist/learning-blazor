@@ -59,7 +59,7 @@ namespace Learning.Blazor.Extensions
             services.AddTransient(
                 typeof(IWeatherStringFormatterService<>), typeof(WeatherStringFormatterService<>));
 
-            services.AddScoped<SingleHubConnection>();
+            services.AddScoped<SharedHubConnection>();
 
             services.AddTwitterComponent(configuration);
             services.AddLocalStorage();
