@@ -124,7 +124,7 @@
     <value>Email address</value>
   </data>
   <data name="Filter" xml:space="preserve">
-    <value>Filter</value>
+    <value>Apply filter</value>
   </data>
   <data name="InvalidEmailAddress" xml:space="preserve">
     <value>This email is invalid</value>

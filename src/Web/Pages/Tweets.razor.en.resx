@@ -120,6 +120,9 @@
   <data name="Disconnected" xml:space="preserve">
     <value>Disconnected</value>
   </data>
+  <data name="Live" xml:space="preserve">
+    <value>Live</value>
+  </data>
   <data name="TwitterFeed" xml:space="preserve">
     <value>Twitter Feed</value>
   </data>

@@ -117,13 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Home" xml:space="preserve">
-    <value>Home</value>
-  </data>
-  <data name="NotFound" xml:space="preserve">
-    <value>404 - page not found</value>
-  </data>
-  <data name="NotSureWhatYouAreLookingFor" xml:space="preserve">
-    <value>I'm not sure what you're looking for, but it's not here.</value>
+  <data name="CurrentWeatherVisual" xml:space="preserve">
+    <value>The current weather visual indicator, such as a cloud, sun, or rain icon.</value>
   </data>
 </root>
