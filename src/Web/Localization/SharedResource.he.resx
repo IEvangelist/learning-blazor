@@ -58,6 +58,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Cancel" xml:space="preserve">
+    <value>ביטל</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>לאשר</value>
+  </data>
+  <data name="Dismiss" xml:space="preserve">
+    <value>בטל</value>
+  </data>
   <data name="East" xml:space="preserve">
     <value>מזרח</value>
   </data>
@@ -72,6 +81,9 @@
   </data>
   <data name="Northwest" xml:space="preserve">
     <value>מערב</value>
+  </data>
+  <data name="Okay" xml:space="preserve">
+    <value>בסדר</value>
   </data>
   <data name="South" xml:space="preserve">
     <value>דרום</value>

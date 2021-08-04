@@ -58,6 +58,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Cancel" xml:space="preserve">
+    <value>취소</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>확인하다</value>
+  </data>
+  <data name="Dismiss" xml:space="preserve">
+    <value>해고하다</value>
+  </data>
   <data name="East" xml:space="preserve">
     <value>동쪽</value>
   </data>
@@ -72,6 +81,9 @@
   </data>
   <data name="Northwest" xml:space="preserve">
     <value>북서</value>
+  </data>
+  <data name="Okay" xml:space="preserve">
+    <value>그래</value>
   </data>
   <data name="South" xml:space="preserve">
     <value>남쪽</value>
