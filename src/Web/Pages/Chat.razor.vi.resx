@@ -61,6 +61,9 @@
   <data name="ChatMessage" xml:space="preserve">
     <value>Tin nhắn trò chuyện</value>
   </data>
+  <data name="Messages" xml:space="preserve">
+    <value>Thư</value>
+  </data>
   <data name="MultiplePeopleAreTyping" xml:space="preserve">
     <value>Nhiều người đang gõ.</value>
   </data>

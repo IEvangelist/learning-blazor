@@ -73,6 +73,9 @@
   <data name="FilterTweets" xml:space="preserve">
     <value>กรองทวีต</value>
   </data>
+  <data name="Loading" xml:space="preserve">
+    <value>กําลังโหลด โปรดรอสักครู่</value>
+  </data>
   <data name="North" xml:space="preserve">
     <value>เหนือ</value>
   </data>

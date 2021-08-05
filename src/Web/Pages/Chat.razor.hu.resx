@@ -61,6 +61,9 @@
   <data name="ChatMessage" xml:space="preserve">
     <value>Csevegőüzenet</value>
   </data>
+  <data name="Messages" xml:space="preserve">
+    <value>Üzenetek</value>
+  </data>
   <data name="MultiplePeopleAreTyping" xml:space="preserve">
     <value>Többen gépelnek.</value>
   </data>

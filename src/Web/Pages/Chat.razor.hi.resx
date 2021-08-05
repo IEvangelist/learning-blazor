@@ -61,6 +61,9 @@
   <data name="ChatMessage" xml:space="preserve">
     <value>चैट संदेश</value>
   </data>
+  <data name="Messages" xml:space="preserve">
+    <value>संदेश</value>
+  </data>
   <data name="MultiplePeopleAreTyping" xml:space="preserve">
     <value>कई लोग टाइप कर रहे हैं।</value>
   </data>

@@ -61,6 +61,9 @@
   <data name="ChatMessage" xml:space="preserve">
     <value>Keskusteluviesti</value>
   </data>
+  <data name="Messages" xml:space="preserve">
+    <value>Viestit</value>
+  </data>
   <data name="MultiplePeopleAreTyping" xml:space="preserve">
     <value>Useat ihmiset kirjoittavat.</value>
   </data>

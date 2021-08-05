@@ -73,6 +73,9 @@
   <data name="FilterTweets" xml:space="preserve">
     <value>Фільтрування твітів</value>
   </data>
+  <data name="Loading" xml:space="preserve">
+    <value>Loading... Зачекайте.</value>
+  </data>
   <data name="North" xml:space="preserve">
     <value>Північ</value>
   </data>

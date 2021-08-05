@@ -61,6 +61,9 @@
   <data name="ChatMessage" xml:space="preserve">
     <value>Kletsboodskap</value>
   </data>
+  <data name="Messages" xml:space="preserve">
+    <value>Boodskappe</value>
+  </data>
   <data name="MultiplePeopleAreTyping" xml:space="preserve">
     <value>Veelvuldige mense tik.</value>
   </data>

@@ -61,6 +61,9 @@
   <data name="ChatMessage" xml:space="preserve">
     <value>Sohbet mesajı</value>
   </data>
+  <data name="Messages" xml:space="preserve">
+    <value>Ileti</value>
+  </data>
   <data name="MultiplePeopleAreTyping" xml:space="preserve">
     <value>Birden çok kişi yazıyor.</value>
   </data>

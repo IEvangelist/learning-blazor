@@ -73,6 +73,9 @@
   <data name="FilterTweets" xml:space="preserve">
     <value>فیلتر توییت</value>
   </data>
+  <data name="Loading" xml:space="preserve">
+    <value>بارگیری، لطفا صبر کنید.</value>
+  </data>
   <data name="North" xml:space="preserve">
     <value>شمال</value>
   </data>

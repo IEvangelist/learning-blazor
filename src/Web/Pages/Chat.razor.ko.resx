@@ -61,6 +61,9 @@
   <data name="ChatMessage" xml:space="preserve">
     <value>채팅 메시지</value>
   </data>
+  <data name="Messages" xml:space="preserve">
+    <value>메시지</value>
+  </data>
   <data name="MultiplePeopleAreTyping" xml:space="preserve">
     <value>여러 사람이 입력하고 있습니다.</value>
   </data>
