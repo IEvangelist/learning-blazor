@@ -1,14 +1,11 @@
-﻿@using Microsoft.AspNetCore.Components.Authorization
-@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
-
-@inject NavigationManager Navigation
+﻿@inherits LocalizableComponentBase<LoginDisplay>
 @inject SignOutSessionStateManager SignOutManager
 
 <span class="navbar-item">
     <AuthorizeView>
         <Authorizing>
             <button class="button is-rounded is-loading level-item" disabled>
-                Logging in
+                @localize["LoggingIn"]
             </button>
         </Authorizing>
         <Authorized>
@@ -17,7 +14,7 @@
                 <span class="icon">
                     <i class="fas fa-sign-out-alt"></i>
                 </span>
-                <span>Log out</span>
+                <span>@localize["LogOut"]</span>
             </button>
         </Authorized>
         <NotAuthorized>
@@ -25,19 +22,17 @@
                 <span class="icon">
                     <i class="fas fa-sign-in-alt"></i>
                 </span>
-                <span>Log in</span>
+                <span>@localize["LogIn"]</span>
             </button>
         </NotAuthorized>
     </AuthorizeView>
 </span>
 
 @code {
-    private void OnLogIn(MouseEventArgs args)
-    {
+    void OnLogIn(MouseEventArgs args) =>
         Navigation.NavigateTo("authentication/login", true);
-    }
 
-    private async Task OnLogOut(MouseEventArgs args)
+    async Task OnLogOut(MouseEventArgs args)
     {
         await SignOutManager.SetSignOutState();
         Navigation.NavigateTo("authentication/logout");

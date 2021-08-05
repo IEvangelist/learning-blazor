@@ -1,9 +1,18 @@
-﻿<img src="media/blazor-logo.png" class="blazor-logo mb-5" />
+﻿@inherits LocalizableComponentBase<LoadingIndicator>
+
+<img src="media/blazor-logo.png" class="blazor-logo mb-5" />
 <div class="fa-3x is-family-code">
     @Message <i class="fas fa-sync fa-spin"></i>
 </div>
 
 @code {
+
+    string? _message;
+
     [Parameter]
-    public string Message { get; set; } = "Loading, please wait...";
+    public string? Message
+    {
+        get => _message ?? localize["Loading"];
+        set => _message = value;
+    }
 }

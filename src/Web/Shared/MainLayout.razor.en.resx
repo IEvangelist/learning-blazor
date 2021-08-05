@@ -121,9 +121,9 @@
     <value>Home</value>
   </data>
   <data name="LoggingIn" xml:space="preserve">
-    <value>Logging in, please wait...</value>
+    <value>Logging in, please wait.</value>
   </data>
   <data name="LoggingOut" xml:space="preserve">
-    <value>Logging out, please wait...</value>
+    <value>Logging out, please wait.</value>
   </data>
 </root>

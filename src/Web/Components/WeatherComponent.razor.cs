@@ -12,6 +12,7 @@ using Learning.Blazor.Models;
 using Learning.Blazor.Services;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+using Microsoft.Extensions.Logging;
 
 namespace Learning.Blazor.Components
 {
@@ -75,17 +76,25 @@ namespace Learning.Blazor.Components
                 Units = unit
             };
 
-            using var response = await Http.PostAsJsonAsync("api/weather/latest", request);
-            var weatherDetails =
-                await response.Content.ReadFromJsonAsync<WeatherDetails?>(
-                    DefaultJsonSerialization.Options);
-            if (weatherDetails is not null)
+            try
             {
-                _model = new WeatherComponentModel<WeatherComponent>(weatherDetails, Formatter);
-                _state = ComponentState.Loaded;
+                using var response = await Http.PostAsJsonAsync("api/weather/latest", request);
+                var weatherDetails =
+                    await response.Content.ReadFromJsonAsync<WeatherDetails?>(
+                        DefaultJsonSerialization.Options);
+                if (weatherDetails is not null)
+                {
+                    _model = new WeatherComponentModel<WeatherComponent>(weatherDetails, Formatter);
+                    _state = ComponentState.Loaded;
+                }
+                else
+                {
+                    _state = ComponentState.Error;
+                }
             }
-            else
+            catch (Exception ex)
             {
+                Logger.LogError(ex, ex.Message);
                 _state = ComponentState.Error;
             }
 

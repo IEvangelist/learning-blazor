@@ -8,10 +8,11 @@
         </span>
     </button>
     @{
-        var count = _notifications?.Count(notification => !notification.IsDismissed);
-        if (count > 0)
+        if (_notifications?.Any(notification => !notification.IsDismissed) ?? false)
         {
-            <span class="badge is-success" style="right: .8rem; top: .8rem;">@count</span>
+            <span class="badge is-success" style="right: .8rem; top: .8rem;">
+                @_notifications.Count
+            </span>
         }
     }
 </span>
