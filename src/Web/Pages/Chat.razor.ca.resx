@@ -61,6 +61,9 @@
   <data name="ChatMessage" xml:space="preserve">
     <value>Missatge de xat</value>
   </data>
+  <data name="Messages" xml:space="preserve">
+    <value>Missatges</value>
+  </data>
   <data name="MultiplePeopleAreTyping" xml:space="preserve">
     <value>Hi ha diverses persones que estan escrivint.</value>
   </data>

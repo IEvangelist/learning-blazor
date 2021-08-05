@@ -61,6 +61,9 @@
   <data name="ChatMessage" xml:space="preserve">
     <value>Zpráva chatu</value>
   </data>
+  <data name="Messages" xml:space="preserve">
+    <value>zprávy</value>
+  </data>
   <data name="MultiplePeopleAreTyping" xml:space="preserve">
     <value>Píše více lidí.</value>
   </data>

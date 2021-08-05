@@ -73,6 +73,9 @@
   <data name="FilterTweets" xml:space="preserve">
     <value>Filtrar tweets</value>
   </data>
+  <data name="Loading" xml:space="preserve">
+    <value>Cargando, por favor espere.</value>
+  </data>
   <data name="North" xml:space="preserve">
     <value>Norte</value>
   </data>

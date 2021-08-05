@@ -58,6 +58,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Notifications" xml:space="preserve">
+    <value>通知</value>
+  </data>
   <data name="UpdatedOnFormat" xml:space="preserve">
     <value>更新於{1}的{0}</value>
   </data>

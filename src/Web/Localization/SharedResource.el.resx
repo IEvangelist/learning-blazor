@@ -73,6 +73,9 @@
   <data name="FilterTweets" xml:space="preserve">
     <value>Τιτιβίσματα φίλτρων</value>
   </data>
+  <data name="Loading" xml:space="preserve">
+    <value>Φορτώστε, παρακαλώ περιμένετε.</value>
+  </data>
   <data name="North" xml:space="preserve">
     <value>Βόρεια</value>
   </data>

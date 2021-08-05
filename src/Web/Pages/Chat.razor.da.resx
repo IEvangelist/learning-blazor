@@ -61,6 +61,9 @@
   <data name="ChatMessage" xml:space="preserve">
     <value>Chatbesked</value>
   </data>
+  <data name="Messages" xml:space="preserve">
+    <value>Meddelelser</value>
+  </data>
   <data name="MultiplePeopleAreTyping" xml:space="preserve">
     <value>Flere personer skriver.</value>
   </data>

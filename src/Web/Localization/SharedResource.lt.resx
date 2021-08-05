@@ -73,6 +73,9 @@
   <data name="FilterTweets" xml:space="preserve">
     <value>Filtruoti Tweets</value>
   </data>
+  <data name="Loading" xml:space="preserve">
+    <value>Pakrovimas, palaukite.</value>
+  </data>
   <data name="North" xml:space="preserve">
     <value>Į šiaurę</value>
   </data>

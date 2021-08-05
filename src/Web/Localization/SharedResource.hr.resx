@@ -73,6 +73,9 @@
   <data name="FilterTweets" xml:space="preserve">
     <value>Filtriranje tweetova</value>
   </data>
+  <data name="Loading" xml:space="preserve">
+    <value>Učitavanje, pričekajte.</value>
+  </data>
   <data name="North" xml:space="preserve">
     <value>Sjever</value>
   </data>

@@ -61,6 +61,9 @@
   <data name="ChatMessage" xml:space="preserve">
     <value>Μήνυμα συνομιλίας</value>
   </data>
+  <data name="Messages" xml:space="preserve">
+    <value>Μηνύματα</value>
+  </data>
   <data name="MultiplePeopleAreTyping" xml:space="preserve">
     <value>Πολλά άτομα πληκτρολογούν.</value>
   </data>

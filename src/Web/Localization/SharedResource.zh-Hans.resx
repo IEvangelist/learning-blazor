@@ -73,6 +73,9 @@
   <data name="FilterTweets" xml:space="preserve">
     <value>过滤推文</value>
   </data>
+  <data name="Loading" xml:space="preserve">
+    <value>加载，请等待。</value>
+  </data>
   <data name="North" xml:space="preserve">
     <value>北</value>
   </data>

@@ -73,6 +73,9 @@
   <data name="FilterTweets" xml:space="preserve">
     <value>Filtrovat tweety</value>
   </data>
+  <data name="Loading" xml:space="preserve">
+    <value>Načítejte, počkejte prosím.</value>
+  </data>
   <data name="North" xml:space="preserve">
     <value>Sever</value>
   </data>

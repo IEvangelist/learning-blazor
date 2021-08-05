@@ -61,6 +61,9 @@
   <data name="ChatMessage" xml:space="preserve">
     <value>Съобщение в чата</value>
   </data>
+  <data name="Messages" xml:space="preserve">
+    <value>Съобщения</value>
+  </data>
   <data name="MultiplePeopleAreTyping" xml:space="preserve">
     <value>Няколко души са пишат.</value>
   </data>

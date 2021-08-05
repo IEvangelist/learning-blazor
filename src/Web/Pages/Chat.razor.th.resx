@@ -61,6 +61,9 @@
   <data name="ChatMessage" xml:space="preserve">
     <value>ข้อความแชท</value>
   </data>
+  <data name="Messages" xml:space="preserve">
+    <value>ข้อความ</value>
+  </data>
   <data name="MultiplePeopleAreTyping" xml:space="preserve">
     <value>มีหลายคนกําลังพิมพ์</value>
   </data>
