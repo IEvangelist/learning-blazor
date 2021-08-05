@@ -60,7 +60,7 @@ namespace Learning.Blazor.Api.Controllers
                         languageService.GetWeatherLanguages();
 
                     var applicableCultures =
-                        cultutes!.Translation.Where(t => weatherLanguages.Any(wl => wl.TwoLetterISO == t.Key))
+                        cultutes!.Translation.Where(t => weatherLanguages.Any(wl => wl.WeatherLanguageId == t.Key))
                             .ToDictionary(t => t.Key, t => t.Value);
 
                     return cultutes! with
