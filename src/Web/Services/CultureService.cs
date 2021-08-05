@@ -66,8 +66,6 @@ namespace Learning.Blazor.Services
                                 "Unable to find cultures for lang: {Key} - from: {Source}",
                                 group.Key, string.Join(", ", cultures.Select(c => c.Name)));
                         }
-
-                        continue;
                     }
                 }
             }

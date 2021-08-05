@@ -6,7 +6,7 @@ using System.Text.Json.Serialization;
 namespace Learning.Blazor.Models
 {
     public record WeatherLanguage(
-        [property: JsonPropertyName("twoLetterISO")] string TwoLetterISO,
+        [property: JsonPropertyName("weatherLangauageId")] string WeatherLanguageId,
         [property: JsonPropertyName("name")] string Name,
-        [property: JsonPropertyName("bcp47Tag")] string Bcp47Tag);
+        [property: JsonPropertyName("azureCultureId")] string AzureCultureId);
 }

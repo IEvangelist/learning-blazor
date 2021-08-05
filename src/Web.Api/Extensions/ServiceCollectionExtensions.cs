@@ -21,6 +21,7 @@ namespace Learning.Blazor.Api.Extensions
         internal static IServiceCollection AddApiServices(
             this IServiceCollection services, IConfiguration configuration)
         {
+            services.AddResponseCaching();
             services.AddHttpClient(); // Adds IHttpClientFactory, untyped and unnamed.
 
             AddPwnedHttpClient(

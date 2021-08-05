@@ -40,13 +40,7 @@ namespace Learning.Blazor.Api.Services
                         await _httpClient.GetFromJsonAsync<WeatherDetails>(
                             requestUrl, DefaultJsonSerialization.Options);
 
-                    // We need to ensure that the weather details model and return their measurement system.
-                    if (details is not null)
-                    {
-                        details.MeasurementSystem = request.Units;
-                    }
-
-                    return details!;
+                    return details! with { MeasurementSystem = request.Units };
                 });
 
         ValueTask IAsyncDisposable.DisposeAsync() =>

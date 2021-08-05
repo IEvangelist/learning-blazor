@@ -1,10 +1,14 @@
 ﻿@page "/authentication/{action}"
-@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@inherits LocalizableComponentBase<Authentication>
 
-<div class="is-size-4">
-    <RemoteAuthenticatorView Action="@Action" />
+<div class="is-size-3">
+    <RemoteAuthenticatorView
+        Action=@Action
+        LoggingIn=@LocalizedLoginFragement
+        LogOut=@LocalizedLogOutFragment
+        LogOutSucceeded=@LocalizedLoggedOutFragment
+        CompletingLogOut=@LocalizedLogOutCallbackFragment
+        CompletingLoggingIn=@LocalizedLogInCallbackFragment
+        LogInFailed=@LocalizedLogInFailedFragment
+        LogOutFailed=@LocalizedLogOutFailedFragment />
 </div>
-
-@code{
-    [Parameter] public string? Action { get; set; } = null!;
-}

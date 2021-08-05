@@ -47,7 +47,13 @@ namespace Learning.Blazor.Api.Controllers
             return new JsonResult(weatherDetails, DefaultJsonSerialization.Options);
         }
 
-        [HttpGet, Route("languages")]
+        [
+            HttpGet,
+            Route("languages"),
+            ResponseCache(
+                Duration = 259_200, /* three days in seconds */
+                Location = ResponseCacheLocation.Client)
+        ]
         public IActionResult Languages([FromServices] WeatherLanguageService languageService) =>
             new JsonResult(languageService.GetWeatherLanguages());
     }

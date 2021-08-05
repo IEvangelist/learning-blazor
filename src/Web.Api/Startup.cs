@@ -101,7 +101,7 @@ namespace Learning.Blazor.Api
             }
 
             app.UseHttpsRedirection();
-
+            app.UseResponseCaching();
             app.UseRouting();
             app.UseCors(CorsPolicy);
 

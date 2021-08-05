@@ -13,6 +13,7 @@ using Learning.Blazor.Services;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using Microsoft.Extensions.Logging;
+using System.Linq;
 
 namespace Learning.Blazor.Components
 {
@@ -68,16 +69,25 @@ namespace Learning.Blazor.Components
             var lang = Culture.CurrentCulture.TwoLetterISOLanguageName;
             var unit = Culture.MeasurementSystem;
 
-            WeatherRequest request = new()
-            {
-                Language = lang,
-                Latitude = latitude,
-                Longitude = longitude,
-                Units = unit
-            };
-
             try
             {
+                var weatherLanguages =
+                    await Http.GetFromJsonAsync<WeatherLanguage[]>("api/weather/languages");
+
+                var weatherLanguage =
+                    weatherLanguages
+                        ?.FirstOrDefault(language => language.AzureCultureId == lang)
+                        ?.WeatherLanguageId
+                    ?? "en";
+
+                WeatherRequest request = new()
+                {
+                    Language = weatherLanguage,
+                    Latitude = latitude,
+                    Longitude = longitude,
+                    Units = unit
+                };
+
                 using var response = await Http.PostAsJsonAsync("api/weather/latest", request);
                 var weatherDetails =
                     await response.Content.ReadFromJsonAsync<WeatherDetails?>(

@@ -16,15 +16,12 @@ namespace Learning.Blazor.Models
         /// <summary>
         /// Returns the Azure Function URL for weather, after appling format value replacement.
         /// </summary>
-        public string ToFormattedUrl(string weatherFunctionUrlFormat)
-        {
+        public string ToFormattedUrl(string weatherFunctionUrlFormat) =>
             // Example: ".../api/currentweather/{lang}/{latitude}/{longitude}/{units}"
-
-            return weatherFunctionUrlFormat
+            weatherFunctionUrlFormat
                 .Replace("{lang}", Language)
                 .Replace("{latitude}", Latitude.ToString())
                 .Replace("{longitude}", Longitude.ToString())
                 .Replace("{units}", Units.ToString());
-        }
     }
 }
