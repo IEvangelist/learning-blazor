@@ -15,7 +15,7 @@ namespace Learning.Blazor.ComponentModels
         private readonly CurrentWeather _currentWeather;
         private readonly DailyWeather _todaysDaily;
         private readonly WeatherWordingAndIcon _weather;
-
+        private readonly GeoCode _geoCode;
         private readonly IWeatherStringFormatterService<T> _weatherStringFormatter;
 
         public string ImagePath => $"media/weather/{_weather?.ToImageName() ?? "01"}.png";
@@ -29,15 +29,20 @@ namespace Learning.Blazor.ComponentModels
         public double WindSpeed => _currentWeather.WindSpeed;
         public int WindDegree => _currentWeather.WindDegree;
         public IReadOnlyList<DailyWeather> DailyWeather => _weatherDetails.Daily.Skip(1).ToList().AsReadOnly();
+        public string City => _geoCode.City;
+        public string State => _geoCode.PrincipalSubdivision;
+        public string Country => _geoCode.CountryCode;
 
         public WeatherComponentModel(
             WeatherDetails weatherDetails,
+            GeoCode geoCode,
             IWeatherStringFormatterService<T> weatherStringFormatter)
         {
             _weatherDetails = weatherDetails;
             _weather = _weatherDetails.Current.Weather[0];
             _currentWeather = _weatherDetails.Current;
             _todaysDaily = _weatherDetails.Daily[0];
+            _geoCode = geoCode;
             _weatherStringFormatter = weatherStringFormatter;
         }
 

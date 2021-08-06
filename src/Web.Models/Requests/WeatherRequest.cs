@@ -11,7 +11,7 @@ namespace Learning.Blazor.Models
         [JsonPropertyName("lat")] public decimal Latitude { get; init; }
         [JsonPropertyName("lon")] public decimal Longitude { get; init; }
         [JsonPropertyName("units")] public MeasurementSystem Units { get; init; }
-        [JsonIgnore] public string Key => $"{Language}:{Latitude}:{Longitude}:{Units}";
+        [JsonIgnore] public string Key => $"WR:{Language}:{Latitude}:{Longitude}:{Units}";
 
         /// <summary>
         /// Returns the Azure Function URL for weather, after appling format value replacement.

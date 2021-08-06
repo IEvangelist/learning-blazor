@@ -13,16 +13,21 @@
                         </figure>
                     </div>
                     <div class="media-content">
-                        <div class="content has-text-left">
+                        <div class="content has-text-right">
                             <div>
                                 <span class="title">@weather.Temperature</span>
-                                <span class="heading">@(weather.HighTemp) | @(weather.LowTemp)</span>
+                                <span class="heading">
+                                    <i class="fas fa-arrow-up"></i> @(weather.HighTemp) | <i class="fas fa-arrow-down"></i> @(weather.LowTemp)
+                                </span>
                                 <span class="heading">@weather.Description</span>
                                 <span class="heading"><i class="fas fa-wind"></i> @weather.WindSpeed <sup>@(localize[weather.WindDegree.ToVerboseCardinal()])</sup></span>
                             </div>
                         </div>
                     </div>
                 </article>
+                <div class="has-text-centered">
+                    @($"{weather.City}, {weather.State} ({weather.Country})")
+                </div>
             </div>
         </div>
         <div class="column">
@@ -38,8 +43,14 @@
                                 </figure>
                             </p>
                             <p class="heading">@daily.Weather[0].Main</p>
-                            <p class="heading has-text-weight-bold">@weather.GetDailyHigh(daily)</p>
-                            <p class="heading has-text-weight-bold">@weather.GetDailyLow(daily)</p>
+                            <p class="heading has-text-weight-bold">
+                                <i class="fas fa-arrow-up"></i>
+                                @weather.GetDailyHigh(daily)
+                            </p>
+                            <p class="heading has-text-weight-bold">
+                                <i class="fas fa-arrow-down"></i>
+                                @weather.GetDailyLow(daily)
+                            </p>
                         </div>
                     </div>
                 }

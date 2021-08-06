@@ -54,10 +54,17 @@ namespace Learning.Blazor.Extensions
 
             services.AddSingleton<CultureService>();
             services.AddSingleton(typeof(CoalescingStringLocalizer<>));
-            services.AddTransient<TemperatureUnitConversionService>();
-            services.AddTransient<SpeedUnitConversionService>();
-            services.AddTransient(
+            services.AddScoped<TemperatureUnitConversionService>();
+            services.AddScoped<SpeedUnitConversionService>();
+            services.AddScoped(
                 typeof(IWeatherStringFormatterService<>), typeof(WeatherStringFormatterService<>));
+
+            services.AddScoped<GeoLocationService>();
+            services.AddHttpClient<GeoLocationService>(client =>
+            {
+                client.BaseAddress = new Uri("https://api.bigdatacloud.net/data/reverse-geocode-client");
+                client.DefaultRequestHeaders.AcceptEncoding.ParseAdd("gzip");
+            });
 
             services.AddScoped<SharedHubConnection>();
 

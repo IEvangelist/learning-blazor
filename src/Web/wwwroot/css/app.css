@@ -28,12 +28,18 @@ html {
     overflow: auto;
 }
 
-#index {
-    /*max-height:*/
+.is-blazor-bg {
+    background-image: linear-gradient(to bottom, var(--dotnet-purple-primary), var(--dotnet-purple-dark));
+    color: #fff;
 }
 
-.is-blazor-bg {
-    background-color: var(--dotnet-purple-primary);
+.is-jokes-bg {
+    background-image: linear-gradient(to bottom, hsl(204, 86%, 53%), hsl(220, 96%, 45%));
+    color: #fff;
+}
+
+.is-welcome-bg {
+    background-image: linear-gradient(to bottom, hsl(348, 100%, 61%), hsl(360, 100%, 45%));
     color: #fff;
 }
 
@@ -50,11 +56,6 @@ html {
 .image {
     object-fit: contain;
 }
-
-/*    .image.is-dark {
-        background-color: #363636;
-    }*/
-
 
 .is-unselectable {
     cursor: not-allowed;

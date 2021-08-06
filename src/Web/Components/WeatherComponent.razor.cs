@@ -20,6 +20,7 @@ namespace Learning.Blazor.Components
     public sealed partial class WeatherComponent : IDisposable
     {
         private Coordinates _coordinates = null!;
+        private GeoCode? _geoCode = null!;
         private WeatherComponentModel<WeatherComponent>? _model = null!;
         private ComponentState _state;
         private Timer _timer = null!;
@@ -29,6 +30,9 @@ namespace Learning.Blazor.Components
 
         [Inject]
         public HttpClient Http { get; set; } = null!;
+
+        [Inject]
+        public GeoLocationService GeoLocationService { get; set; } = null!;
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
@@ -74,27 +78,42 @@ namespace Learning.Blazor.Components
                 var weatherLanguages =
                     await Http.GetFromJsonAsync<WeatherLanguage[]>("api/weather/languages");
 
-                var weatherLanguage =
+                var requestLanguage =
                     weatherLanguages
                         ?.FirstOrDefault(language => language.AzureCultureId == lang)
                         ?.WeatherLanguageId
                     ?? "en";
 
-                WeatherRequest request = new()
+                WeatherRequest weatherRequest = new()
                 {
-                    Language = weatherLanguage,
+                    Language = requestLanguage,
                     Latitude = latitude,
                     Longitude = longitude,
                     Units = unit
                 };
 
-                using var response = await Http.PostAsJsonAsync("api/weather/latest", request);
+                using var response = await Http.PostAsJsonAsync("api/weather/latest", weatherRequest);
                 var weatherDetails =
                     await response.Content.ReadFromJsonAsync<WeatherDetails?>(
                         DefaultJsonSerialization.Options);
-                if (weatherDetails is not null)
+
+                if (_geoCode is null)
                 {
-                    _model = new WeatherComponentModel<WeatherComponent>(weatherDetails, Formatter);
+                    GeoCodeRequest geoCodeRequest = new()
+                    {
+                        Language = requestLanguage,
+                        Latitude = latitude,
+                        Longitude = longitude,
+                    };
+
+                    _geoCode =
+                        await GeoLocationService.GetGeoCodeAsync(geoCodeRequest);
+                }
+
+                if (weatherDetails is not null && _geoCode is not null)
+                {
+                    _model = new WeatherComponentModel<WeatherComponent>(
+                        weatherDetails, _geoCode, Formatter);
                     _state = ComponentState.Loaded;
                 }
                 else

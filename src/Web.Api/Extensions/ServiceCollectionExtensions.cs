@@ -37,7 +37,7 @@ namespace Learning.Blazor.Api.Extensions
                 configuration["PwnedOptions:ApiKey"],
                 isPlainText: true).AddTransientHttpErrorPolicy(GetRetryPolicy);
 
-            services.AddTransient<PwnedService>();
+            services.AddScoped<PwnedService>();
             services.Configure<PwnedOptions>(
                 configuration.GetSection(nameof(PwnedOptions)));
 

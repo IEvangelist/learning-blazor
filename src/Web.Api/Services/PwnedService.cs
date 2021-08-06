@@ -54,7 +54,7 @@ namespace Learning.Blazor.Api.Services
                     await _apiClient.GetFromJsonAsync<BreachDetails>(
                         $"breach/{breachName}");
 
-                return breach!;
+                return breach;
             }
             catch (Exception ex)
             {
