@@ -37,10 +37,9 @@ namespace Learning.Blazor.Components
                 _supportedCultures =
                     Culture.MapClientSupportedCultures(azureCultures?.Translation);
             }
-            catch (Exception ex) when (Debugger.IsAttached)
+            catch (Exception ex)
             {
                 Logger.LogError(ex, ex.Message, ex.StackTrace);
-                Debugger.Break();
             }
         }
 

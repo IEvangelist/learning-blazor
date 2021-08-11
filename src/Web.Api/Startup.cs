@@ -47,9 +47,11 @@ namespace Learning.Blazor.Api
             services.AddCors(
                 options => options.AddPolicy(
                     name: CorsPolicy,
-                    builder => builder.AllowAnyOrigin()
+                    builder => builder.WithOrigins(
+                        "https://localhost:5001", _configuration["WebClientOrigin"])
                     .AllowAnyMethod()
-                    .AllowAnyHeader()));
+                    .AllowAnyHeader()
+                    .AllowCredentials()));
 
             services.AddControllers();
             services.AddSwaggerGen(options =>
@@ -101,10 +103,9 @@ namespace Learning.Blazor.Api
             }
 
             app.UseHttpsRedirection();
+            app.UseCors(CorsPolicy);
             app.UseResponseCaching();
             app.UseRouting();
-            app.UseCors(CorsPolicy);
-
             app.UseResponseCompression();
 
             var localizationOptions = new RequestLocalizationOptions()
