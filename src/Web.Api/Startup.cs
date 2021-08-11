@@ -5,6 +5,7 @@ using System;
 using System.Linq;
 using System.Net.Mime;
 using Learning.Blazor.Api.Extensions;
+using Learning.Blazor.Api.Http;
 using Learning.Blazor.Api.Hubs;
 using Learning.Blazor.Api.Localization;
 using Learning.Blazor.Extensions;
@@ -22,8 +23,6 @@ namespace Learning.Blazor.Api
 {
     public class Startup
     {
-        const string CorsPolicy = nameof(CorsPolicy);
-
         readonly IConfiguration _configuration;
 
         public Startup(IConfiguration configuration) => _configuration = configuration;
@@ -46,7 +45,7 @@ namespace Learning.Blazor.Api
 
             services.AddCors(
                 options => options.AddPolicy(
-                    name: CorsPolicy,
+                    name: CorsPolicyName.DefaultName,
                     builder => builder.WithOrigins(
                         "https://localhost:5001", _configuration["WebClientOrigin"])
                     .AllowAnyMethod()
@@ -111,7 +110,7 @@ namespace Learning.Blazor.Api
 
             app.UseRequestLocalization(localizationOptions);
 
-            app.UseCors(CorsPolicy);
+            app.UseCors(CorsPolicyName.DefaultName);
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseResponseCaching();

@@ -8,10 +8,12 @@ using System.Net.Http.Json;
 using System.Net.Mime;
 using System.Threading.Tasks;
 using Learning.Blazor.Api.Extensions;
+using Learning.Blazor.Api.Http;
 using Learning.Blazor.Api.Services;
 using Learning.Blazor.Extensions;
 using Learning.Blazor.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Identity.Web.Resource;
@@ -20,6 +22,7 @@ namespace Learning.Blazor.Api.Controllers
 {
     [
         Authorize,
+        EnableCors(CorsPolicyName.DefaultName),
         RequiredScope(new[] { "User.ApiAccess" }),
         ApiController,
         Route("api/cultures")

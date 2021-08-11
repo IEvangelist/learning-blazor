@@ -1,13 +1,13 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
-using Learning.Blazor.Api.Hubs;
+using Learning.Blazor.Api.Http;
 using Learning.Blazor.Api.Services;
 using Learning.Blazor.Extensions;
 using Learning.Blazor.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Logging;
 using Microsoft.Identity.Web.Resource;
 using System;
@@ -18,6 +18,7 @@ namespace Learning.Blazor.Api.Controllers
 {
     [
         Authorize,
+        EnableCors(CorsPolicyName.DefaultName),
         RequiredScope(new[] { "User.ApiAccess" }),
         ApiController,
         Route("api/weather")
