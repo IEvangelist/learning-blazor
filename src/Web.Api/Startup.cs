@@ -103,11 +103,7 @@ namespace Learning.Blazor.Api
             }
 
             app.UseHttpsRedirection();
-            app.UseCors(CorsPolicy);
-            app.UseResponseCaching();
             app.UseRouting();
-            app.UseResponseCompression();
-
             var localizationOptions = new RequestLocalizationOptions()
                 .SetDefaultCulture(Cultures.Default)
                 .AddSupportedCultures(Cultures.Supported)
@@ -115,15 +111,16 @@ namespace Learning.Blazor.Api
 
             app.UseRequestLocalization(localizationOptions);
 
+            app.UseCors(CorsPolicy);
             app.UseAuthentication();
             app.UseAuthorization();
+            app.UseResponseCaching();
+            app.UseResponseCompression();
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers()
-                    .RequireCors(CorsPolicy);
-                endpoints.MapHub<NotificationHub>("/notifications")
-                    .RequireCors(CorsPolicy);
+                endpoints.MapControllers();
+                endpoints.MapHub<NotificationHub>("/notifications");
             });
         }
     }
