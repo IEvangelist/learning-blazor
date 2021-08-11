@@ -33,6 +33,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <!-- https://github.com/dotnet/aspnetcore/issues/33312#issuecomment-863609039  -->
+    <TrimmerRootAssembly Include="Microsoft.Authentication.WebAssembly.Msal" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="wwwroot\media\weather\" />
   </ItemGroup>
 
