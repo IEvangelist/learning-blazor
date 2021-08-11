@@ -119,8 +119,10 @@ namespace Learning.Blazor.Api
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
-                endpoints.MapHub<NotificationHub>("/notifications");
+                endpoints.MapControllers()
+                    .RequireCors(CorsPolicy);
+                endpoints.MapHub<NotificationHub>("/notifications")
+                    .RequireCors(CorsPolicy);
             });
         }
     }

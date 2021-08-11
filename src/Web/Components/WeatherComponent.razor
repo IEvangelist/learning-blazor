@@ -36,7 +36,7 @@
                 {
                     <div class="level-item has-text-centered">
                         <div>
-                            <p class="heading is-size-6 is-underlined">@daily.DateTime.ToString("MMM d")</p>
+                            <p class="heading is-size-6 is-underlined">@daily.DateTime.ToString("ddd")</p>
                             <p class="title">
                                 <figure class="image is-64x64">
                                     <img src=@weather.GetDailyImagePath(daily) alt="@daily.Weather[0].Description">
