@@ -2,18 +2,19 @@
 // Licensed under the MIT License.
 
 using System;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
-using System.Timers;
 using System.Threading.Tasks;
+using System.Timers;
 using Learning.Blazor.ComponentModels;
 using Learning.Blazor.Extensions;
 using Learning.Blazor.Models;
 using Learning.Blazor.Services;
 using Microsoft.AspNetCore.Components;
-using Microsoft.JSInterop;
 using Microsoft.Extensions.Logging;
-using System.Linq;
+using Microsoft.JSInterop;
+using SystemTimer = System.Timers.Timer;
 
 namespace Learning.Blazor.Components
 {
@@ -23,7 +24,7 @@ namespace Learning.Blazor.Components
         private GeoCode? _geoCode = null!;
         private WeatherComponentModel<WeatherComponent>? _model = null!;
         private ComponentState _state;
-        private Timer _timer = null!;
+        private SystemTimer _timer = null!;
 
         [Inject]
         public IWeatherStringFormatterService<WeatherComponent> Formatter { get; set; } = null!;
@@ -40,7 +41,7 @@ namespace Learning.Blazor.Components
             {
                 await TryGetClientCoordinates();
 
-                _timer = new Timer
+                _timer = new SystemTimer
                 {
                     Interval = TimeSpan.FromMinutes(10).TotalMilliseconds,
                     AutoReset = true

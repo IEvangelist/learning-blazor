@@ -10,6 +10,7 @@ using Learning.Blazor.Extensions;
 using Learning.Blazor.Models;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using SystemTimer = System.Timers.Timer;
 
 namespace Learning.Blazor.Pages
 {
@@ -18,7 +19,7 @@ namespace Learning.Blazor.Pages
         private readonly Dictionary<Guid, ActorMessage> _messages = new();
         private readonly HashSet<Actor> _usersTyping = new();
         private readonly Stack<IDisposable> _subscriptions = new();
-        private readonly Timer _debouceTimer = new()
+        private readonly SystemTimer _debouceTimer = new()
         {
             Interval = 750,
             AutoReset = false
