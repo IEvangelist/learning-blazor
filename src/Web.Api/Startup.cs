@@ -43,14 +43,14 @@ namespace Learning.Blazor.Api
             services.AddJokeServices(_configuration);
             services.AddApiServices(_configuration);
 
+            var webClientOrigin = _configuration["WebClientOrigin"];
             services.AddCors(
-                options => options.AddPolicy(
-                    name: CorsPolicyName.DefaultName,
+                options => options.AddDefaultPolicy(
                     builder => builder.WithOrigins(
-                        "https://localhost:5001", _configuration["WebClientOrigin"])
-                    .AllowAnyMethod()
-                    .AllowAnyHeader()
-                    .AllowCredentials()));
+                        "https://localhost:5001", webClientOrigin)
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .AllowCredentials()));
 
             services.AddControllers();
             services.AddSwaggerGen(options =>
@@ -103,6 +103,8 @@ namespace Learning.Blazor.Api
 
             app.UseHttpsRedirection();
             app.UseRouting();
+            app.UseCors();
+
             var localizationOptions = new RequestLocalizationOptions()
                 .SetDefaultCulture(Cultures.Default)
                 .AddSupportedCultures(Cultures.Supported)
@@ -110,7 +112,6 @@ namespace Learning.Blazor.Api
 
             app.UseRequestLocalization(localizationOptions);
 
-            app.UseCors(CorsPolicyName.DefaultName);
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseResponseCaching();

@@ -1,24 +1,26 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
-using Learning.Blazor.Api.Http;
-using Learning.Blazor.Extensions;
-using Learning.Blazor.JokeServices;
-using Learning.Blazor.Models;
-using Microsoft.AspNetCore.Cors;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using Microsoft.Identity.Web.Resource;
 using System;
 using System.Globalization;
 using System.Net.Mime;
 using System.Threading.Tasks;
+using Learning.Blazor.Extensions;
+using Learning.Blazor.JokeServices;
+using Learning.Blazor.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using Microsoft.Identity.Web.Resource;
 
 namespace Learning.Blazor.Api.Controllers
 {
     [
+        //Authorize,
+        //RequiredScope(new[] { "User.ApiAccess" }),
         ApiController,
-        EnableCors(CorsPolicyName.DefaultName),
+        EnableCors,
         Route("api/jokes")
     ]
     public class JokesController : ControllerBase
@@ -38,8 +40,6 @@ namespace Learning.Blazor.Api.Controllers
         ]
         public async Task<IActionResult> Get()
         {
-            HttpContext.VerifyUserHasAnyAcceptedScope("User.ApiAccess");
-
             var locale = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
             if (locale is not null)
             {
