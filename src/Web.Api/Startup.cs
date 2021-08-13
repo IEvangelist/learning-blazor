@@ -103,7 +103,14 @@ namespace Learning.Blazor.Api
 
             app.UseHttpsRedirection();
             app.UseRouting();
-            app.UseCors();
+
+            var webClientOrigin = _configuration["WebClientOrigin"];
+            app.UseCors(options =>
+                options.WithOrigins(
+                        "https://localhost:5001", webClientOrigin)
+                    .AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .AllowCredentials());
 
             var localizationOptions = new RequestLocalizationOptions()
                 .SetDefaultCulture(Cultures.Default)

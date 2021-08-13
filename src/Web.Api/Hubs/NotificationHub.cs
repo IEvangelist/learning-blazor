@@ -20,7 +20,7 @@ namespace Learning.Blazor.Api.Hubs
         private readonly ITwitterService _twitterService;
         private readonly IStringLocalizer<Shared> _localizer;
 
-        private string _userName => Context?.User?.Identity?.Name ?? "Unknown";
+        private string? _userName => Context?.User?.Identity?.Name;
 
         public NotificationHub(
             ITwitterService twitterService, IStringLocalizer<Shared> localizer) =>
@@ -28,21 +28,21 @@ namespace Learning.Blazor.Api.Hubs
 
         public override Task OnConnectedAsync() =>
             Clients.Others.SendAsync(
-                HubServerEventNames.UserLoggedIn, Notification<Actor>.FromAlert(new(_userName)));
+                HubServerEventNames.UserLoggedIn, Notification<Actor>.FromAlert(new(_userName ?? "Unknown")));
 
         public override Task OnDisconnectedAsync(Exception? ex) =>
             Clients.Others.SendAsync(
-                HubServerEventNames.UserLoggedOut, Notification<Actor>.FromAlert(new(_userName)));
+                HubServerEventNames.UserLoggedOut, Notification<Actor>.FromAlert(new(_userName ?? "Unknown")));
 
         public Task ToggleUserTyping(bool isTyping) =>
             Clients.Others.SendAsync(
-                HubServerEventNames.UserTyping, Notification<ActorAction>.FromAlert(new(_userName, isTyping)));
+                HubServerEventNames.UserTyping, Notification<ActorAction>.FromAlert(new(_userName ?? "Unknown", isTyping)));
 
         public Task PostOrUpdateMessage(string room, string message, Guid? id = default!) =>
             Clients.Groups(room).SendAsync(
                 HubServerEventNames.MessageReceived,
                 Notification<ActorMessage>.FromChat(
-                    new(id ?? Guid.NewGuid(), message, _userName, IsEdit: id.HasValue)));
+                    new(id ?? Guid.NewGuid(), message, _userName ?? "Unknown", IsEdit: id.HasValue)));
 
         public async Task JoinTweets()
         {
@@ -87,7 +87,7 @@ namespace Learning.Blazor.Api.Hubs
             await Clients.Groups(room).SendAsync(
                 HubServerEventNames.MessageReceived,
                 Notification<ActorMessage>.FromChat(
-                    new(Id: Guid.NewGuid(), Text: _localizer["HasLeftTheChatRoom", _userName],
+                    new(Id: Guid.NewGuid(), Text: _localizer["HasLeftTheChatRoom", _userName ?? "?"],
                         UserName: "🤖")));
         }
 

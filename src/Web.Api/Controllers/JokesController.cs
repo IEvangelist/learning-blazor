@@ -9,7 +9,6 @@ using Learning.Blazor.Extensions;
 using Learning.Blazor.JokeServices;
 using Learning.Blazor.Models;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Identity.Web.Resource;
@@ -17,10 +16,9 @@ using Microsoft.Identity.Web.Resource;
 namespace Learning.Blazor.Api.Controllers
 {
     [
-        //Authorize,
-        //RequiredScope(new[] { "User.ApiAccess" }),
+        Authorize,
+        RequiredScope(new[] { "User.ApiAccess" }),
         ApiController,
-        EnableCors,
         Route("api/jokes")
     ]
     public class JokesController : ControllerBase

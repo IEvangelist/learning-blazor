@@ -12,7 +12,6 @@ using Learning.Blazor.Api.Services;
 using Learning.Blazor.Extensions;
 using Learning.Blazor.Models;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Identity.Web.Resource;
@@ -22,7 +21,6 @@ namespace Learning.Blazor.Api.Controllers
     [
         Authorize,
         RequiredScope(new[] { "User.ApiAccess" }),
-        EnableCors,
         ApiController,
         Route("api/cultures")
     ]
