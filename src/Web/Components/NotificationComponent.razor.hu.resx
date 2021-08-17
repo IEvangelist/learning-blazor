@@ -58,6 +58,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="EmailFoundInBreachFormat" xml:space="preserve">
+    <value>Sajnálom, de úgy tűnik, hogy a "{0}" e-mail címét {1} jogsértésben találták. Ezt az információt a "Have I Been Pwned" szolgáltatás nyújtja. További információ: {2}.</value>
+  </data>
   <data name="Notifications" xml:space="preserve">
     <value>Értesítések</value>
   </data>

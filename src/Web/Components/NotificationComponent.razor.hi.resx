@@ -58,6 +58,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="EmailFoundInBreachFormat" xml:space="preserve">
+    <value>क्षमा करें, लेकिन ऐसा लगता है कि आपका ईमेल पता "{0}" {1} उल्लंघनों में पाया गया था। यह जानकारी "क्या मैं Pwned" सेवा से प्रदान की जाती है। अधिक जानकारी के लिए, {2} देखें।</value>
+  </data>
   <data name="Notifications" xml:space="preserve">
     <value>सूचनाएँ</value>
   </data>

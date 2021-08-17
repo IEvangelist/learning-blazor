@@ -58,6 +58,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="EmailFoundInBreachFormat" xml:space="preserve">
+    <value>Sorry, maar het lijkt erop dat uw e-mailadres "{0}" werd gevonden in {1} inbreuken. Deze informatie wordt verstrekt door de dienst "Have I Been Pwned". Zie {2} voor meer informatie.</value>
+  </data>
   <data name="Notifications" xml:space="preserve">
     <value>Meldingen</value>
   </data>

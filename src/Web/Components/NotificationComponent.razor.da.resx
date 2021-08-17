@@ -58,6 +58,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="EmailFoundInBreachFormat" xml:space="preserve">
+    <value>Beklager, men det ser ud til, at din e-mail-adresse "{0}" blev fundet i {1} brud. Disse oplysninger leveres fra tjenesten "Har jeg været pwned". Yderligere oplysninger finder du i {2}.</value>
+  </data>
   <data name="Notifications" xml:space="preserve">
     <value>Meddelelser</value>
   </data>

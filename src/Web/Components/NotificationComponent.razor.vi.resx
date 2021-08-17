@@ -58,16 +58,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="EmailFoundInBreachFormat" xml:space="preserve">
+    <value>Xin lỗi, nhưng có vẻ như địa chỉ email của bạn "{0}" đã được tìm thấy trong các vi phạm {1}. Thông tin này được cung cấp từ dịch vụ "Have I Been Pwned". Để biết thêm thông tin, hãy xem {2}.</value>
+  </data>
   <data name="Notifications" xml:space="preserve">
     <value>Thông báo</value>
   </data>
   <data name="UpdatedOnFormat" xml:space="preserve">
-    <value>Cập nhật {0} tại {1}</value>
+    <value>Cập nhật trên {0} tại {1}</value>
   </data>
   <data name="UserLoggedInFormat" xml:space="preserve">
-    <value>{0} vừa đăng nhập.</value>
+    <value>{0} vừa mới đăng nhập.</value>
   </data>
   <data name="UserLoggedOutFormat" xml:space="preserve">
-    <value>{0} vừa đăng xuất.</value>
+    <value>{0} vừa mới đăng xuất.</value>
   </data>
 </root>

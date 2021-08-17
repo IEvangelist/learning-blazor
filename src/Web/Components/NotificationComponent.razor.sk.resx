@@ -58,16 +58,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="EmailFoundInBreachFormat" xml:space="preserve">
+    <value>Prepáčte, ale zdá sa, že vaša e-mailová adresa "{0}" bola nájdená v {1} porušeniach. Tieto informácie sú poskytované zo služby "Have I Been Pwned". Ďalšie informácie nájdete v {2}.</value>
+  </data>
   <data name="Notifications" xml:space="preserve">
     <value>Oznámenia</value>
   </data>
   <data name="UpdatedOnFormat" xml:space="preserve">
-    <value>Aktualizované o {0} na {1}</value>
+    <value>Aktualizované o {0} v {1}</value>
   </data>
   <data name="UserLoggedInFormat" xml:space="preserve">
-    <value>{0} som sa prihlásil.</value>
+    <value>práve {0} prihlásený.</value>
   </data>
   <data name="UserLoggedOutFormat" xml:space="preserve">
-    <value>{0} som sa odhlásený.</value>
+    <value>práve {0} odhlásil.</value>
   </data>
 </root>
