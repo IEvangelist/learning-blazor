@@ -1,13 +1,27 @@
 ﻿@inherits LocalizableComponentBase<LanguageSelectionComponent>
 
-<span class="navbar-item">
-    <button class="button level-item is-rounded is-warning"
-        title=@localize["Language"] @onclick=Show>
-        <span class="icon">
-            <i class="fas fa-language"></i>
-        </span>
-    </button>
-</span>
+<ErrorBoundary>
+	<ChildContent>
+	<span class="navbar-item">
+		<button class="button level-item is-rounded is-warning"
+			title=@localize["Language"] @onclick=Show>
+			<span class="icon">
+				<i class="fas fa-language"></i>
+			</span>
+		</button>
+	</span>
+	</ChildContent>
+	<ErrorContent>
+	<span class="navbar-item">
+		<button class="button level-item is-rounded is-warning"
+			disabled title=@localize["Language"]>
+			<span class="icon">
+				<i class="fas fa-language"></i>
+			</span>
+		</button>
+	</span>
+	</ErrorContent>
+</ErrorBoundary>
 
 <ModalComponent @ref="_modal" OnDismissed=@OnDismissed>
     <TitleContent>

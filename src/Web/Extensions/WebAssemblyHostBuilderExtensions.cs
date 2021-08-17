@@ -52,6 +52,11 @@ namespace Learning.Blazor.Extensions
                         "https://learningblazor.onmicrosoft.com/ee8868e7-73ad-41f1-88b4-dc698429c8d4/User.ApiAccess");
                 });
 
+            services.AddOptions();
+            services.AddAuthorizationCore();
+
+            services.AddSingleton<SharedHubConnection>();
+            services.AddSingleton<AppInMemoryState>();
             services.AddSingleton<CultureService>();
             services.AddSingleton(typeof(CoalescingStringLocalizer<>));
             services.AddScoped<TemperatureUnitConversionService>();
@@ -65,8 +70,6 @@ namespace Learning.Blazor.Extensions
                 client.BaseAddress = new Uri("https://api.bigdatacloud.net/data/reverse-geocode-client");
                 client.DefaultRequestHeaders.AcceptEncoding.ParseAdd("gzip");
             });
-
-            services.AddScoped<SharedHubConnection>();
 
             services.AddTwitterComponent(configuration);
             services.AddLocalStorage();

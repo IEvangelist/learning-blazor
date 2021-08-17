@@ -41,14 +41,18 @@ namespace Learning.Blazor.Pages
         [Inject]
         public HttpClient Http { get; set; } = null!;
 
+        [Parameter]
+        //[SupplyParameterFromQuery]
+        public string Email { get; set; } = null!;
+
         protected override async Task OnInitializedAsync()
         {
             _editContext = new(_model);
             _editContext.OnFieldChanged += OnModelChanged;
 
-            if (Navigation.TryParseQueryString<string>("email", out var emailAddress))
+            if (Email is not null and { Length: > 0 })
             {
-                _model.EmailAddress = emailAddress;
+                _model.EmailAddress = Email;
                 if (_editContext.Validate())
                 {
                     await OnValidSubmitAsync(_editContext);
@@ -60,11 +64,11 @@ namespace Learning.Blazor.Pages
 
         protected override async ValueTask OnLocationChangedAsync(LocationChangedEventArgs args)
         {
-            if (Navigation.TryParseQueryString<string>("email", out var emailAddress) &&
-                _model.EmailAddress != emailAddress &&
+            if (Email is not null and { Length: > 0 } &&
+                _model.EmailAddress != Email &&
                 _editContext is not null)
             {
-                _model.EmailAddress = emailAddress;
+                _model.EmailAddress = Email;
                 if (_editContext.Validate())
                 {
                     await OnValidSubmitAsync(_editContext);
@@ -80,7 +84,7 @@ namespace Learning.Blazor.Pages
 
         private void Reset()
         {
-            _model.EmailAddress = null!;
+            _model.EmailAddress = Email = null!;
             _breaches = Array.Empty<BreachHeader>();
             _filter = null!;
             _state = ComponentState.Unknown;

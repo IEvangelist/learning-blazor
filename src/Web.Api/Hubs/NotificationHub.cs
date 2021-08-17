@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 using System;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Learning.Blazor.Abstractions.RealTime;
 using Learning.Blazor.Api.Resources;
@@ -21,22 +22,26 @@ namespace Learning.Blazor.Api.Hubs
         private readonly IStringLocalizer<Shared> _localizer;
 
         private string? _userName => Context?.User?.Identity?.Name;
+        private string? _userEmail => Context?.User?.FindFirstValue(ClaimTypes.Email);
 
         public NotificationHub(
             ITwitterService twitterService, IStringLocalizer<Shared> localizer) =>
             (_twitterService, _localizer) = (twitterService, localizer);
 
         public override Task OnConnectedAsync() =>
-            Clients.Others.SendAsync(
-                HubServerEventNames.UserLoggedIn, Notification<Actor>.FromAlert(new(_userName ?? "Unknown")));
+            Clients.All.SendAsync(
+                HubServerEventNames.UserLoggedIn,
+                Notification<Actor>.FromAlert(new(_userName ?? "Unknown", _userEmail)));
 
         public override Task OnDisconnectedAsync(Exception? ex) =>
             Clients.Others.SendAsync(
-                HubServerEventNames.UserLoggedOut, Notification<Actor>.FromAlert(new(_userName ?? "Unknown")));
+                HubServerEventNames.UserLoggedOut,
+                Notification<Actor>.FromAlert(new(_userName ?? "Unknown")));
 
         public Task ToggleUserTyping(bool isTyping) =>
             Clients.Others.SendAsync(
-                HubServerEventNames.UserTyping, Notification<ActorAction>.FromAlert(new(_userName ?? "Unknown", isTyping)));
+                HubServerEventNames.UserTyping,
+                Notification<ActorAction>.FromAlert(new(_userName ?? "Unknown", isTyping)));
 
         public Task PostOrUpdateMessage(string room, string message, Guid? id = default!) =>
             Clients.Groups(room).SendAsync(

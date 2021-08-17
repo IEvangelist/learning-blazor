@@ -4,11 +4,18 @@
 <div class="is-size-3">
     <RemoteAuthenticatorView
         Action=@Action
-        LoggingIn=@LocalizedLoginFragement
         LogOut=@LocalizedLogOutFragment
         LogOutSucceeded=@LocalizedLoggedOutFragment
-        CompletingLogOut=@LocalizedLogOutCallbackFragment
-        CompletingLoggingIn=@LocalizedLogInCallbackFragment
         LogInFailed=@LocalizedLogInFailedFragment
-        LogOutFailed=@LocalizedLogOutFailedFragment />
+        LogOutFailed=@LocalizedLogOutFailedFragment>
+        <LoggingIn>
+            <LoadingIndicator Message=@localize["CheckingLoginState"] HideLogo="true" />
+        </LoggingIn>
+        <CompletingLogOut>
+            <LoadingIndicator Message=@localize["ProcessingLogoutCallback"] HideLogo="true" />
+        </CompletingLogOut>
+        <CompletingLoggingIn>
+            <LoadingIndicator Message=@localize["CompletingLogin"] HideLogo="true" />
+        </CompletingLoggingIn>
+    </RemoteAuthenticatorView>
 </div>

@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
+//builder.RootComponents.Add<HeadOutlet>("head::after");
 
 if (builder.HostEnvironment.IsDevelopment())
 {

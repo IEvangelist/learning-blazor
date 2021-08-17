@@ -11,17 +11,8 @@ namespace Learning.Blazor.Pages
     {
         [Parameter] public string? Action { get; set; } = null!;
 
-        private void LocalizedLoginFragement(RenderTreeBuilder builder) =>
-            ParagraphElementWithLocalizedContent(builder, localize, "CheckingLoginState");
-
-        private void LocalizedLogInCallbackFragment(RenderTreeBuilder builder) =>
-            ParagraphElementWithLocalizedContent(builder, localize, "CompletingLogin");
-
         private void LocalizedLogOutFragment(RenderTreeBuilder builder) =>
             ParagraphElementWithLocalizedContent(builder, localize, "ProcessingLogout");
-
-        private void LocalizedLogOutCallbackFragment(RenderTreeBuilder builder) =>
-            ParagraphElementWithLocalizedContent(builder, localize, "ProcessingLogoutCallback");
 
         private void LocalizedLoggedOutFragment(RenderTreeBuilder builder) =>
             ParagraphElementWithLocalizedContent(builder, localize, "YouAreLoggedOut");

@@ -55,7 +55,7 @@ namespace Learning.Blazor.Abstractions.RealTime
         /// <summary>
         /// A method on the "/notification" endpoint, invokable from a hub connection expecting the following parameter(s):
         /// <list type="bullet">
-        /// <item>A <see cref="bool"/> isTyping <c>room</c>, representing whether the current user is typing.</item>
+        /// <item>A <see cref="bool"/> named <c>isTyping</c>, representing whether the current user is typing.</item>
         /// </list>
         /// Toggles whether the user is typing.
         /// </summary>

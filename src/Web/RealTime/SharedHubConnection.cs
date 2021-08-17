@@ -162,47 +162,60 @@ namespace Learning.Blazor
             }
         }
 
+        /// <inheritdoc cref="HubClientMethodNames.JoinTweets" />
         public Task JoinTweetsAsync() =>
             _hubConnection.InvokeAsync(HubClientMethodNames.JoinTweets);
 
+        /// <inheritdoc cref="HubClientMethodNames.LeaveTweets" />
         public Task LeaveTweetsAsync() =>
             _hubConnection.InvokeAsync(HubClientMethodNames.LeaveTweets);
 
+        /// <inheritdoc cref="HubClientMethodNames.StartTweetStream" />
         public Task StartTweetStreamAsync() =>
             _hubConnection.InvokeAsync(HubClientMethodNames.StartTweetStream);
 
+        /// <inheritdoc cref="HubClientMethodNames.JoinChat" />
         public Task JoinChatAsync(string room) =>
             _hubConnection.InvokeAsync(HubClientMethodNames.JoinChat, room);
 
+        /// <inheritdoc cref="HubClientMethodNames.LeaveChat" />
         public Task LeaveChatAsync(string room) =>
             _hubConnection.InvokeAsync(HubClientMethodNames.LeaveChat, room);
 
+        /// <inheritdoc cref="HubClientMethodNames.PostOrUpdateMessage" />
         public Task PostOrUpdateMessageAsync(string room, string message, Guid? id = default) =>
             _hubConnection.InvokeAsync(HubClientMethodNames.PostOrUpdateMessage, room, message, id);
 
+        /// <inheritdoc cref="HubClientMethodNames.ToggleUserTyping" />
         public Task ToggleUserTypingAsync(bool isTyping) =>
             _hubConnection.InvokeAsync(HubClientMethodNames.ToggleUserTyping, isTyping);
 
+        /// <inheritdoc cref="HubServerEventNames.StatusUpdated" />
         public IDisposable SubscribeToStatusUpdated(
             Func<Notification<StreamingStatus>, Task> onStatusUpdated) =>
             _hubConnection.On(HubServerEventNames.StatusUpdated, onStatusUpdated);
 
+        /// <inheritdoc cref="HubServerEventNames.TweetReceived" />
         public IDisposable SubscribeToTweetReceived(
             Func<Notification<TweetContents>, Task> onTweetReceived) =>
             _hubConnection.On(HubServerEventNames.TweetReceived, onTweetReceived);
 
+        /// <inheritdoc cref="HubServerEventNames.UserLoggedIn" />
         public IDisposable SubscribeToUserLoggedIn(
             Func<Notification<Actor>, Task> onUserLoggedIn) =>
             _hubConnection.On(HubServerEventNames.UserLoggedIn, onUserLoggedIn);
 
+        /// <inheritdoc cref="HubServerEventNames.UserLoggedOut" />
         public IDisposable SubscribeToUserLoggedOut(
             Func<Notification<Actor>, Task> onUserLoggedOut) =>
             _hubConnection.On(HubServerEventNames.UserLoggedOut, onUserLoggedOut);
 
+        /// <inheritdoc cref="HubServerEventNames.UserTyping" />
         public IDisposable SubscribeToUserTyping(
             Func<Notification<ActorAction>, Task> onUserTyping) =>
             _hubConnection.On(HubServerEventNames.UserTyping, onUserTyping);
 
+        /// <inheritdoc cref="HubServerEventNames.MessageReceived" />
         public IDisposable SubscribeToMessageReceived(
             Func<Notification<ActorMessage>, Task> onMessageReceived) =>
             _hubConnection.On(HubServerEventNames.MessageReceived, onMessageReceived);

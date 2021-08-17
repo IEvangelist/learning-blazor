@@ -95,7 +95,7 @@ namespace Learning.Blazor.Pages
                 StateHasChanged();
             });
 
-        private async void OnDebouceElapsed(object sender, ElapsedEventArgs e) =>
+        private async void OnDebouceElapsed(object? _, ElapsedEventArgs e) =>
             await SetIsTyping(false);
 
         private async Task OnKeyUp(KeyboardEventArgs args)

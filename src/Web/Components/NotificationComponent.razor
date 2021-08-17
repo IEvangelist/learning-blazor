@@ -36,7 +36,7 @@
                 {
                     <div class="notification">
                         <button class="delete" @onclick=@(_ => DismissNotification(notification))></button>
-                        @notification.Text
+                        @(new MarkupString(notification.Text))
                     </div>
                 }
             }

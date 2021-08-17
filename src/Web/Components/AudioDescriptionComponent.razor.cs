@@ -41,8 +41,7 @@ namespace Learning.Blazor.Components
         public Task UpdateClientVoices(string voicesJson) =>
             InvokeAsync(() =>
             {
-                var voices =
-                    voicesJson.FromJson<List<SpeechSynthesisVoice>>();
+                var voices = voicesJson.FromJson<List<SpeechSynthesisVoice>>();
                 if (voices is { Count: > 0 })
                 {
                     _voices = voices;

@@ -51,7 +51,7 @@ namespace Learning.Blazor.Components
             }
         }
 
-        private async void OnTimerElapsed(object sender, ElapsedEventArgs args)
+        private async void OnTimerElapsed(object? _, ElapsedEventArgs args)
         {
             if (_coordinates is not null)
             {
