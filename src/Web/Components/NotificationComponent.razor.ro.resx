@@ -58,16 +58,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="EmailFoundInBreachFormat" xml:space="preserve">
+    <value>Ne pare rău, dar se pare că adresa ta de e-mail "{0}" a fost găsită în {1} breșe. Aceste informații sunt furnizate din serviciul "Am fost pwned". Pentru mai multe informații, consultați {2}.</value>
+  </data>
   <data name="Notifications" xml:space="preserve">
     <value>Notificări</value>
   </data>
   <data name="UpdatedOnFormat" xml:space="preserve">
-    <value>Actualizat pe {0} la {1}</value>
+    <value>Actualizat la {0} la {1}</value>
   </data>
   <data name="UserLoggedInFormat" xml:space="preserve">
-    <value>tocmai {0} autentificat.</value>
+    <value>{0} doar conectat.</value>
   </data>
   <data name="UserLoggedOutFormat" xml:space="preserve">
-    <value>{0} tocmai s-a deconectat.</value>
+    <value>{0} doar deconectat.</value>
   </data>
 </root>

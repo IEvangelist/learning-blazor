@@ -58,6 +58,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="EmailFoundInBreachFormat" xml:space="preserve">
+    <value>Przepraszamy, ale wygląda na to, że Twój adres e-mail "{0}" został znaleziony w {1} naruszeniach. Informacje te pochodzą z usługi "Have I Been Pwned". Aby uzyskać więcej informacji, zobacz {2}.</value>
+  </data>
   <data name="Notifications" xml:space="preserve">
     <value>Powiadomienia</value>
   </data>
@@ -65,9 +68,9 @@
     <value>Aktualizacja {0} w {1}</value>
   </data>
   <data name="UserLoggedInFormat" xml:space="preserve">
-    <value>{0} po prostu zalogowany.</value>
+    <value>{0} właśnie się zalogował.</value>
   </data>
   <data name="UserLoggedOutFormat" xml:space="preserve">
-    <value>{0} właśnie wylogowany.</value>
+    <value>{0} właśnie się wylogował.</value>
   </data>
 </root>

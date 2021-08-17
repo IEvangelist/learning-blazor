@@ -58,11 +58,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="EmailFoundInBreachFormat" xml:space="preserve">
+    <value>מצטער, אבל זה נראה כמו כתובת הדוא"ל שלך "{0}" נמצא בהפרות {1}. מידע זה מסופק משירות "האם הייתי Pwned". לקבלת מידע נוסף, ראה {2}.</value>
+  </data>
   <data name="Notifications" xml:space="preserve">
     <value>הודעות</value>
   </data>
   <data name="UpdatedOnFormat" xml:space="preserve">
-    <value>עודכן {0} {1}</value>
+    <value>עודכן {0} ב-{1}</value>
   </data>
   <data name="UserLoggedInFormat" xml:space="preserve">
     <value>{0} פשוט מחובר.</value>

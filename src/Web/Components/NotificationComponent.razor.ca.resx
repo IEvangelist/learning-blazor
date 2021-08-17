@@ -58,6 +58,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="EmailFoundInBreachFormat" xml:space="preserve">
+    <value>Ho sentim, però sembla que la seva adreça de correu electrònic "{0}" es va trobar en {1} violacions. Aquesta informació es proporciona des del servei "Have I Been Pwned". Per a més informació, vegeu {2}.</value>
+  </data>
   <data name="Notifications" xml:space="preserve">
     <value>Notificacions</value>
   </data>
@@ -65,9 +68,9 @@
     <value>Actualitzat el {0} a {1}</value>
   </data>
   <data name="UserLoggedInFormat" xml:space="preserve">
-    <value>{0}'acaba d'iniciar la sessió.</value>
+    <value>{0}'acaba d'iniciar sessió.</value>
   </data>
   <data name="UserLoggedOutFormat" xml:space="preserve">
-    <value>{0} desconnectat.</value>
+    <value>{0} acaba de tancar la sessió.</value>
   </data>
 </root>

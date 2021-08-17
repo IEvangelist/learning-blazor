@@ -58,6 +58,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="EmailFoundInBreachFormat" xml:space="preserve">
+    <value>Oprostite, ampak izgleda, da je bil vaš e-poštni naslov "{0}" najden v {1} kršitvah. Te informacije so na voljo iz storitve »Sem bil pwned«. Če želite več informacij, glejte {2}.</value>
+  </data>
   <data name="Notifications" xml:space="preserve">
     <value>Obvestila</value>
   </data>
