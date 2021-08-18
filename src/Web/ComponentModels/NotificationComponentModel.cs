@@ -3,14 +3,13 @@
 
 using Learning.Blazor.Models;
 
-namespace Learning.Blazor.ComponentModels
+namespace Learning.Blazor.ComponentModels;
+
+public record NotificationComponentModel
 {
-    public record NotificationComponentModel
-    {
-        public string Text { get; init; } = null!;
+    public string Text { get; init; } = null!;
 
-        public NotificationType NotificationType { get; init; }
+    public NotificationType NotificationType { get; init; }
 
-        public bool IsDismissed { get; init; }
-    }
+    public bool IsDismissed { get; init; }
 }

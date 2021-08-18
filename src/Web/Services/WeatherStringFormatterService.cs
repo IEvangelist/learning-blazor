@@ -3,69 +3,67 @@
 
 using Learning.Blazor.Models;
 using Microsoft.Extensions.Localization;
-using System;
 
-namespace Learning.Blazor.Services
+namespace Learning.Blazor.Services;
+
+internal class WeatherStringFormatterService<T> : IWeatherStringFormatterService<T>
 {
-    internal class WeatherStringFormatterService<T> : IWeatherStringFormatterService<T>
-    {
-        private readonly IStringLocalizer<T> _localizer;
-        private readonly CultureService _cultureService;
-        private readonly TemperatureUnitConversionService _temperatureUnitConversionService;
-        private readonly SpeedUnitConversionService _speedUnitConversionService;
+    private readonly IStringLocalizer<T> _localizer;
+    private readonly CultureService _cultureService;
+    private readonly TemperatureUnitConversionService _temperatureUnitConversionService;
+    private readonly SpeedUnitConversionService _speedUnitConversionService;
 
-        public WeatherStringFormatterService(
-            IStringLocalizer<T> localizer,
-            CultureService cultureService,
-            TemperatureUnitConversionService temperatureUnitConversionService,
-            SpeedUnitConversionService speedUnitConversionService)
+    public WeatherStringFormatterService(
+        IStringLocalizer<T> localizer,
+        CultureService cultureService,
+        TemperatureUnitConversionService temperatureUnitConversionService,
+        SpeedUnitConversionService speedUnitConversionService)
+    {
+        _localizer = localizer;
+        _cultureService = cultureService;
+        _temperatureUnitConversionService = temperatureUnitConversionService;
+        _speedUnitConversionService = speedUnitConversionService;
+    }
+
+    public object? GetFormat(Type? formatType)
+        => formatType == typeof(ICustomFormatter) ? this : null;
+
+    public string Format(string? format, object? arg, IFormatProvider? formatProvider)
+    {
+        if (!Equals(formatProvider))
         {
-            _localizer = localizer;
-            _cultureService = cultureService;
-            _temperatureUnitConversionService = temperatureUnitConversionService;
-            _speedUnitConversionService = speedUnitConversionService;
+            return null!;
         }
 
-        public object? GetFormat(Type? formatType)
-            => formatType == typeof(ICustomFormatter) ? this : null;
+        if (string.IsNullOrWhiteSpace(format)) format = "t";
 
-        public string Format(string? format, object? arg, IFormatProvider? formatProvider)
+        /*
+            "t"     temperature
+            "w"     wind short-hand
+            "ww"    wind verbose
+         */
+
+        var target = _cultureService.MeasurementSystem;
+
+        return format switch
         {
-            if (!Equals(formatProvider))
-            {
-                return null!;
-            }
+            // Temperatures
+            "t" when arg is double temp =>
+                ToLocalizedTemperature(temp, target),
 
-            if (string.IsNullOrWhiteSpace(format)) format = "t";
+            _ => null!
+        };
 
-            /*
-                "t"     temperature
-                "w"     wind short-hand
-                "ww"    wind verbose
-             */
+        static string ToLocalizedTemperature(
+            double temp,
+            MeasurementSystem target)
+        {
+            var tempUom = target == MeasurementSystem.Imperial ? "°F" : "°C";
 
-            var target = _cultureService.MeasurementSystem;
-
-            return format switch
-            {
-                // Temperatures
-                "t" when arg is double temp =>
-                    ToLocalizedTemperature(temp, target),
-
-                _ => null!
-            };
-
-            static string ToLocalizedTemperature(
-                double temp,
-                MeasurementSystem target)
-            {
-                var tempUom = target == MeasurementSystem.Imperial ? "°F" : "°C";
-
-                // Examples:
-                //     Imperial:    73°F
-                //     Metric:      23°C
-                return $"{(int)temp}{tempUom}";
-            }
+            // Examples:
+            //     Imperial:    73°F
+            //     Metric:      23°C
+            return $"{(int)temp}{tempUom}";
         }
     }
 }

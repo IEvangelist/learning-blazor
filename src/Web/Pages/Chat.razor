@@ -2,86 +2,90 @@
 @attribute [Authorize]
 @inherits LocalizableComponentBase<Chat>
 
+<PageTitle>
+	@localize["Chat"]
+</PageTitle>
+
 <AuthorizeView>
-    @if (context.User is not null)
-    {
-        _user = context.User;
-        <div class="is-hidden">@_user?.Identity?.Name</div>
-    }
-    </AuthorizeView>
+	@if (context.User is not null)
+	{
+		_user = context.User;
+		<div class="is-hidden">@_user?.Identity?.Name</div>
+	}
+</AuthorizeView>
 
-    <div class="columns">
-        <section class="column is-10 is-offset-1">
-            <div class="field has-addons">
-                <div class="control is-fullwidth has-icons-left">
-                    <input class="input is-large" spellcheck="true"
-                       type="text" placeholder=@localize["ChatMessage"]
-                       @ref="_messageInput"
-                       @bind-value="@_message" @oninput="@InitiateDebounceUserIsTyping"
-                       @onkeyup="@(args => OnKeyUp(args))" autocomplete="off">
-                    <span class="icon is-small is-left">
-                        <i class="fas">💬</i>
-                    </span>
-                </div>
-                <div class="control">
-                    <a class="button is-info is-large" @onclick="@SendMessage">
-                        @localize["Send"]
-                    </a>
-                </div>
-            </div>
+	<div class="columns">
+		<section class="column is-10 is-offset-1">
+			<div class="field has-addons">
+				<div class="control is-fullwidth has-icons-left">
+					<input class="input is-large" spellcheck="true"
+					   type="text" placeholder=@localize["ChatMessage"]
+					   @ref="_messageInput"
+					   @bind-value="@_message" @oninput="@InitiateDebounceUserIsTyping"
+					   @onkeyup="@(args => OnKeyUp(args))" autocomplete="off">
+					<span class="icon is-small is-left">
+						<i class="fas">💬</i>
+					</span>
+				</div>
+				<div class="control">
+					<a class="button is-info is-large" @onclick="@SendMessage">
+						@localize["Send"]
+					</a>
+				</div>
+			</div>
 
-            <article class="panel is-info">
-                <p class="panel-heading has-text-left">
-                    <span>
-                        @localize["Messages"]
-                    </span>
-                    <span class="is-pulled-right">
-                        @{
-                        string UsersTypingText(string[]? usersTyping) => usersTyping?.Length switch
-                        {
-                            0 => "&nbsp;",
-                            1 => $"💬 {localize["UserIsTypingFormat", usersTyping[0]]}",
-                            2 => $"💬 {localize["TwoUsersAreTypingFormat", usersTyping[0], usersTyping[1]]}",
-                            _ => $"💬 {localize["MultiplePeopleAreTyping"]}"
-                        };
+			<article class="panel is-info">
+				<p class="panel-heading has-text-left">
+					<span>
+						@localize["Messages"]
+					</span>
+					<span class="is-pulled-right">
+						@{
+						string UsersTypingText(string[]? usersTyping) => usersTyping?.Length switch
+						{
+							0 => "&nbsp;",
+							1 => $"💬 {localize["UserIsTypingFormat", usersTyping[0]]}",
+							2 => $"💬 {localize["TwoUsersAreTypingFormat", usersTyping[0], usersTyping[1]]}",
+							_ => $"💬 {localize["MultiplePeopleAreTyping"]}"
+						};
 
-                        var usersTyping = _usersTyping?.Select(a => a.UserName)?.ToArray();
-                        MarkupString isTypingMarkup = new(UsersTypingText(usersTyping));
+						var usersTyping = _usersTyping?.Select(a => a.UserName)?.ToArray();
+						MarkupString isTypingMarkup = new(UsersTypingText(usersTyping));
 
-                        <span class="has-text-grey-light @(_usersTyping is { Count: > 0 } ? "is-flashing" : "")">
-                            @isTypingMarkup
-                        </span>
-                    }
-                </span>
-            </p>
+						<span class="has-text-grey-light @(_usersTyping is { Count: > 0 } ? "is-flashing" : "")">
+							@isTypingMarkup
+						</span>
+					}
+				</span>
+			</p>
 
-            @foreach (var (id, message) in _messages.Reverse())
-            {
-                var isClickable = OwnsMessage(message.UserName) ? "" : "is-unselectable";
-                <a id="@message.Id" class="panel-block is-size-5 @(isClickable) @(message.IsGreeting ? "greeting" : "")"
-                    @onclick="@(async () => await StartEdit(message))">
-                    <span>
-                        @message.UserName
-                    </span>
-                    <span class="panel-icon px-4">
-                        <i class="fas fa-chevron-right" aria-hidden="true"></i>
-                    </span>
-                    <span class="pl-2">
-                        @{
-                            MarkupString messageMarkup = new(message.Text);
-                            <span>
-                                @messageMarkup
-                            </span>
-                            @if (message.IsEdit)
-                            {
-                                <span class="pl-2">
-                                    <span class="tag is-success-dark">edited</span>
-                                </span>
-                            }
-                        }
-                    </span>
-                </a>
-            }
-        </article>
-    </section>
+			@foreach (var (id, message) in _messages.Reverse())
+			{
+				var isClickable = OwnsMessage(message.UserName) ? "" : "is-unselectable";
+				<a id="@message.Id" class="panel-block is-size-5 @(isClickable) @(message.IsGreeting ? "greeting" : "")"
+			   @onclick="@(async () => await StartEdit(message))">
+					<span>
+						@message.UserName
+					</span>
+					<span class="panel-icon px-4">
+						<i class="fas fa-chevron-right" aria-hidden="true"></i>
+					</span>
+					<span class="pl-2">
+						@{
+							MarkupString messageMarkup = new(message.Text);
+							<span>
+								@messageMarkup
+							</span>
+							@if (message.IsEdit)
+							{
+								<span class="pl-2">
+									<span class="tag is-success-dark">edited</span>
+								</span>
+							}
+						}
+					</span>
+				</a>
+			}
+		</article>
+	</section>
 </div>

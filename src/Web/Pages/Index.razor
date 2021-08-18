@@ -1,6 +1,10 @@
 ﻿@page "/"
 @inherits LocalizableComponentBase<Index>
 
+<PageTitle>
+    @localize["Home"]
+</PageTitle>
+
 <AuthorizeView>
     <NotAuthorized>
         <RedirectToLogin />
@@ -26,7 +30,7 @@
                 </div>
                 <div class="tile is-parent">
                     <article class="tile is-child notification is-blazor-bg">
-                        <p class="title">🔥 Blazor-@localize["Weather"]</p>
+                        <p class="title" translate="no">🔥 Blazor-@localize["Weather"]</p>
                         <WeatherComponent />
                     </article>
                 </div>

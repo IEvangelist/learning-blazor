@@ -2,8 +2,6 @@
 // Licensed under the MIT License.
 
 using Learning.Blazor.Api;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
 
 await Host.CreateDefaultBuilder(args)
     .ConfigureWebHostDefaults(webBuilder => webBuilder.UseStartup<Startup>())

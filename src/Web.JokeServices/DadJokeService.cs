@@ -7,34 +7,33 @@ using System.Threading.Tasks;
 using Learning.Blazor.Models;
 using Microsoft.Extensions.Logging;
 
-namespace Learning.Blazor.JokeServices
+namespace Learning.Blazor.JokeServices;
+
+internal class DadJokeService : IJokeService
 {
-    internal class DadJokeService : IJokeService
+    private readonly HttpClient _httpClient;
+    private readonly ILogger<DadJokeService> _logger;
+
+    public DadJokeService(
+        IHttpClientFactory httpClientFactory,
+        ILogger<DadJokeService> logger) =>
+        (_httpClient, _logger) =
+            (httpClientFactory.CreateClient(nameof(DadJokeService)), logger);
+
+    JokeSourceDetails IJokeService.SourceDetails =>
+        new(JokeSource.ICanHazDadJoke, new Uri("https://icanhazdadjoke.com/"));
+
+    async Task<string?> IJokeService.GetJokeAsync()
     {
-        private readonly HttpClient _httpClient;
-        private readonly ILogger<DadJokeService> _logger;
-
-        public DadJokeService(
-            IHttpClientFactory httpClientFactory,
-            ILogger<DadJokeService> logger) =>
-            (_httpClient, _logger) =
-                (httpClientFactory.CreateClient(nameof(DadJokeService)), logger);
-
-        JokeSourceDetails IJokeService.SourceDetails =>
-            new(JokeSource.ICanHazDadJoke, new Uri("https://icanhazdadjoke.com/"));
-
-        async Task<string?> IJokeService.GetJokeAsync()
+        try
         {
-            try
-            {
-                return await _httpClient.GetStringAsync("https://icanhazdadjoke.com/");
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError("Error getting something fun to say: {Error}", ex);
-            }
-
-            return null;
+            return await _httpClient.GetStringAsync("https://icanhazdadjoke.com/");
         }
+        catch (Exception ex)
+        {
+            _logger.LogError("Error getting something fun to say: {Error}", ex);
+        }
+
+        return null;
     }
 }

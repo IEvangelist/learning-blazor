@@ -3,11 +3,10 @@
 
 using Learning.Blazor.DataAnnotations;
 
-namespace Learning.Blazor.ComponentModels
+namespace Learning.Blazor.ComponentModels;
+
+public class BreachesComponentModel
 {
-    public class BreachesComponentModel
-    {
-        [RegexEmailAddress]
-        public string? EmailAddress { get; set; } = null!;
-    }
+    [RegexEmailAddress]
+    public string? EmailAddress { get; set; } = null!;
 }

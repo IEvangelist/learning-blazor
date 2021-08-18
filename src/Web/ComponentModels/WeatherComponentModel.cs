@@ -1,54 +1,51 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
-using System.Collections.Generic;
-using System.Linq;
 using Learning.Blazor.Extensions;
 using Learning.Blazor.Models;
 using Learning.Blazor.Services;
 
-namespace Learning.Blazor.ComponentModels
+namespace Learning.Blazor.ComponentModels;
+
+public class WeatherComponentModel<T>
 {
-    public class WeatherComponentModel<T>
+    private readonly WeatherDetails _weatherDetails;
+    private readonly CurrentWeather _currentWeather;
+    private readonly DailyWeather _todaysDaily;
+    private readonly WeatherWordingAndIcon _weather;
+    private readonly GeoCode _geoCode;
+    private readonly IWeatherStringFormatterService<T> _weatherStringFormatter;
+
+    public string ImagePath => $"media/weather/{_weather?.ToImageName() ?? "01"}.png";
+    public string Main => _weather.Main;
+    public string Description => _weather.Description;
+    public string Temperature => string.Format(_weatherStringFormatter, "{0:t}", _currentWeather.Temperature);
+    public string FeelsLike => string.Format(_weatherStringFormatter, "{0:t}", _currentWeather.FeelsLike);
+    public string HighTemp => string.Format(_weatherStringFormatter, "{0:t}", _todaysDaily.Temperature.Max);
+    public string LowTemp => string.Format(_weatherStringFormatter, "{0:t}", _todaysDaily.Temperature.Min);
+    public MeasurementSystem MeasurementSystem => _weatherDetails.MeasurementSystem;
+    public double WindSpeed => _currentWeather.WindSpeed;
+    public int WindDegree => _currentWeather.WindDegree;
+    public IReadOnlyList<DailyWeather> DailyWeather => _weatherDetails.Daily.Skip(1).ToList().AsReadOnly();
+    public string City => _geoCode.City;
+    public string State => _geoCode.PrincipalSubdivision;
+    public string Country => _geoCode.CountryCode;
+
+    public WeatherComponentModel(
+        WeatherDetails weatherDetails,
+        GeoCode geoCode,
+        IWeatherStringFormatterService<T> weatherStringFormatter)
     {
-        private readonly WeatherDetails _weatherDetails;
-        private readonly CurrentWeather _currentWeather;
-        private readonly DailyWeather _todaysDaily;
-        private readonly WeatherWordingAndIcon _weather;
-        private readonly GeoCode _geoCode;
-        private readonly IWeatherStringFormatterService<T> _weatherStringFormatter;
-
-        public string ImagePath => $"media/weather/{_weather?.ToImageName() ?? "01"}.png";
-        public string Main => _weather.Main;
-        public string Description => _weather.Description;
-        public string Temperature => string.Format(_weatherStringFormatter, "{0:t}", _currentWeather.Temperature);
-        public string FeelsLike => string.Format(_weatherStringFormatter, "{0:t}", _currentWeather.FeelsLike);
-        public string HighTemp => string.Format(_weatherStringFormatter, "{0:t}", _todaysDaily.Temperature.Max);
-        public string LowTemp => string.Format(_weatherStringFormatter, "{0:t}", _todaysDaily.Temperature.Min);
-        public MeasurementSystem MeasurementSystem => _weatherDetails.MeasurementSystem;
-        public double WindSpeed => _currentWeather.WindSpeed;
-        public int WindDegree => _currentWeather.WindDegree;
-        public IReadOnlyList<DailyWeather> DailyWeather => _weatherDetails.Daily.Skip(1).ToList().AsReadOnly();
-        public string City => _geoCode.City;
-        public string State => _geoCode.PrincipalSubdivision;
-        public string Country => _geoCode.CountryCode;
-
-        public WeatherComponentModel(
-            WeatherDetails weatherDetails,
-            GeoCode geoCode,
-            IWeatherStringFormatterService<T> weatherStringFormatter)
-        {
-            _weatherDetails = weatherDetails;
-            _weather = _weatherDetails.Current.Weather[0];
-            _currentWeather = _weatherDetails.Current;
-            _todaysDaily = _weatherDetails.Daily[0];
-            _geoCode = geoCode;
-            _weatherStringFormatter = weatherStringFormatter;
-        }
-
-        public string GetDailyFontAwesomeClass(DailyWeather daily) => daily.Weather[0].ToFontAwesomeClass();
-        public string GetDailyImagePath(DailyWeather daily) => $"media/weather/{daily.Weather[0]?.ToImageName() ?? "01"}.png";
-        public string GetDailyHigh(DailyWeather daily) => string.Format(_weatherStringFormatter, "{0:t}", daily.Temperature.Max);
-        public string GetDailyLow(DailyWeather daily) => string.Format(_weatherStringFormatter, "{0:t}", daily.Temperature.Min);
+        _weatherDetails = weatherDetails;
+        _weather = _weatherDetails.Current.Weather[0];
+        _currentWeather = _weatherDetails.Current;
+        _todaysDaily = _weatherDetails.Daily[0];
+        _geoCode = geoCode;
+        _weatherStringFormatter = weatherStringFormatter;
     }
+
+    public string GetDailyFontAwesomeClass(DailyWeather daily) => daily.Weather[0].ToFontAwesomeClass();
+    public string GetDailyImagePath(DailyWeather daily) => $"media/weather/{daily.Weather[0]?.ToImageName() ?? "01"}.png";
+    public string GetDailyHigh(DailyWeather daily) => string.Format(_weatherStringFormatter, "{0:t}", daily.Temperature.Max);
+    public string GetDailyLow(DailyWeather daily) => string.Format(_weatherStringFormatter, "{0:t}", daily.Temperature.Min);
 }

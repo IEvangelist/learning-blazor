@@ -3,11 +3,10 @@
 
 using System.ComponentModel.DataAnnotations;
 
-namespace Learning.Blazor.ComponentModels
+namespace Learning.Blazor.ComponentModels;
+
+public class PasswordsComponentModel
 {
-    public class PasswordsComponentModel
-    {
-        [Required]
-        public string? PlainTextPassword { get; set; } = null!;
-    }
+    [Required]
+    public string? PlainTextPassword { get; set; } = null!;
 }

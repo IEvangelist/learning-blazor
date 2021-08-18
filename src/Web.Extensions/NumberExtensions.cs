@@ -3,26 +3,25 @@
 
 using System;
 
-namespace Learning.Blazor.Extensions
+namespace Learning.Blazor.Extensions;
+
+public static class NumberExtensions
 {
-    public static class NumberExtensions
-    {
-        private static readonly string[] s_cardinals =
-            { "N", "NE", "E", "SE", "S", "SW", "W", "NW", "N" };
+    private static readonly string[] s_cardinals =
+        { "N", "NE", "E", "SE", "S", "SW", "W", "NW", "N" };
 
-        private static readonly string[] s_verboseCardinals =
-            { "North", "Northeast", "East", "Southeast", "South", "Southwest", "West", "Northwest", "North" };
+    private static readonly string[] s_verboseCardinals =
+        { "North", "Northeast", "East", "Southeast", "South", "Southwest", "West", "Northwest", "North" };
 
-        private static readonly DateTime s_epochDateTime =
-            new(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
+    private static readonly DateTime s_epochDateTime =
+        new(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
 
-        public static DateTime FromUnixTimeStamp(this double unixTimeStamp) =>
-            s_epochDateTime.AddSeconds(unixTimeStamp).ToLocalTime();
+    public static DateTime FromUnixTimeStamp(this double unixTimeStamp) =>
+        s_epochDateTime.AddSeconds(unixTimeStamp).ToLocalTime();
 
-        public static string ToCardinal(this int degrees) =>
-            s_cardinals[(int)Math.Round((double)degrees % 360 / 45)];
+    public static string ToCardinal(this int degrees) =>
+        s_cardinals[(int)Math.Round((double)degrees % 360 / 45)];
 
-        public static string ToVerboseCardinal(this int degrees) =>
-            s_verboseCardinals[(int)Math.Round((double)degrees % 360 / 45)];
-    }
+    public static string ToVerboseCardinal(this int degrees) =>
+        s_verboseCardinals[(int)Math.Round((double)degrees % 360 / 45)];
 }

@@ -3,11 +3,10 @@
 
 using System;
 
-namespace Learning.Blazor.Extensions
+namespace Learning.Blazor.Extensions;
+
+public static class EnumExtensions
 {
-    public static class EnumExtensions
-    {
-        public static TEnum ToEnum<TEnum>(this string? value) where TEnum : struct =>
-            Enum.TryParse(value, true, out TEnum result) ? result : default;
-    }
+    public static TEnum ToEnum<TEnum>(this string? value) where TEnum : struct =>
+        Enum.TryParse(value, true, out TEnum result) ? result : default;
 }

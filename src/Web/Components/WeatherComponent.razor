@@ -57,12 +57,18 @@
             </div>
         </div>
     }
-    else
+    else if (_state is ComponentState.Loading)
     {
         <div class="column is-full">
             <div class="fa-3x">
                 <i class="fas fa-sync fa-spin"></i>
             </div>
+        </div>
+    }
+    else
+    {
+        <div class="column is-full">
+            @localize["WeatherUnavailable"]
         </div>
     }
 </div>

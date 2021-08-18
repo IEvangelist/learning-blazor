@@ -4,10 +4,9 @@
 using System.Threading.Tasks;
 using Learning.Blazor.Models;
 
-namespace Learning.Blazor.JokeServices
+namespace Learning.Blazor.JokeServices;
+
+public interface IJokeFactory
 {
-    public interface IJokeFactory
-    {
-        Task<(string, JokeSourceDetails)> GetRandomJokeAsync();
-    }
+    Task<(string, JokeSourceDetails)> GetRandomJokeAsync();
 }

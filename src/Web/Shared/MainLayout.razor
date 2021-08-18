@@ -2,62 +2,67 @@
 @inject IStringLocalizer<MainLayout> Localizer
 
 <section class="hero is-fullheight-with-navbar">
-    <div class="hero-head">
-        <header class="navbar is-size-5 is-fixed-top">
-            <div class="container">
-                <div class="navbar-brand">
-                    <NavLink class="navbar-item" href="" Match="NavLinkMatch.All">
-                        <span class="pr-2">
-                            <img src="media/blazor-logo.png" height="128" alt="Logo">
-                        </span>
-                        <span>@Localizer["Home"]</span>
-                    </NavLink>
+	<div class="hero-head">
+		<header class="navbar is-size-5 is-fixed-top">
+			<div class="container">
+				<div class="navbar-brand">
+					<NavLink class="navbar-item" href="" Match="NavLinkMatch.All">
+						<span class="pr-2">
+							<img src="media/blazor-logo.png" height="128" alt="Logo">
+						</span>
+						<span>@Localizer["Home"]</span>
+					</NavLink>
 
-                    <a role="button" class="navbar-burger" aria-label="menu"
-                       aria-expanded="false" data-target="navbar">
-                        <span aria-hidden="true"></span>
-                        <span aria-hidden="true"></span>
-                        <span aria-hidden="true"></span>
-                    </a>
-                </div>
-                <div id="navbar" class="navbar-menu">
-                    <div class="navbar-start">
-                        <AuthorizeView>
-                            <Authorized>
-                                <NavBar />
-                            </Authorized>
-                        </AuthorizeView>
-                    </div>
-                    <div class="navbar-end">
-                        <AuthorizeView>
-                            <Authorized>
-                                <ThemeToggleComponent />
-                                <AudioDescriptionComponent />
-                                <LanguageSelectionComponent />
-                                <NotificationComponent />
-                            </Authorized>
-                        </AuthorizeView>
-                        <LoginDisplay />
-                    </div>
-                </div>
-            </div>
-        </header>
-    </div>
+					<a role="button" class="navbar-burger" aria-label="menu"
+					   aria-expanded="false" data-target="navbar">
+						<span aria-hidden="true"></span>
+						<span aria-hidden="true"></span>
+						<span aria-hidden="true"></span>
+					</a>
+				</div>
+				<div id="navbar" class="navbar-menu">
+					<div class="navbar-start">
+						<AuthorizeView>
+							<Authorized>
+								<NavBar />
+							</Authorized>
+						</AuthorizeView>
+					</div>
+					<div class="navbar-end">
+						<AuthorizeView>
+							<Authorized>
+								<ThemeToggleComponent />
+								<AudioDescriptionComponent />
+								<LanguageSelectionComponent />
+								<NotificationComponent />
+							</Authorized>
+						</AuthorizeView>
+						<LoginDisplay />
+					</div>
+				</div>
+			</div>
+		</header>
+	</div>
 
-    <div class="hero-body">
-        <div class="container has-text-centered is-fluid mx-5">
-            @Body
-        </div>
-    </div>
+	<div class="hero-body">
+		<div class="container has-text-centered is-fluid mx-5">
+			@Body
+		</div>
+	</div>
 
-    <footer class="footer" style="padding-bottom: 4rem;">
-        <div class="content has-text-centered">
-            <p>
-                <strong translate="no">Learning Blazor</strong> by <a href="https://davidpine.net" target="_blank">David Pine</a>.
-                The <a href="https://github.com/IEvangelist/learning-blazor" target="_blank"><i class="fab fa-github"></i> source code</a> is
-                licensed <a href="https://github.com/IEvangelist/learning-blazor/blob/main/LICENSE">MIT</a>. &mdash; @FrameworkDescription
-            </p>
-        </div>
-    </footer>
+	<footer class="footer" style="padding-bottom: 4rem;">
+		<div class="columns has-text-centered">
+			<p class="column">
+				<strong translate="no">Learning Blazor</strong> by <a href="https://davidpine.net" target="_blank">David Pine</a>.
+			</p>
+			<p class="column">
+				The <a href="https://github.com/IEvangelist/learning-blazor" target="_blank"><i class="fab fa-github"></i> source code</a> is
+				licensed <a href="https://github.com/IEvangelist/learning-blazor/blob/main/LICENSE">MIT</a>.
+			</p>
+			<p class="column">
+				@FrameworkDescription
+			</p>
+		</div>
+	</footer>
 
 </section>

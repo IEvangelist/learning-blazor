@@ -1,15 +1,14 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
-using System;
 using TempUom = Learning.Blazor.Models.MeasurementSystem;
 
-namespace Learning.Blazor.Services
+namespace Learning.Blazor.Services;
+
+internal class TemperatureUnitConversionService
 {
-    internal class TemperatureUnitConversionService
-    {
 #pragma warning disable CA1822 // Mark members as static → used w/ DI
-        public int ConvertValue(double value, TempUom sourceUom, TempUom targetUom) =>
+    public int ConvertValue(double value, TempUom sourceUom, TempUom targetUom) =>
 #pragma warning restore CA1822 // Mark members as static
             (sourceUom, targetUom) switch
             {
@@ -21,5 +20,4 @@ namespace Learning.Blazor.Services
 
                 _ => (int)value
             };
-    }
 }

@@ -1,79 +1,72 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Globalization;
-using System.Net.Http;
 using System.Net.Http.Json;
-using System.Threading.Tasks;
 using Learning.Blazor.Extensions;
 using Learning.Blazor.Models;
 using Microsoft.AspNetCore.Components;
-using Microsoft.Extensions.Logging;
 
-namespace Learning.Blazor.Components
+namespace Learning.Blazor.Components;
+
+public partial class LanguageSelectionComponent
 {
-    public partial class LanguageSelectionComponent
+    private HashSet<(CultureInfo Culture, AzureCulture AzureCulture)>
+        _supportedCultures = null!;
+
+    private CultureInfo _selectedCulture = null!;
+    private ModalComponent _modal = null!;
+
+    [Inject] HttpClient Http { get; set; } = null!;
+
+    protected override async Task OnInitializedAsync()
     {
-        private HashSet<(CultureInfo Culture, AzureCulture AzureCulture)>
-            _supportedCultures = null!;
-
-        private CultureInfo _selectedCulture = null!;
-        private ModalComponent _modal = null!;
-
-        [Inject] HttpClient Http { get; set; } = null!;
-
-        protected override async Task OnInitializedAsync()
+        try
         {
-            try
-            {
-                var azureCultures =
-                    await Http.GetFromJsonAsync<AzureTranslationCultures>(
-                        "api/cultures/all",
-                        DefaultJsonSerialization.Options);
+            var azureCultures =
+                await Http.GetFromJsonAsync<AzureTranslationCultures>(
+                    "api/cultures/all",
+                    DefaultJsonSerialization.Options);
 
-                _supportedCultures =
-                    Culture.MapClientSupportedCultures(azureCultures?.Translation);
-            }
-            catch (Exception ex)
-            {
-                Logger.LogError(ex, ex.Message, ex.StackTrace);
-            }
+            _supportedCultures =
+                Culture.MapClientSupportedCultures(azureCultures?.Translation);
         }
-
-        private static string ToDisplayName(
-            (CultureInfo Culture, AzureCulture AzureCulture)? culturePair)
+        catch (Exception ex)
         {
-            var (hasValue, (culture, azureCulture)) = culturePair;
-            return hasValue
-                ? $"{azureCulture.Name} ({culture.Name})"
-                : "";
+            Logger.LogError(ex, ex.Message);
         }
-
-        private async Task Show() => await _modal.Show();
-
-        private async Task Confirm()
-        {
-            var forceRefresh = false;
-            if (_selectedCulture is not null &&
-                _selectedCulture != Culture.CurrentCulture)
-            {
-                forceRefresh = true;
-                await LocalStorage.SetAsync(
-                    StorageKeys.ClientCulture, _selectedCulture.Name);
-            }
-
-            await _modal.Confirm();
-
-            if (forceRefresh)
-            {
-                Navigation.NavigateTo(Navigation.Uri, forceLoad: true);
-            }
-        }
-
-        private void OnDismissed(DismissalReason reason) =>
-            Logger.LogWarning("User '{Reason}' the language selector modal.", reason);
     }
+
+    private static string ToDisplayName(
+        (CultureInfo Culture, AzureCulture AzureCulture)? culturePair)
+    {
+        var (hasValue, (culture, azureCulture)) = culturePair;
+        return hasValue
+            ? $"{azureCulture.Name} ({culture.Name})"
+            : "";
+    }
+
+    private async Task Show() => await _modal.Show();
+
+    private async Task Confirm()
+    {
+        var forceRefresh = false;
+        if (_selectedCulture is not null &&
+            _selectedCulture != Culture.CurrentCulture)
+        {
+            forceRefresh = true;
+            await LocalStorage.SetAsync(
+                StorageKeys.ClientCulture, _selectedCulture.Name);
+        }
+
+        await _modal.Confirm();
+
+        if (forceRefresh)
+        {
+            Navigation.NavigateTo(Navigation.Uri, forceLoad: true);
+        }
+    }
+
+    private void OnDismissed(DismissalReason reason) =>
+        Logger.LogWarning("User '{Reason}' the language selector modal.", reason);
 }

@@ -9,8 +9,13 @@
             </button>
         </Authorizing>
         <Authorized>
+            @{
+                var user = context.User!;
+                var userIdentity = user.Identity!;
+                var userToolTip = $"{userIdentity.Name} ({user.FindFirst(ClaimTypes.Email)?.Value})";
+            }
             <button class="button is-rounded level-item has-tooltip-right has-tooltip-info"
-                data-tooltip=@(context.User?.Identity?.Name) @onclick="OnLogOut">
+                data-tooltip=@(userToolTip) @onclick="OnLogOut">
                 <span class="icon">
                     <i class="fas fa-sign-out-alt"></i>
                 </span>

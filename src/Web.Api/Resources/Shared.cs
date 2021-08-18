@@ -5,9 +5,8 @@ using Microsoft.Extensions.Localization;
 
 [assembly: RootNamespace("Learning.Blazor.Api")]
 
-namespace Learning.Blazor.Api.Resources
+namespace Learning.Blazor.Api.Resources;
+
+public class Shared
 {
-    public class Shared
-    {
-    }
 }

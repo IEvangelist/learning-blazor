@@ -3,9 +3,8 @@
 
 using System.Text.Json.Serialization;
 
-namespace Learning.Blazor.BrowserModels
-{
-    public record ClientVoicePreference(
-        [property: JsonPropertyName("voice")] string Voice,
-        [property: JsonPropertyName("voiceSpeed")] double VoiceSpeed);
-}
+namespace Learning.Blazor.BrowserModels;
+
+public record ClientVoicePreference(
+    [property: JsonPropertyName("voice")] string Voice,
+    [property: JsonPropertyName("voiceSpeed")] double VoiceSpeed);

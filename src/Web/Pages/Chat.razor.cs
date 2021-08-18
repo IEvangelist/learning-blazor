@@ -1,10 +1,7 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
-using System;
-using System.Collections.Generic;
 using System.Security.Claims;
-using System.Threading.Tasks;
 using System.Timers;
 using Learning.Blazor.Extensions;
 using Learning.Blazor.Models;
@@ -12,54 +9,54 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using SystemTimer = System.Timers.Timer;
 
-namespace Learning.Blazor.Pages
+namespace Learning.Blazor.Pages;
+
+public sealed partial class Chat : IAsyncDisposable
 {
-    public sealed partial class Chat : IAsyncDisposable
+    private readonly Dictionary<Guid, ActorMessage> _messages = new();
+    private readonly HashSet<Actor> _usersTyping = new();
+    private readonly Stack<IDisposable> _subscriptions = new();
+    private readonly SystemTimer _debouceTimer = new()
     {
-        private readonly Dictionary<Guid, ActorMessage> _messages = new();
-        private readonly HashSet<Actor> _usersTyping = new();
-        private readonly Stack<IDisposable> _subscriptions = new();
-        private readonly SystemTimer _debouceTimer = new()
-        {
-            Interval = 750,
-            AutoReset = false
-        };
+        Interval = 750,
+        AutoReset = false
+    };
 
-        private Guid? _messageId = null!;
-        private string? _message = null!;
-        private bool _isTyping = false;
-        private ClaimsPrincipal _user = null!;
+    private Guid? _messageId = null!;
+    private string? _message = null!;
+    private bool _isTyping = false;
+    private ClaimsPrincipal _user = null!;
 
-        private ElementReference _messageInput;
+    private ElementReference _messageInput;
 
-        private const string DefaultRoomName = "public";
+    private const string DefaultRoomName = "public";
 
-        [Parameter]
-        public string? Room { get; set; } = DefaultRoomName;
+    [Parameter]
+    public string? Room { get; set; } = DefaultRoomName;
 
-        [Inject]
-        public SharedHubConnection HubConnection { get; set; } = null!;
+    [Inject]
+    public SharedHubConnection HubConnection { get; set; } = null!;
 
-        public Chat() => _debouceTimer.Elapsed += OnDebouceElapsed;
+    public Chat() => _debouceTimer.Elapsed += OnDebouceElapsed;
 
-        protected override async Task OnInitializedAsync()
-        {
-            _subscriptions.Push(
-                HubConnection.SubscribeToMessageReceived(OnMessageReceivedAsync));
-            _subscriptions.Push(
-                HubConnection.SubscribeToUserTyping(OnUserTypingAsync));
+    protected override async Task OnInitializedAsync()
+    {
+        _subscriptions.Push(
+            HubConnection.SubscribeToMessageReceived(OnMessageReceivedAsync));
+        _subscriptions.Push(
+            HubConnection.SubscribeToUserTyping(OnUserTypingAsync));
 
-            await HubConnection.StartAsync(this);
-            await HubConnection.JoinChatAsync(Room ?? DefaultRoomName);
+        await HubConnection.StartAsync(this);
+        await HubConnection.JoinChatAsync(Room ?? DefaultRoomName);
 
-            await _messageInput.FocusAsync();
-        }
+        await _messageInput.FocusAsync();
+    }
 
-        async Task OnMessageReceivedAsync(Notification<ActorMessage> message) =>
-            await InvokeAsync(
-                async () =>
-                {
-                    _messages[message.Payload.Id] = message;
+    async Task OnMessageReceivedAsync(Notification<ActorMessage> message) =>
+        await InvokeAsync(
+            async () =>
+            {
+                _messages[message.Payload.Id] = message;
                     //if (message.IsChatBot && message.SayJoke)
                     //{
                     //    var lang = message.Lang;
@@ -81,104 +78,95 @@ namespace Learning.Blazor.Pages
 
                     await JavaScript.ScrollIntoViewAsync(".chat-list");
 
-                    StateHasChanged();
-                });
-
-        async Task OnUserTypingAsync(Notification<ActorAction> actorAction) =>
-            await InvokeAsync(() =>
-            {
-                var (_, (user, isTyping)) = actorAction;
-                _ = isTyping
-                    ? _usersTyping.Add(new(user))
-                    : _usersTyping.Remove(new(user));
-
                 StateHasChanged();
             });
 
-        private async void OnDebouceElapsed(object? _, ElapsedEventArgs e) =>
-            await SetIsTyping(false);
-
-        private async Task OnKeyUp(KeyboardEventArgs args)
+    async Task OnUserTypingAsync(Notification<ActorAction> actorAction) =>
+        await InvokeAsync(() =>
         {
-            if (args is { Key: "Enter" } and { Code: "Enter" })
-            {
-                await SendMessage();
-            }
+            var (_, (user, isTyping)) = actorAction;
+            _ = isTyping
+                ? _usersTyping.Add(new(user))
+                : _usersTyping.Remove(new(user));
+
+            StateHasChanged();
+        });
+
+    private async void OnDebouceElapsed(object? _, ElapsedEventArgs e) =>
+        await SetIsTyping(false);
+
+    private async Task OnKeyUp(KeyboardEventArgs args)
+    {
+        if (args is { Key: "Enter" } and { Code: "Enter" })
+        {
+            await SendMessage();
+        }
+    }
+
+    async Task SendMessage()
+    {
+        if (_message is { Length: > 0 })
+        {
+            await HubConnection.PostOrUpdateMessageAsync(
+                Room ?? DefaultRoomName, _message, _messageId);
+
+            _message = null;
+            _messageId = null;
+
+            StateHasChanged();
+        }
+    }
+
+    async Task InitiateDebounceUserIsTyping()
+    {
+        _debouceTimer.Stop();
+        _debouceTimer.Start();
+
+        await SetIsTyping(true);
+    }
+
+    async Task SetIsTyping(bool isTyping)
+    {
+        if (_isTyping && isTyping)
+        {
+            return;
         }
 
-        async Task SendMessage()
-        {
-            if (_message is { Length: > 0 })
-            {
-                await HubConnection.PostOrUpdateMessageAsync(
-                    Room ?? DefaultRoomName, _message, _messageId);
+        await HubConnection.ToggleUserTypingAsync(_isTyping = isTyping);
+    }
 
-                _message = null;
-                _messageId = null;
+    bool OwnsMessage(string user) => _user?.Identity?.Name == user;
+
+    async Task StartEdit(ActorMessage message)
+    {
+        if (!OwnsMessage(message.UserName))
+        {
+            return;
+        }
+
+        await InvokeAsync(
+            async () =>
+            {
+                _messageId = message.Id;
+                _message = message.Text;
+
+                await _messageInput.FocusAsync();
 
                 StateHasChanged();
-            }
+            });
+    }
+
+    async ValueTask IAsyncDisposable.DisposeAsync()
+    {
+        if (HubConnection is not null)
+        {
+            await HubConnection.LeaveChatAsync(Room ?? DefaultRoomName);
+            await HubConnection.StopAsync(this);
         }
 
-        async Task InitiateDebounceUserIsTyping()
+        while (_subscriptions.TryPop(out var disposable))
         {
-            _debouceTimer.Stop();
-            _debouceTimer.Start();
-
-            await SetIsTyping(true);
-        }
-
-        async Task SetIsTyping(bool isTyping)
-        {
-            if (_isTyping && isTyping)
-            {
-                return;
-            }
-
-            await HubConnection.ToggleUserTypingAsync(_isTyping = isTyping);
-        }
-
-        async Task AppendToMessage(string text)
-        {
-            _message += text;
-
-            await _messageInput.FocusAsync();
-            await SetIsTyping(false);
-        }
-
-        bool OwnsMessage(string user) => _user?.Identity?.Name == user;
-
-        async Task StartEdit(ActorMessage message)
-        {
-            if (!OwnsMessage(message.UserName))
-            {
-                return;
-            }
-
-            await InvokeAsync(
-                async () =>
-                {
-                    _messageId = message.Id;
-                    _message = message.Text;
-
-                    await _messageInput.FocusAsync();
-
-                    StateHasChanged();
-                });
-        }
-
-        async ValueTask IAsyncDisposable.DisposeAsync()
-        {
-            if (HubConnection is not null)
-            {
-                await HubConnection.LeaveChatAsync(Room ?? DefaultRoomName);
-                await HubConnection.StopAsync(this);
-            }
-
-            while (_subscriptions.TryPop(out var disposable))
-            {
-                disposable.Dispose();
-            }
+            disposable.Dispose();
         }
     }
 }

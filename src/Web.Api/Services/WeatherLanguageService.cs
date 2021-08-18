@@ -1,20 +1,19 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
-using System.Collections.Generic;
 using Learning.Blazor.Models;
 
-namespace Learning.Blazor.Api.Services
+namespace Learning.Blazor.Api.Services;
+
+/// <summary>
+/// See: https://openweathermap.org/api/one-call-api#multi
+/// </summary>
+public class WeatherLanguageService
 {
     /// <summary>
     /// See: https://openweathermap.org/api/one-call-api#multi
     /// </summary>
-    public class WeatherLanguageService
-    {
-        /// <summary>
-        /// See: https://openweathermap.org/api/one-call-api#multi
-        /// </summary>
-        internal ISet<WeatherLanguage> GetWeatherLanguages() => new HashSet<WeatherLanguage>
+    internal ISet<WeatherLanguage> GetWeatherLanguages() => new HashSet<WeatherLanguage>
         {
             new("af","Afrikaans", "af"),
             new("al", "Albanian", "sq"),
@@ -60,5 +59,4 @@ namespace Learning.Blazor.Api.Services
             new("zh_cn", "Chinese Simplified", "zh-Hans"),
             new("zh_tw", "Chinese Traditional", "zh-Hant")
         };
-    }
 }

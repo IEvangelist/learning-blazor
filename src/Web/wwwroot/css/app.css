@@ -20,7 +20,7 @@
     display: none;
 }
 
-#splash .blazor-logo {
+.blazor-logo {
     max-width: 10rem;
 }
 

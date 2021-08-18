@@ -8,42 +8,40 @@ using Learning.Blazor.Models;
 using Learning.Blazor.Api.Extensions;
 using Learning.Blazor.Api.Options;
 using Microsoft.Extensions.Caching.Distributed;
-using System;
-using System.Net.Http;
-using System.Threading.Tasks;
-using System.Net.Http.Json;
+using Learning.Blazor.Api.Http;
 
-namespace Learning.Blazor.Api.Services
+namespace Learning.Blazor.Api.Services;
+
+public sealed class WeatherFunctionClientService : IAsyncDisposable
 {
-    public sealed class WeatherFunctionClientService : IAsyncDisposable
-    {
-        private readonly HttpClient _httpClient;
-        private readonly IDistributedCache _cache;
-        private readonly WebFunctionsOptions _functions;
+    private readonly HttpClient _httpClient;
+    private readonly IDistributedCache _cache;
+    private readonly WebFunctionsOptions _functions;
+    private readonly ILogger<WeatherFunctionClientService> _logger;
 
-        public WeatherFunctionClientService(
-            IHttpClientFactory httpClientFactory,
-            IDistributedCache cache,
-            IOptions<WebFunctionsOptions> options) =>
-            (_httpClient, _cache, _functions) =
-                (httpClientFactory.CreateClient(HttpClientNames.WebFunctionsClient), cache, options.Value);
+    public WeatherFunctionClientService(
+        IHttpClientFactory httpClientFactory,
+        IDistributedCache cache,
+        IOptions<WebFunctionsOptions> options,
+        ILogger<WeatherFunctionClientService> logger) =>
+        (_httpClient, _cache, _functions, _logger) =
+            (httpClientFactory.CreateClient(HttpClientNames.WebFunctionsClient), cache, options.Value, logger);
 
-        public Task<WeatherDetails> GetWeatherAsync(WeatherRequest request) =>
-            _cache.GetOrCreateAsync(
-                request.Key,
-                async options =>
-                {
-                    options.AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(9);
+    public Task<WeatherDetails> GetWeatherAsync(WeatherRequest request) =>
+        _cache.GetOrCreateAsync(
+            request.Key,
+            async options =>
+            {
+                options.AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(9);
 
-                    var requestUrl = request.ToFormattedUrl(_functions.WeatherFunctionUrlFormat);
-                    var details =
-                        await _httpClient.GetFromJsonAsync<WeatherDetails>(
-                            requestUrl, DefaultJsonSerialization.Options);
+                var requestUrl = request.ToFormattedUrl(_functions.WeatherFunctionUrlFormat);
+                var details =
+                    await _httpClient.GetFromJsonAsync<WeatherDetails>(
+                        requestUrl, DefaultJsonSerialization.Options);
 
-                    return details! with { MeasurementSystem = request.Units };
-                });
+                return details! with { MeasurementSystem = request.Units };
+            }, _logger);
 
-        ValueTask IAsyncDisposable.DisposeAsync() =>
-            _httpClient.TryDisposeAsync();
-    }
+    ValueTask IAsyncDisposable.DisposeAsync() =>
+        _httpClient.TryDisposeAsync();
 }

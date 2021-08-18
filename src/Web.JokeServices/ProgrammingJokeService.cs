@@ -4,45 +4,43 @@
 using System;
 using System.Net.Http;
 using System.Net.Http.Json;
-using System.Text.Json;
 using System.Threading.Tasks;
 using Learning.Blazor.Extensions;
 using Learning.Blazor.Models;
 using Microsoft.Extensions.Logging;
 
-namespace Learning.Blazor.JokeServices
+namespace Learning.Blazor.JokeServices;
+
+internal class ProgrammingJokeService : IJokeService
 {
-    internal class ProgrammingJokeService : IJokeService
+    private readonly HttpClient _httpClient;
+    private readonly ILogger<ProgrammingJokeService> _logger;
+
+    public ProgrammingJokeService(
+        HttpClient httpClient,
+        ILogger<ProgrammingJokeService> logger) =>
+        (_httpClient, _logger) = (httpClient, logger);
+
+    JokeSourceDetails IJokeService.SourceDetails =>
+        new(JokeSource.OfficialJokeApiProgramming,
+            new Uri("https://official-joke-api.appspot.com/"));
+
+    async Task<string?> IJokeService.GetJokeAsync()
     {
-        private readonly HttpClient _httpClient;
-        private readonly ILogger<ProgrammingJokeService> _logger;
-
-        public ProgrammingJokeService(
-            HttpClient httpClient,
-            ILogger<ProgrammingJokeService> logger) =>
-            (_httpClient, _logger) = (httpClient, logger);
-
-        JokeSourceDetails IJokeService.SourceDetails =>
-            new(JokeSource.OfficialJokeApiProgramming,
-                new Uri("https://official-joke-api.appspot.com/"));
-
-        async Task<string?> IJokeService.GetJokeAsync()
+        try
         {
-            try
-            {
-                // An array with a single joke is returned
-                var jokes = await _httpClient.GetFromJsonAsync<ProgrammingJoke[]>(
-                    "https://official-joke-api.appspot.com/jokes/programming/random",
-                    DefaultJsonSerialization.Options);
+            // An array with a single joke is returned
+            var jokes = await _httpClient.GetFromJsonAsync<ProgrammingJoke[]>(
+                "https://official-joke-api.appspot.com/jokes/programming/random",
+                DefaultJsonSerialization.Options);
 
-                return jokes?[0].Text;
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError("Error getting something fun to say: {Error}", ex);
-            }
-
-            return null;
+            return jokes?[0].Text;
         }
+        catch (Exception ex)
+        {
+            _logger.LogError("Error getting something fun to say: {Error}", ex);
+        }
+
+        return null;
     }
 }

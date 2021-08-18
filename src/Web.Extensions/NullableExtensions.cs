@@ -3,14 +3,13 @@
 
 using System;
 
-namespace Learning.Blazor.Extensions
+namespace Learning.Blazor.Extensions;
+
+public static class NullableExtensions
 {
-    public static class NullableExtensions
-    {
-        public static void Deconstruct<T>(
-            this Nullable<T> nullable,
-            out bool hasValue,
-            out T value) where T : struct =>
-            (hasValue, value) = (nullable.HasValue, nullable.GetValueOrDefault());
-    }
+    public static void Deconstruct<T>(
+        this Nullable<T> nullable,
+        out bool hasValue,
+        out T value) where T : struct =>
+        (hasValue, value) = (nullable.HasValue, nullable.GetValueOrDefault());
 }

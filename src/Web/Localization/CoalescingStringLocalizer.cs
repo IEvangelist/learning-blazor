@@ -3,30 +3,65 @@
 
 using Microsoft.Extensions.Localization;
 
-namespace Learning.Blazor.Localization
+namespace Learning.Blazor.Localization;
+
+internal class CoalescingStringLocalizer<T>
 {
-    internal class CoalescingStringLocalizer<T>
+    private readonly IStringLocalizer<T> _localizer = null!;
+    private readonly IStringLocalizer<SharedResource> _sharedLocalizer = null!;
+    private readonly ILogger<T> _logger = null!;
+
+    public CoalescingStringLocalizer(
+        IStringLocalizer<T> localizer,
+        IStringLocalizer<SharedResource> sharedLocalizer,
+        ILogger<T> logger) =>
+        (_localizer, _sharedLocalizer, _logger) = (localizer, sharedLocalizer, logger);
+
+    /// <summary>
+    /// Gets the localized content for the current subcomponent,
+    /// relying on the contextually appropriate <see cref="IStringLocalizer{T}"/> implementation.
+    /// </summary>
+    internal LocalizedString this[string name]
     {
-        private readonly IStringLocalizer<T> _localizer = null!;
-        private readonly IStringLocalizer<SharedResource> _sharedLocalizer = null!;
+        get
+        {
+            var localizedString = _localizer[name]
+                ?? _sharedLocalizer[name]
+                ?? new(name, name);
 
-        public CoalescingStringLocalizer(
-            IStringLocalizer<T> localizer,
-            IStringLocalizer<SharedResource> sharedLocalizer) =>
-            (_localizer, _sharedLocalizer) = (localizer, sharedLocalizer);
+            LogIfNotFound(localizedString);
 
-        /// <summary>
-        /// Gets the localized content for the current subcomponent,
-        /// relying on the contextually appropriate <see cref="IStringLocalizer{T}"/> implementation.
-        /// </summary>
-        internal LocalizedString this[string name] =>
-            _localizer[name] ?? _sharedLocalizer[name] ?? new(name, name);
+            return localizedString;
+        }
+    }
 
-        /// <summary>
-        /// Gets the localized content for the current subcomponent,
-        /// relying on the contextually appropriate <see cref="IStringLocalizer{T}"/> implementation.
-        /// </summary>
-        internal LocalizedString this[string name, params object[] arguments] =>
-            _localizer[name, arguments] ?? _sharedLocalizer[name, arguments] ?? new(name, name);
+    /// <summary>
+    /// Gets the localized content for the current subcomponent,
+    /// relying on the contextually appropriate <see cref="IStringLocalizer{T}"/> implementation.
+    /// </summary>
+    internal LocalizedString this[string name, params object[] arguments]
+    {
+        get
+        {
+            var localizedString = _localizer[name, arguments]
+                ?? _sharedLocalizer[name, arguments]
+                ?? new(name, name);
+
+            LogIfNotFound(localizedString);
+
+            return localizedString;
+        }
+    }
+
+    void LogIfNotFound(LocalizedString localizedString)
+    {
+        if (localizedString is { ResourceNotFound: false })
+        {
+            _logger.LogInformation(
+                "Unable to find {Name}, searched in {Location} - using {Value}.",
+                localizedString.Name,
+                localizedString.SearchedLocation,
+                localizedString.Value);
+        }
     }
 }

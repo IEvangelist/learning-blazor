@@ -4,7 +4,6 @@
     <RootNamespace>Learning.Blazor.Api</RootNamespace>
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
-    <UserSecretsId>0de4eb7c-4143-405d-b718-e528e58677f7</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>..\..</DockerfileContext>
   </PropertyGroup>

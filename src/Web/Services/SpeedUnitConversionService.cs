@@ -3,12 +3,12 @@
 
 using SpeedUom = Learning.Blazor.Models.MeasurementSystem;
 
-namespace Learning.Blazor.Services
+namespace Learning.Blazor.Services;
+
+internal class SpeedUnitConversionService
 {
-    internal class SpeedUnitConversionService
-    {
 #pragma warning disable CA1822 // Mark members as static → used w/ DI
-        public double ConvertValue(double value, SpeedUom sourceUom, SpeedUom targetUom) =>
+    public double ConvertValue(double value, SpeedUom sourceUom, SpeedUom targetUom) =>
 #pragma warning restore CA1822 // Mark members as static
             (sourceUom, targetUom) switch
             {
@@ -20,5 +20,4 @@ namespace Learning.Blazor.Services
 
                 _ => value
             };
-    }
 }

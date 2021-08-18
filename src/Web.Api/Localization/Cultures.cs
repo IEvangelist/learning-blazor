@@ -1,14 +1,14 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
-namespace Learning.Blazor.Api.Localization
-{
-    internal static class Cultures
-    {
-        internal static string Default { get; } = "en-US";
+namespace Learning.Blazor.Api.Localization;
 
-        internal static string[] Supported { get; } = new string[]
-        {
+internal static class Cultures
+{
+    internal static string Default { get; } = "en-US";
+
+    internal static string[] Supported { get; } = new string[]
+    {
             "af",
             "ar",
             "az",
@@ -51,6 +51,5 @@ namespace Learning.Blazor.Api.Localization
             "vi",
             "zh-Hans",
             "zh-Hant"
-        };
-    }
+    };
 }

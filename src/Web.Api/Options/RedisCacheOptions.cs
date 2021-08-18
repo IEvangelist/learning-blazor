@@ -1,10 +1,9 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
-namespace Learning.Blazor.Api.Options
+namespace Learning.Blazor.Api.Options;
+
+public class RedisCacheOptions
 {
-    public class RedisCacheOptions
-    {
-        public string ConnectionString { get; set; } = null!;
-    }
+    public string ConnectionString { get; set; } = null!;
 }

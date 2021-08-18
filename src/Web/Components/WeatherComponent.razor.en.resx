@@ -120,4 +120,7 @@
   <data name="CurrentWeatherVisual" xml:space="preserve">
     <value>The current weather visual indicator, such as a cloud, sun, or rain icon.</value>
   </data>
+  <data name="WeatherUnavailable" xml:space="preserve">
+    <value>The weather service is currently unavailable.</value>
+  </data>
 </root>
