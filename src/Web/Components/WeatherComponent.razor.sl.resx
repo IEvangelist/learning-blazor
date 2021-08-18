@@ -61,4 +61,7 @@
   <data name="CurrentWeatherVisual" xml:space="preserve">
     <value>Trenutni vremenski vizualni kazalnik, na primer ikona oblaka, sonca ali dežja.</value>
   </data>
+  <data name="WeatherUnavailable" xml:space="preserve">
+    <value>Vremenska služba trenutno ni na voljo.</value>
+  </data>
 </root>

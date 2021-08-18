@@ -61,4 +61,7 @@
   <data name="CurrentWeatherVisual" xml:space="preserve">
     <value>Az aktuális időjárás-vizuális mutató, például felhő, nap vagy eső ikon.</value>
   </data>
+  <data name="WeatherUnavailable" xml:space="preserve">
+    <value>A meteorológiai szolgálat jelenleg nem elérhető.</value>
+  </data>
 </root>

@@ -59,6 +59,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CurrentWeatherVisual" xml:space="preserve">
-    <value>當前天氣視覺指標，如雲、太陽或雨圖示。</value>
+    <value>當前的天氣視覺指示器，如雲、太陽或雨圖示。</value>
+  </data>
+  <data name="WeatherUnavailable" xml:space="preserve">
+    <value>目前無法提供氣象服務。</value>
   </data>
 </root>

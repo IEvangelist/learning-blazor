@@ -61,4 +61,7 @@
   <data name="CurrentWeatherVisual" xml:space="preserve">
     <value>Nykyinen säänäköilmaisin, kuten pilvi-, aurinko- tai sadekuvake.</value>
   </data>
+  <data name="WeatherUnavailable" xml:space="preserve">
+    <value>Sääpalvelu ei ole tällä hetkellä käytettävissä.</value>
+  </data>
 </root>

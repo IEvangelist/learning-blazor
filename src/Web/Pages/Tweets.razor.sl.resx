@@ -62,7 +62,10 @@
     <value>Odklopi</value>
   </data>
   <data name="Live" xml:space="preserve">
-    <value>živeti</value>
+    <value>Živeti</value>
+  </data>
+  <data name="Tweets" xml:space="preserve">
+    <value>Tweets</value>
   </data>
   <data name="TwitterFeed" xml:space="preserve">
     <value>Twitter Feed</value>

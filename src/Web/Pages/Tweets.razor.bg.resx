@@ -59,12 +59,15 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Disconnected" xml:space="preserve">
-    <value>изключен</value>
+    <value>Изключен</value>
   </data>
   <data name="Live" xml:space="preserve">
-    <value>живея</value>
+    <value>Живея</value>
+  </data>
+  <data name="Tweets" xml:space="preserve">
+    <value>Туитове</value>
   </data>
   <data name="TwitterFeed" xml:space="preserve">
-    <value>Twitter Feed</value>
+    <value>Туитър Емисия</value>
   </data>
 </root>

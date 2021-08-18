@@ -61,4 +61,7 @@
   <data name="CurrentWeatherVisual" xml:space="preserve">
     <value>مؤشر الطقس المرئي الحالي، مثل أيقونة السحب أو الشمس أو المطر.</value>
   </data>
+  <data name="WeatherUnavailable" xml:space="preserve">
+    <value>خدمة الطقس غير متوفرة حاليا.</value>
+  </data>
 </root>

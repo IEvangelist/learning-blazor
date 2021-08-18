@@ -61,4 +61,7 @@
   <data name="CurrentWeatherVisual" xml:space="preserve">
     <value>Den aktuella visuella väderindikatorn, till exempel ett moln, sol eller regnikon.</value>
   </data>
+  <data name="WeatherUnavailable" xml:space="preserve">
+    <value>Vädertjänsten är för närvarande inte tillgänglig.</value>
+  </data>
 </root>

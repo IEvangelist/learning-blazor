@@ -59,12 +59,15 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Disconnected" xml:space="preserve">
-    <value>odpojený</value>
+    <value>Odpojený</value>
   </data>
   <data name="Live" xml:space="preserve">
-    <value>žiť</value>
+    <value>Žiť</value>
+  </data>
+  <data name="Tweets" xml:space="preserve">
+    <value>Tweets</value>
   </data>
   <data name="TwitterFeed" xml:space="preserve">
-    <value>Informačný kanál Twitteru</value>
+    <value>Informačný kanál Twitter</value>
   </data>
 </root>

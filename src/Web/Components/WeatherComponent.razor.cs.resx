@@ -61,4 +61,7 @@
   <data name="CurrentWeatherVisual" xml:space="preserve">
     <value>Aktuální vizuální indikátor počasí, například ikona mraku, slunce nebo deště.</value>
   </data>
+  <data name="WeatherUnavailable" xml:space="preserve">
+    <value>Meteorologická služba je momentálně nedostupná.</value>
+  </data>
 </root>

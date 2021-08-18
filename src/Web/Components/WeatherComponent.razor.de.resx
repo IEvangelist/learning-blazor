@@ -61,4 +61,7 @@
   <data name="CurrentWeatherVisual" xml:space="preserve">
     <value>Die visuelle Anzeige für das aktuelle Wetter, z. B. ein Wolken-, Sonnen- oder Regensymbol.</value>
   </data>
+  <data name="WeatherUnavailable" xml:space="preserve">
+    <value>Der Wetterdienst ist derzeit nicht verfügbar.</value>
+  </data>
 </root>

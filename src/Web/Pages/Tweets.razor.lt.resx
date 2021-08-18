@@ -62,7 +62,10 @@
     <value>Atjungtas</value>
   </data>
   <data name="Live" xml:space="preserve">
-    <value>gyventi</value>
+    <value>Gyventi</value>
+  </data>
+  <data name="Tweets" xml:space="preserve">
+    <value>Tweets</value>
   </data>
   <data name="TwitterFeed" xml:space="preserve">
     <value>Twitter kanalas</value>

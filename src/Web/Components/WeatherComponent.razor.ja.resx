@@ -61,4 +61,7 @@
   <data name="CurrentWeatherVisual" xml:space="preserve">
     <value>雲、太陽、雨のアイコンなど、現在の気象ビジュアル インジケーター。</value>
   </data>
+  <data name="WeatherUnavailable" xml:space="preserve">
+    <value>現在、気象サービスは利用できません。</value>
+  </data>
 </root>

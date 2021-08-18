@@ -62,7 +62,10 @@
     <value>Відключено</value>
   </data>
   <data name="Live" xml:space="preserve">
-    <value>жити</value>
+    <value>Жити</value>
+  </data>
+  <data name="Tweets" xml:space="preserve">
+    <value>Твіти</value>
   </data>
   <data name="TwitterFeed" xml:space="preserve">
     <value>Канал Твіттера</value>

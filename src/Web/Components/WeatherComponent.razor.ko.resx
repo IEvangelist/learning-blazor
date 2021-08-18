@@ -61,4 +61,7 @@
   <data name="CurrentWeatherVisual" xml:space="preserve">
     <value>구름, 태양 또는 비 아이콘과 같은 현재 날씨 시각적 표시기입니다.</value>
   </data>
+  <data name="WeatherUnavailable" xml:space="preserve">
+    <value>현재 기상 서비스를 이용할 수 없습니다.</value>
+  </data>
 </root>

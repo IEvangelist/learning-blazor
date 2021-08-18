@@ -64,6 +64,9 @@
   <data name="Live" xml:space="preserve">
     <value>อยู่</value>
   </data>
+  <data name="Tweets" xml:space="preserve">
+    <value>ทวีต</value>
+  </data>
   <data name="TwitterFeed" xml:space="preserve">
     <value>ฟีดทวิตเตอร์</value>
   </data>

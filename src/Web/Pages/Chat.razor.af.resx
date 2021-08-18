@@ -58,22 +58,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ChatMessage" xml:space="preserve">
+  <data name="Chat" xml:space="preserve">
     <value>Kletsboodskap</value>
   </data>
-  <data name="Messages" xml:space="preserve">
+  <data name="ChatMessage" xml:space="preserve">
     <value>Boodskappe</value>
   </data>
-  <data name="MultiplePeopleAreTyping" xml:space="preserve">
-    <value>Veelvuldige mense tik.</value>
+  <data name="Messages" xml:space="preserve">
+    <value>Verskeie mense tik.</value>
   </data>
-  <data name="Send" xml:space="preserve">
+  <data name="MultiplePeopleAreTyping" xml:space="preserve">
     <value>Stuur</value>
   </data>
-  <data name="TwoUsersAreTypingFormat" xml:space="preserve">
+  <data name="Send" xml:space="preserve">
     <value>{0} en {1} is albei tik.</value>
   </data>
+  <data name="TwoUsersAreTypingFormat" xml:space="preserve">
+    <value>{0} is besig om te tik.</value>
+  </data>
   <data name="UserIsTypingFormat" xml:space="preserve">
-    <value>{0} tik.</value>
+    <value>{0} is typing.</value>
   </data>
 </root>
