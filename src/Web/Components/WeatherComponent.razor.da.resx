@@ -61,4 +61,7 @@
   <data name="CurrentWeatherVisual" xml:space="preserve">
     <value>Den aktuelle visuelle indikator for vejret, f.eks.</value>
   </data>
+  <data name="WeatherUnavailable" xml:space="preserve">
+    <value>Vejrtjenesten er ikke tilgængelig i øjeblikket.</value>
+  </data>
 </root>

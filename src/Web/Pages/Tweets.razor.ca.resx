@@ -62,9 +62,12 @@
     <value>Desconnectat</value>
   </data>
   <data name="Live" xml:space="preserve">
-    <value>viure</value>
+    <value>Viure</value>
+  </data>
+  <data name="Tweets" xml:space="preserve">
+    <value>Tweets</value>
   </data>
   <data name="TwitterFeed" xml:space="preserve">
-    <value>Canal de continguts de Twitter</value>
+    <value>Canal de Twitter</value>
   </data>
 </root>

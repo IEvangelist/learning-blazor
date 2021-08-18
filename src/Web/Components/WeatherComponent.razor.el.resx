@@ -61,4 +61,7 @@
   <data name="CurrentWeatherVisual" xml:space="preserve">
     <value>Ο τρέχων οπτικός δείκτης καιρού, όπως ένα εικονίδιο σύννεφου, ήλιου ή βροχής.</value>
   </data>
+  <data name="WeatherUnavailable" xml:space="preserve">
+    <value>Η μετεωρολογική υπηρεσία προς το παρόν δεν είναι διαθέσιμη.</value>
+  </data>
 </root>

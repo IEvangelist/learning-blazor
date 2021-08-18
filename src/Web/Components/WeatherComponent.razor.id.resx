@@ -61,4 +61,7 @@
   <data name="CurrentWeatherVisual" xml:space="preserve">
     <value>Indikator visual cuaca saat ini, seperti awan, matahari, atau ikon hujan.</value>
   </data>
+  <data name="WeatherUnavailable" xml:space="preserve">
+    <value>Layanan cuaca saat ini tidak tersedia.</value>
+  </data>
 </root>

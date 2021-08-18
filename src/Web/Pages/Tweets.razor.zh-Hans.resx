@@ -64,6 +64,9 @@
   <data name="Live" xml:space="preserve">
     <value>住</value>
   </data>
+  <data name="Tweets" xml:space="preserve">
+    <value>鸣叫</value>
+  </data>
   <data name="TwitterFeed" xml:space="preserve">
     <value>推特饲料</value>
   </data>

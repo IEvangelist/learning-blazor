@@ -62,7 +62,10 @@
     <value>Αποσυνδεθεί</value>
   </data>
   <data name="Live" xml:space="preserve">
-    <value>ζω</value>
+    <value>Ζω</value>
+  </data>
+  <data name="Tweets" xml:space="preserve">
+    <value>Τιτιβίσματα</value>
   </data>
   <data name="TwitterFeed" xml:space="preserve">
     <value>Ροή Twitter</value>

@@ -62,7 +62,10 @@
     <value>Terputus</value>
   </data>
   <data name="Live" xml:space="preserve">
-    <value>hidup</value>
+    <value>Hidup</value>
+  </data>
+  <data name="Tweets" xml:space="preserve">
+    <value>Tweets</value>
   </data>
   <data name="TwitterFeed" xml:space="preserve">
     <value>Umpan Twitter</value>

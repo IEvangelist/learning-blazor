@@ -61,4 +61,7 @@
   <data name="CurrentWeatherVisual" xml:space="preserve">
     <value>Тренутни визуелни индикатор временске прогнозе, као што је икона облака, сунца или кише.</value>
   </data>
+  <data name="WeatherUnavailable" xml:space="preserve">
+    <value>Метеоролошка служба тренутно није доступна.</value>
+  </data>
 </root>

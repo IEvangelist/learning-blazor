@@ -64,6 +64,9 @@
   <data name="Live" xml:space="preserve">
     <value>Yaşasın</value>
   </data>
+  <data name="Tweets" xml:space="preserve">
+    <value>Tweetlər</value>
+  </data>
   <data name="TwitterFeed" xml:space="preserve">
     <value>Twitter Feed</value>
   </data>

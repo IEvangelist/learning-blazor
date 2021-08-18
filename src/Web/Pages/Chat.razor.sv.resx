@@ -58,22 +58,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ChatMessage" xml:space="preserve">
+  <data name="Chat" xml:space="preserve">
     <value>Chattmeddelande</value>
   </data>
-  <data name="Messages" xml:space="preserve">
+  <data name="ChatMessage" xml:space="preserve">
     <value>Meddelanden</value>
   </data>
-  <data name="MultiplePeopleAreTyping" xml:space="preserve">
+  <data name="Messages" xml:space="preserve">
     <value>Flera personer skriver.</value>
   </data>
-  <data name="Send" xml:space="preserve">
-    <value>sända</value>
+  <data name="MultiplePeopleAreTyping" xml:space="preserve">
+    <value>Sända</value>
   </data>
-  <data name="TwoUsersAreTypingFormat" xml:space="preserve">
+  <data name="Send" xml:space="preserve">
     <value>{0} och {1} skriver båda.</value>
   </data>
-  <data name="UserIsTypingFormat" xml:space="preserve">
+  <data name="TwoUsersAreTypingFormat" xml:space="preserve">
     <value>{0} skriver.</value>
+  </data>
+  <data name="UserIsTypingFormat" xml:space="preserve">
+    <value>{0} is typing.</value>
   </data>
 </root>

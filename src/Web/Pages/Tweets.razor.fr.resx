@@ -59,10 +59,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Disconnected" xml:space="preserve">
-    <value>coupé</value>
+    <value>Coupé</value>
   </data>
   <data name="Live" xml:space="preserve">
-    <value>vivre</value>
+    <value>Vivre</value>
+  </data>
+  <data name="Tweets" xml:space="preserve">
+    <value>Tweets</value>
   </data>
   <data name="TwitterFeed" xml:space="preserve">
     <value>Twitter</value>

@@ -61,4 +61,7 @@
   <data name="CurrentWeatherVisual" xml:space="preserve">
     <value>Bulut, güneş veya yağmur simgesi gibi geçerli hava durumu görsel göstergesi.</value>
   </data>
+  <data name="WeatherUnavailable" xml:space="preserve">
+    <value>Hava durumu hizmeti şu anda kullanılamıyor.</value>
+  </data>
 </root>

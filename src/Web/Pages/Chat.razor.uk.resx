@@ -58,22 +58,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ChatMessage" xml:space="preserve">
+  <data name="Chat" xml:space="preserve">
     <value>Повідомлення чату</value>
   </data>
-  <data name="Messages" xml:space="preserve">
+  <data name="ChatMessage" xml:space="preserve">
     <value>Повідомлення</value>
   </data>
-  <data name="MultiplePeopleAreTyping" xml:space="preserve">
+  <data name="Messages" xml:space="preserve">
     <value>Набирає текст кілька користувачів.</value>
   </data>
-  <data name="Send" xml:space="preserve">
-    <value>надіслати</value>
+  <data name="MultiplePeopleAreTyping" xml:space="preserve">
+    <value>Надіслати</value>
   </data>
-  <data name="TwoUsersAreTypingFormat" xml:space="preserve">
+  <data name="Send" xml:space="preserve">
     <value>{0} і {1} обидва типи тексту.</value>
   </data>
-  <data name="UserIsTypingFormat" xml:space="preserve">
+  <data name="TwoUsersAreTypingFormat" xml:space="preserve">
     <value>{0} набирає текст.</value>
+  </data>
+  <data name="UserIsTypingFormat" xml:space="preserve">
+    <value>{0} is typing.</value>
   </data>
 </root>

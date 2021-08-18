@@ -62,7 +62,10 @@
     <value>Elválasztott</value>
   </data>
   <data name="Live" xml:space="preserve">
-    <value>él</value>
+    <value>Él</value>
+  </data>
+  <data name="Tweets" xml:space="preserve">
+    <value>Tweets</value>
   </data>
   <data name="TwitterFeed" xml:space="preserve">
     <value>Twitter hírcsatorna</value>

@@ -61,4 +61,7 @@
   <data name="CurrentWeatherVisual" xml:space="preserve">
     <value>ตัวบ่งชี้ภาพสภาพอากาศปัจจุบัน เช่น ไอคอนเมฆ ดวงอาทิตย์ หรือฝน</value>
   </data>
+  <data name="WeatherUnavailable" xml:space="preserve">
+    <value>บริการสภาพอากาศไม่พร้อมใช้งานในขณะนี้</value>
+  </data>
 </root>

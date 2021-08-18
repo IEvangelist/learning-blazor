@@ -59,6 +59,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CurrentWeatherVisual" xml:space="preserve">
-    <value>Chỉ báo trực quan thời tiết hiện tại, chẳng hạn như biểu tượng mây, mặt trời hoặc mưa.</value>
+    <value>Chỉ báo hình ảnh thời tiết hiện tại, chẳng hạn như biểu tượng mây, mặt trời hoặc mưa.</value>
+  </data>
+  <data name="WeatherUnavailable" xml:space="preserve">
+    <value>Dịch vụ thời tiết hiện không có sẵn.</value>
   </data>
 </root>

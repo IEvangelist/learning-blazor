@@ -61,4 +61,7 @@
   <data name="CurrentWeatherVisual" xml:space="preserve">
     <value>Bieżący wskaźnik wizualny pogody, taki jak ikona chmury, słońca lub deszczu.</value>
   </data>
+  <data name="WeatherUnavailable" xml:space="preserve">
+    <value>Usługa pogodowa jest obecnie niedostępna.</value>
+  </data>
 </root>

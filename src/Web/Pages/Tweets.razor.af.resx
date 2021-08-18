@@ -64,6 +64,9 @@
   <data name="Live" xml:space="preserve">
     <value>Live</value>
   </data>
+  <data name="Tweets" xml:space="preserve">
+    <value>Tweets</value>
+  </data>
   <data name="TwitterFeed" xml:space="preserve">
     <value>Twitter Feed</value>
   </data>

@@ -61,4 +61,7 @@
   <data name="CurrentWeatherVisual" xml:space="preserve">
     <value>Поточний візуальний індикатор погоди, наприклад піктограма хмари, сонця або дощу.</value>
   </data>
+  <data name="WeatherUnavailable" xml:space="preserve">
+    <value>Служба погоди наразі недоступна.</value>
+  </data>
 </root>
