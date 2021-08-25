@@ -36,7 +36,7 @@ public sealed partial class Breaches
     public HttpClient Http { get; set; } = null!;
 
     [Parameter]
-    //[SupplyParameterFromQuery]
+    [SupplyParameterFromQuery]
     public string Email { get; set; } = null!;
 
     protected override async Task OnInitializedAsync()

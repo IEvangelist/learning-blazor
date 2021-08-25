@@ -69,7 +69,6 @@ internal static class WebAssemblyHostBuilderExtensions
             client.DefaultRequestHeaders.AcceptEncoding.ParseAdd("gzip");
         });
 
-        services.AddTwitterComponent(configuration);
         services.AddLocalStorage();
 
         return builder;

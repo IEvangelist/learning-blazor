@@ -55,7 +55,7 @@ internal class CoalescingStringLocalizer<T>
 
     void LogIfNotFound(LocalizedString localizedString)
     {
-        if (localizedString is { ResourceNotFound: false })
+        if (localizedString is { ResourceNotFound: true })
         {
             _logger.LogInformation(
                 "Unable to find {Name}, searched in {Location} - using {Value}.",

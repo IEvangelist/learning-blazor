@@ -17,6 +17,7 @@ internal static class Cultures
             "cs",
             "da",
             "de",
+            "en",
             Default,
             "el",
             "fa",

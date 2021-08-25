@@ -27,7 +27,7 @@ public sealed class WeatherFunctionClientService : IAsyncDisposable
         (_httpClient, _cache, _functions, _logger) =
             (httpClientFactory.CreateClient(HttpClientNames.WebFunctionsClient), cache, options.Value, logger);
 
-    public Task<WeatherDetails> GetWeatherAsync(WeatherRequest request) =>
+    public Task<WeatherDetails?> GetWeatherAsync(WeatherRequest request) =>
         _cache.GetOrCreateAsync(
             request.Key,
             async options =>

@@ -3,5 +3,5 @@
 
 namespace Learning.Blazor.Models
 {
-    public record Actor(string UserName, string? Email = null);
+    public record Actor(string UserName, string[]? Emails = null);
 }

@@ -4,6 +4,7 @@
 using System.Security.Claims;
 using Learning.Blazor.Abstractions.RealTime;
 using Learning.Blazor.Api.Resources;
+using Learning.Blazor.Extensions;
 using Learning.Blazor.Models;
 using Learning.Blazor.TwitterServices;
 using Microsoft.AspNetCore.Authorization;
@@ -20,7 +21,7 @@ public class NotificationHub : Hub
     private readonly IStringLocalizer<Shared> _localizer;
 
     private string? _userName => Context?.User?.Identity?.Name;
-    private string? _userEmail => Context?.User?.FindFirstValue(ClaimTypes.Email);
+    private string[]? _userEmail => Context?.User?.GetEmailAddresses();
 
     public NotificationHub(
         ITwitterService twitterService, IStringLocalizer<Shared> localizer) =>

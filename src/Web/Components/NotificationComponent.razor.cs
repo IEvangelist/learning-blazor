@@ -50,28 +50,27 @@ public sealed partial class NotificationComponent : IAsyncDisposable
     private Task OnUserLoggedIn(Notification<Actor> notification) =>
         InvokeAsync(async () =>
         {
-            foreach (var claim in _user.Claims)
-            {
-                Logger.LogInformation("{Type}: {Value} ({ValueType})",
-                    claim.Type, claim.Value, claim.ValueType);
-            }
+            var emails = _user.GetEmailAddresses();
 
             Actor actor = notification;
-            if (actor.Email is not null &&
-                actor.Email == _user?.FindFirst(ClaimTypes.Email)?.Value)
+            var intersectingEmails = actor.Emails?.Intersect(emails ?? Array.Empty<string>())?.ToList();
+            if (intersectingEmails is { Count: > 0 })
             {
-                var breaches = (await Http.GetFromJsonAsync<BreachHeader[]>(
-                    $"api/pwned/breaches/{actor.Email}", DefaultJsonSerialization.Options))!;
-                if (breaches is { Length: > 0 })
+                foreach (var email in intersectingEmails)
                 {
-                    var url = Navigation.ToAbsoluteUri($"/pwned/breaches?email={actor.Email}");
-                    var link = $"<a href='{url}'><i class='fas fa-exclamation-circle'></i></a>";
-
-                    _notifications.Add(new()
+                    var breaches = (await Http.GetFromJsonAsync<BreachHeader[]>(
+                        $"api/pwned/breaches/{email}", DefaultJsonSerialization.Options))!;
+                    if (breaches is { Length: > 0 })
                     {
-                        Text = localize["EmailFoundInBreachFormat", actor.Email, breaches.Length, link],
-                        NotificationType = NotificationType.Alert
-                    });
+                        var url = Navigation.ToAbsoluteUri($"/pwned/breaches?email={email}");
+                        var link = $"<a href='{url}'><i class='fas fa-exclamation-circle'></i></a>";
+
+                        _notifications.Add(new()
+                        {
+                            Text = localize["EmailFoundInBreachFormat", email, breaches.Length, link],
+                            NotificationType = NotificationType.Alert
+                        });
+                    }
                 }
             }
             else
