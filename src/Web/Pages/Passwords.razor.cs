@@ -7,6 +7,7 @@ using Learning.Blazor.Models;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Components;
 using System.Net.Http.Json;
+using HaveIBeenPwned.Client.Models;
 
 namespace Learning.Blazor.Pages;
 

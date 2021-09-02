@@ -42,8 +42,8 @@ public class CulturesController : ControllerBase
         var cultures = await _cache.GetOrCreateAsync(CacheKeys.AzureCultures,
             async options =>
             {
-                    // These rarely ever change, cache aggressively.
-                    options.SetSlidingExpiration(TimeSpan.FromDays(1));
+                // These rarely ever change, cache aggressively.
+                options.SetSlidingExpiration(TimeSpan.FromDays(1));
                 options.SetAbsoluteExpiration(TimeSpan.FromDays(3));
 
                 using var client = _httpClientFactory.CreateClient();

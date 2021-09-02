@@ -2,10 +2,10 @@
 // Licensed under the MIT License.
 
 using System.Net.Http.Json;
+using HaveIBeenPwned.Client.Models;
 using Learning.Blazor.ComponentModels;
 using Learning.Blazor.Components;
 using Learning.Blazor.Extensions;
-using Learning.Blazor.Models;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Components.Routing;

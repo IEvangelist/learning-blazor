@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 
 using System.Net.Mime;
+using HaveIBeenPwned.Client;
 using Learning.Blazor.Api.Extensions;
-using Learning.Blazor.Api.Services;
 using Learning.Blazor.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -20,15 +20,15 @@ namespace Learning.Blazor.Api.Controllers;
 ]
 public class PwnedController : ControllerBase
 {
-    private readonly PwnedService _pwnedService;
+    private readonly IPwnedClient _pwnedClient;
     private readonly IDistributedCache _cache;
     private readonly ILogger<PwnedController> _logger;
 
     public PwnedController(
-        PwnedService pwnedService,
+        IPwnedClient pwnedClient,
         IDistributedCache cache,
         ILogger<PwnedController> logger) =>
-        (_pwnedService, _cache, _logger) = (pwnedService, cache, logger);
+        (_pwnedClient, _cache, _logger) = (pwnedClient, cache, logger);
 
     [
         HttpGet,
@@ -41,7 +41,7 @@ public class PwnedController : ControllerBase
         {
             options.AbsoluteExpirationRelativeToNow = TimeSpan.FromDays(1);
 
-            var breaches = await _pwnedService.GetBreachesAsync(email);
+            var breaches = await _pwnedClient.GetBreachHeadersForAccountAsync(email);
             return breaches!;
         }, _logger);
 
@@ -59,7 +59,7 @@ public class PwnedController : ControllerBase
         {
             options.AbsoluteExpirationRelativeToNow = TimeSpan.FromDays(7);
 
-            var breach = await _pwnedService.GetBreachDetailsAsync(name);
+            var breach = await _pwnedClient.GetBreachAsync(name);
             return breach!;
         }, _logger);
 
@@ -73,7 +73,7 @@ public class PwnedController : ControllerBase
     ]
     public async Task<IActionResult> PasswordsFor([FromRoute] string password)
     {
-        var pwnedPassword = await _pwnedService.GetPwnedPasswordAsync(password);
+        var pwnedPassword = await _pwnedClient.GetPwnedPasswordAsync(password);
         return new JsonResult(pwnedPassword, DefaultJsonSerialization.Options);
     }
 }

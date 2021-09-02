@@ -31,12 +31,6 @@ public class JokesController : ControllerBase
     ]
     public async Task<IActionResult> Get()
     {
-        var locale = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
-        if (locale is not null)
-        {
-
-        }
-
         _logger.LogInformation("{DateTime}: Getting weather", DateTime.UtcNow);
 
         JokeResponse joke = await _jokeFactory.GetRandomJokeAsync();

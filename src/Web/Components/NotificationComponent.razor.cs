@@ -3,6 +3,7 @@
 
 using System.Net.Http.Json;
 using System.Security.Claims;
+using HaveIBeenPwned.Client.Models;
 using Learning.Blazor.ComponentModels;
 using Learning.Blazor.Extensions;
 using Learning.Blazor.Models;
