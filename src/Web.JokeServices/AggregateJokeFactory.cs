@@ -1,11 +1,6 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Learning.Blazor.Extensions;
-using Learning.Blazor.Models;
-
 namespace Learning.Blazor.JokeServices;
 
 internal class AggregateJokeFactory : IJokeFactory

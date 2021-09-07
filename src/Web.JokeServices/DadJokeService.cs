@@ -1,12 +1,6 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
-using System;
-using System.Net.Http;
-using System.Threading.Tasks;
-using Learning.Blazor.Models;
-using Microsoft.Extensions.Logging;
-
 namespace Learning.Blazor.JokeServices;
 
 internal class DadJokeService : IJokeService

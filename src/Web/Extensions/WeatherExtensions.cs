@@ -28,7 +28,7 @@ internal static class WeatherExtensions
     internal static string ToImageName(this WeatherWordingAndIcon weather) =>
         s_iconToImageMap.TryGetValue(
             weather.Icon, out var value)
-        ? value : "";
+            ? value : "";
 
     /// <summary>
     /// https://fontawesome.com/v5.15
@@ -50,5 +50,5 @@ internal static class WeatherExtensions
     internal static string ToFontAwesomeClass(this WeatherWordingAndIcon weather) =>
         s_iconTofontAwesomeMap.TryGetValue(
             weather.Icon, out var value)
-        ? value : "";
+            ? value : "";
 }

@@ -18,8 +18,8 @@ public class ApiAccessAuthorizationMessageHandler : AuthorizationMessageHandler
         ConfigureHandler(
             authorizedUrls: new[]
             {
-                    configuration.GetValue<string>("WebApiServerUrl"),
-                    "https://learningblazor.b2clogin.com"
+                configuration.GetValue<string>("WebApiServerUrl"),
+                "https://learningblazor.b2clogin.com"
             },
             scopes: new[] { Scope });
 }

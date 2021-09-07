@@ -3,14 +3,13 @@
 
 using System.Text.Json.Serialization;
 
-namespace Learning.Blazor.Models
+namespace Learning.Blazor.Models;
+
+public record JokeResponse(
+    [property: JsonPropertyName("joke")] string Joke,
+    [property: JsonPropertyName("details")] JokeSourceDetails Details)
 {
-    public record JokeResponse(
-        [property: JsonPropertyName("joke")] string Joke,
-        [property: JsonPropertyName("details")] JokeSourceDetails Details)
-    {
-        public static implicit operator JokeResponse(
-            (string Text, JokeSourceDetails Details) joke) =>
-                new(joke.Text, joke.Details);
-    }
+    public static implicit operator JokeResponse(
+        (string Text, JokeSourceDetails Details) joke) =>
+            new(joke.Text, joke.Details);
 }

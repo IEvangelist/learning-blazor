@@ -1,9 +1,6 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
-using System.Linq;
-using System.Security.Claims;
-
 namespace Learning.Blazor.Extensions
 {
     public static class ClaimsPrincipalExtensions

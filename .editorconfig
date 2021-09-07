@@ -166,6 +166,9 @@ dotnet_code_quality.CA2208.api_surface = public
 
 # License header
 file_header_template = Copyright (c) 2021 David Pine. All rights reserved.\nLicensed under the MIT License.
+[*.{cshtml,razor]
+file_header_template = <!--  Copyright (c) 2021 David Pine. All rights reserved.\n      Licensed under the MIT License.  -->
+
 
 # C++ Files
 [*.{cpp,h,in}]

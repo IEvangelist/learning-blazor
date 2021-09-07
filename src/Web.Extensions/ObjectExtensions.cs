@@ -1,11 +1,6 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
-using System;
-using System.Text.Json;
-using System.Threading.Tasks;
-using static System.Text.Json.JsonSerializer;
-
 namespace Learning.Blazor.Extensions;
 
 public static class ObjectExtensions

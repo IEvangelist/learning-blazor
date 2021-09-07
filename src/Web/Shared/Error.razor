@@ -1,4 +1,6 @@
-﻿@using Microsoft.Extensions.Logging
+﻿<!--  Copyright (c) 2021 David Pine. All rights reserved.
+      Licensed under the MIT License.  -->
+
 @inject ILogger<Error> Logger
 
 <CascadingValue Value=this>
@@ -11,7 +13,7 @@
 
     public void ProcessError(Exception ex)
     {
-        Logger.LogError("Error:ProcessError - Type: {Type} Message: {Message}", 
+        Logger.LogError("Error:ProcessError - Type: {Type} Message: {Message}",
             ex.GetType(), ex.Message);
     }
 }

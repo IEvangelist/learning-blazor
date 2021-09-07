@@ -1,15 +1,6 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
-using System;
-using System.Net.Http;
-using Learning.Blazor.JokeServices;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Polly;
-using Polly.Contrib.WaitAndRetry;
-using Polly.Retry;
-
 namespace Learning.Blazor.Extensions;
 
 public static class ServiceCollectionExtensions

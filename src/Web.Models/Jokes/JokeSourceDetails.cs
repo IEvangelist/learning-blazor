@@ -3,9 +3,8 @@
 
 using System;
 
-namespace Learning.Blazor.Models
-{
-    public record JokeSourceDetails(
-        JokeSource Source,
-        Uri Site);
-}
+namespace Learning.Blazor.Models;
+
+public record JokeSourceDetails(
+    JokeSource Source,
+    Uri Site);

@@ -9,3 +9,7 @@
 .wide {
     width: 100% !important;
 }
+
+.is-warning {
+    background-color: fuchsia !important;
+}

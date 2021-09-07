@@ -1,5 +1,4 @@
-﻿// Copyright (c) 2021 David Pine. All rights reserved.
-// Licensed under the MIT License.
+﻿
 
 using System.Security.Claims;
 using System.Timers;
