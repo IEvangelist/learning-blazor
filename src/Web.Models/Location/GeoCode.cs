@@ -8,19 +8,21 @@ namespace Learning.Blazor.Models
     /// <summary>
     /// See: https://www.bigdatacloud.com/geocoding-apis/free-reverse-geocode-to-city-api
     /// </summary>
-    public record GeoCode(
-        [property: JsonPropertyName("latitude")] decimal Latitude,
-        [property: JsonPropertyName("longitude")] decimal Longitude,
-        [property: JsonPropertyName("lookupSource")] string LookupSource,
-        [property: JsonPropertyName("plusCode")] string PlusCode,
-        [property: JsonPropertyName("localityLanguageRequested")] string LocalityLanguageRequested,
-        [property: JsonPropertyName("continent")] string Continent,
-        [property: JsonPropertyName("continentCode")] string ContinentCode,
-        [property: JsonPropertyName("countryName")] string CountryName,
-        [property: JsonPropertyName("countryCode")] string CountryCode,
-        [property: JsonPropertyName("principalSubdivision")] string PrincipalSubdivision,
-        [property: JsonPropertyName("principalSubdivisionCode")] string PrincipalSubdivisionCode,
-        [property: JsonPropertyName("city")] string City,
-        [property: JsonPropertyName("locality")] string Locality,
-        [property: JsonPropertyName("postcode")] string Postcode);
+    public record GeoCode
+    {
+        [JsonPropertyName("latitude")] public decimal Latitude { get; init; }
+        [JsonPropertyName("longitude")] public decimal Longitude { get; init; }
+        [JsonPropertyName("lookupSource")] public string? LookupSource { get; init; } = null!;
+        [JsonPropertyName("plusCode")] public string? PlusCode { get; init; } = null!;
+        [JsonPropertyName("localityLanguageRequested")] public string? LocalityLanguageRequested { get; init; } = null!;
+        [JsonPropertyName("continent")] public string? Continent { get; init; } = null!;
+        [JsonPropertyName("continentCode")] public string? ContinentCode { get; init; } = null!;
+        [JsonPropertyName("countryName")] public string? CountryName { get; init; } = null!;
+        [JsonPropertyName("countryCode")] public string? CountryCode { get; init; } = null!;
+        [JsonPropertyName("principalSubdivision")] public string? PrincipalSubdivision { get; init; } = null!;
+        [JsonPropertyName("principalSubdivisionCode")] public string? PrincipalSubdivisionCode { get; init; } = null!;
+        [JsonPropertyName("city")] public string? City { get; init; } = null!;
+        [JsonPropertyName("locality")] public string? Locality { get; init; } = null!;
+        [JsonPropertyName("postcode")] public string? Postcode { get; init; } = null!;
+    }
 }

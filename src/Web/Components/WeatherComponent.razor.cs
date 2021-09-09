@@ -75,7 +75,7 @@ namespace Learning.Blazor.Components
                 var weatherLanguages =
                     await Http.GetFromJsonAsync<WeatherLanguage[]>(
                         "api/weather/languages",
-                        WeatherLanguagesJsonSerializerContext.DefaultTypeInfo);
+                        WeatherLanguagesJsonSerializerContext.Default.WeatherLanguageArray);
 
                 var requestLanguage =
                     weatherLanguages
@@ -97,7 +97,7 @@ namespace Learning.Blazor.Components
                     WeatherRequestJsonSerializerContext.DefaultTypeInfo);
 
                 var weatherDetails =
-                    await response.Content.ReadFromJsonAsync<WeatherDetails?>(
+                    await response.Content.ReadFromJsonAsync<WeatherDetails>(
                         WeatherDetailsJsonSerializerContext.DefaultTypeInfo);
 
                 if (_geoCode is null)
