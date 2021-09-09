@@ -12,8 +12,8 @@ namespace Learning.Blazor.Serialization
     internal partial class WeatherLanguagesJsonSerializerContext
         : JsonSerializerContext
     {
-        //internal static JsonTypeInfo<WeatherLanguage[]> DefaultTypeInfo =>
-        //    new WeatherLanguagesJsonSerializerContext(
-        //        DefaultJsonSerialization.Options).WeatherLanguageArray;
+        internal static JsonTypeInfo<WeatherLanguage[]> DefaultTypeInfo =>
+            new WeatherLanguagesJsonSerializerContext(
+                DefaultJsonSerialization.Options).WeatherLanguageArray;
     }
 }

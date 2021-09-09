@@ -75,7 +75,7 @@ namespace Learning.Blazor.Components
                 var weatherLanguages =
                     await Http.GetFromJsonAsync<WeatherLanguage[]>(
                         "api/weather/languages",
-                        WeatherLanguagesJsonSerializerContext.Default.WeatherLanguageArray);
+                        WeatherLanguagesJsonSerializerContext.DefaultTypeInfo);
 
                 var requestLanguage =
                     weatherLanguages
