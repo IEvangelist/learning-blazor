@@ -6,142 +6,150 @@ using System.Timers;
 using Learning.Blazor.ComponentModels;
 using Learning.Blazor.Extensions;
 using Learning.Blazor.Models;
+using Learning.Blazor.Serialization;
 using Learning.Blazor.Services;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using SystemTimer = System.Timers.Timer;
 
-namespace Learning.Blazor.Components;
-
-public sealed partial class WeatherComponent : IDisposable
+namespace Learning.Blazor.Components
 {
-    private Coordinates _coordinates = null!;
-    private GeoCode? _geoCode = null!;
-    private WeatherComponentModel<WeatherComponent>? _model = null!;
-    private ComponentState _state = ComponentState.Loading;
-    private SystemTimer _timer = null!;
-
-    [Inject]
-    public IWeatherStringFormatterService<WeatherComponent> Formatter { get; set; } = null!;
-
-    [Inject]
-    public HttpClient Http { get; set; } = null!;
-
-    [Inject]
-    public GeoLocationService GeoLocationService { get; set; } = null!;
-
-    protected override async Task OnAfterRenderAsync(bool firstRender)
+    public sealed partial class WeatherComponent : IDisposable
     {
-        if (firstRender)
-        {
-            await TryGetClientCoordinates();
+        private Coordinates _coordinates = null!;
+        private GeoCode? _geoCode = null!;
+        private WeatherComponentModel<WeatherComponent>? _model = null!;
+        private ComponentState _state = ComponentState.Loading;
+        private SystemTimer _timer = null!;
 
-            _timer = new SystemTimer
+        [Inject]
+        public IWeatherStringFormatterService<WeatherComponent> Formatter { get; set; } = null!;
+
+        [Inject]
+        public HttpClient Http { get; set; } = null!;
+
+        [Inject]
+        public GeoLocationService GeoLocationService { get; set; } = null!;
+
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            if (firstRender)
             {
-                Interval = TimeSpan.FromMinutes(10).TotalMilliseconds,
-                AutoReset = true
-            };
-            _timer.Elapsed += OnTimerElapsed;
-            _timer.Start();
+                await TryGetClientCoordinates();
+
+                _timer = new SystemTimer
+                {
+                    Interval = TimeSpan.FromMinutes(10).TotalMilliseconds,
+                    AutoReset = true
+                };
+                _timer.Elapsed += OnTimerElapsed;
+                _timer.Start();
+            }
         }
-    }
 
-    private async void OnTimerElapsed(object? _, ElapsedEventArgs args)
-    {
-        if (_coordinates is not null)
+        private async void OnTimerElapsed(object? _, ElapsedEventArgs args)
         {
-            await OnCoordinatesPermitted(_coordinates.Longitude, _coordinates.Latitude);
+            if (_coordinates is not null)
+            {
+                await OnCoordinatesPermitted(_coordinates.Longitude, _coordinates.Latitude);
+            }
         }
-    }
 
-    private async Task TryGetClientCoordinates() =>
-        await JavaScript.GetCoordinatesAsync(
-            this,
-            nameof(OnCoordinatesPermitted),
-            nameof(OnErrorRequestingCooridnates));
+        private async Task TryGetClientCoordinates() =>
+            await JavaScript.GetCoordinatesAsync(
+                this,
+                nameof(OnCoordinatesPermitted),
+                nameof(OnErrorRequestingCooridnates));
 
-    [JSInvokable]
-    public async Task OnCoordinatesPermitted(
-        decimal longitude, decimal latitude)
-    {
-        _coordinates = new(latitude, longitude);
-
-        var lang = Culture.CurrentCulture.TwoLetterISOLanguageName;
-        var unit = Culture.MeasurementSystem;
-
-        try
+        [JSInvokable]
+        public async Task OnCoordinatesPermitted(
+            decimal longitude, decimal latitude)
         {
-            var weatherLanguages =
-                await Http.GetFromJsonAsync<WeatherLanguage[]>("api/weather/languages");
+            _coordinates = new(latitude, longitude);
 
-            var requestLanguage =
-                weatherLanguages
-                    ?.FirstOrDefault(language => language.AzureCultureId == lang)
-                    ?.WeatherLanguageId
-                ?? "en";
+            var lang = Culture.CurrentCulture.TwoLetterISOLanguageName;
+            var unit = Culture.MeasurementSystem;
 
-            WeatherRequest weatherRequest = new()
+            try
             {
-                Language = requestLanguage,
-                Latitude = latitude,
-                Longitude = longitude,
-                Units = unit
-            };
+                var weatherLanguages =
+                    await Http.GetFromJsonAsync<WeatherLanguage[]>(
+                        "api/weather/languages",
+                        WeatherLanguagesJsonSerializerContext.DefaultTypeInfo);
 
-            using var response = await Http.PostAsJsonAsync("api/weather/latest", weatherRequest);
-            var weatherDetails =
-                await response.Content.ReadFromJsonAsync<WeatherDetails?>(
-                    DefaultJsonSerialization.Options);
+                var requestLanguage =
+                    weatherLanguages
+                        ?.FirstOrDefault(language => language.AzureCultureId == lang)
+                        ?.WeatherLanguageId
+                    ?? "en";
 
-            if (_geoCode is null)
-            {
-                GeoCodeRequest geoCodeRequest = new()
+                WeatherRequest weatherRequest = new()
                 {
                     Language = requestLanguage,
                     Latitude = latitude,
                     Longitude = longitude,
+                    Units = unit
                 };
 
-                _geoCode =
-                    await GeoLocationService.GetGeoCodeAsync(geoCodeRequest);
-            }
+                using var response =
+                    await Http.PostAsJsonAsync("api/weather/latest",
+                    weatherRequest,
+                    WeatherRequestJsonSerializerContext.DefaultTypeInfo);
 
-            if (weatherDetails is not null && _geoCode is not null)
-            {
-                _model = new WeatherComponentModel<WeatherComponent>(
-                    weatherDetails, _geoCode, Formatter);
-                _state = ComponentState.Loaded;
+                var weatherDetails =
+                    await response.Content.ReadFromJsonAsync<WeatherDetails?>(
+                        WeatherDetailsJsonSerializerContext.DefaultTypeInfo);
+
+                if (_geoCode is null)
+                {
+                    GeoCodeRequest geoCodeRequest = new()
+                    {
+                        Language = requestLanguage,
+                        Latitude = latitude,
+                        Longitude = longitude,
+                    };
+
+                    _geoCode =
+                        await GeoLocationService.GetGeoCodeAsync(geoCodeRequest);
+                }
+
+                if (weatherDetails is not null && _geoCode is not null)
+                {
+                    _model = new WeatherComponentModel<WeatherComponent>(
+                        weatherDetails, _geoCode, Formatter);
+                    _state = ComponentState.Loaded;
+                }
+                else
+                {
+                    _state = ComponentState.Error;
+                }
             }
-            else
+            catch (Exception ex)
             {
+                Logger.LogError(ex, ex.Message);
                 _state = ComponentState.Error;
             }
+
+            await InvokeAsync(StateHasChanged);
         }
-        catch (Exception ex)
+
+        [JSInvokable]
+        public async Task OnErrorRequestingCooridnates(
+            int code, string message)
         {
-            Logger.LogError(ex, ex.Message);
+            await Task.CompletedTask;
+
             _state = ComponentState.Error;
         }
 
-        await InvokeAsync(StateHasChanged);
-    }
-
-    [JSInvokable]
-    public async Task OnErrorRequestingCooridnates(
-        int code, string message)
-    {
-        await Task.CompletedTask;
-
-        _state = ComponentState.Error;
-    }
-
-    void IDisposable.Dispose()
-    {
-        if (_timer is { Enabled: true })
+        void IDisposable.Dispose()
         {
-            _timer.Stop();
-            _timer.Elapsed -= OnTimerElapsed;
-            _timer.Dispose();
+            if (_timer is { Enabled: true })
+            {
+                _timer.Stop();
+                _timer.Elapsed -= OnTimerElapsed;
+                _timer.Dispose();
+            }
         }
     }
 }

@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 
 using System.Net.Http.Json;
-using Learning.Blazor.Extensions;
 using Learning.Blazor.Models;
+using Learning.Blazor.Serialization;
 
 namespace Learning.Blazor.Services;
 
@@ -28,7 +28,7 @@ public sealed class GeoLocationService
             var geoCode =
                 await _httpClient.GetFromJsonAsync<GeoCode>(
                     queryString,
-                    DefaultJsonSerialization.Options);
+                    GeoCodeJsonSerializerContext.DefaultTypeInfo);
 
             return geoCode;
         }

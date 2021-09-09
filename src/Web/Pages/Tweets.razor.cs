@@ -5,62 +5,63 @@ using Learning.Blazor.Models;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.SignalR.Client;
 
-namespace Learning.Blazor.Pages;
-
-public sealed partial class Tweets : IAsyncDisposable
+namespace Learning.Blazor.Pages
 {
-    private readonly HashSet<TweetContents> _tweets = new();
-    private readonly Stack<IDisposable> _subscriptions = new();
-
-    private StreamingStatus? _streamingStatus;
-    private string? _filter = null!;
-
-    private string _streamingFontAwesomeClass =>
-        HubConnection is { State: HubConnectionState.Connected } &&
-        _streamingStatus is { IsStreaming: true }
-            ? "fas fa-link has-text-primary"
-            : "fas fa-unlink has-text-warning";
-
-    [Inject]
-    public SharedHubConnection HubConnection { get; set; } = null!;
-
-    protected override async Task OnInitializedAsync()
+    public sealed partial class Tweets : IAsyncDisposable
     {
-        _subscriptions.Push(
-            HubConnection.SubscribeToStatusUpdated(OnStatusUpdatedAsync));
-        _subscriptions.Push(
-            HubConnection.SubscribeToTweetReceived(OnTweetReceivedAsync));
+        private readonly HashSet<TweetContents> _tweets = new();
+        private readonly Stack<IDisposable> _subscriptions = new();
 
-        await HubConnection.StartAsync(this);
-        await HubConnection.JoinTweetsAsync();
-        await HubConnection.StartTweetStreamAsync();
-    }
+        private StreamingStatus? _streamingStatus;
+        private string? _filter = null!;
 
-    private Task OnStatusUpdatedAsync(Notification<StreamingStatus> status) =>
-        InvokeAsync(() =>
+        private string _streamingFontAwesomeClass =>
+            HubConnection is { State: HubConnectionState.Connected } &&
+            _streamingStatus is { IsStreaming: true }
+                ? "fas fa-link has-text-primary"
+                : "fas fa-unlink has-text-warning";
+
+        [Inject]
+        public SharedHubConnection HubConnection { get; set; } = null!;
+
+        protected override async Task OnInitializedAsync()
         {
-            _streamingStatus = status;
-            StateHasChanged();
-        });
+            _subscriptions.Push(
+                HubConnection.SubscribeToStatusUpdated(OnStatusUpdatedAsync));
+            _subscriptions.Push(
+                HubConnection.SubscribeToTweetReceived(OnTweetReceivedAsync));
 
-    private Task OnTweetReceivedAsync(Notification<TweetContents> tweet) =>
-        InvokeAsync(() =>
-        {
-            _ = _tweets.Add(tweet);
-            StateHasChanged();
-        });
-
-    async ValueTask IAsyncDisposable.DisposeAsync()
-    {
-        if (HubConnection is not null)
-        {
-            await HubConnection.LeaveTweetsAsync();
-            await HubConnection.StopAsync(this);
+            await HubConnection.StartAsync(this);
+            await HubConnection.JoinTweetsAsync();
+            await HubConnection.StartTweetStreamAsync();
         }
 
-        while (_subscriptions.TryPop(out var disposable))
+        private Task OnStatusUpdatedAsync(Notification<StreamingStatus> status) =>
+            InvokeAsync(() =>
+            {
+                _streamingStatus = status;
+                StateHasChanged();
+            });
+
+        private Task OnTweetReceivedAsync(Notification<TweetContents> tweet) =>
+            InvokeAsync(() =>
+            {
+                _ = _tweets.Add(tweet);
+                StateHasChanged();
+            });
+
+        async ValueTask IAsyncDisposable.DisposeAsync()
         {
-            disposable.Dispose();
+            if (HubConnection is not null)
+            {
+                await HubConnection.LeaveTweetsAsync();
+                await HubConnection.StopAsync(this);
+            }
+
+            while (_subscriptions.TryPop(out var disposable))
+            {
+                disposable.Dispose();
+            }
         }
     }
 }

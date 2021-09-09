@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <RootNamespace>Learning.Blazor.Api</RootNamespace>
@@ -24,6 +24,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Web.Abstractions\Web.Abstractions.csproj" />
     <ProjectReference Include="..\Web.Extensions\Web.Extensions.csproj" />
+    <ProjectReference Include="..\Web.Http.Extensions\Web.Http.Extensions.csproj" />
     <ProjectReference Include="..\Web.JokeServices\Web.JokeServices.csproj" />
     <ProjectReference Include="..\Web.TwitterServices\Web.TwitterServices.csproj" />
   </ItemGroup>

@@ -3,61 +3,62 @@
 
 using Microsoft.AspNetCore.Components;
 
-namespace Learning.Blazor.Components;
-
-public partial class ModalComponent
+namespace Learning.Blazor.Components
 {
-    private string _isActiveClass => IsActive ? "is-active" : "";
+    public partial class ModalComponent
+    {
+        private string _isActiveClass => IsActive ? "is-active" : "";
 
-    [Parameter]
-    public EventCallback<DismissalReason> OnDismissed { get; set; }
+        [Parameter]
+        public EventCallback<DismissalReason> OnDismissed { get; set; }
 
-    [Parameter]
-    public bool IsActive { get; set; }
+        [Parameter]
+        public bool IsActive { get; set; }
 
-    [Parameter]
-    public RenderFragment TitleContent { get; set; } = null!;
+        [Parameter]
+        public RenderFragment TitleContent { get; set; } = null!;
 
-    [Parameter]
-    public RenderFragment BodyContent { get; set; } = null!;
+        [Parameter]
+        public RenderFragment BodyContent { get; set; } = null!;
 
-    [Parameter]
-    public RenderFragment ButtonContent { get; set; } = null!;
+        [Parameter]
+        public RenderFragment ButtonContent { get; set; } = null!;
 
-    /// <summary>
-    /// Gets the reason that the <see cref="ModalComponent"/> was dismissed.
-    /// </summary>
-    public DismissalReason Reason { get; private set; }
+        /// <summary>
+        /// Gets the reason that the <see cref="ModalComponent"/> was dismissed.
+        /// </summary>
+        public DismissalReason Reason { get; private set; }
 
-    public Task Dismiss(DismissalReason reason) =>
-        InvokeAsync(async () =>
-        {
-            (IsActive, Reason) = (false, reason);
-
-            if (OnDismissed.HasDelegate)
+        public Task Dismiss(DismissalReason reason) =>
+            InvokeAsync(async () =>
             {
-                await OnDismissed.InvokeAsync(Reason);
-            }
+                (IsActive, Reason) = (false, reason);
 
-            StateHasChanged();
-        });
+                if (OnDismissed.HasDelegate)
+                {
+                    await OnDismissed.InvokeAsync(Reason);
+                }
 
-    public Task Show() =>
-        InvokeAsync(() =>
-        {
-            (IsActive, Reason) = (true, default);
+                StateHasChanged();
+            });
 
-            StateHasChanged();
-        });
+        public Task Show() =>
+            InvokeAsync(() =>
+            {
+                (IsActive, Reason) = (true, default);
 
-    public Task Confirm() => Dismiss(DismissalReason.Confirmed);
+                StateHasChanged();
+            });
 
-    public Task Cancel() => Dismiss(DismissalReason.Cancelled);
-}
+        public Task Confirm() => Dismiss(DismissalReason.Confirmed);
 
-public enum DismissalReason
-{
-    Unknown,
-    Confirmed,
-    Cancelled
+        public Task Cancel() => Dismiss(DismissalReason.Cancelled);
+    }
+
+    public enum DismissalReason
+    {
+        Unknown,
+        Confirmed,
+        Cancelled
+    }
 }

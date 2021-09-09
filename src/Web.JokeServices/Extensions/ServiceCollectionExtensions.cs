@@ -1,6 +1,8 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
+using Learning.Blazor.Http.Extensions;
+
 namespace Learning.Blazor.Extensions;
 
 public static class ServiceCollectionExtensions
@@ -15,26 +17,17 @@ public static class ServiceCollectionExtensions
                 nameof(services), "A service collection is required.");
         }
 
-        static AsyncRetryPolicy<HttpResponseMessage> GetRetryPolicy(
-            PolicyBuilder<HttpResponseMessage> builder) =>
-            builder.WaitAndRetryAsync(
-                // See: https://brooker.co.za/blog/2015/03/21/backoff.html
-                // Uses the "Jitter" algorithm
-                Backoff.DecorrelatedJitterBackoffV2(
-                        medianFirstRetryDelay: TimeSpan.FromSeconds(1),
-                        retryCount: 5));
-
         services.AddScoped<IJokeService, ProgrammingJokeService>();
         services.AddScoped<IJokeService, DadJokeService>();
         services.AddScoped<IJokeService, ChuckNorrisJokeService>();
 
         services.AddHttpClient(nameof(DadJokeService),
             client => client.DefaultRequestHeaders.Add("Accept", "text/plain"))
-            .AddTransientHttpErrorPolicy(GetRetryPolicy);
+            .AddDefaultTransientHttpErrorPolicy();
 
         services.AddHttpClient(nameof(ChuckNorrisJokeService),
             client => client.DefaultRequestHeaders.Add("Accept", "application/json"))
-            .AddTransientHttpErrorPolicy(GetRetryPolicy);
+            .AddDefaultTransientHttpErrorPolicy();
 
         services.AddScoped<IJokeFactory, AggregateJokeFactory>();
 

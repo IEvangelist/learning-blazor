@@ -9,52 +9,53 @@ using Microsoft.AspNetCore.Components.Routing;
 using Microsoft.Extensions.Localization;
 using Microsoft.JSInterop;
 
-namespace Learning.Blazor.Components;
-
-public class LocalizableComponentBase<T> : ComponentBase, IDisposable
+namespace Learning.Blazor.Components
 {
-    [Inject]
-    private CoalescingStringLocalizer<T> CoalescingStringLocalizer { get; set; } = null!;
-
-    [Inject]
-    public NavigationManager Navigation { get; set; } = null!;
-
-    [Inject]
-    public CultureService Culture { get; set; } = null!;
-
-    [Inject]
-    public ILogger<T> Logger { get; set; } = null!;
-
-    [Inject]
-    public ILocalStorage LocalStorage { get; set; } = null!;
-
-    [Inject]
-    public IJSRuntime JavaScript { get; set; } = null!;
-
-    /// <summary>
-    /// Gets the localized content for the current subcomponent,
-    /// relying on the contextually appropriate <see cref="IStringLocalizer{T}"/> implementation.
-    /// </summary>
-    /// <remarks>
-    /// Intentionally an all lowercase character variable name, without the expected "_" prefix.
-    /// This is intended to be used from within HTML templates only.
-    /// Example: <c>&lt;h1&gt;@localize["Important Title"]&lt;/h1&gt;</c>
-    /// </remarks>
-    internal CoalescingStringLocalizer<T> localize => CoalescingStringLocalizer;
-
-    public virtual void Dispose()
+    public class LocalizableComponentBase<T> : ComponentBase, IDisposable
     {
-        if (Navigation is not null)
+        [Inject]
+        private CoalescingStringLocalizer<T> CoalescingStringLocalizer { get; set; } = null!;
+
+        [Inject]
+        public NavigationManager Navigation { get; set; } = null!;
+
+        [Inject]
+        public CultureService Culture { get; set; } = null!;
+
+        [Inject]
+        public ILogger<T> Logger { get; set; } = null!;
+
+        [Inject]
+        public ILocalStorage LocalStorage { get; set; } = null!;
+
+        [Inject]
+        public IJSRuntime JavaScript { get; set; } = null!;
+
+        /// <summary>
+        /// Gets the localized content for the current subcomponent,
+        /// relying on the contextually appropriate <see cref="IStringLocalizer{T}"/> implementation.
+        /// </summary>
+        /// <remarks>
+        /// Intentionally an all lowercase character variable name, without the expected "_" prefix.
+        /// This is intended to be used from within HTML templates only.
+        /// Example: <c>&lt;h1&gt;@localize["Important Title"]&lt;/h1&gt;</c>
+        /// </remarks>
+        internal CoalescingStringLocalizer<T> localize => CoalescingStringLocalizer;
+
+        public virtual void Dispose()
         {
-            Navigation.LocationChanged -= OnLocationChanged;
+            if (Navigation is not null)
+            {
+                Navigation.LocationChanged -= OnLocationChanged;
+            }
+
+            GC.SuppressFinalize(this);
         }
 
-        GC.SuppressFinalize(this);
+        private async void OnLocationChanged(object? sender, LocationChangedEventArgs args) =>
+            await OnLocationChangedAsync(args);
+
+        protected virtual ValueTask OnLocationChangedAsync(LocationChangedEventArgs args) =>
+            ValueTask.CompletedTask;
     }
-
-    private async void OnLocationChanged(object? sender, LocationChangedEventArgs args) =>
-        await OnLocationChangedAsync(args);
-
-    protected virtual ValueTask OnLocationChangedAsync(LocationChangedEventArgs args) =>
-        ValueTask.CompletedTask;
 }

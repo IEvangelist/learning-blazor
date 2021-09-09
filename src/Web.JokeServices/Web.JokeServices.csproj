@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Web.Extensions\Web.Extensions.csproj" />
+    <ProjectReference Include="..\Web.Http.Extensions\Web.Http.Extensions.csproj" />
     <ProjectReference Include="..\Web.Models\Web.Models.csproj" />
   </ItemGroup>
 

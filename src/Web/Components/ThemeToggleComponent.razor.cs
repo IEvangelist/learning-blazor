@@ -4,26 +4,27 @@
 using Learning.Blazor.Extensions;
 using Microsoft.JSInterop;
 
-namespace Learning.Blazor.Components;
-
-public partial class ThemeToggleComponent
+namespace Learning.Blazor.Components
 {
-    private string _buttonClass => _isDarkTheme ? "light" : "dark";
-    private string _iconClass => _isDarkTheme ? "moon" : "sun";
+    public partial class ThemeToggleComponent
+    {
+        private string _buttonClass => _isDarkTheme ? "light" : "dark";
+        private string _iconClass => _isDarkTheme ? "moon" : "sun";
 
-    private bool _isDarkTheme;
+        private bool _isDarkTheme;
 
-    protected override async Task OnInitializedAsync() =>
-        _isDarkTheme =
-            await JavaScript.GetCurrentDarkThemePreference(
-                this, nameof(UpdateDarkThemePreference));
+        protected override async Task OnInitializedAsync() =>
+            _isDarkTheme =
+                await JavaScript.GetCurrentDarkThemePreference(
+                    this, nameof(UpdateDarkThemePreference));
 
-    [JSInvokable]
-    public Task UpdateDarkThemePreference(bool isDarkTheme) =>
-        InvokeAsync(() =>
-        {
-            _isDarkTheme = isDarkTheme;
+        [JSInvokable]
+        public Task UpdateDarkThemePreference(bool isDarkTheme) =>
+            InvokeAsync(() =>
+            {
+                _isDarkTheme = isDarkTheme;
 
-            StateHasChanged();
-        });
+                StateHasChanged();
+            });
+    }
 }

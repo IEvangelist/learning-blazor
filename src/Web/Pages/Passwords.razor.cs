@@ -2,68 +2,69 @@
 // Licensed under the MIT License.
 
 using Learning.Blazor.ComponentModels;
-using Learning.Blazor.Extensions;
-using Learning.Blazor.Models;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Components;
 using System.Net.Http.Json;
 using HaveIBeenPwned.Client.Models;
+using Learning.Blazor.Serialization;
 
-namespace Learning.Blazor.Pages;
-
-public partial class Passwords
+namespace Learning.Blazor.Pages
 {
-    private readonly PasswordsComponentModel _model = new();
-
-    private EditContext? _editContext;
-    private InputText _passwordInput = null!;
-    private bool _isFormInvalid;
-    private PwnedPassword? _pwnedPassword = null!;
-    private ComponentState _state = ComponentState.Unknown;
-
-    [Inject]
-    public HttpClient Http { get; set; } = null!;
-
-    protected override async Task OnInitializedAsync()
+    public partial class Passwords
     {
-        _editContext = new(_model);
-        _editContext.OnFieldChanged += OnModelChanged;
+        private readonly PasswordsComponentModel _model = new();
 
-        await (_passwordInput?.Element?.FocusAsync(preventScroll: true) ?? ValueTask.CompletedTask);
-    }
+        private EditContext? _editContext;
+        private InputText _passwordInput = null!;
+        private bool _isFormInvalid;
+        private PwnedPassword? _pwnedPassword = null!;
+        private ComponentState _state = ComponentState.Unknown;
 
-    private void OnModelChanged(object? sender, FieldChangedEventArgs e)
-    {
-        _isFormInvalid = !_editContext?.Validate() ?? true;
-        StateHasChanged();
-    }
+        [Inject]
+        public HttpClient Http { get; set; } = null!;
 
-    private void Reset()
-    {
-        _model.PlainTextPassword = null!;
-        _pwnedPassword = null!;
-        _state = ComponentState.Unknown;
-        _editContext?.MarkAsUnmodified();
-    }
-
-    private async ValueTask OnValidSubmitAsync(EditContext _)
-    {
-        try
+        protected override async Task OnInitializedAsync()
         {
-            _state = ComponentState.Loading;
-            _pwnedPassword = (await Http.GetFromJsonAsync<PwnedPassword>(
-                $"api/pwned/passwords/{_model.PlainTextPassword}", DefaultJsonSerialization.Options))!;
+            _editContext = new(_model);
+            _editContext.OnFieldChanged += OnModelChanged;
 
-            _state = ComponentState.Loaded;
+            await (_passwordInput?.Element?.FocusAsync(preventScroll: true) ?? ValueTask.CompletedTask);
         }
-        catch (Exception ex)
+
+        private void OnModelChanged(object? sender, FieldChangedEventArgs e)
         {
-            Logger.LogError(ex, ex.Message);
-            _state = ComponentState.Error;
+            _isFormInvalid = !_editContext?.Validate() ?? true;
+            StateHasChanged();
         }
-        finally
+
+        private void Reset()
         {
-            await InvokeAsync(StateHasChanged);
+            _model.PlainTextPassword = null!;
+            _pwnedPassword = null!;
+            _state = ComponentState.Unknown;
+            _editContext?.MarkAsUnmodified();
+        }
+
+        private async ValueTask OnValidSubmitAsync(EditContext _)
+        {
+            try
+            {
+                _state = ComponentState.Loading;
+                _pwnedPassword = await Http.GetFromJsonAsync<PwnedPassword>(
+                    $"api/pwned/passwords/{_model.PlainTextPassword}",
+                    PwnedPasswordJsonSerializerContext.DefaultTypeInfo);
+
+                _state = ComponentState.Loaded;
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex, ex.Message);
+                _state = ComponentState.Error;
+            }
+            finally
+            {
+                await InvokeAsync(StateHasChanged);
+            }
         }
     }
 }

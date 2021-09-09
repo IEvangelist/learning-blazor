@@ -17,7 +17,11 @@ internal static class WebAssemblyHostBuilderExtensions
         var services = builder.Services;
         var configuration = builder.Configuration;
 
+#pragma warning disable IL2026
+        // Methods annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
+        // This is a valid use case as it's a primitive type
         var serverUrl = configuration.GetValue<string>("WebApiServerUrl");
+#pragma warning restore IL2026
 
         services.AddScoped<ApiAccessAuthorizationMessageHandler>();
 
@@ -40,7 +44,11 @@ internal static class WebAssemblyHostBuilderExtensions
         services.AddMsalAuthentication(
             options =>
             {
+#pragma warning disable IL2026
+                // Methods annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
+                // This has been working, I can only assume it will continue to!
                 configuration.Bind("AzureAdB2C", options.ProviderOptions.Authentication);
+#pragma warning restore IL2026
 
                 options.ProviderOptions.LoginMode = "redirect";
 

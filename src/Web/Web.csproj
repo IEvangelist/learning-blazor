@@ -7,7 +7,15 @@
     <LangVersion>preview</LangVersion>
     <Nullable>enable</Nullable>
     <ServiceWorkerAssetsManifest>service-worker-assets.js</ServiceWorkerAssetsManifest>
+    <SuppressTrimAnalysisWarnings>false</SuppressTrimAnalysisWarnings>
   </PropertyGroup>
+
+  <Target Name="FixPackageConflictOverrides" AfterTargets="ResolveTargetingPackAssets">
+    <PropertyGroup>
+      <PackageConflictPreferredPackages>$([MSBuild]::Unescape($(PackageConflictPreferredPackages)))</PackageConflictPreferredPackages>
+    </PropertyGroup>
+  </Target>
+
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <NoWarn>1701;1702;IL2026;IL2046;NU1605</NoWarn>

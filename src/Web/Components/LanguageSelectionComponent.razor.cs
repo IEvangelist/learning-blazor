@@ -5,68 +5,70 @@ using System.Globalization;
 using System.Net.Http.Json;
 using Learning.Blazor.Extensions;
 using Learning.Blazor.Models;
+using Learning.Blazor.Serialization;
 using Microsoft.AspNetCore.Components;
 
-namespace Learning.Blazor.Components;
-
-public partial class LanguageSelectionComponent
+namespace Learning.Blazor.Components
 {
-    private HashSet<(CultureInfo Culture, AzureCulture AzureCulture)>
-        _supportedCultures = null!;
-
-    private CultureInfo _selectedCulture = null!;
-    private ModalComponent _modal = null!;
-
-    [Inject] HttpClient Http { get; set; } = null!;
-
-    protected override async Task OnInitializedAsync()
+    public partial class LanguageSelectionComponent
     {
-        try
-        {
-            var azureCultures =
-                await Http.GetFromJsonAsync<AzureTranslationCultures>(
-                    "api/cultures/all",
-                    DefaultJsonSerialization.Options);
+        private HashSet<(CultureInfo Culture, AzureCulture AzureCulture)>
+            _supportedCultures = null!;
 
-            _supportedCultures =
-                Culture.MapClientSupportedCultures(azureCultures?.Translation);
-        }
-        catch (Exception ex)
+        private CultureInfo _selectedCulture = null!;
+        private ModalComponent _modal = null!;
+
+        [Inject] HttpClient Http { get; set; } = null!;
+
+        protected override async Task OnInitializedAsync()
         {
-            Logger.LogError(ex, ex.Message);
+            try
+            {
+                var azureCultures =
+                    await Http.GetFromJsonAsync<AzureTranslationCultures>(
+                        "api/cultures/all",
+                        AzureTranslationCultureJsonSerializerContext.DefaultTypeInfo);
+
+                _supportedCultures =
+                    Culture.MapClientSupportedCultures(azureCultures?.Translation);
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex, ex.Message);
+            }
         }
+
+        private static string ToDisplayName(
+            (CultureInfo Culture, AzureCulture AzureCulture)? culturePair)
+        {
+            var (hasValue, (culture, azureCulture)) = culturePair;
+            return hasValue
+                ? $"{azureCulture.Name} ({culture.Name})"
+                : "";
+        }
+
+        private async Task Show() => await _modal.Show();
+
+        private async Task Confirm()
+        {
+            var forceRefresh = false;
+            if (_selectedCulture is not null &&
+                _selectedCulture != Culture.CurrentCulture)
+            {
+                forceRefresh = true;
+                await LocalStorage.SetAsync(
+                    StorageKeys.ClientCulture, _selectedCulture.Name);
+            }
+
+            await _modal.Confirm();
+
+            if (forceRefresh)
+            {
+                Navigation.NavigateTo(Navigation.Uri, forceLoad: true);
+            }
+        }
+
+        private void OnDismissed(DismissalReason reason) =>
+            Logger.LogWarning("User '{Reason}' the language selector modal.", reason);
     }
-
-    private static string ToDisplayName(
-        (CultureInfo Culture, AzureCulture AzureCulture)? culturePair)
-    {
-        var (hasValue, (culture, azureCulture)) = culturePair;
-        return hasValue
-            ? $"{azureCulture.Name} ({culture.Name})"
-            : "";
-    }
-
-    private async Task Show() => await _modal.Show();
-
-    private async Task Confirm()
-    {
-        var forceRefresh = false;
-        if (_selectedCulture is not null &&
-            _selectedCulture != Culture.CurrentCulture)
-        {
-            forceRefresh = true;
-            await LocalStorage.SetAsync(
-                StorageKeys.ClientCulture, _selectedCulture.Name);
-        }
-
-        await _modal.Confirm();
-
-        if (forceRefresh)
-        {
-            Navigation.NavigateTo(Navigation.Uri, forceLoad: true);
-        }
-    }
-
-    private void OnDismissed(DismissalReason reason) =>
-        Logger.LogWarning("User '{Reason}' the language selector modal.", reason);
 }
