@@ -27,9 +27,9 @@ public class WeatherComponentModel<T>
     public double WindSpeed => _currentWeather.WindSpeed;
     public int WindDegree => _currentWeather.WindDegree;
     public IReadOnlyList<DailyWeather> DailyWeather => _weatherDetails.Daily.Skip(1).ToList().AsReadOnly();
-    public string City => _geoCode.City;
-    public string State => _geoCode.PrincipalSubdivision;
-    public string Country => _geoCode.CountryCode;
+    public string? City => _geoCode?.City;
+    public string? State => _geoCode?.PrincipalSubdivision;
+    public string? Country => _geoCode?.CountryCode;
 
     public WeatherComponentModel(
         WeatherDetails weatherDetails,

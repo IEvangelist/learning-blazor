@@ -1,7 +1,6 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
-using System.Security.Claims;
 using Learning.Blazor.Abstractions.RealTime;
 using Learning.Blazor.Api.Resources;
 using Learning.Blazor.Extensions;

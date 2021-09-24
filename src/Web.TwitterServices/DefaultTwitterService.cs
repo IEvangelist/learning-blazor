@@ -276,9 +276,9 @@ internal sealed class DefaultTwitterService : ITwitterService
         _logger.LogInformation(status);
 
         CurrentStatus = new(
-                IsStreaming: _filteredStream.StreamState == StreamState.Running,
-                Message: status,
-                Tracks: _filteredStream.Tracks.Keys.ToArray());
+            IsStreaming: _filteredStream.StreamState == StreamState.Running,
+            Message: status,
+            Tracks: _filteredStream.Tracks.Keys.ToArray());
 
         return StatusUpdated?.Invoke(CurrentStatus)
             ?? Task.CompletedTask;

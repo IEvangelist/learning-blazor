@@ -22,9 +22,9 @@ public sealed partial class TweetsComponent
     protected override async Task OnParametersSetAsync() =>
         await JavaScript.RenderTweetsAsync();
 
-    private static bool TweetMatchesFilter(string? filter, TweetContents tweet)
+    private bool TweetMatchesFilter(TweetContents tweet)
     {
-        if (filter is null or { Length: 0 })
+        if (Filter is null or { Length: 0 })
         {
             return true;
         }
@@ -34,7 +34,7 @@ public sealed partial class TweetsComponent
             return false;
         }
 
-        return tweet.AuthorName.Contains(filter, StringComparison.OrdinalIgnoreCase)
-            || tweet.HTML.Contains(filter, StringComparison.OrdinalIgnoreCase);
+        return tweet.AuthorName.Contains(Filter, StringComparison.OrdinalIgnoreCase)
+            || tweet.HTML.Contains(Filter, StringComparison.OrdinalIgnoreCase);
     }
 }

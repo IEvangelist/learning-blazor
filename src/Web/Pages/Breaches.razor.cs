@@ -5,7 +5,6 @@ using System.Net.Http.Json;
 using HaveIBeenPwned.Client.Models;
 using Learning.Blazor.ComponentModels;
 using Learning.Blazor.Components;
-using Learning.Blazor.Extensions;
 using Learning.Blazor.Serialization;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
@@ -114,7 +113,7 @@ namespace Learning.Blazor.Pages
             await _modal.Show();
 
             _breach = await Http.GetFromJsonAsync<BreachDetails>(
-                $"api/pwned/breach/{breachName}", DefaultJsonSerialization.Options);
+                $"api/pwned/breach/{breachName}", BreachDetailJsonSerializerContext.DefaultTypeInfo);
         }
 
         private async Task Confirm() => await _modal.Confirm();

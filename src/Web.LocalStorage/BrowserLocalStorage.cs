@@ -8,18 +8,16 @@ using Microsoft.JSInterop;
 namespace Learning.Blazor.LocalStorage;
 
 /// <summary>
-/// See: https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage
+/// See: https://developer.mozilla.org/docs/Web/API/Window/localStorage
 /// </summary>
-internal class BrowserLocalStorage : ILocalStorage
+internal sealed class BrowserLocalStorage : ILocalStorage
 {
     private readonly IJSRuntime _jSRuntime;
     private readonly ILogger<BrowserLocalStorage> _logger;
 
-    public BrowserLocalStorage(IJSRuntime jSRuntime, ILogger<BrowserLocalStorage> logger)
-    {
-        _jSRuntime = jSRuntime;
-        _logger = logger;
-    }
+    public BrowserLocalStorage(
+        IJSRuntime jSRuntime, ILogger<BrowserLocalStorage> logger) =>
+        (_jSRuntime, _logger) = (jSRuntime, logger);
 
     ValueTask ILocalStorage.ClearAsync() =>
         _jSRuntime.InvokeVoidAsync("localStorage.clear");

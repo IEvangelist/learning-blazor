@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 
 using System.Net.Http.Json;
-using System.Timers;
 using Learning.Blazor.ComponentModels;
 using Learning.Blazor.Extensions;
 using Learning.Blazor.Models;
@@ -10,7 +9,6 @@ using Learning.Blazor.Serialization;
 using Learning.Blazor.Services;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
-using SystemTimer = System.Timers.Timer;
 
 namespace Learning.Blazor.Components
 {
@@ -20,7 +18,8 @@ namespace Learning.Blazor.Components
         private GeoCode? _geoCode = null!;
         private WeatherComponentModel<WeatherComponent>? _model = null!;
         private ComponentState _state = ComponentState.Loading;
-        private SystemTimer _timer = null!;
+
+        private readonly PeriodicTimer _timer = new(TimeSpan.FromMinutes(10));
 
         [Inject]
         public IWeatherStringFormatterService<WeatherComponent> Formatter { get; set; } = null!;
@@ -31,31 +30,10 @@ namespace Learning.Blazor.Components
         [Inject]
         public GeoLocationService GeoLocationService { get; set; } = null!;
 
-        protected override async Task OnAfterRenderAsync(bool firstRender)
-        {
-            if (firstRender)
-            {
-                await TryGetClientCoordinates();
+        protected override Task OnInitializedAsync() =>
+            TryGetClientCoordinatesAsync();
 
-                _timer = new SystemTimer
-                {
-                    Interval = TimeSpan.FromMinutes(10).TotalMilliseconds,
-                    AutoReset = true
-                };
-                _timer.Elapsed += OnTimerElapsed;
-                _timer.Start();
-            }
-        }
-
-        private async void OnTimerElapsed(object? _, ElapsedEventArgs args)
-        {
-            if (_coordinates is not null)
-            {
-                await OnCoordinatesPermitted(_coordinates.Longitude, _coordinates.Latitude);
-            }
-        }
-
-        private async Task TryGetClientCoordinates() =>
+        private async Task TryGetClientCoordinatesAsync() =>
             await JavaScript.GetCoordinatesAsync(
                 this,
                 nameof(OnCoordinatesPermitted),
@@ -93,8 +71,8 @@ namespace Learning.Blazor.Components
 
                 using var response =
                     await Http.PostAsJsonAsync("api/weather/latest",
-                    weatherRequest,
-                    WeatherRequestJsonSerializerContext.DefaultTypeInfo);
+                        weatherRequest,
+                        WeatherRequestJsonSerializerContext.DefaultTypeInfo);
 
                 var weatherDetails =
                     await response.Content.ReadFromJsonAsync<WeatherDetails>(
@@ -131,6 +109,12 @@ namespace Learning.Blazor.Components
             }
 
             await InvokeAsync(StateHasChanged);
+
+            if (await _timer.WaitForNextTickAsync())
+            {
+                await OnCoordinatesPermitted(
+                    _coordinates.Longitude, _coordinates.Latitude);
+            }
         }
 
         [JSInvokable]
@@ -142,14 +126,6 @@ namespace Learning.Blazor.Components
             _state = ComponentState.Error;
         }
 
-        void IDisposable.Dispose()
-        {
-            if (_timer is { Enabled: true })
-            {
-                _timer.Stop();
-                _timer.Elapsed -= OnTimerElapsed;
-                _timer.Dispose();
-            }
-        }
+        void IDisposable.Dispose() => _timer?.Dispose();
     }
 }
