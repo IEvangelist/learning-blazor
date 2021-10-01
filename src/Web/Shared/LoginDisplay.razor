@@ -15,7 +15,7 @@
             @{
                 var user = context.User!;
                 var userIdentity = user.Identity!;
-                var userToolTip = $"{userIdentity.Name} ({user.FindFirst(ClaimTypes.Email)?.Value})";
+                var userToolTip = $"{userIdentity.Name} ({user.GetFirstEmailAddress()})";
             }
             <button class="button is-rounded level-item has-tooltip-right has-tooltip-info"
                 data-tooltip=@(userToolTip) @onclick="OnLogOut">
@@ -35,14 +35,3 @@
         </NotAuthorized>
     </AuthorizeView>
 </span>
-
-@code {
-    void OnLogIn(MouseEventArgs args) =>
-        Navigation.NavigateTo("authentication/login", true);
-
-    async Task OnLogOut(MouseEventArgs args)
-    {
-        await SignOutManager.SetSignOutState();
-        Navigation.NavigateTo("authentication/logout");
-    }
-}
