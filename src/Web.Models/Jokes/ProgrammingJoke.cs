@@ -6,8 +6,8 @@ using System;
 namespace Learning.Blazor.Models;
 
 public record ProgrammingJoke(
-        string Setup,
-        string Punchline)
+    string Setup,
+    string Punchline)
 {
     public string Text =>
         $"{Setup}{Environment.NewLine}{Punchline}";

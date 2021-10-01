@@ -5,7 +5,6 @@ using System.Globalization;
 using System.Net.Http.Json;
 using Learning.Blazor.Extensions;
 using Learning.Blazor.Models;
-using Learning.Blazor.Serialization;
 using Microsoft.AspNetCore.Components;
 
 namespace Learning.Blazor.Components
@@ -27,7 +26,7 @@ namespace Learning.Blazor.Components
                 var azureCultures =
                     await Http.GetFromJsonAsync<AzureTranslationCultures>(
                         "api/cultures/all",
-                        AzureTranslationCultureJsonSerializerContext.DefaultTypeInfo);
+                        DefaultJsonSerialization.Options);
 
                 _supportedCultures =
                     Culture.MapClientSupportedCultures(azureCultures?.Translation);

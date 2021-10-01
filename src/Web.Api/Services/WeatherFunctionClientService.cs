@@ -12,7 +12,7 @@ using Learning.Blazor.Api.Http;
 
 namespace Learning.Blazor.Api.Services;
 
-public sealed class WeatherFunctionClientService : IAsyncDisposable
+public sealed class WeatherFunctionClientService : IDisposable
 {
     private readonly HttpClient _httpClient;
     private readonly IDistributedCache _cache;
@@ -39,9 +39,8 @@ public sealed class WeatherFunctionClientService : IAsyncDisposable
                     await _httpClient.GetFromJsonAsync<WeatherDetails>(
                         requestUrl, DefaultJsonSerialization.Options);
 
-                return details! with { MeasurementSystem = request.Units };
+                return details! with { Units = request.Units };
             }, _logger);
 
-    ValueTask IAsyncDisposable.DisposeAsync() =>
-        _httpClient.TryDisposeAsync();
+    void IDisposable.Dispose() => _httpClient.Dispose();
 }

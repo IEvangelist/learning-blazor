@@ -17,9 +17,9 @@ public static class NumberExtensions
     public static DateTime FromUnixTimeStamp(this double unixTimeStamp) =>
         s_epochDateTime.AddSeconds(unixTimeStamp).ToLocalTime();
 
-    public static string ToCardinal(this int degrees) =>
+    public static string ToPositionalCardinal(this int degrees) =>
         s_cardinals[(int)Math.Round((double)degrees % 360 / 45)];
 
-    public static string ToVerboseCardinal(this int degrees) =>
+    public static string ToVerbosePositionalCardinal(this int degrees) =>
         s_verboseCardinals[(int)Math.Round((double)degrees % 360 / 45)];
 }

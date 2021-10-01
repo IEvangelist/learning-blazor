@@ -23,7 +23,7 @@ public class WeatherComponentModel<T>
     public string FeelsLike => string.Format(_weatherStringFormatter, "{0:t}", _currentWeather.FeelsLike);
     public string HighTemp => string.Format(_weatherStringFormatter, "{0:t}", _todaysDaily.Temperature.Max);
     public string LowTemp => string.Format(_weatherStringFormatter, "{0:t}", _todaysDaily.Temperature.Min);
-    public MeasurementSystem MeasurementSystem => _weatherDetails.MeasurementSystem;
+    public MeasurementSystem MeasurementSystem => (MeasurementSystem)_weatherDetails.Units;
     public double WindSpeed => _currentWeather.WindSpeed;
     public int WindDegree => _currentWeather.WindDegree;
     public IReadOnlyList<DailyWeather> DailyWeather => _weatherDetails.Daily.Skip(1).ToList().AsReadOnly();

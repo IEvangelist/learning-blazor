@@ -23,7 +23,7 @@
                                     <i class="fas fa-arrow-up"></i> @(weather.HighTemp) | <i class="fas fa-arrow-down"></i> @(weather.LowTemp)
                                 </span>
                                 <span class="heading">@weather.Description</span>
-                                <span class="heading"><i class="fas fa-wind"></i> @weather.WindSpeed <sup>@(localize[weather.WindDegree.ToVerboseCardinal()])</sup></span>
+                                <span class="heading"><i class="fas fa-wind"></i> @weather.WindSpeed <sup>@(localize[weather.WindDegree.ToVerbosePositionalCardinal()])</sup></span>
                             </div>
                         </div>
                     </div>

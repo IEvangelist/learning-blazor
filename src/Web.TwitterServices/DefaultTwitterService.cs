@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 
 using System.Diagnostics.CodeAnalysis;
-using Learning.Blazor.Extensions;
 using Learning.Blazor.Models;
 using Microsoft.Extensions.Logging;
 using Tweetinvi.Events;
@@ -144,9 +143,6 @@ internal sealed class DefaultTwitterService : ITwitterService
             _logger.LogWarning("Unable to stop tweet stream.");
         }
     }
-
-    ValueTask IAsyncDisposable.DisposeAsync() =>
-        _filteredStream.TryDisposeAsync();
 
     private async void OnNonMatchingTweetReceived(
         object? sender, TweetEventArgs? args) =>

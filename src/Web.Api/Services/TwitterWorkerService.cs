@@ -3,14 +3,13 @@
 
 using Learning.Blazor.Abstractions.RealTime;
 using Learning.Blazor.Api.Hubs;
-using Learning.Blazor.Extensions;
 using Learning.Blazor.Models;
 using Learning.Blazor.TwitterServices;
 using Microsoft.AspNetCore.SignalR;
 
 namespace Learning.Blazor.Api.Services;
 
-public sealed class TwitterWorkerService : BackgroundService, IAsyncDisposable
+public sealed class TwitterWorkerService : BackgroundService
 {
     private readonly ITwitterService _twitterService;
     private readonly IHubContext<NotificationHub> _hubContext;
@@ -36,13 +35,10 @@ public sealed class TwitterWorkerService : BackgroundService, IAsyncDisposable
     }
 
     private Task OnStatusUpdated(StreamingStatus status) =>
-        _hubContext.Clients.Group("Tweets").SendAsync(
+        _hubContext.Clients.Group(HubGroupNames.Tweets).SendAsync(
             HubServerEventNames.StatusUpdated, Notification<StreamingStatus>.FromStatus(status));
 
     private Task OnTweetReceived(TweetContents tweet) =>
-        _hubContext.Clients.Group("Tweets").SendAsync(
+        _hubContext.Clients.Group(HubGroupNames.Tweets).SendAsync(
             HubServerEventNames.TweetReceived, Notification<TweetContents>.FromTweet(tweet));
-
-    ValueTask IAsyncDisposable.DisposeAsync() =>
-        _twitterService.TryDisposeAsync();
 }

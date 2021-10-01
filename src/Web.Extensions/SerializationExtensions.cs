@@ -3,7 +3,7 @@
 
 namespace Learning.Blazor.Extensions;
 
-public static class ObjectExtensions
+public static class SerializationExtensions
 {
     public static string? ToJson<T>(
         this T value, JsonSerializerOptions? options = null) =>
@@ -16,16 +16,4 @@ public static class ObjectExtensions
         json is { Length: > 0 }
             ? Deserialize<T>(json, options ?? DefaultJsonSerialization.Options)
             : default;
-
-    public static async ValueTask TryDisposeAsync(this object? obj)
-    {
-        if (obj is IAsyncDisposable asyncDisposable)
-        {
-            await asyncDisposable.ConfigureAwait(false).DisposeAsync();
-        }
-        else if (obj is IDisposable disposable)
-        {
-            disposable.Dispose();
-        }
-    }
 }

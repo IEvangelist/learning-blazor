@@ -40,6 +40,10 @@ namespace Learning.Blazor.Components
                 nameof(OnErrorRequestingCooridnates));
 
         [JSInvokable]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage(
+            "Trimming",
+            "IL2026:Methods annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code",
+            Justification = "Not an issue here.")]
         public async Task OnCoordinatesPermitted(
             decimal longitude, decimal latitude)
         {
@@ -66,17 +70,17 @@ namespace Learning.Blazor.Components
                     Language = requestLanguage,
                     Latitude = latitude,
                     Longitude = longitude,
-                    Units = unit
+                    Units = (int)unit
                 };
 
                 using var response =
                     await Http.PostAsJsonAsync("api/weather/latest",
                         weatherRequest,
-                        WeatherRequestJsonSerializerContext.DefaultTypeInfo);
+                        DefaultJsonSerialization.Options);
 
                 var weatherDetails =
                     await response.Content.ReadFromJsonAsync<WeatherDetails>(
-                        WeatherDetailsJsonSerializerContext.DefaultTypeInfo);
+                        DefaultJsonSerialization.Options);
 
                 if (_geoCode is null)
                 {

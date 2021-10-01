@@ -22,8 +22,12 @@ public class Startup
     public void ConfigureServices(IServiceCollection services)
     {
         services.AddResponseCompression(
-            options => options.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(
-                new[] { MediaTypeNames.Application.Octet }));
+            options =>
+            {
+                options.EnableForHttps = true;
+                options.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(
+                    new[] { MediaTypeNames.Application.Octet });
+            });
 
         services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddMicrosoftIdentityWebApi(_configuration.GetSection("AzureAdB2C"));

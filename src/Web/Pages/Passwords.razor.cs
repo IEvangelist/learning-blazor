@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Components;
 using System.Net.Http.Json;
 using HaveIBeenPwned.Client.Models;
-using Learning.Blazor.Serialization;
+using Learning.Blazor.Extensions;
 
 namespace Learning.Blazor.Pages
 {
@@ -45,6 +45,10 @@ namespace Learning.Blazor.Pages
             _editContext?.MarkAsUnmodified();
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage(
+            "Trimming",
+            "IL2026:Methods annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code",
+            Justification = "Not an issue here.")]
         private async ValueTask OnValidSubmitAsync(EditContext _)
         {
             try
@@ -52,7 +56,7 @@ namespace Learning.Blazor.Pages
                 _state = ComponentState.Loading;
                 _pwnedPassword = await Http.GetFromJsonAsync<PwnedPassword>(
                     $"api/pwned/passwords/{_model.PlainTextPassword}",
-                    PwnedPasswordJsonSerializerContext.DefaultTypeInfo);
+                    DefaultJsonSerialization.Options);
 
                 _state = ComponentState.Loaded;
             }

@@ -10,7 +10,7 @@ namespace Learning.Blazor.Models
         [JsonPropertyName("lang")] public string Language { get; init; } = null!;
         [JsonPropertyName("lat")] public decimal Latitude { get; init; }
         [JsonPropertyName("lon")] public decimal Longitude { get; init; }
-        [JsonPropertyName("units")] public MeasurementSystem Units { get; init; }
+        [JsonPropertyName("units")] public int Units { get; init; }
         [JsonIgnore] public string Key => $"WR:{Language}:{Latitude}:{Longitude}:{Units}";
 
         /// <summary>
@@ -22,6 +22,6 @@ namespace Learning.Blazor.Models
                 .Replace("{lang}", Language)
                 .Replace("{latitude}", Latitude.ToString())
                 .Replace("{longitude}", Longitude.ToString())
-                .Replace("{units}", Units.ToString());
+                .Replace("{units}", ((MeasurementSystem)Units).ToString());
     }
 }

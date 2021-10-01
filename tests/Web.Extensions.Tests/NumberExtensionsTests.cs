@@ -29,7 +29,7 @@ namespace Learning.Blazor.Extensions.Tests
         ]
         public void ToCardinalCorrectlyPlotsDirectionAcronymTest(int cardinal, string expected)
         {
-            var actual = cardinal.ToCardinal();
+            var actual = cardinal.ToPositionalCardinal();
             Assert.Equal(expected, actual);
         }
 
@@ -46,7 +46,7 @@ namespace Learning.Blazor.Extensions.Tests
         ]
         public void ToVerboseCardinalCorrectlyPlotsDirectionAcronymTest(int cardinal, string expected)
         {
-            var actual = cardinal.ToVerboseCardinal();
+            var actual = cardinal.ToVerbosePositionalCardinal();
             Assert.Equal(expected, actual);
         }
     }

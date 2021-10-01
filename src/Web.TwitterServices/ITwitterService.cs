@@ -6,7 +6,7 @@ using Learning.Blazor.Models;
 
 namespace Learning.Blazor.TwitterServices;
 
-public interface ITwitterService : IAsyncDisposable
+public interface ITwitterService
 {
     IReadOnlyCollection<TweetContents>? LastThreeTweets { get; }
     StreamingStatus? CurrentStatus { get; }
