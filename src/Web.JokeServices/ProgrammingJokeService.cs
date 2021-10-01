@@ -15,7 +15,7 @@ internal class ProgrammingJokeService : IJokeService
 
     JokeSourceDetails IJokeService.SourceDetails =>
         new(JokeSource.OfficialJokeApiProgramming,
-            new Uri("https://official-joke-api.appspot.com/"));
+            new Uri("https://karljoke.herokuapp.com/"));
 
     async Task<string?> IJokeService.GetJokeAsync()
     {
@@ -23,7 +23,7 @@ internal class ProgrammingJokeService : IJokeService
         {
             // An array with a single joke is returned
             var jokes = await _httpClient.GetFromJsonAsync<ProgrammingJoke[]>(
-                "https://official-joke-api.appspot.com/jokes/programming/random",
+                "https://karljoke.herokuapp.com/jokes/programming/random",
                 DefaultJsonSerialization.Options);
 
             return jokes?[0].Text;
