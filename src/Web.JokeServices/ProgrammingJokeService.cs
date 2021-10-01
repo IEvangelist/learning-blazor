@@ -14,7 +14,7 @@ internal class ProgrammingJokeService : IJokeService
         (_httpClient, _logger) = (httpClient, /* ArgumentNullException.ThrowIfNull(logger); */ logger);
 
     JokeSourceDetails IJokeService.SourceDetails =>
-        new(JokeSource.OfficialJokeApiProgramming,
+        new(JokeSource.OpenSourceJokeApi,
             new Uri("https://karljoke.herokuapp.com/"));
 
     async Task<string?> IJokeService.GetJokeAsync()
