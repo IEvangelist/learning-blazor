@@ -11,11 +11,7 @@ public static class ServiceCollectionExtensions
         this IServiceCollection services,
         IConfiguration configuration)
     {
-        if (services is null)
-        {
-            throw new ArgumentNullException(
-                nameof(services), "A service collection is required.");
-        }
+        ArgumentNullException.ThrowIfNull(nameof(services));
 
         services.AddScoped<IJokeService, ProgrammingJokeService>();
         services.AddScoped<IJokeService, DadJokeService>();

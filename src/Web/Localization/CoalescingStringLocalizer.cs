@@ -25,11 +25,20 @@ namespace Learning.Blazor.Localization
         {
             get
             {
-                var localizedString = _localizer[name]
-                    ?? _sharedLocalizer[name]
-                    ?? new(name, name);
+                HashSet<string> searchedLocations = new();
+                var localizedString = _localizer[name];
+                if (localizedString.ResourceNotFound)
+                {
+                    searchedLocations.Add(localizedString.SearchedLocation!);
+                    localizedString = _sharedLocalizer[name];
+                }
+                if (localizedString.ResourceNotFound)
+                {
+                    searchedLocations.Add(localizedString.SearchedLocation!);
+                    localizedString = new(name, name);
+                }
 
-                LogIfNotFound(localizedString);
+                LogIfNotFound(localizedString, searchedLocations);
 
                 return localizedString;
             }
@@ -43,24 +52,33 @@ namespace Learning.Blazor.Localization
         {
             get
             {
-                var localizedString = _localizer[name, arguments]
-                    ?? _sharedLocalizer[name, arguments]
-                    ?? new(name, name);
+                HashSet<string> searchedLocations = new();
+                var localizedString = _localizer[name, arguments];
+                if (localizedString.ResourceNotFound)
+                {
+                    searchedLocations.Add(localizedString.SearchedLocation!);
+                    localizedString = _sharedLocalizer[name, arguments];
+                }
+                if (localizedString.ResourceNotFound)
+                {
+                    searchedLocations.Add(localizedString.SearchedLocation!);
+                    localizedString = new(name, name);
+                }
 
-                LogIfNotFound(localizedString);
+                LogIfNotFound(localizedString, searchedLocations);
 
                 return localizedString;
             }
         }
 
-        void LogIfNotFound(LocalizedString localizedString)
+        void LogIfNotFound(LocalizedString localizedString, ISet<string> searchedLocations)
         {
-            if (localizedString is { ResourceNotFound: true })
+            if (localizedString.ResourceNotFound)
             {
                 _logger.LogInformation(
                     "Unable to find {Name}, searched in {Location} - using {Value}.",
                     localizedString.Name,
-                    localizedString.SearchedLocation,
+                    string.Join(", ", searchedLocations),
                     localizedString.Value);
             }
         }
