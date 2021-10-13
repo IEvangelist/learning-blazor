@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -24,15 +24,15 @@
 
   <ItemGroup>
     <PackageReference Include="HaveIBeenPwned.Client.Abstractions" Version="1.0.4" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.0-rc.1.21452.15" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.0-rc.1.21452.15" PrivateAssets="all" />
-    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="6.0.0-rc.1.21452.15" />
-    <PackageReference Include="Microsoft.AspNetCore.SignalR.Protocols.MessagePack" Version="6.0.0-rc.1.21452.15" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.0-rc.2.21480.10" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.0-rc.2.21480.10" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="6.0.0-rc.2.21480.10" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Protocols.MessagePack" Version="6.0.0-rc.2.21480.10" />
     <PackageReference Include="Microsoft.AspNetCore.WebUtilities" Version="2.2.0" />
-    <PackageReference Include="Microsoft.Authentication.WebAssembly.Msal" Version="6.0.0-rc.1.21452.15" />
-    <PackageReference Include="Microsoft.Extensions.Http" Version="6.0.0-rc.1.21451.13" />
-    <PackageReference Include="Microsoft.Extensions.Localization" Version="6.0.0-rc.1.21452.15" />
-    <PackageReference Include="System.Net.Http.Json" Version="6.0.0-rc.1.21451.13" />
+    <PackageReference Include="Microsoft.Authentication.WebAssembly.Msal" Version="6.0.0-rc.2.21480.10" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="6.0.0-rc.2.21480.5" />
+    <PackageReference Include="Microsoft.Extensions.Localization" Version="6.0.0-rc.2.21480.10" />
+    <PackageReference Include="System.Net.Http.Json" Version="6.0.0-rc.2.21480.5" />
   </ItemGroup>
 
   <ItemGroup>
