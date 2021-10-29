@@ -5,7 +5,7 @@ namespace Learning.Blazor.Models;
 
 public enum JokeSource
 {
-    ChuckNorrisInternetDatabase,
+    InternetChuckNorrisDatabase,
     ICanHazDadJoke,
     OpenSourceJokeApi
 };

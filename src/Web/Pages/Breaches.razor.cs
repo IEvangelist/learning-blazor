@@ -6,6 +6,7 @@ using HaveIBeenPwned.Client.Models;
 using Learning.Blazor.ComponentModels;
 using Learning.Blazor.Components;
 using Learning.Blazor.Serialization;
+using Learning.Blazor.Shared;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Components.Routing;
@@ -38,6 +39,9 @@ namespace Learning.Blazor.Pages
         [Parameter]
         [SupplyParameterFromQuery]
         public string Email { get; set; } = null!;
+
+        [CascadingParameter]
+        public Error Error { get; set; } = null!;
 
         protected override async Task OnInitializedAsync()
         {
@@ -99,7 +103,7 @@ namespace Learning.Blazor.Pages
             }
             catch (Exception ex)
             {
-                Logger.LogError(ex, ex.Message);
+                Error.ProcessError(ex);
                 _state = ComponentState.Error;
             }
             finally

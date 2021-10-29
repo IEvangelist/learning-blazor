@@ -15,7 +15,7 @@ internal class ChuckNorrisJokeService : IJokeService
             (httpClientFactory.CreateClient(nameof(ChuckNorrisJokeService)), logger);
 
     JokeSourceDetails IJokeService.SourceDetails =>
-        new(JokeSource.ChuckNorrisInternetDatabase, new Uri("https://www.icndb.com/"));
+        new(JokeSource.InternetChuckNorrisDatabase, new Uri("https://www.icndb.com/"));
 
     async Task<string?> IJokeService.GetJokeAsync()
     {

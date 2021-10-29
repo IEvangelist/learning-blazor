@@ -4,7 +4,8 @@
 @inherits LocalizableComponentBase<ThemeToggleComponent>
 
 <span class="navbar-item">
-    <button class="button is-@(_buttonClass) has-tooltip-left has-tooltip-info is-rounded level-item"
+    <button class="button is-@(_buttonClass)
+			has-tooltip-left has-tooltip-info is-rounded level-item"
         data-tooltip=@localize[_isDarkTheme ? "DarkTheme" : "LightTheme"]>
         <span class="icon">
             <i class="fas fa-@(_iconClass)"></i>
@@ -13,12 +14,6 @@
 </span>
 
 <HeadContent>
-    @if (_isDarkTheme)
-    {
-        <meta name="twitter:widgets:theme" content="dark">
-    }
-    else
-    {
-        <meta name="twitter:widgets:theme" content="light">
-    }
+    <meta name="twitter:widgets:theme"
+          content='@_isDarkTheme ? "dark" : "light"'>
 </HeadContent>
