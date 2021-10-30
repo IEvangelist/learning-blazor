@@ -12,12 +12,23 @@ internal class AggregateJokeFactory : IJokeFactory
 
     async Task<(string, JokeSourceDetails)> IJokeFactory.GetRandomJokeAsync()
     {
-        var randomJokeService = _jokeServices.RandomElement();
+        var services = _jokeServices;
+        var randomService = services.RandomElement();
 
-        var joke =
-            await randomJokeService.GetJokeAsync()
-            ?? "There is nothing funny about this.";
+        var joke = await randomService.GetJokeAsync();
+        var sourceDetails = randomService.SourceDetails;
 
-        return (joke, randomJokeService.SourceDetails);
+        while (joke is null && services.Any())
+        {
+            services = services.Except(new[] { randomService });
+            randomService = services.RandomElement();
+
+            joke = await randomService.GetJokeAsync();
+            sourceDetails = randomService.SourceDetails;
+        }
+
+        return (
+            joke ?? "There is nothing funny about this.",
+            sourceDetails);
     }
 }

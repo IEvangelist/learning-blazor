@@ -47,7 +47,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.LocalStorage", "src\Web
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Http.Extensions", "src\Web.Http.Extensions\Web.Http.Extensions.csproj", "{C81A8E26-49B5-4475-ACD7-B50C5ADBAF66}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.Extensions.Tests", "tests\Web.Extensions.Tests\Web.Extensions.Tests.csproj", "{D2AA585E-7EC6-484B-ACA0-48896857236F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Extensions.Tests", "tests\Web.Extensions.Tests\Web.Extensions.Tests.csproj", "{D2AA585E-7EC6-484B-ACA0-48896857236F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

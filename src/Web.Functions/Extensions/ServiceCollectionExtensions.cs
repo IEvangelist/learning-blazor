@@ -15,7 +15,8 @@ namespace Learning.Blazor.Functions.Extensions
         {
             services.AddLogging()
                 .AddOptions()
-                .Configure<OpenWeatherMapOptions>(configuration.GetSection(nameof(OpenWeatherMapOptions)))
+                .Configure<OpenWeatherMapOptions>(
+                    configuration.GetSection(nameof(OpenWeatherMapOptions)))
                 .AddSingleton<IWeatherService, OpenWeatherMapService>();
 
             services.AddHttpClient<OpenWeatherMapService>();

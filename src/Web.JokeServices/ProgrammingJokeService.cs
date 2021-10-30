@@ -11,7 +11,7 @@ internal class ProgrammingJokeService : IJokeService
     public ProgrammingJokeService(
         HttpClient httpClient,
         ILogger<ProgrammingJokeService> logger) =>
-        (_httpClient, _logger) = (httpClient, /* ArgumentNullException.ThrowIfNull(logger); */ logger);
+        (_httpClient, _logger) = (httpClient, logger);
 
     JokeSourceDetails IJokeService.SourceDetails =>
         new(JokeSource.OpenSourceJokeApi,

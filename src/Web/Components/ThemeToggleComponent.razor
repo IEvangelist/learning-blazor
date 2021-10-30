@@ -13,12 +13,6 @@
 </span>
 
 <HeadContent>
-    @if (_isDarkTheme)
-    {
-        <meta name="twitter:widgets:theme" content="dark">
-    }
-    else
-    {
-        <meta name="twitter:widgets:theme" content="light">
-    }
+    <meta name="twitter:widgets:theme"
+          content='@_isDarkTheme ? "dark" : "light"'>
 </HeadContent>
