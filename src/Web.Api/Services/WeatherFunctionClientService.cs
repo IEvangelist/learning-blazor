@@ -9,6 +9,7 @@ using Learning.Blazor.Api.Extensions;
 using Learning.Blazor.Api.Options;
 using Microsoft.Extensions.Caching.Distributed;
 using Learning.Blazor.Api.Http;
+using Learning.Blazor.DistributedCache.Extensions;
 
 namespace Learning.Blazor.Api.Services;
 

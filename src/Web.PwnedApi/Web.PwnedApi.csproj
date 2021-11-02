@@ -1,38 +1,27 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <RootNamespace>Learning.Blazor.Api</RootNamespace>
+    <RootNamespace>Learning.Blazor.PwnedApi</RootNamespace>
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
-    <ImplicitUsings>true</ImplicitUsings>
-    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-    <DockerfileContext>..\..</DockerfileContext>
+    <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="HaveIBeenPwned.Client" Version="1.0.4" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.0-rc.2.21480.10" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="6.0.0-rc.2.21480.10" />
-    <PackageReference Include="Microsoft.AspNetCore.SignalR.Protocols.MessagePack" Version="6.0.0-rc.2.21480.10" />
     <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="6.0.0-rc.2.21480.10" />
     <PackageReference Include="Microsoft.Extensions.Http.Polly" Version="6.0.0-rc.2.21480.10" />
-    <PackageReference Include="Microsoft.Extensions.Localization" Version="6.0.0-rc.2.21480.10" />
     <PackageReference Include="Microsoft.Identity.Web" Version="1.19.0-preview" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.11.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.2" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Web.Abstractions\Web.Abstractions.csproj" />
     <ProjectReference Include="..\Web.DistributedCache.Extensions\Web.DistributedCache.Extensions.csproj" />
     <ProjectReference Include="..\Web.Extensions\Web.Extensions.csproj" />
     <ProjectReference Include="..\Web.Http.Extensions\Web.Http.Extensions.csproj" />
-    <ProjectReference Include="..\Web.JokeServices\Web.JokeServices.csproj" />
-    <ProjectReference Include="..\Web.TwitterServices\Web.TwitterServices.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Properties\ServiceDependencies\" />
   </ItemGroup>
 
 </Project>

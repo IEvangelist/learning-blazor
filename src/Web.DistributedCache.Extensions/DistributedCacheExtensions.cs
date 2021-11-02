@@ -1,18 +1,30 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
-using Learning.Blazor.Extensions;
-using Microsoft.Extensions.Caching.Distributed;
-using static System.Text.Encoding;
+namespace Learning.Blazor.DistributedCache.Extensions;
 
-namespace Learning.Blazor.Api.Extensions;
-
-internal static class DistributedCacheExtensions
+public static class DistributedCacheExtensions
 {
     /// <summary>
     /// The default <see cref="DistributedCacheEntryOptions.AbsoluteExpirationRelativeToNow"/> is 5 mins.
+    /// This is an abstraction over the otherwise obscure distributed cache APIs.
+    /// It's a multi-step processing function:
+    /// <list type="bullet">
+    /// <item>Attempt to get the value from the distributed cache:</item>
+    /// <item>If there is a value for the given <paramref name="key"/>,
+    /// deserialize it into an <typeparamref name="TItem"/> instance.</item>
+    /// <item>When there is no value for the given <paramref name="key"/>,
+    /// attempt to create an instance of <typeparamref name="TItem"/>
+    /// with the given <paramref name="factory"/> method.</item>
+    /// <item>Update the value in the <paramref name="distributedCache"/>
+    /// if we used the <paramref name="factory"/> to create an instance</item>
+    /// </list>
+    /// <remarks>
+    /// There is no locking, but there is the potential for multiple read calls.
+    /// Not too concerned about the potential for those cases to cause performance issues.
+    /// </remarks>
     /// </summary>
-    internal static async Task<TItem?> GetOrCreateAsync<TItem>(
+    public static async Task<TItem?> GetOrCreateAsync<TItem>(
         this IDistributedCache distributedCache,
         string key,
         Func<DistributedCacheEntryOptions, Task<TItem>> factory,

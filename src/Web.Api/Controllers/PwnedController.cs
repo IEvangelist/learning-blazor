@@ -4,6 +4,7 @@
 using System.Net.Mime;
 using HaveIBeenPwned.Client;
 using Learning.Blazor.Api.Extensions;
+using Learning.Blazor.DistributedCache.Extensions;
 using Learning.Blazor.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

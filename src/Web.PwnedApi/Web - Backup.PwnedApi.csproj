@@ -1,12 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <RootNamespace>Learning.Blazor.Api</RootNamespace>
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
-    <ImplicitUsings>true</ImplicitUsings>
-    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-    <DockerfileContext>..\..</DockerfileContext>
+    <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
   <ItemGroup>
@@ -23,16 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Web.Abstractions\Web.Abstractions.csproj" />
-    <ProjectReference Include="..\Web.DistributedCache.Extensions\Web.DistributedCache.Extensions.csproj" />
-    <ProjectReference Include="..\Web.Extensions\Web.Extensions.csproj" />
     <ProjectReference Include="..\Web.Http.Extensions\Web.Http.Extensions.csproj" />
-    <ProjectReference Include="..\Web.JokeServices\Web.JokeServices.csproj" />
-    <ProjectReference Include="..\Web.TwitterServices\Web.TwitterServices.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Properties\ServiceDependencies\" />
   </ItemGroup>
 
 </Project>

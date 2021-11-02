@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 
 using System.Net.Mime;
-using Learning.Blazor.Api.Extensions;
 using Learning.Blazor.Api.Services;
+using Learning.Blazor.DistributedCache.Extensions;
 using Learning.Blazor.Extensions;
 using Learning.Blazor.Models;
 using Microsoft.AspNetCore.Authorization;
