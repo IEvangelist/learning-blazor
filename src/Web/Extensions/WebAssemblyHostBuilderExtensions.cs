@@ -10,8 +10,6 @@ namespace Learning.Blazor.Extensions;
 
 internal static class WebAssemblyHostBuilderExtensions
 {
-    const string ServerApi = nameof(ServerApi);
-
     internal static WebAssemblyHostBuilder ConfigureServices(this WebAssemblyHostBuilder builder)
     {
         var services = builder.Services;
@@ -21,12 +19,13 @@ internal static class WebAssemblyHostBuilderExtensions
         // Methods annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
         // This is a valid use case as it's a primitive type
         var serverUrl = configuration.GetValue<string>("WebApiServerUrl");
+        var pwnedServerUrl = configuration.GetValue<string>("PwnedWebApiServerUrl");
 #pragma warning restore IL2026
 
         services.AddScoped<ApiAccessAuthorizationMessageHandler>();
 
         services.AddHttpClient(
-            ServerApi, (serviceProvider, client) =>
+            HttpClientNames.ServerApi, (serviceProvider, client) =>
             {
                 client.BaseAddress = new Uri(serverUrl);
 
@@ -37,7 +36,21 @@ internal static class WebAssemblyHostBuilderExtensions
             })
             .AddHttpMessageHandler<ApiAccessAuthorizationMessageHandler>();
 
-        services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient(ServerApi));
+        services.AddHttpClient(
+            HttpClientNames.PwnedServerApi, (serviceProvider, client) =>
+            {
+                client.BaseAddress = new Uri(pwnedServerUrl);
+
+                var cultureService = serviceProvider.GetRequiredService<CultureService>();
+
+                client.DefaultRequestHeaders.AcceptLanguage.ParseAdd(
+                    cultureService.CurrentCulture.TwoLetterISOLanguageName);
+            })
+            .AddHttpMessageHandler<ApiAccessAuthorizationMessageHandler>();
+
+        services.AddScoped(
+            sp => sp.GetRequiredService<IHttpClientFactory>()
+                .CreateClient(HttpClientNames.ServerApi));
 
         services.AddLocalization();
 

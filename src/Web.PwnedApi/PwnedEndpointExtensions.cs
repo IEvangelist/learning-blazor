@@ -1,28 +1,22 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
+using Microsoft.AspNetCore.Authorization;
+
 namespace Learning.Blazor.PwnedApi;
 
 static class PwnedEndpointExtensions
 {
     internal static WebApplicationBuilder AddPwnedEndpoints(this WebApplicationBuilder builder)
     {
-        var webClientOrigin = builder.Configuration["WebClientOrigin"];
-        builder.Services.AddCors(
-            options => options.AddDefaultPolicy(
-                builder => builder.WithOrigins(
-                    "https://localhost:5001", webClientOrigin)
-                    .AllowAnyMethod()
-                    .AllowAnyHeader()
-                    .AllowCredentials()));
+        ArgumentNullException.ThrowIfNull(builder);
 
-        // Add services to the container.
         builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddMicrosoftIdentityWebApi(
                 builder.Configuration.GetSection("AzureAdB2C"));
 
-        builder.Services.AddAuthorization();
-        builder.Services.AddRequiredScopeAuthorization();
+        //builder.Services.AddAuthorization();
+        //builder.Services.AddRequiredScopeAuthorization();
 
         builder.Services.Configure<JwtBearerOptions>(
             JwtBearerDefaults.AuthenticationScheme,
@@ -32,9 +26,26 @@ static class PwnedEndpointExtensions
             builder.Configuration.GetSection(nameof(HibpOptions)),
             HttpClientBuilderRetryPolicyExtensions.GetDefaultRetryPolicy);
 
-        // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+        builder.Services.AddStackExchangeRedisCache(
+            options => options.Configuration =
+                builder.Configuration["RedisCacheOptions:ConnectionString"]);
+
+        var webClientOrigin = builder.Configuration["WebClientOrigin"];
+        builder.Services.AddCors(
+            options => options.AddDefaultPolicy(
+                builder => builder.WithOrigins(
+                    "https://localhost:5001", webClientOrigin)
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials()));
+
         builder.Services.AddEndpointsApiExplorer();
-        builder.Services.AddSwaggerGen();
+        builder.Services.AddSwaggerGen(options =>
+            options.SwaggerDoc("v1", new()
+            {
+                Title = "Learning.Blazor.PwnedApi",
+                Version = "v1"
+            }));
 
         return builder;
     }
@@ -49,19 +60,21 @@ static class PwnedEndpointExtensions
     {
         ArgumentNullException.ThrowIfNull(app);
 
-        app.MapBreachEndpoints();
-        app.MapPwnedPasswordsEndpoints();
-
-        // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())
         {
             app.UseSwagger();
-            app.UseSwaggerUI();
+            app.UseSwaggerUI(options =>
+                options.SwaggerEndpoint(
+                    "/swagger/v1/swagger.json", "Learning.Blazor.PwnedApi v1"));
         }
 
         app.UseHttpsRedirection();
+        app.UseCors();
         app.UseAuthentication();
         app.UseAuthorization();
+
+        app.MapBreachEndpoints();
+        app.MapPwnedPasswordsEndpoints();
 
         return app;
     }
@@ -70,15 +83,23 @@ static class PwnedEndpointExtensions
     {
         // Map "have i been pwned" breaches.
         app.MapGet("api/pwned/breaches/{email}", GetBreachHeadersForAccountAsync)
-            .RequireAuthorization()
-            .RequireScope(app.Configuration["AzureAdB2C:Scopes"]);
+            .RequireScope("User.ApiAccess");
         app.MapGet("api/pwned/breach/{name}", GetBreachAsync)
-            .RequireAuthorization()
-            .RequireScope(app.Configuration["AzureAdB2C:Scopes"]);
+            .RequireScope("User.ApiAccess");
 
         return app;
     }
 
+    internal static WebApplication MapPwnedPasswordsEndpoints(this WebApplication app)
+    {
+        // Map "have i been pwned" passwords.
+        app.MapGet("api/pwned/passwords/{password}", GetPwnedPasswordAsync)
+            .RequireScope("User.ApiAccess");
+
+        return app;
+    }
+
+    [Authorize]
     internal static async Task<IResult> GetBreachHeadersForAccountAsync(
         [FromRoute] string email,
         IDistributedCache cache,
@@ -97,6 +118,7 @@ static class PwnedEndpointExtensions
         return Results.Json(breaches, DefaultJsonSerialization.Options);
     }
 
+    [Authorize]
     internal static async Task<IResult> GetBreachAsync(
         [FromRoute] string name,
         IDistributedCache cache,
@@ -114,16 +136,7 @@ static class PwnedEndpointExtensions
         return Results.Json(breach, DefaultJsonSerialization.Options);
     }
 
-    internal static WebApplication MapPwnedPasswordsEndpoints(this WebApplication app)
-    {
-        // Map "have i been pwned" passwords.
-        app.MapGet("api/pwned/passwords/{password}", GetPwnedPasswordAsync)
-            .RequireAuthorization()
-            .RequireScope(app.Configuration["AzureAdB2C:Scopes"]);
-
-        return app;
-    }
-
+    [Authorize]
     internal static async Task<IResult> GetPwnedPasswordAsync(
         [FromRoute] string password,
         IPwnedPasswordsClient pwnedPasswordsClient)

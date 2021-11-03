@@ -22,6 +22,7 @@ public class ApiAccessAuthorizationMessageHandler : AuthorizationMessageHandler
                 // Methods annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
                 // This is a valid use case as it's a primitive type.
                 configuration.GetValue<string>("WebApiServerUrl"),
+                configuration.GetValue<string>("PwnedWebApiServerUrl"),
 #pragma warning restore IL2026
                 "https://learningblazor.b2clogin.com"
             },
