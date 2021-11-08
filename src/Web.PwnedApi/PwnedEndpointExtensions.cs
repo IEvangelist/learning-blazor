@@ -1,8 +1,6 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
-using Microsoft.AspNetCore.Authorization;
-
 namespace Learning.Blazor.PwnedApi;
 
 static class PwnedEndpointExtensions
@@ -15,9 +13,6 @@ static class PwnedEndpointExtensions
             .AddMicrosoftIdentityWebApi(
                 builder.Configuration.GetSection("AzureAdB2C"));
 
-        //builder.Services.AddAuthorization();
-        //builder.Services.AddRequiredScopeAuthorization();
-
         builder.Services.Configure<JwtBearerOptions>(
             JwtBearerDefaults.AuthenticationScheme,
             options => options.TokenValidationParameters.NameClaimType = "name");
@@ -25,6 +20,8 @@ static class PwnedEndpointExtensions
         builder.Services.AddPwnedServices(
             builder.Configuration.GetSection(nameof(HibpOptions)),
             HttpClientBuilderRetryPolicyExtensions.GetDefaultRetryPolicy);
+
+        builder.Services.AddSingleton<PwnedServices>();
 
         builder.Services.AddStackExchangeRedisCache(
             options => options.Configuration =
@@ -82,10 +79,8 @@ static class PwnedEndpointExtensions
     internal static WebApplication MapBreachEndpoints(this WebApplication app)
     {
         // Map "have i been pwned" breaches.
-        app.MapGet("api/pwned/breaches/{email}", GetBreachHeadersForAccountAsync)
-            .RequireScope("User.ApiAccess");
-        app.MapGet("api/pwned/breach/{name}", GetBreachAsync)
-            .RequireScope("User.ApiAccess");
+        app.MapGet("api/pwned/breaches/{email}", GetBreachHeadersForAccountAsync);
+        app.MapGet("api/pwned/breach/{name}", GetBreachAsync);
 
         return app;
     }
@@ -93,50 +88,30 @@ static class PwnedEndpointExtensions
     internal static WebApplication MapPwnedPasswordsEndpoints(this WebApplication app)
     {
         // Map "have i been pwned" passwords.
-        app.MapGet("api/pwned/passwords/{password}", GetPwnedPasswordAsync)
-            .RequireScope("User.ApiAccess");
+        app.MapGet("api/pwned/passwords/{password}", GetPwnedPasswordAsync);
 
         return app;
     }
 
-    [Authorize]
+    [Authorize, RequiredScope("User.ApiAccess")]
     internal static async Task<IResult> GetBreachHeadersForAccountAsync(
         [FromRoute] string email,
-        IDistributedCache cache,
-        IPwnedClient pwnedClient,
-        ILoggerFactory loggerFactory)
+        PwnedServices pwnedServices)
     {
-        var breaches = await cache.GetOrCreateAsync(
-            $"breach:{email}",
-            async options =>
-            {
-                options.AbsoluteExpirationRelativeToNow = TimeSpan.FromDays(1);
-                return await pwnedClient.GetBreachHeadersForAccountAsync(email);
-            },
-            loggerFactory.CreateLogger(nameof(PwnedEndpointExtensions)));
-
+        var breaches = await pwnedServices.GetBreachHeadersAsync(email);
         return Results.Json(breaches, DefaultJsonSerialization.Options);
     }
 
-    [Authorize]
+    [Authorize, RequiredScope("User.ApiAccess")]
     internal static async Task<IResult> GetBreachAsync(
         [FromRoute] string name,
-        IDistributedCache cache,
-        IPwnedBreachesClient pwnedBreachesClient,
-        ILoggerFactory loggerFactory)
+        PwnedServices pwnedServices)
     {
-        var breach = await cache.GetOrCreateAsync(name, async options =>
-        {
-            options.AbsoluteExpirationRelativeToNow = TimeSpan.FromDays(7);
-
-            var breach = await pwnedBreachesClient.GetBreachAsync(name);
-            return breach!;
-        }, loggerFactory.CreateLogger(nameof(PwnedEndpointExtensions)));
-
+        var breach = await pwnedServices.GetBreachDetailsAsync(name);
         return Results.Json(breach, DefaultJsonSerialization.Options);
     }
 
-    [Authorize]
+    [Authorize, RequiredScope("User.ApiAccess")]
     internal static async Task<IResult> GetPwnedPasswordAsync(
         [FromRoute] string password,
         IPwnedPasswordsClient pwnedPasswordsClient)

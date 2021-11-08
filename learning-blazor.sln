@@ -49,9 +49,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Http.Extensions", "src\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Extensions.Tests", "tests\Web.Extensions.Tests\Web.Extensions.Tests.csproj", "{D2AA585E-7EC6-484B-ACA0-48896857236F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.PwnedApi", "src\Web.PwnedApi\Web.PwnedApi.csproj", "{FBD0E03A-E975-4801-8975-4E2BD6EFC655}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.PwnedApi", "src\Web.PwnedApi\Web.PwnedApi.csproj", "{FBD0E03A-E975-4801-8975-4E2BD6EFC655}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.DistributedCache.Extensions", "src\Web.DistributedCache.Extensions\Web.DistributedCache.Extensions.csproj", "{9B5A2A2F-6F84-4ECF-BE45-B19CDA31CB91}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.DistributedCache.Extensions", "src\Web.DistributedCache.Extensions\Web.DistributedCache.Extensions.csproj", "{9B5A2A2F-6F84-4ECF-BE45-B19CDA31CB91}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
