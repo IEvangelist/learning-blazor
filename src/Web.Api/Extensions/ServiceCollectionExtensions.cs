@@ -3,9 +3,7 @@
 
 using Learning.Blazor.Api.Http;
 using Learning.Blazor.Api.Options;
-using Learning.Blazor.Api.Services;
-using Learning.Blazor.Extensions;
-using Learning.Blazor.Http.Extensions;
+
 
 namespace Learning.Blazor.Api.Extensions;
 
@@ -16,10 +14,6 @@ internal static class ServiceCollectionExtensions
     {
         services.AddResponseCaching();
         services.AddHttpClient(); // Adds IHttpClientFactory, untyped and unnamed.
-
-        services.AddPwnedServices(
-            configuration.GetSection("PwnedOptions"),
-            HttpClientBuilderRetryPolicyExtensions.GetDefaultRetryPolicy);
 
         services.AddStackExchangeRedisCache(
             options => options.Configuration =

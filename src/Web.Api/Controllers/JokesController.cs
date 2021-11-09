@@ -1,13 +1,6 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
-using System.Globalization;
-using System.Net.Mime;
-using Learning.Blazor.Extensions;
-using Learning.Blazor.JokeServices;
-using Learning.Blazor.Models;
-using Microsoft.AspNetCore.Mvc;
-
 namespace Learning.Blazor.Api.Controllers;
 
 [

@@ -1,16 +1,6 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
-using Microsoft.Extensions.Options;
-using Microsoft.Extensions.Caching.Memory;
-using Learning.Blazor.Extensions;
-using Learning.Blazor.Models;
-using Learning.Blazor.Api.Extensions;
-using Learning.Blazor.Api.Options;
-using Microsoft.Extensions.Caching.Distributed;
-using Learning.Blazor.Api.Http;
-using Learning.Blazor.DistributedCache.Extensions;
-
 namespace Learning.Blazor.Api.Services;
 
 public sealed class WeatherFunctionClientService : IDisposable
