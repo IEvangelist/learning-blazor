@@ -3,8 +3,8 @@
   <PropertyGroup>
     <RootNamespace>Learning.Blazor.DistributedCache.Extensions</RootNamespace>
     <TargetFramework>net6.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
   <ItemGroup>

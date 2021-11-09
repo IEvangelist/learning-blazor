@@ -3,8 +3,10 @@
 
 using Learning.Blazor.Handlers;
 using Learning.Blazor.Localization;
+using Learning.Blazor.Options;
 using Learning.Blazor.Services;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using Microsoft.Extensions.Options;
 
 namespace Learning.Blazor.Extensions;
 
@@ -14,20 +16,25 @@ internal static class WebAssemblyHostBuilderExtensions
     {
         var services = builder.Services;
         var configuration = builder.Configuration;
-
-#pragma warning disable IL2026
-        // Methods annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
-        // This is a valid use case as it's a primitive type
-        var serverUrl = configuration.GetValue<string>("WebApiServerUrl");
-        var pwnedServerUrl = configuration.GetValue<string>("PwnedWebApiServerUrl");
-#pragma warning restore IL2026
+        
+        //var serverUrl = configuration.GetValue<string>("WebApiServerUrl");
+        //var pwnedServerUrl = configuration.GetValue<string>("PwnedWebApiServerUrl");
 
         services.AddScoped<ApiAccessAuthorizationMessageHandler>();
+
+        services.Configure<WebApiOptions>(
+            configuration.GetSection(nameof(WebApiOptions)));
+
+        static WebApiOptions? GetWebApiOptions(IServiceProvider serviceProvider) =>
+            serviceProvider.GetService<IOptions<WebApiOptions>>()
+                ?.Value;
 
         services.AddHttpClient(
             HttpClientNames.ServerApi, (serviceProvider, client) =>
             {
-                client.BaseAddress = new Uri(serverUrl);
+                var options = GetWebApiOptions(serviceProvider);
+                if (options is { WebApiServerUrl: { Length: > 0 } })
+                    client.BaseAddress = new Uri(options.WebApiServerUrl);
 
                 var cultureService = serviceProvider.GetRequiredService<CultureService>();
 
@@ -39,7 +46,9 @@ internal static class WebAssemblyHostBuilderExtensions
         services.AddHttpClient(
             HttpClientNames.PwnedServerApi, (serviceProvider, client) =>
             {
-                client.BaseAddress = new Uri(pwnedServerUrl);
+                var options = GetWebApiOptions(serviceProvider);
+                if (options is { PwnedWebApiServerUrl: { Length: > 0 } })
+                    client.BaseAddress = new Uri(options.PwnedWebApiServerUrl);
 
                 var cultureService = serviceProvider.GetRequiredService<CultureService>();
 
@@ -68,7 +77,7 @@ internal static class WebAssemblyHostBuilderExtensions
                 options.ProviderOptions.DefaultAccessTokenScopes.Add("openid");
                 options.ProviderOptions.DefaultAccessTokenScopes.Add("offline_access");
                 options.ProviderOptions.DefaultAccessTokenScopes.Add(
-                    "https://learningblazor.onmicrosoft.com/ee8868e7-73ad-41f1-88b4-dc698429c8d4/User.ApiAccess");
+                    AzureAuthenticationTenant.ScopeUrl);
             });
 
         services.AddOptions();
