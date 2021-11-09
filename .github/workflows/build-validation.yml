@@ -14,7 +14,7 @@ on:
       reason:
         description: 'The reason for running the workflow'
         required: true
-        default: 'Manual run'
+        default: 'Manual "Build" run'
 
 jobs:
   build:
