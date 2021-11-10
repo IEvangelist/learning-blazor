@@ -31,6 +31,10 @@ public class WeatherComponentModel<T>
     public string? State => _geoCode?.PrincipalSubdivision;
     public string? Country => _geoCode?.CountryCode;
 
+    public string Message =>
+        $"The current weather for {City} is {Temperature}. " +
+        $"You can expect {Description}, with a high of {HighTemp} and a low of {LowTemp}";
+
     public WeatherComponentModel(
         WeatherDetails weatherDetails,
         GeoCode geoCode,

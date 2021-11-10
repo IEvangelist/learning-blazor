@@ -4,6 +4,7 @@
 using Learning.Blazor.BrowserModels;
 using Learning.Blazor.Extensions;
 using Learning.Blazor.Models;
+using Learning.Blazor.Services;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 
@@ -20,17 +21,21 @@ namespace Learning.Blazor.Components
 
         private ModalComponent _modal = null!;
 
+        [Inject]
+        public AppInMemoryState AppState { get; set; } = null!;
+
         protected override async Task OnInitializedAsync()
         {
-            var preferences =
+            AppState.ClientVoicePreference =
                 await LocalStorage.GetAsync<ClientVoicePreference>(StorageKeys.ClientVoice);
-            if (preferences is not null)
+            if (AppState.ClientVoicePreference is not null)
             {
-                (_voice, _voiceSpeed) = preferences;
+                (_voice, _voiceSpeed) = AppState.ClientVoicePreference;
             }
 
             await UpdateClientVoices(
-                await JavaScript.GetClientVoices(this, nameof(UpdateClientVoices)));
+                await JavaScript.GetClientVoices(
+                    this, nameof(UpdateClientVoices)));
         }
 
         [JSInvokable]
@@ -54,9 +59,11 @@ namespace Learning.Blazor.Components
 
         private async Task Confirm()
         {
+            AppState.ClientVoicePreference =
+                new ClientVoicePreference(_voice, _voiceSpeed);
+
             await LocalStorage.SetAsync(
-                StorageKeys.ClientVoice,
-                new ClientVoicePreference(_voice, _voiceSpeed));
+                StorageKeys.ClientVoice, AppState.ClientVoicePreference);
 
             await _modal.Confirm();
         }
