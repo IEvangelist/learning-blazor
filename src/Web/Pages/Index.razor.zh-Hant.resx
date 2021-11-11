@@ -67,9 +67,6 @@
   <data name="Jokes" xml:space="preserve">
     <value>笑話</value>
   </data>
-  <data name="ThankYou" xml:space="preserve">
-    <value>我很榮幸，謙卑，並很高興邀請你參觀我的"學習Blazor：建立單頁應用程式與網络組裝和C#"的書。</value>
-  </data>
   <data name="Weather" xml:space="preserve">
     <value>天氣</value>
   </data>

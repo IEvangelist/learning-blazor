@@ -67,10 +67,7 @@
   <data name="Jokes" xml:space="preserve">
     <value>Anekdotai</value>
   </data>
-  <data name="ThankYou" xml:space="preserve">
-    <value>Man didelė garbė, nuolankus ir malonu pakviesti jus į mano "Learning Blazor: Build Singe-Page Apps su WebAssembly ir C #" knygos turą.</value>
-  </data>
   <data name="Weather" xml:space="preserve">
-    <value>oras</value>
+    <value>Oras</value>
   </data>
 </root>

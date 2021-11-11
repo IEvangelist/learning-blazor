@@ -67,9 +67,6 @@
   <data name="Jokes" xml:space="preserve">
     <value>בדיחות</value>
   </data>
-  <data name="ThankYou" xml:space="preserve">
-    <value>לכבוד הוא לי, ענווה ונרגש להזמין אתכם לסיור בספר "ללמוד בלזור: בנה אפליקציות של דפי סינג עם WebAssembly ו- C#".</value>
-  </data>
   <data name="Weather" xml:space="preserve">
     <value>מזג אוויר</value>
   </data>

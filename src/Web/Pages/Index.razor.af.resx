@@ -62,13 +62,10 @@
     <value>Chat</value>
   </data>
   <data name="Hi" xml:space="preserve">
-    <value>Hi, ek is Dawid.</value>
+    <value>Hallo, ek is David.</value>
   </data>
   <data name="Jokes" xml:space="preserve">
     <value>Grappies</value>
-  </data>
-  <data name="ThankYou" xml:space="preserve">
-    <value>Ek is geëerd, nederig en opgewonde om jou te nooi op 'n toer van my "Leer Blazor: Bou Singe-Page Programme met WebAssembly en C #" boek.</value>
   </data>
   <data name="Weather" xml:space="preserve">
     <value>Weer</value>
