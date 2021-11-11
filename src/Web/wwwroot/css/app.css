@@ -34,19 +34,57 @@ html {
     overflow: auto;
 }
 
-.is-blazor-bg {
+.blazor-tile-container {
+    position:relative;
+    width: 100%;
+}
+
+.blaze-content {
+    padding: 1.25rem 2.5rem 1.25rem 1.5rem;
+}
+
+.gradient-bg {
+    height: 100%;
+    width: 100%;
+    position:absolute;
+    z-index:-2;
+    border-radius: 4px;
+}
+
+.weather-gradient {
     background-image: linear-gradient(to bottom, var(--dotnet-purple-primary), var(--dotnet-purple-dark));
-    color: #fff;
 }
 
-.is-jokes-bg {
+
+.jokes-gradient {
     background-image: linear-gradient(to bottom, hsl(204, 86%, 53%), hsl(220, 96%, 45%));
-    color: #fff;
 }
 
-.is-welcome-bg {
+.welcome-gradient {
     background-image: linear-gradient(to bottom, hsl(348, 100%, 61%), hsl(360, 100%, 45%));
-    color: #fff;
+}
+
+.icon-overlay {
+    mix-blend-mode: soft-light;
+    background-position: 20px 20px;
+    background-size: 35px;
+    opacity: .5;
+    height: 100%;
+    width: 100%;
+    z-index:-1;
+    position: absolute;
+}
+
+.circle-svg {
+    background-image: url(../media/circle.svg);
+}
+
+.zap-svg {
+    background-image: url(../media/zap.svg);
+}
+
+.plus-svg {
+    background-image: url(../media/plus.svg);
 }
 
 .control.is-fullwidth {
