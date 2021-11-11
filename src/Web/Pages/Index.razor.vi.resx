@@ -59,18 +59,15 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Chat" xml:space="preserve">
-    <value>tán gẫu</value>
+    <value>Tán gẫu</value>
   </data>
   <data name="Hi" xml:space="preserve">
-    <value>Chào, tôi là David.</value>
+    <value>Xin chào, tôi là David.</value>
   </data>
   <data name="Jokes" xml:space="preserve">
     <value>Cười</value>
   </data>
-  <data name="ThankYou" xml:space="preserve">
-    <value>Tôi rất vinh dự, khiêm tốn và vui mừng khi mời bạn tham quan cuốn sách "Learning Blazor: Build Singe-Page Apps with WebAssembly and C#" của tôi.</value>
-  </data>
   <data name="Weather" xml:space="preserve">
-    <value>thời tiết</value>
+    <value>Thời tiết</value>
   </data>
 </root>

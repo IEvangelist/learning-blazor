@@ -59,7 +59,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Chat" xml:space="preserve">
-    <value>bavarder</value>
+    <value>Bavarder</value>
   </data>
   <data name="Hi" xml:space="preserve">
     <value>Bonjour, je m’appelle David.</value>
@@ -67,10 +67,7 @@
   <data name="Jokes" xml:space="preserve">
     <value>Blagues</value>
   </data>
-  <data name="ThankYou" xml:space="preserve">
-    <value>Je suis honoré, humble et ravi de vous inviter à une visite guidée de mon livre « Learning Blazor: Build Singe-Page Apps with WebAssembly and C# ».</value>
-  </data>
   <data name="Weather" xml:space="preserve">
-    <value>temps</value>
+    <value>Temps</value>
   </data>
 </root>

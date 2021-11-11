@@ -67,9 +67,6 @@
   <data name="Jokes" xml:space="preserve">
     <value>농담</value>
   </data>
-  <data name="ThankYou" xml:space="preserve">
-    <value>저는 "블라저 배우기: 웹조립 및 C#"책을 사용하여 싱페이지 앱을 빌드하는 투어에 여러분을 초대할 수 있어서 영광스럽고 겸손하며 기쁩니다.</value>
-  </data>
   <data name="Weather" xml:space="preserve">
     <value>날씨</value>
   </data>

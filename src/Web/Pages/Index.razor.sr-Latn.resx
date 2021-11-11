@@ -67,9 +67,6 @@
   <data name="Jokes" xml:space="preserve">
     <value>Љale</value>
   </data>
-  <data name="ThankYou" xml:space="preserve">
-    <value>Počastvovana sam, ponizna i oduševljena što ću vas pozvati na turneju po mojoj knjizi "Learning Blazor: Build Singe-Page Apps with WebAssembly and C#".</value>
-  </data>
   <data name="Weather" xml:space="preserve">
     <value>Vreme</value>
   </data>

@@ -67,9 +67,6 @@
   <data name="Jokes" xml:space="preserve">
     <value>النكات</value>
   </data>
-  <data name="ThankYou" xml:space="preserve">
-    <value>يشرفني ، بالتواضع ، وسعيد لدعوتك في جولة في بلدي "التعلم Blazor : بناء تطبيقات صفحة Singe مع WebAssembly وجيم # " الكتاب.</value>
-  </data>
   <data name="Weather" xml:space="preserve">
     <value>طقس</value>
   </data>
