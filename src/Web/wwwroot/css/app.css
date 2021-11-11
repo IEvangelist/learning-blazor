@@ -47,7 +47,7 @@ html {
     height: 100%;
     width: 100%;
     position:absolute;
-    z-index:-1;
+    z-index:-2;
     border-radius: 4px;
 }
 
@@ -71,6 +71,7 @@ html {
     opacity: .5;
     height: 100%;
     width: 100%;
+    z-index:-1;
     position: absolute;
 }
 
