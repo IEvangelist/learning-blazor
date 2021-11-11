@@ -42,8 +42,20 @@ const getClientPrefersColorScheme = (color, dotnetObj, callbackMethodName) => {
     return media.matches;
 }
 
-const speak = (message, defaultVoice, voiceSpeed, lang) => {
+const cancelPendingSpeech = () => {
+    if (window.speechSynthesis && window.speechSynthesis.pending === true) {
+        window.speechSynthesis.cancel();
+    }
+};
+
+const speak = (dotnetObj, callbackMethodName, message, defaultVoice, voiceSpeed, lang) => {
     const utterance = new SpeechSynthesisUtterance(message);
+    utterance.onend = e => {
+        if (dotnetObj) {
+            dotnetObj.invokeMethodAsync(callbackMethodName, e.elapsedTime)
+        }
+    };
+
     const voices = window.speechSynthesis.getVoices();
     try {
         utterance.voice =
@@ -55,6 +67,8 @@ const speak = (message, defaultVoice, voiceSpeed, lang) => {
     } catch { }
     utterance.volume = 1;
     utterance.rate = voiceSpeed || 1;
+
+    cancelPendingSpeech();
 
     window.speechSynthesis.speak(utterance);
 };
@@ -81,7 +95,5 @@ window.app = {
 
 // Prevent client from speaking when user closes tab or window.
 window.addEventListener('beforeunload', _ => {
-    if (window.speechSynthesis && window.speechSynthesis.pending === true) {
-        window.speechSynthesis.cancel();
-    }
+    cancelPendingSpeech();
 });

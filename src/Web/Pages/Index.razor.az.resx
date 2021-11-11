@@ -67,9 +67,6 @@
   <data name="Jokes" xml:space="preserve">
     <value>Zarafatlar</value>
   </data>
-  <data name="ThankYou" xml:space="preserve">
-    <value>Sizi "Öyrənmə Blazor: WebAssembly və C#" kitabımla Singe-Page Apps-i qurmaq üçün turneyə dəvət etmək mənim üçün şərəfdir, təvazökar və çox sevindiricidir.</value>
-  </data>
   <data name="Weather" xml:space="preserve">
     <value>Hava</value>
   </data>

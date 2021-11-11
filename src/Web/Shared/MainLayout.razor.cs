@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Components;
 
 namespace Learning.Blazor.Shared
 {
-    public partial class MainLayout : IDisposable
+    public sealed partial class MainLayout : IDisposable
     {
         [Inject]
         public AppInMemoryState? AppState { get; set; }
@@ -26,10 +26,7 @@ namespace Learning.Blazor.Shared
             base.OnInitialized();
         }
 
-#pragma warning disable CA1816 // Dispose methods should call SuppressFinalize
-        // Justification: Derived types will be sealed.
         void IDisposable.Dispose() =>
-#pragma warning restore CA1816 // Dispose methods should call SuppressFinalize
-        AppState!.StateChanged -= StateHasChanged;
+            AppState!.StateChanged -= StateHasChanged;
     }
 }

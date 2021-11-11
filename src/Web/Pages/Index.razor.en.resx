@@ -126,9 +126,6 @@
   <data name="Jokes" xml:space="preserve">
     <value>Jokes</value>
   </data>
-  <data name="ThankYou" xml:space="preserve">
-    <value>I'm honored, humbled, and thrilled to invite you on a tour of my "Learning Blazor: Build Singe-Page Apps with WebAssembly and C#" book.</value>
-  </data>
   <data name="Weather" xml:space="preserve">
     <value>Weather</value>
   </data>

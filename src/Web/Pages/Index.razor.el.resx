@@ -59,7 +59,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Chat" xml:space="preserve">
-    <value>κουβέντα</value>
+    <value>Κουβέντα</value>
   </data>
   <data name="Hi" xml:space="preserve">
     <value>Γεια, είμαι ο Ντέιβιντ.</value>
@@ -67,10 +67,7 @@
   <data name="Jokes" xml:space="preserve">
     <value>Αστεία</value>
   </data>
-  <data name="ThankYou" xml:space="preserve">
-    <value>Είναι τιμή μου, ταπεινός και ενθουσιασμένος που σας προσκαλώ σε μια περιήγηση στο βιβλίο μου "Μαθαίνοντας Blazor: Build Singe-Page Apps με WebAssembly και C#".</value>
-  </data>
   <data name="Weather" xml:space="preserve">
-    <value>καιρός</value>
+    <value>Καιρός</value>
   </data>
 </root>

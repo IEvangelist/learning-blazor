@@ -1,16 +1,6 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
-using Learning.Blazor.Abstractions.RealTime;
-using Learning.Blazor.Api.Resources;
-using Learning.Blazor.Extensions;
-using Learning.Blazor.Models;
-using Learning.Blazor.TwitterServices;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.SignalR;
-using Microsoft.Extensions.Localization;
-using Microsoft.Identity.Web.Resource;
-
 namespace Learning.Blazor.Api.Hubs;
 
 [Authorize, RequiredScope(new[] { "User.ApiAccess" })]

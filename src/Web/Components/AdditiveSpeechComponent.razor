@@ -1,0 +1,10 @@
+﻿<!--  Copyright (c) 2021 David Pine. All rights reserved.
+      Licensed under the MIT License.  -->
+@inherits LocalizableComponentBase<AdditiveSpeechComponent>
+
+<button class="button is-rounded is-light is-top-right-overlay p-4 @_hiddenCss"
+    disabled=@_isSpeaking @onclick="OnSpeakButtonClickAsync">
+    <span class="icon is-small">
+        <i class="fas fa-volume-up"></i>
+    </span>
+</button>

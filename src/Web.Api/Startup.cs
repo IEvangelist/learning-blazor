@@ -1,16 +1,6 @@
 // Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
-using System.Net.Mime;
-using Learning.Blazor.Api.Extensions;
-using Learning.Blazor.Api.Hubs;
-using Learning.Blazor.Api.Localization;
-using Learning.Blazor.Extensions;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.ResponseCompression;
-using Microsoft.Identity.Web;
-using Microsoft.OpenApi.Models;
-
 namespace Learning.Blazor.Api;
 
 public class Startup

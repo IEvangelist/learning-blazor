@@ -1,12 +1,6 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
-using Learning.Blazor.Abstractions.RealTime;
-using Learning.Blazor.Api.Hubs;
-using Learning.Blazor.Models;
-using Learning.Blazor.TwitterServices;
-using Microsoft.AspNetCore.SignalR;
-
 namespace Learning.Blazor.Api.Services;
 
 public sealed class TwitterWorkerService : BackgroundService

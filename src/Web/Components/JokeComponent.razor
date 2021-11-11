@@ -4,6 +4,8 @@
 @inject HttpClient Http
 @inject ILogger<JokeComponent> Logger
 
+<AdditiveSpeechComponent Message=@_jokeText />
+
 <div class="content">
     @if (_isLoadingJoke)
     {

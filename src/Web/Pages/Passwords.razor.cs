@@ -21,7 +21,7 @@ namespace Learning.Blazor.Pages
         private ComponentState _state = ComponentState.Unknown;
 
         [Inject]
-        public HttpClient Http { get; set; } = null!;
+        public IHttpClientFactory HttpFactory { get; set; } = null!;
 
         protected override async Task OnInitializedAsync()
         {
@@ -54,7 +54,8 @@ namespace Learning.Blazor.Pages
             try
             {
                 _state = ComponentState.Loading;
-                _pwnedPassword = await Http.GetFromJsonAsync<PwnedPassword>(
+                var httpClient = HttpFactory.CreateClient(HttpClientNames.PwnedServerApi);
+                _pwnedPassword = await httpClient.GetFromJsonAsync<PwnedPassword>(
                     $"api/pwned/passwords/{_model.PlainTextPassword}",
                     DefaultJsonSerialization.Options);
 

@@ -3,10 +3,14 @@
 
 using Learning.Blazor.Abstractions.RealTime;
 using Learning.Blazor.Models;
+using Learning.Blazor.Options;
 using Learning.Blazor.Services;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.AspNetCore.SignalR.Client;
+using Microsoft.Extensions.Options;
+using Polly;
+using Polly.Retry;
 
 namespace Learning.Blazor;
 
@@ -14,8 +18,8 @@ public sealed class SharedHubConnection : IAsyncDisposable
 {
     private readonly Guid _id = Guid.NewGuid();
     private readonly IAccessTokenProvider _tokenProvider = null!;
-    private readonly IConfiguration _configuration = null!;
     private readonly ILogger<SharedHubConnection> _logger = null!;
+    private readonly AsyncRetryPolicy _asyncRetryPolicy = null!;
     private readonly CultureService _cultureService = null!;
     private readonly HubConnection _hubConnection = null!;
     private readonly SemaphoreSlim _lock = new(1, 1);
@@ -28,15 +32,15 @@ public sealed class SharedHubConnection : IAsyncDisposable
 
     public SharedHubConnection(
         IAccessTokenProvider tokenProvider,
-        IConfiguration configuration,
+        IOptions<WebApiOptions> options,
         CultureService cultureService,
         ILogger<SharedHubConnection> logger)
     {
-        (_tokenProvider, _configuration, _cultureService, _logger) =
-            (tokenProvider, configuration, cultureService, logger);
+        (_tokenProvider, _cultureService, _logger) =
+            (tokenProvider, cultureService, logger);
 
         var notificationHub =
-            new Uri($"{_configuration["WebApiServerUrl"]}/notifications");
+            new Uri($"{options.Value.WebApiServerUrl}/notifications");
 
         _hubConnection = new HubConnectionBuilder()
             .WithUrl(notificationHub,
@@ -54,6 +58,11 @@ public sealed class SharedHubConnection : IAsyncDisposable
         _hubConnection.Closed += OnHubConnectionClosedAsync;
         _hubConnection.Reconnected += OnHubConnectionReconnectedAsync;
         _hubConnection.Reconnecting += OnHubConnectionReconnectingAsync;
+
+        _asyncRetryPolicy = Policy.Handle<Exception>()
+            .WaitAndRetryForeverAsync(
+                attempt => TimeSpan.FromMilliseconds(5_000),
+                (ex, calculatedDuration) => _logger.LogError(ex.Message, ex));
     }
 
     private Task OnHubConnectionClosedAsync(Exception? exception)
@@ -101,12 +110,15 @@ public sealed class SharedHubConnection : IAsyncDisposable
         await _lock.WaitAsync(token);
 
         try
-        {
+        {        
             _ = _activeComponents.Add(component);
             if (_activeComponents.Count > 0 && State == HubConnectionState.Disconnected)
             {
                 _logger.LogDebug("{Id}: {Type} is starting hub connection.", _id, component.GetType());
-                await _hubConnection.StartAsync(token);
+
+                await _asyncRetryPolicy.ExecuteAsync(
+                    async cancellationToken =>
+                        await _hubConnection.StartAsync(cancellationToken), token) ;
             }
             else
             {

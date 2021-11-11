@@ -1,14 +1,6 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
-using System.Net.Mime;
-using Learning.Blazor.Api.Services;
-using Learning.Blazor.Extensions;
-using Learning.Blazor.Models;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Identity.Web.Resource;
-
 namespace Learning.Blazor.Api.Controllers;
 
 [

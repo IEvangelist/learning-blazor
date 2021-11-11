@@ -4,6 +4,12 @@ on:
   push:
     branches:
     - v1.0
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: 'The reason for running the workflow'
+        required: true
+        default: 'Manual "Deploy Weather Function" run'
 
 env:
   AZURE_FUNCTIONAPP_NAME: learning-blazor-functions
@@ -19,10 +25,15 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Setup .NET 3.1
+    - name: 'Print manual run reason'
+      if: ${{ github.event_name == 'workflow_dispatch' }}
+      run: |
+        echo 'Reason: ${{ github.event.inputs.reason }}'
+
+    - name: Setup .NET 6.0
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 3.1.x
+        dotnet-version: 6.0.x
 
     - name: Restore
       run: dotnet restore "${{ env.WORKING_DIRECTORY }}"

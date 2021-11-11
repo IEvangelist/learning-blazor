@@ -28,7 +28,7 @@ namespace Learning.Blazor.Components
         public Task<AuthenticationState> AuthenticationStateTask { get; set; } = null!;
 
         [Inject]
-        public HttpClient Http { get; set; } = null!;
+        public IHttpClientFactory HttpFactory { get; set; } = null!;
 
         [Inject]
         public SharedHubConnection HubConnection { get; set; } = null!;
@@ -58,9 +58,10 @@ namespace Learning.Blazor.Components
                 var intersectingEmails = actor.Emails?.Intersect(emails ?? Array.Empty<string>())?.ToList();
                 if (intersectingEmails is { Count: > 0 })
                 {
+                    var httpClient = HttpFactory.CreateClient(HttpClientNames.PwnedServerApi);
                     foreach (var email in intersectingEmails)
                     {
-                        var breaches = (await Http.GetFromJsonAsync<BreachHeader[]>(
+                        var breaches = (await httpClient.GetFromJsonAsync<BreachHeader[]>(
                             $"api/pwned/breaches/{email}",
                             BreachHeadersJsonSerializerContext.DefaultTypeInfo))
                             ?? Array.Empty<BreachHeader>();

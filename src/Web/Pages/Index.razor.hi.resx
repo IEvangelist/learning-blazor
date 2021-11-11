@@ -67,9 +67,6 @@
   <data name="Jokes" xml:space="preserve">
     <value>मजाक</value>
   </data>
-  <data name="ThankYou" xml:space="preserve">
-    <value>मैं सम्मानित, दीन हूं, और आपको अपने "लर्निंग ब्लेज़र: बिल्ड सिंग-पेज ऐप्स के साथ वेबअम्बली और सी #" पुस्तक के दौरे पर आमंत्रित करने के लिए रोमांचित हूं।</value>
-  </data>
   <data name="Weather" xml:space="preserve">
     <value>मौसम</value>
   </data>

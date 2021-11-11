@@ -34,7 +34,7 @@ namespace Learning.Blazor.Pages
                         _filter, StringComparison.OrdinalIgnoreCase));
 
         [Inject]
-        public HttpClient Http { get; set; } = null!;
+        public IHttpClientFactory HttpFactory { get; set; } = null!;
 
         [Parameter]
         [SupplyParameterFromQuery]
@@ -94,7 +94,8 @@ namespace Learning.Blazor.Pages
             try
             {
                 _state = ComponentState.Loading;
-                _breaches = (await Http.GetFromJsonAsync<BreachHeader[]>(
+                var httpClient = HttpFactory.CreateClient(HttpClientNames.PwnedServerApi);
+                _breaches = (await httpClient.GetFromJsonAsync<BreachHeader[]>(
                     $"api/pwned/breaches/{_model.EmailAddress}",
                     BreachHeadersJsonSerializerContext.DefaultTypeInfo))
                     ?? Array.Empty<BreachHeader>();
@@ -116,7 +117,8 @@ namespace Learning.Blazor.Pages
         {
             await _modal.Show();
 
-            _breach = await Http.GetFromJsonAsync<BreachDetails>(
+            var httpClient = HttpFactory.CreateClient(HttpClientNames.PwnedServerApi);
+            _breach = await httpClient.GetFromJsonAsync<BreachDetails>(
                 $"api/pwned/breach/{breachName}", BreachDetailJsonSerializerContext.DefaultTypeInfo);
         }
 

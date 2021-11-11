@@ -67,9 +67,6 @@
   <data name="Jokes" xml:space="preserve">
     <value>ジョーク</value>
   </data>
-  <data name="ThankYou" xml:space="preserve">
-    <value>私は私の「学習ブレイザ:WebAssemblyとC#でシンジページアプリを構築する」のツアーにあなたを招待することを光栄に思い、謙虚に、そして興奮しています。</value>
-  </data>
   <data name="Weather" xml:space="preserve">
     <value>天気</value>
   </data>

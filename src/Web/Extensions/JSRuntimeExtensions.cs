@@ -1,6 +1,7 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
+using Microsoft.Extensions.Localization;
 using Microsoft.JSInterop;
 
 namespace Learning.Blazor.Extensions;
@@ -42,4 +43,17 @@ internal static class JSRuntimeExtensions
         string selector) =>
         await javaScript.InvokeVoidAsync(
             "app.scrollIntoView", selector);
+
+    internal static ValueTask SpeakMessageAsync<T>(
+        this IJSRuntime jsRuntime,
+        T dotnetObj,
+        string callbackMethodName,
+        string message,
+        string defaultVoice,
+        double voiceSpeed,
+        string lang) where T : class =>
+        jsRuntime!.InvokeVoidAsync(
+            "app.speak",
+            DotNetObjectReference.Create(dotnetObj),
+            callbackMethodName, message, defaultVoice, voiceSpeed, lang);
 }

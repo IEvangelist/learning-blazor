@@ -62,13 +62,10 @@
     <value>สนทนา</value>
   </data>
   <data name="Hi" xml:space="preserve">
-    <value>สวัสดี ฉันเดวิด</value>
+    <value>สวัสดีครับ ผมเดวิด</value>
   </data>
   <data name="Jokes" xml:space="preserve">
     <value>เรื่อง ตลก</value>
-  </data>
-  <data name="ThankYou" xml:space="preserve">
-    <value>ผมรู้สึกเป็นเกียรติ ถ่อมตน และตื่นเต้นที่จะเชิญคุณมาทัวร์ชมหนังสือ "Learning Blazor: Build Singe-Page Apps with WebAssembly และ C#" ของผม</value>
   </data>
   <data name="Weather" xml:space="preserve">
     <value>อากาศ</value>

@@ -3,6 +3,8 @@
 
 @inherits LocalizableComponentBase<WeatherComponent>
 
+<AdditiveSpeechComponent Message=@_model?.Message />
+
 <div class="columns has-text-centered">
     @if (_state is ComponentState.Loaded)
     {
