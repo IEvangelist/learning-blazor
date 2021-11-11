@@ -117,16 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Chat" xml:space="preserve">
-    <value>Chat</value>
-  </data>
-  <data name="Hi" xml:space="preserve">
-    <value>Hi, I'm David</value>
-  </data>
-  <data name="Jokes" xml:space="preserve">
-    <value>Jokes</value>
-  </data>
-  <data name="Weather" xml:space="preserve">
-    <value>Weather</value>
+  <data name="ThankYou" xml:space="preserve">
+    <value>I'm honored, humbled, and thrilled to invite you on a tour of my "Learning Blazor: Build Single-Page Apps with WebAssembly and C#" book.</value>
   </data>
 </root>
