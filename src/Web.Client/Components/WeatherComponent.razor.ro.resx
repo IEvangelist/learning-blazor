@@ -59,7 +59,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CurrentWeatherVisual" xml:space="preserve">
-    <value>Indicatorul vizual meteorologic actual, ar fi un nor, soare sau pictogramă ploaie.</value>
+    <value>Indicatorul vizual meteorologic actual, cum ar fi un nor, soare sau pictogramă ploaie.</value>
   </data>
   <data name="WeatherUnavailable" xml:space="preserve">
     <value>Serviciul meteo este în prezent indisponibil.</value>

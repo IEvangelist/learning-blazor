@@ -59,9 +59,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CurrentWeatherVisual" xml:space="preserve">
-    <value>Az aktuális időjárás-vizuális mutató, például felhő, nap vagy eső ikon.</value>
+    <value>Az aktuális időjárás-vizuális jelző, például felhő, nap vagy eső ikon.</value>
   </data>
   <data name="WeatherUnavailable" xml:space="preserve">
-    <value>A meteorológiai szolgálat jelenleg nem elérhető.</value>
+    <value>A meteorológiai szolgálat jelenleg nem érhető el.</value>
   </data>
 </root>

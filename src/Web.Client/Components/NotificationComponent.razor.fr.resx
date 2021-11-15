@@ -59,7 +59,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="EmailFoundInBreachFormat" xml:space="preserve">
-    <value>Désolé, mais il semble que votre adresse e-mail « {0} » a été trouvée dans {1} violations. Ces informations sont fournies par le service « Ai-je été pwned ». Pour plus d’informations, consultez {2}.</value>
+    <value>Désolé, mais il semble que votre adresse e-mail « {0} » ait été trouvée dans {1} violations. Ces informations sont fournies par le service " Have I Been Pwned ». Pour plus d’informations, voir {2}.</value>
   </data>
   <data name="Notifications" xml:space="preserve">
     <value>Notifications</value>
@@ -68,9 +68,9 @@
     <value>Mis à jour le {0} sur {1}</value>
   </data>
   <data name="UserLoggedInFormat" xml:space="preserve">
-    <value>{0} viens de me connecté.</value>
+    <value>{0} viens de vous y être connecté.</value>
   </data>
   <data name="UserLoggedOutFormat" xml:space="preserve">
-    <value>{0} viens de me déconnectér.</value>
+    <value>{0} viens de me dé déconnecté.</value>
   </data>
 </root>

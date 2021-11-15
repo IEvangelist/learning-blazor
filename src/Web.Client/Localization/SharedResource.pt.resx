@@ -62,10 +62,10 @@
     <value>Cancelar</value>
   </data>
   <data name="Confirm" xml:space="preserve">
-    <value>confirmar</value>
+    <value>Confirmar</value>
   </data>
   <data name="Dismiss" xml:space="preserve">
-    <value>demitir</value>
+    <value>Demitir</value>
   </data>
   <data name="East" xml:space="preserve">
     <value>Leste</value>
@@ -80,10 +80,10 @@
     <value>Norte</value>
   </data>
   <data name="Northeast" xml:space="preserve">
-    <value>nordeste</value>
+    <value>Nordeste</value>
   </data>
   <data name="Northwest" xml:space="preserve">
-    <value>noroeste</value>
+    <value>Noroeste</value>
   </data>
   <data name="Okay" xml:space="preserve">
     <value>Ok</value>
@@ -92,10 +92,10 @@
     <value>Sul</value>
   </data>
   <data name="Southeast" xml:space="preserve">
-    <value>sudeste</value>
+    <value>Sudeste</value>
   </data>
   <data name="Southwest" xml:space="preserve">
-    <value>sudoeste</value>
+    <value>Sudoeste</value>
   </data>
   <data name="West" xml:space="preserve">
     <value>Oeste</value>

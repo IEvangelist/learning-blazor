@@ -59,9 +59,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="DarkTheme" xml:space="preserve">
-    <value>ערכת הנושא הנוכחית שלך היא "כהה" ונשלטת על-ידי הגדרות מערכת או דפדפן.</value>
+    <value>ערכת הנושא הנוכחית שלך היא "כהה" ונשלטת על-ידי הגדרות המערכת או הדפדפן.</value>
   </data>
   <data name="LightTheme" xml:space="preserve">
-    <value>ערכת הנושא הנוכחית שלך היא "קלה" ונשלטת על-ידי הגדרות מערכת או דפדפן.</value>
+    <value>ערכת הנושא הנוכחית שלך היא "קלה" ונשלטת על-ידי הגדרות המערכת או הדפדפן.</value>
   </data>
 </root>

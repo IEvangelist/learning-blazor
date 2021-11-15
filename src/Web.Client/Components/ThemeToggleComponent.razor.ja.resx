@@ -62,6 +62,6 @@
     <value>現在のテーマは「暗い」で、システムまたはブラウザの設定によって制御されます。</value>
   </data>
   <data name="LightTheme" xml:space="preserve">
-    <value>現在のテーマは「明るい」で、システムまたはブラウザの設定によって制御されます。</value>
+    <value>現在のテーマは「明るい」ものであり、システムまたはブラウザの設定によって制御されます。</value>
   </data>
 </root>

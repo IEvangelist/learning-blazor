@@ -62,10 +62,10 @@
     <value>Abbrechen</value>
   </data>
   <data name="Confirm" xml:space="preserve">
-    <value>bestätigen</value>
+    <value>Bestätigen</value>
   </data>
   <data name="Dismiss" xml:space="preserve">
-    <value>entlassen</value>
+    <value>Entlassen</value>
   </data>
   <data name="East" xml:space="preserve">
     <value>Osten</value>

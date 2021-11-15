@@ -62,6 +62,6 @@
     <value>El tema actual és "fosc" i està controlat per la configuració del sistema o del navegador.</value>
   </data>
   <data name="LightTheme" xml:space="preserve">
-    <value>El tema actual és "lleuger" i està controlat per la configuració del sistema o del navegador.</value>
+    <value>El tema actual és "llum" i està controlat per la configuració del sistema o del navegador.</value>
   </data>
 </root>

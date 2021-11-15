@@ -58,13 +58,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Audio" xml:space="preserve">
-    <value>Ljud</value>
+  <data name="DarkTheme" xml:space="preserve">
+    <value>Твојата тековна тема е "темна" и се контролира со системски или прелистувачки подесувања.</value>
   </data>
-  <data name="Auto" xml:space="preserve">
-    <value>Bil</value>
-  </data>
-  <data name="Settings" xml:space="preserve">
-    <value>Inställningar</value>
+  <data name="LightTheme" xml:space="preserve">
+    <value>Твојата тековна тема е "светла" и се контролира со системски или прелистувачки подесувања.</value>
   </data>
 </root>

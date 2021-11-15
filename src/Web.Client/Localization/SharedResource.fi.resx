@@ -59,13 +59,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Cancel" xml:space="preserve">
-    <value>perua</value>
+    <value>Perua</value>
   </data>
   <data name="Confirm" xml:space="preserve">
-    <value>vahvistaa</value>
+    <value>Vahvistaa</value>
   </data>
   <data name="Dismiss" xml:space="preserve">
-    <value>erottaa</value>
+    <value>Erottaa</value>
   </data>
   <data name="East" xml:space="preserve">
     <value>Itä</value>
@@ -80,10 +80,10 @@
     <value>Pohjoinen</value>
   </data>
   <data name="Northeast" xml:space="preserve">
-    <value>koillinen</value>
+    <value>Koillinen</value>
   </data>
   <data name="Northwest" xml:space="preserve">
-    <value>luode</value>
+    <value>Luode</value>
   </data>
   <data name="Okay" xml:space="preserve">
     <value>Okei</value>
@@ -92,10 +92,10 @@
     <value>Etelä</value>
   </data>
   <data name="Southeast" xml:space="preserve">
-    <value>kaakko</value>
+    <value>Kaakko</value>
   </data>
   <data name="Southwest" xml:space="preserve">
-    <value>lounas</value>
+    <value>Lounas</value>
   </data>
   <data name="West" xml:space="preserve">
     <value>Länsi</value>

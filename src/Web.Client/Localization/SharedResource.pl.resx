@@ -62,16 +62,16 @@
     <value>Anuluj</value>
   </data>
   <data name="Confirm" xml:space="preserve">
-    <value>potwierdzić</value>
+    <value>Potwierdzić</value>
   </data>
   <data name="Dismiss" xml:space="preserve">
-    <value>zwolnić</value>
+    <value>Zwolnić</value>
   </data>
   <data name="East" xml:space="preserve">
     <value>Wschód</value>
   </data>
   <data name="FilterTweets" xml:space="preserve">
-    <value>Filtruj tweety</value>
+    <value>Filtrowanie tweetów</value>
   </data>
   <data name="Loading" xml:space="preserve">
     <value>Ładowanie, proszę czekać.</value>
@@ -80,10 +80,10 @@
     <value>Północ</value>
   </data>
   <data name="Northeast" xml:space="preserve">
-    <value>północny wschód</value>
+    <value>Północny wschód</value>
   </data>
   <data name="Northwest" xml:space="preserve">
-    <value>północno-zachodni</value>
+    <value>Północno-zachodni</value>
   </data>
   <data name="Okay" xml:space="preserve">
     <value>Porządku</value>
@@ -92,10 +92,10 @@
     <value>Południe</value>
   </data>
   <data name="Southeast" xml:space="preserve">
-    <value>południowy wschód</value>
+    <value>Południowy wschód</value>
   </data>
   <data name="Southwest" xml:space="preserve">
-    <value>południowo-zachodni</value>
+    <value>Południowo-zachodni</value>
   </data>
   <data name="West" xml:space="preserve">
     <value>Zachód</value>

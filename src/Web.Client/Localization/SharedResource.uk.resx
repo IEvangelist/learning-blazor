@@ -59,7 +59,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Cancel" xml:space="preserve">
-    <value>скасувати</value>
+    <value>Скасувати</value>
   </data>
   <data name="Confirm" xml:space="preserve">
     <value>Підтвердити</value>
@@ -71,10 +71,10 @@
     <value>Схід</value>
   </data>
   <data name="FilterTweets" xml:space="preserve">
-    <value>Фільтрування твітів</value>
+    <value>Фільтрувати твіти</value>
   </data>
   <data name="Loading" xml:space="preserve">
-    <value>Loading... Зачекайте.</value>
+    <value>Завантаження, будь ласка, зачекайте.</value>
   </data>
   <data name="North" xml:space="preserve">
     <value>Північ</value>
@@ -95,7 +95,7 @@
     <value>Південний схід</value>
   </data>
   <data name="Southwest" xml:space="preserve">
-    <value>Південний захід</value>
+    <value>Південно-західний</value>
   </data>
   <data name="West" xml:space="preserve">
     <value>Захід</value>

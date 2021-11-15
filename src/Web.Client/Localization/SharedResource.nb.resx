@@ -59,13 +59,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Cancel" xml:space="preserve">
-    <value>annullere</value>
+    <value>Annullere</value>
   </data>
   <data name="Confirm" xml:space="preserve">
-    <value>bekrefte</value>
+    <value>Bekrefte</value>
   </data>
   <data name="Dismiss" xml:space="preserve">
-    <value>avskjedige</value>
+    <value>Avskjedige</value>
   </data>
   <data name="East" xml:space="preserve">
     <value>Øst</value>
@@ -80,10 +80,10 @@
     <value>Nord</value>
   </data>
   <data name="Northeast" xml:space="preserve">
-    <value>nordøst</value>
+    <value>Nordøst</value>
   </data>
   <data name="Northwest" xml:space="preserve">
-    <value>nordvest</value>
+    <value>Nordvest</value>
   </data>
   <data name="Okay" xml:space="preserve">
     <value>OK</value>
@@ -92,10 +92,10 @@
     <value>Sør</value>
   </data>
   <data name="Southeast" xml:space="preserve">
-    <value>sørøst</value>
+    <value>Sørøst</value>
   </data>
   <data name="Southwest" xml:space="preserve">
-    <value>sørvest</value>
+    <value>Sørvest</value>
   </data>
   <data name="West" xml:space="preserve">
     <value>Vest</value>

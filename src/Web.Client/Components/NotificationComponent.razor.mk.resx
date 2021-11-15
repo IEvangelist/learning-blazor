@@ -58,13 +58,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Audio" xml:space="preserve">
-    <value>Ljud</value>
+  <data name="EmailFoundInBreachFormat" xml:space="preserve">
+    <value>Извини, но изгледа дека твојата имејл адреса "{0}" е пронајдена во {1} пробиви. Оваа информација е обезбедена од сервисот "Дали сум бил pwned". За повеќе информации, видете {2}.</value>
   </data>
-  <data name="Auto" xml:space="preserve">
-    <value>Bil</value>
+  <data name="Notifications" xml:space="preserve">
+    <value>Известувања</value>
   </data>
-  <data name="Settings" xml:space="preserve">
-    <value>Inställningar</value>
+  <data name="UpdatedOnFormat" xml:space="preserve">
+    <value>Обновено на {0} на {1}</value>
+  </data>
+  <data name="UserLoggedInFormat" xml:space="preserve">
+    <value>{0} логирав.</value>
+  </data>
+  <data name="UserLoggedOutFormat" xml:space="preserve">
+    <value>{0} штотуку се логирав.</value>
   </data>
 </root>

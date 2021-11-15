@@ -59,43 +59,43 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Cancel" xml:space="preserve">
-    <value>zrušiť</value>
+    <value>Zrušiť</value>
   </data>
   <data name="Confirm" xml:space="preserve">
-    <value>potvrdiť</value>
+    <value>Potvrdiť</value>
   </data>
   <data name="Dismiss" xml:space="preserve">
-    <value>prepustiť</value>
+    <value>Prepustiť</value>
   </data>
   <data name="East" xml:space="preserve">
     <value>Východne</value>
   </data>
   <data name="FilterTweets" xml:space="preserve">
-    <value>Filtrovať tweety</value>
+    <value>Filtrovanie tweetov</value>
   </data>
   <data name="Loading" xml:space="preserve">
-    <value>Načítanie, prosím počkajte.</value>
+    <value>Loading, prosím počkajte.</value>
   </data>
   <data name="North" xml:space="preserve">
     <value>Severne</value>
   </data>
   <data name="Northeast" xml:space="preserve">
-    <value>severovýchod</value>
+    <value>Severovýchod</value>
   </data>
   <data name="Northwest" xml:space="preserve">
-    <value>severozápad</value>
+    <value>Severozápad</value>
   </data>
   <data name="Okay" xml:space="preserve">
-    <value>v poriadku</value>
+    <value>V poriadku</value>
   </data>
   <data name="South" xml:space="preserve">
     <value>Južne</value>
   </data>
   <data name="Southeast" xml:space="preserve">
-    <value>juhovýchod</value>
+    <value>Juhovýchod</value>
   </data>
   <data name="Southwest" xml:space="preserve">
-    <value>juhozápad</value>
+    <value>Juhozápad</value>
   </data>
   <data name="West" xml:space="preserve">
     <value>Západne</value>

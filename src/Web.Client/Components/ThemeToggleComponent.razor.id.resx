@@ -59,9 +59,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="DarkTheme" xml:space="preserve">
-    <value>Tema Anda saat ini "gelap" dan dikendalikan oleh pengaturan sistem atau browser.</value>
+    <value>Tema Anda saat ini adalah "gelap" dan dikendalikan oleh pengaturan sistem atau browser.</value>
   </data>
   <data name="LightTheme" xml:space="preserve">
-    <value>Tema Anda saat ini adalah "cahaya" dan dikendalikan oleh pengaturan sistem atau browser.</value>
+    <value>Tema Anda saat ini adalah "ringan" dan dikendalikan oleh pengaturan sistem atau browser.</value>
   </data>
 </root>

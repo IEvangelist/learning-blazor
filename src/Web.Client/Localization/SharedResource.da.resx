@@ -59,13 +59,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Cancel" xml:space="preserve">
-    <value>aflyse</value>
+    <value>Aflyse</value>
   </data>
   <data name="Confirm" xml:space="preserve">
-    <value>bekræfte</value>
+    <value>Bekræfte</value>
   </data>
   <data name="Dismiss" xml:space="preserve">
-    <value>afskedige</value>
+    <value>Afskedige</value>
   </data>
   <data name="East" xml:space="preserve">
     <value>Øst</value>
@@ -74,16 +74,16 @@
     <value>Filtrer tweets</value>
   </data>
   <data name="Loading" xml:space="preserve">
-    <value>Indlæser, vent et øjeblik.</value>
+    <value>Ladning, vent venligst.</value>
   </data>
   <data name="North" xml:space="preserve">
     <value>Nord</value>
   </data>
   <data name="Northeast" xml:space="preserve">
-    <value>nordøst</value>
+    <value>Nordøst</value>
   </data>
   <data name="Northwest" xml:space="preserve">
-    <value>nordvest</value>
+    <value>Nordvest</value>
   </data>
   <data name="Okay" xml:space="preserve">
     <value>Okay</value>
@@ -92,10 +92,10 @@
     <value>Syd</value>
   </data>
   <data name="Southeast" xml:space="preserve">
-    <value>sydøst</value>
+    <value>Sydøst</value>
   </data>
   <data name="Southwest" xml:space="preserve">
-    <value>sydvest</value>
+    <value>Sydvest</value>
   </data>
   <data name="West" xml:space="preserve">
     <value>Vest</value>

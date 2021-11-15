@@ -59,7 +59,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="EmailFoundInBreachFormat" xml:space="preserve">
-    <value>Sorry, maar het lijkt erop dat uw e-mailadres "{0}" werd gevonden in {1} inbreuken. Deze informatie wordt verstrekt door de dienst "Have I Been Pwned". Zie {2} voor meer informatie.</value>
+    <value>Sorry, maar het lijkt erop dat uw e-mailadres "{0}" is gevonden in {1} inbreuken. Deze informatie wordt verstrekt vanuit de service "Have I Been Pwned". Zie {2} voor meer informatie.</value>
   </data>
   <data name="Notifications" xml:space="preserve">
     <value>Meldingen</value>
@@ -68,9 +68,9 @@
     <value>Bijgewerkt op {0} bij {1}</value>
   </data>
   <data name="UserLoggedInFormat" xml:space="preserve">
-    <value>{0} logde net in.</value>
+    <value>{0} net ingelogd.</value>
   </data>
   <data name="UserLoggedOutFormat" xml:space="preserve">
-    <value>{0} logde net uit.</value>
+    <value>{0} ben net uitgelogd.</value>
   </data>
 </root>

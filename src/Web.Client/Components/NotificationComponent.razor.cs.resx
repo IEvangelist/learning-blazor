@@ -59,18 +59,18 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="EmailFoundInBreachFormat" xml:space="preserve">
-    <value>Je mi líto, ale vypadá to, že vaše e-{0} adresa "{1}" byla nalezena v případě porušení. Tyto informace jsou poskytovány ze služby "Byl jsem pwned". Další informace naleznete v tématu {2}.</value>
+    <value>Je nám líto, ale vypadá to, že vaše e-mailová adresa "{0}" byla nalezena při porušení {1}. Tyto informace jsou poskytovány ze služby "Byl jsem pwned". Další informace naleznete v tématu {2}.</value>
   </data>
   <data name="Notifications" xml:space="preserve">
     <value>Upozornění</value>
   </data>
   <data name="UpdatedOnFormat" xml:space="preserve">
-    <value>Aktualizováno na {0} na {1}</value>
+    <value>Aktualizováno dne {0} na {1}</value>
   </data>
   <data name="UserLoggedInFormat" xml:space="preserve">
-    <value>{0} jsem přihlášený.</value>
+    <value>{0} právě přihlášeni.</value>
   </data>
   <data name="UserLoggedOutFormat" xml:space="preserve">
-    <value>{0} jsem se odhlásila.</value>
+    <value>{0} se právě odhlásil.</value>
   </data>
 </root>

@@ -62,10 +62,10 @@
     <value>Отмена</value>
   </data>
   <data name="Confirm" xml:space="preserve">
-    <value>подтверждать</value>
+    <value>Подтверждать</value>
   </data>
   <data name="Dismiss" xml:space="preserve">
-    <value>увольнять</value>
+    <value>Увольнять</value>
   </data>
   <data name="East" xml:space="preserve">
     <value>Восток</value>
@@ -80,10 +80,10 @@
     <value>Север</value>
   </data>
   <data name="Northeast" xml:space="preserve">
-    <value>северо-восток</value>
+    <value>Северо-восток</value>
   </data>
   <data name="Northwest" xml:space="preserve">
-    <value>северо-западный</value>
+    <value>Северо-западный</value>
   </data>
   <data name="Okay" xml:space="preserve">
     <value>Хорошо</value>
@@ -92,10 +92,10 @@
     <value>Юг</value>
   </data>
   <data name="Southeast" xml:space="preserve">
-    <value>юго-восточный</value>
+    <value>Юго-восточный</value>
   </data>
   <data name="Southwest" xml:space="preserve">
-    <value>юго-запад</value>
+    <value>Юго-запад</value>
   </data>
   <data name="West" xml:space="preserve">
     <value>Запад</value>

@@ -59,16 +59,16 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="EmailFoundInBreachFormat" xml:space="preserve">
-    <value>Вибачте, але схоже, що ваша адреса електронної пошти "{0}" була знайдена {1} порушеннях. Ця інформація надається з послуги «Чи був я pwned». Для отримання додаткових {2}.</value>
+    <value>Вибачте, але схоже, що ваша електронна адреса "{0}" була виявлена в {1} порушеннях. Ця інформація надана з сервісу "Чи був я pwned". Для отримання додаткових відомостей {2} див.</value>
   </data>
   <data name="Notifications" xml:space="preserve">
     <value>Сповіщення</value>
   </data>
   <data name="UpdatedOnFormat" xml:space="preserve">
-    <value>Оновлено на {0} о {1}</value>
+    <value>Оновлено про {0} на {1}</value>
   </data>
   <data name="UserLoggedInFormat" xml:space="preserve">
-    <value>{0} щойно увійшов до системи.</value>
+    <value>{0} щойно увійшли в систему.</value>
   </data>
   <data name="UserLoggedOutFormat" xml:space="preserve">
     <value>{0} щойно вийшов із системи.</value>

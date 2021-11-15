@@ -71,7 +71,7 @@
     <value>ตะวันออก</value>
   </data>
   <data name="FilterTweets" xml:space="preserve">
-    <value>กรองทวีต</value>
+    <value>ทวีตตัวกรอง</value>
   </data>
   <data name="Loading" xml:space="preserve">
     <value>กําลังโหลด โปรดรอสักครู่</value>
@@ -86,7 +86,7 @@
     <value>ทิศตะวันตกเฉียงเหนือ</value>
   </data>
   <data name="Okay" xml:space="preserve">
-    <value>โอเค งั้นมาเริ่มกันเลย</value>
+    <value>โอเค</value>
   </data>
   <data name="South" xml:space="preserve">
     <value>ใต้</value>

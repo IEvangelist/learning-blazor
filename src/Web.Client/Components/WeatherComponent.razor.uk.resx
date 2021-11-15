@@ -59,9 +59,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CurrentWeatherVisual" xml:space="preserve">
-    <value>Поточний візуальний індикатор погоди, наприклад піктограма хмари, сонця або дощу.</value>
+    <value>Поточний візуальний індикатор погоди, наприклад хмара, сонце або значок дощу.</value>
   </data>
   <data name="WeatherUnavailable" xml:space="preserve">
-    <value>Служба погоди наразі недоступна.</value>
+    <value>Наразі служба погоди недоступна.</value>
   </data>
 </root>

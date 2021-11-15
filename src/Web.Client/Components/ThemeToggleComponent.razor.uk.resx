@@ -59,9 +59,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="DarkTheme" xml:space="preserve">
-    <value>Ваша поточна тема "темна" і контролюється системними або браузерами.</value>
+    <value>Поточна тема є "темною" і контролюється налаштуваннями системи або браузера.</value>
   </data>
   <data name="LightTheme" xml:space="preserve">
-    <value>Ваша поточна тема "світла" і контролюється системними або браузер налаштуваннями.</value>
+    <value>Ваша поточна тема є "світло" і контролюється системними або браузерами.</value>
   </data>
 </root>

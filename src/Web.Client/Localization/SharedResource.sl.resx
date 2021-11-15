@@ -59,10 +59,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Cancel" xml:space="preserve">
-    <value>odpovedati</value>
+    <value>Odpovedati</value>
   </data>
   <data name="Confirm" xml:space="preserve">
-    <value>potrditi</value>
+    <value>Potrditi</value>
   </data>
   <data name="Dismiss" xml:space="preserve">
     <value>Zavrne</value>
@@ -80,22 +80,22 @@
     <value>Sever</value>
   </data>
   <data name="Northeast" xml:space="preserve">
-    <value>severovzhod</value>
+    <value>Severovzhod</value>
   </data>
   <data name="Northwest" xml:space="preserve">
     <value>Severozahodno</value>
   </data>
   <data name="Okay" xml:space="preserve">
-    <value>okej</value>
+    <value>Okej</value>
   </data>
   <data name="South" xml:space="preserve">
     <value>Jug</value>
   </data>
   <data name="Southeast" xml:space="preserve">
-    <value>jugovzhod</value>
+    <value>Jugovzhod</value>
   </data>
   <data name="Southwest" xml:space="preserve">
-    <value>jugozahod</value>
+    <value>Jugozahod</value>
   </data>
   <data name="West" xml:space="preserve">
     <value>Zahod</value>

@@ -59,9 +59,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CurrentWeatherVisual" xml:space="preserve">
-    <value>Indicatore visivo meteo corrente, ad esempio un'icona nuvolosa, solare o pioggia.</value>
+    <value>Indicatore visivo meteo corrente, ad esempio un'icona di nuvola, sole o pioggia.</value>
   </data>
   <data name="WeatherUnavailable" xml:space="preserve">
-    <value>Il servizio meteo al momento non è disponibile.</value>
+    <value>Il servizio meteo non è attualmente disponibile.</value>
   </data>
 </root>

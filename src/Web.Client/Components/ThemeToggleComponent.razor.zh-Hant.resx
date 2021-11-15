@@ -62,6 +62,6 @@
     <value>您當前的主題是「黑暗」，由系統或瀏覽器設置控制。</value>
   </data>
   <data name="LightTheme" xml:space="preserve">
-    <value>您當前的主題是「光」，由系統或瀏覽器設置控制。</value>
+    <value>您當前的主題是「光」，並由系統或瀏覽器設置控制。</value>
   </data>
 </root>

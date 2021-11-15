@@ -62,7 +62,7 @@
     <value>İptal</value>
   </data>
   <data name="Confirm" xml:space="preserve">
-    <value>onaylamak</value>
+    <value>Onaylamak</value>
   </data>
   <data name="Dismiss" xml:space="preserve">
     <value>Kapatmak</value>
@@ -80,10 +80,10 @@
     <value>Kuzey</value>
   </data>
   <data name="Northeast" xml:space="preserve">
-    <value>kuzeydoğu</value>
+    <value>Kuzeydoğu</value>
   </data>
   <data name="Northwest" xml:space="preserve">
-    <value>kuzeybatı</value>
+    <value>Kuzeybatı</value>
   </data>
   <data name="Okay" xml:space="preserve">
     <value>Tamam</value>
@@ -92,10 +92,10 @@
     <value>Güney</value>
   </data>
   <data name="Southeast" xml:space="preserve">
-    <value>güneydoğu</value>
+    <value>Güneydoğu</value>
   </data>
   <data name="Southwest" xml:space="preserve">
-    <value>güneybatı</value>
+    <value>Güneybatı</value>
   </data>
   <data name="West" xml:space="preserve">
     <value>Batı</value>
