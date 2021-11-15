@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -16,7 +16,6 @@
       <PackageConflictPreferredPackages>$([MSBuild]::Unescape($(PackageConflictPreferredPackages)))</PackageConflictPreferredPackages>
     </PropertyGroup>
   </Target>
-
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <NoWarn>1701;1702;IL2026;IL2046;NU1605</NoWarn>

@@ -10,17 +10,14 @@ public class WeatherFunctions
 
     public WeatherFunctions(
         IWeatherService weatherService,
-        ILogger<WeatherFunctions> logger)
-    {
-        _weatherService = weatherService;
-        _logger = logger;
-    }
+        ILogger<WeatherFunctions> logger) =>
+        (_weatherService, _logger) = (weatherService, logger);
 
     [FunctionName("currentweather")]
     public async Task<IActionResult> Current(
         [HttpTrigger(
-                AuthorizationLevel.Function, "get",
-                Route = "currentweather/{lang}/{latitude}/{longitude}/{units}")] HttpRequest req,
+            AuthorizationLevel.Function, "get",
+            Route = "currentweather/{lang}/{latitude}/{longitude}/{units}")] HttpRequest req,
         string lang,
         decimal latitude,
         decimal longitude,

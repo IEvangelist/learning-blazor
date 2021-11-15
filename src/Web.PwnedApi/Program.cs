@@ -2,5 +2,5 @@
 // Licensed under the MIT License.
 
 var builder = WebApplication.CreateBuilder(args).AddPwnedEndpoints();
-using var app = builder.Build().MapPwnedEndpoints();
+await using var app = builder.Build().MapPwnedEndpoints();
 await app.RunAsync();

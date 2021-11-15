@@ -7,5 +7,5 @@ public enum JokeSource
 {
     InternetChuckNorrisDatabase,
     ICanHazDadJoke,
-    OpenSourceJokeApi
+    RandomProgrammingJokeApi
 };
