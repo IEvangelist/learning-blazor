@@ -59,10 +59,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Audio" xml:space="preserve">
-    <value>audio</value>
+    <value>Audio</value>
   </data>
   <data name="Auto" xml:space="preserve">
-    <value>coche</value>
+    <value>Coche</value>
   </data>
   <data name="Settings" xml:space="preserve">
     <value>Configuración</value>

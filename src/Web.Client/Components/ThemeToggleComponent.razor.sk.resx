@@ -59,9 +59,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="DarkTheme" xml:space="preserve">
-    <value>Aktuálna téma je tmavá a je riadená systémom alebo nastavením prehliadača.</value>
+    <value>Vaša aktuálna téma je "tmavá" a je riadená systémom alebo nastaveniami prehliadača.</value>
   </data>
   <data name="LightTheme" xml:space="preserve">
-    <value>Vaša aktuálna téma je "ľahká" a je riadená systémom alebo nastavením prehliadača.</value>
+    <value>Vaša aktuálna téma je "ľahká" a je riadená systémom alebo nastaveniami prehliadača.</value>
   </data>
 </root>

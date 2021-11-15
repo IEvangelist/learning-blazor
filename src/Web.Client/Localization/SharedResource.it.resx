@@ -62,40 +62,40 @@
     <value>Annulla</value>
   </data>
   <data name="Confirm" xml:space="preserve">
-    <value>confermare</value>
+    <value>Confermare</value>
   </data>
   <data name="Dismiss" xml:space="preserve">
-    <value>licenziare</value>
+    <value>Licenziare</value>
   </data>
   <data name="East" xml:space="preserve">
     <value>A est</value>
   </data>
   <data name="FilterTweets" xml:space="preserve">
-    <value>Filtra tweet</value>
+    <value>Filtra i tweet</value>
   </data>
   <data name="Loading" xml:space="preserve">
-    <value>Caricamento, per favore aspetta.</value>
+    <value>Caricamento, si prega di attendere.</value>
   </data>
   <data name="North" xml:space="preserve">
     <value>A nord</value>
   </data>
   <data name="Northeast" xml:space="preserve">
-    <value>nordorientale</value>
+    <value>Nordorientale</value>
   </data>
   <data name="Northwest" xml:space="preserve">
-    <value>nordovest</value>
+    <value>Nordovest</value>
   </data>
   <data name="Okay" xml:space="preserve">
-    <value>ok</value>
+    <value>Ok</value>
   </data>
   <data name="South" xml:space="preserve">
     <value>A sud</value>
   </data>
   <data name="Southeast" xml:space="preserve">
-    <value>sudest</value>
+    <value>Sudest</value>
   </data>
   <data name="Southwest" xml:space="preserve">
-    <value>sudovest</value>
+    <value>Sudovest</value>
   </data>
   <data name="West" xml:space="preserve">
     <value>A ovest</value>

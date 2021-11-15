@@ -59,12 +59,12 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Audio" xml:space="preserve">
-    <value>Ljud</value>
+    <value>Аудио.</value>
   </data>
   <data name="Auto" xml:space="preserve">
-    <value>Bil</value>
+    <value>Кола.</value>
   </data>
   <data name="Settings" xml:space="preserve">
-    <value>Inställningar</value>
+    <value>Подесувања</value>
   </data>
 </root>

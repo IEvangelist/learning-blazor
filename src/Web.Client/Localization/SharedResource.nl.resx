@@ -62,10 +62,10 @@
     <value>Annuleren</value>
   </data>
   <data name="Confirm" xml:space="preserve">
-    <value>bevestigen</value>
+    <value>Bevestigen</value>
   </data>
   <data name="Dismiss" xml:space="preserve">
-    <value>ontslaan</value>
+    <value>Ontslaan</value>
   </data>
   <data name="East" xml:space="preserve">
     <value>Oosten</value>
@@ -74,28 +74,28 @@
     <value>Tweets filteren</value>
   </data>
   <data name="Loading" xml:space="preserve">
-    <value>Laden, wacht alsjeblieft.</value>
+    <value>Bezig met laden, even geduld aub.</value>
   </data>
   <data name="North" xml:space="preserve">
     <value>Noorden</value>
   </data>
   <data name="Northeast" xml:space="preserve">
-    <value>noordoosten</value>
+    <value>Noordoosten</value>
   </data>
   <data name="Northwest" xml:space="preserve">
-    <value>noordwesten</value>
+    <value>Noordwesten</value>
   </data>
   <data name="Okay" xml:space="preserve">
-    <value>oké</value>
+    <value>Oké</value>
   </data>
   <data name="South" xml:space="preserve">
     <value>Zuiden</value>
   </data>
   <data name="Southeast" xml:space="preserve">
-    <value>zuidoosten</value>
+    <value>Zuidoosten</value>
   </data>
   <data name="Southwest" xml:space="preserve">
-    <value>zuidwesten</value>
+    <value>Zuidwesten</value>
   </data>
   <data name="West" xml:space="preserve">
     <value>Westen</value>

@@ -59,18 +59,18 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="EmailFoundInBreachFormat" xml:space="preserve">
-    <value>Sajnálom, de úgy tűnik, hogy a "{0}" e-mail címét {1} jogsértésben találták. Ezt az információt a "Have I Been Pwned" szolgáltatás nyújtja. További információ: {2}.</value>
+    <value>Sajnáljuk, de úgy tűnik, hogy a "{0}" e-mail címét {1} megsértésében találták meg. Ezeket az információkat a "Have I Been Pwned" szolgáltatásból nyújtják. További információ: {2}.</value>
   </data>
   <data name="Notifications" xml:space="preserve">
     <value>Értesítések</value>
   </data>
   <data name="UpdatedOnFormat" xml:space="preserve">
-    <value>Frissítve {0}-án {1}</value>
+    <value>Frissítve {0}-én {1}</value>
   </data>
   <data name="UserLoggedInFormat" xml:space="preserve">
-    <value>{0} most jelentkeztek be.</value>
+    <value>{0} most jelentkeztem be.</value>
   </data>
   <data name="UserLoggedOutFormat" xml:space="preserve">
-    <value>{0} most jelentkeztek ki.</value>
+    <value>{0} most jelentkezett ki.</value>
   </data>
 </root>

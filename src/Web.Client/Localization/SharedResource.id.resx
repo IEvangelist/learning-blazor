@@ -59,7 +59,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Cancel" xml:space="preserve">
-    <value>membatalkan</value>
+    <value>Membatalkan</value>
   </data>
   <data name="Confirm" xml:space="preserve">
     <value>Mengkonfirmasi</value>
@@ -71,19 +71,19 @@
     <value>Timur</value>
   </data>
   <data name="FilterTweets" xml:space="preserve">
-    <value>Filter Tweet</value>
+    <value>Memfilter Tweet</value>
   </data>
   <data name="Loading" xml:space="preserve">
-    <value>Pemuatan, silakan tunggu.</value>
+    <value>Loading, silahkan tunggu.</value>
   </data>
   <data name="North" xml:space="preserve">
     <value>Utara</value>
   </data>
   <data name="Northeast" xml:space="preserve">
-    <value>timur laut</value>
+    <value>Timur laut</value>
   </data>
   <data name="Northwest" xml:space="preserve">
-    <value>barat laut</value>
+    <value>Barat laut</value>
   </data>
   <data name="Okay" xml:space="preserve">
     <value>Oke</value>
@@ -92,10 +92,10 @@
     <value>Selatan</value>
   </data>
   <data name="Southeast" xml:space="preserve">
-    <value>tenggara</value>
+    <value>Tenggara</value>
   </data>
   <data name="Southwest" xml:space="preserve">
-    <value>barat daya</value>
+    <value>Barat daya</value>
   </data>
   <data name="West" xml:space="preserve">
     <value>Barat</value>

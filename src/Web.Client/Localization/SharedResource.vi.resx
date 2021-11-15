@@ -59,13 +59,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Cancel" xml:space="preserve">
-    <value>hủy</value>
+    <value>Hủy</value>
   </data>
   <data name="Confirm" xml:space="preserve">
-    <value>xác nhận</value>
+    <value>Xác nhận</value>
   </data>
   <data name="Dismiss" xml:space="preserve">
-    <value>bỏ</value>
+    <value>Bỏ</value>
   </data>
   <data name="East" xml:space="preserve">
     <value>Hướng đông</value>
@@ -74,16 +74,16 @@
     <value>Lọc Tweets</value>
   </data>
   <data name="Loading" xml:space="preserve">
-    <value>Đang tải, vui lòng chờ.</value>
+    <value>Nạp, xin vui lòng chờ đợi.</value>
   </data>
   <data name="North" xml:space="preserve">
     <value>Hướng bắc</value>
   </data>
   <data name="Northeast" xml:space="preserve">
-    <value>phía đông bắc</value>
+    <value>Phía đông bắc</value>
   </data>
   <data name="Northwest" xml:space="preserve">
-    <value>tây bắc</value>
+    <value>Tây bắc</value>
   </data>
   <data name="Okay" xml:space="preserve">
     <value>Ok</value>
@@ -95,7 +95,7 @@
     <value>Southeast</value>
   </data>
   <data name="Southwest" xml:space="preserve">
-    <value>tây nam</value>
+    <value>Tây nam</value>
   </data>
   <data name="West" xml:space="preserve">
     <value>Hướng tây</value>

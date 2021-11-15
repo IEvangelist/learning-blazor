@@ -59,10 +59,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Audio" xml:space="preserve">
-    <value>âm thanh</value>
+    <value>Âm thanh</value>
   </data>
   <data name="Auto" xml:space="preserve">
-    <value>xe hơi</value>
+    <value>Xe hơi</value>
   </data>
   <data name="Settings" xml:space="preserve">
     <value>Cài đặt</value>

@@ -59,13 +59,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Cancel" xml:space="preserve">
-    <value>ακυρώνω</value>
+    <value>Ακυρώνω</value>
   </data>
   <data name="Confirm" xml:space="preserve">
-    <value>επιβεβαιώνω</value>
+    <value>Επιβεβαιώνω</value>
   </data>
   <data name="Dismiss" xml:space="preserve">
-    <value>απολύω</value>
+    <value>Απολύω</value>
   </data>
   <data name="East" xml:space="preserve">
     <value>Ανατολικά</value>
@@ -80,10 +80,10 @@
     <value>Βόρεια</value>
   </data>
   <data name="Northeast" xml:space="preserve">
-    <value>βορειοανατολικός</value>
+    <value>Βορειοανατολικός</value>
   </data>
   <data name="Northwest" xml:space="preserve">
-    <value>βορειοδυτικός</value>
+    <value>Βορειοδυτικός</value>
   </data>
   <data name="Okay" xml:space="preserve">
     <value>Εντάξει</value>
@@ -92,10 +92,10 @@
     <value>Νότια</value>
   </data>
   <data name="Southeast" xml:space="preserve">
-    <value>νοτιοανατολικά</value>
+    <value>Νοτιοανατολικά</value>
   </data>
   <data name="Southwest" xml:space="preserve">
-    <value>νοτιοδυτικός</value>
+    <value>Νοτιοδυτικός</value>
   </data>
   <data name="West" xml:space="preserve">
     <value>Δύση</value>

@@ -59,9 +59,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="DarkTheme" xml:space="preserve">
-    <value>ธีมปัจจุบันของคุณ "มืด" และควบคุมโดยการตั้งค่าระบบหรือเบราว์เซอร์</value>
+    <value>ชุดรูปแบบปัจจุบันของคุณ "มืด" และถูกควบคุมโดยการตั้งค่าระบบหรือเบราว์เซอร์</value>
   </data>
   <data name="LightTheme" xml:space="preserve">
-    <value>ธีมปัจจุบันของคุณคือ "แสง" และควบคุมโดยการตั้งค่าระบบหรือเบราว์เซอร์</value>
+    <value>ชุดรูปแบบปัจจุบันของคุณคือ "แสง" และถูกควบคุมโดยการตั้งค่าระบบหรือเบราว์เซอร์</value>
   </data>
 </root>

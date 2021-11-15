@@ -58,13 +58,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Audio" xml:space="preserve">
-    <value>Ljud</value>
+  <data name="CurrentWeatherVisual" xml:space="preserve">
+    <value>Моменталните временски визуелни индикатори, како што се облак, сонце или икона на дожд.</value>
   </data>
-  <data name="Auto" xml:space="preserve">
-    <value>Bil</value>
-  </data>
-  <data name="Settings" xml:space="preserve">
-    <value>Inställningar</value>
+  <data name="WeatherUnavailable" xml:space="preserve">
+    <value>Временската служба моментално е недостапна.</value>
   </data>
 </root>

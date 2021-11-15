@@ -62,16 +62,16 @@
     <value>Cancelar</value>
   </data>
   <data name="Confirm" xml:space="preserve">
-    <value>confirmar</value>
+    <value>Confirmar</value>
   </data>
   <data name="Dismiss" xml:space="preserve">
-    <value>despedir</value>
+    <value>Despedir</value>
   </data>
   <data name="East" xml:space="preserve">
     <value>Este</value>
   </data>
   <data name="FilterTweets" xml:space="preserve">
-    <value>Filtrar tweets</value>
+    <value>Filtrar Tweets</value>
   </data>
   <data name="Loading" xml:space="preserve">
     <value>Cargando, por favor espere.</value>
@@ -80,10 +80,10 @@
     <value>Norte</value>
   </data>
   <data name="Northeast" xml:space="preserve">
-    <value>nordeste</value>
+    <value>Nordeste</value>
   </data>
   <data name="Northwest" xml:space="preserve">
-    <value>noroeste</value>
+    <value>Noroeste</value>
   </data>
   <data name="Okay" xml:space="preserve">
     <value>Bien</value>
@@ -92,10 +92,10 @@
     <value>Sur</value>
   </data>
   <data name="Southeast" xml:space="preserve">
-    <value>sudeste</value>
+    <value>Sudeste</value>
   </data>
   <data name="Southwest" xml:space="preserve">
-    <value>suroeste</value>
+    <value>Suroeste</value>
   </data>
   <data name="West" xml:space="preserve">
     <value>Oeste</value>
