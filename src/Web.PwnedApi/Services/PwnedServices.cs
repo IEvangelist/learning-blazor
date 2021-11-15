@@ -5,42 +5,43 @@ namespace Learning.Blazor.PwnedApi.Services;
 
 public class PwnedServices
 {
-    private readonly IDistributedCache _cache;
     private readonly IPwnedBreachesClient _pwnedBreachesClient;
     private readonly ILogger<PwnedServices> _logger;
 
     public PwnedServices(
-        IDistributedCache cache,
         IPwnedBreachesClient pwnedBreachesClient,
         ILogger<PwnedServices> logger) =>
-        (_cache, _pwnedBreachesClient, _logger) = (cache, pwnedBreachesClient, logger);
+        (_pwnedBreachesClient, _logger) = (pwnedBreachesClient, logger);
 
     public async Task<BreachHeader[]?> GetBreachHeadersAsync(string email)
     {
-        var breaches = await _cache.GetOrCreateAsync(
-            $"breach:{email}",
-            async options =>
-            {
-                options.AbsoluteExpirationRelativeToNow = TimeSpan.FromDays(1);
-                return await _pwnedBreachesClient.GetBreachHeadersForAccountAsync(email);
-            },
-            _logger);
+        try
+        {
+            var breaches =
+                await _pwnedBreachesClient.GetBreachHeadersForAccountAsync(email);
 
-        return breaches;
+            return breaches;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex.Message);
+            return default;
+        }
     }
 
     public async Task<BreachDetails?> GetBreachDetailsAsync(string name)
     {
-        var breach = await _cache.GetOrCreateAsync(
-            name,
-            async options =>
-            {
-                options.AbsoluteExpirationRelativeToNow = TimeSpan.FromDays(7);
-                var breach = await _pwnedBreachesClient.GetBreachAsync(name);
-                return breach!;
-            },
-            _logger);
+        try
+        {
+            var breach =
+                await _pwnedBreachesClient.GetBreachAsync(name);
 
-        return breach;
+            return breach;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex.Message);
+            return default;
+        }
     }
 }

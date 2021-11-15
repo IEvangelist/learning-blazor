@@ -23,10 +23,6 @@ static class PwnedEndpointExtensions
 
         builder.Services.AddSingleton<PwnedServices>();
 
-        builder.Services.AddStackExchangeRedisCache(
-            options => options.Configuration =
-                builder.Configuration["RedisCacheOptions:ConnectionString"]);
-
         var webClientOrigin = builder.Configuration["WebClientOrigin"];
         builder.Services.AddCors(
             options => options.AddDefaultPolicy(

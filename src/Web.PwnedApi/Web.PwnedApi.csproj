@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <RootNamespace>Learning.Blazor.PwnedApi</RootNamespace>
@@ -11,15 +11,13 @@
     <PackageReference Include="HaveIBeenPwned.Client" Version="1.0.4" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="6.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="6.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Http.Polly" Version="6.0.0" />
+    <!--<PackageReference Include="Microsoft.Extensions.Http.Polly" Version="6.0.0" />-->
     <PackageReference Include="Microsoft.Identity.Web" Version="1.20.0" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.11.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Web.DistributedCache.Extensions\Web.DistributedCache.Extensions.csproj" />
     <ProjectReference Include="..\Web.Extensions\Web.Extensions.csproj" />
     <ProjectReference Include="..\Web.Http.Extensions\Web.Http.Extensions.csproj" />
   </ItemGroup>
