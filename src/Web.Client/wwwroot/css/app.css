@@ -55,7 +55,6 @@ html {
     background-image: linear-gradient(to bottom, var(--dotnet-purple-primary), var(--dotnet-purple-dark));
 }
 
-
 .jokes-gradient {
     background-image: linear-gradient(to bottom, hsl(204, 86%, 53%), hsl(220, 96%, 45%));
 }
@@ -89,6 +88,10 @@ html {
 
 .control.is-fullwidth {
     width: 100%;
+}
+
+.box.is-alpha-bg-50 {
+    background-color: rgba(0,0,0, 0.5);
 }
 
 .validation-message {

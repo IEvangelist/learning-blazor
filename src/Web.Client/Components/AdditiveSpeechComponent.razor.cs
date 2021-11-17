@@ -11,7 +11,16 @@ namespace Learning.Blazor.Components
     public partial class AdditiveSpeechComponent
     {
         private bool _isSpeaking = false;
-        private string _hiddenCss => Message is null or { Length: 0 } ? "is-hidden" : "";
+        private string _dynamicCSS
+        {
+            get
+            {
+                var isHidden = Message is null or { Length: 0 } ? "is-hidden" : "";
+                var isFlashing = _isSpeaking ? "is-flashing" : "";
+
+                return $"{isHidden} {isFlashing}";
+            }
+        }
 
         [Parameter]
         public string Message { get; set; } = null!;
