@@ -10,6 +10,7 @@ public class AppInMemoryState
     private string? _frameworkDescription;
     private ClientVoicePreference _clientVoicePreference =
         new("Auto", 1);
+    private bool _isDarkTheme;
 
     public string? FrameworkDescription
     {
@@ -27,6 +28,16 @@ public class AppInMemoryState
         set
         {
             _clientVoicePreference = value ?? new("Auto", 1);
+            AppStateChanged();
+        }
+    }
+
+    public bool IsDarkTheme
+    {
+        get => _isDarkTheme;
+        set
+        {
+            _isDarkTheme = value;
             AppStateChanged();
         }
     }

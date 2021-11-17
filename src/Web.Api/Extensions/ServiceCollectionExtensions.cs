@@ -1,10 +1,6 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
-using Learning.Blazor.Api.Http;
-using Learning.Blazor.Api.Options;
-
-
 namespace Learning.Blazor.Api.Extensions;
 
 internal static class ServiceCollectionExtensions

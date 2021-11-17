@@ -23,10 +23,7 @@ namespace Learning.Blazor.Components
         }
 
         [Parameter]
-        public string Message { get; set; } = null!;
-
-        [Inject]
-        public AppInMemoryState AppState { get; set; } = null!;
+        public string? Message { get; set; } = null!;
 
         async Task OnSpeakButtonClickAsync()
         {

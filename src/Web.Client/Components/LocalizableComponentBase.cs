@@ -31,6 +31,9 @@ namespace Learning.Blazor.Components
         [Inject]
         public IJSRuntime JavaScript { get; set; } = null!;
 
+        [Inject]
+        public AppInMemoryState AppState { get; set; } = null!;
+
         /// <summary>
         /// Gets the localized content for the current subcomponent,
         /// relying on the contextually appropriate <see cref="IStringLocalizer{T}"/> implementation.

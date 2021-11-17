@@ -10,7 +10,7 @@ namespace Learning.Blazor.Shared
     public sealed partial class MainLayout : IDisposable
     {
         [Inject]
-        public AppInMemoryState? AppState { get; set; }
+        public AppInMemoryState AppState { get; set; } = null!;
 
         /// <inheritdoc cref="RuntimeInformation.FrameworkDescription" />
         public string? FrameworkDescription => AppState?.FrameworkDescription;

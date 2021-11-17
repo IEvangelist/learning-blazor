@@ -21,16 +21,14 @@ namespace Learning.Blazor.Components
 
         private ModalComponent _modal = null!;
 
-        [Inject]
-        public AppInMemoryState AppState { get; set; } = null!;
-
         protected override async Task OnInitializedAsync()
         {
-            AppState.ClientVoicePreference =
+            var clientVoicePreference =
                 await LocalStorage.GetAsync<ClientVoicePreference>(StorageKeys.ClientVoice);
-            if (AppState.ClientVoicePreference is not null)
-            {
-                (_voice, _voiceSpeed) = AppState.ClientVoicePreference;
+            if (clientVoicePreference is not null)
+            {                
+                (_voice, _voiceSpeed) =
+                    AppState.ClientVoicePreference = clientVoicePreference;
             }
 
             await UpdateClientVoices(
