@@ -89,7 +89,7 @@ static class PwnedEndpointExtensions
         return app;
     }
 
-    [Authorize, RequiredScope("User.ApiAccess")]
+    [Authorize, RequiredScope("User.ApiAccess"), EnableCors]
     internal static async Task<IResult> GetBreachHeadersForAccountAsync(
         [FromRoute] string email,
         PwnedServices pwnedServices)
@@ -98,7 +98,7 @@ static class PwnedEndpointExtensions
         return Results.Json(breaches, DefaultJsonSerialization.Options);
     }
 
-    [Authorize, RequiredScope("User.ApiAccess")]
+    [Authorize, RequiredScope("User.ApiAccess"), EnableCors]
     internal static async Task<IResult> GetBreachAsync(
         [FromRoute] string name,
         PwnedServices pwnedServices)
@@ -107,7 +107,7 @@ static class PwnedEndpointExtensions
         return Results.Json(breach, DefaultJsonSerialization.Options);
     }
 
-    [Authorize, RequiredScope("User.ApiAccess")]
+    [Authorize, RequiredScope("User.ApiAccess"), EnableCors]
     internal static async Task<IResult> GetPwnedPasswordAsync(
         [FromRoute] string password,
         IPwnedPasswordsClient pwnedPasswordsClient)

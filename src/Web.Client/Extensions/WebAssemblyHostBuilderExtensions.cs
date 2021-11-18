@@ -16,9 +16,6 @@ internal static class WebAssemblyHostBuilderExtensions
     {
         var services = builder.Services;
         var configuration = builder.Configuration;
-        
-        //var serverUrl = configuration.GetValue<string>("WebApiServerUrl");
-        //var pwnedServerUrl = configuration.GetValue<string>("PwnedWebApiServerUrl");
 
         services.AddScoped<ApiAccessAuthorizationMessageHandler>();
 
@@ -90,7 +87,8 @@ internal static class WebAssemblyHostBuilderExtensions
         services.AddScoped<TemperatureUnitConversionService>();
         services.AddScoped<SpeedUnitConversionService>();
         services.AddScoped(
-            typeof(IWeatherStringFormatterService<>), typeof(WeatherStringFormatterService<>));
+            typeof(IWeatherStringFormatterService<>),
+            typeof(WeatherStringFormatterService<>));
 
         services.AddScoped<GeoLocationService>();
         services.AddHttpClient<GeoLocationService>(client =>

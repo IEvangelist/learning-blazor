@@ -23,6 +23,10 @@
     <link type="text/css" href="https://unpkg.com/bulma-prefers-dark"
           rel="preload" as="style" onload="this.rel='stylesheet'">
 
+    <!-- Cookie consent styles -->
+    <link href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css"
+          rel="preload" as="style" onload="this.rel='stylesheet'"/>
+
     <link href="/css/app.css" rel="stylesheet" />
     <link href="Web.styles.css" rel="stylesheet" />
     <link href="/_content/Web.TwitterComponents/twitter-component.css"
@@ -87,6 +91,9 @@
         </div>
     </div>-->
 
+    <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js"
+            data-cfasync="false"></script>
+    <script src="/js/cookieconsent.js"></script>
     <script src="/_content/Microsoft.Authentication.WebAssembly.Msal/AuthenticationService.js"></script>
     <script src="/_content/Web.TwitterComponents/twitter-component.js"></script>
     <script src="/_framework/blazor.webassembly.js"></script>
