@@ -1,6 +1,6 @@
 ﻿:root {
     --twitter-blue: #6cadde;
-    --pwned-blue: rgba(58,154,196,.5);
+    --pwned-blue: rgba(58,154,196,0.5);
     --signalr-blue: #59b4d9;
     --dotnet-purple-primary: #512bd4;
     --dotnet-purple-gradient-9: #7014e8;
@@ -10,6 +10,10 @@
     --dotnet-gray-light: #e5e5e1;
     --dotnet-gray: #969696;
     --dotnet-gray-dark: #505050;
+}
+
+.has-dotnet-shadow {
+    box-shadow: 0px 1.2rem 2.5rem 2rem rgb(81 43 212 / 30%)
 }
 
 .is-top-right-overlay {
