@@ -9,6 +9,11 @@ namespace Learning.Blazor.Shared
 {
     public sealed partial class MainLayout : IDisposable
     {
+        string _bgColorCss =>
+            AppState.IsDarkTheme
+                ? "has-background-light"
+                : "has-background-dark";
+
         [Inject]
         public AppInMemoryState AppState { get; set; } = null!;
 
