@@ -61,7 +61,7 @@ html {
 }
 
 .welcome-gradient {
-    background-image: linear-gradient(to bottom, hsl(348, 100%, 61%), hsl(360, 100%, 45%));
+    background-image: linear-gradient(to bottom, #ff3860, #e60000);
 }
 
 .icon-overlay {
@@ -85,6 +85,10 @@ html {
 
 .plus-svg {
     background-image: url(../media/plus.svg);
+}
+
+.heart-svg {
+    background-image: url(../media/heart.svg);
 }
 
 .control.is-fullwidth {
