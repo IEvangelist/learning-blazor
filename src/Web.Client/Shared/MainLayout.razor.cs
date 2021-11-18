@@ -11,8 +11,8 @@ namespace Learning.Blazor.Shared
     {
         string _bgColorCss =>
             AppState.IsDarkTheme
-                ? "has-background-light"
-                : "has-background-dark";
+                ? "has-background-dark"
+                : "has-background-light";
 
         [Inject]
         public AppInMemoryState AppState { get; set; } = null!;
