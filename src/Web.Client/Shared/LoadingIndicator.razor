@@ -7,21 +7,25 @@
 {
 	<img src="media/blazor-logo.png" class="image is-128x128 mb-5" />
 }
-<div class="fa-3x is-family-code">
+<div class="fa-3x is-family-code @(_class)">
 	<span class="is-size-3">@Message</span> <i class="fas fa-sync fa-spin"></i>
 </div>
 
 @code {
 
-	string? _message;
+    string? _message;
+    string _class => HasLightText ? "has-text-light" : "";
 
-	[Parameter]
-	public string? Message
-	{
-		get => _message ?? localize["Loading"];
-		set => _message = value;
-	}
+    [Parameter]
+    public string? Message
+    {
+        get => _message ?? localize["Loading"];
+        set => _message = value;
+    }
 
-	[Parameter]
-	public bool HideLogo { get; set; }
+    [Parameter]
+    public bool HideLogo { get; set; }
+
+    [Parameter]
+    public bool HasLightText { get; set; }
 }

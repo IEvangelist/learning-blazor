@@ -10,17 +10,17 @@
     {
         var weather = _model!;
         <div class="column is-one-third">
-            <div class="box is-alpha-bg-50">
+            <div class="box dotnet-box-border is-alpha-bg-50">
                 <article class="media">
                     <div class="media-left">
                         <figure class="image is-128x128">
-                            <img src=@(weather.ImagePath) alt="@localize["CurrentWeatherVisual"]">
+                            <img src=@(weather.ImagePath) class="has-img-shadow" alt="@localize["CurrentWeatherVisual"]">
                         </figure>
                     </div>
                     <div class="media-content">
-                        <div class="content has-text-right">
+                        <div class="content has-text-right has-text-light">
                             <div>
-                                <span class="title">@weather.Temperature</span>
+                                <span class="title has-text-light">@weather.Temperature</span>
                                 <span class="heading">
                                     <i class="fas fa-arrow-up"></i> @(weather.HighTemp) | <i class="fas fa-arrow-down"></i> @(weather.LowTemp)
                                 </span>
@@ -30,7 +30,7 @@
                         </div>
                     </div>
                 </article>
-                <div class="has-text-centered">
+                <div class="has-text-centered has-text-light">
                     @($"{weather.City}, {weather.State} ({weather.Country})")
                 </div>
             </div>
@@ -39,12 +39,12 @@
             <div class="level">
                 @foreach (DailyWeather daily in weather.DailyWeather)
                 {
-                    <div class="level-item has-text-centered">
+                    <div class="level-item has-text-centered has-text-light">
                         <div>
                             <p class="heading is-size-6 is-underlined">@daily.DateTime.ToString("ddd")</p>
                             <p class="title">
                                 <figure class="image is-64x64">
-                                    <img src=@weather.GetDailyImagePath(daily) alt="@daily.Weather[0].Description">
+                                    <img src=@weather.GetDailyImagePath(daily) class="has-img-shadow" alt="@daily.Weather[0].Description">
                                 </figure>
                             </p>
                             <p class="heading">@daily.Weather[0].Main</p>

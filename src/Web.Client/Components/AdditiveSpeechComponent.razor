@@ -2,7 +2,7 @@
       Licensed under the MIT License.  -->
 @inherits LocalizableComponentBase<AdditiveSpeechComponent>
 
-<button class="button is-rounded is-light is-top-right-overlay p-4 @_dynamicCSS"
+<button class="button is-rounded is-theme-aware-button is-top-right-overlay p-4 @_dynamicCSS"
     disabled=@_isSpeaking @onclick="OnSpeakButtonClickAsync">
     <span class="icon is-small">
         <i class="fas fa-volume-up"></i>

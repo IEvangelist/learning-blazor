@@ -13,7 +13,7 @@
 }
 
 .has-dotnet-shadow {
-    box-shadow: 0px 1.2rem 2.5rem 2rem rgb(81 43 212 / 30%)
+    box-shadow: 0px 1.2rem 2.5rem 2rem rgb(81 43 212 / 20%)
 }
 
 .is-top-right-overlay {
@@ -55,18 +55,6 @@ html {
     border-radius: 4px;
 }
 
-.weather-gradient {
-    background-image: linear-gradient(to bottom, var(--dotnet-purple-primary), var(--dotnet-purple-dark));
-}
-
-.jokes-gradient {
-    background-image: linear-gradient(to bottom, hsl(204, 86%, 53%), hsl(220, 96%, 45%));
-}
-
-.welcome-gradient {
-    background-image: linear-gradient(to bottom, hsl(348, 100%, 61%), hsl(360, 100%, 45%));
-}
-
 .icon-overlay {
     mix-blend-mode: soft-light;
     background-position: 20px 20px;
@@ -88,6 +76,27 @@ html {
 
 .plus-svg {
     background-image: url(../media/plus.svg);
+}
+
+.heart-svg {
+    background-image: url(../media/heart.svg);
+}
+
+.weather-gradient {
+    background-image: linear-gradient(to bottom, var(--dotnet-purple-primary), var(--dotnet-purple-dark));
+}
+
+.jokes-gradient {
+    background-image: linear-gradient(to bottom, hsl(204, 86%, 53%), hsl(220, 96%, 45%));
+}
+
+.welcome-gradient {
+    background-image: linear-gradient(to bottom, #ED4E50, #F06F00);
+}
+
+.welcome-text {
+    font-weight: 700;
+    text-shadow: 0 2px #ff0000;
 }
 
 .control.is-fullwidth {
@@ -117,6 +126,20 @@ html {
     background-color: #f5f5f5 !important;
 }
 
+.has-img-shadow {
+    filter: drop-shadow(0 0 20px #000);
+}
+
+.is-theme-aware-button {
+    background-color: #363636;
+    border-color: transparent;
+    color: #fff;
+}
+
+.dotnet-box-border {
+    border: solid 1px var(--dotnet-purple-gradient-9);
+}
+
 @media (prefers-color-scheme: dark) {
     .modal-card-body {
         background-color: #242424;
@@ -137,6 +160,12 @@ html {
     .is-theme-aware {
         color: #4a4a4a !important;
         background-color: #17181c !important;
+    }
+
+    .is-theme-aware-button {
+        background-color: #f5f5f5;
+        border-color: transparent;
+        color: rgba(0,0,0,.7);
     }
 }
 
