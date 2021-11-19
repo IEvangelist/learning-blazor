@@ -7,6 +7,14 @@
 
 This repository is the application detailed in the "Learning Blazor: Build Single-Page Apps with WebAssembly and C#" O'Reilly Media book by David Pine.
 
+## Home screen (dark theme)
+
+![Learning Blazor: Home screen (dark theme)](images/home-screen-dark.png)
+
+## Home screen (light theme)
+
+![Learning Blazor: Home screen (light theme)](images/home-screen-light.png)
+
 Featuring:
 
 - C# 10
