@@ -55,13 +55,12 @@ html {
     background-image: linear-gradient(to bottom, var(--dotnet-purple-primary), var(--dotnet-purple-dark));
 }
 
-
 .jokes-gradient {
     background-image: linear-gradient(to bottom, hsl(204, 86%, 53%), hsl(220, 96%, 45%));
 }
 
 .welcome-gradient {
-    background-image: linear-gradient(to bottom, #ff3860, #e60000);
+    background-image: linear-gradient(to bottom, #ED4E50, #F06F00);
 }
 
 .icon-overlay {
@@ -89,6 +88,11 @@ html {
 
 .heart-svg {
     background-image: url(../media/heart.svg);
+}
+
+.welcome-text {
+    font-weight: 700;
+    text-shadow: 0 2px #ff0000;
 }
 
 .control.is-fullwidth {
