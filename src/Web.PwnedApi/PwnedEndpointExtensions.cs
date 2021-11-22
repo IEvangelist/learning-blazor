@@ -62,7 +62,15 @@ static class PwnedEndpointExtensions
         }
 
         app.UseHttpsRedirection();
-        app.UseCors();
+
+        var webClientOrigin = app.Configuration["WebClientOrigin"];
+        app.UseCors(options =>
+            options.WithOrigins(
+                    "https://localhost:5001", webClientOrigin)
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .AllowCredentials());
+
         app.UseAuthentication();
         app.UseAuthorization();
 
