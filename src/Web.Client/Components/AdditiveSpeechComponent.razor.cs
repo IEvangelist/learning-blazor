@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 
 using Learning.Blazor.Extensions;
-using Learning.Blazor.Services;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 

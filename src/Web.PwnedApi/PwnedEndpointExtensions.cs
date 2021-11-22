@@ -25,7 +25,7 @@ static class PwnedEndpointExtensions
 
         var webClientOrigin = builder.Configuration["WebClientOrigin"];
         builder.Services.AddCors(
-            options => options.AddDefaultPolicy(
+            options => options.AddPolicy("AnyPwnedPolicy",
                 builder => builder.WithOrigins(
                     "https://localhost:5001", webClientOrigin)
                     .AllowAnyMethod()
@@ -62,15 +62,7 @@ static class PwnedEndpointExtensions
         }
 
         app.UseHttpsRedirection();
-
-        var webClientOrigin = app.Configuration["WebClientOrigin"];
-        app.UseCors(options =>
-            options.WithOrigins(
-                    "https://localhost:5001", webClientOrigin)
-                .AllowAnyHeader()
-                .AllowAnyMethod()
-                .AllowCredentials());
-
+        app.UseCors("AnyPwnedPolicy");
         app.UseAuthentication();
         app.UseAuthorization();
 
@@ -97,7 +89,7 @@ static class PwnedEndpointExtensions
         return app;
     }
 
-    [Authorize, RequiredScope("User.ApiAccess"), EnableCors]
+    [Authorize, RequiredScope("User.ApiAccess"), EnableCors("AnyPwnedPolicy")]
     internal static async Task<IResult> GetBreachHeadersForAccountAsync(
         [FromRoute] string email,
         PwnedServices pwnedServices)
@@ -106,7 +98,7 @@ static class PwnedEndpointExtensions
         return Results.Json(breaches, DefaultJsonSerialization.Options);
     }
 
-    [Authorize, RequiredScope("User.ApiAccess"), EnableCors]
+    [Authorize, RequiredScope("User.ApiAccess"), EnableCors("AnyPwnedPolicy")]
     internal static async Task<IResult> GetBreachAsync(
         [FromRoute] string name,
         PwnedServices pwnedServices)
@@ -115,7 +107,7 @@ static class PwnedEndpointExtensions
         return Results.Json(breach, DefaultJsonSerialization.Options);
     }
 
-    [Authorize, RequiredScope("User.ApiAccess"), EnableCors]
+    [Authorize, RequiredScope("User.ApiAccess"), EnableCors("AnyPwnedPolicy")]
     internal static async Task<IResult> GetPwnedPasswordAsync(
         [FromRoute] string password,
         IPwnedPasswordsClient pwnedPasswordsClient)
