@@ -21,7 +21,9 @@
                             <div class="gradient-bg welcome-gradient"></div>
                             <div class="icon-overlay heart-svg"></div>
                             <div class="blaze-content">
-                                <p class="title is-family-monospace has-text-light"><emoji class="wave">🖐🏽</emoji> @localize["Hi"]</p>
+                                <p class="title is-family-monospace has-text-light">
+                                    <emoji class="wave">🖐🏽</emoji> <span class="has-text-light">@localize["Hi"]</span>
+                                </p>
                                 <IntroductionComponent />
                             </div>
                         </article>
@@ -31,7 +33,7 @@
                             <div class="gradient-bg jokes-gradient"></div>
                             <div class="icon-overlay circle-svg"></div>
                             <div class="blaze-content">
-                                <p class="title has-text-light">🤓 @localize["Jokes"]</p>
+                                <p class="title">🤓 <span class="has-text-light">@localize["Jokes"]</span></p>
                                 <JokeComponent />
                             </div>
                         </article>
@@ -42,7 +44,7 @@
                         <div class="gradient-bg weather-gradient"></div>
                         <div class="icon-overlay zap-svg"></div>
                         <div class="blaze-content">
-                            <p class="title has-text-light" translate="no">🔥 Blazor-@localize["Weather"]</p>
+                            <p class="title" translate="no">🔥 <span class="has-text-light">Blazor-@localize["Weather"]</span></p>
                             <WeatherComponent />
                         </div>
                     </article>
