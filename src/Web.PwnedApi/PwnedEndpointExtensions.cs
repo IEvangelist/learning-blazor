@@ -75,8 +75,10 @@ static class PwnedEndpointExtensions
     internal static WebApplication MapBreachEndpoints(this WebApplication app)
     {
         // Map "have i been pwned" breaches.
-        app.MapGet("api/pwned/breaches/{email}", GetBreachHeadersForAccountAsync);
-        app.MapGet("api/pwned/breach/{name}", GetBreachAsync);
+        app.MapGet("api/pwned/breaches/{email}", GetBreachHeadersForAccountAsync)
+            .RequireCors("AnyPwnedPolicy");
+        app.MapGet("api/pwned/breach/{name}", GetBreachAsync)
+            .RequireCors("AnyPwnedPolicy");
 
         return app;
     }
@@ -84,12 +86,13 @@ static class PwnedEndpointExtensions
     internal static WebApplication MapPwnedPasswordsEndpoints(this WebApplication app)
     {
         // Map "have i been pwned" passwords.
-        app.MapGet("api/pwned/passwords/{password}", GetPwnedPasswordAsync);
+        app.MapGet("api/pwned/passwords/{password}", GetPwnedPasswordAsync)
+            .RequireCors("AnyPwnedPolicy");
 
         return app;
     }
 
-    [Authorize, RequiredScope("User.ApiAccess"), EnableCors("AnyPwnedPolicy")]
+    [Authorize, RequiredScope("User.ApiAccess")/*, EnableCors("AnyPwnedPolicy")*/]
     internal static async Task<IResult> GetBreachHeadersForAccountAsync(
         [FromRoute] string email,
         PwnedServices pwnedServices)
@@ -98,7 +101,7 @@ static class PwnedEndpointExtensions
         return Results.Json(breaches, DefaultJsonSerialization.Options);
     }
 
-    [Authorize, RequiredScope("User.ApiAccess"), EnableCors("AnyPwnedPolicy")]
+    [Authorize, RequiredScope("User.ApiAccess")/*, EnableCors("AnyPwnedPolicy")*/]
     internal static async Task<IResult> GetBreachAsync(
         [FromRoute] string name,
         PwnedServices pwnedServices)
@@ -107,7 +110,7 @@ static class PwnedEndpointExtensions
         return Results.Json(breach, DefaultJsonSerialization.Options);
     }
 
-    [Authorize, RequiredScope("User.ApiAccess"), EnableCors("AnyPwnedPolicy")]
+    [Authorize, RequiredScope("User.ApiAccess")/*, EnableCors("AnyPwnedPolicy")*/]
     internal static async Task<IResult> GetPwnedPasswordAsync(
         [FromRoute] string password,
         IPwnedPasswordsClient pwnedPasswordsClient)
