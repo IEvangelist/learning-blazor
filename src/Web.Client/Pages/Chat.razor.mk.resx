@@ -59,24 +59,24 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Chat" xml:space="preserve">
-    <value>Tanulás Blazor: Chat</value>
+    <value>Учење Блазор: Чат</value>
   </data>
   <data name="ChatMessage" xml:space="preserve">
-    <value>Csevegőüzenet</value>
+    <value>Порака за разговор</value>
   </data>
   <data name="Messages" xml:space="preserve">
-    <value>Üzenetek</value>
+    <value>Пораки</value>
   </data>
   <data name="MultiplePeopleAreTyping" xml:space="preserve">
-    <value>Többen gépelnek.</value>
+    <value>Повеќе луѓе пишуваат.</value>
   </data>
   <data name="Send" xml:space="preserve">
-    <value>Küld</value>
+    <value>Испрати го.</value>
   </data>
   <data name="TwoUsersAreTypingFormat" xml:space="preserve">
-    <value>{0} és {1} egyaránt gépelnek.</value>
+    <value>{0} и {1} пишуваат.</value>
   </data>
   <data name="UserIsTypingFormat" xml:space="preserve">
-    <value>{0} gépel.</value>
+    <value>{0} пишува.</value>
   </data>
 </root>

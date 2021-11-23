@@ -59,24 +59,24 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Chat" xml:space="preserve">
-    <value>Pokalbio pranešimas</value>
+    <value>Mokymasis Blazor: Pokalbiai</value>
   </data>
   <data name="ChatMessage" xml:space="preserve">
-    <value>Pranešimus</value>
+    <value>Pokalbio pranešimas</value>
   </data>
   <data name="Messages" xml:space="preserve">
-    <value>Įvedami keli žmonės.</value>
+    <value>Pranešimus</value>
   </data>
   <data name="MultiplePeopleAreTyping" xml:space="preserve">
-    <value>Siųsti</value>
+    <value>Įvedami keli žmonės.</value>
   </data>
   <data name="Send" xml:space="preserve">
-    <value>{0} ir {1} yra ir rašyti.</value>
+    <value>Siųsti</value>
   </data>
   <data name="TwoUsersAreTypingFormat" xml:space="preserve">
-    <value>{0} įveda tekstą.</value>
+    <value>{0} ir {1} yra ir rašyti.</value>
   </data>
   <data name="UserIsTypingFormat" xml:space="preserve">
-    <value>{0} is typing.</value>
+    <value>{0} įveda tekstą.</value>
   </data>
 </root>

@@ -59,24 +59,24 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Chat" xml:space="preserve">
-    <value>הודעת צ'אט</value>
+    <value>לומד בלזור: צ'אט</value>
   </data>
   <data name="ChatMessage" xml:space="preserve">
-    <value>הודעות</value>
+    <value>הודעת צ'אט</value>
   </data>
   <data name="Messages" xml:space="preserve">
-    <value>אנשים רבים מקלידים.</value>
+    <value>הודעות</value>
   </data>
   <data name="MultiplePeopleAreTyping" xml:space="preserve">
-    <value>שלח</value>
+    <value>אנשים רבים מקלידים.</value>
   </data>
   <data name="Send" xml:space="preserve">
-    <value>{0} {1} מקלידים.</value>
+    <value>שלח</value>
   </data>
   <data name="TwoUsersAreTypingFormat" xml:space="preserve">
-    <value>{0} מקליד.</value>
+    <value>{0} {1} מקלידים.</value>
   </data>
   <data name="UserIsTypingFormat" xml:space="preserve">
-    <value>{0} is typing.</value>
+    <value>{0} מקליד.</value>
   </data>
 </root>

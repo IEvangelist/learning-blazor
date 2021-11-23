@@ -59,24 +59,24 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Chat" xml:space="preserve">
-    <value>Mesaj de chat</value>
+    <value>Învățare Blazor: Chat</value>
   </data>
   <data name="ChatMessage" xml:space="preserve">
-    <value>Mesaje</value>
+    <value>Mesaj de chat</value>
   </data>
   <data name="Messages" xml:space="preserve">
-    <value>Mai multe persoane tastează.</value>
+    <value>Mesaje</value>
   </data>
   <data name="MultiplePeopleAreTyping" xml:space="preserve">
-    <value>Expedia</value>
+    <value>Mai multe persoane tastează.</value>
   </data>
   <data name="Send" xml:space="preserve">
-    <value>{0} și {1} sunt ambele tastând.</value>
+    <value>Expedia</value>
   </data>
   <data name="TwoUsersAreTypingFormat" xml:space="preserve">
-    <value>{0} este tastarea.</value>
+    <value>{0} și {1} sunt ambele tastând.</value>
   </data>
   <data name="UserIsTypingFormat" xml:space="preserve">
-    <value>{0} is typing.</value>
+    <value>{0} este tastarea.</value>
   </data>
 </root>

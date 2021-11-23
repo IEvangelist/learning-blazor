@@ -59,24 +59,24 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Chat" xml:space="preserve">
-    <value>चैट संदेश</value>
+    <value>लर्निंग ब्लेज़र: चैट</value>
   </data>
   <data name="ChatMessage" xml:space="preserve">
-    <value>संदेश</value>
+    <value>चैट संदेश</value>
   </data>
   <data name="Messages" xml:space="preserve">
-    <value>कई लोग टाइप कर रहे हैं।</value>
+    <value>संदेश</value>
   </data>
   <data name="MultiplePeopleAreTyping" xml:space="preserve">
-    <value>भेजना</value>
+    <value>कई लोग टाइप कर रहे हैं।</value>
   </data>
   <data name="Send" xml:space="preserve">
-    <value>{0} और {1} दोनों टाइपिंग कर रहे हैं।</value>
+    <value>भेजना</value>
   </data>
   <data name="TwoUsersAreTypingFormat" xml:space="preserve">
-    <value>{0} टाइपिंग है।</value>
+    <value>{0} और {1} दोनों टाइपिंग कर रहे हैं।</value>
   </data>
   <data name="UserIsTypingFormat" xml:space="preserve">
-    <value>{0} is typing.</value>
+    <value>{0} टाइपिंग है।</value>
   </data>
 </root>
