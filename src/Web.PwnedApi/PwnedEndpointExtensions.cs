@@ -9,6 +9,15 @@ static class PwnedEndpointExtensions
     {
         ArgumentNullException.ThrowIfNull(builder);
 
+        var webClientOrigin = builder.Configuration["WebClientOrigin"];
+        builder.Services.AddCors(
+            options => options.AddPolicy("AnyPwnedPolicy",
+                builder => builder.WithOrigins(
+                    "https://localhost:5001", webClientOrigin)
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials()));
+
         builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddMicrosoftIdentityWebApi(
                 builder.Configuration.GetSection("AzureAdB2C"));
@@ -22,15 +31,6 @@ static class PwnedEndpointExtensions
             HttpClientBuilderRetryPolicyExtensions.GetDefaultRetryPolicy);
 
         builder.Services.AddSingleton<PwnedServices>();
-
-        var webClientOrigin = builder.Configuration["WebClientOrigin"];
-        builder.Services.AddCors(
-            options => options.AddPolicy("AnyPwnedPolicy",
-                builder => builder.WithOrigins(
-                    "https://localhost:5001", webClientOrigin)
-                    .AllowAnyMethod()
-                    .AllowAnyHeader()
-                    .AllowCredentials()));
 
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen(options =>
