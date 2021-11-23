@@ -15,7 +15,7 @@ namespace Learning.Blazor.Components
     {
         private readonly Stack<IDisposable> _subscriptions = new();
 
-        private List<NotificationComponentModel> _notifications = new();
+        private HashSet<NotificationComponentModel> _notifications = new();
         private bool _show = false;
         private DateTime? _latestNotificationDateTime = null!;
 
@@ -59,7 +59,7 @@ namespace Learning.Blazor.Components
                             var url = Navigation.ToAbsoluteUri($"/pwned/breaches?email={email}");
                             var link = $"<a href='{url}'><i class='fas fa-exclamation-circle'></i></a>";
 
-                            _notifications.Add(new()
+                            _ = _notifications.Add(new()
                             {
                                 Text = localize["EmailFoundInBreachFormat", email, breaches.Length, link],
                                 NotificationType = NotificationType.Alert
@@ -70,7 +70,7 @@ namespace Learning.Blazor.Components
                 else
                 {
                     var text = localize["UserLoggedInFormat", actor.UserName];
-                    _notifications.Add(new()
+                    _ = _notifications.Add(new()
                     {
                         Text = text,
                         NotificationType = notification.Type
@@ -88,7 +88,7 @@ namespace Learning.Blazor.Components
                 Actor actor = notification;
                 var text = localize["UserLoggedOutFormat", actor.UserName];
 
-                _notifications.Add(new()
+                _ = _notifications.Add(new()
                 {
                     Text = text,
                     IsDismissed = false,
@@ -110,7 +110,7 @@ namespace Learning.Blazor.Components
                     notification =>
                         notification == notificationModel
                             ? (notification with { IsDismissed = true }) : notification)
-                    .ToList();
+                    .ToHashSet();
 
         async ValueTask IAsyncDisposable.DisposeAsync()
         {
