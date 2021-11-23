@@ -2,14 +2,12 @@
 // Licensed under the MIT License.
 
 using System.Net.Http.Json;
-using System.Security.Claims;
 using HaveIBeenPwned.Client.Models;
 using Learning.Blazor.ComponentModels;
 using Learning.Blazor.Extensions;
 using Learning.Blazor.Models;
 using Learning.Blazor.Serialization;
 using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Authorization;
 
 namespace Learning.Blazor.Components
 {
@@ -20,12 +18,9 @@ namespace Learning.Blazor.Components
         private List<NotificationComponentModel> _notifications = new();
         private bool _show = false;
         private DateTime? _latestNotificationDateTime = null!;
-        private ClaimsPrincipal _user = null!;
+
 
         private string _showClass => _show ? "is-active" : "";
-
-        [CascadingParameter]
-        public Task<AuthenticationState> AuthenticationStateTask { get; set; } = null!;
 
         [Inject]
         public IHttpClientFactory HttpFactory { get; set; } = null!;
@@ -35,12 +30,6 @@ namespace Learning.Blazor.Components
 
         protected override async Task OnInitializedAsync()
         {
-            var state = await AuthenticationStateTask;
-            if (state is not null)
-            {
-                _user = state.User;
-            }
-
             _subscriptions.Push(
                 HubConnection.SubscribeToUserLoggedIn(OnUserLoggedIn));
             _subscriptions.Push(
@@ -52,7 +41,7 @@ namespace Learning.Blazor.Components
         private Task OnUserLoggedIn(Notification<Actor> notification) =>
             InvokeAsync(async () =>
             {
-                var emails = _user.GetEmailAddresses();
+                var emails = User?.GetEmailAddresses();
 
                 Actor actor = notification;
                 var intersectingEmails = actor.Emails?.Intersect(emails ?? Array.Empty<string>())?.ToList();

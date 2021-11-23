@@ -1,10 +1,12 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
+using System.Security.Claims;
 using Learning.Blazor.Localization;
 using Learning.Blazor.LocalStorage;
 using Learning.Blazor.Services;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Routing;
 using Microsoft.Extensions.Localization;
 using Microsoft.JSInterop;
@@ -13,9 +15,6 @@ namespace Learning.Blazor.Components
 {
     public class LocalizableComponentBase<T> : ComponentBase, IDisposable
     {
-        [Inject]
-        private CoalescingStringLocalizer<T> CoalescingStringLocalizer { get; set; } = null!;
-
         [Inject]
         public NavigationManager Navigation { get; set; } = null!;
 
@@ -33,6 +32,26 @@ namespace Learning.Blazor.Components
 
         [Inject]
         public AppInMemoryState AppState { get; set; } = null!;
+
+        public ClaimsPrincipal User { get; private set; } = null!;
+
+        [Inject]
+        private CoalescingStringLocalizer<T> CoalescingStringLocalizer { get; set; } = null!;
+
+        [CascadingParameter]
+        private Task<AuthenticationState> AuthenticationStateTask { get; set; } = null!;
+
+        protected override async Task OnInitializedAsync()
+        {
+            if (AuthenticationStateTask is not null)
+            {
+                AuthenticationState? authState = await AuthenticationStateTask;
+                if (authState is { User: { Identity: { IsAuthenticated: true } } })
+                {
+                    User = authState.User;
+                }
+            }
+        }
 
         /// <summary>
         /// Gets the localized content for the current subcomponent,
