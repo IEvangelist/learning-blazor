@@ -1,4 +1,5 @@
-﻿
+﻿// Copyright (c) 2021 David Pine. All rights reserved.
+// Licensed under the MIT License.
 
 using System.Security.Claims;
 using System.Timers;
@@ -24,6 +25,7 @@ namespace Learning.Blazor.Pages
         private Guid? _messageId = null!;
         private string? _message = null!;
         private bool _isTyping = false;
+        private bool _isSending = false;
         private ClaimsPrincipal _user = null!;
 
         private ElementReference _messageInput;
@@ -56,26 +58,8 @@ namespace Learning.Blazor.Pages
                 async () =>
                 {
                     _messages[message.Payload.Id] = message;
-                //if (message.IsChatBot && message.SayJoke)
-                //{
-                //    var lang = message.Lang;
-                //    var voice = _voices?.FirstOrDefault(v => v.Name == _voice);
-                //    if (voice is not null)
-                //    {
-                //        if (!voice.Lang.StartsWith(lang))
-                //        {
-                //            var firstLocaleMatchingVoice = _voices.FirstOrDefault(v => v.Lang.StartsWith(lang));
-                //            if (firstLocaleMatchingVoice is not null)
-                //            {
-                //                lang = firstLocaleMatchingVoice.Lang[0..2];
-                //            }
-                //        }
-                //    }
 
-                //    await JavaScript.SpeakAsync(message.Text, _voice, _voiceSpeed, lang);
-                //}
-
-                await JavaScript.ScrollIntoViewAsync(".chat-list");
+                    await JavaScript.ScrollIntoViewAsync(".chat-list");
 
                     StateHasChanged();
                 });
@@ -96,6 +80,11 @@ namespace Learning.Blazor.Pages
 
         private async Task OnKeyUp(KeyboardEventArgs args)
         {
+            if (_isSending)
+            {
+                return;
+            }
+
             if (args is { Key: "Enter" } and { Code: "Enter" })
             {
                 await SendMessage();
@@ -104,15 +93,24 @@ namespace Learning.Blazor.Pages
 
         async Task SendMessage()
         {
-            if (_message is { Length: > 0 })
+            _isSending = true;
+
+            try
             {
-                await HubConnection.PostOrUpdateMessageAsync(
-                    Room ?? DefaultRoomName, _message, _messageId);
+                if (_message is { Length: > 0 })
+                {
+                    await HubConnection.PostOrUpdateMessageAsync(
+                        Room ?? DefaultRoomName, _message, _messageId);
 
-                _message = null;
-                _messageId = null;
+                    _message = null;
+                    _messageId = null;
 
-                StateHasChanged();
+                    StateHasChanged();
+                }
+            }
+            finally
+            {
+                _isSending = false;
             }
         }
 

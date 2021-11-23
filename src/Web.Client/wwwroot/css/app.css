@@ -247,7 +247,7 @@ html {
 }
 
 .panel {
-    max-height: calc(100vh - 20rem);
+    max-height: calc(100vh - 25rem);
     overflow-x: auto;
 }
 

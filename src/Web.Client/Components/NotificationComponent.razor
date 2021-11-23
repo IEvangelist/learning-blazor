@@ -14,7 +14,7 @@
         if (_notifications?.Any(notification => !notification.IsDismissed) ?? false)
         {
             <span class="badge is-info" style="right: .8rem; top: .8rem;">
-                @_notifications.Count
+                @_notifications.Count(notification => !notification.IsDismissed)
             </span>
         }
     }

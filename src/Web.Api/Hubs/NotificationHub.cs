@@ -67,7 +67,7 @@ public class NotificationHub : Hub
     public async Task JoinChat(string room)
     {
         await Groups.AddToGroupAsync(Context.ConnectionId, room);
-        await Clients.Groups(room).SendAsync(
+        await Clients.Caller.SendAsync(
             HubServerEventNames.MessageReceived,
             Notification<ActorMessage>.FromChat(
                 new(Id: Guid.NewGuid(), Text: _localizer["WelcomeToChatRoom", room],
