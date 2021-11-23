@@ -59,24 +59,24 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Chat" xml:space="preserve">
-    <value>Chatbesked</value>
+    <value>Læring Blazor: Chat</value>
   </data>
   <data name="ChatMessage" xml:space="preserve">
-    <value>Meddelelser</value>
+    <value>Chatbesked</value>
   </data>
   <data name="Messages" xml:space="preserve">
-    <value>Flere personer skriver.</value>
+    <value>Meddelelser</value>
   </data>
   <data name="MultiplePeopleAreTyping" xml:space="preserve">
-    <value>Sende</value>
+    <value>Flere personer skriver.</value>
   </data>
   <data name="Send" xml:space="preserve">
-    <value>{0} og {1} skriver begge to.</value>
+    <value>Sende</value>
   </data>
   <data name="TwoUsersAreTypingFormat" xml:space="preserve">
-    <value>{0} skriver.</value>
+    <value>{0} og {1} skriver begge.</value>
   </data>
   <data name="UserIsTypingFormat" xml:space="preserve">
-    <value>{0} is typing.</value>
+    <value>{0} skriver.</value>
   </data>
 </root>

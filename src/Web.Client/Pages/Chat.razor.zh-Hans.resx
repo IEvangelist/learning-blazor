@@ -59,24 +59,24 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Chat" xml:space="preserve">
-    <value>聊天消息</value>
+    <value>学习 Blazor：聊天</value>
   </data>
   <data name="ChatMessage" xml:space="preserve">
-    <value>消息</value>
+    <value>聊天消息</value>
   </data>
   <data name="Messages" xml:space="preserve">
-    <value>多人正在打字。</value>
+    <value>消息</value>
   </data>
   <data name="MultiplePeopleAreTyping" xml:space="preserve">
-    <value>发送</value>
+    <value>多个人正在打字。</value>
   </data>
   <data name="Send" xml:space="preserve">
-    <value>{0}和{1}都在打字。</value>
+    <value>发送</value>
   </data>
   <data name="TwoUsersAreTypingFormat" xml:space="preserve">
-    <value>{0}正在打字。</value>
+    <value>{0}和{1}都在打字。</value>
   </data>
   <data name="UserIsTypingFormat" xml:space="preserve">
-    <value>{0} is typing.</value>
+    <value>{0}正在打字。</value>
   </data>
 </root>

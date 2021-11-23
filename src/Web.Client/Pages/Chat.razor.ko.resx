@@ -59,24 +59,24 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Chat" xml:space="preserve">
-    <value>채팅 메시지</value>
+    <value>블라저 배우기: 채팅</value>
   </data>
   <data name="ChatMessage" xml:space="preserve">
-    <value>메시지</value>
+    <value>채팅 메시지</value>
   </data>
   <data name="Messages" xml:space="preserve">
-    <value>여러 사람이 입력하고 있습니다.</value>
+    <value>메시지</value>
   </data>
   <data name="MultiplePeopleAreTyping" xml:space="preserve">
-    <value>보내기</value>
+    <value>여러 사람이 입력하고 있습니다.</value>
   </data>
   <data name="Send" xml:space="preserve">
-    <value>{0} {1} 모두 입력하고 있습니다.</value>
+    <value>보내기</value>
   </data>
   <data name="TwoUsersAreTypingFormat" xml:space="preserve">
-    <value>{0} 입력하고 있습니다.</value>
+    <value>{0} {1} 모두 입력하고 있습니다.</value>
   </data>
   <data name="UserIsTypingFormat" xml:space="preserve">
-    <value>{0} is typing.</value>
+    <value>{0} 입력하고 있습니다.</value>
   </data>
 </root>

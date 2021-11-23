@@ -59,24 +59,24 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Chat" xml:space="preserve">
-    <value>Zpráva chatu</value>
+    <value>Učení Blazor: Chat</value>
   </data>
   <data name="ChatMessage" xml:space="preserve">
-    <value>Zprávy</value>
+    <value>Zpráva chatu</value>
   </data>
   <data name="Messages" xml:space="preserve">
-    <value>Píše více lidí.</value>
+    <value>Zprávy</value>
   </data>
   <data name="MultiplePeopleAreTyping" xml:space="preserve">
-    <value>Poslat</value>
+    <value>Píše více lidí.</value>
   </data>
   <data name="Send" xml:space="preserve">
-    <value>{0} {1} oba píšou.</value>
+    <value>Poslat</value>
   </data>
   <data name="TwoUsersAreTypingFormat" xml:space="preserve">
-    <value>{0} píše.</value>
+    <value>{0} i {1} píšou.</value>
   </data>
   <data name="UserIsTypingFormat" xml:space="preserve">
-    <value>{0} is typing.</value>
+    <value>{0} je psaní.</value>
   </data>
 </root>

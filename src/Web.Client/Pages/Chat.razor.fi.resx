@@ -59,24 +59,24 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Chat" xml:space="preserve">
-    <value>Keskusteluviesti</value>
+    <value>Blazorin oppiminen: Chat</value>
   </data>
   <data name="ChatMessage" xml:space="preserve">
-    <value>Viestit</value>
+    <value>Chat-viesti</value>
   </data>
   <data name="Messages" xml:space="preserve">
-    <value>Useat ihmiset kirjoittavat.</value>
+    <value>Viestit</value>
   </data>
   <data name="MultiplePeopleAreTyping" xml:space="preserve">
-    <value>Lähettää</value>
+    <value>Useat ihmiset kirjoittavat.</value>
   </data>
   <data name="Send" xml:space="preserve">
-    <value>{0} {1} ja jotka molemmat kirjoittavat.</value>
+    <value>Lähettää</value>
   </data>
   <data name="TwoUsersAreTypingFormat" xml:space="preserve">
-    <value>{0} kirjoittaa.</value>
+    <value>{0} ja {1} kirjoittavat molemmat.</value>
   </data>
   <data name="UserIsTypingFormat" xml:space="preserve">
-    <value>{0} is typing.</value>
+    <value>{0} kirjoittaa.</value>
   </data>
 </root>

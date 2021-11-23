@@ -59,24 +59,24 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Chat" xml:space="preserve">
-    <value>ข้อความแชท</value>
+    <value>เปลวไฟการเรียนรู้: แชท</value>
   </data>
   <data name="ChatMessage" xml:space="preserve">
-    <value>ข้อความ</value>
+    <value>ข้อความแชท</value>
   </data>
   <data name="Messages" xml:space="preserve">
-    <value>มีหลายคนกําลังพิมพ์</value>
+    <value>ข้อความ</value>
   </data>
   <data name="MultiplePeopleAreTyping" xml:space="preserve">
-    <value>ส่ง</value>
+    <value>หลายคนกําลังพิมพ์</value>
   </data>
   <data name="Send" xml:space="preserve">
-    <value>{0}{1}กําลังพิมพ์อยู่</value>
+    <value>ส่ง</value>
   </data>
   <data name="TwoUsersAreTypingFormat" xml:space="preserve">
-    <value>{0}กําลังพิมพ์</value>
+    <value>{0}และ{1}กําลังพิมพ์อยู่</value>
   </data>
   <data name="UserIsTypingFormat" xml:space="preserve">
-    <value>{0} is typing.</value>
+    <value>{0}กําลังพิมพ์</value>
   </data>
 </root>

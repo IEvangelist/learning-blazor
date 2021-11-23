@@ -59,24 +59,24 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Chat" xml:space="preserve">
-    <value>Message de chat</value>
+    <value>Apprendre Blazor: Chat</value>
   </data>
   <data name="ChatMessage" xml:space="preserve">
-    <value>Messages</value>
+    <value>Message de chat</value>
   </data>
   <data name="Messages" xml:space="preserve">
-    <value>Plusieurs personnes tapent.</value>
+    <value>Messages</value>
   </data>
   <data name="MultiplePeopleAreTyping" xml:space="preserve">
-    <value>Envoyer</value>
+    <value>Plusieurs personnes tapent.</value>
   </data>
   <data name="Send" xml:space="preserve">
-    <value>{0} et {1} sont tous deux tapants.</value>
+    <value>Envoyer</value>
   </data>
   <data name="TwoUsersAreTypingFormat" xml:space="preserve">
-    <value>{0} est en train de taper.</value>
+    <value>{0} et {1} sont tous deux en train de taper.</value>
   </data>
   <data name="UserIsTypingFormat" xml:space="preserve">
-    <value>{0} is typing.</value>
+    <value>{0} est en train de taper.</value>
   </data>
 </root>

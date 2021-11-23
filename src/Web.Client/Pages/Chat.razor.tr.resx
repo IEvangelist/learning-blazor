@@ -59,24 +59,24 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Chat" xml:space="preserve">
-    <value>Sohbet mesajı</value>
+    <value>Blazor Öğrenme: Sohbet</value>
   </data>
   <data name="ChatMessage" xml:space="preserve">
-    <value>Ileti</value>
+    <value>Sohbet mesajı</value>
   </data>
   <data name="Messages" xml:space="preserve">
-    <value>Birden çok kişi yazıyor.</value>
+    <value>Ileti</value>
   </data>
   <data name="MultiplePeopleAreTyping" xml:space="preserve">
-    <value>Gönder</value>
+    <value>Birden çok kişi yazıyor.</value>
   </data>
   <data name="Send" xml:space="preserve">
-    <value>{0} ve {1} da yazıyor.</value>
+    <value>Gönder</value>
   </data>
   <data name="TwoUsersAreTypingFormat" xml:space="preserve">
-    <value>{0} yazıyor.</value>
+    <value>{0} ve {1} da yazıyor.</value>
   </data>
   <data name="UserIsTypingFormat" xml:space="preserve">
-    <value>{0} is typing.</value>
+    <value>{0} yazıyor.</value>
   </data>
 </root>

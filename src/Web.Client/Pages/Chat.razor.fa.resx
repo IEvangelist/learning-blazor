@@ -59,24 +59,24 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Chat" xml:space="preserve">
-    <value>پیام چت</value>
+    <value>یادگیری بلازور : چت</value>
   </data>
   <data name="ChatMessage" xml:space="preserve">
-    <value>پیام</value>
+    <value>پیام چت</value>
   </data>
   <data name="Messages" xml:space="preserve">
-    <value>چند نفر در حال تایپ هستند.</value>
+    <value>پیام</value>
   </data>
   <data name="MultiplePeopleAreTyping" xml:space="preserve">
-    <value>ارسال</value>
+    <value>چند نفر در حال تایپ هستند.</value>
   </data>
   <data name="Send" xml:space="preserve">
-    <value>{0} و {1} هر دو تایپ می کنند.</value>
+    <value>ارسال</value>
   </data>
   <data name="TwoUsersAreTypingFormat" xml:space="preserve">
-    <value>{0} داره تایپ میکنه</value>
+    <value>{0} و {1} هر دو تایپ می کنند.</value>
   </data>
   <data name="UserIsTypingFormat" xml:space="preserve">
-    <value>{0} is typing.</value>
+    <value>{0} داره تایپ میکنه</value>
   </data>
 </root>

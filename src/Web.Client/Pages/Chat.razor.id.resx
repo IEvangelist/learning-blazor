@@ -59,24 +59,24 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Chat" xml:space="preserve">
-    <value>Pesan obrolan</value>
+    <value>Belajar Blazor: Chat</value>
   </data>
   <data name="ChatMessage" xml:space="preserve">
-    <value>Pesan</value>
+    <value>Pesan obrolan</value>
   </data>
   <data name="Messages" xml:space="preserve">
-    <value>Banyak orang mengetik.</value>
+    <value>Pesan</value>
   </data>
   <data name="MultiplePeopleAreTyping" xml:space="preserve">
-    <value>Kirim</value>
+    <value>Banyak orang mengetik.</value>
   </data>
   <data name="Send" xml:space="preserve">
-    <value>{0} dan {1} sama-sama mengetik.</value>
+    <value>Kirim</value>
   </data>
   <data name="TwoUsersAreTypingFormat" xml:space="preserve">
-    <value>{0} mengetik.</value>
+    <value>{0} dan {1} sama-sama mengetik.</value>
   </data>
   <data name="UserIsTypingFormat" xml:space="preserve">
-    <value>{0} is typing.</value>
+    <value>{0} mengetik.</value>
   </data>
 </root>

@@ -59,24 +59,24 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Chat" xml:space="preserve">
-    <value>Sporočilo za klepet</value>
+    <value>Učenje Blazor: Klepet</value>
   </data>
   <data name="ChatMessage" xml:space="preserve">
-    <value>Sporočila</value>
+    <value>Sporočilo za klepet</value>
   </data>
   <data name="Messages" xml:space="preserve">
-    <value>Več ljudi tipka.</value>
+    <value>Sporočila</value>
   </data>
   <data name="MultiplePeopleAreTyping" xml:space="preserve">
-    <value>Poslati</value>
+    <value>Več ljudi tipka.</value>
   </data>
   <data name="Send" xml:space="preserve">
-    <value>{0} in {1} tipkata.</value>
+    <value>Poslati</value>
   </data>
   <data name="TwoUsersAreTypingFormat" xml:space="preserve">
-    <value>{0} tipka.</value>
+    <value>{0} in {1} tipkata.</value>
   </data>
   <data name="UserIsTypingFormat" xml:space="preserve">
-    <value>{0} is typing.</value>
+    <value>{0} tipka.</value>
   </data>
 </root>
