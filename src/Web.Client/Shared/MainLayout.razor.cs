@@ -12,21 +12,24 @@ namespace Learning.Blazor.Shared
         [Inject]
         public AppInMemoryState AppState { get; set; } = null!;
 
-        /// <inheritdoc cref="RuntimeInformation.FrameworkDescription" />
-        public string? FrameworkDescription => AppState?.FrameworkDescription;
-
         protected override void OnInitialized()
         {
-            if (AppState is { })
+            if (AppState is not null)
             {
                 AppState.StateChanged += StateHasChanged;
-                AppState.FrameworkDescription = RuntimeInformation.FrameworkDescription;
+                AppState.FrameworkDescription =
+                    RuntimeInformation.FrameworkDescription;
             }
 
             base.OnInitialized();
         }
 
-        void IDisposable.Dispose() =>
-            AppState!.StateChanged -= StateHasChanged;
+        void IDisposable.Dispose()
+        {
+            if (AppState is not null)
+            {
+                AppState!.StateChanged -= StateHasChanged;
+            }
+        }
     }
 }
