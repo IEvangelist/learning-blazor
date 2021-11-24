@@ -13,7 +13,7 @@ namespace Learning.Blazor.Components
 
         protected override async Task OnInitializedAsync() =>
             AppState.IsDarkTheme =
-                await JavaScript.GetCurrentDarkThemePreference(
+                await JavaScript.GetCurrentDarkThemePreferenceAsync(
                     this, nameof(UpdateDarkThemePreference));
 
         [JSInvokable]

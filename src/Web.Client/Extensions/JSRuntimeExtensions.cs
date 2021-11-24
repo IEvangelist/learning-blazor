@@ -27,7 +27,7 @@ internal static class JSRuntimeExtensions
             DotNetObjectReference.Create(dotnetObj),
             callbackMethodName);
 
-    internal static async ValueTask<bool> GetCurrentDarkThemePreference<T>(
+    internal static async ValueTask<bool> GetCurrentDarkThemePreferenceAsync<T>(
         this IJSRuntime javaScript,
         T dotnetObj,
         string callbackMethodName) where T : class =>
