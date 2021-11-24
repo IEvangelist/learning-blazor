@@ -9,15 +9,6 @@ static class PwnedEndpointExtensions
     {
         ArgumentNullException.ThrowIfNull(builder);
 
-        var webClientOrigin = builder.Configuration["WebClientOrigin"];
-        builder.Services.AddCors(
-            options => options.AddPolicy("AnyPwnedPolicy",
-                builder => builder.WithOrigins(
-                    "https://localhost:5001", webClientOrigin)
-                    .AllowAnyMethod()
-                    .AllowAnyHeader()
-                    .AllowCredentials()));
-
         builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddMicrosoftIdentityWebApi(
                 builder.Configuration.GetSection("AzureAdB2C"));
@@ -62,7 +53,6 @@ static class PwnedEndpointExtensions
         }
 
         app.UseHttpsRedirection();
-        app.UseCors("AnyPwnedPolicy");
         app.UseAuthentication();
         app.UseAuthorization();
 
@@ -75,10 +65,8 @@ static class PwnedEndpointExtensions
     internal static WebApplication MapBreachEndpoints(this WebApplication app)
     {
         // Map "have i been pwned" breaches.
-        app.MapGet("api/pwned/breaches/{email}", GetBreachHeadersForAccountAsync)
-            .RequireCors("AnyPwnedPolicy");
-        app.MapGet("api/pwned/breach/{name}", GetBreachAsync)
-            .RequireCors("AnyPwnedPolicy");
+        app.MapGet("api/pwned/breaches/{email}", GetBreachHeadersForAccountAsync);
+        app.MapGet("api/pwned/breach/{name}", GetBreachAsync);
 
         return app;
     }
@@ -86,13 +74,12 @@ static class PwnedEndpointExtensions
     internal static WebApplication MapPwnedPasswordsEndpoints(this WebApplication app)
     {
         // Map "have i been pwned" passwords.
-        app.MapGet("api/pwned/passwords/{password}", GetPwnedPasswordAsync)
-            .RequireCors("AnyPwnedPolicy");
+        app.MapGet("api/pwned/passwords/{password}", GetPwnedPasswordAsync);
 
         return app;
     }
 
-    [Authorize, RequiredScope("User.ApiAccess")/*, EnableCors("AnyPwnedPolicy")*/]
+    [Authorize, RequiredScope("User.ApiAccess")]
     internal static async Task<IResult> GetBreachHeadersForAccountAsync(
         [FromRoute] string email,
         PwnedServices pwnedServices)
@@ -101,7 +88,7 @@ static class PwnedEndpointExtensions
         return Results.Json(breaches, DefaultJsonSerialization.Options);
     }
 
-    [Authorize, RequiredScope("User.ApiAccess")/*, EnableCors("AnyPwnedPolicy")*/]
+    [Authorize, RequiredScope("User.ApiAccess")]
     internal static async Task<IResult> GetBreachAsync(
         [FromRoute] string name,
         PwnedServices pwnedServices)
@@ -110,7 +97,7 @@ static class PwnedEndpointExtensions
         return Results.Json(breach, DefaultJsonSerialization.Options);
     }
 
-    [Authorize, RequiredScope("User.ApiAccess")/*, EnableCors("AnyPwnedPolicy")*/]
+    [Authorize, RequiredScope("User.ApiAccess")]
     internal static async Task<IResult> GetPwnedPasswordAsync(
         [FromRoute] string password,
         IPwnedPasswordsClient pwnedPasswordsClient)
