@@ -61,6 +61,9 @@
   <data name="CurrentWeatherVisual" xml:space="preserve">
     <value>De huidige visuele weerindicator, zoals een wolk-, zonne- of regenpictogram.</value>
   </data>
+  <data name="Weather" xml:space="preserve">
+    <value>Weer</value>
+  </data>
   <data name="WeatherUnavailable" xml:space="preserve">
     <value>De weerdienst is momenteel niet beschikbaar.</value>
   </data>

@@ -61,13 +61,4 @@
   <data name="Chat" xml:space="preserve">
     <value>Cseveg</value>
   </data>
-  <data name="Hi" xml:space="preserve">
-    <value>Üdv, David vagyok.</value>
-  </data>
-  <data name="Jokes" xml:space="preserve">
-    <value>Humor</value>
-  </data>
-  <data name="Weather" xml:space="preserve">
-    <value>Időjárás</value>
-  </data>
 </root>

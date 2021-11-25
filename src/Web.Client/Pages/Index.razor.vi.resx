@@ -61,13 +61,4 @@
   <data name="Chat" xml:space="preserve">
     <value>Tán gẫu</value>
   </data>
-  <data name="Hi" xml:space="preserve">
-    <value>Xin chào, tôi là David.</value>
-  </data>
-  <data name="Jokes" xml:space="preserve">
-    <value>Cười</value>
-  </data>
-  <data name="Weather" xml:space="preserve">
-    <value>Thời tiết</value>
-  </data>
 </root>

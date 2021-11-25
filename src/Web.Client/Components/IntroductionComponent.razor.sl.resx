@@ -58,6 +58,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Hi" xml:space="preserve">
+    <value>Živjo, jaz sem David.</value>
+  </data>
   <data name="ThankYou" xml:space="preserve">
     <value>Počaščena sem, ponižna in navdušena, da vas vabim na ogled moje knjige »Učenje Blazor: Zgradite aplikacije z eno stranjo z WebAssembly in C#«.</value>
   </data>

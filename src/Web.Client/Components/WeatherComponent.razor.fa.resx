@@ -61,6 +61,9 @@
   <data name="CurrentWeatherVisual" xml:space="preserve">
     <value>شاخص بصری آب و هوایی فعلی، مانند ابر، خورشید، یا آیکون باران.</value>
   </data>
+  <data name="Weather" xml:space="preserve">
+    <value>هوا</value>
+  </data>
   <data name="WeatherUnavailable" xml:space="preserve">
     <value>سرویس آب و هوا در حال حاضر در دسترس نیست.</value>
   </data>

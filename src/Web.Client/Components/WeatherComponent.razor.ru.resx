@@ -61,6 +61,9 @@
   <data name="CurrentWeatherVisual" xml:space="preserve">
     <value>Визуальный индикатор текущей погоды, например значок облака, солнца или дождя.</value>
   </data>
+  <data name="Weather" xml:space="preserve">
+    <value>Погода</value>
+  </data>
   <data name="WeatherUnavailable" xml:space="preserve">
     <value>Служба погоды в настоящее время недоступна.</value>
   </data>

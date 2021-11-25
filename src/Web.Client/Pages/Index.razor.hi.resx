@@ -61,13 +61,4 @@
   <data name="Chat" xml:space="preserve">
     <value>गपशप</value>
   </data>
-  <data name="Hi" xml:space="preserve">
-    <value>हाय, मैं दाऊद हूँ.</value>
-  </data>
-  <data name="Jokes" xml:space="preserve">
-    <value>मजाक</value>
-  </data>
-  <data name="Weather" xml:space="preserve">
-    <value>मौसम</value>
-  </data>
 </root>

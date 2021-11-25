@@ -59,7 +59,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CurrentWeatherVisual" xml:space="preserve">
-    <value>Nykyinen säänäköilmaisin, kuten pilvi-, aurinko- tai sadekuvake.</value>
+    <value>Nykyinen sään visuaalinen ilmaisin, kuten pilvi-, aurinko- tai sadekuvake.</value>
+  </data>
+  <data name="Weather" xml:space="preserve">
+    <value>Sää</value>
   </data>
   <data name="WeatherUnavailable" xml:space="preserve">
     <value>Sääpalvelu ei ole tällä hetkellä käytettävissä.</value>
