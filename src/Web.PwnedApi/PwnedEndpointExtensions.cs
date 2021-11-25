@@ -5,17 +5,20 @@ namespace Learning.Blazor.PwnedApi;
 
 static class PwnedEndpointExtensions
 {
-    internal static WebApplicationBuilder AddPwnedEndpoints(this WebApplicationBuilder builder)
+    internal static WebApplicationBuilder AddPwnedEndpoints(
+        this WebApplicationBuilder builder)
     {
         ArgumentNullException.ThrowIfNull(builder);
 
-        builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+        builder.Services.AddAuthentication(
+            JwtBearerDefaults.AuthenticationScheme)
             .AddMicrosoftIdentityWebApi(
                 builder.Configuration.GetSection("AzureAdB2C"));
 
         builder.Services.Configure<JwtBearerOptions>(
             JwtBearerDefaults.AuthenticationScheme,
-            options => options.TokenValidationParameters.NameClaimType = "name");
+            options =>
+                options.TokenValidationParameters.NameClaimType = "name");
 
         builder.Services.AddPwnedServices(
             builder.Configuration.GetSection(nameof(HibpOptions)),
