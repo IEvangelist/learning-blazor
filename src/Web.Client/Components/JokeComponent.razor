@@ -3,30 +3,39 @@
 
 @inject HttpClient Http
 @inject ILogger<JokeComponent> Logger
+@inject IStringLocalizer<JokeComponent> Localizer
 
-<AdditiveSpeechComponent Message=@_jokeText />
-
-<div class="content">
-    @if (_isLoadingJoke)
-    {
-        <div class="fa-3x">
-            <i class="fas fa-sync fa-spin"></i>
+<article class="blazor-tile-container">
+    <div class="gradient-bg jokes-gradient"></div>
+    <div class="icon-overlay circle-svg"></div>
+    <div class="blaze-content">
+        <p class="title">
+            <span>🤓</span> <span class="has-text-light">@Localizer["Jokes"]</span>
+        </p>
+        <AdditiveSpeechComponent Message=@_jokeText />
+        <div class="content">
+            @if (_isLoadingJoke)
+            {
+                <div class="fa-3x">
+                    <i class="fas fa-sync fa-spin"></i>
+                </div>
+            }
+            else if (_jokeText is not null)
+            {
+                <blockquote class="has-text-black">
+                    <span class="pb-4">@_jokeText</span>
+                    <br>
+                    <cite>
+                        &mdash;
+                        <a href="@(_sourceDetails.Site.ToString())" target="_blank">
+                            @(_sourceDetails.Source.ToString())
+                        </a>
+                    </cite>
+                </blockquote>
+            }
         </div>
-    }
-    else if (_jokeText is not null)
-    {
-        <blockquote class="has-text-black">
-            <span class="pb-4">@_jokeText</span>
-            <br>
-            <cite>
-                &mdash;
-                <a href="@(_sourceDetails.Site.ToString())" target="_blank">
-                    @(_sourceDetails.Source.ToString())
-                </a>
-            </cite>
-        </blockquote>
-    }
-</div>
+    </div>
+</article>
 
 @code {
     private string? _jokeText = null;

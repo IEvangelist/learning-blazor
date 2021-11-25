@@ -3,8 +3,16 @@
 
 @inherits LocalizableComponentBase<IntroductionComponent>
 
-<AdditiveSpeechComponent Message=@_intro?.Value />
-
-<p class="has-text-black is-family-monospace welcome-text is-size-5">
-    @_intro
-</p>
+<article class="blazor-tile-container">
+    <div class="gradient-bg welcome-gradient"></div>
+    <div class="icon-overlay heart-svg"></div>
+    <div class="blaze-content">
+        <p class="title is-family-monospace">
+            <span class="wave">🖐🏽</span> <span class="has-text-light">@localize["Hi"]</span>
+        </p>
+        <AdditiveSpeechComponent Message=@_intro?.Value />
+        <p class="has-text-black is-family-monospace welcome-text is-size-5">
+            @_intro
+        </p>
+    </div>
+</article>

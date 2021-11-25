@@ -120,13 +120,4 @@
   <data name="Chat" xml:space="preserve">
     <value>Chat</value>
   </data>
-  <data name="Hi" xml:space="preserve">
-    <value>Hi, I'm David</value>
-  </data>
-  <data name="Jokes" xml:space="preserve">
-    <value>Jokes</value>
-  </data>
-  <data name="Weather" xml:space="preserve">
-    <value>Weather</value>
-  </data>
 </root>

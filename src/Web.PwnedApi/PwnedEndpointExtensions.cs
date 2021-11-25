@@ -10,6 +10,16 @@ static class PwnedEndpointExtensions
     {
         ArgumentNullException.ThrowIfNull(builder);
 
+        var webClientOrigin = builder.Configuration["WebClientOrigin"];
+        builder.Services.AddCors(
+            options =>
+                options.AddDefaultPolicy(
+                    policy =>
+                        policy.WithOrigins(webClientOrigin, "https://localhost:5001")
+                            .AllowAnyHeader()
+                            .AllowAnyMethod()
+                            .AllowCredentials()));
+
         builder.Services.AddAuthentication(
             JwtBearerDefaults.AuthenticationScheme)
             .AddMicrosoftIdentityWebApi(
@@ -56,6 +66,7 @@ static class PwnedEndpointExtensions
         }
 
         app.UseHttpsRedirection();
+        app.UseCors();
         app.UseAuthentication();
         app.UseAuthorization();
 
@@ -82,7 +93,7 @@ static class PwnedEndpointExtensions
         return app;
     }
 
-    [Authorize, RequiredScope("User.ApiAccess")]
+    [Authorize, RequiredScope("User.ApiAccess"), EnableCors]
     internal static async Task<IResult> GetBreachHeadersForAccountAsync(
         [FromRoute] string email,
         PwnedServices pwnedServices)
@@ -91,7 +102,7 @@ static class PwnedEndpointExtensions
         return Results.Json(breaches, DefaultJsonSerialization.Options);
     }
 
-    [Authorize, RequiredScope("User.ApiAccess")]
+    [Authorize, RequiredScope("User.ApiAccess"), EnableCors]
     internal static async Task<IResult> GetBreachAsync(
         [FromRoute] string name,
         PwnedServices pwnedServices)
@@ -100,7 +111,7 @@ static class PwnedEndpointExtensions
         return Results.Json(breach, DefaultJsonSerialization.Options);
     }
 
-    [Authorize, RequiredScope("User.ApiAccess")]
+    [Authorize, RequiredScope("User.ApiAccess"), EnableCors]
     internal static async Task<IResult> GetPwnedPasswordAsync(
         [FromRoute] string password,
         IPwnedPasswordsClient pwnedPasswordsClient)
