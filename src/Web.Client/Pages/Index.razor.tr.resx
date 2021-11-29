@@ -61,13 +61,4 @@
   <data name="Chat" xml:space="preserve">
     <value>Sohbet</value>
   </data>
-  <data name="Hi" xml:space="preserve">
-    <value>Merhaba, ben David.</value>
-  </data>
-  <data name="Jokes" xml:space="preserve">
-    <value>Şakalar</value>
-  </data>
-  <data name="Weather" xml:space="preserve">
-    <value>Hava</value>
-  </data>
 </root>

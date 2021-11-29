@@ -61,6 +61,9 @@
   <data name="CurrentWeatherVisual" xml:space="preserve">
     <value>Die huidige weervisuele aanwyser, soos 'n wolk-, son- of reënikoon.</value>
   </data>
+  <data name="Weather" xml:space="preserve">
+    <value>Weer</value>
+  </data>
   <data name="WeatherUnavailable" xml:space="preserve">
     <value>Die weerdiens is tans nie beskikbaar nie.</value>
   </data>

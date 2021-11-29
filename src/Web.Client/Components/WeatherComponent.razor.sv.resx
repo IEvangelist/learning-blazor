@@ -59,7 +59,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CurrentWeatherVisual" xml:space="preserve">
-    <value>Den aktuella visuella väderindikatorn, till exempel ett moln, sol eller regnikon.</value>
+    <value>Den aktuella visuella väderindikatorn, till exempel en moln-, sol- eller regnikon.</value>
+  </data>
+  <data name="Weather" xml:space="preserve">
+    <value>Väder</value>
   </data>
   <data name="WeatherUnavailable" xml:space="preserve">
     <value>Vädertjänsten är för närvarande inte tillgänglig.</value>

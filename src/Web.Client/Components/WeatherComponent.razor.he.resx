@@ -61,6 +61,9 @@
   <data name="CurrentWeatherVisual" xml:space="preserve">
     <value>המחוון החזותי הנוכחי של מזג האוויר, כגון סמל ענן, שמש או גשם.</value>
   </data>
+  <data name="Weather" xml:space="preserve">
+    <value>מזג אוויר</value>
+  </data>
   <data name="WeatherUnavailable" xml:space="preserve">
     <value>שירות מזג האוויר אינו זמין כעת.</value>
   </data>

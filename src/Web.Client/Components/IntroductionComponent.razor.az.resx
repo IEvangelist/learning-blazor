@@ -58,6 +58,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Hi" xml:space="preserve">
+    <value>Salam, mən Davidəm.</value>
+  </data>
   <data name="ThankYou" xml:space="preserve">
     <value>Sizi "Öyrənmə Blazor: WebAssembly və C#" kitabımla tək səhifəli apps inşa edin" turuna dəvət etmək mənim üçün böyük şərəfdir, təvəllüddür və məni çox sevindirir.</value>
   </data>

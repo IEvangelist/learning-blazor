@@ -61,13 +61,4 @@
   <data name="Chat" xml:space="preserve">
     <value>Babbelen</value>
   </data>
-  <data name="Hi" xml:space="preserve">
-    <value>Hallo, ik ben David.</value>
-  </data>
-  <data name="Jokes" xml:space="preserve">
-    <value>Grappen</value>
-  </data>
-  <data name="Weather" xml:space="preserve">
-    <value>Weer</value>
-  </data>
 </root>

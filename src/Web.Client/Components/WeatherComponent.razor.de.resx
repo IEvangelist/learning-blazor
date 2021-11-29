@@ -59,9 +59,12 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CurrentWeatherVisual" xml:space="preserve">
-    <value>Die visuelle Anzeige für das aktuelle Wetter, z. B. ein Wolken-, Sonnen- oder Regensymbol.</value>
+    <value>Die visuelle Anzeige des aktuellen Wetters, z. B. ein Wolken-, Sonnen- oder Regensymbol.</value>
+  </data>
+  <data name="Weather" xml:space="preserve">
+    <value>Wetter</value>
   </data>
   <data name="WeatherUnavailable" xml:space="preserve">
-    <value>Der Wetterdienst ist derzeit nicht verfügbar.</value>
+    <value>Der Wetterdienst ist derzeit nicht erreichbar.</value>
   </data>
 </root>

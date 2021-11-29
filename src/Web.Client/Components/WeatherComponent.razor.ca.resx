@@ -59,9 +59,12 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CurrentWeatherVisual" xml:space="preserve">
-    <value>L'indicador visual meteorològic actual, com ara una icona de núvol, sol o pluja.</value>
+    <value>L'indicador visual meteorològic actual, com ara un núvol, un sol o una icona de pluja.</value>
+  </data>
+  <data name="Weather" xml:space="preserve">
+    <value>Temps</value>
   </data>
   <data name="WeatherUnavailable" xml:space="preserve">
-    <value>Actualment el servei meteorològic no està disponible.</value>
+    <value>El servei meteorològic no està disponible actualment.</value>
   </data>
 </root>

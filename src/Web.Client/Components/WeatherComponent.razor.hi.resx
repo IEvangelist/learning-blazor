@@ -61,6 +61,9 @@
   <data name="CurrentWeatherVisual" xml:space="preserve">
     <value>वर्तमान मौसम दृश्य संकेतक, जैसे बादल, सूर्य, या बारिश आइकन।</value>
   </data>
+  <data name="Weather" xml:space="preserve">
+    <value>मौसम</value>
+  </data>
   <data name="WeatherUnavailable" xml:space="preserve">
     <value>मौसम सेवा वर्तमान में अनुपलब्ध है ।</value>
   </data>

@@ -58,6 +58,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Hi" xml:space="preserve">
+    <value>안녕하세요, 저는 데이비드예요.</value>
+  </data>
   <data name="ThankYou" xml:space="preserve">
     <value>저는 "블라저 학습: 웹조립 및 C#"책을 사용하여 단일 페이지 앱을 빌드하는 투어에 여러분을 초대할 수 있어서 영광스럽고 겸손하며 기쁩니다.</value>
   </data>

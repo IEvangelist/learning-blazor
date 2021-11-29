@@ -61,6 +61,9 @@
   <data name="CurrentWeatherVisual" xml:space="preserve">
     <value>Indicateur visuel météorologique actuel, tel qu’une icône de nuage, de soleil ou de pluie.</value>
   </data>
+  <data name="Weather" xml:space="preserve">
+    <value>Temps</value>
+  </data>
   <data name="WeatherUnavailable" xml:space="preserve">
     <value>Le service météorologique est actuellement indisponible.</value>
   </data>

@@ -61,13 +61,4 @@
   <data name="Chat" xml:space="preserve">
     <value>Чат</value>
   </data>
-  <data name="Hi" xml:space="preserve">
-    <value>Здравейте, аз съм Дейвид.</value>
-  </data>
-  <data name="Jokes" xml:space="preserve">
-    <value>Вицове</value>
-  </data>
-  <data name="Weather" xml:space="preserve">
-    <value>Време</value>
-  </data>
 </root>

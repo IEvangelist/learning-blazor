@@ -61,13 +61,4 @@
   <data name="Chat" xml:space="preserve">
     <value>Čavrljanje</value>
   </data>
-  <data name="Hi" xml:space="preserve">
-    <value>Bok, ja sam David.</value>
-  </data>
-  <data name="Jokes" xml:space="preserve">
-    <value>Viceva</value>
-  </data>
-  <data name="Weather" xml:space="preserve">
-    <value>Vrijeme</value>
-  </data>
 </root>

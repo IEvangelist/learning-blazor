@@ -61,13 +61,4 @@
   <data name="Chat" xml:space="preserve">
     <value>잡담</value>
   </data>
-  <data name="Hi" xml:space="preserve">
-    <value>안녕하세요, 저는 데이비드예요.</value>
-  </data>
-  <data name="Jokes" xml:space="preserve">
-    <value>농담</value>
-  </data>
-  <data name="Weather" xml:space="preserve">
-    <value>날씨</value>
-  </data>
 </root>
