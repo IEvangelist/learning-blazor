@@ -38,7 +38,7 @@
             <div class="field">
                 <p class="control has-icons-left">
                     <span class="select is-medium">
-                        <select id="voices" @bind=_voice>
+                        <select id="voices" class="has-dotnet-scrollbar" @bind=_voice>
                         <option selected>@localize["Auto"]</option>
                         @if (_voices is { Count: > 0 })
                         {

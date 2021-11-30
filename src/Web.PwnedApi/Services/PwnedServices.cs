@@ -24,7 +24,7 @@ public class PwnedServices
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex.Message);
+            _logger.LogError(ex.Message, ex);
             return default;
         }
     }
@@ -40,7 +40,7 @@ public class PwnedServices
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex.Message);
+            _logger.LogError(ex.Message, ex);
             return default;
         }
     }

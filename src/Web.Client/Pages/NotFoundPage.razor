@@ -10,7 +10,19 @@
 <div class="container is-fluid">
     <h1 class="is-size-2 has-text-danger-dark has-background-warning box">@localize["NotFound"]</h1>
     <span class="shrugging is-size-7-rem" title="#IncludeEveryone"></span>
-    <p class="lead is-size-3 pb-4">@localize["NotSureWhatYouAreLookingFor"]</p>
+    <p class="lead is-size-3 pb-4">
+        <span>
+            @localize["NotSureWhatYouAreLookingFor"]
+        </span>
+        <span>
+            @if (_attemptedRoute is not null)
+            {
+                <code>
+                    @_attemptedRoute.ToString();
+                </code>
+            }
+        </span>
+    </p>
     <button class="button is-rounded is-primary is-large" @onclick="GoHome">
         <span class="icon">
             <i class="fas fa-home" aria-hidden="true"></i>
@@ -22,5 +34,20 @@
 </div>
 
 @code {
+    private string? _attemptedRoute;
+    private Func<RouteData?, string?> _representRouteDataFactory = (RouteData? routeData) =>
+    {
+        if (routeData is { RouteValues: { Count: > 0 } })
+        {
+            return "";
+        }
+
+        return default!;
+    };
+
+    [Parameter]
+    public RouteData RouteData { get; set; } = null!;
+
     void GoHome() => Navigation.NavigateTo("/");
+    protected void override OnParametersSet() => _attemptedRoute = _representRouteDataFactory(RouteData);
 }

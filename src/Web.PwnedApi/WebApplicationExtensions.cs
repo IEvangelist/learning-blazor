@@ -3,50 +3,8 @@
 
 namespace Learning.Blazor.PwnedApi;
 
-static class PwnedEndpointExtensions
+static class WebApplicationExtensions
 {
-    internal static WebApplicationBuilder AddPwnedEndpoints(
-        this WebApplicationBuilder builder)
-    {
-        ArgumentNullException.ThrowIfNull(builder);
-
-        var webClientOrigin = builder.Configuration["WebClientOrigin"];
-        builder.Services.AddCors(
-            options =>
-                options.AddDefaultPolicy(
-                    policy =>
-                        policy.WithOrigins(webClientOrigin, "https://localhost:5001")
-                            .AllowAnyHeader()
-                            .AllowAnyMethod()
-                            .AllowCredentials()));
-
-        builder.Services.AddAuthentication(
-            JwtBearerDefaults.AuthenticationScheme)
-            .AddMicrosoftIdentityWebApi(
-                builder.Configuration.GetSection("AzureAdB2C"));
-
-        builder.Services.Configure<JwtBearerOptions>(
-            JwtBearerDefaults.AuthenticationScheme,
-            options =>
-                options.TokenValidationParameters.NameClaimType = "name");
-
-        builder.Services.AddPwnedServices(
-            builder.Configuration.GetSection(nameof(HibpOptions)),
-            HttpClientBuilderRetryPolicyExtensions.GetDefaultRetryPolicy);
-
-        builder.Services.AddSingleton<PwnedServices>();
-
-        builder.Services.AddEndpointsApiExplorer();
-        builder.Services.AddSwaggerGen(options =>
-            options.SwaggerDoc("v1", new()
-            {
-                Title = "Learning.Blazor.PwnedApi",
-                Version = "v1"
-            }));
-
-        return builder;
-    }
-
     /// <summary>
     /// Maps "pwned breach data" endpoints and "pwned passwords" endpoints, with Minimal APIs.
     /// </summary>
@@ -56,14 +14,6 @@ static class PwnedEndpointExtensions
     internal static WebApplication MapPwnedEndpoints(this WebApplication app)
     {
         ArgumentNullException.ThrowIfNull(app);
-
-        if (app.Environment.IsDevelopment())
-        {
-            app.UseSwagger();
-            app.UseSwaggerUI(options =>
-                options.SwaggerEndpoint(
-                    "/swagger/v1/swagger.json", "Learning.Blazor.PwnedApi v1"));
-        }
 
         app.UseHttpsRedirection();
         app.UseCors();
