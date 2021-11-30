@@ -49,5 +49,5 @@
     public RouteData RouteData { get; set; } = null!;
 
     void GoHome() => Navigation.NavigateTo("/");
-    protected void override OnParametersSet() => _attemptedRoute = _representRouteDataFactory(RouteData);
+    protected override void OnParametersSet() => _attemptedRoute = _representRouteDataFactory(RouteData);
 }
