@@ -61,7 +61,7 @@ namespace Learning.Blazor.Components
 
                             _ = _notifications.Add(new()
                             {
-                                Text = localize["EmailFoundInBreachFormat", email, breaches.Length, link],
+                                Text = Localizer["EmailFoundInBreachFormat", email, breaches.Length, link],
                                 NotificationType = NotificationType.Alert
                             });
                         }
@@ -69,7 +69,7 @@ namespace Learning.Blazor.Components
                 }
                 else
                 {
-                    var text = localize["UserLoggedInFormat", actor.UserName];
+                    var text = Localizer["UserLoggedInFormat", actor.UserName];
                     _ = _notifications.Add(new()
                     {
                         Text = text,
@@ -86,7 +86,7 @@ namespace Learning.Blazor.Components
             InvokeAsync(() =>
             {
                 Actor actor = notification;
-                var text = localize["UserLoggedOutFormat", actor.UserName];
+                var text = Localizer["UserLoggedOutFormat", actor.UserName];
 
                 _ = _notifications.Add(new()
                 {

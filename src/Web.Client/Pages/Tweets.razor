@@ -6,8 +6,10 @@
 @inherits LocalizableComponentBase<Tweets>
 
 <PageTitle>
-	@localize["Tweets"]
+	@Localizer["Tweets"]
 </PageTitle>
+
+<!-- TODO: Update markup to follow Breaches.razor, for input, panel, and results content -->
 
 <div class="columns">
     <div class="column is-half is-offset-one-quarter">
@@ -16,14 +18,14 @@
                 <span class="icon pr-2">
                     <i class=@_streamingFontAwesomeClass></i>
                 </span>
-                <span>@localize["TwitterFeed"]</span>
+                <span>@Localizer["TwitterFeed"]</span>
             </p>
             <div class="panel-block">
                 <p class="control has-icons-left">
                     <input class="input is-info" type="text"
                         @bind=_filter @bind:event="oninput"
                         disabled=@(_tweets is null or { Count: 0 })
-                        placeholder="@localize["FilterTweets"]">
+                        placeholder="@Localizer["FilterTweets"]">
                     <span class="icon is-left">
                         <i class="fas fa-search" aria-hidden="true"></i>
                     </span>

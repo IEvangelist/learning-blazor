@@ -49,6 +49,8 @@ internal sealed class DefaultTwitterService : ITwitterService
             // The script is loaded only once, registered in our twitter-componenet.js
             // No need to have each individual tweet have the script embedded within it.
             _filteredStream.AddCustomQueryParameter("omit_script", "true");
+            _filteredStream.AddCustomQueryParameter("link_color", "#512bd4");
+            _filteredStream.AddCustomQueryParameter("align", "center");
 
             _filteredStream.DisconnectMessageReceived += OnDisconnectedMessageReceived;
             _filteredStream.MatchingTweetReceived += OnMatchingTweetReceived;

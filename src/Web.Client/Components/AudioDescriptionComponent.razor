@@ -5,7 +5,7 @@
 
 <span class="navbar-item">
     <button class="button is-info is-rounded level-item"
-        title=@localize["Audio"] @onclick=Show>
+        title=@Localizer["Audio"] @onclick=Show>
         <span class="icon">
             <i class="fas fa-audio-description"></i>
         </span>
@@ -17,7 +17,7 @@
         <span class="icon pr-2">
             <i class="fas fa-cogs"></i>
         </span>
-        <span>@localize["Settings"]</span>
+        <span>@Localizer["Settings"]</span>
     </TitleContent>
 
     <BodyContent>
@@ -39,7 +39,7 @@
                 <p class="control has-icons-left">
                     <span class="select is-medium">
                         <select id="voices" class="has-dotnet-scrollbar" @bind=_voice>
-                        <option selected>@localize["Auto"]</option>
+                        <option selected>@Localizer["Auto"]</option>
                         @if (_voices is { Count: > 0 })
                         {
                             @foreach (var voice in _voices)
@@ -65,7 +65,7 @@
             <span class="icon">
                 <i class="fas fa-check"></i>
             </span>
-            <span>@localize["Okay"]</span>
+            <span>@Localizer["Okay"]</span>
         </button>
     </ButtonContent>
 </ModalComponent>

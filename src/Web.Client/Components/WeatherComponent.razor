@@ -8,7 +8,7 @@
     <div class="icon-overlay zap-svg"></div>
     <div class="blaze-content">
         <p class="title" translate="no">
-            <span>🔥</span> <span class="has-text-light"> Blazor-@localize["Weather"]</span>
+            <span>🔥</span> <span class="has-text-light"> Blazor-@Localizer["Weather"]</span>
         </p>
         <AdditiveSpeechComponent Message=@_model?.Message />
         <div class="columns has-text-centered">
@@ -22,7 +22,7 @@
                                 <figure class="image is-128x128">
                                     <img src=@(weather.ImagePath)
                                         class="has-img-shadow"
-                                        alt="@localize["CurrentWeatherVisual"]">
+                                        alt="@Localizer["CurrentWeatherVisual"]">
                                 </figure>
                             </div>
                             <div class="media-content">
@@ -33,7 +33,7 @@
                                             <i class="fas fa-arrow-up"></i> @(weather.HighTemp) | <i class="fas fa-arrow-down"></i> @(weather.LowTemp)
                                         </span>
                                         <span class="heading">@weather.Description</span>
-                                        <span class="heading"><i class="fas fa-wind"></i> @weather.WindSpeed <sup>@(localize[weather.WindDegree.ToVerbosePositionalCardinal()])</sup></span>
+                                        <span class="heading"><i class="fas fa-wind"></i> @weather.WindSpeed <sup>@(Localizer[weather.WindDegree.ToVerbosePositionalCardinal()])</sup></span>
                                     </div>
                                 </div>
                             </div>
@@ -85,7 +85,7 @@
             else
             {
                 <div class="column is-full">
-                    @localize["WeatherUnavailable"]
+                    @Localizer["WeatherUnavailable"]
                 </div>
             }
         </div>

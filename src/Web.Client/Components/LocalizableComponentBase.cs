@@ -60,9 +60,9 @@ namespace Learning.Blazor.Components
         /// <remarks>
         /// Intentionally an all lowercase character variable name, without the expected "_" prefix.
         /// This is intended to be used from within HTML templates only.
-        /// Example: <c>&lt;h1&gt;@localize["Important Title"]&lt;/h1&gt;</c>
+        /// Example: <c>&lt;h1&gt;@Localizer["Important Title"]&lt;/h1&gt;</c>
         /// </remarks>
-        internal CoalescingStringLocalizer<T> localize => CoalescingStringLocalizer;
+        internal CoalescingStringLocalizer<T> Localizer => CoalescingStringLocalizer;
 
         public virtual void Dispose()
         {

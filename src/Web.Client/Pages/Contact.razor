@@ -1,11 +1,69 @@
 ﻿@page "/contact"
-
-@using Learning.Blazor.Components
-@using Microsoft.AspNetCore.Authorization
-
 @attribute [AllowAnonymous]
 @inherits LocalizableComponentBase<Contact>
 
 <PageTitle>
-	@localize["Tweets"]
+    @Localizer["Contact"]
 </PageTitle>
+
+<h1>
+    @Localizer["Contact"]
+</h1>
+
+<div class="field">
+    <label class="label">Name</label>
+    <div class="control">
+        <input class="input" type="text" placeholder="Name input">
+    </div>
+</div>
+
+<div class="field">
+    <label class="label">Email</label>
+    <div class="control has-icons-left has-icons-right">
+        <input class="input is-danger" type="email" placeholder="Email input">
+        <span class="icon is-small is-left">
+            <i class="fas fa-envelope"></i>
+        </span>
+        <span class="icon is-small is-right">
+            <i class="fas fa-exclamation-triangle"></i>
+        </span>
+    </div>
+    <p class="help is-danger">This email is invalid</p>
+</div>
+
+<div class="field">
+    <label class="label">Subject</label>
+    <div class="control">
+        <div class="select">
+            <select>
+                <option>Select dropdown</option>
+                <option>With options</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div class="field">
+    <label class="label">Message</label>
+    <div class="control">
+        <textarea class="textarea" placeholder="Textarea"></textarea>
+    </div>
+</div>
+
+<div class="field">
+    <div class="control">
+        <label class="checkbox">
+            <input type="checkbox">
+            I agree to the <a href="/termsandconditions">terms and conditions</a>
+        </label>
+    </div>
+</div>
+
+<div class="field is-grouped">
+    <div class="control">
+        <button class="button is-primary">Submit</button>
+    </div>
+    <div class="control">
+        <button class="button is-danger">Cancel</button>
+    </div>
+</div>

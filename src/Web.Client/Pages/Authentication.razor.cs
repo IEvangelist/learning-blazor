@@ -12,16 +12,16 @@ namespace Learning.Blazor.Pages
         [Parameter] public string? Action { get; set; } = null!;
 
         private void LocalizedLogOutFragment(RenderTreeBuilder builder) =>
-            ParagraphElementWithLocalizedContent(builder, localize, "ProcessingLogout");
+            ParagraphElementWithLocalizedContent(builder, Localizer, "ProcessingLogout");
 
         private void LocalizedLoggedOutFragment(RenderTreeBuilder builder) =>
-            ParagraphElementWithLocalizedContent(builder, localize, "YouAreLoggedOut");
+            ParagraphElementWithLocalizedContent(builder, Localizer, "YouAreLoggedOut");
 
         private RenderFragment LocalizedLogInFailedFragment(string errorMessage) =>
-            ParagraphElementWithLocalizedErrorContent(errorMessage, localize, "ErrorLoggingInFormat");
+            ParagraphElementWithLocalizedErrorContent(errorMessage, Localizer, "ErrorLoggingInFormat");
 
         private RenderFragment LocalizedLogOutFailedFragment(string errorMessage) =>
-            ParagraphElementWithLocalizedErrorContent(errorMessage, localize, "ErrorLoggingOutFormat");
+            ParagraphElementWithLocalizedErrorContent(errorMessage, Localizer, "ErrorLoggingOutFormat");
 
         private static void ParagraphElementWithLocalizedContent(
             RenderTreeBuilder builder,

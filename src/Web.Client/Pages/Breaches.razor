@@ -6,7 +6,7 @@
 @inherits LocalizableComponentBase<Breaches>
 
 <PageTitle>
-	@localize["Breaches"]
+	@Localizer["Breaches"]
 </PageTitle>
 
 <div class="columns">
@@ -29,7 +29,7 @@
                 <p class="is-fullwidth control has-icons-left @(loadingClass)">
                     <InputText id="email" @bind-Value=_model.EmailAddress
                                @ref=_emailInput class="input is-large" autocomplete="hidden"
-                               DisplayName=@localize["EmailAddress"] placeholder=@localize["EmailAddress"] />
+                               DisplayName=@Localizer["EmailAddress"] placeholder=@Localizer["EmailAddress"] />
                     <span class="icon is-small is-left">
                         <i class="fas fa-envelope"></i>
                     </span>
@@ -51,7 +51,7 @@
         <article class="panel is-info is-short-panel has-dotnet-scrollbar">
             <p class="panel-heading has-text-left">
                 <span>
-                    @localize["Breaches"]
+                    @Localizer["Breaches"]
                 </span>
                 <span class="is-pulled-right">
                     @if (_breaches is { Length: > 0 })
@@ -80,7 +80,7 @@
                     <input class="input is-medium" type="text"
                            @bind=_filter @bind:event="oninput"
                            disabled=@(_breaches is null or { Length: 0 })
-                           placeholder=@localize["Filter"]>
+                           placeholder=@Localizer["Filter"]>
                     <span class="icon is-left">
                         <i class="fas fa-filter" aria-hidden="true"></i>
                     </span>
@@ -105,7 +105,7 @@
                     <span class="panel-icon">
                         <i class="fas fa-check" aria-hidden="true"></i>
                     </span>
-                    @localize["NoBreachesFormat", _model.EmailAddress!];
+                    @Localizer["NoBreachesFormat", _model.EmailAddress!];
                 </a>
             }
         </article>
@@ -117,7 +117,7 @@
         <span class="icon pr-2">
             <i class="fas fa-info-circle"></i>
         </span>
-        <span>@localize["Details"]</span>
+        <span>@Localizer["Details"]</span>
     </TitleContent>
 
     <BodyContent>
@@ -171,7 +171,7 @@
             <span class="icon">
                 <i class="fas fa-check"></i>
             </span>
-            <span>@localize["Okay"]</span>
+            <span>@Localizer["Okay"]</span>
         </button>
     </ButtonContent>
 </ModalComponent>

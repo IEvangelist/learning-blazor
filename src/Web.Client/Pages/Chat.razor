@@ -6,7 +6,7 @@
 @inherits LocalizableComponentBase<Chat>
 
 <PageTitle>
-	@localize["Chat"]
+	@Localizer["Chat"]
 </PageTitle>
 
 <AuthorizeView>
@@ -22,7 +22,7 @@
         <div class="field has-addons">
             <div class="control is-fullwidth has-icons-left">
                 <input class="input is-large" spellcheck="true"
-				type="text" placeholder=@localize["ChatMessage"]
+				type="text" placeholder=@Localizer["ChatMessage"]
 				@ref="_messageInput"
 				@bind-value="@_message" @oninput="@InitiateDebounceUserIsTyping"
 				@onkeyup="@(args => OnKeyUp(args))" autocomplete="off">
@@ -32,7 +32,7 @@
             </div>
             <div class="control">
                 <a class="button is-info is-large" @onclick="@SendMessage">
-                @localize["Send"]
+                @Localizer["Send"]
                 </a>
             </div>
         </div>
@@ -40,16 +40,16 @@
         <article class="panel is-info has-dotnet-scrollbar">
             <p class="panel-heading has-text-left">
                 <span>
-                    @localize["Messages"]
+                    @Localizer["Messages"]
                 </span>
                 <span class="is-pulled-right">
                 @{
                     string UsersTypingText(string[]? usersTyping) => usersTyping?.Length switch
                     {
                         0 => "&nbsp;",
-                        1 => $"💬 {localize["UserIsTypingFormat", usersTyping[0]]}",
-                        2 => $"💬 {localize["TwoUsersAreTypingFormat", usersTyping[0], usersTyping[1]]}",
-                        _ => $"💬 {localize["MultiplePeopleAreTyping"]}"
+                        1 => $"💬 {Localizer["UserIsTypingFormat", usersTyping[0]]}",
+                        2 => $"💬 {Localizer["TwoUsersAreTypingFormat", usersTyping[0], usersTyping[1]]}",
+                        _ => $"💬 {Localizer["MultiplePeopleAreTyping"]}"
                     };
 
                     var usersTyping = _usersTyping?.Select(a => a.UserName)?.ToArray();

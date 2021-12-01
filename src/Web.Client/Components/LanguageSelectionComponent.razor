@@ -7,7 +7,7 @@
 	<ChildContent>
 	<span class="navbar-item">
 		<button class="button level-item is-rounded is-warning"
-			title=@localize["Language"] @onclick=Show>
+			title=@Localizer["Language"] @onclick=Show>
 			<span class="icon">
 				<i class="fas fa-language"></i>
 			</span>
@@ -17,7 +17,7 @@
 	<ErrorContent>
 	<span class="navbar-item">
 		<button class="button level-item is-rounded is-warning"
-			disabled title=@localize["Language"]>
+			disabled title=@Localizer["Language"]>
 			<span class="icon">
 				<i class="fas fa-language"></i>
 			</span>
@@ -31,7 +31,7 @@
         <span class="icon pr-2">
             <i class="fas fa-cogs"></i>
         </span>
-        <span>@localize["Language"]</span>
+        <span>@Localizer["Language"]</span>
     </TitleContent>
 
     <BodyContent>
@@ -71,14 +71,14 @@
                 <span class="icon">
                     <i class="fas fa-check"></i>
                 </span>
-                <span>@localize["Okay"]</span>
+                <span>@Localizer["Okay"]</span>
             </button>
             <button class="button is-danger"
                 @onclick=@(() => _modal.Cancel())>
                 <span class="icon">
                     <i class="fas fa-times"></i>
                 </span>
-                <span>@localize["Cancel"]</span>
+                <span>@Localizer["Cancel"]</span>
             </button>
         </div>
     </ButtonContent>

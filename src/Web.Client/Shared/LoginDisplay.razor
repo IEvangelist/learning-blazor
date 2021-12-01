@@ -8,7 +8,7 @@
     <AuthorizeView>
         <Authorizing>
             <button class="button is-rounded is-loading level-item" disabled>
-                @localize["LoggingIn"]
+                @Localizer["LoggingIn"]
             </button>
         </Authorizing>
         <Authorized>
@@ -22,7 +22,7 @@
                 <span class="icon">
                     <i class="fas fa-sign-out-alt"></i>
                 </span>
-                <span>@localize["LogOut"]</span>
+                <span>@Localizer["LogOut"]</span>
             </button>
         </Authorized>
         <NotAuthorized>
@@ -30,7 +30,7 @@
                 <span class="icon">
                     <i class="fas fa-sign-in-alt"></i>
                 </span>
-                <span>@localize["LogIn"]</span>
+                <span>@Localizer["LogIn"]</span>
             </button>
         </NotAuthorized>
     </AuthorizeView>
