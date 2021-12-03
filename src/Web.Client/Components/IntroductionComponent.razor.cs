@@ -7,6 +7,6 @@ namespace Learning.Blazor.Components
 {
     public partial class IntroductionComponent
     {
-        private LocalizedString? _intro => Localizer["ThankYou"];
+        private LocalizedString _intro => Localizer["ThankYou"];
     }
 }

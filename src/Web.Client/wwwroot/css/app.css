@@ -140,6 +140,10 @@ html {
     border: solid 1px var(--dotnet-purple-gradient-9);
 }
 
+.is-emoji {
+    font-weight: normal !important;
+}
+
 @media (prefers-color-scheme: dark) {
     .modal-card-body {
         background-color: #242424;
