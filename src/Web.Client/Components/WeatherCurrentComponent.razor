@@ -1,0 +1,33 @@
+﻿@using Learning.Blazor.Localization;
+
+<div class="box dotnet-box-border is-alpha-bg-50">
+    <article class="media">
+        <div class="media-left">
+            <figure class="image is-128x128">
+                <img src=@(Weather.ImagePath)
+                    class="has-img-shadow"
+                    alt="@Localizer["CurrentWeatherVisual"]">
+            </figure>
+        </div>
+        <div class="media-content">
+            <div class="content has-text-right has-text-light">
+                <div>
+                    <span class="title has-text-light">@Weather.Temperature</span>
+                    <span class="heading">
+                        <i class="fas fa-arrow-up"></i> @(Weather.HighTemp) | <i class="fas fa-arrow-down"></i> @(Weather.LowTemp)
+                    </span>
+                    <span class="heading">@Weather.Description</span>
+                    <span class="heading"><i class="fas fa-wind"></i> @Weather.WindSpeed <sup>@(Localizer[Weather.WindDegree.ToVerbosePositionalCardinal()])</sup></span>
+                </div>
+            </div>
+        </div>
+    </article>
+    <div class="has-text-centered has-text-light">
+        @($"{Weather.City}, {Weather.State} ({Weather.Country})")
+    </div>
+</div>
+
+@code {
+    [Parameter] public WeatherComponentModel<WeatherComponent> Weather { get; set; } = null!;
+    [Parameter] public CoalescingStringLocalizer<WeatherComponent> Localizer { get; set; } = null!;
+}

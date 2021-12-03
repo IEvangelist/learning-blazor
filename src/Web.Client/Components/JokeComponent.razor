@@ -10,15 +10,14 @@
     <div class="icon-overlay circle-svg"></div>
     <div class="blaze-content">
         <p class="title">
-            <span class="is-emoji">🤓</span> <span class="has-text-light">@Localizer["Jokes"]</span>
+            <span class="is-emoji">🤓</span>
+            <span class="has-text-light">@Localizer["Jokes"]</span>
         </p>
         <AdditiveSpeechComponent Message=@_jokeText />
         <div class="content">
             @if (_isLoadingJoke)
             {
-                <div class="fa-3x">
-                    <i class="fas fa-sync fa-spin"></i>
-                </div>
+                <SpinnerComponent />
             }
             else if (_jokeText is not null)
             {
@@ -51,11 +50,9 @@
 
         try
         {
-            var response =
-                await Http.GetFromJsonAsync<JokeResponse>(
-                    "api/jokes/random", DefaultJsonSerialization.Options);
-
-            if (response is not null)
+            if (await Http.GetFromJsonAsync<JokeResponse>(
+                    "api/jokes/random", DefaultJsonSerialization.Options)
+                    is JokeResponse response)
             {
                 (_jokeText, _sourceDetails) = response;
             }

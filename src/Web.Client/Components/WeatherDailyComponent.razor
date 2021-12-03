@@ -1,0 +1,30 @@
+﻿<div class="level-item has-text-centered has-text-light">
+    <div>
+        <p class="heading is-size-6 is-underlined">
+            @Daily.DateTime.ToString("ddd")
+        </p>
+        <p class="title">
+            <figure class="image is-64x64">
+                <img src=@GetDailyImagePath?.Invoke(Daily)
+                    class="has-img-shadow"
+                    alt="@Daily.Weather[0].Description">
+            </figure>
+        </p>
+        <p class="heading">@Daily.Weather[0].Main</p>
+        <p class="heading has-text-weight-bold">
+            <i class="fas fa-arrow-up"></i>
+            @GetDailyHigh?.Invoke(Daily)
+        </p>
+        <p class="heading has-text-weight-bold">
+            <i class="fas fa-arrow-down"></i>
+            @GetDailyLow?.Invoke(Daily)
+        </p>
+    </div>
+</div>
+
+@code {
+    [Parameter] public DailyWeather Daily { get; set; } = null!;
+    [Parameter] public Func<DailyWeather, string>? GetDailyImagePath { get; set; }
+    [Parameter] public Func<DailyWeather, string>? GetDailyHigh { get; set; }
+    [Parameter] public Func<DailyWeather, string>? GetDailyLow { get; set; }
+}

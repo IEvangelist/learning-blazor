@@ -5,7 +5,7 @@ using Microsoft.Extensions.Localization;
 
 namespace Learning.Blazor.Localization
 {
-    internal class CoalescingStringLocalizer<T>
+    public class CoalescingStringLocalizer<T>
     {
         private readonly IStringLocalizer<T> _localizer = null!;
         private readonly IStringLocalizer<SharedResource> _sharedLocalizer = null!;

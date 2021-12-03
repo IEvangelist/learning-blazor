@@ -14,18 +14,13 @@
 @code {
 
     string? _message;
-    string _class => HasLightText ? "has-text-light" : "";
+    string _class => HasLightText ? "has-text-light" : "has-text-dark";
 
-    [Parameter]
-    public string? Message
+    [Parameter] public string? Message
     {
         get => _message ?? Localizer["Loading"];
         set => _message = value;
     }
-
-    [Parameter]
-    public bool HideLogo { get; set; }
-
-    [Parameter]
-    public bool HasLightText { get; set; }
+    [Parameter] public bool HideLogo { get; set; }
+    [Parameter] public bool HasLightText { get; set; }
 }

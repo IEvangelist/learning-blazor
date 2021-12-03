@@ -22,7 +22,7 @@ public class NotificationHub : Hub
             Notification<Actor>.FromAlert(new(_userName ?? "Unknown", _userEmail)));
 
     public override Task OnDisconnectedAsync(Exception? ex) =>
-        Clients.Others.SendAsync(
+        Clients.All.SendAsync(
             HubServerEventNames.UserLoggedOut,
             Notification<Actor>.FromAlert(new(_userName ?? "Unknown")));
 
