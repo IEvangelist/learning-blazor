@@ -61,6 +61,9 @@
   <data name="CurrentWeatherVisual" xml:space="preserve">
     <value>當前天氣可視指示器，如雲、太陽或雨圖示。</value>
   </data>
+  <data name="PermissionDenined" xml:space="preserve">
+    <value>只有在您授予對瀏覽器位置的訪問許可權后，天氣服務才可用。</value>
+  </data>
   <data name="Weather" xml:space="preserve">
     <value>天氣</value>
   </data>

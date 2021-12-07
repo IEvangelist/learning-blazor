@@ -61,6 +61,9 @@
   <data name="CurrentWeatherVisual" xml:space="preserve">
     <value>Bulud, günəş və ya yağış ikonası kimi hazırkı hava vizual göstəricisi.</value>
   </data>
+  <data name="PermissionDenined" xml:space="preserve">
+    <value>Hava xidməti yalnız brauzerlərinizin yerləşdiyi yerə giriş imkanı verəndən sonra mümkündür.</value>
+  </data>
   <data name="Weather" xml:space="preserve">
     <value>Hava</value>
   </data>

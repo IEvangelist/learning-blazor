@@ -61,6 +61,9 @@
   <data name="CurrentWeatherVisual" xml:space="preserve">
     <value>Aktuálny vizuálny indikátor počasia, ako je ikona oblaku, slnka alebo dažďa.</value>
   </data>
+  <data name="PermissionDenined" xml:space="preserve">
+    <value>Meteorologická služba je k dispozícii až po udelení prístupu k polohe prehliadača.</value>
+  </data>
   <data name="Weather" xml:space="preserve">
     <value>Počasie</value>
   </data>

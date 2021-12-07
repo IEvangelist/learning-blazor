@@ -61,6 +61,9 @@
   <data name="CurrentWeatherVisual" xml:space="preserve">
     <value>Az aktuális időjárás-vizuális jelző, például felhő, nap vagy eső ikon.</value>
   </data>
+  <data name="PermissionDenined" xml:space="preserve">
+    <value>Az időjárás-szolgáltatás csak akkor érhető el, ha hozzáférést biztosított a böngészők helyéhez.</value>
+  </data>
   <data name="Weather" xml:space="preserve">
     <value>Időjárás</value>
   </data>

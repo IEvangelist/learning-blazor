@@ -61,6 +61,9 @@
   <data name="CurrentWeatherVisual" xml:space="preserve">
     <value>Indikator visual cuaca saat ini, seperti awan, matahari, atau ikon hujan.</value>
   </data>
+  <data name="PermissionDenined" xml:space="preserve">
+    <value>Layanan cuaca hanya tersedia setelah Anda memberikan akses ke lokasi browser Anda.</value>
+  </data>
   <data name="Weather" xml:space="preserve">
     <value>Cuaca</value>
   </data>

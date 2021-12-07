@@ -61,6 +61,9 @@
   <data name="CurrentWeatherVisual" xml:space="preserve">
     <value>Indicatorul vizual meteorologic actual, cum ar fi un nor, soare sau pictogramă ploaie.</value>
   </data>
+  <data name="PermissionDenined" xml:space="preserve">
+    <value>Serviciul meteo este disponibil numai după ce ați acordat acces la locația browserelor dvs.</value>
+  </data>
   <data name="Weather" xml:space="preserve">
     <value>Vreme</value>
   </data>

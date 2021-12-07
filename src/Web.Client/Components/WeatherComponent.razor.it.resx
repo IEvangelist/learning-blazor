@@ -61,6 +61,9 @@
   <data name="CurrentWeatherVisual" xml:space="preserve">
     <value>Indicatore visivo meteo corrente, ad esempio un'icona di nuvola, sole o pioggia.</value>
   </data>
+  <data name="PermissionDenined" xml:space="preserve">
+    <value>Il servizio meteo è disponibile solo dopo aver concesso l'accesso alla posizione del browser.</value>
+  </data>
   <data name="Weather" xml:space="preserve">
     <value>Tempo</value>
   </data>
