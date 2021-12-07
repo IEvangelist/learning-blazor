@@ -18,5 +18,7 @@ namespace Learning.Blazor.Models
             new(NotificationType.StreamingStatus, payload);
         public static Notification<T> FromTweet(T payload) =>
             new(NotificationType.Tweet, payload);
+        public static Notification<T> FromTweets(T payload) =>
+            new(NotificationType.Tweets, payload);
     }
 }

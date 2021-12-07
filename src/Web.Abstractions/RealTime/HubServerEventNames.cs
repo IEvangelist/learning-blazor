@@ -46,5 +46,11 @@ namespace Learning.Blazor.Abstractions.RealTime
         /// Handlers should expect a <see cref="Notification{T}"/> where <c>T</c> is an <see cref="TweetContents"/>.
         /// </summary>
         public const string TweetReceived = nameof(TweetReceived);
+
+        /// <summary>
+        /// Fires when tweets group is joined, loading the latest tweets.
+        /// Handlers should expect a <see cref="Notification{T}"/> where <c>T</c> is an <see cref="HashSet{TweetContents}"/>.
+        /// </summary>
+        public const string InitialTweetsLoaded = nameof(InitialTweetsLoaded);
     }
 }

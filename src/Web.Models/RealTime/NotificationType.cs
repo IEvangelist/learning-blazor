@@ -8,6 +8,7 @@ namespace Learning.Blazor.Models
         Alert,
         Chat,
         Tweet,
+        Tweets,
         StreamingStatus
     };
 }

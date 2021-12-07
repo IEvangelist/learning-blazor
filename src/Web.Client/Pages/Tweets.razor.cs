@@ -30,6 +30,8 @@ namespace Learning.Blazor.Pages
                 HubConnection.SubscribeToStatusUpdated(OnStatusUpdatedAsync));
             _subscriptions.Push(
                 HubConnection.SubscribeToTweetReceived(OnTweetReceivedAsync));
+            _subscriptions.Push(
+                HubConnection.SubscribeToTweetsLoaded(OnTweetsLoadedAsync));
 
             await HubConnection.StartAsync(this);
             await HubConnection.JoinTweetsAsync();
@@ -47,6 +49,16 @@ namespace Learning.Blazor.Pages
             InvokeAsync(() =>
             {
                 _ = _tweets.Add(tweet);
+                StateHasChanged();
+            });
+
+        private Task OnTweetsLoadedAsync(Notification<HashSet<TweetContents>> tweets) =>
+            InvokeAsync(() =>
+            {
+                foreach (var tweet in tweets.Payload)
+                {
+                    _ = _tweets.Add(tweet);
+                }
                 StateHasChanged();
             });
 

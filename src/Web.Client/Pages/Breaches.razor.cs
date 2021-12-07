@@ -117,9 +117,13 @@ namespace Learning.Blazor.Pages
         {
             await _modal.Show();
 
-            var httpClient = HttpFactory.CreateClient(HttpClientNames.PwnedServerApi);
-            _breach = await httpClient.GetFromJsonAsync<BreachDetails>(
-                $"api/pwned/breach/{breachName}", BreachDetailJsonSerializerContext.DefaultTypeInfo);
+            var httpClient =
+                HttpFactory.CreateClient(HttpClientNames.PwnedServerApi);
+
+            _breach =
+                await httpClient.GetFromJsonAsync<BreachDetails>(
+                $"api/pwned/breach/{breachName}",
+                BreachDetailJsonSerializerContext.DefaultTypeInfo);
         }
 
         private async Task Confirm() => await _modal.Confirm();

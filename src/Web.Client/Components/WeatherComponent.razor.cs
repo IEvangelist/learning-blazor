@@ -18,6 +18,7 @@ namespace Learning.Blazor.Components
         private GeoCode? _geoCode = null!;
         private WeatherComponentModel<WeatherComponent>? _model = null!;
         private ComponentState _state = ComponentState.Loading;
+        private bool? _isGeoLocationPermissionGranted = null;
 
         private readonly PeriodicTimer _timer = new(TimeSpan.FromMinutes(10));
 
@@ -36,24 +37,25 @@ namespace Learning.Blazor.Components
         private async Task TryGetClientCoordinatesAsync() =>
             await JavaScript.GetCoordinatesAsync(
                 this,
-                nameof(OnCoordinatesPermitted),
-                nameof(OnErrorRequestingCooridnates));
+                nameof(OnCoordinatesPermittedAsync),
+                nameof(OnErrorRequestingCoordinatesAsync));
 
         [JSInvokable]
         [System.Diagnostics.CodeAnalysis.SuppressMessage(
             "Trimming",
             "IL2026:Methods annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code",
             Justification = "Not an issue here.")]
-        public async Task OnCoordinatesPermitted(
+        public async Task OnCoordinatesPermittedAsync(
             decimal longitude, decimal latitude)
         {
+            _isGeoLocationPermissionGranted = true;
             _coordinates = new(latitude, longitude);
-
-            var lang = Culture.CurrentCulture.TwoLetterISOLanguageName;
-            var unit = Culture.MeasurementSystem;
 
             try
             {
+                var lang = Culture.CurrentCulture.TwoLetterISOLanguageName;
+                var unit = Culture.MeasurementSystem;
+
                 var weatherLanguages =
                     await Http.GetFromJsonAsync<WeatherLanguage[]>(
                         "api/weather/languages",
@@ -73,28 +75,15 @@ namespace Learning.Blazor.Components
                     Units = (int)unit
                 };
 
-                using var response =
-                    await Http.PostAsJsonAsync("api/weather/latest",
-                        weatherRequest,
-                        DefaultJsonSerialization.Options);
+                var latestWeatherTask =
+                    GetLatestWeatherAsync(weatherRequest);
 
-                var weatherDetails =
-                    await response.Content.ReadFromJsonAsync<WeatherDetails>(
-                        DefaultJsonSerialization.Options);
+                var getGeoCodeTask = GetGeoCodeAsync(
+                    longitude, latitude, requestLanguage);
 
-                if (_geoCode is null)
-                {
-                    GeoCodeRequest geoCodeRequest = new()
-                    {
-                        Language = requestLanguage,
-                        Latitude = latitude,
-                        Longitude = longitude,
-                    };
+                await Task.WhenAll(latestWeatherTask, getGeoCodeTask);
 
-                    _geoCode =
-                        await GeoLocationService.GetGeoCodeAsync(geoCodeRequest);
-                }
-
+                var weatherDetails = latestWeatherTask.Result;
                 if (weatherDetails is not null && _geoCode is not null)
                 {
                     _model = new WeatherComponentModel<WeatherComponent>(
@@ -111,23 +100,62 @@ namespace Learning.Blazor.Components
                 Logger.LogError(ex, ex.Message);
                 _state = ComponentState.Error;
             }
-
-            await InvokeAsync(StateHasChanged);
+            finally
+            {
+                await InvokeAsync(StateHasChanged);
+            }
 
             if (await _timer.WaitForNextTickAsync())
             {
-                await OnCoordinatesPermitted(
+                await OnCoordinatesPermittedAsync(
                     _coordinates.Longitude, _coordinates.Latitude);
             }
         }
 
+        private async Task<WeatherDetails?> GetLatestWeatherAsync(
+            WeatherRequest weatherRequest)
+        {
+            using var response =
+                await Http.PostAsJsonAsync("api/weather/latest",
+                    weatherRequest,
+                    DefaultJsonSerialization.Options);
+
+            var weatherDetails =
+                await response.Content.ReadFromJsonAsync<WeatherDetails>(
+                    DefaultJsonSerialization.Options);
+
+            return weatherDetails;
+        }
+
+        private async Task GetGeoCodeAsync(
+            decimal longitude, decimal latitude, string requestLanguage)
+        {
+            if (_geoCode is null)
+            {
+                GeoCodeRequest geoCodeRequest = new()
+                {
+                    Language = requestLanguage,
+                    Latitude = latitude,
+                    Longitude = longitude,
+                };
+
+                _geoCode =
+                    await GeoLocationService.GetGeoCodeAsync(geoCodeRequest);
+            }
+        }
+
         [JSInvokable]
-        public async Task OnErrorRequestingCooridnates(
+        public async Task OnErrorRequestingCoordinatesAsync(
             int code, string message)
         {
-            await Task.CompletedTask;
+            Logger.LogWarning(
+                "The user did not grant permission to geolocation: ({Code}) {Msg}",
+                code, message);
 
+            _isGeoLocationPermissionGranted = false;
             _state = ComponentState.Error;
+
+            await InvokeAsync(StateHasChanged);
         }
 
         void IDisposable.Dispose() => _timer?.Dispose();

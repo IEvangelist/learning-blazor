@@ -8,7 +8,7 @@ namespace Learning.Blazor.TwitterServices;
 
 public interface ITwitterService
 {
-    IReadOnlyCollection<TweetContents>? LastThreeTweets { get; }
+    IReadOnlyCollection<TweetContents>? LastFiftyTweets { get; }
     StreamingStatus? CurrentStatus { get; }
 
     /// <summary>

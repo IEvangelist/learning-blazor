@@ -6,64 +6,124 @@
     @Localizer["Contact"]
 </PageTitle>
 
-<h1>
-    @Localizer["Contact"]
-</h1>
+<section class="section">
+    <h1 class="is-size-3 pb-3">@Localizer["Contact"]</h1>
 
-<div class="field">
-    <label class="label">Name</label>
-    <div class="control">
-        <input class="input" type="text" placeholder="Name input">
-    </div>
-</div>
+    <EditForm Model=_model class="pb-4"
+        OnValidSubmit="(async context => await OnValidSubmitAsync(context))">
+        <DataAnnotationsValidator />
+        <ValidationSummary Model=_model />
 
-<div class="field">
-    <label class="label">Email</label>
-    <div class="control has-icons-left has-icons-right">
-        <input class="input is-danger" type="email" placeholder="Email input">
-        <span class="icon is-small is-left">
-            <i class="fas fa-envelope"></i>
-        </span>
-        <span class="icon is-small is-right">
-            <i class="fas fa-exclamation-triangle"></i>
-        </span>
-    </div>
-    <p class="help is-danger">This email is invalid</p>
-</div>
-
-<div class="field">
-    <label class="label">Subject</label>
-    <div class="control">
-        <div class="select">
-            <select>
-                <option>Select dropdown</option>
-                <option>With options</option>
-            </select>
+        <!-- Email address -->
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label">@Localizer["Email"]</label>
+            </div>
+            <div class="field-body">
+                <div class="field">
+                    <p class="control is-expanded has-icons-left">
+                        <InputText @ref="_emailInput" @bind-Value="_model.EmailAddress" class="input"
+                            placeholder="@Localizer["EmailPlaceholder"]" />
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-envelope"></i>
+                        </span>
+                    </p>
+                </div>
+            </div>
+            <ValidationMessage For="() => _model.EmailAddress" />
         </div>
-    </div>
-</div>
-
-<div class="field">
-    <label class="label">Message</label>
-    <div class="control">
-        <textarea class="textarea" placeholder="Textarea"></textarea>
-    </div>
-</div>
-
-<div class="field">
-    <div class="control">
-        <label class="checkbox">
-            <input type="checkbox">
-            I agree to the <a href="/termsandconditions">terms and conditions</a>
-        </label>
-    </div>
-</div>
-
-<div class="field is-grouped">
-    <div class="control">
-        <button class="button is-primary">Submit</button>
-    </div>
-    <div class="control">
-        <button class="button is-danger">Cancel</button>
-    </div>
-</div>
+        <!-- First and last name -->
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label">@Localizer["From"]</label>
+            </div>
+            <div class="field-body">
+                <div class="field">
+                    <p class="control is-expanded has-icons-left">
+                        <InputText @bind-Value="_model.FirstName" class="input"
+                            placeholder="@Localizer["FirstName"]" />
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-user"></i>
+                        </span>
+                    </p>
+                </div>
+                <div class="field">
+                    <p class="control is-expanded has-icons-left">
+                        <InputText @bind-Value="_model.LastName" class="input"
+                            placeholder="@Localizer["LastName"]" />
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-user"></i>
+                        </span>
+                    </p>
+                </div>
+            </div>
+            <ValidationMessage For="() => _model.FullName" />
+        </div>
+        <!-- Subject -->
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label">@Localizer["Subject"]</label>
+            </div>
+            <div class="field-body">
+                <div class="field">
+                    <p class="control is-expanded has-icons-left">
+                        <InputText @bind-Value="_model.Subject" class="input"
+                            placeholder="@Localizer["SubjectPlaceholder"]" />
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-info-circle"></i>
+                        </span>
+                    </p>
+                </div>
+            </div>
+            <ValidationMessage For="() => _model.Subject" />
+        </div>
+        <!-- Message -->
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label">@Localizer["Message"]</label>
+            </div>
+            <div class="field-body">
+                <div class="field">
+                    <div class="control">
+                        <InputTextArea @bind-Value="_model.Message" class="textarea"
+                            placeholder="@Localizer["MessagePlaceholder"]" />
+                    </div>
+                </div>
+            </div>
+            <ValidationMessage For="() => _model.Message" />
+        </div>
+        <!-- Agree to terms -->
+        <div class="field is-horizontal">
+            <div class="field-label">
+                <label class="label">Agree to terms?</label>
+            </div>
+            <div class="field-body">
+                <div class="field is-narrow">
+                    <div class="control">
+                        <label class="checkbox">
+                            <InputCheckbox @bind-Value="_model.AgreesToTerms" />
+                            By checking this box, you agree to the <a href="/termsandconditions">terms and conditions</a>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <ValidationMessage For="() => _model.AgreesToTerms" />
+        </div>
+        <!-- Send button -->
+        <div class="field is-horizontal">
+            <div class="field-label">
+                <!-- Left empty for spacing -->
+            </div>
+            <div class="field-body">
+                <div class="field is-grouped">
+                    <button class="button is-success is-large" disabled=@_isSendDisabled>
+                        <span class="icon">
+                            <i class="fas fa-paper-plane"></i>
+                        </span>
+                        <span>@Localizer["Send"]</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </EditForm>
+</section>

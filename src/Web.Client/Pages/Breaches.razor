@@ -28,23 +28,26 @@
             <div class="field has-addons">
                 <p class="is-fullwidth control has-icons-left @(loadingClass)">
                     <InputText id="email" @bind-Value=_model.EmailAddress
-                               @ref=_emailInput class="input is-large" autocomplete="hidden"
-                               DisplayName=@Localizer["EmailAddress"] placeholder=@Localizer["EmailAddress"] />
+                               @ref=_emailInput class="input is-large"
+                               autocomplete="hidden"
+                               DisplayName=@Localizer["EmailAddress"]
+                               placeholder=@Localizer["EmailAddress"] />
                     <span class="icon is-small is-left">
                         <i class="fas fa-envelope"></i>
                     </span>
                 </p>
                 <div class="control">
-                    <button type="submit" class="button is-warning is-large @(loadingClass)" disabled="@(_isFormInvalid)">
+                    <button type="submit"
+                        class="button is-warning is-large @(loadingClass)"
+                        disabled="@(_isFormInvalid)">
                         <span class="icon">
                             <i class="fas fa-question"></i>
                         </span>
                         <span>pwned</span>
                     </button>
                 </div>
-
-                <ValidationMessage For=@(() => _model.EmailAddress) />
             </div>
+            <ValidationMessage For=@(() => _model.EmailAddress) />
 
         </EditForm>
 

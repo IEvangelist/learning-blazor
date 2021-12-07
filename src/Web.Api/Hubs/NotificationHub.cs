@@ -47,14 +47,12 @@ public class NotificationHub : Hub
                 HubServerEventNames.StatusUpdated,
                 Notification<StreamingStatus>.FromStatus(_twitterService.CurrentStatus));
         }
-        if (_twitterService.LastThreeTweets is { Count: > 0 })
+        if (_twitterService.LastFiftyTweets is { Count: > 0 })
         {
-            foreach (var tweet in _twitterService.LastThreeTweets)
-            {
-                await Clients.Caller.SendAsync(
-                    HubServerEventNames.TweetReceived,
-                    Notification<TweetContents>.FromTweet(tweet));
-            }
+            await Clients.Caller.SendAsync(
+                HubServerEventNames.InitialTweetsLoaded,
+                Notification<HashSet<TweetContents>>.FromTweets(
+                    new HashSet<TweetContents>(_twitterService.LastFiftyTweets)));
         }
     }
 

@@ -17,11 +17,11 @@ internal sealed class DefaultTwitterService : ITwitterService
 
     private readonly ILogger<DefaultTwitterService> _logger;
     private readonly IFilteredStream _filteredStream;
-    private readonly Stack<TweetContents> _latestTweets = new(3);
+    private readonly Stack<TweetContents> _latestTweets = new(50);
 
-    private HashSet<long> _tweetIds = new();
+    private HashSet<int> _tweetHashCodes = new();
 
-    public IReadOnlyCollection<TweetContents>? LastThreeTweets => _latestTweets;
+    public IReadOnlyCollection<TweetContents>? LastFiftyTweets => _latestTweets;
     public StreamingStatus? CurrentStatus { get; private set; }
 
     public DefaultTwitterService(
@@ -176,32 +176,31 @@ internal sealed class DefaultTwitterService : ITwitterService
             return;
         }
 
-        var latestTweet = new TweetContents
-        {
-            IsOffTopic = isOffTopic,
-            Id = iTweet.Id,
-            AuthorName = tweet.AuthorName,
-            AuthorURL = tweet.AuthorURL,
-            CacheAge = tweet.CacheAge,
-            Height = tweet.Height,
-            HTML = tweet.HTML,
-            ProviderURL = tweet.ProviderURL,
-            Type = tweet.Type,
-            URL = tweet.URL,
-            Version = tweet.Version,
-            Width = tweet.Width
-        };
+        TweetContents latestTweet = new(
+            iTweet.Id,
+            isOffTopic,
+            tweet.AuthorName,
+            tweet.AuthorURL,
+            tweet.HTML,
+            tweet.URL,
+            tweet.ProviderURL,
+            tweet.Width,
+            tweet.Height,            
+            tweet.Version,            
+            tweet.Type,
+            tweet.CacheAge
+        );
 
         lock (s_locker)
         {
-            if (_tweetIds.Add(latestTweet.Id))
+            if (_tweetHashCodes.Add(latestTweet.GetHashCode()))
             {
                 if (_latestTweets is { Count: > 0 })
                 {
                     _ = _latestTweets.Pop();
                 }
                 _latestTweets.Push(latestTweet);
-                _tweetIds = new(_latestTweets.Select(t => t.Id));
+                _tweetHashCodes = _latestTweets.Select(t => t.GetHashCode()).ToHashSet();
             }
         }
 

@@ -8,7 +8,7 @@
     <div class="icon-overlay zap-svg"></div>
     <div class="blaze-content">
         <p class="title" translate="no">
-            <span class="is-emoji">🔥</span> <span class="has-text-light"> Blazor-@Localizer["Weather"]</span>
+            <span class="is-emoji">🔥</span> <span class="has-text-light"> Blazor @Localizer["Weather"]</span>
         </p>
         <AdditiveSpeechComponent Message=@_model?.Message />
         <div class="columns has-text-centered">
@@ -26,9 +26,9 @@
                         @foreach (DailyWeather daily in weather.DailyWeather)
                         {
                             <WeatherDailyComponent Daily="daily"
-                                GetDailyImagePath=@((DailyWeather d) => weather.GetDailyImagePath(d))
-                                GetDailyHigh=@((DailyWeather d) => weather.GetDailyHigh(d))
-                                GetDailyLow=@((DailyWeather d) => weather.GetDailyLow(d)) />
+                                GetDailyImagePath=weather.GetDailyImagePath
+                                GetDailyHigh=weather.GetDailyHigh
+                                GetDailyLow=weather.GetDailyLow />
                         }
                     </div>
                 </div>
@@ -43,8 +43,15 @@
                 break;
                 default:
 
-                <div class="column is-full">
+                <div class="column is-full has-text-light">
+                @if (_isGeoLocationPermissionGranted is false)
+                {
+                    @Localizer["PermissionDenined"]
+                }
+                else
+                {
                     @Localizer["WeatherUnavailable"]
+                }
                 </div>
                 break;
             }

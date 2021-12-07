@@ -120,6 +120,9 @@
   <data name="CurrentWeatherVisual" xml:space="preserve">
     <value>The current weather visual indicator, such as a cloud, sun, or rain icon.</value>
   </data>
+  <data name="PermissionDenined" xml:space="preserve">
+    <value>The weather service is only available after you've granted access to your browsers' location.</value>
+  </data>
   <data name="Weather" xml:space="preserve">
     <value>Weather</value>
   </data>

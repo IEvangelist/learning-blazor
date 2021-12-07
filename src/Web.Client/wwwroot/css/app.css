@@ -109,7 +109,7 @@ html {
 
 .validation-message {
     align-self: center;
-    padding: 1rem;
+    padding: 1.5rem;
     color: red;
 }
 

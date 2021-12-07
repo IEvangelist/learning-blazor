@@ -3,19 +3,17 @@
 
 namespace Learning.Blazor.Models
 {
-    public record TweetContents
-    {
-        public long Id { get; init; }
-        public bool IsOffTopic { get; init; }
-        public string AuthorName { get; init; } = null!;
-        public string AuthorURL { get; init; } = null!;
-        public string HTML { get; init; } = null!;
-        public string URL { get; init; } = null!;
-        public string ProviderURL { get; init; } = null!;
-        public double Width { get; init; }
-        public double Height { get; init; }
-        public string Version { get; init; } = null!;
-        public string Type { get; init; } = null!;
-        public string CacheAge { get; init; } = null!;
-    }
+    public record TweetContents(
+        long Id,
+        bool IsOffTopic,
+        string AuthorName,
+        string AuthorURL,
+        string HTML,
+        string URL,
+        string ProviderURL,
+        double Width,
+        double Height,
+        string Version,
+        string Type,
+        string CacheAge);
 }

@@ -27,6 +27,7 @@
     <ProjectReference Include="..\Web.Extensions\Web.Extensions.csproj" />
     <ProjectReference Include="..\Web.Http.Extensions\Web.Http.Extensions.csproj" />
     <ProjectReference Include="..\Web.JokeServices\Web.JokeServices.csproj" />
+    <ProjectReference Include="..\Web.LogicAppServices\Web.LogicAppServices.csproj" />
     <ProjectReference Include="..\Web.TwitterServices\Web.TwitterServices.csproj" />
   </ItemGroup>
 

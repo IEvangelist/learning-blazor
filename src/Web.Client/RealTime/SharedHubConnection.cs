@@ -205,6 +205,11 @@ public sealed class SharedHubConnection : IAsyncDisposable
         Func<Notification<TweetContents>, Task> onTweetReceived) =>
         _hubConnection.On(HubServerEventNames.TweetReceived, onTweetReceived);
 
+    /// <inheritdoc cref="HubServerEventNames.InitialTweetsLoaded" />
+    public IDisposable SubscribeToTweetsLoaded(
+        Func<Notification<HashSet<TweetContents>>, Task> onTweetsLoaded) =>
+        _hubConnection.On(HubServerEventNames.InitialTweetsLoaded, onTweetsLoaded);
+
     /// <inheritdoc cref="HubServerEventNames.UserLoggedIn" />
     public IDisposable SubscribeToUserLoggedIn(
         Func<Notification<Actor>, Task> onUserLoggedIn) =>

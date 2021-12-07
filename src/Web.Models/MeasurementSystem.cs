@@ -15,7 +15,7 @@ namespace Learning.Blazor.Models
         Imperial = 0,
 
         /// <summary>
-        /// For example, the temperature in °C (degrees Celcius), speed in kilometers per hour (KPH).
+        /// For example, the temperature in °C (degrees Celsius), speed in kilometers per hour (KPH).
         /// </summary>
         Metric = 1
     }
