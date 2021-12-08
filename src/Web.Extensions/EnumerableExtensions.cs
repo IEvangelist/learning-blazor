@@ -1,11 +1,13 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
+using SystemRandom = System.Random;
+
 namespace Learning.Blazor.Extensions;
 
 public static class EnumerableExtensions
 {
-    static readonly Random s_random = new((int)DateTime.Now.Ticks);
+    static readonly SystemRandom s_random = SystemRandom.Shared;
 
     public static T RandomElement<T>(
         this IEnumerable<T> source) =>

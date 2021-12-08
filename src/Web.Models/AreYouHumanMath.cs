@@ -8,7 +8,7 @@ public readonly record struct AreYouHumanMath(
     byte RightOperand,
     MathOperator Operator = MathOperator.Addition)
 {
-    private static readonly Lazy<Random> s_random = new(() => new());
+    private static readonly Random s_random = Random.Shared;
 
     public bool IsCorrect(int result) => result == Operator switch
     {
@@ -28,8 +28,8 @@ public readonly record struct AreYouHumanMath(
 
     public static AreYouHumanMath RandomFactory(
         MathOperator mathOperator = MathOperator.Addition) =>
-        new((byte)s_random.Value.Next(1, byte.MaxValue),
-            (byte)s_random.Value.Next(1, byte.MaxValue),
+        new((byte)s_random.Next(1, byte.MaxValue),
+            (byte)s_random.Next(1, byte.MaxValue),
             mathOperator);
 }
 

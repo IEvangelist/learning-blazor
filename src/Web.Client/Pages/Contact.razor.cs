@@ -40,7 +40,7 @@ namespace Learning.Blazor.Pages
 
             if (_emailInput is { Element: { } })
             {
-                await(_emailInput.Element?.FocusAsync(preventScroll: true)
+                await (_emailInput.Element?.FocusAsync(preventScroll: true)
                     ?? ValueTask.CompletedTask);
             }
         }
@@ -62,6 +62,8 @@ namespace Learning.Blazor.Pages
         {
             try
             {
+                _isLoading = true;
+
                 //var httpClient = HttpFactory.CreateClient(HttpClientNames.PwnedServerApi);
                 //_breaches = (await httpClient.GetFromJsonAsync<BreachHeader[]>(
                 //    $"api/pwned/breaches/{_model.EmailAddress}",
@@ -72,10 +74,12 @@ namespace Learning.Blazor.Pages
             }
             catch (Exception ex)
             {
+                Logger.LogError(ex, ex.Message);
             }
             finally
             {
                 await InvokeAsync(StateHasChanged);
+                _isLoading = false;
             }
         }
     }

@@ -10,16 +10,12 @@ namespace Learning.Blazor.DataAnnotations;
         AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter,
         AllowMultiple = false)
 ]
-public sealed class RequiredAsAttribute<T>
-    : DataTypeAttribute where T : struct
+public sealed class RequiredAcceptanceAttribute : DataTypeAttribute
 {
-    /// <summary>
-    /// Gets or sets the value to compare to for validity checking.
-    /// </summary>
-    public T RequiredValue { get; set; }
-
-    public RequiredAsAttribute(T requiredValue) : base(DataType.Custom) =>
-        RequiredValue = requiredValue;
+    public RequiredAcceptanceAttribute()
+        : base(DataType.Custom)
+    {
+    }
 
     public override bool IsValid(object? value)
     {
@@ -28,6 +24,7 @@ public sealed class RequiredAsAttribute<T>
             return false;
         }
 
-        return RequiredValue.Equals(value);
+        return bool.TryParse(value.ToString(), out var result)
+            && result;
     }
 }

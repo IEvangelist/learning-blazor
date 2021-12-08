@@ -21,7 +21,7 @@ public record ContactComponentModel()
     [Required]
     public string? Subject { get; set; } = null!;
 
-    [RequiredAs<bool>(true)]
+    [RequiredAcceptance]
     public bool AgreesToTerms { get; set; }
 
     public AreYouHumanMath NotRobot { get; } =
