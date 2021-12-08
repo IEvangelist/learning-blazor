@@ -61,6 +61,9 @@
   <data name="CurrentWeatherVisual" xml:space="preserve">
     <value>L'indicador visual meteorològic actual, com ara un núvol, un sol o una icona de pluja.</value>
   </data>
+  <data name="PermissionDenined" xml:space="preserve">
+    <value>El servei meteorològic només està disponible després d'haver concedit accés a la ubicació dels navegadors.</value>
+  </data>
   <data name="Weather" xml:space="preserve">
     <value>Temps</value>
   </data>

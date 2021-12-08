@@ -61,6 +61,9 @@
   <data name="CurrentWeatherVisual" xml:space="preserve">
     <value>Ο τρέχων οπτικός δείκτης καιρού, όπως ένα εικονίδιο σύννεφου, ήλιου ή βροχής.</value>
   </data>
+  <data name="PermissionDenined" xml:space="preserve">
+    <value>Η μετεωρολογική υπηρεσία είναι διαθέσιμη μόνο αφού παραχωρήσεις πρόσβαση στην τοποθεσία των προγραμμάτων περιήγησής σας.</value>
+  </data>
   <data name="Weather" xml:space="preserve">
     <value>Καιρός</value>
   </data>

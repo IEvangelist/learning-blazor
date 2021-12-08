@@ -61,6 +61,9 @@
   <data name="CurrentWeatherVisual" xml:space="preserve">
     <value>Den aktuelle vejrvise indikator, f.eks.</value>
   </data>
+  <data name="PermissionDenined" xml:space="preserve">
+    <value>Vejrtjenesten er kun tilgængelig, når du har givet adgang til dine browseres placering.</value>
+  </data>
   <data name="Weather" xml:space="preserve">
     <value>Vejr</value>
   </data>

@@ -61,6 +61,9 @@
   <data name="CurrentWeatherVisual" xml:space="preserve">
     <value>雲、太陽、雨のアイコンなど、現在の気象ビジュアル インジケータ。</value>
   </data>
+  <data name="PermissionDenined" xml:space="preserve">
+    <value>天気サービスは、ブラウザの位置情報へのアクセスを許可した後にのみ利用できます。</value>
+  </data>
   <data name="Weather" xml:space="preserve">
     <value>天気</value>
   </data>

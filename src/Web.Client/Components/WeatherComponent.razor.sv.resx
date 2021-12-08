@@ -61,6 +61,9 @@
   <data name="CurrentWeatherVisual" xml:space="preserve">
     <value>Den aktuella visuella väderindikatorn, till exempel en moln-, sol- eller regnikon.</value>
   </data>
+  <data name="PermissionDenined" xml:space="preserve">
+    <value>Vädertjänsten är endast tillgänglig när du har beviljat åtkomst till dina webbläsares plats.</value>
+  </data>
   <data name="Weather" xml:space="preserve">
     <value>Väder</value>
   </data>

@@ -61,6 +61,9 @@
   <data name="CurrentWeatherVisual" xml:space="preserve">
     <value>Dabartinis orų vaizdo indikatorius, pvz., debesis, saulė arba lietaus piktograma.</value>
   </data>
+  <data name="PermissionDenined" xml:space="preserve">
+    <value>Orų tarnyba pasiekiama tik suteikus prieigą prie naršyklių buvimo vietos.</value>
+  </data>
   <data name="Weather" xml:space="preserve">
     <value>Oras</value>
   </data>

@@ -61,6 +61,9 @@
   <data name="CurrentWeatherVisual" xml:space="preserve">
     <value>ตัวบ่งชี้ภาพสภาพอากาศปัจจุบัน เช่น ไอคอนเมฆ ดวงอาทิตย์ หรือฝน</value>
   </data>
+  <data name="PermissionDenined" xml:space="preserve">
+    <value>บริการสภาพอากาศจะพร้อมใช้งานหลังจากที่คุณได้รับอนุญาตให้เข้าถึงตําแหน่งที่ตั้งของเบราว์เซอร์ของคุณแล้วเท่านั้น</value>
+  </data>
   <data name="Weather" xml:space="preserve">
     <value>อากาศ</value>
   </data>

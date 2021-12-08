@@ -61,6 +61,9 @@
   <data name="CurrentWeatherVisual" xml:space="preserve">
     <value>구름, 태양 또는 비 아이콘과 같은 현재 날씨 시각적 표시기입니다.</value>
   </data>
+  <data name="PermissionDenined" xml:space="preserve">
+    <value>날씨 서비스는 브라우저의 위치에 대한 액세스 권한을 부여한 후에만 사용할 수 있습니다.</value>
+  </data>
   <data name="Weather" xml:space="preserve">
     <value>날씨</value>
   </data>

@@ -61,6 +61,9 @@
   <data name="CurrentWeatherVisual" xml:space="preserve">
     <value>De huidige visuele weerindicator, zoals een wolk-, zonne- of regenpictogram.</value>
   </data>
+  <data name="PermissionDenined" xml:space="preserve">
+    <value>De weerdienst is alleen beschikbaar nadat u toegang heeft verleend tot de locatie van uw browser.</value>
+  </data>
   <data name="Weather" xml:space="preserve">
     <value>Weer</value>
   </data>

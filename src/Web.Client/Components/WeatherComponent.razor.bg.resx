@@ -61,6 +61,9 @@
   <data name="CurrentWeatherVisual" xml:space="preserve">
     <value>Текущият времеви визуален индикатор, като например облак, слънце или икона за дъжд.</value>
   </data>
+  <data name="PermissionDenined" xml:space="preserve">
+    <value>Метеорологичната услуга е достъпна само след като сте предоставили достъп до местоположението на браузърите си.</value>
+  </data>
   <data name="Weather" xml:space="preserve">
     <value>Време</value>
   </data>

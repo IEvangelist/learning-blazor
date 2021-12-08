@@ -61,6 +61,9 @@
   <data name="CurrentWeatherVisual" xml:space="preserve">
     <value>Chỉ báo hình ảnh thời tiết hiện tại, chẳng hạn như biểu tượng mây, mặt trời hoặc mưa.</value>
   </data>
+  <data name="PermissionDenined" xml:space="preserve">
+    <value>Dịch vụ thời tiết chỉ khả dụng sau khi bạn đã cấp quyền truy cập vào vị trí của trình duyệt.</value>
+  </data>
   <data name="Weather" xml:space="preserve">
     <value>Thời tiết</value>
   </data>

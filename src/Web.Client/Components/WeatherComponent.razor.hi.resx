@@ -61,6 +61,9 @@
   <data name="CurrentWeatherVisual" xml:space="preserve">
     <value>वर्तमान मौसम दृश्य संकेतक, जैसे बादल, सूर्य, या बारिश आइकन।</value>
   </data>
+  <data name="PermissionDenined" xml:space="preserve">
+    <value>मौसम सेवा केवल आपके ब्राउज़र के स्थान तक पहुंच प्रदान करने के बाद ही उपलब्ध है।</value>
+  </data>
   <data name="Weather" xml:space="preserve">
     <value>मौसम</value>
   </data>

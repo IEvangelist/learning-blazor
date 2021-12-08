@@ -61,6 +61,9 @@
   <data name="CurrentWeatherVisual" xml:space="preserve">
     <value>Nykyinen sään visuaalinen ilmaisin, kuten pilvi-, aurinko- tai sadekuvake.</value>
   </data>
+  <data name="PermissionDenined" xml:space="preserve">
+    <value>Sääpalvelu on käytettävissä vasta, kun olet myöntänyt pääsyn selaimesi sijaintiin.</value>
+  </data>
   <data name="Weather" xml:space="preserve">
     <value>Sää</value>
   </data>
