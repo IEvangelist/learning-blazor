@@ -1,24 +1,16 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
-using System.Runtime.Versioning;
-
 namespace Learning.Blazor.Models;
 
-[
-    RequiresPreviewFeatures(
-        "Generic Math is in preview.",
-        Url = "https://aka.ms/dotnet-warnings/generic-math-preview")
-]
-public readonly record struct AreYouHumanMath<T>(
-    T LeftOperand,
-    T RightOperand,
+public readonly record struct AreYouHumanMath(
+    byte LeftOperand,
+    byte RightOperand,
     MathOperator Operator = MathOperator.Addition)
-    where T : INumber<T>
 {
     private static readonly Lazy<Random> s_random = new(() => new());
 
-    public bool IsCorrect(T result) => result == Operator switch
+    public bool IsCorrect(int result) => result == Operator switch
     {
         MathOperator.Addition => LeftOperand + RightOperand,
         MathOperator.Subtraction => LeftOperand - RightOperand,
@@ -34,10 +26,10 @@ public readonly record struct AreYouHumanMath<T>(
 
     public string GetQuestion() => $"{this} ?";
 
-    public static AreYouHumanMath<int> RandomIntegerFactory(
+    public static AreYouHumanMath RandomFactory(
         MathOperator mathOperator = MathOperator.Addition) =>
-        new(s_random.Value.Next(1, 500),
-            s_random.Value.Next(1, 500),
+        new((byte)s_random.Value.Next(1, byte.MaxValue),
+            (byte)s_random.Value.Next(1, byte.MaxValue),
             mathOperator);
 }
 

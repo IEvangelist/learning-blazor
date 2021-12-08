@@ -9,7 +9,6 @@
     <ImplicitUsings>true</ImplicitUsings>
     <ServiceWorkerAssetsManifest>service-worker-assets.js</ServiceWorkerAssetsManifest>
     <SuppressTrimAnalysisWarnings>false</SuppressTrimAnalysisWarnings>
-    <EnablePreviewFeatures>true</EnablePreviewFeatures>
   </PropertyGroup>
 
   <Target Name="FixPackageConflictOverrides" AfterTargets="ResolveTargetingPackAssets">
