@@ -1,4 +1,4 @@
-﻿const getClientCoordinates = async (dotnetObj, successMethodName, errorMethodName) => {
+﻿const getClientCoordinates = (dotnetObj, successMethodName, errorMethodName) => {
     if (navigator && navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
             (position) => {
@@ -6,7 +6,7 @@
                 dotnetObj.invokeMethodAsync(
                     successMethodName, longitude, latitude);
             },
-            (error) => {
+            async (error) => {
                 const { code, message } = error;
                 // When the error is greater than 1 is a non-permissions error.
                 if (code > 1) {
@@ -101,6 +101,7 @@ const scrollIntoView = (selector) => {
 };
 
 window.app = {
+    ...window.app,
     getClientCoordinates,
     getClientVoices,
     getClientPrefersColorScheme,
