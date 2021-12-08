@@ -10,23 +10,11 @@ namespace Learning.Blazor.ComponentModels;
 
 public record ContactComponentModel()
 {
+    [Required]
     public string? FirstName { get; set; } = null!;
 
-    public string? LastName { get; set; } = null!;
-
     [Required]
-    public string? FullName
-    {
-        get
-        {
-            var (first, last) = (FirstName, LastName);
-
-            return string.IsNullOrWhiteSpace(first)
-                || string.IsNullOrWhiteSpace(last)
-                    ? null
-                    : $"{first} {last}"; 
-        }
-    }
+    public string? LastName { get; set; } = null!;
 
     [RegexEmailAddress(IsRequired = true)]
     public string? EmailAddress { get; set; } = null!;
@@ -37,13 +25,15 @@ public record ContactComponentModel()
     [RequiredAs<bool>(true)]
     public bool AgreesToTerms { get; set; }
 
-    [RequiresPreviewFeatures]
     public AreYouHumanMath<int> NotRobot { get; } =
         AreYouHumanMath<int>.RandomIntegerFactory(
             MathOperator.Subtraction);
 
-    public int Result { get; set; }
+    [Required]
+    public string? Result { get; set; }
 
     [Required]
     public string? Message { get; set; } = null!;
+
+    public string RobotQuestion => NotRobot.GetQuestion();
 }

@@ -8,8 +8,7 @@ namespace Learning.Blazor.Extensions;
 public static class ServiceCollectionExtensions
 {
     public static IServiceCollection AddJokeServices(
-        this IServiceCollection services,
-        IConfiguration configuration)
+        this IServiceCollection services)
     {
         ArgumentNullException.ThrowIfNull(nameof(services));
 

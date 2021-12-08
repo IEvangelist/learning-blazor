@@ -9,6 +9,7 @@
     <ImplicitUsings>true</ImplicitUsings>
     <ServiceWorkerAssetsManifest>service-worker-assets.js</ServiceWorkerAssetsManifest>
     <SuppressTrimAnalysisWarnings>false</SuppressTrimAnalysisWarnings>
+    <EnablePreviewFeatures>true</EnablePreviewFeatures>
   </PropertyGroup>
 
   <Target Name="FixPackageConflictOverrides" AfterTargets="ResolveTargetingPackAssets">
@@ -39,6 +40,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Web.Abstractions\Web.Abstractions.csproj" />
     <ProjectReference Include="..\Web.Extensions\Web.Extensions.csproj" />
+    <ProjectReference Include="..\Web.JokeServices\Web.JokeServices.csproj" />
     <ProjectReference Include="..\Web.LocalStorage\Web.LocalStorage.csproj" />
     <ProjectReference Include="..\Web.TwitterComponents\Web.TwitterComponents.csproj" />
   </ItemGroup>

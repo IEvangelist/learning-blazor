@@ -26,7 +26,6 @@ public class Startup
             JwtBearerDefaults.AuthenticationScheme,
             options => options.TokenValidationParameters.NameClaimType = "name");
 
-        services.AddJokeServices(_configuration);
         services.AddApiServices(_configuration);
 
         var webClientOrigin = _configuration["WebClientOrigin"];

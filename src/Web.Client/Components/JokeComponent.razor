@@ -1,7 +1,7 @@
 ﻿<!--  Copyright (c) 2021 David Pine. All rights reserved.
       Licensed under the MIT License.  -->
 
-@inject HttpClient Http
+@inject IJokeFactory JokeFactory
 @inject ILogger<JokeComponent> Logger
 @inject IStringLocalizer<JokeComponent> Localizer
 
@@ -50,9 +50,8 @@
 
         try
         {
-            if (await Http.GetFromJsonAsync<JokeResponse>(
-                    "api/jokes/random", DefaultJsonSerialization.Options)
-                    is JokeResponse response)
+            var response = await JokeFactory.GetRandomJokeAsync();
+            if (response is { })
             {
                 (_jokeText, _sourceDetails) = response;
             }

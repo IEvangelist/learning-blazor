@@ -24,8 +24,6 @@ internal static class ServiceCollectionExtensions
 
         services.AddSingleton<WeatherLanguageService>();
 
-        services.AddJokeServices(configuration);
-
         services.AddLogicAppClient(
             configuration.GetSection(nameof(LogicAppOptions)));
 

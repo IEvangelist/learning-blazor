@@ -30,7 +30,6 @@
                     </p>
                 </div>
             </div>
-            <ValidationMessage For="() => _model.EmailAddress" />
         </div>
         <!-- First and last name -->
         <div class="field is-horizontal">
@@ -57,7 +56,6 @@
                     </p>
                 </div>
             </div>
-            <ValidationMessage For="() => _model.FullName" />
         </div>
         <!-- Subject -->
         <div class="field is-horizontal">
@@ -75,7 +73,6 @@
                     </p>
                 </div>
             </div>
-            <ValidationMessage For="() => _model.Subject" />
         </div>
         <!-- Message -->
         <div class="field is-horizontal">
@@ -90,7 +87,6 @@
                     </div>
                 </div>
             </div>
-            <ValidationMessage For="() => _model.Message" />
         </div>
         <!-- Agree to terms -->
         <div class="field is-horizontal">
@@ -107,23 +103,23 @@
                     </div>
                 </div>
             </div>
-            <ValidationMessage For="() => _model.AgreesToTerms" />
         </div>
         <!-- Are you human? -->
         <div class="field is-horizontal">
-            <div class="field-label">
-                <label class="label">Are you human?</label>
+            <div class="field-label is-normal">
+                <label class="label">@(_model.RobotQuestion)</label>
             </div>
             <div class="field-body">
                 <div class="field is-narrow">
-                    <div class="control">
-                        <label class="checkbox">
-                            <InputNumber @bind-Value="_model.Result" />
-                        </label>
-                    </div>
+                    <p class="control is-expanded has-icons-left">
+                        <InputText @bind-Value="_model.Result" class="input"
+                            placeholder="@Localizer["ResultPlaceholder"]" />
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-robot"></i>
+                        </span>
+                    </p>
                 </div>
             </div>
-            <ValidationMessage For="() => _model.Result" />
         </div>
         <!-- Send button -->
         <div class="field is-horizontal">

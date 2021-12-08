@@ -14,7 +14,6 @@ global using Learning.Blazor.Api.Services;
 global using Learning.Blazor.DistributedCache.Extensions;
 global using Learning.Blazor.Extensions;
 global using Learning.Blazor.Http.Extensions;
-global using Learning.Blazor.JokeServices;
 global using Learning.Blazor.LogicAppServices;
 global using Learning.Blazor.LogicAppServices.Extensions;
 global using Learning.Blazor.LogicAppServices.Options;
