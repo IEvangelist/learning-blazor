@@ -101,7 +101,6 @@ const scrollIntoView = (selector) => {
 };
 
 window.app = {
-    ...window.app,
     getClientCoordinates,
     getClientVoices,
     getClientPrefersColorScheme,
