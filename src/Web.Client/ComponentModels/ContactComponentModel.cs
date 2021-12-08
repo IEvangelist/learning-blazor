@@ -38,7 +38,11 @@ public record ContactComponentModel()
     public bool AgreesToTerms { get; set; }
 
     [RequiresPreviewFeatures]
-    public AreYouHumanMath<int> NotRobot { get; set; } // TODO: wire up in edit form.
+    public AreYouHumanMath<int> NotRobot { get; } =
+        AreYouHumanMath<int>.RandomIntegerFactory(
+            MathOperator.Subtraction);
+
+    public int Result { get; set; }
 
     [Required]
     public string? Message { get; set; } = null!;

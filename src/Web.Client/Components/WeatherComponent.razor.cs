@@ -152,7 +152,11 @@ namespace Learning.Blazor.Components
                 "The user did not grant permission to geolocation: ({Code}) {Msg}",
                 code, message);
 
-            _isGeoLocationPermissionGranted = false;
+            // 1 is PERMISSION_DENIED, error codes greater than 1 are unrelated errors.
+            if (code > 1)
+            {
+                _isGeoLocationPermissionGranted = false;
+            }
             _state = ComponentState.Error;
 
             await InvokeAsync(StateHasChanged);

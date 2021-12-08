@@ -109,6 +109,22 @@
             </div>
             <ValidationMessage For="() => _model.AgreesToTerms" />
         </div>
+        <!-- Are you human? -->
+        <div class="field is-horizontal">
+            <div class="field-label">
+                <label class="label">Are you human?</label>
+            </div>
+            <div class="field-body">
+                <div class="field is-narrow">
+                    <div class="control">
+                        <label class="checkbox">
+                            <InputNumber @bind-Value="_model.Result" />
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <ValidationMessage For="() => _model.Result" />
+        </div>
         <!-- Send button -->
         <div class="field is-horizontal">
             <div class="field-label">

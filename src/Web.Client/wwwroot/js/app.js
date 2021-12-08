@@ -1,4 +1,4 @@
-﻿const getClientCoordinates = (dotnetObj, successMethodName, errorMethodName) => {
+﻿const getClientCoordinates = async (dotnetObj, successMethodName, errorMethodName) => {
     if (navigator && navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
             (position) => {
@@ -8,8 +8,24 @@
             },
             (error) => {
                 const { code, message } = error;
-                dotnetObj.invokeMethodAsync(
-                    errorMethodName, code, message);
+                // When the error is greater than 1 is a non-permissions error.
+                if (code > 1) {
+                    try {
+                        const response = await fetch('https://ipinfo.io/?token=21a2f355f4c4b9');
+                        const json = await response.json();
+                        if (json && json.loc) {
+                            const [latitude, longitude] = json.loc.split(',');
+                            dotnetObj.invokeMethodAsync(
+                                successMethodName, longitude, latitude);
+                        }
+                    } catch {
+                        dotnetObj.invokeMethodAsync(
+                            errorMethodName, code, message);
+                    }                    
+                } else {
+                    dotnetObj.invokeMethodAsync(
+                        errorMethodName, code, message);
+                }
             });
     }
 };
@@ -62,8 +78,7 @@ const speak = (dotnetObj, callbackMethodName, message, defaultVoice, voiceSpeed,
             !!defaultVoice && defaultVoice !== 'Auto'
                 ? voices.find(v => v.name === defaultVoice)
                 : voices.find(v => !!lang &&
-                    v.lang.startsWith(lang) ||
-                    v.name === 'Google US English') || voices[0];
+                    v.lang.startsWith(lang)) || voices[0];
     } catch { }
     utterance.volume = 1;
     utterance.rate = voiceSpeed || 1;
@@ -86,6 +101,7 @@ const scrollIntoView = (selector) => {
 };
 
 window.app = {
+    ...window.app,
     getClientCoordinates,
     getClientVoices,
     getClientPrefersColorScheme,

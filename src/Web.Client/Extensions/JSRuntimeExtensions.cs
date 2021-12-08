@@ -12,7 +12,7 @@ internal static class JSRuntimeExtensions
         T dotnetObj,
         string successMethodName,
         string errorMethodName) where T : class =>
-        jsRuntime!.InvokeVoidAsync(
+        jsRuntime.InvokeVoidAsync(
             "app.getClientCoordinates",
             DotNetObjectReference.Create(dotnetObj),
             successMethodName,

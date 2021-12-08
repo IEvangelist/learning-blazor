@@ -35,7 +35,7 @@ public readonly record struct AreYouHumanMath<T>(
     public string GetQuestion() => $"{this} ?";
 
     public static AreYouHumanMath<int> RandomIntegerFactory(
-        MathOperator mathOperator) =>
+        MathOperator mathOperator = MathOperator.Addition) =>
         new(s_random.Value.Next(1, 500),
             s_random.Value.Next(1, 500),
             mathOperator);

@@ -144,6 +144,10 @@ html {
     font-weight: normal !important;
 }
 
+.invalid {
+    border-color: #f14668;
+}
+
 @media (prefers-color-scheme: dark) {
     .modal-card-body {
         background-color: #242424;
