@@ -14,14 +14,13 @@ public static class ServiceCollectionExtensions
 
         services.AddScoped<IJokeService, ProgrammingJokeService>();
         services.AddScoped<IJokeService, DadJokeService>();
-        services.AddScoped<IJokeService, ChuckNorrisJokeService>();
+        services.AddScoped<IJokeService, ChuckNorrisJokeService>();            
 
-        services.AddHttpClient(nameof(DadJokeService),
-            client => client.DefaultRequestHeaders.Add("Accept", "text/plain"))
+        services.AddHttpClient<ProgrammingJokeService>()
             .AddDefaultTransientHttpErrorPolicy();
-
-        services.AddHttpClient(nameof(ChuckNorrisJokeService),
-            client => client.DefaultRequestHeaders.Add("Accept", "application/json"))
+        services.AddHttpClient<DadJokeService>()
+            .AddDefaultTransientHttpErrorPolicy();
+        services.AddHttpClient<ChuckNorrisJokeService>()
             .AddDefaultTransientHttpErrorPolicy();
 
         services.AddScoped<IJokeFactory, AggregateJokeFactory>();

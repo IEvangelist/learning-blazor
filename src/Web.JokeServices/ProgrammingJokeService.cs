@@ -21,6 +21,9 @@ internal class ProgrammingJokeService : IJokeService
     {
         try
         {
+            _httpClient.DefaultRequestHeaders.Accept.ParseAdd(
+                MediaTypeNames.Application.Json);
+
             // An array with a single joke is returned
             var jokes = await _httpClient.GetFromJsonAsync<ProgrammingJoke[]>(
                 "https://karljoke.herokuapp.com/jokes/programming/random",

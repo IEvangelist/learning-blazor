@@ -9,10 +9,9 @@ internal class DadJokeService : IJokeService
     private readonly ILogger<DadJokeService> _logger;
 
     public DadJokeService(
-        IHttpClientFactory httpClientFactory,
+        HttpClient httpClient,
         ILogger<DadJokeService> logger) =>
-        (_httpClient, _logger) =
-            (httpClientFactory.CreateClient(nameof(DadJokeService)), logger);
+        (_httpClient, _logger) = (httpClient, logger);
 
     JokeSourceDetails IJokeService.SourceDetails =>
         new(JokeSource.ICanHazDadJoke, new Uri("https://icanhazdadjoke.com/"));
@@ -21,7 +20,13 @@ internal class DadJokeService : IJokeService
     {
         try
         {
-            return await _httpClient.GetStringAsync("https://icanhazdadjoke.com/");
+            _httpClient.DefaultRequestHeaders.Accept.ParseAdd(
+                MediaTypeNames.Application.Json);
+
+            var result = await _httpClient.GetFromJsonAsync<DadJoke>(
+                "https://icanhazdadjoke.com/", DefaultJsonSerialization.Options);
+
+            return result?.Joke;
         }
         catch (Exception ex)
         {
