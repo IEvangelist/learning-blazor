@@ -1,13 +1,6 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
-using Learning.Blazor.BrowserModels;
-using Learning.Blazor.Extensions;
-using Learning.Blazor.Models;
-using Learning.Blazor.Services;
-using Microsoft.AspNetCore.Components;
-using Microsoft.JSInterop;
-
 namespace Learning.Blazor.Components
 {
     public sealed partial class AudioDescriptionComponent

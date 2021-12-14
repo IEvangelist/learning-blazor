@@ -22,6 +22,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Components\AreYouHumanModalComponent.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="HaveIBeenPwned.Client.Abstractions" Version="1.0.4" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.0" PrivateAssets="all" />
@@ -55,6 +59,18 @@
 
   <ItemGroup>
     <ServiceWorker Include="wwwroot\service-worker.js" PublishedContent="wwwroot\service-worker.published.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Components\AreYouHumanModalComponent.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Components\AreYouHumanModalComponent.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Components\AreYouHumanModalComponent.razor" />
   </ItemGroup>
 
 </Project>

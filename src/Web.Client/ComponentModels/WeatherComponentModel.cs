@@ -1,10 +1,6 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
-using Learning.Blazor.Extensions;
-using Learning.Blazor.Models;
-using Learning.Blazor.Services;
-
 namespace Learning.Blazor.ComponentModels;
 
 public class WeatherComponentModel<T>

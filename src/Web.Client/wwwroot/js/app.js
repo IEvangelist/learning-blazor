@@ -64,6 +64,12 @@ const cancelPendingSpeech = () => {
     }
 };
 
+const updateActiveSpeechSpeed = (newVoiceSpeed) => {
+    if (window.speechSynthesis && window.speechSynthesis.speaking === true) {
+        window.speechSynthesis.voiceSpeed = newVoiceSpeed;
+    }
+};
+
 const speak = (dotnetObj, callbackMethodName, message, defaultVoice, voiceSpeed, lang) => {
     const utterance = new SpeechSynthesisUtterance(message);
     utterance.onend = e => {

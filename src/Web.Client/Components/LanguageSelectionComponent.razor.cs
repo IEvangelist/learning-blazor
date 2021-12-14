@@ -1,12 +1,6 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
-using System.Globalization;
-using System.Net.Http.Json;
-using Learning.Blazor.Extensions;
-using Learning.Blazor.Models;
-using Microsoft.AspNetCore.Components;
-
 namespace Learning.Blazor.Components
 {
     public partial class LanguageSelectionComponent

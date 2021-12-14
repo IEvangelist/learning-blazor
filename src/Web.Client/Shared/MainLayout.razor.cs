@@ -2,8 +2,6 @@
 // Licensed under the MIT License.
 
 using System.Runtime.InteropServices;
-using Learning.Blazor.Services;
-using Microsoft.AspNetCore.Components;
 
 namespace Learning.Blazor.Shared
 {

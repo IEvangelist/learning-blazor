@@ -1,15 +1,6 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
-using System.Net.Http.Json;
-using Learning.Blazor.ComponentModels;
-using Learning.Blazor.Extensions;
-using Learning.Blazor.Models;
-using Learning.Blazor.Serialization;
-using Learning.Blazor.Services;
-using Microsoft.AspNetCore.Components;
-using Microsoft.JSInterop;
-
 namespace Learning.Blazor.Components
 {
     public sealed partial class WeatherComponent : IDisposable

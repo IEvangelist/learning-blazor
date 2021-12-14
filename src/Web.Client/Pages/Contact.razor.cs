@@ -1,11 +1,6 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
-using Learning.Blazor.ComponentModels;
-using Learning.Blazor.Extensions;
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Forms;
-
 namespace Learning.Blazor.Pages
 {
     public sealed partial class Contact
@@ -16,7 +11,9 @@ namespace Learning.Blazor.Pages
         private bool _isFormInvalid;
         private bool _isSendDisabled;
         private bool _isLoading = false;
+
         private InputText _emailInput = null!;
+        private ModalComponent _modal = null!;
 
         [Inject]
         public IHttpClientFactory HttpFactory { get; set; } = null!;

@@ -1,13 +1,6 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
-using Learning.Blazor.ComponentModels;
-using Microsoft.AspNetCore.Components.Forms;
-using Microsoft.AspNetCore.Components;
-using System.Net.Http.Json;
-using HaveIBeenPwned.Client.Models;
-using Learning.Blazor.Extensions;
-
 namespace Learning.Blazor.Pages
 {
     public partial class Passwords

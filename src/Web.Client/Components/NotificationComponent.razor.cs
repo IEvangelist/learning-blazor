@@ -1,14 +1,6 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
-using System.Net.Http.Json;
-using HaveIBeenPwned.Client.Models;
-using Learning.Blazor.ComponentModels;
-using Learning.Blazor.Extensions;
-using Learning.Blazor.Models;
-using Learning.Blazor.Serialization;
-using Microsoft.AspNetCore.Components;
-
 namespace Learning.Blazor.Components
 {
     public sealed partial class NotificationComponent : IAsyncDisposable

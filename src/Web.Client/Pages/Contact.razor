@@ -104,23 +104,6 @@
                 </div>
             </div>
         </div>
-        <!-- Are you human? -->
-        <div class="field is-horizontal">
-            <div class="field-label is-normal">
-                <label class="label">@(_model.RobotQuestion)</label>
-            </div>
-            <div class="field-body">
-                <div class="field is-narrow">
-                    <p class="control is-expanded has-icons-left">
-                        <InputText @bind-Value="_model.Result" class="input"
-                            placeholder="@Localizer["ResultPlaceholder"]" />
-                        <span class="icon is-small is-left">
-                            <i class="fas fa-robot"></i>
-                        </span>
-                    </p>
-                </div>
-            </div>
-        </div>
         <!-- Send button -->
         <div class="field is-horizontal">
             <div class="field-label">
@@ -139,3 +122,4 @@
         </div>
     </EditForm>
 </section>
+

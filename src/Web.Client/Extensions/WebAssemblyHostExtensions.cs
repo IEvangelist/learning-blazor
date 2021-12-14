@@ -1,11 +1,6 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
-using System.Diagnostics;
-using System.Globalization;
-using Learning.Blazor.LocalStorage;
-using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-
 namespace Learning.Blazor.Extensions;
 
 internal static class WebAssemblyHostExtensions

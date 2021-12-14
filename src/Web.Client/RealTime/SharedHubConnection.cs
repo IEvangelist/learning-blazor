@@ -1,17 +1,6 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
-using Learning.Blazor.Abstractions.RealTime;
-using Learning.Blazor.Models;
-using Learning.Blazor.Options;
-using Learning.Blazor.Services;
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
-using Microsoft.AspNetCore.SignalR.Client;
-using Microsoft.Extensions.Options;
-using Polly;
-using Polly.Retry;
-
 namespace Learning.Blazor;
 
 public sealed class SharedHubConnection : IAsyncDisposable

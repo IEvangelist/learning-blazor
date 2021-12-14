@@ -1,10 +1,6 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
-using Learning.Blazor.Models;
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.SignalR.Client;
-
 namespace Learning.Blazor.Pages
 {
     public sealed partial class Tweets : IAsyncDisposable

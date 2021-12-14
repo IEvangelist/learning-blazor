@@ -1,8 +1,6 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
-using Microsoft.AspNetCore.Components;
-
 namespace Learning.Blazor.Components
 {
     public partial class ModalComponent
@@ -53,12 +51,15 @@ namespace Learning.Blazor.Components
         public Task Confirm() => Dismiss(DismissalReason.Confirmed);
 
         public Task Cancel() => Dismiss(DismissalReason.Cancelled);
+
+        public Task Verify() => Dismiss(DismissalReason.Verified);
     }
 
     public enum DismissalReason
     {
         Unknown,
         Confirmed,
-        Cancelled
+        Cancelled,
+        Verified
     }
 }

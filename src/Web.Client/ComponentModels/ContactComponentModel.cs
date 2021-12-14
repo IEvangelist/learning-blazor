@@ -1,10 +1,6 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
-using Learning.Blazor.DataAnnotations;
-using Learning.Blazor.Models;
-using System.ComponentModel.DataAnnotations;
-
 namespace Learning.Blazor.ComponentModels;
 
 public record ContactComponentModel()

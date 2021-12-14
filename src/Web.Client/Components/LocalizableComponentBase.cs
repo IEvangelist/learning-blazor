@@ -1,16 +1,6 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
-using System.Security.Claims;
-using Learning.Blazor.Localization;
-using Learning.Blazor.LocalStorage;
-using Learning.Blazor.Services;
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Authorization;
-using Microsoft.AspNetCore.Components.Routing;
-using Microsoft.Extensions.Localization;
-using Microsoft.JSInterop;
-
 namespace Learning.Blazor.Components
 {
     public class LocalizableComponentBase<T> : ComponentBase, IDisposable

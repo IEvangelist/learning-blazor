@@ -54,7 +54,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.PwnedApi", "src\Web.Pwn
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.DistributedCache.Extensions", "src\Web.DistributedCache.Extensions\Web.DistributedCache.Extensions.csproj", "{9B5A2A2F-6F84-4ECF-BE45-B19CDA31CB91}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.LogicAppServices", "src\Web.LogicAppServices\Web.LogicAppServices.csproj", "{971318C2-8073-46E1-87DB-083C58D30170}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.LogicAppServices", "src\Web.LogicAppServices\Web.LogicAppServices.csproj", "{971318C2-8073-46E1-87DB-083C58D30170}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

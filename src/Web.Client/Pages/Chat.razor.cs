@@ -1,12 +1,7 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
-using System.Security.Claims;
 using System.Timers;
-using Learning.Blazor.Extensions;
-using Learning.Blazor.Models;
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
 using SystemTimer = System.Timers.Timer;
 
 namespace Learning.Blazor.Pages

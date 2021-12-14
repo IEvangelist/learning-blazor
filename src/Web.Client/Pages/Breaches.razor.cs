@@ -1,16 +1,6 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
-using System.Net.Http.Json;
-using HaveIBeenPwned.Client.Models;
-using Learning.Blazor.ComponentModels;
-using Learning.Blazor.Components;
-using Learning.Blazor.Serialization;
-using Learning.Blazor.Shared;
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Forms;
-using Microsoft.AspNetCore.Components.Routing;
-
 namespace Learning.Blazor.Pages
 {
     public sealed partial class Breaches
