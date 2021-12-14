@@ -8,8 +8,8 @@ internal static class WebAssemblyHostBuilderExtensions
     internal static WebAssemblyHostBuilder ConfigureServices(
         this WebAssemblyHostBuilder builder)
     {
-        var services = builder.Services;
-        var configuration = builder.Configuration;
+        var (services, configuration) =
+            (builder.Services, builder.Configuration);
 
         services.AddScoped<ApiAccessAuthorizationMessageHandler>();
         services.Configure<WebApiOptions>(
@@ -21,10 +21,10 @@ internal static class WebAssemblyHostBuilderExtensions
 
         var addHttpClient =
             IHttpClientBuilder (
-                string httpClientNames,
+                string httpClientName,
                 Func<WebApiOptions?, string?> webApiOptionsUrlFactory) =>
                 services.AddHttpClient(
-            httpClientNames, (serviceProvider, client) =>
+            httpClientName, (serviceProvider, client) =>
             {
                 var options = GetWebApiOptions(serviceProvider);
                 var apiUrl = webApiOptionsUrlFactory(options);
@@ -38,8 +38,12 @@ internal static class WebAssemblyHostBuilderExtensions
             })
             .AddHttpMessageHandler<ApiAccessAuthorizationMessageHandler>();
 
-        addHttpClient(HttpClientNames.ServerApi, options => options?.WebApiServerUrl);
-        addHttpClient(HttpClientNames.PwnedServerApi, options => options?.PwnedWebApiServerUrl);
+        _= addHttpClient(
+            HttpClientNames.ServerApi,
+            options => options?.WebApiServerUrl);
+        _ = addHttpClient(
+            HttpClientNames.PwnedServerApi,
+            options => options?.PwnedWebApiServerUrl);
 
         services.AddScoped(
             sp => sp.GetRequiredService<IHttpClientFactory>()
