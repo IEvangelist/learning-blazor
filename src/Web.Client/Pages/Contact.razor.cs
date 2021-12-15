@@ -1,30 +1,26 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
+using Learning.Blazor.Models.Requests;
+
 namespace Learning.Blazor.Pages
 {
     public sealed partial class Contact
     {
         private ContactComponentModel _model = new();
-
         private EditContext? _editContext;
-        private bool _isFormInvalid;
-        private bool _isSendDisabled;
-        private bool _isLoading = false;
-
         private InputText _emailInput = null!;
-        private ModalComponent _modal = null!;
+        private VerificationModalComponent _modalComponent = null!;
+        private bool _isFormInvalid;
+        private bool _isSendDisabled = true;
+        private bool _isSent;        
 
         [Inject]
         public IHttpClientFactory HttpFactory { get; set; } = null!;
 
-        [Parameter]
-        [SupplyParameterFromQuery]
-        public string Email { get; set; } = null!;
-
-        protected override async Task OnInitializedAsync()
+        protected override void OnInitialized()
         {
-            if (User is { Identity: { } })
+            if (User is { Identity: { IsAuthenticated: true } })
             {
                 _model = _model with
                 {
@@ -34,10 +30,13 @@ namespace Learning.Blazor.Pages
 
             _editContext = new(_model);
             _editContext.OnFieldChanged += OnModelChanged;
+        }
 
-            if (_emailInput is { Element: { } })
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            if (firstRender && _emailInput is { Element: { } })
             {
-                await (_emailInput.Element?.FocusAsync(preventScroll: true)
+                await (_emailInput?.Element?.FocusAsync(preventScroll: true)
                     ?? ValueTask.CompletedTask);
             }
         }
@@ -50,33 +49,38 @@ namespace Learning.Blazor.Pages
             StateHasChanged();
         }
 
-        private void Reset()
-        {
-            _editContext?.MarkAsUnmodified();
-        }
+        private async ValueTask OnValidSubmitAsync(EditContext _) =>
+            await _modalComponent.PromptAsync();
 
-        private async ValueTask OnValidSubmitAsync(EditContext _)
+        private async Task OnVerificationAttempted(bool isVerified)
         {
             try
             {
-                _isLoading = true;
+                if (isVerified)
+                {
+                    var client = HttpFactory.CreateClient(HttpClientNames.ServerApi);
+                    using var response = await client.PostAsJsonAsync<ContactRequest>(
+                        "api/contact",
+                        new(
+                            _model.FirstName!,
+                            _model.LastName!,
+                            _model.EmailAddress!,
+                            _model.Subject!,
+                            _model.Message!),
+                        DefaultJsonSerialization.Options);
 
-                //var httpClient = HttpFactory.CreateClient(HttpClientNames.PwnedServerApi);
-                //_breaches = (await httpClient.GetFromJsonAsync<BreachHeader[]>(
-                //    $"api/pwned/breaches/{_model.EmailAddress}",
-                //    BreachHeadersJsonSerializerContext.DefaultTypeInfo))
-                //    ?? Array.Empty<BreachHeader>();
+                    _isSent = response.IsSuccessStatusCode;
 
-                //_state = ComponentState.Loaded;
+                }
             }
             catch (Exception ex)
             {
-                Logger.LogError(ex, ex.Message);
+                _ = ex;
+                _isSent = false;
             }
             finally
             {
                 await InvokeAsync(StateHasChanged);
-                _isLoading = false;
             }
         }
     }

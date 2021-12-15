@@ -3,29 +3,20 @@
 
 namespace Learning.Blazor.Services;
 
-internal class WeatherStringFormatterService<T> : IWeatherStringFormatterService<T>
+internal class WeatherStringFormatterService : IWeatherStringFormatterService
 {
-    private readonly IStringLocalizer<T> _localizer;
     private readonly CultureService _cultureService;
-    private readonly TemperatureUnitConversionService _temperatureUnitConversionService;
-    private readonly SpeedUnitConversionService _speedUnitConversionService;
 
-    public WeatherStringFormatterService(
-        IStringLocalizer<T> localizer,
-        CultureService cultureService,
-        TemperatureUnitConversionService temperatureUnitConversionService,
-        SpeedUnitConversionService speedUnitConversionService)
-    {
-        _localizer = localizer;
+    public WeatherStringFormatterService(CultureService cultureService) =>
         _cultureService = cultureService;
-        _temperatureUnitConversionService = temperatureUnitConversionService;
-        _speedUnitConversionService = speedUnitConversionService;
-    }
 
-    public object? GetFormat(Type? formatType)
-        => formatType == typeof(ICustomFormatter) ? this : null;
+    public object? GetFormat(Type? formatType) =>
+        formatType == typeof(ICustomFormatter) ? this : null;
 
-    public string Format(string? format, object? arg, IFormatProvider? formatProvider)
+    public string Format(
+        string? format,
+        object? arg,
+        IFormatProvider? formatProvider)
     {
         if (!Equals(formatProvider))
         {

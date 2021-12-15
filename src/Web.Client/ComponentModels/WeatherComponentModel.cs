@@ -3,14 +3,14 @@
 
 namespace Learning.Blazor.ComponentModels;
 
-public class WeatherComponentModel<T>
+public class WeatherComponentModel
 {
     private readonly WeatherDetails _weatherDetails;
     private readonly CurrentWeather _currentWeather;
     private readonly DailyWeather _todaysDaily;
     private readonly WeatherWordingAndIcon _weather;
     private readonly GeoCode _geoCode;
-    private readonly IWeatherStringFormatterService<T> _weatherStringFormatter;
+    private readonly IWeatherStringFormatterService _weatherStringFormatter;
 
     public string ImagePath => $"media/weather/{_weather?.ToImageName() ?? "01"}.png";
     public string Main => _weather.Main;
@@ -34,7 +34,7 @@ public class WeatherComponentModel<T>
     public WeatherComponentModel(
         WeatherDetails weatherDetails,
         GeoCode geoCode,
-        IWeatherStringFormatterService<T> weatherStringFormatter)
+        IWeatherStringFormatterService weatherStringFormatter)
     {
         _weatherDetails = weatherDetails;
         _weather = _weatherDetails.Current.Weather[0];

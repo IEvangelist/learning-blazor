@@ -16,12 +16,18 @@ namespace Learning.Blazor.Pages
         [Inject]
         public IHttpClientFactory HttpFactory { get; set; } = null!;
 
-        protected override async Task OnInitializedAsync()
+        protected override void OnInitialized()
         {
             _editContext = new(_model);
             _editContext.OnFieldChanged += OnModelChanged;
+        }
 
-            await (_passwordInput?.Element?.FocusAsync(preventScroll: true) ?? ValueTask.CompletedTask);
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            if (firstRender)
+            {
+                await (_passwordInput?.Element?.FocusAsync(preventScroll: true) ?? ValueTask.CompletedTask);
+            }
         }
 
         private void OnModelChanged(object? sender, FieldChangedEventArgs e)

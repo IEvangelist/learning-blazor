@@ -7,14 +7,14 @@ namespace Learning.Blazor.Components
     {
         private Coordinates _coordinates = null!;
         private GeoCode? _geoCode = null!;
-        private WeatherComponentModel<WeatherComponent>? _model = null!;
+        private WeatherComponentModel? _model = null!;
         private ComponentState _state = ComponentState.Loading;
         private bool? _isGeoLocationPermissionGranted = null;
 
         private readonly PeriodicTimer _timer = new(TimeSpan.FromMinutes(10));
 
         [Inject]
-        public IWeatherStringFormatterService<WeatherComponent> Formatter { get; set; } = null!;
+        public IWeatherStringFormatterService Formatter { get; set; } = null!;
 
         [Inject]
         public HttpClient Http { get; set; } = null!;
@@ -77,7 +77,7 @@ namespace Learning.Blazor.Components
                 var weatherDetails = latestWeatherTask.Result;
                 if (weatherDetails is not null && _geoCode is not null)
                 {
-                    _model = new WeatherComponentModel<WeatherComponent>(
+                    _model = new WeatherComponentModel(
                         weatherDetails, _geoCode, Formatter);
                     _state = ComponentState.Loaded;
                 }

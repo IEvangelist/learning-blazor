@@ -22,17 +22,17 @@
         <div class="field has-addons">
             <div class="control is-fullwidth has-icons-left">
                 <input class="input is-large" spellcheck="true"
-				type="text" placeholder=@Localizer["ChatMessage"]
-				@ref="_messageInput"
-				@bind-value="@_message" @oninput="@InitiateDebounceUserIsTyping"
-				@onkeyup="@(args => OnKeyUp(args))" autocomplete="off">
+				    type="text" placeholder=@Localizer["ChatMessage"]
+				    @ref="_messageInput"
+				    @bind-value="@_message" @oninput="@InitiateDebounceUserIsTyping"
+				    @onkeyup="@(args => OnKeyUp(args))" autocomplete="off">
                 <span class="icon is-small is-left">
                     <i class="fas">💬</i>
                 </span>
             </div>
             <div class="control">
                 <a class="button is-info is-large" @onclick="@SendMessage">
-                @Localizer["Send"]
+                    @Localizer["Send"]
                 </a>
             </div>
         </div>

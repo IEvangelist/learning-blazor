@@ -1,6 +1,7 @@
 ﻿@page "/contact"
 @attribute [AllowAnonymous]
 @inherits LocalizableComponentBase<Contact>
+@using Learning.Blazor.Components
 
 <PageTitle>
     @Localizer["Contact"]
@@ -111,7 +112,8 @@
             </div>
             <div class="field-body">
                 <div class="field is-grouped">
-                    <button class="button is-success is-large" disabled=@_isSendDisabled>
+                    <button class="button is-success is-large" type="submit"
+                        disabled=@_isSendDisabled>
                         <span class="icon">
                             <i class="fas fa-paper-plane"></i>
                         </span>
@@ -123,3 +125,5 @@
     </EditForm>
 </section>
 
+<VerificationModalComponent @ref="_modalComponent"
+    OnVerificationAttempted=@OnVerificationAttempted />

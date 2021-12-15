@@ -20,14 +20,11 @@ public record ContactComponentModel()
     [RequiredAcceptance]
     public bool AgreesToTerms { get; set; }
 
-    public AreYouHumanMath NotRobot { get; } =
-        AreYouHumanMath.RandomFactory(MathOperator.Subtraction);
-
-    [Required]
-    public string? Result { get; set; }
-
     [Required]
     public string? Message { get; set; } = null!;
+
+    public AreYouHumanMath NotRobot { get; } =
+        AreYouHumanMath.CreateNew(MathOperator.Subtraction);
 
     public string RobotQuestion => NotRobot.GetQuestion();
 }

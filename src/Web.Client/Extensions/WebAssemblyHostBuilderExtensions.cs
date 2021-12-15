@@ -67,11 +67,8 @@ internal static class WebAssemblyHostBuilderExtensions
         services.AddSingleton<AppInMemoryState>();
         services.AddSingleton<CultureService>();
         services.AddSingleton(typeof(CoalescingStringLocalizer<>));
-        services.AddScoped<TemperatureUnitConversionService>();
-        services.AddScoped<SpeedUnitConversionService>();
-        services.AddScoped(
-            typeof(IWeatherStringFormatterService<>),
-            typeof(WeatherStringFormatterService<>));
+        services.AddScoped
+            <IWeatherStringFormatterService, WeatherStringFormatterService>();
         services.AddScoped<GeoLocationService>();
         services.AddHttpClient<GeoLocationService>(client =>
         {

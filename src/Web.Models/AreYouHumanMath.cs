@@ -15,28 +15,61 @@ public readonly record struct AreYouHumanMath(
         MathOperator.Addition => LeftOperand + RightOperand,
         MathOperator.Subtraction => LeftOperand - RightOperand,
         MathOperator.Multiplication => LeftOperand * RightOperand,
-        MathOperator.Division => LeftOperand / RightOperand,
 
         _ => throw new ArgumentException(
             $"The operator is not supported: {Operator}")
     };
 
-    public override string ToString() =>
-        $"{LeftOperand} {(Operator == MathOperator.Addition ? "+" : "-")} {RightOperand} =";
+    public override string ToString()
+    {
+        var operatorStr = Operator switch
+        {
+            MathOperator.Addition => "+",
+            MathOperator.Subtraction => "-",
+            MathOperator.Multiplication => "*",
+
+            _ => throw new ArgumentException(
+                $"The operator is not supported: {Operator}")
+        };
+
+        return $"{LeftOperand} {operatorStr} {RightOperand} =";
+    }
 
     public string GetQuestion() => $"{this} ?";
 
-    public static AreYouHumanMath RandomFactory(
-        MathOperator mathOperator = MathOperator.Addition) =>
-        new((byte)s_random.Next(1, byte.MaxValue),
-            (byte)s_random.Next(1, byte.MaxValue),
-            mathOperator);
+    public static AreYouHumanMath CreateNew(MathOperator? mathOperator = null)
+    {
+        static MathOperator RandomOperator()
+        {
+            var values = Enum.GetValues<MathOperator>();
+            return values[s_random.Next(values.Length)];
+        };
+
+        var mathOp =
+            mathOperator.GetValueOrDefault(RandomOperator());
+
+        static int Next(byte? maxValue = null) =>
+            s_random.Next(1, maxValue ?? byte.MaxValue);
+
+        var (left, right) = mathOp switch
+        {
+            MathOperator.Addition => (Next(), Next()),
+            MathOperator.Subtraction => (Next(120), Next(120)),
+            _ => (Next(30), Next(30)),
+        };
+
+        (left, right) = (Math.Max(left, right), Math.Min(left, right));
+
+        return new AreYouHumanMath(
+            (byte)left,
+            (byte)right,
+            mathOp);
+    }
 }
 
 public enum MathOperator
 {
     Addition,
     Subtraction,
-    Multiplication,
-    Division
+    Multiplication
 };

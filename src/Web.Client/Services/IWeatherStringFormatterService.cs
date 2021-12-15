@@ -3,6 +3,6 @@
 
 namespace Learning.Blazor.Services;
 
-public interface IWeatherStringFormatterService<out T> : IFormatProvider, ICustomFormatter
+public interface IWeatherStringFormatterService : IFormatProvider, ICustomFormatter
 {
 }

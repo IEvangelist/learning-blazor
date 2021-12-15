@@ -27,8 +27,8 @@ namespace Learning.Blazor.Pages
         public IHttpClientFactory HttpFactory { get; set; } = null!;
 
         [Parameter]
-        [SupplyParameterFromQuery]
-        public string Email { get; set; } = null!;
+        [SupplyParameterFromQuery(Name = "email")]
+        public string EmailAddress { get; set; } = null!;
 
         [CascadingParameter]
         public Error Error { get; set; } = null!;
@@ -38,25 +38,28 @@ namespace Learning.Blazor.Pages
             _editContext = new(_model);
             _editContext.OnFieldChanged += OnModelChanged;
 
-            if (Email is not null and { Length: > 0 })
+            if (EmailAddress is not null and { Length: > 0 })
             {
-                _model.EmailAddress = Email;
+                _model.EmailAddress = EmailAddress;
                 if (_editContext.Validate())
                 {
                     await OnValidSubmitAsync(_editContext);
                 }
             }
+        }
 
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
             await (_emailInput?.Element?.FocusAsync(preventScroll: true) ?? ValueTask.CompletedTask);
         }
 
         protected override async ValueTask OnLocationChangedAsync(LocationChangedEventArgs args)
         {
-            if (Email is not null and { Length: > 0 } &&
-                _model.EmailAddress != Email &&
+            if (EmailAddress is not null and { Length: > 0 } &&
+                _model.EmailAddress != EmailAddress &&
                 _editContext is not null)
             {
-                _model.EmailAddress = Email;
+                _model.EmailAddress = EmailAddress;
                 if (_editContext.Validate())
                 {
                     await OnValidSubmitAsync(_editContext);
@@ -72,7 +75,7 @@ namespace Learning.Blazor.Pages
 
         private void Reset()
         {
-            _model.EmailAddress = Email = null!;
+            _model.EmailAddress = EmailAddress = null!;
             _breaches = Array.Empty<BreachHeader>();
             _filter = null!;
             _state = ComponentState.Unknown;
