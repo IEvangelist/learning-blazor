@@ -49,7 +49,7 @@ internal static class JSRuntimeExtensions
         string defaultVoice,
         double voiceSpeed,
         string lang) where T : class =>
-        jsRuntime!.InvokeVoidAsync(
+        jsRuntime.InvokeVoidAsync(
             "app.speak",
             DotNetObjectReference.Create(dotnetObj),
             callbackMethodName, message, defaultVoice, voiceSpeed, lang);

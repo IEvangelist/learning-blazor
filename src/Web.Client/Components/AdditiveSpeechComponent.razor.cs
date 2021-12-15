@@ -13,7 +13,7 @@ namespace Learning.Blazor.Components
                 var isHidden = Message is null or { Length: 0 } ? "is-hidden" : "";
                 var isFlashing = _isSpeaking ? "is-flashing" : "";
 
-                return $"{isHidden} {isFlashing}";
+                return $"{isHidden} {isFlashing}".Trim();
             }
         }
 
@@ -42,13 +42,15 @@ namespace Learning.Blazor.Components
         }
 
         [JSInvokable]
-        public Task OnSpokenAsync(double elapsedTime) =>
+        public Task OnSpokenAsync(double elapsedTimeInSeconds) =>
             InvokeAsync(() =>
             {
                 _isSpeaking = false;
 
+                Logger.LogInformation(
+                    "Spoke utterance in {ElapsedTime} seconds", elapsedTimeInSeconds);
+
                 StateHasChanged();
             });
-
     }
 }
