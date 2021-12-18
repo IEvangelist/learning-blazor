@@ -11,7 +11,7 @@ internal sealed class DefaultTwitterService : ITwitterService
     private readonly ILogger<DefaultTwitterService> _logger;
     private readonly TwitterClient _twitterClient;
     private readonly IFilteredStream _filteredStream;
-    private readonly Stack<TweetContents> _latestTweets = new(50);
+    private readonly FixedSizeQueue<TweetContents> _latestTweets = new(50);
     private readonly HashSet<string> _tracks = new(StringComparer.OrdinalIgnoreCase)
     {
         "#Blazor",
@@ -26,7 +26,7 @@ internal sealed class DefaultTwitterService : ITwitterService
 
     private HashSet<long> _tweetIds = new();
 
-    public IReadOnlyCollection<TweetContents>? LastFiftyTweets => _latestTweets;
+    public IReadOnlyCollection<TweetContents>? LastFiftyTweets => _latestTweets.ReadOnly;
     public StreamingStatus? CurrentStatus { get; private set; }
 
     public DefaultTwitterService(
@@ -85,13 +85,14 @@ internal sealed class DefaultTwitterService : ITwitterService
             }
             else
             {
-                _logger.LogWarning("Unable to start tweet stream.");
+                _logger.LogWarning(
+                    "Tweet stream is already running...this is a noop.");
             }
         }
         catch (Exception ex)
         {
             _logger.LogError(
-                "Unable to start tweet stream. {Error}", ex.Message);
+                "Unable to start tweet stream due to: {Error}", ex.Message);
         }
     }
 
@@ -111,13 +112,14 @@ internal sealed class DefaultTwitterService : ITwitterService
             }
             else
             {
-                _logger.LogWarning("Unable to stop tweet stream.");
+                _logger.LogWarning(
+                    "Tweet stream is already stopped... this is a noop.");
             }
         }
         catch (Exception ex)
         {
             _logger.LogError(
-                "Unable to stop tweet stream. {Error}", ex.Message);
+                "Unable to stop tweet stream due to: {Error}", ex.Message);
         }
     }
 
@@ -133,22 +135,20 @@ internal sealed class DefaultTwitterService : ITwitterService
     {
         if (iTweet is null)
         {
-            _logger.LogError("Unable to broadcast tweet");
+            _logger.LogError(
+                "Unable to broadcast tweet as iTweet is null.");
             return;
         }
 
         // If Twitter thinks this might be sensitive, filter it out.
         if (iTweet.PossiblySensitive)
         {
-            _logger.LogWarning("Ignoring sensitive tweet: {Tweet}", iTweet.FullText);
+            _logger.LogWarning(
+                "Ignoring sensitive tweet: {Tweet}", iTweet.FullText);
             return;
         }
 
-        GetOEmbedTweetParameters parameters = new(iTweet)
-        {
-            Alignment = OEmbedTweetAlignment.Center
-        };
-        var tweet = await _twitterClient.Tweets.GetOEmbedTweetAsync(parameters);
+        var tweet = await TryGetOEmbedTweetAsync(iTweet);
         if (tweet is null)
         {
             _logger.LogWarning("Unable to parse OEmbed tweet");
@@ -173,12 +173,8 @@ internal sealed class DefaultTwitterService : ITwitterService
         {
             if (_tweetIds.Add(latestTweet.Id))
             {
-                if (_latestTweets is { Count: > 0 })
-                {
-                    _ = _latestTweets.Pop();
-                }
-                _latestTweets.Push(latestTweet);
-                _tweetIds = _latestTweets.Select(t => t.Id).ToHashSet();
+                _latestTweets.Enqueue(latestTweet);
+                _tweetIds = _latestTweets.ReadOnly.Select(t => t.Id).ToHashSet();
             }
         }
 
@@ -188,6 +184,25 @@ internal sealed class DefaultTwitterService : ITwitterService
                 "Successfully broadcasting tweet: {Tweet}", tweet.HTML);
 
             await TweetReceived(latestTweet);
+        }
+    }
+
+    private async Task<IOEmbedTweet?> TryGetOEmbedTweetAsync(ITweet? iTweet)
+    {
+        try
+        {
+            var tweet =
+                await _twitterClient.Tweets.GetOEmbedTweetAsync(
+                    new GetOEmbedTweetParameters(iTweet)
+                    {
+                        Alignment = OEmbedTweetAlignment.Center
+                    });
+            return tweet;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex.Message, ex);
+            return null;
         }
     }
 

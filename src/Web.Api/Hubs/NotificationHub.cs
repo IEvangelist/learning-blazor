@@ -8,28 +8,34 @@ public class NotificationHub : Hub
 {
     private readonly ITwitterService _twitterService;
     private readonly IStringLocalizer<Shared> _localizer;
+    private readonly ILogger<NotificationHub> _logger;
 
     private string? _userName => Context?.User?.Identity?.Name;
     private string[]? _userEmail => Context?.User?.GetEmailAddresses();
 
     public NotificationHub(
-        ITwitterService twitterService, IStringLocalizer<Shared> localizer) =>
-        (_twitterService, _localizer) = (twitterService, localizer);
+        ITwitterService twitterService,
+        IStringLocalizer<Shared> localizer,
+        ILogger<NotificationHub> logger) =>
+        (_twitterService, _localizer, _logger) = (twitterService, localizer, logger);
 
     public override Task OnConnectedAsync() =>
         Clients.All.SendAsync(
             HubServerEventNames.UserLoggedIn,
-            Notification<Actor>.FromAlert(new(_userName ?? "Unknown", _userEmail)));
+            Notification<Actor>.FromAlert(
+                new(_userName ?? "Unknown", _userEmail)));
 
     public override Task OnDisconnectedAsync(Exception? ex) =>
         Clients.All.SendAsync(
             HubServerEventNames.UserLoggedOut,
-            Notification<Actor>.FromAlert(new(_userName ?? "Unknown")));
+            Notification<Actor>.FromAlert(
+                new(_userName ?? "Unknown")));
 
     public Task ToggleUserTyping(bool isTyping) =>
         Clients.Others.SendAsync(
             HubServerEventNames.UserTyping,
-            Notification<ActorAction>.FromAlert(new(_userName ?? "Unknown", isTyping)));
+            Notification<ActorAction>.FromAlert(
+                new(_userName ?? "Unknown", isTyping)));
 
     public Task PostOrUpdateMessage(string room, string message, Guid? id = default!) =>
         Clients.Groups(room).SendAsync(
@@ -41,18 +47,38 @@ public class NotificationHub : Hub
     {
         await Groups.AddToGroupAsync(Context.ConnectionId, HubGroupNames.Tweets);
 
-        if (_twitterService.CurrentStatus is not null)
+        if (_twitterService.CurrentStatus is StreamingStatus status)
         {
+            _logger.LogInformation(
+                "Replaying streaming status = {IsStreaming}.",
+                status.IsStreaming);
+
             await Clients.Caller.SendAsync(
                 HubServerEventNames.StatusUpdated,
-                Notification<StreamingStatus>.FromStatus(_twitterService.CurrentStatus));
+                Notification<StreamingStatus>.FromStatus(
+                    _twitterService.CurrentStatus));
         }
+        else
+        {
+            _logger.LogInformation(
+                "No current streaming status available, unable to replay.");
+        }
+
         if (_twitterService.LastFiftyTweets is { Count: > 0 })
         {
+            _logger.LogInformation(
+                "Replaying last {Count} tweet.",
+                _twitterService.LastFiftyTweets.Count);
+
             await Clients.Caller.SendAsync(
                 HubServerEventNames.InitialTweetsLoaded,
                 Notification<List<TweetContents>>.FromTweets(
                     _twitterService.LastFiftyTweets.ToList()));
+        }
+        else
+        {
+            _logger.LogInformation(
+                "No previous tweets available, unable to replay.");
         }
     }
 

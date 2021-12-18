@@ -64,8 +64,17 @@ namespace Learning.Blazor.Components
             GC.SuppressFinalize(this);
         }
 
-        private async void OnLocationChanged(object? sender, LocationChangedEventArgs args) =>
+        private async void OnLocationChanged(object? sender, LocationChangedEventArgs args)
+        {
+            if (Logger.IsEnabled(LogLevel.Information))
+            {
+                Logger.LogInformation(
+                    "OnLocationChanged: {Location}",
+                    args.Location);
+            }
+    
             await OnLocationChangedAsync(args);
+        }
 
         protected virtual ValueTask OnLocationChangedAsync(LocationChangedEventArgs args) =>
             ValueTask.CompletedTask;

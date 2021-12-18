@@ -59,8 +59,8 @@ namespace Learning.Blazor.Pages
                     StateHasChanged();
                 });
 
-        async Task OnUserTypingAsync(Notification<ActorAction> actorAction) =>
-            await InvokeAsync(() =>
+        Task OnUserTypingAsync(Notification<ActorAction> actorAction) =>
+            InvokeAsync(() =>
             {
                 var (_, (user, isTyping)) = actorAction;
                 _ = isTyping
@@ -150,6 +150,11 @@ namespace Learning.Blazor.Pages
 
         async ValueTask IAsyncDisposable.DisposeAsync()
         {
+            if (Logger.IsEnabled(LogLevel.Information))
+            {
+                Logger.LogInformation("Disposing of Chat.razor.cs");
+            }
+
             if (HubConnection is not null)
             {
                 await HubConnection.LeaveChatAsync(Room ?? DefaultRoomName);

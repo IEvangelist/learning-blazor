@@ -106,6 +106,11 @@ namespace Learning.Blazor.Components
 
         async ValueTask IAsyncDisposable.DisposeAsync()
         {
+            if (Logger.IsEnabled(LogLevel.Information))
+            {
+                Logger.LogInformation("Disposing of NotificationComponent.razor.cs");
+            }
+
             if (HubConnection is not null)
             {
                 await HubConnection.StopAsync(this);

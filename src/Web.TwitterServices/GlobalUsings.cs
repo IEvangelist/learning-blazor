@@ -1,6 +1,7 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
+global using System.Collections.Concurrent;
 global using Learning.Blazor.Models;
 global using Learning.Blazor.TwitterServices;
 global using Microsoft.Extensions.Configuration;

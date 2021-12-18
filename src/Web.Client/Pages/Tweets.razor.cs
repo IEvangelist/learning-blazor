@@ -75,6 +75,11 @@ namespace Learning.Blazor.Pages
 
         async ValueTask IAsyncDisposable.DisposeAsync()
         {
+            if (Logger.IsEnabled(LogLevel.Information))
+            {
+                Logger.LogInformation("Disposing of Tweets.razor.cs");
+            }
+
             if (HubConnection is not null)
             {
                 await HubConnection.LeaveTweetsAsync();

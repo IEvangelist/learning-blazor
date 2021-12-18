@@ -29,10 +29,16 @@ public sealed class TwitterWorkerService : BackgroundService
     }
 
     private Task OnStatusUpdated(StreamingStatus status) =>
-        _hubContext.Clients.Group(HubGroupNames.Tweets).SendAsync(
-            HubServerEventNames.StatusUpdated, Notification<StreamingStatus>.FromStatus(status));
+        _hubContext.Clients
+            .Group(HubGroupNames.Tweets)
+            .SendAsync(
+                HubServerEventNames.StatusUpdated,
+                Notification<StreamingStatus>.FromStatus(status));
 
     private Task OnTweetReceived(TweetContents tweet) =>
-        _hubContext.Clients.Group(HubGroupNames.Tweets).SendAsync(
-            HubServerEventNames.TweetReceived, Notification<TweetContents>.FromTweet(tweet));
+        _hubContext.Clients
+            .Group(HubGroupNames.Tweets)
+            .SendAsync(
+                HubServerEventNames.TweetReceived,
+                Notification<TweetContents>.FromTweet(tweet));
 }
