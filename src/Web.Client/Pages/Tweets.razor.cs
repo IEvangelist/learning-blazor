@@ -5,7 +5,7 @@ namespace Learning.Blazor.Pages
 {
     public sealed partial class Tweets : IAsyncDisposable
     {
-        private readonly HashSet<TweetContents> _tweets = new();
+        private readonly ConcurrentDictionary<long, TweetContents> _tweets = new();
         private readonly Stack<IDisposable> _subscriptions = new();
 
         private StreamingStatus? _streamingStatus;
@@ -37,25 +37,40 @@ namespace Learning.Blazor.Pages
         private Task OnStatusUpdatedAsync(Notification<StreamingStatus> status) =>
             InvokeAsync(() =>
             {
-                _streamingStatus = status;
-                StateHasChanged();
+                if (_streamingStatus?.IsStreaming != status.Payload.IsStreaming)
+                {
+                    _streamingStatus = status;
+                    StateHasChanged();
+                }                
             });
 
         private Task OnTweetReceivedAsync(Notification<TweetContents> tweet) =>
             InvokeAsync(() =>
             {
-                _ = _tweets.Add(tweet);
-                StateHasChanged();
+                if (!_tweets.ContainsKey(tweet.Payload.Id))
+                {
+                    _tweets[tweet.Payload.Id] = tweet;
+                    StateHasChanged();
+                }                
             });
 
-        private Task OnTweetsLoadedAsync(Notification<HashSet<TweetContents>> tweets) =>
+        private Task OnTweetsLoadedAsync(Notification<List<TweetContents>> tweets) =>
             InvokeAsync(() =>
             {
+                var stateChanged = false;
                 foreach (var tweet in tweets.Payload)
                 {
-                    _ = _tweets.Add(tweet);
+                    if (!_tweets.ContainsKey(tweet.Id))
+                    {
+                        _tweets[tweet.Id] = tweet;
+                        stateChanged = true;
+                    }
                 }
-                StateHasChanged();
+
+                if (stateChanged)
+                {
+                    StateHasChanged();
+                }
             });
 
         async ValueTask IAsyncDisposable.DisposeAsync()

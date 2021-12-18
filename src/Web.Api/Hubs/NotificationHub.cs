@@ -51,8 +51,8 @@ public class NotificationHub : Hub
         {
             await Clients.Caller.SendAsync(
                 HubServerEventNames.InitialTweetsLoaded,
-                Notification<HashSet<TweetContents>>.FromTweets(
-                    new HashSet<TweetContents>(_twitterService.LastFiftyTweets)));
+                Notification<List<TweetContents>>.FromTweets(
+                    _twitterService.LastFiftyTweets.ToList()));
         }
     }
 

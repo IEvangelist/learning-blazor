@@ -6,7 +6,7 @@ namespace Learning.Blazor;
 public sealed class SharedHubConnection : IAsyncDisposable
 {
     private readonly Guid _id = Guid.NewGuid();
-    private readonly IAccessTokenProvider _tokenProvider = null!;
+    private readonly IServiceProvider _serviceProvider = null!;
     private readonly ILogger<SharedHubConnection> _logger = null!;
     private readonly AsyncRetryPolicy _asyncRetryPolicy = null!;
     private readonly CultureService _cultureService = null!;
@@ -20,13 +20,13 @@ public sealed class SharedHubConnection : IAsyncDisposable
     public HubConnectionState State => _hubConnection.State;
 
     public SharedHubConnection(
-        IAccessTokenProvider tokenProvider,
+        IServiceProvider serviceProvider,
         IOptions<WebApiOptions> options,
         CultureService cultureService,
         ILogger<SharedHubConnection> logger)
     {
-        (_tokenProvider, _cultureService, _logger) =
-            (tokenProvider, cultureService, logger);
+        (_serviceProvider, _cultureService, _logger) =
+            (serviceProvider, cultureService, logger);
 
         var notificationHub =
             new Uri($"{options.Value.WebApiServerUrl}/notifications");
@@ -80,17 +80,30 @@ public sealed class SharedHubConnection : IAsyncDisposable
 
     private async Task<string?> GetAccessTokenValueAsync()
     {
-        var result = await _tokenProvider.RequestAccessToken();
-        if (result.TryGetToken(out var accessToken))
+        using (var scope = _serviceProvider.CreateScope())
         {
-            return accessToken.Value;
+            var tokenProvider = scope.ServiceProvider.GetRequiredService<IAccessTokenProvider>();
+            var result = await tokenProvider.RequestAccessToken();
+            if (result.TryGetToken(out var accessToken))
+            {
+                if (_logger.IsEnabled(LogLevel.Trace))
+                {
+                    _logger.LogTrace(
+                        "Have access token. {Token}, {Expires} (Scopes: {Scopes})",
+                        accessToken.Value,
+                        accessToken.Expires,
+                        string.Join(",", accessToken.GrantedScopes));
+                }
+
+                return accessToken.Value;
+            }
+
+            _logger.LogWarning(
+                "Unable to get the access token. '{Status}' - Return URL: {Url}",
+                result.Status, result.RedirectUrl);
+
+            return null;
         }
-
-        _logger.LogWarning(
-            "Unable to get the access token. '{Status}' - Return URL: {Url}",
-            result.Status, result.RedirectUrl);
-
-        return null;
     }
 
     public async Task StartAsync(ComponentBase component, CancellationToken token = default)
@@ -196,7 +209,7 @@ public sealed class SharedHubConnection : IAsyncDisposable
 
     /// <inheritdoc cref="HubServerEventNames.InitialTweetsLoaded" />
     public IDisposable SubscribeToTweetsLoaded(
-        Func<Notification<HashSet<TweetContents>>, Task> onTweetsLoaded) =>
+        Func<Notification<List<TweetContents>>, Task> onTweetsLoaded) =>
         _hubConnection.On(HubServerEventNames.InitialTweetsLoaded, onTweetsLoaded);
 
     /// <inheritdoc cref="HubServerEventNames.UserLoggedIn" />

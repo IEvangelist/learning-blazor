@@ -1,19 +1,19 @@
 ﻿<!--  Copyright (c) 2021 David Pine. All rights reserved.
-      Licensed under the MIT License.  -->
+      Licensed under the MIT License.
+-->
 
 @page "/tweets"
 @attribute [Authorize]
 @inherits LocalizableComponentBase<Tweets>
 
 <PageTitle>
-	@Localizer["Tweets"]
+    @Localizer["Tweets"]
 </PageTitle>
-
-<!-- TODO: Update markup to follow Breaches.razor, for input, panel, and results content -->
 
 <div class="columns">
     <div class="column is-half is-offset-one-quarter">
-        <article class="panel is-info has-text-centered has-dotnet-scrollbar">
+
+        <div class="pb-4">
             <p class="panel-heading">
                 <span class="icon pr-2">
                     <i class=@_streamingFontAwesomeClass></i>
@@ -23,9 +23,9 @@
             <div class="panel-block">
                 <p class="control has-icons-left">
                     <input class="input is-info" type="text"
-                        @bind=_filter @bind:event="oninput"
-                        disabled=@(_tweets is null or { Count: 0 })
-                        placeholder="@Localizer["FilterTweets"]">
+                           @bind=_filter @bind:event="oninput"
+                           disabled=@(_tweets is null or { Count: 0 })
+                           placeholder="@Localizer["FilterTweets"]">
                     <span class="icon is-left">
                         <i class="fas fa-search" aria-hidden="true"></i>
                     </span>
@@ -34,7 +34,7 @@
 
             <div class="panel-block has-text-centered">
                 <div class="tags are-medium">
-                    @if (_streamingStatus is { Tracks: {  Length: > 0 } })
+                    @if (_streamingStatus is { Tracks: { Length: > 0 } })
                     {
                         foreach (var track in _streamingStatus.Tracks)
                         {
@@ -44,9 +44,15 @@
                     }
                 </div>
             </div>
+        </div>
 
-            <div class="panel-block has-text-centered">
-                <TweetsComponent Tweets=_tweets!.ToArray() Filter=@_filter />
+        <article class="is-medium-panel is-info has-text-centered has-dotnet-scrollbar">
+            <div class="has-text-centered">
+                <TweetsComponent Tweets=_tweets!.Values.ToArray() Filter=@_filter>
+                    <Loading>
+                        <SpinnerComponent />
+                    </Loading>
+                </TweetsComponent>
             </div>
         </article>
 

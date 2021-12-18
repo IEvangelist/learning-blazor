@@ -1,17 +1,12 @@
-﻿const renderTweets = () => {
-    if (this.twttr && this.twttr.widgets) {
-        this.twttr.widgets.load();
+﻿export async function renderTweets() {
+    if (window.twttr && window.twttr.widgets) {
+        await window.twttr.widgets.load();
     }
 }
 
-// Register the twitter object, with a single function available in it.
-window.twitter = {
-    renderTweets
-};
-
 // Register the twitter-provided widget to render the DOM updates.
 // This is called from the .NET TweetComponent.razor.cs file.
-window.twttr = (function (d, s, id) {
+window.twitter = (function (d, s, id) {
     var js,
         fjs = d.getElementsByTagName(s)[0],
         t = window.twttr || {};

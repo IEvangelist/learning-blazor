@@ -1,9 +1,6 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
-using System.Diagnostics.CodeAnalysis;
-using Learning.Blazor.Models;
-
 namespace Learning.Blazor.TwitterServices;
 
 public interface ITwitterService
@@ -25,35 +22,12 @@ public interface ITwitterService
     event Func<StreamingStatus, Task> StatusUpdated;
 
     /// <summary>
-    /// Removes the track from listening on the Twitter stream.
-    /// A track is a string that represents either a
-    /// <c>#hashtag</c> or <c>@handle</c>.
+    /// Starts the tweet stream, to stop it use <see cref="StopTweetStreamAsync"/>.
     /// </summary>
-    /// <param name="tracks">The tracks to add.</param>
-    void RemoveTrack([NotNull] string track);
-
-    /// <summary>
-    /// Adds tracks to listen on from our Twitter stream.
-    /// A track is a string that represents either:
-    /// <c>#hashtag</c> or <c>@handle</c>.
-    /// </summary>
-    /// <param name="tracks">The tracks to add.</param>
-    void AddTracks([NotNull] ISet<string> tracks);
-
-    /// <summary>
-    /// Starts the tweet stream, to pause the stream call
-    /// <see cref="PauseTweetStream"/>, and to stop it use <see cref="StopTweetStream"/>.
-    /// </summary>
-    /// <returns></returns>
     Task StartTweetStreamAsync();
-
-    /// <summary>
-    /// Pauses the stream, to start it call <see cref="StartTweetStreamAsync"/>.
-    /// </summary>
-    void PauseTweetStream();
 
     /// <summary>
     /// Stops the stream, to start it call <see cref="StartTweetStreamAsync"/>.
     /// </summary>
-    void StopTweetStream();
+    Task StopTweetStreamAsync();
 }

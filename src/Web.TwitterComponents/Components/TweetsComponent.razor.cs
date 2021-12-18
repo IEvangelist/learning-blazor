@@ -1,15 +1,12 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
-using Learning.Blazor.Models;
-using Learning.Blazor.TwitterComponents.Extensions;
-using Microsoft.AspNetCore.Components;
-using Microsoft.JSInterop;
-
 namespace Learning.Blazor.TwitterComponents.Components;
 
-public sealed partial class TweetsComponent
+public sealed partial class TweetsComponent : IAsyncDisposable
 {
+    private IJSObjectReference? _twitterModule;
+
     [Inject]
     public IJSRuntime JavaScript { get; set; } = null!;
 
@@ -19,8 +16,27 @@ public sealed partial class TweetsComponent
     [Parameter]
     public string? Filter { get; set; } = null!;
 
-    protected override async Task OnParametersSetAsync() =>
-        await JavaScript.RenderTweetsAsync();
+    [Parameter]
+    public RenderFragment Loading { get; set; } = null!;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            _twitterModule =
+                await JavaScript.InvokeAsync<IJSObjectReference>(
+                    "import",
+                    "./_content/Web.TwitterComponents/twitter-component.js");
+        }
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (_twitterModule is not null)
+        {
+            await _twitterModule.RenderTweetsAsync();
+        }
+    }
 
     private bool TweetMatchesFilter(TweetContents tweet)
     {
@@ -34,7 +50,19 @@ public sealed partial class TweetsComponent
             return false;
         }
 
-        return tweet.AuthorName.Contains(Filter, StringComparison.OrdinalIgnoreCase)
-            || tweet.HTML.Contains(Filter, StringComparison.OrdinalIgnoreCase);
+        return IgnoreCaseContains(tweet.AuthorName, Filter)
+            || IgnoreCaseContains(tweet.HTML, Filter);
+
+        static bool IgnoreCaseContains(string? text, string filter) =>
+            text?.Contains(filter, StringComparison.OrdinalIgnoreCase)
+            ?? false;
+    }
+
+    async ValueTask IAsyncDisposable.DisposeAsync()
+    {
+        if (_twitterModule is not null)
+        {
+            await _twitterModule.DisposeAsync();
+        }
     }
 }

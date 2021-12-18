@@ -1,13 +1,6 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
-using System.Diagnostics.CodeAnalysis;
-using Learning.Blazor.Models;
-using Microsoft.Extensions.Logging;
-using Tweetinvi.Events;
-using Tweetinvi.Models;
-using Tweetinvi.Streaming;
-
 namespace Learning.Blazor.TwitterServices;
 
 internal sealed class DefaultTwitterService : ITwitterService
@@ -16,19 +9,33 @@ internal sealed class DefaultTwitterService : ITwitterService
     private static bool s_isInitialized = false;
 
     private readonly ILogger<DefaultTwitterService> _logger;
+    private readonly TwitterClient _twitterClient;
     private readonly IFilteredStream _filteredStream;
     private readonly Stack<TweetContents> _latestTweets = new(50);
+    private readonly HashSet<string> _tracks = new(StringComparer.OrdinalIgnoreCase)
+    {
+        "#Blazor",
+        "#WebAssembly",
+        "#wasm",
+        "#csharp",
+        "#dotnet",
+        "@dotnet",
+        "@aspnet",
+        "@davidpine7"
+    };
 
-    private HashSet<int> _tweetHashCodes = new();
+    private HashSet<long> _tweetIds = new();
 
     public IReadOnlyCollection<TweetContents>? LastFiftyTweets => _latestTweets;
     public StreamingStatus? CurrentStatus { get; private set; }
 
     public DefaultTwitterService(
         ILogger<DefaultTwitterService> logger,
+        TwitterClient twitterClient,
         IFilteredStream filteredStream)
     {
         _logger = logger;
+        _twitterClient = twitterClient;
         _filteredStream = filteredStream;
 
         InitializeStream();
@@ -46,11 +53,7 @@ internal sealed class DefaultTwitterService : ITwitterService
                 return;
             }
 
-            // The script is loaded only once, registered in our twitter-componenet.js
-            // No need to have each individual tweet have the script embedded within it.
             _filteredStream.AddCustomQueryParameter("omit_script", "true");
-            _filteredStream.AddCustomQueryParameter("link_color", "#512bd4");
-            _filteredStream.AddCustomQueryParameter("align", "center");
 
             _filteredStream.DisconnectMessageReceived += OnDisconnectedMessageReceived;
             _filteredStream.MatchingTweetReceived += OnMatchingTweetReceived;
@@ -60,89 +63,61 @@ internal sealed class DefaultTwitterService : ITwitterService
             _filteredStream.StreamPaused += OnStreamPaused;
             _filteredStream.WarningFallingBehindDetected += OnFallingBehindDetected;
 
-            AddTracks(new HashSet<string>(StringComparer.OrdinalIgnoreCase)
-                {
-                    "#Blazor",
-                    "#WebAssembly",
-                    "#wasm",
-                    "#csharp",
-                    "#dotnet",
-                    "@dotnet",
-                    "@aspnet",
-                    "@davidpine7"
-                });
+            foreach (var track in _tracks)
+            {
+                _filteredStream.AddTrack(track);
+            }
 
             s_isInitialized = true;
         }
     }
 
     /// <inheritdoc />
-    public void AddTracks([NotNull] ISet<string> tracks) =>
-        HandleTracks(true, tracks.ToArray());
-
-    /// <inheritdoc />
-    public void RemoveTrack([NotNull] string track) =>
-        HandleTracks(false, track);
-
-    private void HandleTracks(bool add, params string[] tracks)
+    public async Task StartTweetStreamAsync()
     {
-        StopTweetStream();
-
-        foreach (var track in tracks.Where(_ => _ is not null))
+        try
         {
-            if (add)
+            if (_filteredStream is not { StreamState: StreamState.Running })
             {
-                _filteredStream.AddTrack(track);
+                _logger.LogInformation("Starting tweet stream.");
+                await _filteredStream.StartMatchingAnyConditionAsync();
+                _logger.LogInformation("Started tweet stream.");
             }
             else
             {
-                _filteredStream.RemoveTrack(track);
+                _logger.LogWarning("Unable to start tweet stream.");
             }
         }
-    }
-
-    /// <inheritdoc />
-    public void PauseTweetStream()
-    {
-        if (_filteredStream is not { StreamState: StreamState.Pause })
+        catch (Exception ex)
         {
-            _logger.LogInformation("Pausing tweet stream.");
-            _filteredStream.Pause();
-            _logger.LogInformation("Paused tweet stream.");
-        }
-        else
-        {
-            _logger.LogWarning("Unable to pause tweet stream.");
+            _logger.LogError(
+                "Unable to start tweet stream. {Error}", ex.Message);
         }
     }
 
     /// <inheritdoc />
-    public async Task StartTweetStreamAsync()
+    public async Task StopTweetStreamAsync()
     {
-        if (_filteredStream is not { StreamState: StreamState.Running })
+        try
         {
-            _logger.LogInformation("Starting tweet stream.");
-            await _filteredStream.StartMatchingAnyConditionAsync();
-            _logger.LogInformation("Started tweet stream.");
-        }
-        else
-        {
-            _logger.LogWarning("Unable to start tweet stream.");
-        }
-    }
+            if (_filteredStream is not { StreamState: StreamState.Stop })
+            {
+                _logger.LogInformation("Stopping tweet stream.");
 
-    /// <inheritdoc />
-    public void StopTweetStream()
-    {
-        if (_filteredStream is not { StreamState: StreamState.Stop })
-        {
-            _logger.LogInformation("Stopping tweet stream.");
-            _filteredStream.Stop();
-            _logger.LogInformation("Stoppied tweet stream.");
+                _filteredStream.Stop();
+                await Task.CompletedTask;
+
+                _logger.LogInformation("Stoppied tweet stream.");
+            }
+            else
+            {
+                _logger.LogWarning("Unable to stop tweet stream.");
+            }
         }
-        else
+        catch (Exception ex)
         {
-            _logger.LogWarning("Unable to stop tweet stream.");
+            _logger.LogError(
+                "Unable to stop tweet stream. {Error}", ex.Message);
         }
     }
 
@@ -169,7 +144,11 @@ internal sealed class DefaultTwitterService : ITwitterService
             return;
         }
 
-        var tweet = await iTweet.GenerateOEmbedTweetAsync();
+        GetOEmbedTweetParameters parameters = new(iTweet)
+        {
+            Alignment = OEmbedTweetAlignment.Center
+        };
+        var tweet = await _twitterClient.Tweets.GetOEmbedTweetAsync(parameters);
         if (tweet is null)
         {
             _logger.LogWarning("Unable to parse OEmbed tweet");
@@ -185,97 +164,67 @@ internal sealed class DefaultTwitterService : ITwitterService
             tweet.URL,
             tweet.ProviderURL,
             tweet.Width,
-            tweet.Height,            
-            tweet.Version,            
+            tweet.Height,
+            tweet.Version,
             tweet.Type,
-            tweet.CacheAge
-        );
+            tweet.CacheAge);
 
         lock (s_locker)
         {
-            if (_tweetHashCodes.Add(latestTweet.GetHashCode()))
+            if (_tweetIds.Add(latestTweet.Id))
             {
                 if (_latestTweets is { Count: > 0 })
                 {
                     _ = _latestTweets.Pop();
                 }
                 _latestTweets.Push(latestTweet);
-                _tweetHashCodes = _latestTweets.Select(t => t.GetHashCode()).ToHashSet();
+                _tweetIds = _latestTweets.Select(t => t.Id).ToHashSet();
             }
         }
 
         if (TweetReceived is not null)
         {
-            _logger.LogWarning("Successfully broadcasting tweet: {Tweet}", tweet.HTML);
+            _logger.LogInformation(
+                "Successfully broadcasting tweet: {Tweet}", tweet.HTML);
 
             await TweetReceived(latestTweet);
         }
     }
 
-    private async void OnDisconnectedMessageReceived(object? sender, DisconnectedEventArgs? args)
+    private async void OnDisconnectedMessageReceived(object? sender, DisconnectedEventArgs? args) =>
+        await SendStatusUpdateAsync(
+            "Twitter stream disconnected: {0}",
+            args?.DisconnectMessage);
+
+    private async void OnStreamStarted(object? sender, EventArgs? args) =>
+        await SendStatusUpdateAsync("Twitter stream started.");
+
+    private async void OnStreamStopped(object? sender, StreamStoppedEventArgs args) =>
+        await SendStatusUpdateAsync(
+            "Twitter stream stopped {0}: {1}",
+            args.DisconnectMessage?.ToString() ?? "no disconnection reason",
+            args.Exception?.Message ?? "no error (clean stop).");
+
+    private async void OnStreamResumed(object? sender, EventArgs? args) =>
+        await SendStatusUpdateAsync("Twitter stream resumed.");
+
+    private async void OnStreamPaused(object? sender, EventArgs? args) =>
+        await SendStatusUpdateAsync("Twitter stream paused.");
+
+    private async void OnFallingBehindDetected(object? sender, WarningFallingBehindEventArgs args) =>
+        await SendStatusUpdateAsync(
+            "Twitter stream falling behind: {0}.",
+            args.WarningMessage);
+
+    private Task SendStatusUpdateAsync(
+        string statusFormat, params object?[] args)
     {
-        var status = $"Twitter stream disconnected: {args?.DisconnectMessage}";
-
-        _logger.LogWarning(status, args);
-
-        await SendStatusUpdateAsync(status);
-    }
-
-    private async void OnStreamStarted(object? sender, EventArgs? args)
-    {
-        const string status = "Twitter stream started.";
-
-        _logger.LogInformation(status);
-
-        await SendStatusUpdateAsync(status);
-    }
-
-    private async void OnStreamStopped(object? sender, StreamStoppedEventArgs args)
-    {
-        var disconnectMessage = args.DisconnectMessage?.ToString() ?? "no disconnection reason";
-        var errorMessage = args.Exception?.Message ?? "no error (clean stop).";
-        var status = $"Twitter stream stopped {disconnectMessage}: {errorMessage}";
-
-        _logger.LogInformation(status);
-
-        await SendStatusUpdateAsync(status);
-    }
-
-    private async void OnStreamResumed(object? sender, EventArgs? args)
-    {
-        const string status = "Twitter stream resumed.";
-
-        _logger.LogInformation(status);
-
-        await SendStatusUpdateAsync(status);
-    }
-
-    private async void OnStreamPaused(object? sender, EventArgs? args)
-    {
-        const string status = "Twitter stream paused.";
-
-        _logger.LogInformation(status);
-
-        await SendStatusUpdateAsync(status);
-    }
-
-    private async void OnFallingBehindDetected(object? sender, WarningFallingBehindEventArgs args)
-    {
-        var status = $"Twitter stream falling behind: {args.WarningMessage}.";
-
-        _logger.LogInformation(status);
-
-        await SendStatusUpdateAsync(status);
-    }
-
-    private Task SendStatusUpdateAsync(string status)
-    {
-        _logger.LogInformation(status);
+        _logger.LogInformation(statusFormat, args);
 
         CurrentStatus = new(
             IsStreaming: _filteredStream.StreamState == StreamState.Running,
-            Message: status,
-            Tracks: _filteredStream.Tracks.Keys.ToArray());
+            Message: args is { Length: > 0 } ? string.Format(statusFormat, args) : statusFormat,
+            Tracks: _tracks.ToArray());
 
         return StatusUpdated?.Invoke(CurrentStatus)
             ?? Task.CompletedTask;

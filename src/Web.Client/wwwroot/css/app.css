@@ -142,12 +142,21 @@ html {
 
 .is-emoji {
     font-weight: normal !important;
+    text-shadow: 0px 0px 15px black;
 }
 
 .invalid {
     border-color: #f14668;
     -webkit-animation: shake .5s linear;
 }
+
+.twitter-tweet {
+    visibility: hidden !important;
+}
+
+    .twitter-tweet.twitter-tweet-rendered {
+        visibility: initial !important;
+    }
 
 @keyframes shake {
     8%, 41% {
@@ -293,6 +302,10 @@ html {
 .panel {
     max-height: calc(100vh - 25rem);
     overflow-x: auto;
+}
+
+.is-medium-panel {
+    max-height: calc(100vh - 30rem);
 }
 
 .is-short-panel {

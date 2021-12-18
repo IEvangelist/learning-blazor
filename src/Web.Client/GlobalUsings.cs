@@ -1,6 +1,7 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
+global using System.Collections.Concurrent;
 global using System.ComponentModel.DataAnnotations;
 global using System.Diagnostics;
 global using System.Globalization;

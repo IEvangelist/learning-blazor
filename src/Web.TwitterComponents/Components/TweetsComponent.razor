@@ -1,9 +1,21 @@
-﻿<ul id="tweets" class="reversed no-bullets">
-    @foreach (var tweet in Tweets)
-    {
-        var isHiddenClass = TweetMatchesFilter(tweet) ? "" : "is-hidden";
-        <li class="@isHiddenClass">
-            <TweetComponent Tweet=tweet />
-        </li>
-    }
+﻿<!--  Copyright (c) 2021 David Pine. All rights reserved.
+      Licensed under the MIT License.
+-->
+
+@using Microsoft.AspNetCore.Components.Web.Virtualization
+
+<ul id="tweets" class="reversed no-bullets">
+    <Virtualize Items="Tweets" Context="tweet">
+        <ItemContent>
+            @{
+                var isHiddenClass = TweetMatchesFilter(tweet) ? "" : "is-hidden";
+            }
+            <li class="@isHiddenClass">
+                <TweetComponent Tweet=tweet />
+            </li>
+        </ItemContent>
+        <Placeholder>
+            @Loading
+        </Placeholder>
+    </Virtualize>
 </ul>
