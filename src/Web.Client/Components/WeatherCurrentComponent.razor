@@ -16,17 +16,17 @@
         <div class="media-content">
             <div class="content has-text-right has-text-light">
                 <div>
-                    <span class="title has-text-light">@Weather.Temperature</span>
-                    <span class="heading">
+                    <span class="title is-size-2 has-text-light">@Weather.Temperature</span>
+                    <span class="is-size-7 heading">
                         <i class="fas fa-arrow-up"></i> @(Weather.HighTemp) | <i class="fas fa-arrow-down"></i> @(Weather.LowTemp)
                     </span>
-                    <span class="heading">@Weather.Description</span>
-                    <span class="heading"><i class="fas fa-wind"></i> @Weather.WindSpeed <sup>@(Localizer[Weather.WindDegree.ToVerbosePositionalCardinal()])</sup></span>
+                    <span class="is-size-7 heading">@Weather.Description</span>
+                    <span class="is-size-7 heading"><i class="fas fa-wind"></i> @Weather.WindSpeed <sup>@(Localizer[Weather.WindDegree.ToVerbosePositionalCardinal()])</sup></span>
                 </div>
             </div>
         </div>
     </article>
-    <div class="has-text-centered has-text-light">
+    <div class="is-size-5 has-text-centered has-text-light">
         @($"{Weather.City}, {Weather.State} ({Weather.Country})")
     </div>
 </div>

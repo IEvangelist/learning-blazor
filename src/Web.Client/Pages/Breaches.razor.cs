@@ -50,7 +50,10 @@ namespace Learning.Blazor.Pages
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
-            await (_emailInput?.Element?.FocusAsync(preventScroll: true) ?? ValueTask.CompletedTask);
+            if (firstRender)
+            {
+                await (_emailInput?.Element?.FocusAsync() ?? ValueTask.CompletedTask);
+            }
         }
 
         protected override async ValueTask OnLocationChangedAsync(LocationChangedEventArgs args)

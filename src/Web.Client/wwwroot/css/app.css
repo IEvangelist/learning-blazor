@@ -136,6 +136,10 @@ html {
     color: #fff;
 }
 
+.quickview.is-active {
+    box-shadow: -40px 0px 40px #111 !important;
+}
+
 .dotnet-box-border {
     border: solid 1px var(--dotnet-purple-gradient-9);
 }

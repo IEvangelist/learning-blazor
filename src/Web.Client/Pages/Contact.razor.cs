@@ -44,7 +44,7 @@ namespace Learning.Blazor.Pages
         private void OnModelChanged(object? sender, FieldChangedEventArgs e)
         {
             _isFormInvalid = !_editContext?.Validate() ?? true;
-            _isSendDisabled = !_isFormInvalid;
+            _isSendDisabled = _isFormInvalid;
 
             StateHasChanged();
         }
