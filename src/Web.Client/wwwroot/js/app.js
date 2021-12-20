@@ -30,6 +30,19 @@
     }
 };
 
+const getClientPrefersColorScheme = (color, dotnetObj, callbackMethodName) => {
+    let media = window.matchMedia(`(prefers-color-scheme: ${color})`);
+    if (media) {
+        media.onchange = args => {
+            dotnetObj.invokeMethodAsync(
+                callbackMethodName,
+                args.matches);
+        };
+    }
+
+    return media.matches;
+}
+
 const getClientVoices = (dotnetObj, callbackMethodName) => {
     let voices = window.speechSynthesis.getVoices();
     if (!voices || !voices.length) {
@@ -43,19 +56,6 @@ const getClientVoices = (dotnetObj, callbackMethodName) => {
     }
 
     return JSON.stringify(voices.map(v => ({ Name: v.name, Lang: v.lang, Default: v.default })));
-}
-
-const getClientPrefersColorScheme = (color, dotnetObj, callbackMethodName) => {
-    let media = window.matchMedia(`(prefers-color-scheme: ${color})`);
-    if (media) {
-        media.onchange = args => {
-            dotnetObj.invokeMethodAsync(
-                callbackMethodName,
-                args.matches);
-        };
-    }
-
-    return media.matches;
 }
 
 const cancelPendingSpeech = () => {
@@ -72,8 +72,8 @@ const speak = (dotnetObj, callbackMethodName, message, defaultVoice, voiceSpeed,
         }
     };
 
-    const voices = window.speechSynthesis.getVoices();
     try {
+        const voices = window.speechSynthesis.getVoices();
         utterance.voice =
             !!defaultVoice && defaultVoice !== 'Auto'
                 ? voices.find(v => v.name === defaultVoice)
@@ -82,8 +82,6 @@ const speak = (dotnetObj, callbackMethodName, message, defaultVoice, voiceSpeed,
     } catch { }
     utterance.volume = 1;
     utterance.rate = voiceSpeed || 1;
-
-    cancelPendingSpeech();
 
     window.speechSynthesis.speak(utterance);
 };

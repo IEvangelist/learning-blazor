@@ -42,13 +42,14 @@ namespace Learning.Blazor.Components
         }
 
         [JSInvokable]
-        public Task OnSpokenAsync(double elapsedTimeInSeconds) =>
+        public Task OnSpokenAsync(double elapsedTimeInMilliseconds) =>
             InvokeAsync(() =>
             {
                 _isSpeaking = false;
 
                 Logger.LogInformation(
-                    "Spoke utterance in {ElapsedTime} seconds", elapsedTimeInSeconds);
+                    "Spoke utterance in {ElapsedTime} milliseconds",
+                    elapsedTimeInMilliseconds);
 
                 StateHasChanged();
             });

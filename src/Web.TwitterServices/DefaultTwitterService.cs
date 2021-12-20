@@ -151,7 +151,7 @@ internal sealed class DefaultTwitterService : ITwitterService
         var tweet = await TryGetOEmbedTweetAsync(iTweet);
         if (tweet is null)
         {
-            _logger.LogWarning("Unable to parse OEmbed tweet");
+            _logger.LogWarning("Unable to parse (or get) OEmbed tweet");
             return;
         }
 
