@@ -9,17 +9,17 @@ internal class FixedSizeQueue<T>
 
     public IReadOnlyCollection<T> ReadOnly => _queue;
 
-    public int MaxCapcity { get; private set; }
+    public int MaxCapacity { get; private set; }
 
-    public FixedSizeQueue(int maxCapcity) => MaxCapcity = maxCapcity;
+    public FixedSizeQueue(int maxCapacity) => MaxCapacity = maxCapacity;
 
     public void Enqueue(T obj)
     {
         _queue.Enqueue(obj);
 
-        while (_queue.Count > MaxCapcity)
+        while (_queue.Count > MaxCapacity)
         {
-            _queue.TryDequeue(out var outObj);
+            _queue.TryDequeue(out var _);
         }
     }
 }
