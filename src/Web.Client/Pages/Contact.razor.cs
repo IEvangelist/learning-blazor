@@ -1,62 +1,99 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
-using Learning.Blazor.Models.Requests;
-
 namespace Learning.Blazor.Pages
 {
     public sealed partial class Contact
     {
         private ContactComponentModel _model = new();
-        private EditContext? _editContext;
         private InputText _emailInput = null!;
+        private InputText _firstNameInput = null!;
         private VerificationModalComponent _modalComponent = null!;
-        private bool _isFormInvalid;
-        private bool _isSendDisabled = true;
+        private bool _isEmailReadonly = false;
         private bool _isSent;        
 
         [Inject]
         public IHttpClientFactory HttpFactory { get; set; } = null!;
 
-        protected override void OnInitialized()
+        protected override async Task OnInitializedAsync()
         {
+            await base.OnInitializedAsync();
+
             if (User is { Identity: { IsAuthenticated: true } })
             {
                 _model = _model with
                 {
                     EmailAddress = User.GetFirstEmailAddress()
                 };
-            }
 
-            _editContext = new(_model);
-            _editContext.OnFieldChanged += OnModelChanged;
+                _isEmailReadonly = _model.EmailAddress is not null
+                    && RegexEmailAddressAttribute.EmailExpression.IsMatch(
+                        _model.EmailAddress);
+            }
         }
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
-            if (firstRender && _emailInput is { Element: { } })
+            if (firstRender)
             {
-                await (_emailInput?.Element?.FocusAsync(preventScroll: true)
+                var input = _isEmailReadonly ? _firstNameInput : _emailInput;
+                await (input?.Element?.FocusAsync(preventScroll: true)
                     ?? ValueTask.CompletedTask);
             }
         }
 
-        private void OnModelChanged(object? sender, FieldChangedEventArgs e)
+        private static string GetValidityCss<T>(
+            EditContext context,
+            Expression<Func<T?>> accessor)
         {
-            _isFormInvalid = !_editContext?.Validate() ?? true;
-            _isSendDisabled = _isFormInvalid;
-
-            StateHasChanged();
+            var css = context?.FieldCssClass(accessor);
+            return GetValidityCss(
+                IsValid(css),
+                IsInvalid(css),
+                IsModified(css));
         }
 
-        private async ValueTask OnValidSubmitAsync(EditContext _) =>
-            await _modalComponent.PromptAsync();
+        private static string GetValidityCss<TOne, TTwo>(
+            EditContext context,
+            Expression<Func<TOne?>> accessorOne,
+            Expression<Func<TTwo?>> accessorTwo)
+        {
+            var cssOne = context?.FieldCssClass(accessorOne);
+            var cssTwo = context?.FieldCssClass(accessorTwo);
+            return GetValidityCss(
+                IsValid(cssOne) && IsValid(cssTwo),
+                IsInvalid(cssOne) || IsInvalid(cssTwo),
+                IsModified(cssOne) && IsModified(cssTwo));
+        }
 
-        private async Task OnVerificationAttempted(bool isVerified)
+        private static string GetValidityCss(bool isValid, bool isInvalid, bool isModified) =>
+            (isValid, isInvalid) switch
+            {
+                (true, false) when isModified => "fa-check-circle has-text-success",
+                (false, true) when isModified => "fa-times-circle has-text-danger",
+
+                _ => "fa-question-circle is-invisible"
+            };
+
+        private static bool IsValid(string? css) =>
+            IsContainingClass(css, "valid") && !IsInvalid(css);
+
+        private static bool IsInvalid(string? css) => IsContainingClass(css, "invalid");
+
+        private static bool IsModified(string? css) => IsContainingClass(css, "modified");
+
+        private static bool IsContainingClass(string? css, string name) =>
+            css?.Contains(name, StringComparison.OrdinalIgnoreCase) ?? false;
+
+        private async ValueTask OnValidSubmitAsync(EditContext context) =>
+            await _modalComponent.PromptAsync(context);
+
+        private async Task OnVerificationAttempted((bool isVerified, object? state) tuple)
         {
             try
             {
-                if (isVerified)
+                var (isVerified, state) = tuple;
+                if (isVerified && state is EditContext context)
                 {
                     var client = HttpFactory.CreateClient(HttpClientNames.ServerApi);
                     using var response = await client.PostAsJsonAsync<ContactRequest>(
@@ -69,8 +106,11 @@ namespace Learning.Blazor.Pages
                             _model.Message!),
                         DefaultJsonSerialization.Options);
 
-                    _isSent = response.IsSuccessStatusCode;
-
+                    if (response.IsSuccessStatusCode)
+                    {
+                        _isSent = true;
+                        context.MarkAsUnmodified();
+                    }
                 }
             }
             catch (Exception ex)

@@ -9,11 +9,17 @@ namespace Learning.Blazor.Components
         private ModalComponent _modal = null!;
         private bool? _answeredCorrectly = null!;
         private string? _attemptedAnswer = null!;
+        private object? _state = null;
 
         [Parameter]
-        public EventCallback<bool> OnVerificationAttempted { get; set; }
+        public EventCallback<(bool, object?)> OnVerificationAttempted { get; set; }
 
-        public Task PromptAsync() => _modal.ShowAsync();
+        public Task PromptAsync(object? state = null)
+        {
+            _state = state;
+
+            return _modal.ShowAsync();
+        }
 
         private void Refresh() =>
             (_math, _attemptedAnswer) = (AreYouHumanMath.CreateNew(), null);
@@ -23,9 +29,7 @@ namespace Learning.Blazor.Components
             if (OnVerificationAttempted.HasDelegate)
             {
                 await OnVerificationAttempted.InvokeAsync(
-                    reason is DismissalReason.Verified);
-
-                StateHasChanged();
+                    (reason is DismissalReason.Verified, _state));
             }
         }
 

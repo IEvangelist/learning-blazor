@@ -35,8 +35,8 @@ namespace Learning.Blazor.Components
         {
             if (AuthenticationStateTask is not null)
             {
-                AuthenticationState? authState = await AuthenticationStateTask;
-                if (authState is { User: { Identity: { IsAuthenticated: true } } })
+                var authState = await AuthenticationStateTask;
+                if (authState is not null)
                 {
                     User = authState.User;
                 }

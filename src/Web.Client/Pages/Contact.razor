@@ -14,20 +14,23 @@
 <section class="section">
     <h1 class="is-size-3 pb-3">@Localizer["Contact"]</h1>
 
-    <EditForm Model=_model class="pb-4"
+    <EditForm class="pb-4" Model=_model Context="cxt"
         OnValidSubmit="(async context => await OnValidSubmitAsync(context))">
-        <DataAnnotationsValidator />
-        <ValidationSummary Model=_model />
+        <DataAnnotationsValidator  />
 
         <!-- Email address -->
         <div class="field is-horizontal">
             <div class="field-label is-normal">
-                <label class="label">@Localizer["Email"]</label>
+                <label class="label">
+                    @Localizer["Email"]
+                    <i class="pl-4 far fa-lg @GetValidityCss(cxt, () => _model.EmailAddress)"></i>
+                </label>
             </div>
             <div class="field-body">
                 <div class="field">
                     <p class="control is-expanded has-icons-left">
                         <InputText @ref="_emailInput" @bind-Value="_model.EmailAddress" class="input"
+                            readonly=@_isEmailReadonly disabled=@_isEmailReadonly
                             placeholder="@Localizer["EmailPlaceholder"]" />
                         <span class="icon is-small is-left">
                             <i class="fas fa-envelope"></i>
@@ -39,12 +42,15 @@
         <!-- First and last name -->
         <div class="field is-horizontal">
             <div class="field-label is-normal">
-                <label class="label">@Localizer["From"]</label>
+                <label class="label">
+                    @Localizer["From"]
+                    <i class="pl-4 far fa-lg @GetValidityCss(cxt, () => _model.FirstName, () => _model.LastName)"></i>
+                </label>
             </div>
             <div class="field-body">
                 <div class="field">
                     <p class="control is-expanded has-icons-left">
-                        <InputText @bind-Value="_model.FirstName" class="input"
+                        <InputText @ref="_firstNameInput" @bind-Value="_model.FirstName" class="input"
                             placeholder="@Localizer["FirstName"]" />
                         <span class="icon is-small is-left">
                             <i class="fas fa-user"></i>
@@ -65,7 +71,10 @@
         <!-- Subject -->
         <div class="field is-horizontal">
             <div class="field-label is-normal">
-                <label class="label">@Localizer["Subject"]</label>
+                <label class="label">
+                    @Localizer["Subject"]
+                    <i class="pl-4 far fa-lg @GetValidityCss(cxt, () => _model.Subject)"></i>
+                </label>
             </div>
             <div class="field-body">
                 <div class="field">
@@ -82,7 +91,10 @@
         <!-- Message -->
         <div class="field is-horizontal">
             <div class="field-label is-normal">
-                <label class="label">@Localizer["Message"]</label>
+                <label class="label">
+                    @Localizer["Message"]
+                    <i class="pl-4 far fa-lg @GetValidityCss(cxt, () => _model.Message)"></i>
+                </label>
             </div>
             <div class="field-body">
                 <div class="field">
@@ -96,14 +108,21 @@
         <!-- Agree to terms -->
         <div class="field is-horizontal">
             <div class="field-label">
-                <label class="label">Agree to terms?</label>
+                <label class="label">
+                    @Localizer["AgreeToTerms"]
+                    <i class="pl-4 far fa-lg @GetValidityCss(cxt, () => _model.AgreesToTerms)"></i>
+                </label>
             </div>
             <div class="field-body">
                 <div class="field is-narrow">
                     <div class="control">
                         <label class="checkbox">
                             <InputCheckbox @bind-Value="_model.AgreesToTerms" />
-                            By checking this box, you agree to the <a href="/termsandconditions">terms and conditions</a>
+                            @Localizer["TermsAndConditions"]
+                            <a href="/termsandconditions" target="_blank"
+                                rel="noopener noreferrer">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
                         </label>
                     </div>
                 </div>
@@ -116,8 +135,7 @@
             </div>
             <div class="field-body">
                 <div class="field is-grouped">
-                    <button class="button is-success is-large" type="submit"
-                        disabled=@_isSendDisabled>
+                    <button class="button is-success is-large" type="submit">
                         <span class="icon">
                             <i class="fas fa-paper-plane"></i>
                         </span>

@@ -12,7 +12,7 @@ namespace Learning.Blazor.DataAnnotations;
 ]
 public sealed class RegexEmailAddressAttribute : DataTypeAttribute
 {
-    private readonly Regex _expression =
+    internal static readonly Regex EmailExpression =
         new(@"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$",
             RegexOptions.CultureInvariant | RegexOptions.Singleline);
 
@@ -35,6 +35,6 @@ public sealed class RegexEmailAddressAttribute : DataTypeAttribute
         }
 
         return value is string valueAsString
-            && _expression.IsMatch(valueAsString);
+            && EmailExpression.IsMatch(valueAsString);
     }
 }

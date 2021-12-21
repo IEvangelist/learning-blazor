@@ -37,19 +37,11 @@ public readonly record struct AreYouHumanMath(
 
     public string GetQuestion() => $"{this} ?";
 
-    public static AreYouHumanMath CreateNew(MathOperator? mathOperator = null)
+    public static AreYouHumanMath CreateNew(
+        MathOperator? mathOperator = null)
     {
-        static MathOperator RandomOperator()
-        {
-            var values = Enum.GetValues<MathOperator>();
-            return values[s_random.Next(values.Length)];
-        };
-
         var mathOp =
             mathOperator.GetValueOrDefault(RandomOperator());
-
-        static int Next(byte? maxValue = null) =>
-            s_random.Next(1, maxValue ?? byte.MaxValue);
 
         var (left, right) = mathOp switch
         {
@@ -64,12 +56,16 @@ public readonly record struct AreYouHumanMath(
             (byte)left,
             (byte)right,
             mathOp);
+
+        static MathOperator RandomOperator()
+        {
+            var values = Enum.GetValues<MathOperator>();
+            return values[s_random.Next(values.Length)];
+        };
+
+        static int Next(byte? maxValue = null) =>
+            s_random.Next(1, maxValue ?? byte.MaxValue);
     }
 }
 
-public enum MathOperator
-{
-    Addition,
-    Subtraction,
-    Multiplication
-};
+public enum MathOperator { Addition, Subtraction, Multiplication };
