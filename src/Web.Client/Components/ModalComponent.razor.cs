@@ -27,6 +27,28 @@ namespace Learning.Blazor.Components
         /// </summary>
         public DismissalReason Reason { get; private set; }
 
+        /// <summary>
+        /// Sets the <see cref="ModalComponent"/> instance's
+        /// <see cref="IsActive"/> value to <c>true</c> and
+        /// <see cref="Reason"/> value as <c>default</c>.
+        /// It then signals for a change of state, this rerender will
+        /// show the modal.
+        /// </summary>
+        public Task ShowAsync() =>
+            InvokeAsync(() =>
+            {
+                (IsActive, Reason) = (true, default);
+
+                StateHasChanged();
+            });
+
+        /// <summary>
+        /// Sets the <see cref="ModalComponent"/> instance's
+        /// <see cref="IsActive"/> value to <c>false</c> and
+        /// <see cref="Reason"/> value as given <paramref name="reason"/>
+        /// value. It then signals for a change of state,
+        /// this rerender will cause the modal to be dismissed.
+        /// </summary>
         public Task DismissAsync(DismissalReason reason) =>
             InvokeAsync(async () =>
             {
@@ -40,18 +62,22 @@ namespace Learning.Blazor.Components
                 StateHasChanged();
             });
 
-        public Task ShowAsync() =>
-            InvokeAsync(() =>
-            {
-                (IsActive, Reason) = (true, default);
-
-                StateHasChanged();
-            });
-
+        /// <summary>
+        /// Dismisses the shown modal, the <see cref="Reason"/>
+        /// will be set to <see cref="DismissalReason.Confirmed"/>.
+        /// </summary>
         public Task ConfirmAsync() => DismissAsync(DismissalReason.Confirmed);
 
+        /// <summary>
+        /// Dismisses the shown modal, the <see cref="Reason"/>
+        /// will be set to <see cref="DismissalReason.Cancelled"/>.
+        /// </summary>
         public Task CancelAsync() => DismissAsync(DismissalReason.Cancelled);
 
+        /// <summary>
+        /// Dismisses the shown modal, the <see cref="Reason"/>
+        /// will be set to <see cref="DismissalReason.Verified"/>.
+        /// </summary>
         public Task VerifyAsync() => DismissAsync(DismissalReason.Verified);
     }
 
