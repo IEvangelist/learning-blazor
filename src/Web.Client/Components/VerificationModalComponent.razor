@@ -2,12 +2,14 @@
       Licensed under the MIT License.
 -->
 
+@inherits LocalizableComponentBase<VerificationModalComponent>
+
 <ModalComponent @ref="_modal" OnDismissed=@OnDismissed>
     <TitleContent>
         <span class="icon pr-2">
             <i class="fas fa-robot"></i>
         </span>
-        <span>Are you human?</span>
+        <span>@Localizer["AreYouHuman"]</span>
     </TitleContent>
     <BodyContent>
         <form>
@@ -20,8 +22,10 @@
                                 var inputValidityClass = _answeredCorrectly is false ? " invalid" : "";
                                 var inputClasses = $"input{inputValidityClass}";
                             }
-                            <input @bind="_attemptedAnswer" class=@inputClasses
-                                type="text" placeholder="Answer?" />
+                            <input @bind="_attemptedAnswer"
+                                class=@inputClasses
+                                type="text"
+                                placeholder="@Localizer["AnswerFormat", _math.GetQuestion()]" />
                             <span class="icon is-small is-left">
                                 <i class="fas fa-info-circle"></i>
                             </span>
@@ -36,13 +40,13 @@
             <span class="icon">
                 <i class="fas fa-redo"></i>
             </span>
-            <span>Refresh</span>
+            <span>@Localizer["Refresh"]</span>
         </button>
         <button class="button is-success is-large" @onclick=AttemptToVerify>
             <span class="icon">
                 <i class="fas fa-check"></i>
             </span>
-            <span>Verify</span>
+            <span>@Localizer["Verify"]</span>
         </button>
     </ButtonContent>
 </ModalComponent>
