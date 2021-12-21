@@ -35,12 +35,7 @@ namespace Learning.Blazor.Components
         /// show the modal.
         /// </summary>
         public Task ShowAsync() =>
-            InvokeAsync(() =>
-            {
-                (IsActive, Reason) = (true, default);
-
-                StateHasChanged();
-            });
+            InvokeAsync(() => (IsActive, Reason) = (true, default));
 
         /// <summary>
         /// Sets the <see cref="ModalComponent"/> instance's
@@ -53,13 +48,10 @@ namespace Learning.Blazor.Components
             InvokeAsync(async () =>
             {
                 (IsActive, Reason) = (false, reason);
-
                 if (OnDismissed.HasDelegate)
                 {
                     await OnDismissed.InvokeAsync(Reason);
                 }
-
-                StateHasChanged();
             });
 
         /// <summary>
