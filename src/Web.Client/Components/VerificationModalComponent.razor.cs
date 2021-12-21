@@ -11,13 +11,12 @@ namespace Learning.Blazor.Components
         private string? _attemptedAnswer = null!;
         private object? _state = null;
 
-        [Parameter]
-        public EventCallback<(bool, object?)> OnVerificationAttempted { get; set; }
+        [Parameter, EditorRequired]
+        public EventCallback<(bool IsVerified, object? State)> OnVerificationAttempted { get; set; }
 
         public Task PromptAsync(object? state = null)
         {
             _state = state;
-
             return _modal.ShowAsync();
         }
 

@@ -154,6 +154,6 @@
     <value>What's the subject?</value>
   </data>
   <data name="TermsAndConditions" xml:space="preserve">
-    <value>By checking this box, you agree to the terms and conditions.</value>
+    <value>By checking this box you agree to the terms and conditions.</value>
   </data>
 </root>
