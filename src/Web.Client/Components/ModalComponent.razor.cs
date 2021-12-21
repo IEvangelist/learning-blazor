@@ -7,19 +7,19 @@ namespace Learning.Blazor.Components
     {
         private string _isActiveClass => IsActive ? "is-active" : "";
 
-        [Parameter]
+        [Parameter, EditorRequired]
         public EventCallback<DismissalReason> OnDismissed { get; set; }
 
         [Parameter]
         public bool IsActive { get; set; }
 
-        [Parameter]
+        [Parameter, EditorRequired]
         public RenderFragment TitleContent { get; set; } = null!;
 
-        [Parameter]
+        [Parameter, EditorRequired]
         public RenderFragment BodyContent { get; set; } = null!;
 
-        [Parameter]
+        [Parameter, EditorRequired]
         public RenderFragment ButtonContent { get; set; } = null!;
 
         /// <summary>
@@ -27,7 +27,7 @@ namespace Learning.Blazor.Components
         /// </summary>
         public DismissalReason Reason { get; private set; }
 
-        public Task Dismiss(DismissalReason reason) =>
+        public Task DismissAsync(DismissalReason reason) =>
             InvokeAsync(async () =>
             {
                 (IsActive, Reason) = (false, reason);
@@ -40,7 +40,7 @@ namespace Learning.Blazor.Components
                 StateHasChanged();
             });
 
-        public Task Show() =>
+        public Task ShowAsync() =>
             InvokeAsync(() =>
             {
                 (IsActive, Reason) = (true, default);
@@ -48,18 +48,15 @@ namespace Learning.Blazor.Components
                 StateHasChanged();
             });
 
-        public Task Confirm() => Dismiss(DismissalReason.Confirmed);
+        public Task ConfirmAsync() => DismissAsync(DismissalReason.Confirmed);
 
-        public Task Cancel() => Dismiss(DismissalReason.Cancelled);
+        public Task CancelAsync() => DismissAsync(DismissalReason.Cancelled);
 
-        public Task Verify() => Dismiss(DismissalReason.Verified);
+        public Task VerifyAsync() => DismissAsync(DismissalReason.Verified);
     }
 
     public enum DismissalReason
     {
-        Unknown,
-        Confirmed,
-        Cancelled,
-        Verified
-    }
+        Unknown, Confirmed, Cancelled, Verified
+    };
 }

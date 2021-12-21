@@ -111,7 +111,7 @@ namespace Learning.Blazor.Pages
 
         private async Task Show(string breachName)
         {
-            await _modal.Show();
+            await _modal.ShowAsync();
 
             var httpClient =
                 HttpFactory.CreateClient(HttpClientNames.PwnedServerApi);
@@ -122,7 +122,7 @@ namespace Learning.Blazor.Pages
                 BreachDetailJsonSerializerContext.DefaultTypeInfo);
         }
 
-        private async Task Confirm() => await _modal.Confirm();
+        private async Task Confirm() => await _modal.ConfirmAsync();
 
         private void OnDismissed(DismissalReason reason)
         {

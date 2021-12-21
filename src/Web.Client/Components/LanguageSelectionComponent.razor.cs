@@ -40,7 +40,7 @@ namespace Learning.Blazor.Components
                 : "";
         }
 
-        private async Task Show() => await _modal.Show();
+        private async Task Show() => await _modal.ShowAsync();
 
         private async Task Confirm()
         {
@@ -53,7 +53,7 @@ namespace Learning.Blazor.Components
                     StorageKeys.ClientCulture, _selectedCulture.Name);
             }
 
-            await _modal.Confirm();
+            await _modal.ConfirmAsync();
 
             if (forceRefresh)
             {

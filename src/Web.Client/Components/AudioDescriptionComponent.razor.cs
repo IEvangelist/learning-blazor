@@ -46,7 +46,7 @@ namespace Learning.Blazor.Components
             _voiceSpeed = double.TryParse(
                 args?.Value?.ToString() ?? "1", out var speed) ? speed : 1;
 
-        private async Task Show() => await _modal.Show();
+        private async Task Show() => await _modal.ShowAsync();
 
         private async Task Confirm()
         {
@@ -56,7 +56,7 @@ namespace Learning.Blazor.Components
             await LocalStorage.SetAsync(
                 StorageKeys.ClientVoice, AppState.ClientVoicePreference);
 
-            await _modal.Confirm();
+            await _modal.ConfirmAsync();
         }
 
         private void OnDismissed(DismissalReason reason) =>

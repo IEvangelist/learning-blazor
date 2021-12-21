@@ -13,7 +13,7 @@ namespace Learning.Blazor.Components
         [Parameter]
         public EventCallback<bool> OnVerificationAttempted { get; set; }
 
-        public Task PromptAsync() => _modal.Show();
+        public Task PromptAsync() => _modal.ShowAsync();
 
         private void Refresh() =>
             (_math, _attemptedAnswer) = (AreYouHumanMath.CreateNew(), null);
@@ -36,7 +36,7 @@ namespace Learning.Blazor.Components
                 _answeredCorrectly = _math.IsCorrect(attemptedAnswer);
                 if (_answeredCorrectly is true)
                 {
-                    await _modal.Dismiss(DismissalReason.Verified);
+                    await _modal.DismissAsync(DismissalReason.Verified);
                 }
             }
             else
