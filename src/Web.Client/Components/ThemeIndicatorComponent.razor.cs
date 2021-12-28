@@ -3,7 +3,7 @@
 
 namespace Learning.Blazor.Components
 {
-    public partial class ThemeToggleComponent
+    public partial class ThemeIndicatorComponent
     {
         private string _buttonClass => AppState.IsDarkTheme ? "light" : "dark";
         private string _iconClass => AppState.IsDarkTheme ? "moon" : "sun";

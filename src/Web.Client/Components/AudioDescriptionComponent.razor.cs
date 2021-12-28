@@ -46,9 +46,9 @@ namespace Learning.Blazor.Components
             _voiceSpeed = double.TryParse(
                 args?.Value?.ToString() ?? "1", out var speed) ? speed : 1;
 
-        private async Task Show() => await _modal.ShowAsync();
+        private async Task ShowAsync() => await _modal.ShowAsync();
 
-        private async Task Confirm()
+        private async Task ConfirmAsync()
         {
             AppState.ClientVoicePreference =
                 new ClientVoicePreference(_voice, _voiceSpeed);
@@ -60,6 +60,8 @@ namespace Learning.Blazor.Components
         }
 
         private void OnDismissed(DismissalReason reason) =>
-            Logger.LogWarning("User '{Reason}' the audio description modal.", reason);
+            Logger.LogWarning(
+                "User '{Reason}' the audio description modal.",
+                reason);
     }
 }

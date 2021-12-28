@@ -6,7 +6,7 @@
 
 <span class="navbar-item">
     <button class="button is-info is-rounded level-item"
-        title=@Localizer["Audio"] @onclick=Show>
+        title=@Localizer["Audio"] @onclick=ShowAsync>
         <span class="icon">
             <i class="fas fa-audio-description"></i>
         </span>
@@ -62,7 +62,7 @@
 
     <ButtonContent>
         <button class="button is-success is-large"
-            @onclick=Confirm>
+            @onclick=ConfirmAsync>
             <span class="icon">
                 <i class="fas fa-check"></i>
             </span>

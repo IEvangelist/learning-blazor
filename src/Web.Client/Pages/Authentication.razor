@@ -10,16 +10,21 @@
         Action=@Action
         LogOut=@LocalizedLogOutFragment
         LogOutSucceeded=@LocalizedLoggedOutFragment
-        LogInFailed=@LocalizedLogInFailedFragment
-        LogOutFailed=@LocalizedLogOutFailedFragment>
+        LogOutFailed=@LocalizedLogOutFailedFragment
+        LogInFailed=@LocalizedLogInFailedFragment>
+
         <LoggingIn>
-            <LoadingIndicator Message=@Localizer["CheckingLoginState"] HideLogo="true" />
+            <LoadingIndicator Message=@Localizer["CheckingLoginState"]
+                              HideLogo="true" />
         </LoggingIn>
         <CompletingLogOut>
-            <LoadingIndicator Message=@Localizer["ProcessingLogoutCallback"] HideLogo="true" />
+            <LoadingIndicator Message=@Localizer["ProcessingLogoutCallback"]
+                              HideLogo="true" />
         </CompletingLogOut>
         <CompletingLoggingIn>
-            <LoadingIndicator Message=@Localizer["CompletingLogin"] HideLogo="true" />
+            <LoadingIndicator Message=@Localizer["CompletingLogin"]
+                              HideLogo="true" />
         </CompletingLoggingIn>
+
     </RemoteAuthenticatorView>
 </div>

@@ -8,7 +8,7 @@
 	<ChildContent>
 	<span class="navbar-item">
 		<button class="button level-item is-rounded is-warning"
-			title=@Localizer["Language"] @onclick=Show>
+			title=@Localizer["Language"] @onclick=ShowAsync>
 			<span class="icon">
 				<i class="fas fa-language"></i>
 			</span>
@@ -68,7 +68,7 @@
     <ButtonContent>
         <div class="buttons are-large">
             <button class="button is-success"
-                @onclick="Confirm">
+                @onclick="ConfirmAsync">
                 <span class="icon">
                     <i class="fas fa-check"></i>
                 </span>

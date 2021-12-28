@@ -118,10 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CheckingLoginState" xml:space="preserve">
-    <value>Checking login state.</value>
+    <value>Reading about the amazing Ada Lovelace (world's first computer programmer).</value>
   </data>
   <data name="CompletingLogin" xml:space="preserve">
-    <value>Completing login.</value>
+    <value>Plugging in the random wires lying around.</value>
   </data>
   <data name="ErrorLoggingInFormat" xml:space="preserve">
     <value>There was an error trying to log you in: '{0}'</value>
@@ -130,12 +130,12 @@
     <value>There was an error trying to log you out: '{0}'</value>
   </data>
   <data name="ProcessingLogout" xml:space="preserve">
-    <value>Processing logout.</value>
+    <value>If you're not changing the world, you're standing still.</value>
   </data>
   <data name="ProcessingLogoutCallback" xml:space="preserve">
-    <value>Processing logout callback.</value>
+    <value>Things aren't always as they seem.</value>
   </data>
   <data name="YouAreLoggedOut" xml:space="preserve">
-    <value>You are logged out.</value>
+    <value>Bye for now!</value>
   </data>
 </root>

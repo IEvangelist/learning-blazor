@@ -40,9 +40,9 @@ namespace Learning.Blazor.Components
                 : "";
         }
 
-        private async Task Show() => await _modal.ShowAsync();
+        private async Task ShowAsync() => await _modal.ShowAsync();
 
-        private async Task Confirm()
+        private async Task ConfirmAsync()
         {
             var forceRefresh = false;
             if (_selectedCulture is not null &&
@@ -62,6 +62,8 @@ namespace Learning.Blazor.Components
         }
 
         private void OnDismissed(DismissalReason reason) =>
-            Logger.LogWarning("User '{Reason}' the language selector modal.", reason);
+            Logger.LogWarning(
+                "User '{Reason}' the language selector modal.",
+                reason);
     }
 }
