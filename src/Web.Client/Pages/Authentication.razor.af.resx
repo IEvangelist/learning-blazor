@@ -59,24 +59,24 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CheckingLoginState" xml:space="preserve">
-    <value>Kontroleer aanmeldstaat.</value>
+    <value>Lees oor die ongelooflike Ada Lovelace (wêreld se eerste rekenaarprogrammeerder).</value>
   </data>
   <data name="CompletingLogin" xml:space="preserve">
-    <value>Voltooi tans aanmelding.</value>
+    <value>Prop die ewekansige drade in wat rondlê.</value>
   </data>
   <data name="ErrorLoggingInFormat" xml:space="preserve">
-    <value>Daar was 'n fout met die poging om jou aan te meld: '{0}'</value>
+    <value>Daar was 'n fout om jou aan te meld: '{0}'</value>
   </data>
   <data name="ErrorLoggingOutFormat" xml:space="preserve">
-    <value>Daar was 'n fout met die poging om jou aan te meld: '{0}'</value>
+    <value>Daar was 'n fout om jou uit te teken: '{0}'</value>
   </data>
   <data name="ProcessingLogout" xml:space="preserve">
-    <value>Verwerking van logout.</value>
+    <value>As jy nie die wêreld verander nie, staan jy stil.</value>
   </data>
   <data name="ProcessingLogoutCallback" xml:space="preserve">
-    <value>Verwerking van logout-terugbel.</value>
+    <value>Dinge is nie altyd soos dit lyk nie.</value>
   </data>
   <data name="YouAreLoggedOut" xml:space="preserve">
-    <value>Jy is aangeteken.</value>
+    <value>Baai vir eers!</value>
   </data>
 </root>

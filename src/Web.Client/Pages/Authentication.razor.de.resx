@@ -59,24 +59,24 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CheckingLoginState" xml:space="preserve">
-    <value>Überprüfen des Anmeldestatus.</value>
+    <value>Lesen Sie über die erstaunliche Ada Lovelace (die erste Computerprogrammiererin der Welt).</value>
   </data>
   <data name="CompletingLogin" xml:space="preserve">
-    <value>Abschließen der Anmeldung.</value>
+    <value>Stecken Sie die zufälligen Drähte ein, die herumliegen.</value>
   </data>
   <data name="ErrorLoggingInFormat" xml:space="preserve">
-    <value>Beim Einloggen ist ein Fehler aufgetreten: '{0}'</value>
+    <value>Beim Versuch, Sie anzumelden, ist ein Fehler aufgetreten: "{0}"</value>
   </data>
   <data name="ErrorLoggingOutFormat" xml:space="preserve">
-    <value>Beim Abmelden ist ein Fehler aufgetreten: '{0}'</value>
+    <value>Beim Versuch, Sie abzumelden, ist ein Fehler aufgetreten: "{0}"</value>
   </data>
   <data name="ProcessingLogout" xml:space="preserve">
-    <value>Abmeldung verarbeiten.</value>
+    <value>Wenn du die Welt nicht veränderst, stehst du still.</value>
   </data>
   <data name="ProcessingLogoutCallback" xml:space="preserve">
-    <value>Verarbeitung des Abmelderückrufs.</value>
+    <value>Die Dinge sind nicht immer so, wie sie scheinen.</value>
   </data>
   <data name="YouAreLoggedOut" xml:space="preserve">
-    <value>Sie sind ausgeloggt.</value>
+    <value>Tschüss erstmal!</value>
   </data>
 </root>

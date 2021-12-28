@@ -59,24 +59,24 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CheckingLoginState" xml:space="preserve">
-    <value>กําลังตรวจสอบสถานะการเข้าสู่ระบบ</value>
+    <value>อ่านเกี่ยวกับ Ada Lovelace ที่น่าทึ่ง (โปรแกรมเมอร์คอมพิวเตอร์คนแรกของโลก)</value>
   </data>
   <data name="CompletingLogin" xml:space="preserve">
-    <value>เสร็จสิ้นการเข้าสู่ระบบ</value>
+    <value>เสียบสายสุ่มนอนอยู่รอบ ๆ</value>
   </data>
   <data name="ErrorLoggingInFormat" xml:space="preserve">
-    <value>มีข้อผิดพลาดเกิดขึ้นขณะพยายามเข้าสู่ระบบคุณ: '{0}'</value>
+    <value>มีข้อผิดพลาดเกิดขึ้นขณะพยายามให้คุณเข้าสู่ระบบ: '{0}'</value>
   </data>
   <data name="ErrorLoggingOutFormat" xml:space="preserve">
     <value>มีข้อผิดพลาดเกิดขึ้นขณะพยายามออกจากระบบ: '{0}'</value>
   </data>
   <data name="ProcessingLogout" xml:space="preserve">
-    <value>กําลังประมวลผลแฟ้มบันทึก</value>
+    <value>ถ้าคุณไม่เปลี่ยนโลก คุณก็ยังยืนนิ่ง</value>
   </data>
   <data name="ProcessingLogoutCallback" xml:space="preserve">
-    <value>กําลังประมวลผลการเรียกกลับแฟ้มบันทึก</value>
+    <value>ทุกอย่างไม่ได้เป็นอย่างที่เห็นเสมอไป</value>
   </data>
   <data name="YouAreLoggedOut" xml:space="preserve">
-    <value>คุณออกจากระบบแล้ว</value>
+    <value>ไปก่อนนะ!</value>
   </data>
 </root>

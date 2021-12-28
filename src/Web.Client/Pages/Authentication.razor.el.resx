@@ -59,10 +59,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CheckingLoginState" xml:space="preserve">
-    <value>Έλεγχος κατάστασης σύνδεσης.</value>
+    <value>Διαβάζοντας για την εκπληκτική Ada Lovelace (τον πρώτο προγραμματιστή υπολογιστών στον κόσμο).</value>
   </data>
   <data name="CompletingLogin" xml:space="preserve">
-    <value>Ολοκλήρωση σύνδεσης.</value>
+    <value>Συνδέοντας τα τυχαία καλώδια που βρίσκονται τριγύρω.</value>
   </data>
   <data name="ErrorLoggingInFormat" xml:space="preserve">
     <value>Παρουσιάστηκε σφάλμα κατά την προσπάθεια σύνδεσης: '{0}'</value>
@@ -71,12 +71,12 @@
     <value>Παρουσιάστηκε σφάλμα κατά την προσπάθεια αποσύνδεσης: '{0}'</value>
   </data>
   <data name="ProcessingLogout" xml:space="preserve">
-    <value>Επεξεργασία αποσύνδεσης.</value>
+    <value>Αν δεν αλλάζεις τον κόσμο, μένεις ακίνητος.</value>
   </data>
   <data name="ProcessingLogoutCallback" xml:space="preserve">
-    <value>Επεξεργασία επιστροφής κλήσης αποσύνδεσης.</value>
+    <value>Τα πράγματα δεν είναι πάντα όπως φαίνονται.</value>
   </data>
   <data name="YouAreLoggedOut" xml:space="preserve">
-    <value>Είστε αποσυνδεωμένοι.</value>
+    <value>Αντίο για την ώρα!</value>
   </data>
 </root>

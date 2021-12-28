@@ -59,9 +59,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="DarkTheme" xml:space="preserve">
-    <value>Dabartinė tema yra "tamsi" ir valdoma sistemos arba naršyklės nustatymais.</value>
+    <value>Jūsų dabartinė tema yra "tamsi" ir valdoma sistemos ar naršyklės nustatymais.</value>
   </data>
   <data name="LightTheme" xml:space="preserve">
-    <value>Dabartinė tema yra "lengva" ir valdoma sistemos arba naršyklės nustatymais.</value>
+    <value>Jūsų dabartinė tema yra "šviesa" ir yra valdoma sistemos ar naršyklės nustatymais.</value>
   </data>
 </root>

@@ -59,24 +59,24 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CheckingLoginState" xml:space="preserve">
-    <value>Kontrola stavu přihlášení.</value>
+    <value>Čtení o úžasné Adě Lovelace (první počítačový programátor na světě).</value>
   </data>
   <data name="CompletingLogin" xml:space="preserve">
-    <value>Dokončování přihlášení.</value>
+    <value>Zapojení náhodných vodičů ležících kolem.</value>
   </data>
   <data name="ErrorLoggingInFormat" xml:space="preserve">
     <value>Při pokusu o přihlášení došlo k chybě: "{0}"</value>
   </data>
   <data name="ErrorLoggingOutFormat" xml:space="preserve">
-    <value>Při odhlášení došlo k chybě: "{0}"</value>
+    <value>Při pokusu o odhlášení došlo k chybě: "{0}"</value>
   </data>
   <data name="ProcessingLogout" xml:space="preserve">
-    <value>Zpracování odhlášení.</value>
+    <value>Pokud neměníte svět, stojíte na místě.</value>
   </data>
   <data name="ProcessingLogoutCallback" xml:space="preserve">
-    <value>Zpracování zpětného volání odhlášení.</value>
+    <value>Věci nejsou vždy takové, jaké se zdají být.</value>
   </data>
   <data name="YouAreLoggedOut" xml:space="preserve">
-    <value>Jste odhlášeni.</value>
+    <value>Zatím ahoj!</value>
   </data>
 </root>

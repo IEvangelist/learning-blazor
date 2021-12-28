@@ -59,10 +59,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CheckingLoginState" xml:space="preserve">
-    <value>בודק את מצב הכניסה.</value>
+    <value>קריאה על עדה לאבלייס המדהימה (מתכנתת המחשבים הראשונה בעולם).</value>
   </data>
   <data name="CompletingLogin" xml:space="preserve">
-    <value>משלים את הכניסה.</value>
+    <value>מחבר את החוטים האקראיים זרוקים.</value>
   </data>
   <data name="ErrorLoggingInFormat" xml:space="preserve">
     <value>אירעה שגיאה בעת ניסיון להכניס אותך: '{0}'</value>
@@ -71,12 +71,12 @@
     <value>אירעה שגיאה בעת ניסיון לנתק אותך: '{0}'</value>
   </data>
   <data name="ProcessingLogout" xml:space="preserve">
-    <value>מעבד יציאה.</value>
+    <value>אם אתה לא משנה את העולם, אתה עומד במקום.</value>
   </data>
   <data name="ProcessingLogoutCallback" xml:space="preserve">
-    <value>מעבד התקשרות חזרה של יציאה.</value>
+    <value>הדברים אינם תמיד כפי שהם נראים.</value>
   </data>
   <data name="YouAreLoggedOut" xml:space="preserve">
-    <value>אתה מנותק.</value>
+    <value>ביי בינתיים!</value>
   </data>
 </root>

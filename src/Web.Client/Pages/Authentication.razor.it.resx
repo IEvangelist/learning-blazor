@@ -59,24 +59,24 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CheckingLoginState" xml:space="preserve">
-    <value>Controllo dello stato di accesso.</value>
+    <value>Leggendo della straordinaria Ada Lovelace (la prima programmatrice di computer al mondo).</value>
   </data>
   <data name="CompletingLogin" xml:space="preserve">
-    <value>Completamento del login.</value>
+    <value>Collegare i fili casuali che si trovano intorno.</value>
   </data>
   <data name="ErrorLoggingInFormat" xml:space="preserve">
-    <value>Si è verificato un errore durante il tentativo di accesso: '{0}'</value>
+    <value>Si è verificato un errore durante il tentativo di accesso: "{0}"</value>
   </data>
   <data name="ErrorLoggingOutFormat" xml:space="preserve">
-    <value>C'è stato un errore nel tentativo di disconnetterti: '{0}'</value>
+    <value>Si è verificato un errore durante il tentativo di disconnettersi: "{0}"</value>
   </data>
   <data name="ProcessingLogout" xml:space="preserve">
-    <value>Elaborazione della disconnessione.</value>
+    <value>Se non stai cambiando il mondo, stai fermo.</value>
   </data>
   <data name="ProcessingLogoutCallback" xml:space="preserve">
-    <value>Elaborazione della richiamata di disconnessione.</value>
+    <value>Le cose non sono sempre come sembrano.</value>
   </data>
   <data name="YouAreLoggedOut" xml:space="preserve">
-    <value>Si è disconne o disconne o disconne o conseiati.</value>
+    <value>Per il momento arrivederci!</value>
   </data>
 </root>

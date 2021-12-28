@@ -59,9 +59,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="DarkTheme" xml:space="preserve">
-    <value>Ditt aktuella tema är "mörkt" och styrs av system- eller webbläsarinställningar.</value>
+    <value>Ditt nuvarande tema är "mörkt" och styrs av system- eller webbläsarinställningar.</value>
   </data>
   <data name="LightTheme" xml:space="preserve">
-    <value>Ditt aktuella tema är "lätt" och styrs av system- eller webbläsarinställningar.</value>
+    <value>Ditt nuvarande tema är "ljus" och styrs av system- eller webbläsarinställningar.</value>
   </data>
 </root>

@@ -59,10 +59,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CheckingLoginState" xml:space="preserve">
-    <value>Проверавам стање пријављивања.</value>
+    <value>Читање о невероватној Ади Ловелејс (први компјутерски програмер на свету).</value>
   </data>
   <data name="CompletingLogin" xml:space="preserve">
-    <value>Довршавање пријављивања.</value>
+    <value>Прикључивање насумичних жица које леже около.</value>
   </data>
   <data name="ErrorLoggingInFormat" xml:space="preserve">
     <value>Дошло је до грешке при покушају пријављивања: '{0}'</value>
@@ -71,12 +71,12 @@
     <value>Дошло је до грешке при покушају одјављивање: '{0}'</value>
   </data>
   <data name="ProcessingLogout" xml:space="preserve">
-    <value>Обрада одјављивања.</value>
+    <value>Ако не мењаш свет, стојиш мирно.</value>
   </data>
   <data name="ProcessingLogoutCallback" xml:space="preserve">
-    <value>Обрада повратног позива за одјављивање.</value>
+    <value>Ствари нису увек онако како изгледају.</value>
   </data>
   <data name="YouAreLoggedOut" xml:space="preserve">
-    <value>Одјављени сте.</value>
+    <value>За сада ћао!</value>
   </data>
 </root>

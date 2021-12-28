@@ -59,10 +59,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CheckingLoginState" xml:space="preserve">
-    <value>Kontrollerar inloggningstillståndet.</value>
+    <value>Läser om den fantastiska Ada Lovelace (världens första datorprogrammerare).</value>
   </data>
   <data name="CompletingLogin" xml:space="preserve">
-    <value>Slutför inloggningen.</value>
+    <value>Plugga in de slumpmässiga kablarna som ligger runt.</value>
   </data>
   <data name="ErrorLoggingInFormat" xml:space="preserve">
     <value>Ett fel uppstod när du försökte logga in dig: "{0}"</value>
@@ -71,12 +71,12 @@
     <value>Ett fel uppstod när du försökte logga ut dig: "{0}"</value>
   </data>
   <data name="ProcessingLogout" xml:space="preserve">
-    <value>Bearbetar utloggning.</value>
+    <value>Om du inte förändrar världen, står du stilla.</value>
   </data>
   <data name="ProcessingLogoutCallback" xml:space="preserve">
-    <value>Bearbetar motringning av utloggning.</value>
+    <value>Saker är inte alltid som de verkar.</value>
   </data>
   <data name="YouAreLoggedOut" xml:space="preserve">
-    <value>Du är utloggad.</value>
+    <value>Hej då så länge!</value>
   </data>
 </root>

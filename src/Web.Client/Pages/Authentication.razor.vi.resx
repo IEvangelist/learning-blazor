@@ -59,24 +59,24 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CheckingLoginState" xml:space="preserve">
-    <value>Kiểm tra trạng thái đăng nhập.</value>
+    <value>Đọc về Ada Lovelace tuyệt vời (lập trình viên máy tính đầu tiên trên thế giới).</value>
   </data>
   <data name="CompletingLogin" xml:space="preserve">
-    <value>Hoàn tất đăng nhập.</value>
+    <value>Cắm vào các dây ngẫu nhiên nằm xung quanh.</value>
   </data>
   <data name="ErrorLoggingInFormat" xml:space="preserve">
-    <value>Có lỗi khi cố đăng nhập bạn: '{0}'</value>
+    <value>Có một lỗi khi cố gắng đăng nhập bạn: '{0}'</value>
   </data>
   <data name="ErrorLoggingOutFormat" xml:space="preserve">
-    <value>Có lỗi khi cố gắng đăng xuất bạn: '{0}'</value>
+    <value>Có một lỗi khi cố gắng đăng xuất bạn: '{0}'</value>
   </data>
   <data name="ProcessingLogout" xml:space="preserve">
-    <value>Xử lý đăng xuất.</value>
+    <value>Nếu bạn không thay đổi thế giới, bạn đang đứng yên.</value>
   </data>
   <data name="ProcessingLogoutCallback" xml:space="preserve">
-    <value>Xử lý gọi lại đăng xuất.</value>
+    <value>Mọi thứ không phải lúc nào cũng như vẻ ngoài của chúng.</value>
   </data>
   <data name="YouAreLoggedOut" xml:space="preserve">
-    <value>Bạn đã đăng xuất.</value>
+    <value>Tạm biệt!</value>
   </data>
 </root>

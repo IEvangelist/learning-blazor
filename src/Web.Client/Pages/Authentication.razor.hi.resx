@@ -59,10 +59,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CheckingLoginState" xml:space="preserve">
-    <value>लॉगिन राज्य की जांच।</value>
+    <value>अद्भुत एडीए लोवेलेस (दुनिया का पहला कंप्यूटर प्रोग्रामर) के बारे में पढ़ना।</value>
   </data>
   <data name="CompletingLogin" xml:space="preserve">
-    <value>लॉगिन को पूरा करना।</value>
+    <value>चारों ओर पड़े बेतरतीब तारों में प्लगिंग।</value>
   </data>
   <data name="ErrorLoggingInFormat" xml:space="preserve">
     <value>आप में लॉग इन करने की कोशिश कर रहा एक त्रुटि थी: ' {0} '</value>
@@ -71,12 +71,12 @@
     <value>आपको लॉग आउट करने की कोशिश कर रही एक त्रुटि थी: ' {0} '</value>
   </data>
   <data name="ProcessingLogout" xml:space="preserve">
-    <value>प्रोसेसिंग लॉगआउट।</value>
+    <value>यदि आप दुनिया नहीं बदल रहे हैं, तो आप अभी भी खड़े हैं ।</value>
   </data>
   <data name="ProcessingLogoutCallback" xml:space="preserve">
-    <value>प्रोसेसिंग लॉगआउट कॉलबैक।</value>
+    <value>चीजें हमेशा के रूप में वे लग रहे हो नहीं कर रहे हैं ।</value>
   </data>
   <data name="YouAreLoggedOut" xml:space="preserve">
-    <value>आप लॉग आउट कर रहे हैं।</value>
+    <value>अभी के लिएअलविदा!</value>
   </data>
 </root>

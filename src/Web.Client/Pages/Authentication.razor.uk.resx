@@ -59,24 +59,24 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CheckingLoginState" xml:space="preserve">
-    <value>Перевірка стану входу.</value>
+    <value>Читання про дивовижну Аду Лавлейс (першого в світі комп'ютерного програміста).</value>
   </data>
   <data name="CompletingLogin" xml:space="preserve">
-    <value>Завершення входу.</value>
+    <value>Підключення випадкових проводів, що лежать навколо.</value>
   </data>
   <data name="ErrorLoggingInFormat" xml:space="preserve">
-    <value>Під час входу сталася помилка: "{0}"</value>
+    <value>Сталася помилка під час спроби увійти в систему: "{0}"</value>
   </data>
   <data name="ErrorLoggingOutFormat" xml:space="preserve">
-    <value>Під час спроби вийти з системи сталася помилка: "{0}"</value>
+    <value>Сталася помилка під час спроби вийти з системи: "{0}"</value>
   </data>
   <data name="ProcessingLogout" xml:space="preserve">
-    <value>Обробка виходу із системи.</value>
+    <value>Якщо ви не змінюєте світ, ви стоїте на місці.</value>
   </data>
   <data name="ProcessingLogoutCallback" xml:space="preserve">
-    <value>Обробка зворотного виклику для виходу із системи.</value>
+    <value>Речі не завжди такі, як здаються.</value>
   </data>
   <data name="YouAreLoggedOut" xml:space="preserve">
-    <value>Ви вийшли з системи.</value>
+    <value>Наразі бувай!</value>
   </data>
 </root>

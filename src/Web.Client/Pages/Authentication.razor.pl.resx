@@ -59,24 +59,24 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CheckingLoginState" xml:space="preserve">
-    <value>Sprawdzanie stanu logowania.</value>
+    <value>Czytanie o niesamowitej Adze Lovelace (pierwszej na świecie programistce komputerowej).</value>
   </data>
   <data name="CompletingLogin" xml:space="preserve">
-    <value>Wypełnianie logowania.</value>
+    <value>Podłączanie losowych przewodów leżących wokół.</value>
   </data>
   <data name="ErrorLoggingInFormat" xml:space="preserve">
     <value>Wystąpił błąd podczas próby zalogowania się: "{0}"</value>
   </data>
   <data name="ErrorLoggingOutFormat" xml:space="preserve">
-    <value>Wystąpił błąd podczas próby wylogowania się: "{0}"</value>
+    <value>Wystąpił błąd podczas próby wylogowania: "{0}"</value>
   </data>
   <data name="ProcessingLogout" xml:space="preserve">
-    <value>Przetwarzanie wylogowania.</value>
+    <value>Jeśli nie zmieniasz świata, stoisz w miejscu.</value>
   </data>
   <data name="ProcessingLogoutCallback" xml:space="preserve">
-    <value>Przetwarzanie wywołania wylogowania.</value>
+    <value>Rzeczy nie zawsze są takie, jakimi się wydają.</value>
   </data>
   <data name="YouAreLoggedOut" xml:space="preserve">
-    <value>Jesteś wylogowany.</value>
+    <value>Na razie pa!</value>
   </data>
 </root>

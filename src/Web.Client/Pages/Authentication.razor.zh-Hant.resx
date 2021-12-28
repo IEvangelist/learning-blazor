@@ -59,24 +59,24 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CheckingLoginState" xml:space="preserve">
-    <value>檢查登錄狀態。</value>
+    <value>閱讀有關令人驚歎的Ada Lovelace（世界上第一個計算機程式師）的故事。</value>
   </data>
   <data name="CompletingLogin" xml:space="preserve">
-    <value>完成登錄。</value>
+    <value>插入周圍的隨機電線。</value>
   </data>
   <data name="ErrorLoggingInFormat" xml:space="preserve">
-    <value>嘗試登錄時出現錯誤：『{0}』</value>
+    <value>嘗試登錄時出錯："{0}"</value>
   </data>
   <data name="ErrorLoggingOutFormat" xml:space="preserve">
-    <value>有一個錯誤，試圖註銷你：'{0}'</value>
+    <value>嘗試註銷時出錯："{0}"</value>
   </data>
   <data name="ProcessingLogout" xml:space="preserve">
-    <value>處理註銷。</value>
+    <value>如果你沒有改變世界，你就是站著不動。</value>
   </data>
   <data name="ProcessingLogoutCallback" xml:space="preserve">
-    <value>處理註銷回調。</value>
+    <value>事情並不總是像他們看起來的那樣。</value>
   </data>
   <data name="YouAreLoggedOut" xml:space="preserve">
-    <value>您已登出。</value>
+    <value>再見！</value>
   </data>
 </root>
