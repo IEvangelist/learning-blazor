@@ -59,24 +59,24 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CheckingLoginState" xml:space="preserve">
-    <value>Проверка на състоянието на влизане.</value>
+    <value>Четене за невероятната Ада Ловлейс (първият в света компютърен програмист).</value>
   </data>
   <data name="CompletingLogin" xml:space="preserve">
-    <value>Завършване на влизането.</value>
+    <value>Включване в случайните проводници, които се бавят наоколо.</value>
   </data>
   <data name="ErrorLoggingInFormat" xml:space="preserve">
-    <value>Възникна грешка при опит да влезете в: "{0}"</value>
+    <value>Възникна грешка, която се опитва да ви влезе в системата: "{0}"</value>
   </data>
   <data name="ErrorLoggingOutFormat" xml:space="preserve">
-    <value>Възникна грешка при опит да излезете от системата: "{0}"</value>
+    <value>Възникна грешка, опитваща се да ви излезе: "{0}"</value>
   </data>
   <data name="ProcessingLogout" xml:space="preserve">
-    <value>Обработка на изхода.</value>
+    <value>Ако не променяш света, стоиш мирно.</value>
   </data>
   <data name="ProcessingLogoutCallback" xml:space="preserve">
-    <value>Обработка на излизане от извитото обратно означение.</value>
+    <value>Нещата не винаги са както изглеждат.</value>
   </data>
   <data name="YouAreLoggedOut" xml:space="preserve">
-    <value>- Не, не</value>
+    <value>Чао засега!</value>
   </data>
 </root>

@@ -59,10 +59,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CheckingLoginState" xml:space="preserve">
-    <value>Giriş vəziyyəti yoxlanılır.</value>
+    <value>Əsrarəngiz Ada Lovelace (dünyanın ilk kompüter proqramçısı) haqqında oxumaq.</value>
   </data>
   <data name="CompletingLogin" xml:space="preserve">
-    <value>Login tamamlamaq.</value>
+    <value>Ətrafda uzanan təsadüfi tellərə qoşmaq.</value>
   </data>
   <data name="ErrorLoggingInFormat" xml:space="preserve">
     <value>Səni daxil etmək istəyən xəta oldu: "{0}"</value>
@@ -71,12 +71,12 @@
     <value>Səni qeyd etmək istəyən xəta oldu: "{0}"</value>
   </data>
   <data name="ProcessingLogout" xml:space="preserve">
-    <value>İşləmə logout.</value>
+    <value>Dünyanı dəyişməsən, dur dur.</value>
   </data>
   <data name="ProcessingLogoutCallback" xml:space="preserve">
-    <value>Logout callback işlənmə.</value>
+    <value>Hər şey həmişə göründüyü kimi olmur.</value>
   </data>
   <data name="YouAreLoggedOut" xml:space="preserve">
-    <value>Siz də (oradan) çıxmış olarsınız!</value>
+    <value>Hələlik!</value>
   </data>
 </root>

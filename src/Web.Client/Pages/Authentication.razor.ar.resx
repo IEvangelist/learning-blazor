@@ -59,10 +59,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CheckingLoginState" xml:space="preserve">
-    <value>التحقق من حالة تسجيل الدخول.</value>
+    <value>القراءة عن مذهلة أدا Lovelace (مبرمج الكمبيوتر الأول في العالم).</value>
   </data>
   <data name="CompletingLogin" xml:space="preserve">
-    <value>إكمال تسجيل الدخول.</value>
+    <value>توصيل الأسلاك العشوائية الكذب حولها.</value>
   </data>
   <data name="ErrorLoggingInFormat" xml:space="preserve">
     <value>حدث خطأ أثناء محاولة تسجيل دخولك: "{0}"</value>
@@ -71,12 +71,12 @@
     <value>كان هناك خطأ في محاولة لتسجيل الخروج: '{0}'</value>
   </data>
   <data name="ProcessingLogout" xml:space="preserve">
-    <value>معالجة تسجيل الخروج.</value>
+    <value>إذا كنت لا تغير العالم، فأنت واقف ساكن.</value>
   </data>
   <data name="ProcessingLogoutCallback" xml:space="preserve">
-    <value>معالجة رد الاتصال بتسجيل الخروج.</value>
+    <value>الأمور ليست دائما كما تبدو</value>
   </data>
   <data name="YouAreLoggedOut" xml:space="preserve">
-    <value>لقد قمت بتسجيل الخروج.</value>
+    <value>وداعًا الآن!</value>
   </data>
 </root>

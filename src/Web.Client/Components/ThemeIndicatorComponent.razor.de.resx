@@ -62,6 +62,6 @@
     <value>Ihr aktuelles Theme ist "dunkel" und wird durch System- oder Browsereinstellungen gesteuert.</value>
   </data>
   <data name="LightTheme" xml:space="preserve">
-    <value>Ihr aktuelles Theme ist "light" und wird über die System- oder Browsereinstellungen gesteuert.</value>
+    <value>Ihr aktuelles Theme ist "light" und wird durch System- oder Browsereinstellungen gesteuert.</value>
   </data>
 </root>

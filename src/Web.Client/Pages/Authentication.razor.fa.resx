@@ -59,10 +59,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CheckingLoginState" xml:space="preserve">
-    <value>چک کردن حالت ورود .</value>
+    <value>خواندن در مورد شگفت انگیز آدا Lovelace (اولین برنامه نویس کامپیوتر در جهان).</value>
   </data>
   <data name="CompletingLogin" xml:space="preserve">
-    <value>تکمیل ورود.</value>
+    <value>وصل کردن در سیم های تصادفی در اطراف.</value>
   </data>
   <data name="ErrorLoggingInFormat" xml:space="preserve">
     <value>یک خطا در تلاش برای ورود به سیستم شما وجود دارد: '{0}'</value>
@@ -71,12 +71,12 @@
     <value>یک خطا در تلاش برای ورود به سیستم شما وجود دارد: '{0}'</value>
   </data>
   <data name="ProcessingLogout" xml:space="preserve">
-    <value>پردازش ورود به سیستم.</value>
+    <value>اگر دنیا را تغییر نمی دهد، هنوز ایستاده ای.</value>
   </data>
   <data name="ProcessingLogoutCallback" xml:space="preserve">
-    <value>پردازش تماس ورود به سیستم.</value>
+    <value>همه چيز هميشه اونطور که به نظر مياد نيستن</value>
   </data>
   <data name="YouAreLoggedOut" xml:space="preserve">
-    <value>تو خارج شدي .</value>
+    <value>فعلا خداحافظ!</value>
   </data>
 </root>

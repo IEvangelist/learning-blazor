@@ -59,10 +59,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CheckingLoginState" xml:space="preserve">
-    <value>로그인 상태를 확인합니다.</value>
+    <value>놀라운 Ada Lovelace (세계 최초의 컴퓨터 프로그래머)에 대해 읽어보세요.</value>
   </data>
   <data name="CompletingLogin" xml:space="preserve">
-    <value>로그인 완료.</value>
+    <value>주위에 누워 임의의 전선에 연결합니다.</value>
   </data>
   <data name="ErrorLoggingInFormat" xml:space="preserve">
     <value>로그인을 시도하는 오류가 있었습니다: '{0}'</value>
@@ -71,12 +71,12 @@
     <value>당신을 기록하려고 오류가 있었다 : '{0}'</value>
   </data>
   <data name="ProcessingLogout" xml:space="preserve">
-    <value>로그아웃 처리.</value>
+    <value>세상을 바꾸지 않는다면, 당신은 가만히 서 있습니다.</value>
   </data>
   <data name="ProcessingLogoutCallback" xml:space="preserve">
-    <value>로그아웃 콜백 처리.</value>
+    <value>상황이 항상 보이는 것은 아닙니다.</value>
   </data>
   <data name="YouAreLoggedOut" xml:space="preserve">
-    <value>로그아웃됩니다.</value>
+    <value>오늘은 이만!</value>
   </data>
 </root>

@@ -59,24 +59,24 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CheckingLoginState" xml:space="preserve">
-    <value>Memeriksa status login.</value>
+    <value>Membaca tentang Ada Lovelace yang menakjubkan (programmer komputer pertama di dunia).</value>
   </data>
   <data name="CompletingLogin" xml:space="preserve">
-    <value>Melengkapi login.</value>
+    <value>Mencolokkan kabel acak yang tergeletak di sekitar.</value>
   </data>
   <data name="ErrorLoggingInFormat" xml:space="preserve">
-    <value>Timbul galat saat coba log masuk: '{0}'</value>
+    <value>Ada kesalahan mencoba untuk log Anda di: '{0}'</value>
   </data>
   <data name="ErrorLoggingOutFormat" xml:space="preserve">
-    <value>Timbul galat saat coba log keluar: '{0}'</value>
+    <value>Ada kesalahan mencoba untuk log Anda keluar: '{0}'</value>
   </data>
   <data name="ProcessingLogout" xml:space="preserve">
-    <value>Sedang memproses logout.</value>
+    <value>Jika Anda tidak mengubah dunia, Anda berdiri diam.</value>
   </data>
   <data name="ProcessingLogoutCallback" xml:space="preserve">
-    <value>Memproses panggil balik log masuk.</value>
+    <value>Hal-hal tidak selalu seperti yang terlihat.</value>
   </data>
   <data name="YouAreLoggedOut" xml:space="preserve">
-    <value>Anda log-keluar.</value>
+    <value>Dadah untuk saat ini!</value>
   </data>
 </root>

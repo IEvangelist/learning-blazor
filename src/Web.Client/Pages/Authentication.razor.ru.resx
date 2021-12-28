@@ -59,10 +59,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CheckingLoginState" xml:space="preserve">
-    <value>Проверка состояния входа.</value>
+    <value>Чтение об удивительной Аде Лавлейс (первый в мире программист).</value>
   </data>
   <data name="CompletingLogin" xml:space="preserve">
-    <value>Заполнение входа в систему.</value>
+    <value>Подключение случайных проводов, лежащих вокруг.</value>
   </data>
   <data name="ErrorLoggingInFormat" xml:space="preserve">
     <value>Произошла ошибка при попытке войти в систему: '{0}'</value>
@@ -71,12 +71,12 @@
     <value>Произошла ошибка при попытке выйти из системы: «{0}»</value>
   </data>
   <data name="ProcessingLogout" xml:space="preserve">
-    <value>Процесс выхода из системы.</value>
+    <value>Если вы не меняете мир, вы стоите на месте.</value>
   </data>
   <data name="ProcessingLogoutCallback" xml:space="preserve">
-    <value>Обработка обратного вызова выхода.</value>
+    <value>Вещи не всегда такие, какими кажутся.</value>
   </data>
   <data name="YouAreLoggedOut" xml:space="preserve">
-    <value>Вы вышли из системы.</value>
+    <value>Ну, пока!</value>
   </data>
 </root>

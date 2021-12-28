@@ -59,24 +59,24 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CheckingLoginState" xml:space="preserve">
-    <value>Verificarea stării de conectare.</value>
+    <value>Citind despre uimitorul Ada Lovelace (primul programator de calculator din lume).</value>
   </data>
   <data name="CompletingLogin" xml:space="preserve">
-    <value>Finalizarea conectării.</value>
+    <value>Conectarea firelor aleatorii care se întind în jurul valorii de.</value>
   </data>
   <data name="ErrorLoggingInFormat" xml:space="preserve">
-    <value>Eroare la încercarea de conectare: "{0}"</value>
+    <value>A existat o eroare care a încercat să vă conecteze: "{0}"</value>
   </data>
   <data name="ErrorLoggingOutFormat" xml:space="preserve">
-    <value>Eroare la încercarea de deconectare: "{0}"</value>
+    <value>A existat o eroare care a încercat să vă deconecteze: "{0}"</value>
   </data>
   <data name="ProcessingLogout" xml:space="preserve">
-    <value>Procesarea deconectării.</value>
+    <value>Dacă nu schimbi lumea, stai pe loc.</value>
   </data>
   <data name="ProcessingLogoutCallback" xml:space="preserve">
-    <value>Procesarea apelului de deconectare.</value>
+    <value>Lucrurile nu sunt întotdeauna așa cum par.</value>
   </data>
   <data name="YouAreLoggedOut" xml:space="preserve">
-    <value>Sunteți deconectat.</value>
+    <value>Pa pentru moment!</value>
   </data>
 </root>

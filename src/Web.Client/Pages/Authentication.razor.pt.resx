@@ -59,24 +59,24 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CheckingLoginState" xml:space="preserve">
-    <value>Verificando o estado de login.</value>
+    <value>Lendo sobre a incrível Ada Lovelace (a primeira programadora de computador do mundo).</value>
   </data>
   <data name="CompletingLogin" xml:space="preserve">
-    <value>Completando o login.</value>
+    <value>Conectando os fios aleatórios por aí.</value>
   </data>
   <data name="ErrorLoggingInFormat" xml:space="preserve">
     <value>Houve um erro ao tentar registrá-lo: "{0}"</value>
   </data>
   <data name="ErrorLoggingOutFormat" xml:space="preserve">
-    <value>Houve um erro ao tentar te tirar: '{0}'</value>
+    <value>Houve um erro ao tentar te tirar: "{0}"</value>
   </data>
   <data name="ProcessingLogout" xml:space="preserve">
-    <value>Processamento de logout.</value>
+    <value>Se você não está mudando o mundo, você está parado.</value>
   </data>
   <data name="ProcessingLogoutCallback" xml:space="preserve">
-    <value>Processamento de logout callback.</value>
+    <value>As coisas nem sempre são como parecem.</value>
   </data>
   <data name="YouAreLoggedOut" xml:space="preserve">
-    <value>Você está logado.</value>
+    <value>Tchau agora!</value>
   </data>
 </root>

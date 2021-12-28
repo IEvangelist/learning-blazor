@@ -59,10 +59,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CheckingLoginState" xml:space="preserve">
-    <value>Kontroluje sa stav prihlásenia.</value>
+    <value>Ada Lovelace (prvý počítačový programátor na svete).</value>
   </data>
   <data name="CompletingLogin" xml:space="preserve">
-    <value>Dokončuje sa prihlásenie.</value>
+    <value>Zapojte náhodné drôty ležiace okolo.</value>
   </data>
   <data name="ErrorLoggingInFormat" xml:space="preserve">
     <value>Pri pokuse o prihlásenie sa vyskytla chyba: "{0}"</value>
@@ -71,12 +71,12 @@
     <value>Pri pokuse o odhlásenie sa vyskytla chyba: "{0}"</value>
   </data>
   <data name="ProcessingLogout" xml:space="preserve">
-    <value>Spracováva sa odhlásenie.</value>
+    <value>Ak nezmeníte svet, stojíte na mieste.</value>
   </data>
   <data name="ProcessingLogoutCallback" xml:space="preserve">
-    <value>Spracováva sa spätné volanie odhlásenia.</value>
+    <value>Veci nie sú vždy také, ako sa zdajú.</value>
   </data>
   <data name="YouAreLoggedOut" xml:space="preserve">
-    <value>Ste odhlásený.</value>
+    <value>Zatiaľ ahoj!</value>
   </data>
 </root>

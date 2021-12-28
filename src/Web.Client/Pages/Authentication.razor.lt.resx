@@ -59,24 +59,24 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CheckingLoginState" xml:space="preserve">
-    <value>Tikrinama prisijungimo būsena.</value>
+    <value>Skaitymas apie nuostabią Ada Lovelace (pirmoji pasaulyje kompiuterių programuotoja).</value>
   </data>
   <data name="CompletingLogin" xml:space="preserve">
-    <value>Baigiamas prisijungimas.</value>
+    <value>Prijungimas prie atsitiktinių laidų, esančių aplink.</value>
   </data>
   <data name="ErrorLoggingInFormat" xml:space="preserve">
     <value>Bandant prisijungti įvyko klaida: "{0}"</value>
   </data>
   <data name="ErrorLoggingOutFormat" xml:space="preserve">
-    <value>Bandant jus išregistruoti įvyko klaida: "{0}"</value>
+    <value>Bandant jus atsijungti įvyko klaida: "{0}"</value>
   </data>
   <data name="ProcessingLogout" xml:space="preserve">
-    <value>Apdorojamas atsijungimas.</value>
+    <value>Jei nekeičiate pasaulio, jūs stovite vietoje.</value>
   </data>
   <data name="ProcessingLogoutCallback" xml:space="preserve">
-    <value>Apdorojamas atsijungimo atgalinis skambinimas.</value>
+    <value>Viskas ne visada yra taip, kaip atrodo.</value>
   </data>
   <data name="YouAreLoggedOut" xml:space="preserve">
-    <value>Jūs atsijungėte.</value>
+    <value>Kol kas iki!</value>
   </data>
 </root>

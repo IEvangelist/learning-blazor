@@ -59,24 +59,24 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CheckingLoginState" xml:space="preserve">
-    <value>Bejelentkezési állapot ellenőrzése.</value>
+    <value>A csodálatos Ada Lovelace-ről (a világ első számítógépes programozójáról) olvasok.</value>
   </data>
   <data name="CompletingLogin" xml:space="preserve">
-    <value>Bejelentkezés kitöltése.</value>
+    <value>Dugja be a véletlenszerű vezetékeket.</value>
   </data>
   <data name="ErrorLoggingInFormat" xml:space="preserve">
-    <value>Hiba volt bejelentkezni: "{0}"</value>
+    <value>Hiba történt, amikor megpróbált bejelentkezni: "{0}"</value>
   </data>
   <data name="ErrorLoggingOutFormat" xml:space="preserve">
-    <value>Hiba volt kijelentkezni: "{0}"</value>
+    <value>Hiba történt, amikor megpróbált kijelentkezésre: "{0}"</value>
   </data>
   <data name="ProcessingLogout" xml:space="preserve">
-    <value>Kijelentkezés feldolgozása.</value>
+    <value>Ha nem változtatod meg a világot, akkor nyugton maradsz.</value>
   </data>
   <data name="ProcessingLogoutCallback" xml:space="preserve">
-    <value>Kijelentkezés visszahívásának feldolgozása.</value>
+    <value>A dolgok nem mindig azok, aminek látszanak.</value>
   </data>
   <data name="YouAreLoggedOut" xml:space="preserve">
-    <value>Ki van jelentkezve.</value>
+    <value>Egyelőre szia!</value>
   </data>
 </root>

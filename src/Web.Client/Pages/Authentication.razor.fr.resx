@@ -59,10 +59,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CheckingLoginState" xml:space="preserve">
-    <value>Vérification de l’état de connexion.</value>
+    <value>Lecture sur l’incroyable Ada Lovelace (la première programmeuse informatique au monde).</value>
   </data>
   <data name="CompletingLogin" xml:space="preserve">
-    <value>Fin de la connexion.</value>
+    <value>Brancher les fils aléatoires qui traînent.</value>
   </data>
   <data name="ErrorLoggingInFormat" xml:space="preserve">
     <value>Une erreur s’est produite lors de la tentative de connexion : « {0} »</value>
@@ -71,12 +71,12 @@
     <value>Une erreur s’est produite lors de la tentative de déconnexion : « {0} »</value>
   </data>
   <data name="ProcessingLogout" xml:space="preserve">
-    <value>Traitement de la déconnexion.</value>
+    <value>Si vous ne changez pas le monde, vous restez immobile.</value>
   </data>
   <data name="ProcessingLogoutCallback" xml:space="preserve">
-    <value>Traitement du rappel de déconnexion.</value>
+    <value>Les choses ne sont pas toujours comme elles semblent.</value>
   </data>
   <data name="YouAreLoggedOut" xml:space="preserve">
-    <value>Vous êtes déconnecté.</value>
+    <value>À plus tard!</value>
   </data>
 </root>

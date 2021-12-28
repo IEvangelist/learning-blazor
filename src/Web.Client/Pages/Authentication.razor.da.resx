@@ -59,24 +59,24 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CheckingLoginState" xml:space="preserve">
-    <value>Kontrollerer logontilstand.</value>
+    <value>Læsning om den fantastiske Ada Lovelace (verdens første computer programmør).</value>
   </data>
   <data name="CompletingLogin" xml:space="preserve">
-    <value>Fuldfører login.</value>
+    <value>Sæt de tilfældige ledninger i at ligge.</value>
   </data>
   <data name="ErrorLoggingInFormat" xml:space="preserve">
-    <value>Der opstod en fejl under forsøg på at logge dig på: '{0}'</value>
+    <value>Der opstod en fejl under forsøg på at logge dig ind: '{0}'</value>
   </data>
   <data name="ErrorLoggingOutFormat" xml:space="preserve">
     <value>Der opstod en fejl under forsøg på at logge dig ud: '{0}'</value>
   </data>
   <data name="ProcessingLogout" xml:space="preserve">
-    <value>Behandler logout.</value>
+    <value>Hvis du ikke ændrer verden, står du stille.</value>
   </data>
   <data name="ProcessingLogoutCallback" xml:space="preserve">
-    <value>Behandler tilbagekald af logout.</value>
+    <value>Tingene er ikke altid, som de ser ud.</value>
   </data>
   <data name="YouAreLoggedOut" xml:space="preserve">
-    <value>Du er logget ud.</value>
+    <value>Farvel for nu!</value>
   </data>
 </root>

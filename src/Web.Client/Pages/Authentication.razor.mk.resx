@@ -59,24 +59,24 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CheckingLoginState" xml:space="preserve">
-    <value>Muhteşem Ada Lovelace (dünyanın ilk bilgisayar programcısı) hakkında okuma.</value>
+    <value>Читање за неверојатната Ада Ловлејс (првиот компјутерски програмер во светот).</value>
   </data>
   <data name="CompletingLogin" xml:space="preserve">
-    <value>Etraftaki rastgele kabloları takıyorum.</value>
+    <value>Вклучување во случајните жици кои се наоѓаат наоколу.</value>
   </data>
   <data name="ErrorLoggingInFormat" xml:space="preserve">
-    <value>Oturum açmaya çalışırken bir hata oluştu: '{0}'</value>
+    <value>Имаше грешка што се обидуваше да те логира: '{0}'</value>
   </data>
   <data name="ErrorLoggingOutFormat" xml:space="preserve">
-    <value>Çıkış yapmaya çalışırken bir hata oluştu: '{0}'</value>
+    <value>Имаше грешка што се обидуваше да те исфрли: '{0}'</value>
   </data>
   <data name="ProcessingLogout" xml:space="preserve">
-    <value>Dünyayı değiştirmiyorsan, kıpırdamamışsın demekdir.</value>
+    <value>Ако не го менувате светот, стоите мирно.</value>
   </data>
   <data name="ProcessingLogoutCallback" xml:space="preserve">
-    <value>Her şey göründüğü gibi değildir.</value>
+    <value>Работите не се секогаш како што изгледаат.</value>
   </data>
   <data name="YouAreLoggedOut" xml:space="preserve">
-    <value>Şimdilik hoşça kal!</value>
+    <value>Чао за сега!</value>
   </data>
 </root>

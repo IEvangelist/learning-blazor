@@ -59,24 +59,24 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CheckingLoginState" xml:space="preserve">
-    <value>Aanmeldingsstatus controleren.</value>
+    <value>Lezen over de geweldige Ada Lovelace ('s werelds eerste computerprogrammeur).</value>
   </data>
   <data name="CompletingLogin" xml:space="preserve">
-    <value>Inloggen voltooien.</value>
+    <value>Het aansluiten van de willekeurige draden die rondslingeren.</value>
   </data>
   <data name="ErrorLoggingInFormat" xml:space="preserve">
-    <value>Er is een fout opgetreden bij het inloggen: '{0}'</value>
+    <value>Er is een fout opgetreden bij het aanmelden: '{0}'</value>
   </data>
   <data name="ErrorLoggingOutFormat" xml:space="preserve">
     <value>Er is een fout opgetreden bij het uitloggen: '{0}'</value>
   </data>
   <data name="ProcessingLogout" xml:space="preserve">
-    <value>Afmelding verwerken.</value>
+    <value>Als je de wereld niet verandert, sta je stil.</value>
   </data>
   <data name="ProcessingLogoutCallback" xml:space="preserve">
-    <value>Afmelding verwerken.</value>
+    <value>De dingen zijn niet altijd wat ze lijken.</value>
   </data>
   <data name="YouAreLoggedOut" xml:space="preserve">
-    <value>Je bent uitgelogd.</value>
+    <value>Dag en tot gauw!</value>
   </data>
 </root>

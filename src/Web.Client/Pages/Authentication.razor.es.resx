@@ -59,10 +59,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CheckingLoginState" xml:space="preserve">
-    <value>Comprobación del estado de inicio de sesión.</value>
+    <value>Leyendo sobre la increíble Ada Lovelace (la primera programadora de computadoras del mundo).</value>
   </data>
   <data name="CompletingLogin" xml:space="preserve">
-    <value>Completar el inicio de sesión.</value>
+    <value>Enchufar los cables aleatorios que yacen por ahí.</value>
   </data>
   <data name="ErrorLoggingInFormat" xml:space="preserve">
     <value>Se ha producido un error al intentar iniciar sesión: '{0}'</value>
@@ -71,12 +71,12 @@
     <value>Se ha producido un error al intentar cerrar la sesión: '{0}'</value>
   </data>
   <data name="ProcessingLogout" xml:space="preserve">
-    <value>Procesamiento de cierre de sesión.</value>
+    <value>Si no estás cambiando el mundo, te estás quedando quieto.</value>
   </data>
   <data name="ProcessingLogoutCallback" xml:space="preserve">
-    <value>Procesar la devolución de llamada de cierre de sesión.</value>
+    <value>Las cosas no siempre son como parecen.</value>
   </data>
   <data name="YouAreLoggedOut" xml:space="preserve">
-    <value>Ha salido de la sesión.</value>
+    <value>¡Hasta ahora!</value>
   </data>
 </root>

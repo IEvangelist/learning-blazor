@@ -59,10 +59,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CheckingLoginState" xml:space="preserve">
-    <value>Kontrollerer påloggingstilstand.</value>
+    <value>Leser om den fantastiske Ada Lovelace (verdens første dataprogrammerer).</value>
   </data>
   <data name="CompletingLogin" xml:space="preserve">
-    <value>Fullfører pålogging.</value>
+    <value>Kobler til de tilfeldige ledningene som ligger rundt.</value>
   </data>
   <data name="ErrorLoggingInFormat" xml:space="preserve">
     <value>Det oppstod en feil under forsøk på å logge deg på: '{0}'</value>
@@ -71,12 +71,12 @@
     <value>Det oppstod en feil under forsøk på å logge deg av: {0}</value>
   </data>
   <data name="ProcessingLogout" xml:space="preserve">
-    <value>Behandler avlogging.</value>
+    <value>Hvis du ikke forandrer verden, står du stille.</value>
   </data>
   <data name="ProcessingLogoutCallback" xml:space="preserve">
-    <value>Behandler tilbakeringing av avlogging.</value>
+    <value>Ting er ikke alltid som de ser ut.</value>
   </data>
   <data name="YouAreLoggedOut" xml:space="preserve">
-    <value>Du er logget av.</value>
+    <value>Takk for nå!</value>
   </data>
 </root>

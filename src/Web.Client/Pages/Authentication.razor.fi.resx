@@ -59,24 +59,24 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CheckingLoginState" xml:space="preserve">
-    <value>Tarkistetaan kirjautumistilaa.</value>
+    <value>Lukemassa hämmästyttävästä Ada Lovelacesta (maailman ensimmäinen tietokoneohjelmoija).</value>
   </data>
   <data name="CompletingLogin" xml:space="preserve">
-    <value>Viimeistellään kirjautumista.</value>
+    <value>Kytken satunnaisia johtoja.</value>
   </data>
   <data name="ErrorLoggingInFormat" xml:space="preserve">
-    <value>Virhe näti kirjautuessasi sisään: '{0}'</value>
+    <value>Virhe yrittäessään kirjautua sisään: '{0}'</value>
   </data>
   <data name="ErrorLoggingOutFormat" xml:space="preserve">
-    <value>Virhe jätellä sinua ulos: "{0}"</value>
+    <value>Virhe yrittäessään kirjata sinut ulos: '{0}'</value>
   </data>
   <data name="ProcessingLogout" xml:space="preserve">
-    <value>Käsitellään uloskirjautumista.</value>
+    <value>Jos et muuta maailmaa, pysyt paikoillasi.</value>
   </data>
   <data name="ProcessingLogoutCallback" xml:space="preserve">
-    <value>Käsitellään kirjautumiskutsua.</value>
+    <value>Asiat eivät aina ole niin kuin miltä näyttävät.</value>
   </data>
   <data name="YouAreLoggedOut" xml:space="preserve">
-    <value>Olet kirjautunut ulos.</value>
+    <value>Hei vaan toistaiseksi!</value>
   </data>
 </root>

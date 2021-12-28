@@ -59,10 +59,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CheckingLoginState" xml:space="preserve">
-    <value>S'està comprovant l'estat d'inici de sessió.</value>
+    <value>Ada Lovelace (la primera programadora d'ordinadors del món)</value>
   </data>
   <data name="CompletingLogin" xml:space="preserve">
-    <value>S'està completant l'inici de sessió.</value>
+    <value>Connectar els cables aleatoris que hi ha al voltant.</value>
   </data>
   <data name="ErrorLoggingInFormat" xml:space="preserve">
     <value>S'ha produït un error en intentar iniciar la sessió: "{0}"</value>
@@ -71,12 +71,12 @@
     <value>S'ha produït un error en intentar tancar la sessió: "{0}"</value>
   </data>
   <data name="ProcessingLogout" xml:space="preserve">
-    <value>S'està processant la desconnexció.</value>
+    <value>Si no estàs canviant el món, t'estàs quiet.</value>
   </data>
   <data name="ProcessingLogoutCallback" xml:space="preserve">
-    <value>S'està processant la resposta de desconnexció.</value>
+    <value>Les coses no sempre són com semblen.</value>
   </data>
   <data name="YouAreLoggedOut" xml:space="preserve">
-    <value>Esteu desconnectat.</value>
+    <value>Adéu per ara!</value>
   </data>
 </root>
