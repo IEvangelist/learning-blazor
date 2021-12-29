@@ -15,7 +15,8 @@ public readonly record struct AreYouHumanMath(
     /// </summary>
     /// <param name="guess">The value being evaluted for correctness.</param>
     /// <returns>
-    /// <c>true</c> when the given <paramref name="guess"/> is correct, otherwise <c>false</c>.
+    /// <c>true</c> when the given <paramref name="guess"/> is correct,
+    /// otherwise <c>false</c>.
     /// </returns>
     /// <exception cref="ArgumentException">
     /// An <see cref="ArgumentException"/> is thrown when

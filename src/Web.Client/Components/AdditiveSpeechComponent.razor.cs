@@ -10,10 +10,16 @@ namespace Learning.Blazor.Components
         {
             get
             {
-                var isHidden = Message is null or { Length: 0 } ? "is-hidden" : "";
-                var isFlashing = _isSpeaking ? "is-flashing" : "";
+                return string.Join(" ", GetStyles()).Trim();
 
-                return $"{isHidden} {isFlashing}".Trim();
+                IEnumerable<string> GetStyles()
+                {
+                    if (string.IsNullOrWhiteSpace(Message))
+                        yield return "is-hidden";
+
+                    if (_isSpeaking)
+                        yield return "is-flashing";
+                };
             }
         }
 
