@@ -10,7 +10,7 @@ public readonly record struct AreYouHumanMath(
 {
     private static readonly Random s_random = Random.Shared;
 
-    public bool IsCorrect(int result) => result == Operator switch
+    public bool IsCorrect(int guess) => guess == Operator switch
     {
         MathOperator.Addition => LeftOperand + RightOperand,
         MathOperator.Subtraction => LeftOperand - RightOperand,
