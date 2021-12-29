@@ -10,6 +10,17 @@ public readonly record struct AreYouHumanMath(
 {
     private static readonly Random s_random = Random.Shared;
 
+    /// <summary>
+    /// Determines if the given <paramref name="guess"/> value is correct.
+    /// </summary>
+    /// <param name="guess">The value being evaluted for correctness.</param>
+    /// <returns>
+    /// <c>true</c> when the given <paramref name="guess"/> is correct, otherwise <c>false</c>.
+    /// </returns>
+    /// <exception cref="ArgumentException">
+    /// An <see cref="ArgumentException"/> is thrown when
+    /// the current <see cref="Operator"/> value is not defined.
+    /// </exception>
     public bool IsCorrect(int guess) => guess == Operator switch
     {
         MathOperator.Addition => LeftOperand + RightOperand,
@@ -20,6 +31,19 @@ public readonly record struct AreYouHumanMath(
             $"The operator is not supported: {Operator}")
     };
 
+    /// <summary>
+    /// The string representation of the <see cref="AreYouHumanMath"/> instance.
+    /// <code language="cs">
+    /// <![CDATA[
+    /// var math = new AreYouHumanMath(7, 3);
+    /// math.ToString(); // "7 + 3 ="
+    /// ]]>
+    /// </code>
+    /// </summary>
+    /// <exception cref="ArgumentException">
+    /// An <see cref="ArgumentException"/> is thrown when
+    /// the current <see cref="Operator"/> value is not defined.
+    /// </exception>
     public override string ToString()
     {
         var operatorStr = Operator switch
@@ -35,8 +59,21 @@ public readonly record struct AreYouHumanMath(
         return $"{LeftOperand} {operatorStr} {RightOperand} =";
     }
 
+    /// <summary>
+    /// The string representation of the <see cref="AreYouHumanMath"/> instance.
+    /// <code language="cs">
+    /// <![CDATA[
+    /// var math = new AreYouHumanMath(7, 3);
+    /// math.GetQuestion(); // "7 + 3 = ?"
+    /// ]]>
+    /// </code>
+    /// </summary>
     public string GetQuestion() => $"{this} ?";
 
+    /// <summary>
+    /// Factory method that creates a new randomized instance of
+    /// <see cref="AreYouHumanMath"/> given the <paramref name="mathOperator"/> 
+    /// </summary>
     public static AreYouHumanMath CreateNew(
         MathOperator? mathOperator = null)
     {
