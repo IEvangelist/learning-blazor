@@ -3,7 +3,7 @@
   <PropertyGroup>
     <RootNamespace>Learning.Blazor.LocalStorage</RootNamespace>
     <TargetFramework>net6.0</TargetFramework>
-    <Nullable>enable</Nullable>
+    <Nullable>annotations</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
@@ -11,6 +11,7 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
     <PackageReference Include="Microsoft.JSInterop" Version="6.0.0" />
+    <PackageReference Include="Microsoft.JSInterop.WebAssembly" Version="6.0.0" />
   </ItemGroup>
 
   <ItemGroup>

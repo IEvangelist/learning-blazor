@@ -10,7 +10,7 @@ internal static class WebAssemblyHostBuilderExtensions
     {
         var (services, configuration) =
             (builder.Services, builder.Configuration);
-
+;
         services.AddScoped<ApiAccessAuthorizationMessageHandler>();
         services.Configure<WebApiOptions>(
             configuration.GetSection(nameof(WebApiOptions)));
@@ -80,6 +80,9 @@ internal static class WebAssemblyHostBuilderExtensions
         });
         services.AddJokeServices();
         services.AddLocalStorage();
+        services.AddSingleton<IJSInProcessRuntime>(
+            provider =>
+                (IJSInProcessRuntime)provider.GetRequiredService<IJSRuntime>());
 
         return builder;
     }

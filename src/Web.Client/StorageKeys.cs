@@ -7,4 +7,5 @@ internal static class StorageKeys
 {
     internal const string ClientVoice = "client-voice-preference";
     internal const string ClientCulture = "client-culture-preference";
+    internal const string PrefersDarkTheme = "prefers-color-scheme-dark";
 }

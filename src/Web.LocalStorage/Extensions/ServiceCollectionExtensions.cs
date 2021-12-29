@@ -3,6 +3,8 @@
 
 using Learning.Blazor.LocalStorage;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.JSInterop.WebAssembly;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace Learning.Blazor.Extensions
 {
@@ -13,7 +15,8 @@ namespace Learning.Blazor.Extensions
         {
             services.AddLogging();
 
-            return services.AddScoped<ILocalStorage, BrowserLocalStorage>();
+            return services.AddSingleton<ILocalStorage, BrowserLocalStorage>()
+                    .AddSingleton<ISynchronousLocalStorage, SynchronousBrowserLocalStorage>();
         }
     }
 }
