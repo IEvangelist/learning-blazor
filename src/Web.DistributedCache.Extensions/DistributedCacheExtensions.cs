@@ -49,7 +49,7 @@ public static class DistributedCacheExtensions
 
             result = await TryAsync<TItem>(() => factory(options), logger);
 
-            var json = result.ToJson()!;
+            var json = result?.ToJson()!;
             bytes = UTF8.GetBytes(json);
 
             try

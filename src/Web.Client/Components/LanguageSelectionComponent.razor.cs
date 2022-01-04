@@ -15,20 +15,13 @@ namespace Learning.Blazor.Components
 
         protected override async Task OnInitializedAsync()
         {
-            try
-            {
-                var azureCultures =
+            var azureCultures =
                     await Http.GetFromJsonAsync<AzureTranslationCultures>(
                         "api/cultures/all",
                         DefaultJsonSerialization.Options);
 
-                _supportedCultures =
-                    Culture.MapClientSupportedCultures(azureCultures?.Translation);
-            }
-            catch (Exception ex)
-            {
-                Logger.LogError(ex, ex.Message);
-            }
+            _supportedCultures =
+                Culture.MapClientSupportedCultures(azureCultures?.Translation);
         }
 
         private static string ToDisplayName(

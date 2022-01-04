@@ -10,8 +10,8 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
-    <PackageReference Include="Microsoft.JSInterop" Version="6.0.0" />
-    <PackageReference Include="Microsoft.JSInterop.WebAssembly" Version="6.0.0" />
+    <PackageReference Include="Microsoft.JSInterop" Version="6.0.1" />
+    <PackageReference Include="Microsoft.JSInterop.WebAssembly" Version="6.0.1" />
   </ItemGroup>
 
   <ItemGroup>

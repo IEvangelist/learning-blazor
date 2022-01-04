@@ -9,7 +9,7 @@ global using System.Linq.Expressions;
 global using System.Net.Http.Json;
 global using System.Security.Claims;
 global using System.Text.Json.Serialization;
-global using HaveIBeenPwned.Client.Models;
+global using HaveIBeenPwned.Client.Abstractions;
 global using Learning.Blazor;
 global using Learning.Blazor.Abstractions.RealTime;
 global using Learning.Blazor.BrowserModels;
