@@ -99,7 +99,7 @@ namespace Learning.Blazor.Components
                             : notification)
                 .ToHashSet();
 
-            _show = _notifications is { Count: > 0 };
+            _show = _notifications.Any(n => !n.IsDismissed);
         }
 
         async ValueTask IAsyncDisposable.DisposeAsync()
