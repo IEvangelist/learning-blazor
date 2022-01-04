@@ -51,22 +51,18 @@ namespace Learning.Blazor.Components
                             var url = Navigation.ToAbsoluteUri($"/pwned/breaches?email={email}");
                             var link = $"<a href='{url}'><i class='fas fa-exclamation-circle'></i></a>";
 
-                            _ = _notifications.Add(new()
-                            {
-                                Text = Localizer["EmailFoundInBreachFormat", email, breaches.Length, link],
-                                NotificationType = NotificationType.Alert
-                            });
+                            _ = _notifications.Add(new(
+                                Localizer["EmailFoundInBreachFormat", email, breaches.Length, link],
+                                NotificationType.Alert));
                         }
                     }
                 }
                 else
                 {
                     var text = Localizer["UserLoggedInFormat", actor.UserName];
-                    _ = _notifications.Add(new()
-                    {
-                        Text = text,
-                        NotificationType = notification.Type
-                    });
+                    _ = _notifications.Add(new(
+                        text,
+                        notification.Type));
                 }
 
                 _latestNotificationDateTime = DateTime.Now;
@@ -80,12 +76,9 @@ namespace Learning.Blazor.Components
                 Actor actor = notification;
                 var text = Localizer["UserLoggedOutFormat", actor.UserName];
 
-                _ = _notifications.Add(new()
-                {
-                    Text = text,
-                    IsDismissed = false,
-                    NotificationType = notification.Type
-                });
+                _ = _notifications.Add(new(
+                    text,
+                    notification.Type));
 
                 _latestNotificationDateTime = DateTime.Now;
 
@@ -96,13 +89,18 @@ namespace Learning.Blazor.Components
 
         private void Dismiss() => _show = false;
 
-        private void DismissNotification(NotificationComponentModel notificationModel) =>
+        private void DismissNotification(NotificationComponentModel dismissalNotification)
+        {
             _notifications =
                 _notifications.Select(
                     notification =>
-                        notification == notificationModel
-                            ? (notification with { IsDismissed = true }) : notification)
-                    .ToHashSet();
+                        notification == dismissalNotification
+                            ? notification with { IsDismissed = true }
+                            : notification)
+                .ToHashSet();
+
+            _show = _notifications is { Count: > 0 };
+        }
 
         async ValueTask IAsyncDisposable.DisposeAsync()
         {

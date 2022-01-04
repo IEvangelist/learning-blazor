@@ -3,11 +3,7 @@
 
 namespace Learning.Blazor.ComponentModels;
 
-public record NotificationComponentModel
-{
-    public string Text { get; init; } = null!;
-
-    public NotificationType NotificationType { get; init; }
-
-    public bool IsDismissed { get; init; }
-}
+public record NotificationComponentModel(
+    string Text,
+    NotificationType NotificationType,
+    bool IsDismissed = false);
