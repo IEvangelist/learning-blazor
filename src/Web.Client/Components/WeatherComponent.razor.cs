@@ -1,6 +1,8 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
+using Learning.Blazor.Models;
+
 namespace Learning.Blazor.Components
 {
     public sealed partial class WeatherComponent : IDisposable
@@ -77,6 +79,12 @@ namespace Learning.Blazor.Components
                 var weatherDetails = latestWeatherTask.Result;
                 if (weatherDetails is not null && _geoCode is not null)
                 {
+                    if (weatherDetails is { Alerts: { Count: > 0 } })
+                    {
+                        AppState.WeatherAlertRecieved?.Invoke(
+                            weatherDetails.Alerts);
+                    }
+
                     _model = new WeatherComponentModel(
                         weatherDetails, _geoCode, Formatter);
                     _state = ComponentState.Loaded;

@@ -38,7 +38,9 @@
             {
                 foreach (var notification in _notifications.Where(n => !n.IsDismissed))
                 {
-                    <div class="notification">
+                    var style = notification.NotificationType is NotificationType.Alert
+                        ? "has-text-warning" : "";
+                    <div class="notification @style">
                         <button class="delete" @onclick=@(_ => DismissNotification(notification))></button>
                         @(new MarkupString(notification.Text))
                     </div>

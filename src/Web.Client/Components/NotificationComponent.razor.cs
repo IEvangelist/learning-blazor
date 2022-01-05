@@ -11,7 +11,6 @@ namespace Learning.Blazor.Components
         private bool _show = false;
         private DateTime? _latestNotificationDateTime = null!;
 
-
         private string _showClass => _show ? "is-active" : "";
 
         [Inject]
@@ -28,6 +27,14 @@ namespace Learning.Blazor.Components
                 HubConnection.SubscribeToUserLoggedOut(OnUserLoggedOut));
 
             await HubConnection.StartAsync(this);
+        }
+
+        protected override void OnParametersSet()
+        {
+            if (AppState.WeatherAlertRecieved is null)
+            {
+                AppState.WeatherAlertRecieved = OnWeatherAlertReceived;
+            }
         }
 
         private Task OnUserLoggedIn(Notification<Actor> notification) =>
@@ -84,6 +91,21 @@ namespace Learning.Blazor.Components
 
                 StateHasChanged();
             });
+
+        private void OnWeatherAlertReceived(IList<Alert> alerts)
+        {
+            foreach (var alert in alerts)
+            {
+                var text =
+                    $"{alert.Event}\n{alert.Description}\nSource: {alert.SenderName}";
+
+                _ = _notifications.Add(
+                    new(
+                        text, NotificationType.Alert));
+            }
+
+            StateHasChanged();
+        }
 
         private void Show() => _show = true;
 

@@ -54,6 +54,8 @@ public class AppInMemoryState
         }
     }
 
+    public Action<IList<Alert>> WeatherAlertRecieved { get; set; }
+
     public event Action? StateChanged;
 
     private void AppStateChanged() => StateChanged?.Invoke();
