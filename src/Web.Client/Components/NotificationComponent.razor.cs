@@ -101,7 +101,7 @@ namespace Learning.Blazor.Components
 
                 _ = _notifications.Add(
                     new(
-                        text, NotificationType.Alert));
+                        text, NotificationType.Warning));
             }
 
             StateHasChanged();
