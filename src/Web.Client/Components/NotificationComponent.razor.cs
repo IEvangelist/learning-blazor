@@ -29,13 +29,8 @@ namespace Learning.Blazor.Components
             await HubConnection.StartAsync(this);
         }
 
-        protected override void OnParametersSet()
-        {
-            if (AppState.WeatherAlertRecieved is null)
-            {
-                AppState.WeatherAlertRecieved = OnWeatherAlertReceived;
-            }
-        }
+        protected override void OnParametersSet() =>
+            AppState.WeatherAlertRecieved ??= OnWeatherAlertReceived;
 
         private Task OnUserLoggedIn(Notification<Actor> notification) =>
             InvokeAsync(async () =>
