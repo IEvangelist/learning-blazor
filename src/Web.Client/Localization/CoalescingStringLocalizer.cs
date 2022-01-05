@@ -74,9 +74,9 @@ public class CoalescingStringLocalizer<T>
     void LogIfNotFound(LocalizedString localizedString, ISet<string> searchedLocations)
     {
         if (localizedString.ResourceNotFound &&
-            _logger.IsEnabled(LogLevel.Information))
+            _logger.IsEnabled(LogLevel.Warning))
         {
-            _logger.LogInformation(
+            _logger.LogWarning(
                 "Unable to find {Name}, searched in {Location} - using {Value}.",
                 localizedString.Name,
                 string.Join(", ", searchedLocations),

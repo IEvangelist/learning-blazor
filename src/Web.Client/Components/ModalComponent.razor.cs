@@ -8,7 +8,7 @@ public partial class ModalComponent
     private string _isActiveClass => IsActive ? "is-active" : "";
 
     [Parameter, EditorRequired]
-    public EventCallback<DismissalReason> OnDismissed { get; set; }
+    public EventCallback<DismissalReason> Dismissed { get; set; }
 
     [Parameter]
     public bool IsActive { get; set; }
@@ -48,9 +48,9 @@ public partial class ModalComponent
         InvokeAsync(async () =>
         {
             (IsActive, Reason) = (false, reason);
-            if (OnDismissed.HasDelegate)
+            if (Dismissed.HasDelegate)
             {
-                await OnDismissed.InvokeAsync(Reason);
+                await Dismissed.InvokeAsync(Reason);
             }
         });
 

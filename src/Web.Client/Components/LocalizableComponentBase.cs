@@ -48,7 +48,6 @@ namespace Learning.Blazor.Components
         /// relying on the contextually appropriate <see cref="IStringLocalizer{T}"/> implementation.
         /// </summary>
         /// <remarks>
-        /// Intentionally an all lowercase character variable name, without the expected "_" prefix.
         /// This is intended to be used from within HTML templates only.
         /// Example: <c>&lt;h1&gt;@Localizer["Important Title"]&lt;/h1&gt;</c>
         /// </remarks>
