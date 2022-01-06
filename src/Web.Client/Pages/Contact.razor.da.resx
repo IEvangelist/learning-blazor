@@ -59,7 +59,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AgreeToTerms" xml:space="preserve">
-    <value>Vil du gå med til vilkår?</value>
+    <value>Accepter vilkår</value>
   </data>
   <data name="Contact" xml:space="preserve">
     <value>Kontakt</value>
