@@ -6,4 +6,7 @@ namespace Learning.Blazor.ComponentModels;
 public record NotificationComponentModel(
     string Text,
     NotificationType NotificationType,
-    bool IsDismissed = false);
+    bool IsDismissed = false)
+{
+    public Uri? ContextualUri { get; init; }
+}

@@ -20,6 +20,7 @@
     position: absolute;
     top: -1.1rem;
     right: -1.1rem;
+    z-index: 1;
 }
 
 .is-size-7-rem {
@@ -136,6 +137,13 @@ html {
     color: #fff;
 }
 
+    .is-theme-aware-button:hover,
+    .is-theme-aware-button:active,
+    .is-theme-aware-button:focus {
+        border-color: transparent;
+        color: #0a0a0a;
+    }
+
 .quickview.is-active {
     box-shadow: -40px 0px 40px #111 !important;
 }
@@ -212,6 +220,13 @@ html {
         color: rgba(0,0,0,.7);
     }
 
+        .is-theme-aware-button:hover,
+        .is-theme-aware-button:active,
+        .is-theme-aware-button:focus {
+            border-color: transparent;
+            color: rgba(0,0,0,1);
+        }
+
     .has-dotnet-scrollbar::-webkit-scrollbar {
         width: 1.2rem;
         height: 8px;
@@ -286,20 +301,15 @@ html {
     }
 
 .is-flashing {
-    animation: flash ease-in-out 1.5s infinite;
+    animation: flash ease-out 1s infinite;
 }
 
 @keyframes flash {
-    0% {
-        opacity: 1;
+    from {
+        box-shadow: 0px 0px 4px 4px rgba(81,43,212,1);
     }
-
-    50% {
-        opacity: .2
-    }
-
-    100% {
-        opacity: 1;
+    to {
+        box-shadow: 0px 0px 20px 20px rgba(223,216,247,0.2);
     }
 }
 

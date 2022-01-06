@@ -1,0 +1,21 @@
+﻿<!--  Copyright (c) 2021 David Pine. All rights reserved.
+      Licensed under the MIT License.
+-->
+
+@inherits LocalizableComponentBase<AdditiveSpeechRecognitionComponent>
+
+<div class="is-top-right-overlay">
+    <button class="button is-rounded is-theme-aware-button p-4 @_dynamicCSS"
+        type="button" @onclick=OnRecognizeButtonClick>
+        <span class="icon is-small">
+            @if (_isRecognizing)
+            {
+                <i class="fas fa-stop"></i>
+            }
+            else
+            {
+                <i class="fas fa-microphone"></i>                
+            }
+        </span>
+    </button>
+</div>

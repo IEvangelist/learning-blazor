@@ -14,7 +14,7 @@
 <section class="section">
     <h1 class="is-size-3 pb-3">@Localizer["Contact"]</h1>
 
-    <EditForm class="pb-4" Model=_model Context="cxt"
+    <EditForm class="pb-4" Context="cxt" EditContext="_editContext"
         OnValidSubmit="(async context => await OnValidSubmitAsync(context))">
         <DataAnnotationsValidator  />
 
@@ -99,6 +99,8 @@
             <div class="field-body">
                 <div class="field">
                     <div class="control">
+                        <AdditiveSpeechRecognitionComponent
+                            SpeechRecognized=OnSpeechRecognizedAsync />
                         <InputTextArea @bind-Value="_model.Message" class="textarea"
                             placeholder="@Localizer["MessagePlaceholder"]" />
                     </div>

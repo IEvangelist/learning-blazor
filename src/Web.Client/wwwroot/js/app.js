@@ -21,7 +21,7 @@
                     } catch {
                         dotnetObj.invokeMethodAsync(
                             errorMethodName, code, message);
-                    }                    
+                    }
                 } else {
                     dotnetObj.invokeMethodAsync(
                         errorMethodName, code, message);
@@ -98,16 +98,71 @@ const scrollIntoView = (selector) => {
     }
 };
 
+let _recognition = null;
+
+const cancelSpeechRecognition = (isAborted) => {
+    if (_recognition !== null) {
+        if (isAborted) {
+            _recognition.abort();
+        } else {
+            _recognition.stop();
+        }
+        _recognition = null;
+    }
+};
+
+const recognizeSpeech =
+    (dotnetObj, lang, onStartMethodName, onEndMethodName, onErrorMethodName, onResultMethodName) => {
+        cancelSpeechRecognition(true);
+
+        _recognition = new webkitSpeechRecognition() || new SpeechRecognition();
+        _recognition.continuous = true;
+        _recognition.interimResults = true;
+        _recognition.lang = lang;
+        _recognition.onstart = () => {
+            if (dotnetObj) {
+                dotnetObj.invokeMethodAsync(onStartMethodName);
+            }
+        };
+        _recognition.onend = () => {
+            if (dotnetObj) {
+                dotnetObj.invokeMethodAsync(onEndMethodName);
+            }
+        };
+        _recognition.onerror = (error) => {
+            if (dotnetObj) {
+                dotnetObj.invokeMethodAsync(onErrorMethodName, error);
+            }
+        };
+        _recognition.onresult = (result) => {
+            let transcript = '';
+            let isFinal = false;
+            for (let i = result.resultIndex; i < result.results.length; ++i) {
+                transcript += result.results[i][0].transcript;
+                if (result.results[i].isFinal) {
+                    isFinal = true;
+                }
+            }
+            if (dotnetObj) {
+                dotnetObj.invokeMethodAsync(onResultMethodName, transcript, isFinal);
+            }
+        };
+        _recognition.start();
+    };
+
 window.app = {
     ...window.app,
     getClientCoordinates,
     getClientVoices,
     getClientPrefersColorScheme,
     speak,
-    scrollIntoView
+    scrollIntoView,
+    recognizeSpeech,
+    cancelSpeechRecognition
 };
 
 // Prevent client from speaking when user closes tab or window.
 window.addEventListener('beforeunload', _ => {
     cancelPendingSpeech();
+    cancelSpeechRecognition(true);
 });

@@ -5,10 +5,14 @@ namespace Learning.Blazor.Pages
 {
     public sealed partial class Contact
     {
+        private record RecognitionBuffer(int TranscriptLength, int HitCount);
+
+        private EditContext _editContext;
         private ContactComponentModel _model = new();
         private InputText _emailInput = null!;
         private InputText _firstNameInput = null!;
         private VerificationModalComponent _modalComponent = null!;
+        private RecognitionBuffer _recognitionBuffer = new(0, 0);
         private bool _isEmailReadonly = false;
         private bool _isSent;        
 
@@ -29,6 +33,8 @@ namespace Learning.Blazor.Pages
                 _isEmailReadonly = _model.EmailAddress is not null
                     && RegexEmailAddressAttribute.EmailExpression.IsMatch(
                         _model.EmailAddress);
+
+                _editContext = new(_model);
             }
         }
 
@@ -41,6 +47,34 @@ namespace Learning.Blazor.Pages
                     ?? ValueTask.CompletedTask);
             }
         }
+
+        private Task OnSpeechRecognizedAsync((string Transcript, bool IsFinal) result) =>
+            InvokeAsync(() =>
+            {
+                var (transcript, isFinal) = result;
+                if (_model.Message is not null)
+                {
+                    var (length, _) = _recognitionBuffer;
+                    var index = _model.Message.Length - length;
+                    _model.Message =
+                        $"{_model.Message.Remove(index).Trim()} {transcript}".Trim();
+                }
+                else
+                {
+                    _model.Message = transcript;
+                }
+
+                _recognitionBuffer =
+                    isFinal
+                        ? new(0, 0)
+                        : _recognitionBuffer with
+                        {
+                            TranscriptLength = transcript.Length,
+                            HitCount = _recognitionBuffer.HitCount + 1
+                        };
+
+                StateHasChanged();
+            });
 
         private static string GetValidityCss<T>(
             EditContext context,
@@ -66,21 +100,24 @@ namespace Learning.Blazor.Pages
                 IsModified(cssOne) && IsModified(cssTwo));
         }
 
-        private static string GetValidityCss(bool isValid, bool isInvalid, bool isModified) =>
+        private static string GetValidityCss(
+            bool isValid, bool isInvalid, bool isModified) =>
             (isValid, isInvalid) switch
             {
                 (true, false) when isModified => "fa-check-circle has-text-success",
                 (false, true) when isModified => "fa-times-circle has-text-danger",
 
-                _ => "fa-question-circle is-invisible"
+                _ => "fa-question-circle"
             };
 
         private static bool IsValid(string? css) =>
             IsContainingClass(css, "valid") && !IsInvalid(css);
 
-        private static bool IsInvalid(string? css) => IsContainingClass(css, "invalid");
+        private static bool IsInvalid(string? css) =>
+            IsContainingClass(css, "invalid");
 
-        private static bool IsModified(string? css) => IsContainingClass(css, "modified");
+        private static bool IsModified(string? css) =>
+            IsContainingClass(css, "modified");
 
         private static bool IsContainingClass(string? css, string name) =>
             css?.Contains(name, StringComparison.OrdinalIgnoreCase) ?? false;
@@ -95,8 +132,11 @@ namespace Learning.Blazor.Pages
                 var (isVerified, state) = tuple;
                 if (isVerified && state is EditContext context)
                 {
-                    var client = HttpFactory.CreateClient(HttpClientNames.ServerApi);
-                    using var response = await client.PostAsJsonAsync<ContactRequest>(
+                    var client =
+                        HttpFactory.CreateClient(HttpClientNames.ServerApi);
+
+                    using var response =
+                        await client.PostAsJsonAsync<ContactRequest>(
                         "api/contact",
                         new(
                             _model.FirstName!,

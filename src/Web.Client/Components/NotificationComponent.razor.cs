@@ -21,6 +21,8 @@ namespace Learning.Blazor.Components
 
         protected override async Task OnInitializedAsync()
         {
+            await base.OnInitializedAsync();
+
             _subscriptions.Push(
                 HubConnection.SubscribeToUserLoggedIn(OnUserLoggedIn));
             _subscriptions.Push(
