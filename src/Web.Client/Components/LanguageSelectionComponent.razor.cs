@@ -51,10 +51,5 @@ namespace Learning.Blazor.Components
                 Navigation.NavigateTo(Navigation.Uri, forceLoad: true);
             }
         }
-
-        private void OnDismissed(DismissalReason reason) =>
-            Logger.LogWarning(
-                "User '{Reason}' the language selector modal.",
-                reason);
     }
 }

@@ -7,7 +7,7 @@ public partial class ModalComponent
 {
     private string _isActiveClass => IsActive ? "is-active" : "";
 
-    [Parameter, EditorRequired]
+    [Parameter]
     public EventCallback<DismissalReason> Dismissed { get; set; }
 
     [Parameter]
