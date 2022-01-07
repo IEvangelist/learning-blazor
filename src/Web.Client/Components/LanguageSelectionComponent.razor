@@ -46,12 +46,13 @@
                             var lcid = Culture.CurrentCulture.LCID;
                             Logger.LogInformation("Current culture LCID: {id}", lcid);
 
-                            @foreach (var (culture, azureCulture)
+                            @foreach (var kvp
                                 in _supportedCultures.OrderBy(c => c.Key.Name))
                             {
-                                <option selected="@(lcid == culture.LCID)"
-                                    value="@culture">
-                                    @(ToDisplayName((culture, azureCulture)))
+                                    var (culture, _) = kvp;
+                                    <option selected="@(lcid == culture.LCID)"
+                                        value="@culture">
+                                    @(ToDisplayName(kvp))
                                 </option>
                             }
                         }

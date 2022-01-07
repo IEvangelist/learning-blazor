@@ -24,25 +24,24 @@ namespace Learning.Blazor.Components
         }
 
         private static string ToDisplayName(
-            (CultureInfo Culture, AzureCulture AzureCulture)? culturePair)
+            KeyValuePair<CultureInfo, AzureCulture> culturePair)
         {
-            var (hasValue, (culture, azureCulture)) = culturePair;
-            return hasValue
-                ? $"{azureCulture.Name} ({culture.Name})"
-                : "";
+            var (culture, azureCulture) = culturePair;
+            return $"{azureCulture.Name} ({culture.Name})";
         }
 
-        private async Task ShowAsync() => await _modal.ShowAsync();
+        private Task ShowAsync() => _modal.ShowAsync();
 
         private async Task ConfirmAsync()
         {
-            var forceRefresh = false;
-            if (_selectedCulture is not null &&
-                _selectedCulture != Culture.CurrentCulture)
+            var forceRefresh =
+                _selectedCulture is not null &&
+                _selectedCulture != Culture.CurrentCulture;
+
+            if (forceRefresh)
             {
-                forceRefresh = true;
                 await LocalStorage.SetAsync(
-                    StorageKeys.ClientCulture, _selectedCulture.Name);
+                    StorageKeys.ClientCulture, _selectedCulture!.Name);
             }
 
             await _modal.ConfirmAsync();
