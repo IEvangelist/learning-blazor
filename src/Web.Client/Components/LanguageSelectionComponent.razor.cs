@@ -12,6 +12,7 @@ namespace Learning.Blazor.Components
         private ModalComponent _modal = null!;
 
         [Inject] HttpClient Http { get; set; } = null!;
+        [Inject] public NavigationManager Navigation { get; set; } = null!;
 
         protected override async Task OnInitializedAsync()
         {

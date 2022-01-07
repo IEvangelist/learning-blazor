@@ -27,4 +27,11 @@ public record ContactComponentModel()
         AreYouHumanMath.CreateNew(MathOperator.Subtraction);
 
     public string RobotQuestion => NotRobot.GetQuestion();
+
+    public static implicit operator ContactRequest(ContactComponentModel model) =>
+        new(model.FirstName!,
+            model.LastName!,
+            model.EmailAddress!,
+            model.Subject!,
+            model.Message!);
 }

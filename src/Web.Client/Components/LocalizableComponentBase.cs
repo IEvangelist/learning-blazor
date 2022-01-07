@@ -3,11 +3,8 @@
 
 namespace Learning.Blazor.Components
 {
-    public class LocalizableComponentBase<T> : ComponentBase, IDisposable
+    public class LocalizableComponentBase<T> : ComponentBase
     {
-        [Inject]
-        public NavigationManager Navigation { get; set; } = null!;
-
         [Inject]
         public CultureService Culture { get; set; } = null!;
 
@@ -23,13 +20,20 @@ namespace Learning.Blazor.Components
         [Inject]
         public AppInMemoryState AppState { get; set; } = null!;
 
-        public ClaimsPrincipal User { get; private set; } = null!;
-
         [Inject]
         private CoalescingStringLocalizer<T> CoalescingStringLocalizer { get; set; } = null!;
 
         [CascadingParameter]
         private Task<AuthenticationState> AuthenticationStateTask { get; set; } = null!;
+
+        /// <summary>
+        /// Gets the contextual user. This property is only
+        /// available in subclasses after a call to:
+        /// <code language="csharp">
+        /// base.OnInitializedAsync();
+        /// </code>
+        /// </summary>
+        public ClaimsPrincipal User { get; private set; } = null!;
 
         protected override async Task OnInitializedAsync()
         {
@@ -52,30 +56,5 @@ namespace Learning.Blazor.Components
         /// Example: <c>&lt;h1&gt;@Localizer["Important Title"]&lt;/h1&gt;</c>
         /// </remarks>
         internal CoalescingStringLocalizer<T> Localizer => CoalescingStringLocalizer;
-
-        public virtual void Dispose()
-        {
-            if (Navigation is not null)
-            {
-                Navigation.LocationChanged -= OnLocationChanged;
-            }
-
-            GC.SuppressFinalize(this);
-        }
-
-        private async void OnLocationChanged(object? sender, LocationChangedEventArgs args)
-        {
-            if (Logger.IsEnabled(LogLevel.Information))
-            {
-                Logger.LogInformation(
-                    "OnLocationChanged: {Location}",
-                    args.Location);
-            }
-    
-            await OnLocationChangedAsync(args);
-        }
-
-        protected virtual ValueTask OnLocationChangedAsync(LocationChangedEventArgs args) =>
-            ValueTask.CompletedTask;
     }
 }

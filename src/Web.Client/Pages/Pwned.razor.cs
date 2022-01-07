@@ -5,6 +5,9 @@ namespace Learning.Blazor.Pages
 {
     public partial class Pwned
     {
+        [Inject]
+        public NavigationManager Navigation { get; set; } = null!;
+
         private void NavigateToBreaches() => Navigation.NavigateTo("pwned/breaches");
         private void NavigateToPasswords() => Navigation.NavigateTo("pwned/passwords");
     }

@@ -19,6 +19,9 @@ namespace Learning.Blazor.Components
         [Inject]
         public SharedHubConnection HubConnection { get; set; } = null!;
 
+        [Inject]
+        public NavigationManager Navigation { get; set; } = null!;
+
         protected override async Task OnInitializedAsync()
         {
             await base.OnInitializedAsync();

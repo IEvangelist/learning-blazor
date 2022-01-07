@@ -12,7 +12,7 @@ namespace Learning.Blazor.Components
         private object? _state = null;
 
         [Parameter, EditorRequired]
-        public EventCallback<(bool IsVerified, object? State)> OnVerificationAttempted { get; set; }
+        public EventCallback<(bool IsVerified, object? State)> VerificationAttempted { get; set; }
 
         public Task PromptAsync(object? state = null)
         {
@@ -25,9 +25,9 @@ namespace Learning.Blazor.Components
 
         private async Task OnDismissed(DismissalReason reason)
         {
-            if (OnVerificationAttempted.HasDelegate)
+            if (VerificationAttempted.HasDelegate)
             {
-                await OnVerificationAttempted.InvokeAsync(
+                await VerificationAttempted.InvokeAsync(
                     (reason is DismissalReason.Verified, _state));
             }
         }

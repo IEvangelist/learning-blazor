@@ -5,7 +5,6 @@
 @page "/contact"
 @attribute [AllowAnonymous]
 @inherits LocalizableComponentBase<Contact>
-@using Learning.Blazor.Components
 
 <PageTitle>
     @Localizer["Contact"]
@@ -23,7 +22,7 @@
             <div class="field-label is-normal">
                 <label class="label">
                     @Localizer["Email"]
-                    <i class="pl-4 far fa-lg @GetValidityCss(cxt, () => _model.EmailAddress)"></i>
+                    <i class="pl-4 far fa-lg @cxt.GetValidityCss(() => _model.EmailAddress)"></i>
                 </label>
             </div>
             <div class="field-body">
@@ -44,7 +43,7 @@
             <div class="field-label is-normal">
                 <label class="label">
                     @Localizer["From"]
-                    <i class="pl-4 far fa-lg @GetValidityCss(cxt, () => _model.FirstName, () => _model.LastName)"></i>
+                    <i class="pl-4 far fa-lg @cxt.GetValidityCss(() => _model.FirstName, () => _model.LastName)"></i>
                 </label>
             </div>
             <div class="field-body">
@@ -73,7 +72,7 @@
             <div class="field-label is-normal">
                 <label class="label">
                     @Localizer["Subject"]
-                    <i class="pl-4 far fa-lg @GetValidityCss(cxt, () => _model.Subject)"></i>
+                    <i class="pl-4 far fa-lg @cxt.GetValidityCss(() => _model.Subject)"></i>
                 </label>
             </div>
             <div class="field-body">
@@ -93,15 +92,18 @@
             <div class="field-label is-normal">
                 <label class="label">
                     @Localizer["Message"]
-                    <i class="pl-4 far fa-lg @GetValidityCss(cxt, () => _model.Message)"></i>
+                    <i class="pl-4 far fa-lg @cxt.GetValidityCss(() => _model.Message)"></i>
                 </label>
             </div>
             <div class="field-body">
                 <div class="field">
                     <div class="control">
                         <AdditiveSpeechRecognitionComponent
-                            SpeechRecognized=OnSpeechRecognizedAsync />
+                            SpeechRecognitionStarted=OnRecognitionStarted
+                            SpeechRecognitionStopped=OnRecognitionStopped
+                            SpeechRecognized=OnSpeechRecognized />
                         <InputTextArea @bind-Value="_model.Message" class="textarea"
+                            readonly=@_isMessageReadonly disabled=@_isMessageReadonly
                             placeholder="@Localizer["MessagePlaceholder"]" />
                     </div>
                 </div>
@@ -112,7 +114,7 @@
             <div class="field-label">
                 <label class="label">
                     @Localizer["AgreeToTerms"]
-                    <i class="pl-4 far fa-lg @GetValidityCss(cxt, () => _model.AgreesToTerms)"></i>
+                    <i class="pl-4 far fa-lg @cxt.GetValidityCss(() => _model.AgreesToTerms)"></i>
                 </label>
             </div>
             <div class="field-body">
@@ -150,4 +152,4 @@
 </section>
 
 <VerificationModalComponent @ref="_modalComponent"
-    OnVerificationAttempted=@OnVerificationAttempted />
+    VerificationAttempted=@OnVerificationAttempted />

@@ -56,20 +56,6 @@ namespace Learning.Blazor.Pages
             }
         }
 
-        protected override async ValueTask OnLocationChangedAsync(LocationChangedEventArgs args)
-        {
-            if (EmailAddress is not null and { Length: > 0 } &&
-                _model.EmailAddress != EmailAddress &&
-                _editContext is not null)
-            {
-                _model.EmailAddress = EmailAddress;
-                if (_editContext.Validate())
-                {
-                    await OnValidSubmitAsync(_editContext);
-                }
-            }
-        }
-
         private void OnModelChanged(object? sender, FieldChangedEventArgs e)
         {
             _isFormInvalid = !_editContext?.Validate() ?? true;
@@ -109,7 +95,7 @@ namespace Learning.Blazor.Pages
             }
         }
 
-        private async Task Show(string breachName)
+        private async Task ShowAsync(string breachName)
         {
             await _modal.ShowAsync();
 
@@ -122,7 +108,7 @@ namespace Learning.Blazor.Pages
                 BreachDetailJsonSerializerContext.DefaultTypeInfo);
         }
 
-        private async Task Confirm() => await _modal.ConfirmAsync();
+        private async Task ConfirmAsync() => await _modal.ConfirmAsync();
 
         private void OnDismissed(DismissalReason reason)
         {

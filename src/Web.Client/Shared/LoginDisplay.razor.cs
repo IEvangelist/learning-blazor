@@ -5,6 +5,9 @@ namespace Learning.Blazor.Shared
 {
     public partial class LoginDisplay
     {
+        [Inject]
+        public NavigationManager Navigation { get; set; } = null!;
+
         void OnLogIn(MouseEventArgs args) =>
             Navigation.NavigateTo("authentication/login", true);
 
