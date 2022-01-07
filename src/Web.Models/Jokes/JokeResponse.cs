@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 
 namespace Learning.Blazor.Models;
 
-public record JokeResponse(
+public record class JokeResponse(
     [property: JsonPropertyName("joke")] string Joke,
     [property: JsonPropertyName("details")] JokeSourceDetails Details)
 {

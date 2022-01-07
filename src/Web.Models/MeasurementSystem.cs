@@ -5,18 +5,17 @@ using System.Runtime.CompilerServices;
 
 [assembly: InternalsVisibleTo("Web.Api")]
 
-namespace Learning.Blazor.Models
-{
-    public enum MeasurementSystem
-    {
-        /// <summary>
-        /// For example, the temperature in °F (degrees Fahrenheit), speed in miles per hour (MPH).
-        /// </summary>
-        Imperial = 0,
+namespace Learning.Blazor.Models;
 
-        /// <summary>
-        /// For example, the temperature in °C (degrees Celsius), speed in kilometers per hour (KPH).
-        /// </summary>
-        Metric = 1
-    }
-}
+public enum MeasurementSystem
+{
+    /// <summary>
+    /// For example, the temperature in °F (degrees Fahrenheit), speed in miles per hour (MPH).
+    /// </summary>
+    Imperial = 0,
+
+    /// <summary>
+    /// For example, the temperature in °C (degrees Celsius), speed in kilometers per hour (KPH).
+    /// </summary>
+    Metric = 1
+};

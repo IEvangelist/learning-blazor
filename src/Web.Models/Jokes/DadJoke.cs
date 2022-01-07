@@ -3,4 +3,4 @@
 
 namespace Learning.Blazor.Models;
 
-public record DadJoke(string Id, string Joke);
+public record class DadJoke(string Id, string Joke);

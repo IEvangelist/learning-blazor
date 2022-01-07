@@ -47,7 +47,7 @@
                             Logger.LogInformation("Current culture LCID: {id}", lcid);
 
                             @foreach (var (culture, azureCulture)
-                                in _supportedCultures.OrderBy(c => c.Culture.Name))
+                                in _supportedCultures.OrderBy(c => c.Key.Name))
                             {
                                 <option selected="@(lcid == culture.LCID)"
                                     value="@culture">

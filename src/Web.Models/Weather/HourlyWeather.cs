@@ -3,14 +3,13 @@
 
 using System.Text.Json.Serialization;
 
-namespace Learning.Blazor.Models
+namespace Learning.Blazor.Models;
+
+public record class HourlyWeather : WeatherCommon
 {
-    public record HourlyWeather : WeatherCommon
-    {
-        [JsonPropertyName("wind_gust")] public double WindGust { get; init; }
+    [JsonPropertyName("wind_gust")] public double WindGust { get; init; }
 
-        [JsonPropertyName("temp")] public double Temperature { get; init; }
+    [JsonPropertyName("temp")] public double Temperature { get; init; }
 
-        [JsonPropertyName("feels_like")] public double FeelsLike { get; init; }
-    }
+    [JsonPropertyName("feels_like")] public double FeelsLike { get; init; }
 }

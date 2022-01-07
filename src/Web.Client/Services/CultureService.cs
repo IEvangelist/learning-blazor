@@ -18,7 +18,7 @@ public class CultureService
 
     public CultureService(ILogger<CultureService> logger) => _logger = logger;
 
-    public HashSet<(CultureInfo Culture, AzureCulture AzureCulture)> MapClientSupportedCultures(
+    public IDictionary<CultureInfo, AzureCulture> MapClientSupportedCultures(
         IDictionary<string, AzureCulture>? azureCultures)
     {
         HashSet<(CultureInfo Culture, AzureCulture AzureCulture)> supportedCultures = new();
@@ -64,6 +64,8 @@ public class CultureService
             }
         }
 
-        return supportedCultures;
+        return supportedCultures.ToDictionary(
+            t => t.Culture,
+            t => t.AzureCulture);
     }
 }

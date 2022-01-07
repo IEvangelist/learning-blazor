@@ -4,13 +4,12 @@
 using System.Text.Json.Serialization;
 using Learning.Blazor.Extensions;
 
-namespace Learning.Blazor.Models
-{
-    public record WeatherDate
-    {
-        [JsonPropertyName("dt")] public double Dt { get; init; }
+namespace Learning.Blazor.Models;
 
-        [JsonIgnore]
-        public DateTime DateTime => Dt.FromUnixTimeStamp();
-    }
+public record class WeatherDate
+{
+    [JsonPropertyName("dt")] public double Dt { get; init; }
+
+    [JsonIgnore]
+    public DateTime DateTime => Dt.FromUnixTimeStamp();
 }

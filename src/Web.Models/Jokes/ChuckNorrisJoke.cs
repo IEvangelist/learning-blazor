@@ -3,7 +3,7 @@
 
 namespace Learning.Blazor.Models;
 
-public record ChuckNorrisJoke(
+public record class ChuckNorrisJoke(
     string Type,
     Value Value);
 

@@ -3,13 +3,12 @@
 
 using System.Text.Json.Serialization;
 
-namespace Learning.Blazor.Models
+namespace Learning.Blazor.Models;
+
+public record class FeelsLike
 {
-    public record FeelsLike
-    {
-        [JsonPropertyName("day")] public double Day { get; init; }
-        [JsonPropertyName("night")] public double Night { get; init; }
-        [JsonPropertyName("eve")] public double Evening { get; init; }
-        [JsonPropertyName("morn")] public double Morning { get; init; }
-    }
+    [JsonPropertyName("day")] public double Day { get; init; }
+    [JsonPropertyName("night")] public double Night { get; init; }
+    [JsonPropertyName("eve")] public double Evening { get; init; }
+    [JsonPropertyName("morn")] public double Morning { get; init; }
 }

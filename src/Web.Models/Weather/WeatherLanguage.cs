@@ -3,24 +3,23 @@
 
 using System.Text.Json.Serialization;
 
-namespace Learning.Blazor.Models
+namespace Learning.Blazor.Models;
+
+public record class WeatherLanguage
 {
-    public record WeatherLanguage
+    [JsonPropertyName("weatherLanguageId")] public string? WeatherLanguageId { get; init; } = null!;
+    [JsonPropertyName("name")] public string? Name { get; init; } = null!;
+    [JsonPropertyName("azureCultureId")] public string? AzureCultureId { get; init; } = null!;
+
+    public WeatherLanguage() { }
+
+    public WeatherLanguage(
+        string weatherLanguageId,
+        string name,
+        string azureCultureId)
     {
-        [JsonPropertyName("weatherLanguageId")] public string? WeatherLanguageId { get; init; } = null!;
-        [JsonPropertyName("name")] public string? Name { get; init; } = null!;
-        [JsonPropertyName("azureCultureId")] public string? AzureCultureId { get; init; } = null!;
-
-        public WeatherLanguage() { }
-
-        public WeatherLanguage(
-            string weatherLanguageId,
-            string name,
-            string azureCultureId)
-        {
-            WeatherLanguageId = weatherLanguageId;
-            Name = name;
-            AzureCultureId = azureCultureId;
-        }
+        WeatherLanguageId = weatherLanguageId;
+        Name = name;
+        AzureCultureId = azureCultureId;
     }
 }

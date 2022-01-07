@@ -3,7 +3,7 @@
 
 namespace Learning.Blazor.Models;
 
-public record ProgrammingJoke(
+public record class ProgrammingJoke(
     string Setup,
     string Punchline)
 {

@@ -3,6 +3,6 @@
 
 namespace Learning.Blazor.Models;
 
-public record JokeSourceDetails(
+public record class JokeSourceDetails(
     JokeSource Source,
     Uri Site);

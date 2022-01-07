@@ -3,19 +3,18 @@
 
 using System.Text.Json.Serialization;
 
-namespace Learning.Blazor.Models
-{
-    public record GeoCodeRequest
-    {
-        [JsonPropertyName("lang")] public string Language { get; init; } = null!;
-        [JsonPropertyName("lat")] public decimal Latitude { get; init; }
-        [JsonPropertyName("lon")] public decimal Longitude { get; init; }
-        [JsonIgnore] public string Key => $"GCR:{Language}:{Latitude}:{Longitude}";
+namespace Learning.Blazor.Models;
 
-        public void Deconstruct(
-            out decimal latitude,
-            out decimal longitude,
-            out string language) =>
-            (latitude, longitude, language) = (Latitude, Longitude, Language);
-    }
+public record class GeoCodeRequest
+{
+    [JsonPropertyName("lang")] public string Language { get; init; } = null!;
+    [JsonPropertyName("lat")] public decimal Latitude { get; init; }
+    [JsonPropertyName("lon")] public decimal Longitude { get; init; }
+    [JsonIgnore] public string Key => $"GCR:{Language}:{Latitude}:{Longitude}";
+
+    public void Deconstruct(
+        out decimal latitude,
+        out decimal longitude,
+        out string language) =>
+        (latitude, longitude, language) = (Latitude, Longitude, Language);
 }

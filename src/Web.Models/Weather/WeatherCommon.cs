@@ -3,35 +3,34 @@
 
 using System.Text.Json.Serialization;
 
-namespace Learning.Blazor.Models
+namespace Learning.Blazor.Models;
+
+public record class WeatherCommon : WeatherDate
 {
-    public record WeatherCommon : WeatherDate
-    {
-        [JsonPropertyName("pressure")]
-        public double Pressure { get; init; }
+    [JsonPropertyName("pressure")]
+    public double Pressure { get; init; }
 
-        [JsonPropertyName("humidity")]
-        public double Humidity { get; init; }
+    [JsonPropertyName("humidity")]
+    public double Humidity { get; init; }
 
-        [JsonPropertyName("dew_point")]
-        public double DewPoint { get; init; }
+    [JsonPropertyName("dew_point")]
+    public double DewPoint { get; init; }
 
-        [JsonPropertyName("uvi")]
-        public double UltravioletIndex { get; init; }
+    [JsonPropertyName("uvi")]
+    public double UltravioletIndex { get; init; }
 
-        [JsonPropertyName("clouds")]
-        public int Clouds { get; init; }
+    [JsonPropertyName("clouds")]
+    public int Clouds { get; init; }
 
-        [JsonPropertyName("visibility")]
-        public int Visibility { get; init; }
+    [JsonPropertyName("visibility")]
+    public int Visibility { get; init; }
 
-        [JsonPropertyName("wind_speed")]
-        public double WindSpeed { get; init; }
+    [JsonPropertyName("wind_speed")]
+    public double WindSpeed { get; init; }
 
-        [JsonPropertyName("wind_deg")]
-        public int WindDegree { get; init; }
+    [JsonPropertyName("wind_deg")]
+    public int WindDegree { get; init; }
 
-        [JsonPropertyName("weather")]
-        public IList<WeatherWordingAndIcon> Weather { get; init; } = Array.Empty<WeatherWordingAndIcon>();
-    }
+    [JsonPropertyName("weather")]
+    public IList<WeatherWordingAndIcon> Weather { get; init; } = Array.Empty<WeatherWordingAndIcon>();
 }

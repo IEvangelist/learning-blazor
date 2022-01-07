@@ -3,12 +3,11 @@
 
 using System.Text.Json.Serialization;
 
-namespace Learning.Blazor.Models
+namespace Learning.Blazor.Models;
+
+public record class WeatherWordingAndIcon
 {
-    public record WeatherWordingAndIcon
-    {
-        [JsonPropertyName("main")] public string Main { get; init; } = null!;
-        [JsonPropertyName("description")] public string Description { get; init; } = null!;
-        [JsonPropertyName("icon")] public string Icon { get; init; } = null!;
-    }
+    [JsonPropertyName("main")] public string Main { get; init; } = null!;
+    [JsonPropertyName("description")] public string Description { get; init; } = null!;
+    [JsonPropertyName("icon")] public string Icon { get; init; } = null!;
 }

@@ -5,9 +5,8 @@ using System.Text.Json.Serialization;
 
 namespace Learning.Blazor.Models;
 
-public record class Temperature : FeelsLike
+public record class Position
 {
-    [JsonPropertyName("min")] public double Min { get; init; }
-
-    [JsonPropertyName("max")] public double Max { get; init; }
+    [JsonPropertyName("coords")]
+    public Coordinates Coordinates { get; init; } = null!;
 }

@@ -3,25 +3,24 @@
 
 using System.Text.Json.Serialization;
 
-namespace Learning.Blazor.Models
-{
-    public record WeatherRequest
-    {
-        [JsonPropertyName("lang")] public string Language { get; init; } = null!;
-        [JsonPropertyName("lat")] public decimal Latitude { get; init; }
-        [JsonPropertyName("lon")] public decimal Longitude { get; init; }
-        [JsonPropertyName("units")] public int Units { get; init; }
-        [JsonIgnore] public string Key => $"WR:{Language}:{Latitude}:{Longitude}:{Units}";
+namespace Learning.Blazor.Models;
 
-        /// <summary>
-        /// Returns the Azure Function URL for weather, after appling format value replacement.
-        /// </summary>
-        public string ToFormattedUrl(string weatherFunctionUrlFormat) =>
-            // Example: ".../api/currentweather/{lang}/{latitude}/{longitude}/{units}"
-            weatherFunctionUrlFormat
-                .Replace("{lang}", Language)
-                .Replace("{latitude}", Latitude.ToString())
-                .Replace("{longitude}", Longitude.ToString())
-                .Replace("{units}", ((MeasurementSystem)Units).ToString());
-    }
+public record class WeatherRequest
+{
+    [JsonPropertyName("lang")] public string Language { get; init; } = null!;
+    [JsonPropertyName("lat")] public decimal Latitude { get; init; }
+    [JsonPropertyName("lon")] public decimal Longitude { get; init; }
+    [JsonPropertyName("units")] public int Units { get; init; }
+    [JsonIgnore] public string Key => $"WR:{Language}:{Latitude}:{Longitude}:{Units}";
+
+    /// <summary>
+    /// Returns the Azure Function URL for weather, after appling format value replacement.
+    /// </summary>
+    public string ToFormattedUrl(string weatherFunctionUrlFormat) =>
+        // Example: ".../api/currentweather/{lang}/{latitude}/{longitude}/{units}"
+        weatherFunctionUrlFormat
+            .Replace("{lang}", Language)
+            .Replace("{latitude}", Latitude.ToString())
+            .Replace("{longitude}", Longitude.ToString())
+            .Replace("{units}", ((MeasurementSystem)Units).ToString());
 }

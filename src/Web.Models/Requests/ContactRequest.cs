@@ -3,7 +3,7 @@
 
 namespace Learning.Blazor.Models.Requests;
 
-public record ContactRequest(
+public record class ContactRequest(
     string FirstName,
     string LastName,
     string FromEmail,

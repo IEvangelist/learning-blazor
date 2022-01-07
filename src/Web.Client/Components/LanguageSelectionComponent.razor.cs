@@ -5,9 +5,7 @@ namespace Learning.Blazor.Components
 {
     public partial class LanguageSelectionComponent
     {
-        private HashSet<(CultureInfo Culture, AzureCulture AzureCulture)>
-            _supportedCultures = null!;
-
+        private IDictionary<CultureInfo, AzureCulture> _supportedCultures = null!;
         private CultureInfo _selectedCulture = null!;
         private ModalComponent _modal = null!;
 
@@ -17,9 +15,9 @@ namespace Learning.Blazor.Components
         protected override async Task OnInitializedAsync()
         {
             var azureCultures =
-                    await Http.GetFromJsonAsync<AzureTranslationCultures>(
-                        "api/cultures/all",
-                        DefaultJsonSerialization.Options);
+                await Http.GetFromJsonAsync<AzureTranslationCultures>(
+                    "api/cultures/all",
+                    DefaultJsonSerialization.Options);
 
             _supportedCultures =
                 Culture.MapClientSupportedCultures(azureCultures?.Translation);

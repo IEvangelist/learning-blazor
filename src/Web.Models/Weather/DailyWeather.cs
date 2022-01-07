@@ -6,7 +6,7 @@ using Learning.Blazor.Extensions;
 
 namespace Learning.Blazor.Models
 {
-    public record DailyWeather : WeatherCommon
+    public record class DailyWeather : WeatherCommon
     {
         [JsonPropertyName("sunrise")]
         public double Sunrise { get; init; }
