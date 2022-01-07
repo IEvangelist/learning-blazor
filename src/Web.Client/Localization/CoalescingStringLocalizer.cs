@@ -3,7 +3,7 @@
 
 namespace Learning.Blazor.Localization;
 
-public class CoalescingStringLocalizer<T>
+public sealed class CoalescingStringLocalizer<T>
 {
     private readonly IStringLocalizer<T> _localizer = null!;
     private readonly IStringLocalizer<SharedResource> _sharedLocalizer = null!;
@@ -14,7 +14,7 @@ public class CoalescingStringLocalizer<T>
         (_localizer, _sharedLocalizer) = (localizer, sharedLocalizer);
 
     /// <summary>
-    /// Gets the localized content for the current subcomponent,
+    /// Gets the localized content for the current sub-component,
     /// relying on the contextually appropriate
     /// <see cref="IStringLocalizer{T}"/> implementation.
     /// </summary>
@@ -24,7 +24,7 @@ public class CoalescingStringLocalizer<T>
         ?? new(name, name, false);
 
     /// <summary>
-    /// Gets the localized content for the current subcomponent,
+    /// Gets the localized content for the current sub-component,
     /// relying on the contextually appropriate
     /// <see cref="IStringLocalizer{T}"/> implementation.
     /// </summary>
