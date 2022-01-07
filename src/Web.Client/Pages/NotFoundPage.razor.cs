@@ -5,5 +5,7 @@ namespace Learning.Blazor.Pages
 {
     public partial class NotFoundPage
     {
+        [Inject]
+        public NavigationManager Navigation { get; set; } = null!;
     }
 }
