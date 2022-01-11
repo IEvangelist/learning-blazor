@@ -1,0 +1,53 @@
+﻿@switch (NotificationType)
+{
+    case NotificationType.Alert:
+        <div class="icon-text button is-medium has-text-weight-bold"
+            @onclick=OnClick>
+            <span class="icon has-text-info">
+                <i class="fas fa-info-circle"></i>
+            </span>
+            <span>Information</span>
+        </div>
+        break;
+
+    case NotificationType.Warning:
+        <div class="icon-text button is-medium has-text-weight-bold"
+            @onclick=OnClick>
+            <span class="icon has-text-warning">
+                <i class="fas fa-exclamation-triangle"></i>
+            </span>
+            <span>Warning</span>
+        </div>
+        break;
+
+    default:
+        <div class="icon-text button is-medium has-text-weight-bold"
+            @onclick=OnClick>
+            <span class="icon has-text-success">
+                <i class="fas fa-check-square"></i>
+            </span>
+            <span>Success</span>
+        </div>
+        break;
+}
+
+@code {
+    [Inject]
+    public NavigationManager Navigation { get; set; } = null!;
+
+    [Parameter]
+    public Uri? ActionLink { get; set; } = null!;
+
+    [Parameter, EditorRequired]
+    public NotificationType NotificationType { get; set; }
+
+    void OnClick()
+    {
+        if (ActionLink is null || Navigation is null)
+        {
+            return;
+        }
+
+        Navigation.NavigateTo(ActionLink.ToString(), false);
+    }
+}

@@ -11,13 +11,11 @@
             <i class="fas fa-bell"></i>
         </span>
     </button>
-    @{
-        if (_notifications?.Any(notification => !notification.IsDismissed) ?? false)
-        {
-            <span class="badge is-info" style="right: .8rem; top: .8rem;">
-                @_notifications.Count(notification => !notification.IsDismissed)
-            </span>
-        }
+    @if (_notifications?.Any(notification => !notification.IsDismissed) ?? false)
+    {
+        <span class="badge is-info" style="right: .8rem; top: .8rem;">
+            @_notifications.Count(notification => !notification.IsDismissed)
+        </span>
     }
 </span>
 
@@ -34,21 +32,28 @@
 
     <div class="quickview-body">
         <div class="quickview-block p-4">
-            @if (_notifications is { Count: > 0 })
+            @foreach (var notification in
+                _notifications?.Where(n => !n.IsDismissed) ??
+                Array.Empty<NotificationComponentModel>())
             {
-                foreach (var notification in _notifications.Where(n => !n.IsDismissed))
+                var style = notification.NotificationType switch
                 {
-                    var style = notification.NotificationType switch
-                    {
-                        NotificationType.Warning => "has-text-warning",
-                        NotificationType.Alert => "has-text-info",
-                        _ => ""
-                    };
-                    <div class="notification @style">
-                        <button class="delete" @onclick=@(_ => DismissNotification(notification))></button>
-                        @(new MarkupString(notification.Text))
+                    NotificationType.Warning => "has-text-warning",
+                    NotificationType.Alert => "has-text-info",
+                    _ => ""
+                };
+
+                <div class="notification @style">
+                    <button class="delete"
+                        @onclick=@(_ => DismissNotification(notification))>
+                    </button>
+                    <div class="pb-4">
+                        @notification.Text
                     </div>
-                }
+                    <NotificationHeaderComponent
+                        NotificationType=notification.NotificationType
+                        ActionLink=notification.ContextualUri />
+                </div>
             }
         </div>
     </div>

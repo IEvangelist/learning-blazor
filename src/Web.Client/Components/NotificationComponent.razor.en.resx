@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="EmailFoundInBreachFormat" xml:space="preserve">
-    <value>Sorry, but it looks like your email address "{0}" was found in {1} breaches. This information is provided from the "Have I Been Pwned" service. For more information, see {2}.</value>
+    <value>Sorry, but it looks like your email address "{0}" was found in {1} breaches. This information is provided from the "Have I Been Pwned" service.</value>
   </data>
   <data name="Notifications" xml:space="preserve">
     <value>Notifications</value>

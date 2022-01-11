@@ -55,12 +55,14 @@ namespace Learning.Blazor.Components
                             ?? Array.Empty<BreachHeader>();
                         if (breaches is { Length: > 0 })
                         {
-                            var url = Navigation.ToAbsoluteUri($"/pwned/breaches?email={email}");
-                            var link = $"<a href='{url}'><i class='fas fa-exclamation-circle'></i></a>";
+                            var uri = Navigation.ToAbsoluteUri($"/pwned/breaches?email={email}");
 
                             _ = _notifications.Add(new(
-                                Localizer["EmailFoundInBreachFormat", email, breaches.Length, link],
-                                NotificationType.Alert));
+                                Localizer["EmailFoundInBreachFormat", email, breaches.Length],
+                                NotificationType.Alert)
+                            {
+                                ContextualUri = uri
+                            });
                         }
                     }
                 }

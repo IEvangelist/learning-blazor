@@ -143,6 +143,11 @@ const recognizeSpeech =
                     isFinal = true;
                 }
             }
+            if (isFinal === true) {
+                const punctuation = transcript.endsWith('.') ? '' : '.';
+                transcript =
+                    `${transcript.replace(/\S/, str => str.toLocaleUpperCase())}${punctuation}`;
+            }
             if (dotnetObj) {
                 dotnetObj.invokeMethodAsync(onResultMethodName, transcript, isFinal);
             }

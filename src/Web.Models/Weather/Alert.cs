@@ -6,7 +6,7 @@ using Learning.Blazor.Extensions;
 
 namespace Learning.Blazor.Models;
 
-public record class Alert
+public sealed record class Alert
 {
     [JsonPropertyName("sender_name")] public string SenderName { get; init; } = null!;
     [JsonPropertyName("event")] public string Event { get; init; } = null!;
