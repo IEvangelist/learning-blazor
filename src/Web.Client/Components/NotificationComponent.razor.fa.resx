@@ -59,7 +59,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="EmailFoundInBreachFormat" xml:space="preserve">
-    <value>با عرض پوزش، اما به نظر می رسد مانند آدرس ایمیل خود را "{0}" در نقض {1} یافت شد. این اطلاعات از سرویس "آیا من Pwned شده اند" ارائه شده است. برای کسب اطلاعات بیشتر به این {2}.</value>
+    <value>با عرض پوزش، اما به نظر می رسد مانند آدرس ایمیل خود را "{0}" در نقض {1} یافت شد. این اطلاعات از سرویس "آیا من Pwned شده اند" ارائه شده است.</value>
   </data>
   <data name="Notifications" xml:space="preserve">
     <value>اطلاعیه ها</value>

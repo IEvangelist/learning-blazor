@@ -59,18 +59,18 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="EmailFoundInBreachFormat" xml:space="preserve">
-    <value>Anteeksi, mutta sähköpostiosoitteesi "{0}" löytyi {1} rikkomuksista. Nämä tiedot ovat peräisin "Have I Been Pwned" -palvelusta. Lisätietoja on kohdassa {2}.</value>
+    <value>Anteeksi, mutta näyttää siltä, että sähköpostiosoitteesi "{0}" löytyi {1} rikkomuksista. Nämä tiedot annetaan "Onko olen ollut Pwned" -palvelusta.</value>
   </data>
   <data name="Notifications" xml:space="preserve">
     <value>Ilmoitukset</value>
   </data>
   <data name="UpdatedOnFormat" xml:space="preserve">
-    <value>Päivitetty {0} {1}</value>
+    <value>Päivitetty {0} klo {1}</value>
   </data>
   <data name="UserLoggedInFormat" xml:space="preserve">
-    <value>{0} juuri kirjautunut sisään.</value>
+    <value>{0} kirjautui juuri sisään.</value>
   </data>
   <data name="UserLoggedOutFormat" xml:space="preserve">
-    <value>{0} juuri kirjautunut ulos.</value>
+    <value>{0} kirjautui ulos.</value>
   </data>
 </root>

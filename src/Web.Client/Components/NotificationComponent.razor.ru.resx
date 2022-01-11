@@ -59,7 +59,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="EmailFoundInBreachFormat" xml:space="preserve">
-    <value>Извините, но похоже, что ваш адрес электронной почты «{0}» был найден в {1} нарушениях. Эта информация предоставляется из сервиса «Have I Been Pwned». Дополнительные сведения см. в разделе {2}.</value>
+    <value>Извините, но похоже, что ваш адрес электронной почты «{0}» был найден в {1} нарушениях. Эта информация предоставляется из сервиса «Have I Been Pwned».</value>
   </data>
   <data name="Notifications" xml:space="preserve">
     <value>Уведомления</value>
@@ -68,7 +68,7 @@
     <value>Обновлено в {0} на {1}</value>
   </data>
   <data name="UserLoggedInFormat" xml:space="preserve">
-    <value>{0} только что вошел в систему.</value>
+    <value>{0} только что вошли в систему.</value>
   </data>
   <data name="UserLoggedOutFormat" xml:space="preserve">
     <value>{0} только что вышел из системы.</value>

@@ -59,7 +59,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="EmailFoundInBreachFormat" xml:space="preserve">
-    <value>죄송합니다만, 이메일 주소 "{0}"가 {1} 위반에서 발견된 것처럼 보입니다. 이 정보는 "내가 pwned" 서비스에서 제공됩니다. 자세한 내용은 {2} 참조하세요.</value>
+    <value>죄송합니다만, 이메일 주소 "{0}"가 {1} 위반에서 발견된 것처럼 보입니다. 이 정보는 "내가 pwned" 서비스에서 제공됩니다.</value>
   </data>
   <data name="Notifications" xml:space="preserve">
     <value>알림을</value>

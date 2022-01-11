@@ -59,7 +59,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="EmailFoundInBreachFormat" xml:space="preserve">
-    <value>Jammer, maar dit lyk asof jou e-posadres "{0}" in {1} oortredings gevind is. Hierdie inligting word verskaf uit die "Have I Been Pwned" diens. Vir meer inligting, sien {2}.</value>
+    <value>Jammer, maar dit lyk asof jou e-posadres "{0}" in {1} oortredings gevind is. Hierdie inligting word verskaf uit die "Have I Been Pwned" diens.</value>
   </data>
   <data name="Notifications" xml:space="preserve">
     <value>Kennisgewings</value>
@@ -68,7 +68,7 @@
     <value>Opgedateer op {0} by {1}</value>
   </data>
   <data name="UserLoggedInFormat" xml:space="preserve">
-    <value>{0} het net ingeteken.</value>
+    <value>{0} het net aangemeld.</value>
   </data>
   <data name="UserLoggedOutFormat" xml:space="preserve">
     <value>{0} het net uitgeteken.</value>

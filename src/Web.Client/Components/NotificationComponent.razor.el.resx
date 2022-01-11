@@ -59,7 +59,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="EmailFoundInBreachFormat" xml:space="preserve">
-    <value>Συγγνώμη, αλλά φαίνεται ότι η διεύθυνση ηλεκτρονικού ταχυδρομείου σας "{0}" βρέθηκε σε παραβιάσεις {1}. Αυτές οι πληροφορίες παρέχονται από την υπηρεσία "Έχω Pwned". Για περισσότερες πληροφορίες, ανατρέξτε {2}.</value>
+    <value>Συγγνώμη, αλλά φαίνεται ότι η διεύθυνση ηλεκτρονικού ταχυδρομείου σας "{0}" βρέθηκε σε παραβιάσεις {1}. Αυτές οι πληροφορίες παρέχονται από την υπηρεσία "Έχω Pwned".</value>
   </data>
   <data name="Notifications" xml:space="preserve">
     <value>Ειδοποιήσεις</value>

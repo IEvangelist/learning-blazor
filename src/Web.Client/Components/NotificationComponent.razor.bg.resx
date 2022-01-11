@@ -59,7 +59,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="EmailFoundInBreachFormat" xml:space="preserve">
-    <value>Съжаляваме, но изглежда, че имейл адресът ви "{0}" е намерен в {1} нарушения. Тази информация се предоставя от услугата "Бил ли съм Pwned". За повече информация вижте {2}.</value>
+    <value>Съжаляваме, но изглежда, че имейл адресът ви "{0}" е намерен в {1} нарушения. Тази информация се предоставя от услугата "Бил ли съм Pwned".</value>
   </data>
   <data name="Notifications" xml:space="preserve">
     <value>Уведомления</value>
