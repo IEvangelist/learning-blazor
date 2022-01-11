@@ -59,18 +59,18 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="EmailFoundInBreachFormat" xml:space="preserve">
-    <value>对不起， 但看起来你的电子邮件地址 "{0}" 被发现在{1}违规。此信息来自"我是否被 Pwned"服务提供。有关更多信息，请参阅{2}。</value>
+    <value>很抱歉，但您的电子邮件地址"{0}"似乎在{1}违规行为中被发现。此信息来自"我被Pwned"服务提供。</value>
   </data>
   <data name="Notifications" xml:space="preserve">
     <value>通知</value>
   </data>
   <data name="UpdatedOnFormat" xml:space="preserve">
-    <value>更新于{1}{0}</value>
+    <value>在 {1} 更新于 {0}</value>
   </data>
   <data name="UserLoggedInFormat" xml:space="preserve">
-    <value>刚登录{0}。</value>
+    <value>{0}刚刚登录。</value>
   </data>
   <data name="UserLoggedOutFormat" xml:space="preserve">
-    <value>刚注销{0}。</value>
+    <value>{0}刚刚注销。</value>
   </data>
 </root>

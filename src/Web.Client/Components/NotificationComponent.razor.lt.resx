@@ -59,7 +59,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="EmailFoundInBreachFormat" xml:space="preserve">
-    <value>Atsiprašome, bet atrodo, kad jūsų elektroninio pašto adresas "{0}" buvo rastas {1} pažeidimus. Ši informacija pateikiama iš paslaugos "Ar aš buvau pwned". Daugiau informacijos ieškokite {2}.</value>
+    <value>Atsiprašome, bet atrodo, kad jūsų elektroninio pašto adresas "{0}" buvo rastas {1} pažeidimų. Ši informacija pateikiama iš paslaugos "Ar aš buvau pwned".</value>
   </data>
   <data name="Notifications" xml:space="preserve">
     <value>Pranešimus</value>
@@ -71,6 +71,6 @@
     <value>{0} ką tik prisijungęs.</value>
   </data>
   <data name="UserLoggedOutFormat" xml:space="preserve">
-    <value>{0} ką tik atsijungė.</value>
+    <value>{0} tiesiog atsijungti.</value>
   </data>
 </root>

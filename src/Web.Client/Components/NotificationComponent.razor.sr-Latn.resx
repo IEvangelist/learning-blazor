@@ -59,7 +59,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="EmailFoundInBreachFormat" xml:space="preserve">
-    <value>Žao mi je, ali izgleda da je vaša e-{0} "{1}" pronađena u {1} povredama. Ove informacije su obezbeđene iz usluge "Da li sam založen". Više informacija potražite u članku {2}.</value>
+    <value>Žao mi je, ali izgleda da je vaša e-{0} "{1}" pronađena u {1} povredama. Ove informacije su obezbeđene iz usluge "Da li sam založen".</value>
   </data>
   <data name="Notifications" xml:space="preserve">
     <value>Obaveštenja</value>

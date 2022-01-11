@@ -59,7 +59,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="EmailFoundInBreachFormat" xml:space="preserve">
-    <value>Извини, но изгледа дека твојата имејл адреса "{0}" е пронајдена во {1} пробиви. Оваа информација е обезбедена од сервисот "Дали сум бил pwned". За повеќе информации, видете {2}.</value>
+    <value>Извини, но изгледа дека твојата имејл адреса "{0}" е пронајдена во {1} пробиви. Оваа информација е обезбедена од сервисот "Дали сум бил pwned".</value>
   </data>
   <data name="Notifications" xml:space="preserve">
     <value>Известувања</value>

@@ -59,7 +59,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="EmailFoundInBreachFormat" xml:space="preserve">
-    <value>Ne pare rău, dar se pare că adresa ta de e-mail "{0}" a fost găsită în {1} breșe. Aceste informații sunt furnizate din serviciul "Am fost pwned". Pentru mai multe informații, consultați {2}.</value>
+    <value>Ne pare rău, dar se pare că adresa ta de e-mail "{0}" a fost găsită în {1} breșe. Aceste informații sunt furnizate din serviciul "Am fost pwned".</value>
   </data>
   <data name="Notifications" xml:space="preserve">
     <value>Notificări</value>
