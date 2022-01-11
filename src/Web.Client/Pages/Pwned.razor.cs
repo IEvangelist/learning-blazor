@@ -3,7 +3,7 @@
 
 namespace Learning.Blazor.Pages
 {
-    public partial class Pwned
+    public sealed partial class Pwned
     {
         [Inject]
         public NavigationManager Navigation { get; set; } = null!;

@@ -3,7 +3,7 @@
 
 namespace Learning.Blazor.Pages
 {
-    public partial class Passwords
+    public sealed partial class Passwords
     {
         private readonly PasswordsComponentModel _model = new();
 

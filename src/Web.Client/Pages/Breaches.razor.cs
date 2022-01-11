@@ -107,13 +107,5 @@ namespace Learning.Blazor.Pages
                 $"api/pwned/breach/{breachName}",
                 BreachDetailJsonSerializerContext.DefaultTypeInfo);
         }
-
-        private async Task ConfirmAsync() => await _modal.ConfirmAsync();
-
-        private void OnDismissed(DismissalReason reason)
-        {
-            _breach = null!;
-            _ = InvokeAsync(StateHasChanged);
-        }
     }
 }

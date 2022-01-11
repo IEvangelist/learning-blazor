@@ -116,7 +116,7 @@
     </section>
 </div>
 
-<ModalComponent @ref="_modal" Dismissed=OnDismissed>
+<ModalComponent @ref="_modal">
     <TitleContent>
         <span class="icon pr-2">
             <i class="fas fa-info-circle"></i>
@@ -171,7 +171,7 @@
 
     <ButtonContent>
         <button class="button is-success is-large"
-                @onclick=ConfirmAsync>
+                @onclick=@(async () => await _modal.ConfirmAsync())>
             <span class="icon">
                 <i class="fas fa-check"></i>
             </span>
