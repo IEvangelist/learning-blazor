@@ -8,7 +8,10 @@ namespace Learning.Blazor.Pages
         [Inject]
         public NavigationManager Navigation { get; set; } = null!;
 
-        private void NavigateToBreaches() => Navigation.NavigateTo("pwned/breaches");
-        private void NavigateToPasswords() => Navigation.NavigateTo("pwned/passwords");
+        private void NavigateToBreaches() =>
+            Navigation.NavigateTo("pwned/breaches");
+
+        private void NavigateToPasswords() =>
+            Navigation.NavigateTo("pwned/passwords");
     }
 }

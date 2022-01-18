@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Web.Abstractions\Web.Abstractions.csproj" />
+    <ProjectReference Include="..\Web.CosmosData\Web.CosmosData.csproj" />
     <ProjectReference Include="..\Web.DistributedCache.Extensions\Web.DistributedCache.Extensions.csproj" />
     <ProjectReference Include="..\Web.Extensions\Web.Extensions.csproj" />
     <ProjectReference Include="..\Web.Http.Extensions\Web.Http.Extensions.csproj" />

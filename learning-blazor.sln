@@ -56,6 +56,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.DistributedCache.Extens
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.LogicAppServices", "src\Web.LogicAppServices\Web.LogicAppServices.csproj", "{971318C2-8073-46E1-87DB-083C58D30170}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.CosmosData", "src\Web.CosmosData\Web.CosmosData.csproj", "{81E57F97-AA43-4B23-A917-1FE53A0C9CD8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -122,6 +124,10 @@ Global
 		{971318C2-8073-46E1-87DB-083C58D30170}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{971318C2-8073-46E1-87DB-083C58D30170}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{971318C2-8073-46E1-87DB-083C58D30170}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81E57F97-AA43-4B23-A917-1FE53A0C9CD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81E57F97-AA43-4B23-A917-1FE53A0C9CD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81E57F97-AA43-4B23-A917-1FE53A0C9CD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81E57F97-AA43-4B23-A917-1FE53A0C9CD8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -142,6 +148,7 @@ Global
 		{FBD0E03A-E975-4801-8975-4E2BD6EFC655} = {8F145111-7A3B-41B1-9296-F3BE4C7DE84F}
 		{9B5A2A2F-6F84-4ECF-BE45-B19CDA31CB91} = {8F145111-7A3B-41B1-9296-F3BE4C7DE84F}
 		{971318C2-8073-46E1-87DB-083C58D30170} = {8F145111-7A3B-41B1-9296-F3BE4C7DE84F}
+		{81E57F97-AA43-4B23-A917-1FE53A0C9CD8} = {8F145111-7A3B-41B1-9296-F3BE4C7DE84F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B464D63B-2CBF-4514-9CD7-2A9371E8404D}

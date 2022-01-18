@@ -30,6 +30,8 @@ internal static class ServiceCollectionExtensions
         services.AddTwitterServices(configuration);
         services.AddHostedService<TwitterWorkerService>();
 
+        services.AddCosmosDataServices(configuration);
+
         services.AddLocalization();
 
         return services;

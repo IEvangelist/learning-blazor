@@ -11,6 +11,8 @@ global using Learning.Blazor.Api.Localization;
 global using Learning.Blazor.Api.Options;
 global using Learning.Blazor.Api.Resources;
 global using Learning.Blazor.Api.Services;
+global using Learning.Blazor.CosmosData.Extensions;
+global using Learning.Blazor.CosmosData.Repository;
 global using Learning.Blazor.DistributedCache.Extensions;
 global using Learning.Blazor.Extensions;
 global using Learning.Blazor.Http.Extensions;
