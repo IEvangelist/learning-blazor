@@ -13,33 +13,42 @@ public class TodoController : ControllerBase
 {
     private readonly ITodoRepository _todoRepository;
 
+    string? _emailAddress => User.GetFirstEmailAddress();
+
     public TodoController(ITodoRepository todoRepository) =>
         _todoRepository = todoRepository;
 
-    [HttpGet(Name = nameof(GetTodos))]
+    [HttpGet]
     public async ValueTask<IEnumerable<TodoItem>> GetTodos(
         CancellationToken cancellationToken)
     {
+        var emailAddress = _emailAddress;
         var todos =
             await _todoRepository.ReadAllTodosAsync(
-                todo => todo.UserEmail == User.GetFirstEmailAddress(),
+                todo => todo.UserEmail == emailAddress,
                 cancellationToken);
 
         return todos as IEnumerable<TodoItem> ?? Enumerable.Empty<TodoItem>();
     }
 
-    [HttpGet("{id}", Name = nameof(GetTodoById))]
+    [HttpGet("{id}")]
     public async ValueTask<TodoItem> GetTodoById(
         string id, CancellationToken cancellationToken) =>
         await _todoRepository.ReadTodoAsync(id, cancellationToken);
 
-    [HttpPost(Name = nameof(PostTodo))]
+    [HttpPost]
     public async ValueTask<TodoItem> PostTodo(
         CancellationToken cancellationToken,
-        [FromBody] TodoItem todo) =>
-        await _todoRepository.CreateTodoAsync(todo, cancellationToken);
+        [FromBody] CreateTodoRequest request) =>
+        await _todoRepository.CreateTodoAsync(new Todo
+        {
+            Title = request.Title,
+            UserEmail = request.UserEmail,
+            IsCompleted = request.IsCompleted,
+            DueDate = request.DueDate,
+        }, cancellationToken);
 
-    [HttpPut(Name = nameof(PutTodo))]
+    [HttpPut]
     public async ValueTask<TodoItem> PutTodo(
         [FromBody] TodoItem todo,
         CancellationToken cancellationToken) =>

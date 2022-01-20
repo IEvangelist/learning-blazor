@@ -109,7 +109,7 @@
                     <span class="panel-icon">
                         <i class="fas fa-check" aria-hidden="true"></i>
                     </span>
-                    @Localizer["NoBreachesFormat", _model.EmailAddress!];
+                    @Localizer["NoBreachesFormat", _model.EmailAddress!]
                 </a>
             }
         </article>
@@ -154,7 +154,8 @@
             <div class="content">
                 <blockquote>
                     <strong>
-                        @($"pwn's: {@_breach.PwnCount.ToString("N0", Culture.CurrentCulture)}")
+                        pwn's:
+                        @_breach.PwnCount.ToString("N0", Culture.CurrentCulture)
                     </strong>
                 </blockquote>
             </div>

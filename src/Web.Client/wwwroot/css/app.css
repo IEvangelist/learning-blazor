@@ -122,7 +122,7 @@ html {
     cursor: not-allowed;
 }
 
-.is-theme-aware {
+.is-theme-aware > * {
     color: #b5b5b5 !important;
     background-color: #f5f5f5 !important;
 }
@@ -170,6 +170,16 @@ html {
         visibility: initial !important;
     }
 
+input[type=checkbox].is-medium {
+    height: 1.25rem;
+    width: 1.25rem;
+}
+
+input[type=checkbox].is-large {
+    height: 1.5rem;
+    width: 1.5rem;
+}
+
 @keyframes shake {
     8%, 41% {
         transform: translateX(-10px);
@@ -192,6 +202,14 @@ html {
     }
 }
 
+.quickview-header {
+    border-bottom: none;
+}
+
+.quickview-footer {
+    border-top: none;
+}
+
 @media (prefers-color-scheme: dark) {
     .modal-card-body {
         background-color: #242424;
@@ -205,11 +223,7 @@ html {
         color: #fff !important;
     }
 
-    .quickview-header {
-        border-bottom: 1px solid #4a4a4a;
-    }
-
-    .is-theme-aware {
+    .is-theme-aware > * {
         color: #4a4a4a !important;
         background-color: #17181c !important;
     }

@@ -1,0 +1,58 @@
+﻿@inherits LocalizableComponentBase<TaskCardComponent>
+
+@{
+    var textStyle = Todo.IsCompleted ? "has-text-success" : "has-text-warning";
+}
+
+<div class="card">
+    <header class="card-header">
+        <p class="card-header-title @textStyle">
+            @if (Todo.IsCompleted)
+            {
+                @Localizer["Completed"]
+            }
+            else
+            {
+                @Localizer["Incomplete"]
+            }
+        </p>
+        <button class="card-header-icon" aria-label="more options"
+            @onclick=@(() => Todo.IsCompleted = !Todo.IsCompleted)>
+            <span class="icon @textStyle">
+                @if (Todo.IsCompleted)
+                {
+                    <i class="far fa-lg fa-check-square"></i>
+                }
+                else
+                {
+                    <i class="far fa-lg fa-square"></i>
+                }
+            </span>
+        </button>
+    </header>
+    <div class="card-content">
+        <div class="content">
+            @Todo.Title
+            @if (Todo.DueDate.HasValue)
+            {
+                <span>Due on: @Todo.DueDate.Value.ToShortDateString()</span>
+            }
+        </div>
+    </div>
+    <footer class="card-footer">
+        @{
+            var deleteStyle = _isDeleting ? "is-loading" : "";
+            var saveStyle = _isSaving ? "is-loading" : "";
+        }
+        <button disabled="@_isWorking"
+            class="card-footer-item is-medium is-radiusless button @deleteStyle"
+            @onclick=@(async _ => await OnClickAsync(true))>
+            @Localizer["Delete"]
+        </button>
+        <button disabled="@_isWorking"
+            class="card-footer-item is-medium is-radiusless button @saveStyle"
+            @onclick=@(async _ => await OnClickAsync(false))>
+            @Localizer["Save"]
+        </button>
+    </footer>
+</div>
