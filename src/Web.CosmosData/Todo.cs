@@ -15,7 +15,7 @@ public class Todo : Item
 
     public DateOnly? DueDate { get; set; }
 
-    public static implicit operator TodoItem(Todo todo) =>
+    public static explicit operator TodoItem(Todo todo) =>
         new()
         {
             Id = todo.Id,
@@ -27,7 +27,7 @@ public class Todo : Item
             DueDate = todo.DueDate
         };
 
-    public static implicit operator Todo(TodoItem item) =>
+    public static explicit operator Todo(TodoItem item) =>
         new()
         {
             Id = item.Id,

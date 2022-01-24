@@ -10,16 +10,16 @@ public static class ServiceCollectionExtensions
     public static IServiceCollection AddCosmosDataServices(
         this IServiceCollection services,
         IConfiguration configuration) =>
-        services.AddInMemoryCosmosRepository()
-        //services.AddCosmosRepository(options =>
-        //{
-        //    options.ContainerPerItemType = true;
-        //    options.OptimizeBandwidth = true;
-        //    options.AllowBulkExecution = true;
-        //    options.DatabaseId = "learning-blazor-db";
-        //    options.ContainerBuilder.Configure<Todo>(
-        //        containerOptions =>
-        //            containerOptions.WithContainer("todos"));
-        //})
+        services.AddCosmosRepository(options =>
+        {
+            options.ContainerPerItemType = true;
+            options.OptimizeBandwidth = true;
+            options.AllowBulkExecution = true;
+            options.DatabaseId = "learning-blazor-db";
+            options.ContainerBuilder.Configure<Todo>(
+                containerOptions =>
+                    containerOptions.WithContainer("todos")
+                        .WithServerlessThroughput());
+        })
         .AddTransient<ITodoRepository, DefaultTodoRepository>();
 }

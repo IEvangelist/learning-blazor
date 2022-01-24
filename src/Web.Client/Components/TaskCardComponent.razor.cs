@@ -3,7 +3,7 @@
 
 namespace Learning.Blazor.Components
 {
-    public partial class TaskCardComponent
+    public sealed partial class TaskCardComponent
     {
         bool _isSaving = false;
         bool _isDeleting = false;

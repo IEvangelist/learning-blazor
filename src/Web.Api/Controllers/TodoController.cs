@@ -28,19 +28,24 @@ public class TodoController : ControllerBase
                 todo => todo.UserEmail == emailAddress,
                 cancellationToken);
 
-        return todos as IEnumerable<TodoItem> ?? Enumerable.Empty<TodoItem>();
+        var items = todos.Select(todo => (TodoItem)todo).ToList();
+        return items;
     }
 
     [HttpGet("{id}")]
     public async ValueTask<TodoItem> GetTodoById(
-        string id, CancellationToken cancellationToken) =>
-        await _todoRepository.ReadTodoAsync(id, cancellationToken);
+        string id, CancellationToken cancellationToken)
+    {
+        var item = await _todoRepository.ReadTodoAsync(id, cancellationToken);
+        return (TodoItem)item;
+    }
 
     [HttpPost]
     public async ValueTask<TodoItem> PostTodo(
-        CancellationToken cancellationToken,
-        [FromBody] CreateTodoRequest request) =>
-        await _todoRepository.CreateTodoAsync(new Todo
+        [FromBody] CreateTodoRequest request,
+        CancellationToken cancellationToken)
+    {
+        var item = await _todoRepository.CreateTodoAsync(new Todo
         {
             Title = request.Title,
             UserEmail = request.UserEmail,
@@ -48,11 +53,17 @@ public class TodoController : ControllerBase
             DueDate = request.DueDate,
         }, cancellationToken);
 
+        return (TodoItem)item;
+    }
+
     [HttpPut]
     public async ValueTask<TodoItem> PutTodo(
-        [FromBody] TodoItem todo,
-        CancellationToken cancellationToken) =>
-        await _todoRepository.UpdateTodoAsync(todo, cancellationToken);
+        [FromBody] TodoItem todoItem,
+        CancellationToken cancellationToken)
+    {
+        var item = await _todoRepository.UpdateTodoAsync((Todo)todoItem, cancellationToken);
+        return (TodoItem)item;
+    }
 
     [HttpDelete("{id}", Name = nameof(DeleteTodo))]
     public ValueTask DeleteTodo(string id, CancellationToken cancellationToken) =>
