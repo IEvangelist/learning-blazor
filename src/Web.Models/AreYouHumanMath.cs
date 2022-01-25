@@ -13,7 +13,7 @@ public readonly record struct AreYouHumanMath(
     /// <summary>
     /// Determines if the given <paramref name="guess"/> value is correct.
     /// </summary>
-    /// <param name="guess">The value being evaluted for correctness.</param>
+    /// <param name="guess">The value being evaluated for correctness.</param>
     /// <returns>
     /// <c>true</c> when the given <paramref name="guess"/> is correct,
     /// otherwise <c>false</c>.
