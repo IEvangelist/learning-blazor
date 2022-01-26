@@ -1,9 +1,11 @@
 ﻿@inherits LocalizableComponentBase<TaskCardComponent>
 
 @{
-    var themeSuffix = AppState.IsDarkTheme ? "light" : "dark";
-    var textStyle =
-        $"{(Todo.IsCompleted ? "has-text-success" : "has-text-warning")}-{themeSuffix}";
+    var textStyle = Todo.IsCompleted ? "has-text-success" : "has-text-warning";
+    if (!AppState.IsDarkTheme)
+    {
+        textStyle += "-dark";
+    }
 }
 
 <div class="card">
