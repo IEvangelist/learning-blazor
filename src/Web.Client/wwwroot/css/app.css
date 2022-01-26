@@ -40,7 +40,7 @@ html {
 }
 
 .blazor-tile-container {
-    position:relative;
+    position: relative;
     width: 100%;
 }
 
@@ -51,8 +51,8 @@ html {
 .gradient-bg {
     height: 100%;
     width: 100%;
-    position:absolute;
-    z-index:-2;
+    position: absolute;
+    z-index: -2;
     border-radius: 4px;
 }
 
@@ -63,7 +63,7 @@ html {
     opacity: .5;
     height: 100%;
     width: 100%;
-    z-index:-1;
+    z-index: -1;
     position: absolute;
 }
 
@@ -252,14 +252,14 @@ input[type=checkbox].is-large {
     .has-dotnet-scrollbar::-webkit-scrollbar {
         width: 1.2rem;
         height: 8px;
-        background-color: #3e8ed0;
+        background-color: rgba(255,255,255,.07);
         border-radius: 6px;
     }
 
     .has-dotnet-scrollbar::-webkit-scrollbar-thumb {
         background: var(--dotnet-purple-dark);
         border-radius: 6px;
-        border: 3px solid #3e8ed0;
+        border: 3px solid rgba(255,255,255,.07);
     }
 }
 
@@ -330,6 +330,7 @@ input[type=checkbox].is-large {
     from {
         box-shadow: 0px 0px 4px 4px rgba(81,43,212,1);
     }
+
     to {
         box-shadow: 0px 0px 20px 20px rgba(223,216,247,0.2);
     }
@@ -352,16 +353,16 @@ input[type=checkbox].is-large {
     overflow-x: auto;
 }
 
-.has-dotnet-scrollbar::-webkit-scrollbar {
-    width: 1.2rem;
-    height: 8px;
-    background-color: var(--dotnet-gray);
-}
+    .has-dotnet-scrollbar::-webkit-scrollbar {
+        width: 1.2rem;
+        height: 8px;
+        background-color: rgba(0,0,0,.07);
+    }
 
     .has-dotnet-scrollbar::-webkit-scrollbar-thumb {
         background: var(--dotnet-purple-dark);
         border-radius: .8rem;
-        border: 3px solid var(--dotnet-gray);
+        border: 3px solid rgba(0,0,0,.07);
     }
 
 
