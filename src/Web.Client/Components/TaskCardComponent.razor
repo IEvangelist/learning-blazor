@@ -1,7 +1,9 @@
 ﻿@inherits LocalizableComponentBase<TaskCardComponent>
 
 @{
-    var textStyle = Todo.IsCompleted ? "has-text-success" : "has-text-warning";
+    var themeSuffix = AppState.IsDarkTheme ? "light" : "dark";
+    var textStyle =
+        $"{(Todo.IsCompleted ? "has-text-success" : "has-text-warning")}-{themeSuffix}";
 }
 
 <div class="card">
@@ -41,8 +43,8 @@
     </div>
     <footer class="card-footer">
         @{
-            var deleteStyle = _isDeleting ? "is-loading" : "";
-            var saveStyle = _isSaving ? "is-loading" : "";
+            var (deleteStyle, saveStyle) =
+                (_isDeleting ? "is-loading" : "", _isSaving ? "is-loading" : "");
         }
         <button disabled="@_isWorking"
             class="card-footer-item is-medium is-radiusless button @deleteStyle"

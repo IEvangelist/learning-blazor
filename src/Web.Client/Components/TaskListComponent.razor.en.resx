@@ -120,8 +120,14 @@
   <data name="Add" xml:space="preserve">
     <value>Add new task?</value>
   </data>
+  <data name="AllTasksCompleted" xml:space="preserve">
+    <value>All tasks completed, great job!</value>
+  </data>
   <data name="IsCompleted" xml:space="preserve">
     <value>Mark task as completed</value>
+  </data>
+  <data name="NoTasksCompleted" xml:space="preserve">
+    <value>No tasks completed.</value>
   </data>
   <data name="Save" xml:space="preserve">
     <value>Save</value>
@@ -131,5 +137,8 @@
   </data>
   <data name="TaskList" xml:space="preserve">
     <value>Task List</value>
+  </data>
+  <data name="TotalsFormat" xml:space="preserve">
+    <value>You've completed {0}/{1} tasks.</value>
   </data>
 </root>

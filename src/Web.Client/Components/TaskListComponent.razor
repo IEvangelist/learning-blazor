@@ -11,16 +11,16 @@
             <i class="fas fa-tasks"></i>
         </span>
     </button>
-    @if (_todos?.Any(todo => !todo.IsCompleted) ?? false)
+    @if (_todos?.Any(idTodoPair => !idTodoPair.Value.IsCompleted) ?? false)
     {
         <span class="badge is-success" style="right: .8rem; top: .8rem;">
-            @_todos.Count(todo => !todo.IsCompleted)
+            @_todos.Count(idTodoPair => !idTodoPair.Value.IsCompleted)
         </span>
     }
 </span>
 
-<div class="quickview has-background-dark @_showClass">
-    <header class="quickview-header has-background-primary-dark">
+<div class="quickview has-background@_color @_showClass">
+    <header class="quickview-header has-background-primary@_color">
         <p class="title is-size-4 has-text-black">
             <span class="icon pr-2">
                 <i class="fas fa-tasks"></i>
@@ -81,8 +81,9 @@
             }
 
             @foreach (var todo in
-                _todos?.OrderByDescending(t => !t.IsCompleted).ThenBy(t => t.DueDate)
-                ?? Enumerable.Empty<TodoItem>())
+                _todos?.OrderByDescending(t => !t.Value.IsCompleted)
+                    .ThenBy(t => t.Value.DueDate)
+                    .Select(kvp => kvp.Value) ?? Enumerable.Empty<TodoItem>())
             {
                 <div class="pb-4"> 
                     <TaskCardComponent Todo=todo
@@ -93,16 +94,41 @@
         </div>
     </div>
 
-    <footer class="quickview-footer has-background-primary-dark">
-        @*@{
-            var (hasValue, dateTime) = _latestNotificationDateTime;
-            if (hasValue)
+    <footer class="quickview-footer has-background-primary@_color">
+        @{
+            var totals = _todos?.Count ?? 0;
+            if (totals > 0)
             {
-                @Localizer["UpdatedOnFormat",
-                    dateTime.ToShortDateString(),
-                    dateTime.ToShortTimeString()]
+                var completed = _todos!.Count(t => t.Value.IsCompleted);
+                var incomplete = totals - completed;
+
+                LocalizedString getTotalsContent(
+                    int completed, int incomplete)
+                {
+                    var allTasksCompleted = incomplete is 0;
+                    var noTasksCompleted = completed is 0;
+
+                    var content = (allTasksCompleted, noTasksCompleted) switch
+                    {
+                        (true, false) => @Localizer["AllTasksCompleted"],
+                        (false, true) => @Localizer["NoTasksCompleted"],
+                        _ => @Localizer["TotalsFormat", completed, incomplete]
+                    };
+
+                    return content;
+                }
+
+                <div class="todo-totals">
+                    @getTotalsContent(completed, incomplete)
+                </div>
             }
-        }*@
+            else
+            {
+                <div class="todo-totals">
+                    @Localizer["NoTasksCompleted"]
+                </div>                
+            }
+        }
     </footer>
 </div>
 

@@ -13,6 +13,7 @@ global using HaveIBeenPwned.Client.Abstractions;
 global using Learning.Blazor;
 global using Learning.Blazor.Abstractions.RealTime;
 global using Learning.Blazor.BrowserModels;
+global using Learning.Blazor.Logging;
 global using Learning.Blazor.ComponentModels;
 global using Learning.Blazor.Components;
 global using Learning.Blazor.DataAnnotations;

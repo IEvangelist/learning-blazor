@@ -5,13 +5,16 @@ namespace Learning.Blazor.Components
 {
     public partial class TaskListComponent
     {
-        private readonly HashSet<TodoItem> _todos = new();
+        private readonly ConcurrentDictionary<string, TodoItem> _todos =
+            new(StringComparer.OrdinalIgnoreCase);
 
         private bool _show = false;
         private CreateTodoRequest? _newTodo = null;
         private bool _isAddingTodo = false;
         private bool _isSaving = false;
+
         private string _showClass => _show ? "is-active" : "";
+        private string _color => AppState.IsDarkTheme ? "-dark" : "";
 
         [Inject]
         public IHttpClientFactory HttpFactory { get; set; } = null!;
@@ -20,11 +23,14 @@ namespace Learning.Blazor.Components
         {
             await base.OnInitializedAsync();
 
-            var client = HttpFactory.CreateClient(HttpClientNames.ServerApi);
-            var todos = await client.GetFromJsonAsync<IEnumerable<TodoItem>>("api/todo");
+            var client =
+                HttpFactory.CreateClient(HttpClientNames.ServerApi);
+            var todos =
+                await client.GetFromJsonAsync<IEnumerable<TodoItem>>("api/todo");
+
             foreach (var todo in todos ?? Enumerable.Empty<TodoItem>())
             {
-                _ = _todos.Add(todo);
+                _todos[todo.Id] = todo;
             }
         }
 
@@ -32,7 +38,7 @@ namespace Learning.Blazor.Components
 
         private void Dismiss() => _show = false;
 
-        async Task OnTodoUpdatedAsync((Func<Task> CompleteCallback, TodoItem Todo) pair)
+        async Task OnTodoUpdatedAsync((TodoChangedDelegate CompleteCallback, TodoItem Todo) pair)
         {
             var (completionCallback, todo) = pair;
             try
@@ -42,17 +48,23 @@ namespace Learning.Blazor.Components
                     "api/todo", todo);
 
                 response.EnsureSuccessStatusCode();
+                
+                await completionCallback(
+                    todo, TodoItemAction.Updated);
+
+                Logger.LogTodoUpdated(todo);
             }
             finally
             {
                 _show = _todos.Any();
-                await completionCallback();
             }
         }
 
-        async Task OnTodoDeletedAsync((Func<Task> CompleteCallback, TodoItem Todo) pair)
+        async Task OnTodoDeletedAsync(
+            (TodoChangedDelegate CompleteCallback, TodoItem Todo) callbackAndTodoPair)
         {
-            var (completionCallback, todo) = pair;
+            var (completionCallback, todo) = callbackAndTodoPair;
+
             try
             {
                 var client = HttpFactory.CreateClient(HttpClientNames.ServerApi);
@@ -61,12 +73,17 @@ namespace Learning.Blazor.Components
 
                 response.EnsureSuccessStatusCode();
 
-                _ = _todos.Remove(todo);
+                if (_todos.TryRemove(todo.Id, out var todoItem))
+                {
+                    await completionCallback(
+                        todoItem, TodoItemAction.Deleted);
+
+                    Logger.LogTodoDeleted(todoItem);
+                }
             }
             finally
             {
                 _show = _todos.Any();
-                await completionCallback();
             }
         }
 
@@ -84,7 +101,8 @@ namespace Learning.Blazor.Components
                 var json = await response.Content.ReadAsStringAsync();
                 if (json is not null && json.FromJson<TodoItem>() is TodoItem todoItem)
                 {
-                    _ = _todos.Add(todoItem);
+                    _todos[todoItem.Id] = todoItem;
+                    Logger.LogTodoCreated(todoItem);
                 }
             }
             catch (Exception ex)
@@ -108,4 +126,10 @@ namespace Learning.Blazor.Components
         void CancelNewTodo() =>
             (_newTodo, _isAddingTodo) = (null, false);
     }
+
+    public delegate Task TodoChangedDelegate(
+        TodoItem todo,
+        TodoItemAction action);
+
+    public enum TodoItemAction { Created, Updated, Deleted };
 }

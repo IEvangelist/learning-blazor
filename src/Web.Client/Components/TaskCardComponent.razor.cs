@@ -5,19 +5,19 @@ namespace Learning.Blazor.Components
 {
     public sealed partial class TaskCardComponent
     {
-        bool _isSaving = false;
-        bool _isDeleting = false;
+        private bool _isSaving = false;
+        private bool _isDeleting = false;
 
-        bool _isWorking => _isSaving || _isDeleting;
+        private bool _isWorking => _isSaving || _isDeleting;
 
         [Parameter, EditorRequired]
         public TodoItem Todo { get; set; } = null!;
 
         [Parameter, EditorRequired]
-        public EventCallback<(Func<Task> CompleteCallback, TodoItem Todo)> TodoUpdated { get; set; }
+        public EventCallback<(TodoChangedDelegate CompleteCallback, TodoItem Todo)> TodoUpdated { get; set; }
 
         [Parameter, EditorRequired]
-        public EventCallback<(Func<Task> CompleteCallback, TodoItem Todo)> TodoDeleted { get; set; }
+        public EventCallback<(TodoChangedDelegate CompleteCallback, TodoItem Todo)> TodoDeleted { get; set; }
 
         private Task OnClickAsync(bool isDelete)
         {
@@ -34,7 +34,7 @@ namespace Learning.Blazor.Components
         }
 
         private async Task OnHandleAsync(
-            EventCallback<(Func<Task> CompleteCallback, TodoItem Todo)> callback)
+            EventCallback<(TodoChangedDelegate CompleteCallback, TodoItem Todo)> callback)
         {
             if (callback.HasDelegate)
             {
@@ -42,10 +42,17 @@ namespace Learning.Blazor.Components
             }
         }
 
-        private Task OnCallbackCompletedAsync() =>
+        private Task OnCallbackCompletedAsync(TodoItem todo, TodoItemAction action) =>
             InvokeAsync(() =>
             {
-                (_isSaving, _isDeleting) = (false, false);
+                (_isSaving, _isDeleting) = action switch
+                {
+                    TodoItemAction.Created or
+                    TodoItemAction.Updated => (false, _isDeleting),
+                    TodoItemAction.Deleted => (_isSaving, false),
+                    _ => (false, false)
+                };
+
                 StateHasChanged();
             });
     }
