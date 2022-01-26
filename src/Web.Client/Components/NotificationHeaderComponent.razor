@@ -1,8 +1,8 @@
 ﻿@switch (NotificationType)
 {
     case NotificationType.Alert:
-        <div class="icon-text button is-medium has-text-weight-bold"
-            @onclick=OnClick>
+        <div @onclick=OnClick
+            class="icon-text button is-medium has-text-weight-bold @_buttonStyle">
             <span class="icon has-text-info">
                 <i class="fas fa-info-circle"></i>
             </span>
@@ -11,8 +11,8 @@
         break;
 
     case NotificationType.Warning:
-        <div class="icon-text button is-medium has-text-weight-bold"
-            @onclick=OnClick>
+        <div @onclick=OnClick
+            class="icon-text button is-medium has-text-weight-bold @_buttonStyle">
             <span class="icon has-text-warning">
                 <i class="fas fa-exclamation-triangle"></i>
             </span>
@@ -21,8 +21,8 @@
         break;
 
     default:
-        <div class="icon-text button is-medium has-text-weight-bold"
-            @onclick=OnClick>
+        <div @onclick=OnClick
+            class="icon-text button is-medium has-text-weight-bold @_buttonStyle">
             <span class="icon has-text-success">
                 <i class="fas fa-check-square"></i>
             </span>
@@ -41,13 +41,15 @@
     [Parameter, EditorRequired]
     public NotificationType NotificationType { get; set; }
 
+    private string _buttonStyle => ActionLink is null ? "is-static" : "";
+
     void OnClick()
     {
-        if (ActionLink is null || Navigation is null)
+        if (ActionLink is null)
         {
             return;
         }
 
-        Navigation.NavigateTo(ActionLink.ToString(), false);
+        Navigation?.NavigateTo(ActionLink.ToString(), false);
     }
 }
