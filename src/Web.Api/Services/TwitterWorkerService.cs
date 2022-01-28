@@ -22,8 +22,6 @@ public sealed class TwitterWorkerService : BackgroundService
     {
         while (!stoppingToken.IsCancellationRequested)
         {
-            stoppingToken.ThrowIfCancellationRequested();
-
             await Task.Delay(TimeSpan.FromMinutes(1), stoppingToken);
         }
     }

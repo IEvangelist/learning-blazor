@@ -52,5 +52,4 @@ public partial class NotificationHub
                     Text: _localizer["HasLeftTheChatRoom", _userName ?? "?"],
                     UserName: "🤖")));
     }
-
 }
