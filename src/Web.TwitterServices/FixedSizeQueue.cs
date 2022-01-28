@@ -7,11 +7,20 @@ internal class FixedSizeQueue<T>
 {
     private readonly ConcurrentQueue<T> _queue = new();
 
-    public IReadOnlyCollection<T> ReadOnly => _queue;
+    public IReadOnlyCollection<T> ReadOnly =>
+        _queue.Take(MaxCapacity).ToList();
 
-    public int MaxCapacity { get; private set; }
+    public int MaxCapacity { get; }
 
-    public FixedSizeQueue(int maxCapacity) => MaxCapacity = maxCapacity;
+    public FixedSizeQueue(int maxCapacity = 100)
+    {
+        if ((MaxCapacity = maxCapacity) <= 0)
+        {
+            throw new ArgumentOutOfRangeException(
+                nameof(maxCapacity),
+                "The max capacity must be larger than 0.");
+        }
+    }
 
     public void Enqueue(T obj)
     {

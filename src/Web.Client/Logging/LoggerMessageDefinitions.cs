@@ -22,4 +22,24 @@ static class LoggerMessageDefinitions
             LogLevel.Debug,
             EventIds.TodoTaskDeleted,
             "[{Id}]: A new todo was deleted: {Todo}");
+
+    internal static readonly Action<ILogger, Guid, Type, int, HubConnectionState, Exception?> UnableToStartHubConnection =
+        LoggerMessage.Define<Guid, Type, int, HubConnectionState>(
+            LogLevel.Debug,
+            EventIds.UnableToStartSharedHubConnection,
+            "{Id}: {Type} requested start, unable to start. " +
+            "Active component count: {Count}, and connection state: {State}");
+
+    internal static readonly Action<ILogger, Guid, Type, int, HubConnectionState, Exception?> UnableToStopHubConnection =
+        LoggerMessage.Define<Guid, Type, int, HubConnectionState>(
+            LogLevel.Debug,
+            EventIds.UnableToStopSharedHubConnection,
+            "{Id}: {Type} requested stop, unable to stop. " +
+            "Active component count: {Count}, and connection state: {State}");
+
+    internal static readonly Action<ILogger, AccessTokenResultStatus, string, Exception?> UnableToGetAccessToken =
+        LoggerMessage.Define<AccessTokenResultStatus, string>(
+            LogLevel.Warning,
+            EventIds.UnableToGetAccessToken,
+            "Unable to get the access token. '{Status}' - Return URL: {Url}");
 }

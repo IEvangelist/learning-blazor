@@ -19,4 +19,19 @@ static class EventIds
         new(
             id: 7_002,
             name: nameof(TodoTaskDeleted));
+
+    internal static readonly EventId UnableToStartSharedHubConnection =
+        new(
+            id: 8_000,
+            name: nameof(UnableToStartSharedHubConnection));
+
+    internal static readonly EventId UnableToStopSharedHubConnection =
+        new(
+            id: 8_001,
+            name: nameof(UnableToStopSharedHubConnection));
+
+    internal static readonly EventId UnableToGetAccessToken =
+        new(
+            id: 8_002,
+            name: nameof(UnableToGetAccessToken));
 }
