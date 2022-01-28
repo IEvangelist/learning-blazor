@@ -22,10 +22,20 @@ Featuring:
 - Blazor WebAssembly
 - Azure Functions &mdash; .NET
 - ASP.NET Core Web API
-- SignalR Core
+- ASP.NET Core SignalR
+- Bulma (CSS)
 - Polly
 - Swagger / OpenAPI
 - Twitter API
 - OpenWeatherMap API
+- "Have I Been Pwned"
+- Client-Browser Native Speech Synthesis and Speech Recognition
+- Reactive Extensions (Rx.NET)
+- Azure Cosmos DB Repository-Pattern .NET SDK
+- Blazor WebAssembly Localization
+- Azure Cognitive Services Translator
+- Blazor Component Virtualization
+- Two-way JavaScript Interop (using both `IJSRuntime` and `IJsInProcessRuntime`)
+  - As well as Blazorators, for source generation
 
 > [💡 Ideas](https://gist.github.com/IEvangelist/d43abafb64d207bff25e60769e986bbd) for the application to include.
