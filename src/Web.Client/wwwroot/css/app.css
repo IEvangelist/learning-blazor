@@ -128,7 +128,7 @@ html {
 }
 
 .has-theme-aware-text {
-    color: #b5b5b5 !important;
+    color: #4a4a4a !important;
 }
 
 .has-img-shadow {
@@ -233,7 +233,7 @@ input[type=checkbox].is-large {
     }
 
     .has-theme-aware-text {
-        color: #4a4a4a !important;
+        color: #b5b5b5 !important;
     }
 
     .is-theme-aware-button {
