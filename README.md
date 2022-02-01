@@ -20,6 +20,11 @@ Featuring:
 - C# 10
 - .NET 6
 - Blazor WebAssembly
+- Blazor Third-Party Authentication providers:
+  - Google
+  - Twitter
+  - GitHub
+  - "Sign up now"-based indentity provider registration (with email verification).
 - Azure Functions &mdash; .NET
 - ASP.NET Core Web API
 - ASP.NET Core SignalR
