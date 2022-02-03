@@ -34,4 +34,3 @@ global using Microsoft.Extensions.Localization;
 global using Microsoft.Extensions.Options;
 global using Microsoft.Identity.Web;
 global using Microsoft.Identity.Web.Resource;
-global using Microsoft.OpenApi.Models;
