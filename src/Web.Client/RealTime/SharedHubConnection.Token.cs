@@ -3,7 +3,7 @@
 
 namespace Learning.Blazor;
 
-public partial class SharedHubConnection
+public sealed partial class SharedHubConnection
 {
     private async Task<string?> GetAccessTokenValueAsync()
     {

@@ -63,7 +63,7 @@ internal static class WebAssemblyHostBuilderExtensions
 
         services.AddOptions();
         services.AddAuthorizationCore();
-        services.AddScoped<SharedHubConnection>();
+        services.AddSingleton<SharedHubConnection>();
         services.AddSingleton<AppInMemoryState>();
         services.AddSingleton<CultureService>();
         services.AddSingleton(typeof(CoalescingStringLocalizer<>));

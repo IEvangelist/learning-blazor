@@ -3,7 +3,7 @@
 
 namespace Learning.Blazor.Components
 {
-    public sealed partial class NotificationComponent : IAsyncDisposable
+    public sealed partial class NotificationComponent : IDisposable
     {
         private readonly Stack<IDisposable> _subscriptions = new();
 
@@ -126,16 +126,11 @@ namespace Learning.Blazor.Components
             _show = _notifications.Any(n => !n.IsDismissed);
         }
 
-        async ValueTask IAsyncDisposable.DisposeAsync()
+        void IDisposable.Dispose()
         {
             if (Logger.IsEnabled(LogLevel.Information))
             {
                 Logger.LogInformation("Disposing of NotificationComponent.razor.cs");
-            }
-
-            if (HubConnection is not null)
-            {
-                await HubConnection.StopAsync(this);
             }
 
             while (_subscriptions.TryPop(out var disposable))

@@ -5,19 +5,18 @@ namespace Learning.Blazor;
 
 public sealed partial class SharedHubConnection : IAsyncDisposable
 {
-    private readonly Guid _id = Guid.NewGuid();
     private readonly IServiceProvider _serviceProvider = null!;
     private readonly ILogger<SharedHubConnection> _logger = null!;
     private readonly AsyncRetryPolicy _asyncRetryPolicy = null!;
     private readonly CultureService _cultureService = null!;
     private readonly HubConnection _hubConnection = null!;
     private readonly SemaphoreSlim _lock = new(1, 1);
-    private readonly HashSet<ComponentBase> _activeComponents = new();
 
     /// <summary>
     /// Indicates the state of the <see cref="HubConnection"/> to the server.
     /// </summary>
-    public HubConnectionState State => _hubConnection.State;
+    public HubConnectionState State =>
+        _hubConnection?.State ?? HubConnectionState.Disconnected;
 
     public SharedHubConnection(
         IServiceProvider serviceProvider,
@@ -56,28 +55,22 @@ public sealed partial class SharedHubConnection : IAsyncDisposable
 
     Task OnHubConnectionClosedAsync(Exception? exception)
     {
-        _logger.LogInformation(
-            exception, "{Id}: Hub connection closed: {Exception}", _id, exception);
-
+        _logger.LogHubConnectionClosed(exception);
         return Task.CompletedTask;
     }
 
-    private Task OnHubConnectionReconnectedAsync(string? message)
+    Task OnHubConnectionReconnectedAsync(string? message)
     {
-        _logger.LogInformation(
-            "{Id}: Hub connection reconnected: {Message}", _id, message);
-
+        _logger.LogHubConnectionReconnected(message);
         return Task.CompletedTask;
     }
 
     Task OnHubConnectionReconnectingAsync(Exception? exception)
     {
-        _logger.LogInformation(
-            exception, "{Id}: Hub connection closed: {Exception}", _id, exception);
-
+        _logger.LogHubConnectionReconnecting(exception);
         return Task.CompletedTask;
     }
-    
+
     async ValueTask IAsyncDisposable.DisposeAsync()
     {
         if (_hubConnection is not null)

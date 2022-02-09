@@ -22,6 +22,8 @@ namespace Learning.Blazor.Pages
 
         protected override async Task OnInitializedAsync()
         {
+            await base.OnInitializedAsync();
+
             _subscriptions.Push(
                 HubConnection.SubscribeToStatusUpdated(OnStatusUpdatedAsync));
             _subscriptions.Push(
@@ -83,7 +85,6 @@ namespace Learning.Blazor.Pages
             if (HubConnection is not null)
             {
                 await HubConnection.LeaveTweetsAsync();
-                await HubConnection.StopAsync(this);
             }
 
             while (_subscriptions.TryPop(out var disposable))

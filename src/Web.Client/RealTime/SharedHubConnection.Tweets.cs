@@ -40,5 +40,4 @@ public sealed partial class SharedHubConnection
         _hubConnection.On(
             methodName: HubServerEventNames.InitialTweetsLoaded,
             handler: onTweetsLoaded);
-
 }

@@ -22,21 +22,19 @@ static class LoggerExtensions
 
     internal static void LogUnableToStartHubConnection(
         this ILogger logger,
-        Guid id,
         Type type,
         int count,
         HubConnectionState state) =>
         LoggerMessageDefinitions.UnableToStartHubConnection(
-            logger, id, type, count, state, null);
+            logger, type, count, state, null);
 
     internal static void LogUnableToStopHubConnection(
         this ILogger logger,
-        Guid id,
         Type type,
         int count,
         HubConnectionState state) =>
         LoggerMessageDefinitions.UnableToStopHubConnection(
-            logger, id, type, count, state, null);
+            logger, type, count, state, null);
 
     internal static void LogUnableToGetAccessToken(
         this ILogger logger,
@@ -44,4 +42,22 @@ static class LoggerExtensions
         string url) =>
         LoggerMessageDefinitions.UnableToGetAccessToken(
             logger, status, url, null);
+
+    internal static void LogHubConnectionClosed(
+        this ILogger logger,
+        Exception? exception) =>
+        LoggerMessageDefinitions.HubConnectionClosed(
+            logger, exception);
+
+    internal static void LogHubConnectionReconnecting(
+        this ILogger logger,
+        Exception? exception) =>
+        LoggerMessageDefinitions.HubConnectionReconnecting(
+            logger, exception);
+
+    internal static void LogHubConnectionReconnected(
+        this ILogger logger,
+        string? message) =>
+        LoggerMessageDefinitions.HubConnectionReconnected(
+            logger, message, null);
 }

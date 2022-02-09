@@ -22,7 +22,6 @@ namespace Learning.Blazor.Pages
         private bool _isTyping = false;
         private bool _isSending = false;
         private ClaimsPrincipal _user = null!;
-
         private ElementReference _messageInput;
 
         private const string DefaultRoomName = "public";
@@ -37,6 +36,8 @@ namespace Learning.Blazor.Pages
 
         protected override async Task OnInitializedAsync()
         {
+            await base.OnInitializedAsync();
+
             _subscriptions.Push(
                 HubConnection.SubscribeToMessageReceived(OnMessageReceivedAsync));
             _subscriptions.Push(
@@ -48,8 +49,8 @@ namespace Learning.Blazor.Pages
             await _messageInput.FocusAsync();
         }
 
-        async Task OnMessageReceivedAsync(Notification<ActorMessage> message) =>
-            await InvokeAsync(
+        Task OnMessageReceivedAsync(Notification<ActorMessage> message) =>
+            InvokeAsync(
                 async () =>
                 {
                     _messages[message.Payload.Id] = message;
@@ -158,7 +159,6 @@ namespace Learning.Blazor.Pages
             if (HubConnection is not null)
             {
                 await HubConnection.LeaveChatAsync(Room ?? DefaultRoomName);
-                await HubConnection.StopAsync(this);
             }
 
             while (_subscriptions.TryPop(out var disposable))

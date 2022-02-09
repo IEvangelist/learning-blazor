@@ -22,10 +22,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Pages\Contact.razor.cs~RF2bf4d1a.TMP" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="HaveIBeenPwned.Client.Abstractions" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.1" PrivateAssets="all" />

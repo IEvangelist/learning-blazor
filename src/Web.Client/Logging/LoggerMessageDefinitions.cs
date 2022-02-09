@@ -23,18 +23,18 @@ static class LoggerMessageDefinitions
             EventIds.TodoTaskDeleted,
             "[{Id}]: A new todo was deleted: {Todo}");
 
-    internal static readonly Action<ILogger, Guid, Type, int, HubConnectionState, Exception?> UnableToStartHubConnection =
-        LoggerMessage.Define<Guid, Type, int, HubConnectionState>(
+    internal static readonly Action<ILogger, Type, int, HubConnectionState, Exception?> UnableToStartHubConnection =
+        LoggerMessage.Define<Type, int, HubConnectionState>(
             LogLevel.Debug,
             EventIds.UnableToStartSharedHubConnection,
-            "{Id}: {Type} requested start, unable to start. " +
+            "{Type} requested start, unable to start. " +
             "Active component count: {Count}, and connection state: {State}");
 
-    internal static readonly Action<ILogger, Guid, Type, int, HubConnectionState, Exception?> UnableToStopHubConnection =
-        LoggerMessage.Define<Guid, Type, int, HubConnectionState>(
+    internal static readonly Action<ILogger, Type, int, HubConnectionState, Exception?> UnableToStopHubConnection =
+        LoggerMessage.Define<Type, int, HubConnectionState>(
             LogLevel.Debug,
             EventIds.UnableToStopSharedHubConnection,
-            "{Id}: {Type} requested stop, unable to stop. " +
+            "{Type} requested stop, unable to stop. " +
             "Active component count: {Count}, and connection state: {State}");
 
     internal static readonly Action<ILogger, AccessTokenResultStatus, string, Exception?> UnableToGetAccessToken =
@@ -42,4 +42,22 @@ static class LoggerMessageDefinitions
             LogLevel.Warning,
             EventIds.UnableToGetAccessToken,
             "Unable to get the access token. '{Status}' - Return URL: {Url}");
+
+    internal static readonly Action<ILogger, Exception?> HubConnectionClosed =
+        LoggerMessage.Define(
+            LogLevel.Information,
+            EventIds.HubConnectionClosed,
+            "Hub connection closed");
+
+    internal static readonly Action<ILogger, Exception?> HubConnectionReconnecting =
+        LoggerMessage.Define(
+            LogLevel.Information,
+            EventIds.HubConnectionReconnecting,
+            "Hub connection reconnecting");
+
+    internal static readonly Action<ILogger, string?, Exception?> HubConnectionReconnected =
+        LoggerMessage.Define<string?>(
+            LogLevel.Information,
+            EventIds.HubConnectionReconnected,
+            "Hub connection reconnected: {Message}");
 }
