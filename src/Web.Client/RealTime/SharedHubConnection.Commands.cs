@@ -6,7 +6,7 @@ namespace Learning.Blazor;
 public sealed partial class SharedHubConnection
 {
     public async Task StartAsync(
-        ComponentBase component, CancellationToken token = default)
+        CancellationToken token = default)
     {
         await _lock.WaitAsync(token);
 
@@ -18,10 +18,7 @@ public sealed partial class SharedHubConnection
             }
             else
             {
-                _logger.LogUnableToStartHubConnection(
-                    component.GetType(),
-                    _activeComponents.Count,
-                    State);
+                _logger.LogUnableToStartHubConnection(State);
             }
         }
         finally

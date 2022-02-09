@@ -22,19 +22,9 @@ static class LoggerExtensions
 
     internal static void LogUnableToStartHubConnection(
         this ILogger logger,
-        Type type,
-        int count,
         HubConnectionState state) =>
         LoggerMessageDefinitions.UnableToStartHubConnection(
-            logger, type, count, state, null);
-
-    internal static void LogUnableToStopHubConnection(
-        this ILogger logger,
-        Type type,
-        int count,
-        HubConnectionState state) =>
-        LoggerMessageDefinitions.UnableToStopHubConnection(
-            logger, type, count, state, null);
+            logger, state, null);
 
     internal static void LogUnableToGetAccessToken(
         this ILogger logger,

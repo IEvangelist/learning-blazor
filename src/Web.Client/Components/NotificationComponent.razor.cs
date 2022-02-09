@@ -31,7 +31,7 @@ namespace Learning.Blazor.Components
             _subscriptions.Push(
                 HubConnection.SubscribeToUserLoggedOut(OnUserLoggedOut));
 
-            await HubConnection.StartAsync(this);
+            await HubConnection.StartAsync();
         }
 
         protected override void OnParametersSet() =>

@@ -43,7 +43,7 @@ namespace Learning.Blazor.Pages
             _subscriptions.Push(
                 HubConnection.SubscribeToUserTyping(OnUserTypingAsync));
 
-            await HubConnection.StartAsync(this);
+            await HubConnection.StartAsync();
             await HubConnection.JoinChatAsync(Room ?? DefaultRoomName);
 
             await _messageInput.FocusAsync();

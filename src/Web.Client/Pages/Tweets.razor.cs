@@ -31,7 +31,7 @@ namespace Learning.Blazor.Pages
             _subscriptions.Push(
                 HubConnection.SubscribeToTweetsLoaded(OnTweetsLoadedAsync));
 
-            await HubConnection.StartAsync(this);
+            await HubConnection.StartAsync();
             await HubConnection.JoinTweetsAsync();
             await HubConnection.StartTweetStreamAsync();
         }
