@@ -119,7 +119,7 @@ html {
 }
 
 .is-unselectable {
-    cursor: not-allowed;
+    cursor: not-allowed !important;
 }
 
 .is-theme-aware > * {

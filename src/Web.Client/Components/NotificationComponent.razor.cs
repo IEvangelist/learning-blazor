@@ -27,9 +27,11 @@ namespace Learning.Blazor.Components
             await base.OnInitializedAsync();
 
             _subscriptions.Push(
-                HubConnection.SubscribeToUserLoggedIn(OnUserLoggedIn));
+                HubConnection.SubscribeToUserLoggedIn(
+                    OnUserLoggedInAsync));
             _subscriptions.Push(
-                HubConnection.SubscribeToUserLoggedOut(OnUserLoggedOut));
+                HubConnection.SubscribeToUserLoggedOut(
+                    OnUserLoggedOutAsync));
 
             await HubConnection.StartAsync();
         }
@@ -37,7 +39,7 @@ namespace Learning.Blazor.Components
         protected override void OnParametersSet() =>
             AppState.WeatherAlertRecieved ??= OnWeatherAlertReceived;
 
-        private Task OnUserLoggedIn(Notification<Actor> notification) =>
+        private Task OnUserLoggedInAsync(Notification<Actor> notification) =>
             InvokeAsync(async () =>
             {
                 var emails = User?.GetEmailAddresses();
@@ -79,7 +81,7 @@ namespace Learning.Blazor.Components
                 StateHasChanged();
             });
 
-        private Task OnUserLoggedOut(Notification<Actor> notification) =>
+        private Task OnUserLoggedOutAsync(Notification<Actor> notification) =>
             InvokeAsync(() =>
             {
                 Actor actor = notification;
@@ -99,7 +101,7 @@ namespace Learning.Blazor.Components
             foreach (var alert in alerts)
             {
                 var text =
-                    $"{alert.Event}\n{alert.Description}\nSource: {alert.SenderName}";
+                    $"{alert.Event}\n{alert.Description}\n— {alert.SenderName}";
 
                 _ = _notifications.Add(
                     new(

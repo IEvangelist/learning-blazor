@@ -5,8 +5,7 @@ namespace Learning.Blazor;
 
 public sealed partial class SharedHubConnection
 {
-    public async Task StartAsync(
-        CancellationToken token = default)
+    public async Task StartAsync(CancellationToken token = default)
     {
         await _lock.WaitAsync(token);
 

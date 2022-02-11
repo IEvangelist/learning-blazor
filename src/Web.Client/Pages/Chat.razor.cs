@@ -21,7 +21,6 @@ namespace Learning.Blazor.Pages
         private string? _message = null!;
         private bool _isTyping = false;
         private bool _isSending = false;
-        private ClaimsPrincipal _user = null!;
         private ElementReference _messageInput;
 
         private const string DefaultRoomName = "public";
@@ -128,9 +127,9 @@ namespace Learning.Blazor.Pages
             await HubConnection.ToggleUserTypingAsync(_isTyping = isTyping);
         }
 
-        bool OwnsMessage(string user) => _user?.Identity?.Name == user;
+        bool OwnsMessage(string user) => User?.Identity?.Name == user;
 
-        async Task StartEdit(ActorMessage message)
+        async Task OnEditMessage(ActorMessage message)
         {
             if (!OwnsMessage(message.UserName))
             {

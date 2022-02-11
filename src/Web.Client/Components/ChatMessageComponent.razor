@@ -1,0 +1,59 @@
+﻿<a id="@Message.Id" class="panel-block is-size-5 @_dynamicCss"
+	@onclick=@StartEditAsync>
+    <span>
+        @Message.UserName
+    </span>
+    <span class="panel-icon px-4">
+        <i class="fas fa-chevron-right" aria-hidden="true"></i>
+    </span>
+    <span class="pl-2">
+    @{
+        MarkupString messageMarkup = new(Message.Text);
+        <span>
+            @messageMarkup
+        </span>
+        @if (Message.IsEdit)
+        {
+            <span class="pl-2">
+                <span class="tag is-success-dark">edited</span>
+            </span>
+        }
+    }
+    </span>
+</a>
+
+@code {
+    private string _dynamicCss
+    {
+        get
+        {
+            return string.Join(" ", GetStyles()).Trim();
+
+            IEnumerable<string> GetStyles()
+            {
+                if (!IsEditable)
+                    yield return "is-unselectable";
+
+                if (Message.IsGreeting)
+                    yield return "greeting";
+            };
+        }
+    }
+
+    [Parameter, EditorRequired]
+    public bool IsEditable { get; set; }
+
+    [Parameter, EditorRequired]
+    public ActorMessage Message { get; set; } = null!;
+
+    [Parameter, EditorRequired]
+    public EventCallback<ActorMessage> EditMessage { get; set; }
+
+    private async Task StartEditAsync()
+    {
+        if (EditMessage.HasDelegate)
+        {
+            EditMessage.InvokeAsync(Message);
+        }
+    }
+}
