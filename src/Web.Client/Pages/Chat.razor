@@ -1,73 +1,75 @@
 ﻿<!--  Copyright (c) 2021 David Pine. All rights reserved.
       Licensed under the MIT License.
 -->
-
 @page "/chat/{room?}"
 @attribute [Authorize]
 @inherits LocalizableComponentBase<Chat>
 
 <PageTitle>
-	@Localizer["Chat"]
+    @Localizer["Chat"]
 </PageTitle>
 
 <AuthorizeView>
-	@if (User is { Identity: { } } user)
+    @if (User is { Identity: { } } user)
     {
         <div class="is-hidden">@user.Identity.Name</div>
     }
- </AuthorizeView>
+    </AuthorizeView>
 
-<div class="columns">
-    <section class="column is-10 is-offset-1">
-        <div class="field has-addons">
-            <div class="control is-fullwidth has-icons-left">
-                <input class="input is-large" spellcheck="true"
-				    type="text" placeholder=@Localizer["ChatMessage"]
-				    @ref="_messageInput"
-				    @bind-value="@_message" @oninput="@InitiateDebounceUserIsTyping"
-				    @onkeyup="@(args => OnKeyUp(args))" autocomplete="off">
-                <span class="icon is-small is-left">
-                    <i class="fas">💬</i>
-                </span>
-            </div>
-            <div class="control">
-                <a class="button is-info is-large" @onclick="@SendMessage">
-                    @Localizer["Send"]
-                </a>
-            </div>
-        </div>
-
-        <article class="panel is-info has-dotnet-scrollbar">
-            <p class="panel-heading has-text-left">
-                <span>
-                    @Localizer["Messages"]
-                </span>
-                <span class="is-pulled-right">
-                @{
-                    string UsersTypingText(string[]? usersTyping) => usersTyping?.Length switch
-                    {
-                        0 => "&nbsp;",
-                        1 => $"💬 {Localizer["UserIsTypingFormat", usersTyping[0]]}",
-                        2 => $"💬 {Localizer["TwoUsersAreTypingFormat", usersTyping[0], usersTyping[1]]}",
-                        _ => $"💬 {Localizer["MultiplePeopleAreTyping"]}"
-                    };
-
-                    var usersTyping = _usersTyping?.Select(a => a.UserName)?.ToArray();
-                    MarkupString isTypingMarkup = new(UsersTypingText(usersTyping));
-
-                    <span class="has-text-grey-light @(_usersTyping is { Count: > 0 } ? "is-flashing" : "")">
-                        @isTypingMarkup
+    <div class="columns">
+        <section class="column is-10 is-offset-1">
+            <div class="field has-addons">
+                <div class="control is-fullwidth has-icons-left">
+                    <input class="input is-large" spellcheck="true"
+                       type="text" placeholder=@Localizer["ChatMessage"]
+                       @ref="_messageInput"
+                       @bind-value="@_message" @oninput="@InitiateDebounceUserIsTyping"
+                       @onkeyup="@(args => OnKeyUp(args))" autocomplete="off">
+                    <span class="icon is-small is-left">
+                        <i class="fas">💬</i>
                     </span>
-                }
+                </div>
+                <div class="control">
+                    <a class="button is-info is-large" @onclick="@SendMessage">
+                        @Localizer["Send"]
+                    </a>
+                </div>
+            </div>
+
+            <article class="panel is-info has-dotnet-scrollbar">
+                <p class="panel-heading has-text-left">
+                    <span>
+                        @Localizer["Messages"]
+                    </span>
+                    <span class="is-pulled-right">
+                    @{
+                        string? UsersTypingText(string[]? usersTyping) =>
+                            usersTyping?.Length switch
+                            {
+                                0 or null => null,
+                                1 => $"💬 {Localizer["UserIsTypingFormat", usersTyping[0]]}",
+                                2 => $"💬 {Localizer["TwoUsersAreTypingFormat", usersTyping[0], usersTyping[1]]}",
+                                _ => $"💬 {Localizer["MultiplePeopleAreTyping"]}"
+                            };
+
+                        var usersTyping = _usersTyping?.Select(a => a.UserName)?.ToArray();
+                        if (UsersTypingText(usersTyping) is { } text)
+                        {
+                            MarkupString isTypingMarkup = new();
+
+                            <span class="has-text-grey-light is-flashing">
+                                @isTypingMarkup
+                            </span>
+                        }
+                    }
                 </span>
             </p>
 
             @foreach (var (id, message) in _messages.Reverse())
             {
-                <ChatMessageComponent
-                    Message=message
-                    IsEditable=@OwnsMessage(message.UserName)
-                    EditMessage=OnEditMessage />
+                <ChatMessageComponent Message=@message
+                                  IsEditable=@(OwnsMessage(message.UserName))
+                                  EditMessage=@OnEditMessage />
             }
         </article>
     </section>
