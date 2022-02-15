@@ -14,7 +14,7 @@
     {
         <div class="is-hidden">@user.Identity.Name</div>
     }
-    </AuthorizeView>
+</AuthorizeView>
 
     <div class="columns">
         <section class="column is-10 is-offset-1">
@@ -68,8 +68,8 @@
             @foreach (var (id, message) in _messages.Reverse())
             {
                 <ChatMessageComponent Message=@message
-                                  IsEditable=@(OwnsMessage(message.UserName))
-                                  EditMessage=@OnEditMessage />
+                    IsEditable=@(OwnsMessage(message.UserName))
+                    EditMessage=@OnEditMessage />
             }
         </article>
     </section>
