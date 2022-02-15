@@ -53,7 +53,7 @@
     {
         if (EditMessage.HasDelegate)
         {
-            EditMessage.InvokeAsync(Message);
+            await EditMessage.InvokeAsync(Message);
         }
     }
 }
