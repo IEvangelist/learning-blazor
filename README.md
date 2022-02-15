@@ -7,6 +7,33 @@
 
 This repository is the application detailed in the "Learning Blazor: Build Single-Page Apps with WebAssembly and C#" O'Reilly Media book by David Pine.
 
+## Architecture
+
+_**The following is an ASP.NET Core hosting diagram:**_
+
+```mermaid
+graph LR;
+    A("fa:fa-globe-americas Internet")==HTTP===B("fa:fa-arrows-alt-h Reverse Proxy (IIS, Nginx, Apache)");
+    B==HTTP===C("fa:fa-server Kestrel");
+    C==HttpContext===D("fa:fa-code Application Code");
+    classDef d stroke-dasharray:5,5;
+    classDef b stroke:#000,stroke-width:2px;
+    classDef blue fill:#33a1ff;
+    classDef orange fill:#f37f1c;
+    classDef cyan fill:#800080;
+    class A b
+    class A d
+    class B cyan
+    class B b
+    class C orange
+    class C b
+    class D blue
+    class D b
+```
+
+> Powered by Mermaid.js
+> &mdash; [🔗 Include diagrams in your Markdown files with Mermaid](https://github.blog/2022-02-14-include-diagrams-markdown-files-mermaid/)
+
 ## Home screen (dark theme)
 
 ![Learning Blazor: Home screen (dark theme)](images/home-screen-dark.png)
