@@ -16,12 +16,12 @@ namespace Learning.Blazor.Pages
 
         public Chat() => _debounceTimer.Elapsed += OnDebounceElapsed;
 
-        async Task InitiateDebounceUserIsTypingAsync()
+        Task InitiateDebounceUserIsTypingAsync()
         {
             _debounceTimer.Stop();
             _debounceTimer.Start();
 
-            await SetIsTypingAsync(true);
+            return SetIsTypingAsync(true);
         }
 
         Task OnUserTypingAsync(Notification<ActorAction> actorAction) =>
@@ -35,14 +35,14 @@ namespace Learning.Blazor.Pages
                 StateHasChanged();
             });
 
-        async Task SetIsTypingAsync(bool isTyping)
+        Task SetIsTypingAsync(bool isTyping)
         {
             if (_isTyping && isTyping)
             {
-                return;
+                return Task.CompletedTask;
             }
 
-            await HubConnection.ToggleUserTypingAsync(
+            return HubConnection.ToggleUserTypingAsync(
                 _isTyping = isTyping);
         }
 
