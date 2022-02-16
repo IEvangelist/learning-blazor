@@ -26,8 +26,14 @@ namespace Learning.Blazor.Pages
 
             await HubConnection.StartAsync();
             await HubConnection.JoinChatAsync(Room ?? DefaultRoomName);
+        }
 
-            await _messageInput.FocusAsync();
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            if (firstRender)
+            {
+                await _messageInput.FocusAsync();
+            }
         }
 
         async ValueTask IAsyncDisposable.DisposeAsync()

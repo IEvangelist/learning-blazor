@@ -4,12 +4,14 @@
 global using System.Collections.Concurrent;
 global using System.ComponentModel.DataAnnotations;
 global using System.Diagnostics;
+global using System.Diagnostics.CodeAnalysis;
 global using System.Globalization;
 global using System.Linq.Expressions;
 global using System.Net.Http.Json;
 global using System.Security.Claims;
 global using System.Text.Json.Serialization;
 global using System.Timers;
+global using SystemTimerAlias = System.Timers.Timer;
 global using HaveIBeenPwned.Client.Abstractions;
 global using Learning.Blazor;
 global using Learning.Blazor.Abstractions.RealTime;
