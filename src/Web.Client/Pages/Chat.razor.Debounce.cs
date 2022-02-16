@@ -5,10 +5,7 @@ namespace Learning.Blazor.Pages
 {
     public sealed partial class Chat
     {
-        private readonly HashSet<Actor> _usersTyping = new()
-        {
-            new("Carol"), new("Chad")
-        };
+        private readonly HashSet<Actor> _usersTyping = new();
 
         private readonly SystemTimerAlias _debounceTimer = new()
         {

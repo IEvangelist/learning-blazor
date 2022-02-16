@@ -7,8 +7,8 @@ namespace Learning.Blazor.Pages
     {
         private EditContext _editContext = null!;
         private ContactComponentModel _model = new();
-        private InputText _emailInput = null!;
-        private InputText _firstNameInput = null!;
+        private ElementReference _emailInput;
+        private ElementReference _firstNameInput;
         private VerificationModalComponent _modalComponent = null!;
         private bool _isEmailReadonly = false;
         private bool _isMessageReadonly = false;
@@ -42,8 +42,7 @@ namespace Learning.Blazor.Pages
             if (firstRender)
             {
                 var input = _isEmailReadonly ? _firstNameInput : _emailInput;
-                await (input?.Element?.FocusAsync(preventScroll: true)
-                    ?? ValueTask.CompletedTask);
+                await input.FocusAsync(preventScroll: true);
             }
         }
 
