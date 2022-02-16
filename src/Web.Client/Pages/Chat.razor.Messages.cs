@@ -34,18 +34,20 @@ namespace Learning.Blazor.Pages
 
         async Task SendMessageAsync()
         {
-            _isSending = true;
+            if (_isSending || _message is null or { Length: 0 })
+            {
+                return;
+            }
 
             try
             {
-                if (_message is { Length: > 0 })
-                {
-                    await HubConnection.PostOrUpdateMessageAsync(
+                _isSending = true;
+
+                await HubConnection.PostOrUpdateMessageAsync(
                         Room ?? DefaultRoomName, _message, _messageId);
 
-                    _message = null;
-                    _messageId = null;
-                }
+                _message = null;
+                _messageId = null;
             }
             finally
             {
