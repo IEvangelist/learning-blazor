@@ -44,7 +44,7 @@ namespace Learning.Blazor.Pages
                 _isSending = true;
 
                 await HubConnection.PostOrUpdateMessageAsync(
-                        Room ?? DefaultRoomName, _message, _messageId);
+                    Room ?? DefaultRoomName, _message, _messageId);
 
                 _message = null;
                 _messageId = null;
