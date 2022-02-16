@@ -336,6 +336,27 @@ input[type=checkbox].is-large {
     }
 }
 
+.is-strobing {
+    animation: strobe ease-out 1.25s infinite;
+}
+
+@keyframes strobe {
+    0% {
+        opacity: .3;
+        filter: brightness(.75);
+    }
+
+    50% {
+        opacity: 1;
+        filter: brightness(1.25);
+    }
+
+    100% {
+        opacity: .3;
+        filter: brightness(.75);
+    }
+}
+
 .panel {
     max-height: calc(100vh - 25rem);
     overflow-x: auto;

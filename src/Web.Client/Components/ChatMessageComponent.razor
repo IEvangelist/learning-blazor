@@ -51,7 +51,7 @@
 
     private async Task StartEditAsync()
     {
-        if (EditMessage.HasDelegate)
+        if (IsEditable && EditMessage.HasDelegate)
         {
             await EditMessage.InvokeAsync(Message);
         }

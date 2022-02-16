@@ -47,7 +47,7 @@
                     @if (TryGetUsersTypingText(out var text))
                     {
                         MarkupString isTypingMarkup = new(text);
-                        <span class="has-text-grey-light is-flashing">
+                        <span class="has-text-grey-light is-strobing">
                             @isTypingMarkup
                         </span>
                     }

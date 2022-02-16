@@ -35,7 +35,7 @@ public partial class NotificationHub
                 new(
                     Id: Guid.NewGuid(),
                     Text: _localizer["WelcomeToChatRoom", room],
-                    UserName: "👋",
+                    UserName: "🤖",
                     IsGreeting: true)));
     }
 
