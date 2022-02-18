@@ -26,11 +26,19 @@ namespace Learning.Blazor.Pages
                     StateHasChanged();
                 });
 
-        Task OnKeyUpAsync(KeyboardEventArgs args) => (_isSending, args) switch
+        Task OnKeyUpAsync(KeyboardEventArgs args)
         {
-            (false, { Key: "Enter" } and { Code: "Enter" }) => SendMessageAsync(),
-            _ => Task.CompletedTask
-        };
+            if (_isSending)
+            {
+                return Task.CompletedTask;
+            }
+
+            return args switch
+            {
+                { Key: "Enter" } => SendMessageAsync(),
+                _ => Task.CompletedTask
+            };
+        }
 
         async Task SendMessageAsync()
         {
