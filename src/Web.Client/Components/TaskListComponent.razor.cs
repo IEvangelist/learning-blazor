@@ -48,7 +48,7 @@ namespace Learning.Blazor.Components
                     "api/todo", todo);
 
                 response.EnsureSuccessStatusCode();
-                
+
                 await completionCallback(
                     todo, TodoItemAction.Updated);
 

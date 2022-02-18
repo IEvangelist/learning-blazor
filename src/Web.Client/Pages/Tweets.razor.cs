@@ -43,7 +43,7 @@ namespace Learning.Blazor.Pages
                 {
                     _streamingStatus = status;
                     StateHasChanged();
-                }                
+                }
             });
 
         private Task OnTweetReceivedAsync(Notification<TweetContents> tweet) =>
@@ -53,7 +53,7 @@ namespace Learning.Blazor.Pages
                 {
                     _tweets[tweet.Payload.Id] = tweet;
                     StateHasChanged();
-                }                
+                }
             });
 
         private Task OnTweetsLoadedAsync(Notification<List<TweetContents>> tweets) =>

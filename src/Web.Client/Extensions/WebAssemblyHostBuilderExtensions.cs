@@ -10,7 +10,7 @@ internal static class WebAssemblyHostBuilderExtensions
     {
         var (services, configuration) =
             (builder.Services, builder.Configuration);
-;
+        ;
         services.AddScoped<ApiAccessAuthorizationMessageHandler>();
         services.Configure<WebApiOptions>(
             configuration.GetSection(nameof(WebApiOptions)));
@@ -38,7 +38,7 @@ internal static class WebAssemblyHostBuilderExtensions
             })
             .AddHttpMessageHandler<ApiAccessAuthorizationMessageHandler>();
 
-        _= addHttpClient(
+        _ = addHttpClient(
             HttpClientNames.ServerApi,
             options => options?.WebApiServerUrl);
         _ = addHttpClient(

@@ -3,8 +3,8 @@
 
 using Learning.Blazor.LocalStorage;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.JSInterop.WebAssembly;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.JSInterop.WebAssembly;
 
 namespace Learning.Blazor.Extensions
 {

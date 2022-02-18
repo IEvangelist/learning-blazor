@@ -30,7 +30,7 @@ namespace Learning.Blazor.Components
             {
                 _isSaving = true;
                 return OnHandleAsync(TodoUpdated);
-            }            
+            }
         }
 
         private async Task OnHandleAsync(

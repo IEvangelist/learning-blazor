@@ -9,7 +9,7 @@ public interface ILocalStorage
 
     ValueTask RemoveAsync(string key);
 
-    ValueTask<TItem?> GetAsync<TItem>(string key) where TItem: class;
+    ValueTask<TItem?> GetAsync<TItem>(string key) where TItem : class;
 
     ValueTask SetAsync<TItem>(string key, TItem item) where TItem : class;
 }

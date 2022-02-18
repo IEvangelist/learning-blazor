@@ -19,7 +19,7 @@ namespace Learning.Blazor.Components
             var clientVoicePreference =
                 await LocalStorage.GetAsync<ClientVoicePreference>(StorageKeys.ClientVoice);
             if (clientVoicePreference is not null)
-            {                
+            {
                 (_voice, _voiceSpeed) =
                     AppState.ClientVoicePreference = clientVoicePreference;
             }

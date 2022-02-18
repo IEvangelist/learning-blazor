@@ -14,7 +14,7 @@ public static class ServiceCollectionExtensions
 
         services.AddScoped<IJokeService, ProgrammingJokeService>();
         services.AddScoped<IJokeService, DadJokeService>();
-        services.AddScoped<IJokeService, ChuckNorrisJokeService>();            
+        services.AddScoped<IJokeService, ChuckNorrisJokeService>();
 
         services.AddHttpClient<ProgrammingJokeService>()
             .AddDefaultTransientHttpErrorPolicy();

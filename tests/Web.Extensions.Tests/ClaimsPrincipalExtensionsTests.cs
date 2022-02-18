@@ -28,7 +28,7 @@ namespace Learning.Blazor.Extensions.Tests
         [
             Theory,
             InlineData("emails", "test@email.org", new[] { "test@email.org" }),
-            InlineData("emails", @"[""admin@email.org"",""test@email.org""]", new[] { "admin@email.org" , "test@email.org" }),
+            InlineData("emails", @"[""admin@email.org"",""test@email.org""]", new[] { "admin@email.org", "test@email.org" }),
             InlineData("email", @"[""admin@email.org"",""test@email.org""]", null),
             InlineData("emails", null, null),
         ]

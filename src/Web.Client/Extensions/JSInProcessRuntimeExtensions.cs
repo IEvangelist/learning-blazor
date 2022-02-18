@@ -12,7 +12,7 @@ public static class JSInProcessRuntimeExtensions
         string onStartMethodName,
         string onEndMethodName,
         string onErrorMethodName,
-        string onRecognizedMethodName) where TComponent: class =>
+        string onRecognizedMethodName) where TComponent : class =>
         jsRuntime.InvokeVoid(
             "app.recognizeSpeech",
             DotNetObjectReference.Create(component),

@@ -28,7 +28,7 @@ public partial class NotificationHub : Hub
         Clients.All.SendAsync(
             HubServerEventNames.UserLoggedOut,
             Notification<Actor>.FromAlert(
-                new(UserName: _userName )));
+                new(UserName: _userName)));
 
     /* Additional notification hub functionality 
      * defined in TwitterWorkerService.cs:
