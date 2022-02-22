@@ -3,12 +3,8 @@ name: Build
 on:
   push:
     branches: [ main ]
-    paths:
-    - '**.cs'
-    - '**.css'
-    - '**.json'
-    - '**.razor'
-    - '**.csproj'
+    paths-ignore:
+    - '**.md'
   workflow_dispatch:
     inputs:
       reason:

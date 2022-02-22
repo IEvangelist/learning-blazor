@@ -20,10 +20,10 @@ namespace Learning.Blazor.Pages
                 {
                     _messages[message.Payload.Id] = message;
 
-                    await JavaScript.ScrollIntoViewAsync(
-                        $"#{message.Payload.Id}");
-
                     StateHasChanged();
+
+                    await JavaScript.ScrollIntoViewAsync(
+                        $"[id='{message.Payload.Id}']");
                 });
 
         Task OnKeyUpAsync(KeyboardEventArgs args)
@@ -42,7 +42,7 @@ namespace Learning.Blazor.Pages
 
         async Task SendMessageAsync()
         {
-            if (_isSending || _message is null or { Length: 0 })
+            if (_isSending || string.IsNullOrWhiteSpace(_message))
             {
                 return;
             }

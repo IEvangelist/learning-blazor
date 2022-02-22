@@ -7,7 +7,9 @@ namespace Learning.Blazor.Components
     {
         private readonly Stack<IDisposable> _subscriptions = new();
 
-        private HashSet<NotificationComponentModel> _notifications = new();
+        private HashSet<NotificationComponentModel> _notifications =
+            new(NotificationComponentModelComparer.Instance);
+
         private bool _show = false;
         private DateTime? _latestNotificationDateTime = null!;
 

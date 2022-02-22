@@ -49,16 +49,15 @@ namespace Learning.Blazor.Pages
         bool TryGetUsersTypingText(
             [NotNullWhen(true)] out string? text)
         {
-            var ut = _usersTyping
+            var users = _usersTyping
                 ?.Select(a => a.UserName)
                 ?.ToArray();
 
-            text = ut?.Length switch
+            text = users?.Length switch
             {
                 0 or null => null,
-
-                1 => $"💬 {Localizer["UserIsTypingFormat", ut[0]]}",
-                2 => $"💬 {Localizer["TwoUsersAreTypingFormat", ut[0], ut[1]]}",
+                1 => $"💬 {Localizer["UserIsTypingFormat", users[0]]}",
+                2 => $"💬 {Localizer["TwoUsersAreTypingFormat", users[0], users[1]]}",
                 _ => $"💬 {Localizer["MultiplePeopleAreTyping"]}"
             };
 
