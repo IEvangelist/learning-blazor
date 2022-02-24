@@ -17,7 +17,7 @@ namespace Learning.Blazor.Components
         protected override async Task OnInitializedAsync()
         {
             var clientVoicePreference =
-                await LocalStorage.GetAsync<ClientVoicePreference>(StorageKeys.ClientVoice);
+                LocalStorage.Get<ClientVoicePreference>(StorageKeys.ClientVoice);
             if (clientVoicePreference is not null)
             {
                 (_voice, _voiceSpeed) =
@@ -53,7 +53,7 @@ namespace Learning.Blazor.Components
             AppState.ClientVoicePreference =
                 new ClientVoicePreference(_voice, _voiceSpeed);
 
-            await LocalStorage.SetAsync(
+            LocalStorage.Set(
                 StorageKeys.ClientVoice, AppState.ClientVoicePreference);
 
             await _modal.ConfirmAsync();

@@ -3,7 +3,7 @@
 
 namespace Learning.Blazor.LocalStorage;
 
-public record Bit(bool IsSet)
+public record class Bit(bool IsSet)
 {
     public static implicit operator Bit(bool isSet) =>
         new(isSet);

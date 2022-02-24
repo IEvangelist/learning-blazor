@@ -12,21 +12,20 @@ internal sealed class SynchronousBrowserLocalStorage : ISynchronousLocalStorage
     private readonly ILogger<SynchronousBrowserLocalStorage> _logger;
 
     public SynchronousBrowserLocalStorage(
-        IJSInProcessRuntime jSRuntime, ILogger<SynchronousBrowserLocalStorage> logger) =>
+        IJSInProcessRuntime jSRuntime,
+        ILogger<SynchronousBrowserLocalStorage> logger) =>
         (_jSRuntime, _logger) = (jSRuntime, logger);
 
     void ISynchronousLocalStorage.Clear() =>
-        _jSRuntime.InvokeVoid(NativeLocalStorageWebApi.Clear);
+        _jSRuntime.Clear();
 
     void ISynchronousLocalStorage.Remove(string key) =>
-        _jSRuntime.InvokeVoid(NativeLocalStorageWebApi.RemoveItem, key);
+        _jSRuntime.RemoveItem(key);
 
     TItem? ISynchronousLocalStorage.Get<TItem>(string key)
         where TItem : class
     {
-        var json =
-            _jSRuntime.Invoke<string?>(
-                NativeLocalStorageWebApi.GetItem, key);
+        var json = _jSRuntime.GetItem(key);
 
         return json switch
         {
@@ -41,8 +40,7 @@ internal sealed class SynchronousBrowserLocalStorage : ISynchronousLocalStorage
         var json = item.TryToJson(_logger);
         if (json is not null)
         {
-            _jSRuntime.InvokeVoid(
-                NativeLocalStorageWebApi.SetItem, key, json);
+            _jSRuntime.SetItem(key, json);
         }
     }
 }

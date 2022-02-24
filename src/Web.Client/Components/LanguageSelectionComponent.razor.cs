@@ -40,7 +40,7 @@ namespace Learning.Blazor.Components
 
             if (forceRefresh)
             {
-                await LocalStorage.SetAsync(
+                LocalStorage.Set(
                     StorageKeys.ClientCulture, _selectedCulture!.Name);
             }
 
