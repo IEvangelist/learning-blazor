@@ -22,26 +22,18 @@ internal sealed class BrowserLocalStorage : ILocalStorage
         _jSRuntime.InvokeVoidAsync(NativeLocalStorageWebApi.RemoveItem, key);
 
     async ValueTask<TItem?> ILocalStorage.GetAsync<TItem>(string key)
-         where TItem : class
-    {
-        var json =
-            await _jSRuntime.InvokeAsync<string?>(
-                NativeLocalStorageWebApi.GetItem, key);
-
-        return json switch
+        where TItem : class =>
+        await _jSRuntime.InvokeAsync<string?>(
+            NativeLocalStorageWebApi.GetItem, key) switch
         {
-            { Length: > 0 } => json.TryFromJson<TItem>(_logger),
+            { Length: > 0 } json => json.TryFromJson<TItem>(_logger),
             _ => default
         };
-    }
 
     ValueTask ILocalStorage.SetAsync<TItem>(string key, TItem item)
-         where TItem : class
-    {
-        var json = item.TryToJson(_logger);
-        return json is not null
+        where TItem : class =>
+        item.TryToJson(_logger) is { } json
             ? _jSRuntime.InvokeVoidAsync(
                 NativeLocalStorageWebApi.SetItem, key, json)
             : ValueTask.CompletedTask;
-    }
 }

@@ -23,22 +23,17 @@ internal sealed class SynchronousBrowserLocalStorage : ISynchronousLocalStorage
         _jSRuntime.RemoveItem(key);
 
     TItem? ISynchronousLocalStorage.Get<TItem>(string key)
-        where TItem : class
-    {
-        var json = _jSRuntime.GetItem(key);
-
-        return json switch
+        where TItem : class =>
+        _jSRuntime.GetItem(key) switch
         {
-            { Length: > 0 } => json.TryFromJson<TItem>(_logger),
+            { Length: > 0 } json => json.TryFromJson<TItem>(_logger),
             _ => default
         };
-    }
 
     void ISynchronousLocalStorage.Set<TItem>(string key, TItem item)
         where TItem : class
     {
-        var json = item.TryToJson(_logger);
-        if (json is not null)
+        if (item.TryToJson(_logger) is { } json)
         {
             _jSRuntime.SetItem(key, json);
         }
