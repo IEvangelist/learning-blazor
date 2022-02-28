@@ -5,7 +5,9 @@
 [![Deploy Static Web App](https://github.com/IEvangelist/learning-blazor/actions/workflows/deploy-az-static-webapp.yml/badge.svg)](https://github.com/IEvangelist/learning-blazor/actions/workflows/deploy-az-static-webapp.yml)
 [![Deploy Weather Function](https://github.com/IEvangelist/learning-blazor/actions/workflows/deploy-az-func.yml/badge.svg)](https://github.com/IEvangelist/learning-blazor/actions/workflows/deploy-az-func.yml) [![Deploy Web API](https://github.com/IEvangelist/learning-blazor/actions/workflows/deploy-az-webapi.yml/badge.svg)](https://github.com/IEvangelist/learning-blazor/actions/workflows/deploy-az-webapi.yml) [![Deploy Pwned Web API](https://github.com/IEvangelist/learning-blazor/actions/workflows/deploy-az-pwnedapi.yml/badge.svg)](https://github.com/IEvangelist/learning-blazor/actions/workflows/deploy-az-pwnedapi.yml)
 
-This repository is the application detailed in the "Learning Blazor: Build Single-Page Apps with WebAssembly and C#" O'Reilly Media book by David Pine.
+This repository is the application detailed in the ["Learning Blazor: Build Single-Page Apps with WebAssembly and C#"][learning-blazor] O'Reilly Media book by David Pine.
+
+[learning-blazor]: https://bit.ly/learning-blazor
 
 ## Architecture
 
