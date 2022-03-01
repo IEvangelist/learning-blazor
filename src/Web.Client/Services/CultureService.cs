@@ -18,6 +18,11 @@ public class CultureService
 
     public CultureService(ILogger<CultureService> logger) => _logger = logger;
 
+    public string GetCultureTwoLetterRegionName(CultureInfo? culture = null) =>
+        (culture is null ? CurrentRegion : new RegionInfo(culture.LCID))
+            .TwoLetterISORegionName
+            .ToLowerInvariant();
+
     public IDictionary<CultureInfo, AzureCulture> MapClientSupportedCultures(
         IDictionary<string, AzureCulture>? azureCultures)
     {

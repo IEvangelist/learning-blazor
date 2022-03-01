@@ -23,11 +23,14 @@ namespace Learning.Blazor.Components
                 Culture.MapClientSupportedCultures(azureCultures?.Translation);
         }
 
-        private static string ToDisplayName(
+        private MarkupString ToDisplayName(
             KeyValuePair<CultureInfo, AzureCulture> culturePair)
         {
             var (culture, azureCulture) = culturePair;
-            return $"{azureCulture.Name} ({culture.Name})";
+            var flagEmoji =
+                $"<span class='fi fi-{Culture.GetCultureTwoLetterRegionName(culture)}'></span>";
+            return new(
+                $"{flagEmoji} {azureCulture.Name} ({culture.Name})");
         }
 
         private Task ShowAsync() => _modal.ShowAsync();
