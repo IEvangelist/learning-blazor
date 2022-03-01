@@ -10,7 +10,11 @@ public static class ServiceCollectionExtensions
     {
         services.AddLogging();
 
-        return services.AddSingleton<ILocalStorage, BrowserLocalStorage>()
-                .AddSingleton<ISynchronousLocalStorage, SynchronousBrowserLocalStorage>();
+        services.AddSingleton<
+            ILocalStorage, BrowserLocalStorage>();
+        services.AddSingleton<
+            ISynchronousLocalStorage, SynchronousBrowserLocalStorage>();
+
+        return services;
     }
 }

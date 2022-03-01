@@ -16,11 +16,11 @@ internal sealed class SynchronousBrowserLocalStorage : ISynchronousLocalStorage
         ILogger<SynchronousBrowserLocalStorage> logger) =>
         (_jSRuntime, _logger) = (jSRuntime, logger);
 
-    void ISynchronousLocalStorage.Clear() =>
-        _jSRuntime.Clear();
+    string? ISynchronousLocalStorage.Key(double index) => _jSRuntime.Key(index);
 
-    void ISynchronousLocalStorage.Remove(string key) =>
-        _jSRuntime.RemoveItem(key);
+    void ISynchronousLocalStorage.Clear() => _jSRuntime.Clear();
+
+    void ISynchronousLocalStorage.Remove(string key) => _jSRuntime.RemoveItem(key);
 
     TItem? ISynchronousLocalStorage.Get<TItem>(string key)
         where TItem : class =>

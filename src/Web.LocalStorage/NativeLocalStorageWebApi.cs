@@ -11,7 +11,7 @@ internal class NativeLocalStorageWebApi
     /// The fully qualified method name of the
     /// corresponding: <code>localStorage.clear();</code>
     /// value for JavaScript interop.
-    /// See: <a href="https://developer.mozilla.org/en-US/docs/Web/API/Storage/clear"></a>
+    /// See: <a href="https://developer.mozilla.org/docs/Web/API/Storage/clear"></a>
     /// </summary>
     internal const string Clear = $"{LocalStorage}.clear";
 
@@ -19,7 +19,7 @@ internal class NativeLocalStorageWebApi
     /// The fully qualified method name of the
     /// corresponding: <code>localStorage.removeItem(DOMString: keyName);</code>
     /// value for JavaScript interop.
-    /// See: <a href="https://developer.mozilla.org/en-US/docs/Web/API/Storage/removeItem"></a>
+    /// See: <a href="https://developer.mozilla.org/docs/Web/API/Storage/removeItem"></a>
     /// </summary>
     internal const string RemoveItem = $"{LocalStorage}.removeItem";
 
@@ -27,7 +27,7 @@ internal class NativeLocalStorageWebApi
     /// The fully qualified method name of the
     /// corresponding: <code>localStorage.setItem(DOMString: keyName, DOMString keyValue);</code>
     /// value for JavaScript interop.
-    /// See: <a href="https://developer.mozilla.org/en-US/docs/Web/API/Storage/setItem"></a>
+    /// See: <a href="https://developer.mozilla.org/docs/Web/API/Storage/setItem"></a>
     /// </summary>
     internal const string SetItem = $"{LocalStorage}.setItem";
 
@@ -35,7 +35,7 @@ internal class NativeLocalStorageWebApi
     /// The fully qualified method name of the
     /// corresponding: <code>localStorage.getItem(DOMString: keyName);</code>
     /// value for JavaScript interop.
-    /// See: <a href="https://developer.mozilla.org/en-US/docs/Web/API/Storage/getItem"></a>
+    /// See: <a href="https://developer.mozilla.org/docs/Web/API/Storage/getItem"></a>
     /// </summary>
     internal const string GetItem = $"{LocalStorage}.getItem";
 }
