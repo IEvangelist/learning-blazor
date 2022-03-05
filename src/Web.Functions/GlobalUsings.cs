@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 global using System.Net.Http.Json;
+global using Blazor.Serialization.Extensions;
 global using Learning.Blazor.Extensions;
 global using Learning.Blazor.Functions;
 global using Learning.Blazor.Functions.Extensions;

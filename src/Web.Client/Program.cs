@@ -14,5 +14,5 @@ builder.ConfigureServices();
 
 await using var host = builder.Build();
 
-await host.TrySetDefaultCultureAsync();
+host.TrySetDefaultCulture();
 await host.RunAsync();

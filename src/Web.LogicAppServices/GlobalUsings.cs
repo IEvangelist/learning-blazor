@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 global using System.Text;
-global using Learning.Blazor.Extensions;
+global using Blazor.Serialization.Extensions;
 global using Learning.Blazor.LogicAppServices.Options;
 global using Microsoft.Extensions.Configuration;
 global using Microsoft.Extensions.DependencyInjection;

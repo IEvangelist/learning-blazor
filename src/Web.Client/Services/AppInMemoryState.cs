@@ -5,14 +5,14 @@ namespace Learning.Blazor.Services;
 
 public class AppInMemoryState
 {
-    private readonly ISynchronousLocalStorage _localStorage;
+    private readonly IJSInProcessRuntime _javaScript;
     private string? _frameworkDescription;
     private ClientVoicePreference _clientVoicePreference =
         new("Auto", 1);
     private bool? _isDarkTheme;
 
-    public AppInMemoryState(ISynchronousLocalStorage localStorage) =>
-        _localStorage = localStorage;
+    public AppInMemoryState(IJSInProcessRuntime javaScript) =>
+        _javaScript = javaScript;
 
     public string? FrameworkDescription
     {
@@ -40,14 +40,14 @@ public class AppInMemoryState
         {
             if (_isDarkTheme is null)
             {
-                _isDarkTheme = _localStorage.Get<Bit>(StorageKeys.PrefersDarkTheme)?.IsSet ?? false;
+                _isDarkTheme = _javaScript.GetItem<bool>(StorageKeys.PrefersDarkTheme);
             }
 
             return _isDarkTheme.GetValueOrDefault();
         }
         set
         {
-            _localStorage.Set<Bit>(StorageKeys.PrefersDarkTheme, value);
+            _javaScript.SetItem(StorageKeys.PrefersDarkTheme, value);
             _isDarkTheme = value;
 
             AppStateChanged();

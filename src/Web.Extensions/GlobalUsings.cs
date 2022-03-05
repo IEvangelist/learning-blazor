@@ -7,4 +7,4 @@ global using System.Linq;
 global using System.Security.Claims;
 global using System.Text.Json;
 global using System.Text.Json.Serialization;
-global using static System.Text.Json.JsonSerializer;
+global using Blazor.Serialization.Extensions;

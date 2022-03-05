@@ -5,10 +5,10 @@ namespace Learning.Blazor.Extensions;
 
 internal static class WebAssemblyHostExtensions
 {
-    internal static async Task TrySetDefaultCultureAsync(this WebAssemblyHost host)
+    internal static void TrySetDefaultCulture(this WebAssemblyHost host)
     {
-        var localStorage = host.Services.GetRequiredService<ILocalStorage>();
-        var clientCulture = await localStorage.GetAsync<string>(StorageKeys.ClientCulture);
+        var javaScript = host.Services.GetRequiredService<IJSInProcessRuntime>();
+        var clientCulture = javaScript.GetItem<string>(StorageKeys.ClientCulture);
         clientCulture ??= "en-US";
 
         try

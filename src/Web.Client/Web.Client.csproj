@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -22,7 +22,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="HaveIBeenPwned.Client.Abstractions" Version="2.0.0" />
+    <PackageReference Include="Blazor.LocalStorage.WebAssembly" Version="1.1.0" />
+    <PackageReference Include="Blazor.Serialization" Version="1.1.0" />
+    <PackageReference Include="HaveIBeenPwned.Client.Abstractions" Version="2.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.1" PrivateAssets="all" />
     <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="6.0.1" />
@@ -41,7 +43,6 @@
     <ProjectReference Include="..\Web.Abstractions\Web.Abstractions.csproj" />
     <ProjectReference Include="..\Web.Extensions\Web.Extensions.csproj" />
     <ProjectReference Include="..\Web.JokeServices\Web.JokeServices.csproj" />
-    <ProjectReference Include="..\Web.LocalStorage\Web.LocalStorage.csproj" />
     <ProjectReference Include="..\Web.TwitterComponents\Web.TwitterComponents.csproj" />
   </ItemGroup>
 

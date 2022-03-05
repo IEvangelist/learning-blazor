@@ -12,10 +12,7 @@ namespace Learning.Blazor.Components
         public ILogger<T> Logger { get; set; } = null!;
 
         [Inject]
-        public ISynchronousLocalStorage LocalStorage { get; set; } = null!;
-
-        [Inject]
-        public IJSRuntime JavaScript { get; set; } = null!;
+        public IJSInProcessRuntime JavaScript { get; set; } = null!;
 
         [Inject]
         public AppInMemoryState AppState { get; set; } = null!;
