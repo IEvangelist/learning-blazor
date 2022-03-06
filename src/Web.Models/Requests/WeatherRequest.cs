@@ -7,10 +7,10 @@ namespace Learning.Blazor.Models;
 
 public record class WeatherRequest
 {
-    [JsonPropertyName("lang")] public string Language { get; init; } = null!;
-    [JsonPropertyName("lat")] public decimal Latitude { get; init; }
-    [JsonPropertyName("lon")] public decimal Longitude { get; init; }
-    [JsonPropertyName("units")] public int Units { get; init; }
+    [JsonPropertyName("lang")] public string Language { get; set; } = null!;
+    [JsonPropertyName("lat")] public decimal Latitude { get; set; }
+    [JsonPropertyName("lon")] public decimal Longitude { get; set; }
+    [JsonPropertyName("units")] public int Units { get; set; }
     [JsonIgnore] public string Key => $"WR:{Language}:{Latitude}:{Longitude}:{Units}";
 
     /// <summary>

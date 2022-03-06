@@ -7,9 +7,9 @@ namespace Learning.Blazor.Models;
 
 public record class WeatherLanguage
 {
-    [JsonPropertyName("weatherLanguageId")] public string? WeatherLanguageId { get; init; } = null!;
-    [JsonPropertyName("name")] public string? Name { get; init; } = null!;
-    [JsonPropertyName("azureCultureId")] public string? AzureCultureId { get; init; } = null!;
+    [JsonPropertyName("weatherLanguageId")] public string? WeatherLanguageId { get; set; } = null!;
+    [JsonPropertyName("name")] public string? Name { get; set; } = null!;
+    [JsonPropertyName("azureCultureId")] public string? AzureCultureId { get; set; } = null!;
 
     public WeatherLanguage() { }
 
