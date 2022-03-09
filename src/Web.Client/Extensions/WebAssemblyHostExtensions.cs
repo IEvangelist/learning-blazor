@@ -7,8 +7,8 @@ internal static class WebAssemblyHostExtensions
 {
     internal static void TrySetDefaultCulture(this WebAssemblyHost host)
     {
-        var javaScript = host.Services.GetRequiredService<IJSInProcessRuntime>();
-        var clientCulture = javaScript.GetItem<string>(StorageKeys.ClientCulture);
+        var localStorage = host.Services.GetRequiredService<IJSInProcessRuntime>();
+        var clientCulture = localStorage.GetItem<string>(StorageKeys.ClientCulture);
         clientCulture ??= "en-US";
 
         try

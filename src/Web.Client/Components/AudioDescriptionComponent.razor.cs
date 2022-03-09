@@ -16,8 +16,9 @@ namespace Learning.Blazor.Components
 
         protected override async Task OnInitializedAsync()
         {
+            var localStorage = JavaScript;
             var clientVoicePreference =
-                JavaScript.GetItem<ClientVoicePreference>(StorageKeys.ClientVoice);
+                localStorage.GetItem<ClientVoicePreference>(StorageKeys.ClientVoice);
             if (clientVoicePreference is not null)
             {
                 (_voice, _voiceSpeed) =
@@ -53,8 +54,12 @@ namespace Learning.Blazor.Components
             AppState.ClientVoicePreference =
                 new ClientVoicePreference(_voice, _voiceSpeed);
 
-            JavaScript.SetItem(
+            var localStorage = JavaScript;
+            localStorage.SetItem(
                 StorageKeys.ClientVoice, AppState.ClientVoicePreference);
+            
+            Logger.LogInformation(
+                "There are {Length} item in localStorage.", localStorage.Length());
 
             await _modal.ConfirmAsync();
         }
