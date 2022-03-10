@@ -6,6 +6,9 @@ namespace Learning.Blazor.TwitterComponents.Components;
 public sealed partial class TweetsComponent : IAsyncDisposable
 {
     private IJSObjectReference? _twitterModule;
+    private TweetContents[] _filteredTweets =>
+        Tweets?.Where(TweetMatchesFilter).ToArray() ??
+        Array.Empty<TweetContents>();
 
     [Inject]
     public IJSRuntime JavaScript { get; set; } = null!;
@@ -30,13 +33,15 @@ public sealed partial class TweetsComponent : IAsyncDisposable
         }
     }
 
-    protected override async Task OnParametersSetAsync()
-    {
-        if (_twitterModule is not null)
+    protected override Task OnParametersSetAsync() =>
+        InvokeAsync(async () =>
         {
-            await _twitterModule.RenderTweetsAsync();
-        }
-    }
+            if (_twitterModule is not null)
+            {
+                await _twitterModule.RenderTweetsAsync();
+                StateHasChanged();
+            }
+        });
 
     private bool TweetMatchesFilter(TweetContents tweet)
     {

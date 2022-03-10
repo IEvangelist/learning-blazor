@@ -5,12 +5,9 @@
 @using Microsoft.AspNetCore.Components.Web.Virtualization
 
 <ul id="tweets" class="reversed no-bullets">
-    <Virtualize Items="Tweets" Context="tweet">
+    <Virtualize Items="_filteredTweets" Context="tweet">
         <ItemContent>
-            @{
-                var isHiddenClass = TweetMatchesFilter(tweet) ? "" : "is-hidden";
-            }
-            <li class="@isHiddenClass">
+            <li>
                 <TweetComponent Tweet=tweet />
             </li>
         </ItemContent>
