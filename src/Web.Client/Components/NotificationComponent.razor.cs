@@ -39,7 +39,7 @@ namespace Learning.Blazor.Components
         }
 
         protected override void OnParametersSet() =>
-            AppState.WeatherAlertRecieved ??= OnWeatherAlertReceived;
+            AppState.WeatherAlertReceived ??= OnWeatherAlertReceived;
 
         private Task OnUserLoggedInAsync(Notification<Actor> notification) =>
             InvokeAsync(async () =>

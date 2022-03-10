@@ -81,7 +81,7 @@ namespace Learning.Blazor.Components
                 {
                     if (weatherDetails is { Alerts: { Count: > 0 } })
                     {
-                        AppState.WeatherAlertRecieved?.Invoke(
+                        AppState.WeatherAlertReceived?.Invoke(
                             weatherDetails.Alerts);
                     }
 

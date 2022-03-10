@@ -3,6 +3,6 @@
 
 namespace Learning.Blazor.BrowserModels;
 
-public record ClientVoicePreference(
+public record class ClientVoicePreference(
     [property: JsonPropertyName("voice")] string Voice,
     [property: JsonPropertyName("voiceSpeed")] double VoiceSpeed);
