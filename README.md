@@ -6,6 +6,8 @@
 
 ## This app is deployed to: https://webassemblyof.net
 
+The app is a Blazor WebAssembly app, deployed to Azure as a Static Web app. It targets .NET 6, and it's packed full of C# 10 features.
+
 | Status | Description |
 |--:|:--|
 | [![build](https://github.com/IEvangelist/learning-blazor/actions/workflows/build-validation.yml/badge.svg)](https://github.com/IEvangelist/learning-blazor/actions/workflows/build-validation.yml) | Wether the current source code builds successfully, and all tests pass. |
@@ -16,33 +18,6 @@
 | [![Deploy Web API](https://github.com/IEvangelist/learning-blazor/actions/workflows/deploy-az-webapi.yml/badge.svg)](https://github.com/IEvangelist/learning-blazor/actions/workflows/deploy-az-webapi.yml) | The status of the last deployment of the Azure Web API. |
 | [![Deploy Pwned Web API](https://github.com/IEvangelist/learning-blazor/actions/workflows/deploy-az-pwnedapi.yml/badge.svg)](https://github.com/IEvangelist/learning-blazor/actions/workflows/deploy-az-pwnedapi.yml) | The status of the last deployment of the Azure Pwned Web API. |
 
-## Architecture
-
-_**The following is an ASP.NET Core hosting diagram:**_
-
-```mermaid
-graph LR;
-    A("fa:fa-globe-americas Internet")==HTTP===B("fa:fa-arrows-alt-h Reverse Proxy (IIS, Nginx, Apache)");
-    B==HTTP===C("fa:fa-server Kestrel");
-    C==HttpContext===D("fa:fa-code Application Code");
-    classDef d stroke-dasharray:5,5;
-    classDef b stroke:#000,stroke-width:2px;
-    classDef blue fill:#33a1ff;
-    classDef orange fill:#f37f1c;
-    classDef cyan fill:#800080;
-    class A b
-    class A d
-    class B cyan
-    class B b
-    class C orange
-    class C b
-    class D blue
-    class D b
-```
-
-> Powered by Mermaid.js
-> &mdash; [🔗 Include diagrams in your Markdown files with Mermaid](https://github.blog/2022-02-14-include-diagrams-markdown-files-mermaid/)
-
 ## Home screen (dark theme)
 
 ![Learning Blazor: Home screen (dark theme)](images/home-screen-dark.png)
@@ -51,11 +26,10 @@ graph LR;
 
 ![Learning Blazor: Home screen (light theme)](images/home-screen-light.png)
 
-Featuring:
+## Featuring
 
-- C# 10
-- .NET 6
-- Blazor WebAssembly
+The app is packed with examples of how to do various things with Blazor, including but not limited to:
+
 - Blazor Third-Party Authentication providers:
   - Google
   - Twitter
@@ -78,6 +52,20 @@ Featuring:
 - Blazor Component Virtualization
 - Two-way JavaScript Interop (using both `IJSRuntime` and `IJsInProcessRuntime`)
   - As well as Blazorators, for source generation
+
+## NuGet Packages
+
+I'm using several of my open-source projects within this repository.
+
+| Package | Repository | Purpose |
+|---------|------------|---------|
+| [IEvangelist.Azure.CosmosRepository](https://www.nuget.org/packages/IEvangelist.Azure.CosmosRepository) | [`./azure-cosmos-dotnet-repository`](https://github.com/IEvangelist/azure-cosmos-dotnet-repository) | `IRepository<TItem>` via DI for light-weight access to Azure Cosmos DB. |
+| [Blazor.LocalStorage.WebAssembly](https://www.nuget.org/packages/Blazor.LocalStorage.WebAssembly) | [`./blazorators`](https://github.com/IEvangelist/blazorators) | Source-generated `localStorage` API implementation class library from Blazorators: C# Source Generators for Blazor. |
+| [HaveIBeenPwned.Client](https://www.nuget.org/packages/HaveIBeenPwned.Client) | [`./pwned-client`](https://github.com/IEvangelist/pwned-client) | A .NET HTTP client for the "have i been pwned" API service from Troy Hunt.  |
+
+## GitHub Actions
+
+Resource Translator: https://github.com/IEvangelist/resource-translator
 
 > [💡 Ideas](https://gist.github.com/IEvangelist/d43abafb64d207bff25e60769e986bbd) for the application to include.
 
