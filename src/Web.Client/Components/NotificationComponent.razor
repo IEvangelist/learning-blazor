@@ -8,7 +8,7 @@
     <button class="button is-danger is-rounded"
             title=@Localizer["Notifications"] @onclick=Show>
         <span class="icon">
-            <i class="fas fa-bell"></i>
+            <i class="fas fa-lg fa-bell"></i>
         </span>
     </button>
     @if (_notifications?.Any(notification => !notification.IsDismissed) ?? false)

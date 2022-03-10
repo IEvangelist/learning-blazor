@@ -8,7 +8,7 @@
     <button class="button is-primary is-rounded"
             title=@Localizer["TaskList"] @onclick=Show>
         <span class="icon">
-            <i class="fas fa-tasks"></i>
+            <i class="fas fa-lg fa-tasks"></i>
         </span>
     </button>
     @if (_todos?.Any(idTodoPair => !idTodoPair.Value.IsCompleted) ?? false)
