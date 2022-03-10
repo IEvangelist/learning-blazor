@@ -7,8 +7,7 @@ public sealed class AppInMemoryState
 {
     private readonly IJSInProcessRuntime _localStorage;
     private string? _frameworkDescription;
-    private ClientVoicePreference _clientVoicePreference =
-        new("Auto", 1);
+    private ClientVoicePreference? _clientVoicePreference;
     private bool? _isDarkTheme;
 
     public AppInMemoryState(IJSInProcessRuntime javaScript) =>
@@ -26,10 +25,21 @@ public sealed class AppInMemoryState
 
     public ClientVoicePreference ClientVoicePreference
     {
-        get => _clientVoicePreference;
+        get
+        {
+            if (_clientVoicePreference is null)
+            {
+                _clientVoicePreference = _localStorage.GetItem<ClientVoicePreference>(StorageKeys.ClientVoice)
+                    ?? new("Auto", 1);
+            }
+
+            return _clientVoicePreference;
+        }
         set
         {
             _clientVoicePreference = value ?? new("Auto", 1);
+            _localStorage.SetItem(StorageKeys.ClientVoice, _clientVoicePreference);
+
             AppStateChanged();
         }
     }
@@ -47,8 +57,8 @@ public sealed class AppInMemoryState
         }
         set
         {
-            _localStorage.SetItem(StorageKeys.PrefersDarkTheme, value);
             _isDarkTheme = value;
+            _localStorage.SetItem(StorageKeys.PrefersDarkTheme, _isDarkTheme);
 
             AppStateChanged();
         }
