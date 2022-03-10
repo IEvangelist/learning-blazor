@@ -5,5 +5,5 @@ namespace Learning.Blazor.Models;
 
 public record class AzureTranslationCultures
 {
-    public IDictionary<string, AzureCulture> Translation { get; init; } = null!;
+    public IDictionary<string, AzureCulture> Translation { get; set; } = null!;
 }

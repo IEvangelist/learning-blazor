@@ -8,7 +8,7 @@ namespace Learning.Blazor.Models;
 
 public record class WeatherDate
 {
-    [JsonPropertyName("dt")] public double Dt { get; init; }
+    [JsonPropertyName("dt")] public double Dt { get; set; }
 
     [JsonIgnore]
     public DateTime DateTime => Dt.FromUnixTimeStamp();

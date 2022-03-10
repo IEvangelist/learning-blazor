@@ -3,7 +3,9 @@
 
 namespace Learning.Blazor.Models;
 
-public record class AzureCulture(
-    string Name,
-    string NativeName,
-    Direction Dir);
+public record class AzureCulture
+{
+    public string Name { get; set; } = null!;
+    public string NativeName { get; set; } = null!;
+    public Direction Dir { get; set; }
+}

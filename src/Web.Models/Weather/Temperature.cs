@@ -7,7 +7,7 @@ namespace Learning.Blazor.Models;
 
 public record class Temperature : FeelsLike
 {
-    [JsonPropertyName("min")] public double Min { get; init; }
+    [JsonPropertyName("min")] public double Min { get; set; }
 
-    [JsonPropertyName("max")] public double Max { get; init; }
+    [JsonPropertyName("max")] public double Max { get; set; }
 }

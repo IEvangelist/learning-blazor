@@ -9,25 +9,25 @@ namespace Learning.Blazor.Models
     public record class DailyWeather : WeatherCommon
     {
         [JsonPropertyName("sunrise")]
-        public double Sunrise { get; init; }
+        public double Sunrise { get; set; }
 
         [JsonIgnore]
         public DateTime SunriseDateTime => Sunrise.FromUnixTimeStamp();
 
         [JsonPropertyName("sunset")]
-        public double Sunset { get; init; }
+        public double Sunset { get; set; }
 
         [JsonIgnore]
         public DateTime SunsetDateTime => Sunset.FromUnixTimeStamp();
 
         [JsonPropertyName("moonrise")]
-        public double Moonrise { get; init; }
+        public double Moonrise { get; set; }
 
         [JsonIgnore]
         public DateTime MoonriseDateTime => Moonrise.FromUnixTimeStamp();
 
         [JsonPropertyName("moonset")]
-        public double Moonset { get; init; }
+        public double Moonset { get; set; }
 
         [JsonIgnore]
         public DateTime MoonsetDateTime => Moonset.FromUnixTimeStamp();
@@ -40,9 +40,9 @@ namespace Learning.Blazor.Models
         /// and 'waning crescent', respectively.
         /// </summary>
         [JsonPropertyName("moon_phase")]
-        public double MoonPhase { get; init; }
+        public double MoonPhase { get; set; }
 
-        [JsonPropertyName("temp")] public Temperature Temperature { get; init; } = null!;
-        [JsonPropertyName("feels_like")] public FeelsLike FeelsLike { get; init; } = null!;
+        [JsonPropertyName("temp")] public Temperature Temperature { get; set; } = null!;
+        [JsonPropertyName("feels_like")] public FeelsLike FeelsLike { get; set; } = null!;
     }
 }

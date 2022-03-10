@@ -8,29 +8,29 @@ namespace Learning.Blazor.Models;
 public record class WeatherCommon : WeatherDate
 {
     [JsonPropertyName("pressure")]
-    public double Pressure { get; init; }
+    public double Pressure { get; set; }
 
     [JsonPropertyName("humidity")]
-    public double Humidity { get; init; }
+    public double Humidity { get; set; }
 
     [JsonPropertyName("dew_point")]
-    public double DewPoint { get; init; }
+    public double DewPoint { get; set; }
 
     [JsonPropertyName("uvi")]
-    public double UltravioletIndex { get; init; }
+    public double UltravioletIndex { get; set; }
 
     [JsonPropertyName("clouds")]
-    public int Clouds { get; init; }
+    public int Clouds { get; set; }
 
     [JsonPropertyName("visibility")]
-    public int Visibility { get; init; }
+    public int Visibility { get; set; }
 
     [JsonPropertyName("wind_speed")]
-    public double WindSpeed { get; init; }
+    public double WindSpeed { get; set; }
 
     [JsonPropertyName("wind_deg")]
-    public int WindDegree { get; init; }
+    public int WindDegree { get; set; }
 
     [JsonPropertyName("weather")]
-    public IList<WeatherWordingAndIcon> Weather { get; init; } = Array.Empty<WeatherWordingAndIcon>();
+    public IList<WeatherWordingAndIcon> Weather { get; set; } = Array.Empty<WeatherWordingAndIcon>();
 }

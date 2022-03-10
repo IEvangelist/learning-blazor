@@ -7,7 +7,7 @@ namespace Learning.Blazor.Models;
 
 public record class WeatherWordingAndIcon
 {
-    [JsonPropertyName("main")] public string Main { get; init; } = null!;
-    [JsonPropertyName("description")] public string Description { get; init; } = null!;
-    [JsonPropertyName("icon")] public string Icon { get; init; } = null!;
+    [JsonPropertyName("main")] public string Main { get; set; } = null!;
+    [JsonPropertyName("description")] public string Description { get; set; } = null!;
+    [JsonPropertyName("icon")] public string Icon { get; set; } = null!;
 }

@@ -23,7 +23,6 @@
 
   <ItemGroup>
     <PackageReference Include="Blazor.LocalStorage.WebAssembly" Version="1.1.1" />
-    <PackageReference Include="Blazor.Serialization" Version="1.1.0" />
     <PackageReference Include="HaveIBeenPwned.Client.Abstractions" Version="2.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.1" PrivateAssets="all" />

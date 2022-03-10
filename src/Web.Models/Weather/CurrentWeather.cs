@@ -8,10 +8,10 @@ namespace Learning.Blazor.Models;
 
 public record class CurrentWeather : WeatherCommon
 {
-    [JsonPropertyName("temp")] public double Temperature { get; init; }
-    [JsonPropertyName("feels_like")] public double FeelsLike { get; init; }
-    [JsonPropertyName("sunrise")] public double Sunrise { get; init; }
-    [JsonPropertyName("sunset")] public double Sunset { get; init; }
+    [JsonPropertyName("temp")] public double Temperature { get; set; }
+    [JsonPropertyName("feels_like")] public double FeelsLike { get; set; }
+    [JsonPropertyName("sunrise")] public double Sunrise { get; set; }
+    [JsonPropertyName("sunset")] public double Sunset { get; set; }
 
     [JsonIgnore]
     public DateTime SunriseDateTime => Sunrise.FromUnixTimeStamp();
