@@ -1,13 +1,19 @@
-# Learning Blazor: Build Single-Page Apps with WebAssembly and C#
+# Learning Blazor
+## Build Single-Page Apps with WebAssembly and C#
 
-[![build](https://github.com/IEvangelist/learning-blazor/actions/workflows/build-validation.yml/badge.svg)](https://github.com/IEvangelist/learning-blazor/actions/workflows/build-validation.yml) [![CodeQL](https://github.com/IEvangelist/learning-blazor/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/IEvangelist/learning-blazor/actions/workflows/codeql-analysis.yml) [![Azure Translation](https://github.com/IEvangelist/learning-blazor/actions/workflows/machine-translation.yml/badge.svg)](https://github.com/IEvangelist/learning-blazor/actions/workflows/machine-translation.yml)
-
-[![Deploy Static Web App](https://github.com/IEvangelist/learning-blazor/actions/workflows/deploy-az-static-webapp.yml/badge.svg)](https://github.com/IEvangelist/learning-blazor/actions/workflows/deploy-az-static-webapp.yml)
-[![Deploy Weather Function](https://github.com/IEvangelist/learning-blazor/actions/workflows/deploy-az-func.yml/badge.svg)](https://github.com/IEvangelist/learning-blazor/actions/workflows/deploy-az-func.yml) [![Deploy Web API](https://github.com/IEvangelist/learning-blazor/actions/workflows/deploy-az-webapi.yml/badge.svg)](https://github.com/IEvangelist/learning-blazor/actions/workflows/deploy-az-webapi.yml) [![Deploy Pwned Web API](https://github.com/IEvangelist/learning-blazor/actions/workflows/deploy-az-pwnedapi.yml/badge.svg)](https://github.com/IEvangelist/learning-blazor/actions/workflows/deploy-az-pwnedapi.yml)
-
-This repository is the application detailed in the ["Learning Blazor: Build Single-Page Apps with WebAssembly and C#"][learning-blazor] O'Reilly Media book by David Pine.
+> This repository is the application detailed in the ["Learning Blazor: Build Single-Page Apps with WebAssembly and C#"][learning-blazor] O'Reilly Media book by David Pine.
 
 [learning-blazor]: https://bit.ly/learning-blazor
+
+| Status | Description |
+|--:|:--|
+| [![build](https://github.com/IEvangelist/learning-blazor/actions/workflows/build-validation.yml/badge.svg)](https://github.com/IEvangelist/learning-blazor/actions/workflows/build-validation.yml) | Wether the current source code builds successfully, and all tests pass. |
+| [![CodeQL](https://github.com/IEvangelist/learning-blazor/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/IEvangelist/learning-blazor/actions/workflows/codeql-analysis.yml) | The current CodeQL security / vulnerability scan result. |
+| [![Azure Translation](https://github.com/IEvangelist/learning-blazor/actions/workflows/machine-translation.yml/badge.svg)](https://github.com/IEvangelist/learning-blazor/actions/workflows/machine-translation.yml) | Wether the last machine-translation run was successful. |
+| [![Deploy Static Web App](https://github.com/IEvangelist/learning-blazor/actions/workflows/deploy-az-static-webapp.yml/badge.svg)](https://github.com/IEvangelist/learning-blazor/actions/workflows/deploy-az-static-webapp.yml) | The status of the last deployment of the Azure Static Web app. |
+| [![Deploy Weather Function](https://github.com/IEvangelist/learning-blazor/actions/workflows/deploy-az-func.yml/badge.svg)](https://github.com/IEvangelist/learning-blazor/actions/workflows/deploy-az-func.yml) | The status of the last deployment of the Azure Functions app. |
+| [![Deploy Web API](https://github.com/IEvangelist/learning-blazor/actions/workflows/deploy-az-webapi.yml/badge.svg)](https://github.com/IEvangelist/learning-blazor/actions/workflows/deploy-az-webapi.yml) | The status of the last deployment of the Azure Web API. |
+| [![Deploy Pwned Web API](https://github.com/IEvangelist/learning-blazor/actions/workflows/deploy-az-pwnedapi.yml/badge.svg)](https://github.com/IEvangelist/learning-blazor/actions/workflows/deploy-az-pwnedapi.yml) | The status of the last deployment of the Azure Pwned Web API. |
 
 ## Architecture
 
@@ -53,7 +59,7 @@ Featuring:
   - Google
   - Twitter
   - GitHub
-  - "Sign up now"-based indentity provider registration (with email verification).
+  - "Sign up now"-based identity provider registration (with email verification).
 - Azure Functions &mdash; .NET
 - ASP.NET Core Web API
 - ASP.NET Core SignalR
