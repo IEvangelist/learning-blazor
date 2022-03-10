@@ -5,6 +5,8 @@
 
 [learning-blazor]: https://bit.ly/learning-blazor
 
+![Learning Blazor](images/learning-blazor.png "Learning Blazor: Build Single-Page Apps with WebAssembly and C#)
+
 | Status | Description |
 |--:|:--|
 | [![build](https://github.com/IEvangelist/learning-blazor/actions/workflows/build-validation.yml/badge.svg)](https://github.com/IEvangelist/learning-blazor/actions/workflows/build-validation.yml) | Wether the current source code builds successfully, and all tests pass. |
