@@ -11,9 +11,10 @@ internal static class ServiceCollectionExtensions
         services.AddResponseCaching();
         services.AddHttpClient(); // Adds IHttpClientFactory, untyped and unnamed.
 
-        services.AddStackExchangeRedisCache(
-            options => options.Configuration =
-                configuration["RedisCacheOptions:ConnectionString"]);
+        services.AddMemoryCache();
+        //services.AddStackExchangeRedisCache(
+        //    options => options.Configuration =
+        //        configuration["RedisCacheOptions:ConnectionString"]);
 
         services.AddHttpClient(HttpClientNames.WebFunctionsClient)
             .AddDefaultTransientHttpErrorPolicy();

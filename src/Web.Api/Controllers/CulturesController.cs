@@ -12,12 +12,12 @@ namespace Learning.Blazor.Api.Controllers;
 public class CulturesController : ControllerBase
 {
     readonly IHttpClientFactory _httpClientFactory;
-    readonly IDistributedCache _cache;
+    readonly IMemoryCache _cache;
     readonly ILogger<CulturesController> _logger;
 
     public CulturesController(
         IHttpClientFactory httpClientFactory,
-        IDistributedCache cache,
+        IMemoryCache cache,
         ILogger<CulturesController> logger) =>
         (_httpClientFactory, _cache, _logger) = (httpClientFactory, cache, logger);
 
@@ -54,7 +54,7 @@ public class CulturesController : ControllerBase
                 {
                     Translation = applicableCultures
                 };
-            }, _logger);
+            });
 
         return new JsonResult(cultures);
     }
