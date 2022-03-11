@@ -7,6 +7,8 @@ namespace Learning.Blazor.Shared
 {
     public sealed partial class MainLayout : IDisposable
     {
+        private bool _navbarBurgerClicked = false;
+
         [Inject]
         public AppInMemoryState AppState { get; set; } = null!;
 

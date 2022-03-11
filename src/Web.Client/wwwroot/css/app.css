@@ -39,6 +39,10 @@ html {
     overflow: auto;
 }
 
+footer.footer {
+    padding-bottom: 3rem;
+}
+
 .blazor-tile-container {
     position: relative;
     width: 100%;
@@ -154,6 +158,25 @@ html {
 
 .dotnet-box-border {
     border: solid 1px var(--dotnet-purple-gradient-9);
+}
+
+.is-8-widescreen {
+    flex: none;
+    width: 66.66667%;
+}
+
+@media only screen and (max-width: 1600px) {
+    .is-8-widescreen {
+        flex: none;
+        width: 90%;
+    }
+}
+
+@media only screen and (max-width: 1800px) {
+    .is-8-widescreen {
+        flex: none;
+        width: 100%;
+    }
 }
 
 .is-emoji {

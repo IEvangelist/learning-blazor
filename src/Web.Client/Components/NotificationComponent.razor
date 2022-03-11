@@ -30,7 +30,7 @@
         <span class="delete" @onclick=Dismiss></span>
     </header>
 
-    <div class="quickview-body">
+    <div class="quickview-body has-dotnet-scrollbar">
         <div class="quickview-block p-4">
             @foreach (var notification in
                 _notifications?.Where(n => !n.IsDismissed) ??
