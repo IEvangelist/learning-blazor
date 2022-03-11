@@ -13,13 +13,12 @@ public class CulturesController : ControllerBase
 {
     readonly IHttpClientFactory _httpClientFactory;
     readonly IMemoryCache _cache;
-    readonly ILogger<CulturesController> _logger;
 
     public CulturesController(
         IHttpClientFactory httpClientFactory,
         IMemoryCache cache,
         ILogger<CulturesController> logger) =>
-        (_httpClientFactory, _cache, _logger) = (httpClientFactory, cache, logger);
+        (_httpClientFactory, _cache) = (httpClientFactory, cache);
 
     [
         HttpGet,

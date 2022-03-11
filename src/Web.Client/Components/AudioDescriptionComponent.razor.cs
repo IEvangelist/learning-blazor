@@ -48,7 +48,7 @@ namespace Learning.Blazor.Components
             AppState.ClientVoicePreference =
                 new ClientVoicePreference(_voice, _voiceSpeed);
 
-            var localStorage = JavaScript;            
+            var localStorage = JavaScript;
             Logger.LogInformation(
                 "There are {Length} item in localStorage.", localStorage.Length());
 

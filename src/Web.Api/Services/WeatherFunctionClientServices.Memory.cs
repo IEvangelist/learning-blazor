@@ -8,15 +8,13 @@ public sealed class WeatherFunctionClientService : IDisposable
     private readonly HttpClient _httpClient;
     private readonly IMemoryCache _cache;
     private readonly WebFunctionsOptions _functions;
-    private readonly ILogger<WeatherFunctionClientService> _logger;
 
     public WeatherFunctionClientService(
         IHttpClientFactory httpClientFactory,
         IMemoryCache cache,
-        IOptions<WebFunctionsOptions> options,
-        ILogger<WeatherFunctionClientService> logger) =>
-        (_httpClient, _cache, _functions, _logger) =
-            (httpClientFactory.CreateClient(HttpClientNames.WebFunctionsClient), cache, options.Value, logger);
+        IOptions<WebFunctionsOptions> options) =>
+        (_httpClient, _cache, _functions) =
+            (httpClientFactory.CreateClient(HttpClientNames.WebFunctionsClient), cache, options.Value);
 
     public Task<WeatherDetails?> GetWeatherAsync(WeatherRequest request) =>
         _cache.GetOrCreateAsync(
