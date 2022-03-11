@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <BlazorWebAssemblyLoadAllGlobalizationData>true</BlazorWebAssemblyLoadAllGlobalizationData>
+    <BlazorCacheBootResources>false</BlazorCacheBootResources>
     <RootNamespace>Learning.Blazor</RootNamespace>
     <LangVersion>preview</LangVersion>
     <Nullable>enable</Nullable>
