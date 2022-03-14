@@ -15,6 +15,9 @@ namespace Learning.Blazor.Components
         public IJSInProcessRuntime JavaScript { get; set; } = null!;
 
         [Inject]
+        public IStorage LocalStorage { get; set; } = null!;
+
+        [Inject]
         public AppInMemoryState AppState { get; set; } = null!;
 
         [Inject]

@@ -43,8 +43,7 @@ namespace Learning.Blazor.Components
 
             if (forceRefresh)
             {
-                var localStorage = JavaScript;
-                localStorage.SetItem(
+                LocalStorage.SetItem(
                     StorageKeys.ClientCulture, _selectedCulture!.Name);
             }
 

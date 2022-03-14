@@ -5,13 +5,13 @@ namespace Learning.Blazor.Services;
 
 public sealed class AppInMemoryState
 {
-    private readonly IJSInProcessRuntime _localStorage;
+    private readonly IStorage _localStorage;
     private string? _frameworkDescription;
     private ClientVoicePreference? _clientVoicePreference;
     private bool? _isDarkTheme;
 
-    public AppInMemoryState(IJSInProcessRuntime javaScript) =>
-        _localStorage = javaScript;
+    public AppInMemoryState(IStorage localStorage) =>
+        _localStorage = localStorage;
 
     public string? FrameworkDescription
     {

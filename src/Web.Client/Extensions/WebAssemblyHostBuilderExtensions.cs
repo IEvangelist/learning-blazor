@@ -79,9 +79,7 @@ internal static class WebAssemblyHostBuilderExtensions
             client.DefaultRequestHeaders.AcceptEncoding.ParseAdd("gzip");
         });
         services.AddJokeServices();
-        services.AddSingleton<IJSInProcessRuntime>(
-            serviceProvider =>
-                (IJSInProcessRuntime)serviceProvider.GetRequiredService<IJSRuntime>());
+        services.AddLocalStorageServices();
 
         return builder;
     }
