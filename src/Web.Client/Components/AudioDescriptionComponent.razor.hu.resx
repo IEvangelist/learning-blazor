@@ -61,10 +61,7 @@
   <data name="Audio" xml:space="preserve">
     <value>Hanganyag</value>
   </data>
-  <data name="Auto" xml:space="preserve">
-    <value>Autó</value>
-  </data>
   <data name="Settings" xml:space="preserve">
-    <value>Beállítások</value>
+    <value>Hangleírás beállításai</value>
   </data>
 </root>

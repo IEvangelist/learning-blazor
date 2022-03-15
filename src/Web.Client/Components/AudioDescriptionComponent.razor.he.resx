@@ -61,10 +61,7 @@
   <data name="Audio" xml:space="preserve">
     <value>שמע</value>
   </data>
-  <data name="Auto" xml:space="preserve">
-    <value>מכונית</value>
-  </data>
   <data name="Settings" xml:space="preserve">
-    <value>הגדרות</value>
+    <value>הגדרות תיאור שמע</value>
   </data>
 </root>

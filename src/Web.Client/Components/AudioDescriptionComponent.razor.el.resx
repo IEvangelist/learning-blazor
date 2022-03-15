@@ -61,10 +61,7 @@
   <data name="Audio" xml:space="preserve">
     <value>Ήχου</value>
   </data>
-  <data name="Auto" xml:space="preserve">
-    <value>Αυτοκίνητο</value>
-  </data>
   <data name="Settings" xml:space="preserve">
-    <value>Ρυθμίσεις</value>
+    <value>Ρυθμίσεις περιγραφής ήχου</value>
   </data>
 </root>

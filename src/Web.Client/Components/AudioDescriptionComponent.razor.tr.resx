@@ -61,10 +61,7 @@
   <data name="Audio" xml:space="preserve">
     <value>Ses</value>
   </data>
-  <data name="Auto" xml:space="preserve">
-    <value>Araba</value>
-  </data>
   <data name="Settings" xml:space="preserve">
-    <value>Ayarlar</value>
+    <value>Sesli Açıklama Ayarları</value>
   </data>
 </root>

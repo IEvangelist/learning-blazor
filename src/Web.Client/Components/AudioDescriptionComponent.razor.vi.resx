@@ -61,10 +61,7 @@
   <data name="Audio" xml:space="preserve">
     <value>Âm thanh</value>
   </data>
-  <data name="Auto" xml:space="preserve">
-    <value>Xe hơi</value>
-  </data>
   <data name="Settings" xml:space="preserve">
-    <value>Cài đặt</value>
+    <value>Thiết đặt Mô tả Âm thanh</value>
   </data>
 </root>

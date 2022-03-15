@@ -61,10 +61,7 @@
   <data name="Audio" xml:space="preserve">
     <value>Zvukový</value>
   </data>
-  <data name="Auto" xml:space="preserve">
-    <value>Auto</value>
-  </data>
   <data name="Settings" xml:space="preserve">
-    <value>Nastavenia</value>
+    <value>Nastavenia popisu zvuku</value>
   </data>
 </root>

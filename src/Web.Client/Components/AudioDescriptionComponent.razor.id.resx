@@ -61,10 +61,7 @@
   <data name="Audio" xml:space="preserve">
     <value>Audio</value>
   </data>
-  <data name="Auto" xml:space="preserve">
-    <value>Mobil</value>
-  </data>
   <data name="Settings" xml:space="preserve">
-    <value>Pengaturan</value>
+    <value>Pengaturan Deskripsi Audio</value>
   </data>
 </root>

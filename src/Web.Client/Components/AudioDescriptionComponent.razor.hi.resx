@@ -61,10 +61,7 @@
   <data name="Audio" xml:space="preserve">
     <value>श्रव्य</value>
   </data>
-  <data name="Auto" xml:space="preserve">
-    <value>कार</value>
-  </data>
   <data name="Settings" xml:space="preserve">
-    <value>सेटिंग्स</value>
+    <value>ऑडियो विवरण सेटिंग्स</value>
   </data>
 </root>
