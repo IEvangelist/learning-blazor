@@ -25,20 +25,15 @@ public sealed class AppInMemoryState
 
     public ClientVoicePreference ClientVoicePreference
     {
-        get
-        {
-            if (_clientVoicePreference is null)
-            {
-                _clientVoicePreference = _localStorage.GetItem<ClientVoicePreference>(StorageKeys.ClientVoice)
-                    ?? new("Auto", 1);
-            }
-
-            return _clientVoicePreference;
-        }
+        get => _clientVoicePreference ??=
+            _localStorage.GetItem<ClientVoicePreference>(
+                StorageKeys.ClientVoice)
+            ?? new("Auto", 1);
         set
         {
-            _clientVoicePreference = value ?? new("Auto", 1);
-            _localStorage.SetItem(StorageKeys.ClientVoice, _clientVoicePreference);
+            _localStorage.SetItem(
+                StorageKeys.ClientVoice,
+                _clientVoicePreference = value ?? new("Auto", 1));
 
             AppStateChanged();
         }
@@ -46,19 +41,12 @@ public sealed class AppInMemoryState
 
     public bool IsDarkTheme
     {
-        get
-        {
-            if (_isDarkTheme is null)
-            {
-                _isDarkTheme = _localStorage.GetItem<bool>(StorageKeys.PrefersDarkTheme);
-            }
-
-            return _isDarkTheme.GetValueOrDefault();
-        }
+        get => _isDarkTheme ??= _localStorage.GetItem<bool>(StorageKeys.PrefersDarkTheme);
         set
         {
-            _isDarkTheme = value;
-            _localStorage.SetItem(StorageKeys.PrefersDarkTheme, _isDarkTheme);
+            _localStorage.SetItem(
+                StorageKeys.PrefersDarkTheme,
+                _isDarkTheme = value);
 
             AppStateChanged();
         }

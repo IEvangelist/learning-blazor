@@ -63,7 +63,6 @@ namespace Learning.Blazor.Components
 
             Logger.LogInformation(
                 "There are {Length} item in localStorage.", LocalStorage.Length);
-
         }
     }
 

@@ -14,8 +14,10 @@ namespace Learning.Blazor.Components
         [Parameter, EditorRequired]
         public EventCallback<AudioDescriptionDetails> OnDetailsSaved { get; set; }
 
-        private string _voice = "Auto";
+        private string _voice = null!;
         private ModalComponent _modal = null!;
+
+        protected override void OnParametersSet() => _voice = Details.Voice;
 
         private void OnVoiceSpeedChange(ChangeEventArgs args) =>
             Details = Details with
