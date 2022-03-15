@@ -61,10 +61,7 @@
   <data name="Audio" xml:space="preserve">
     <value>صوتي</value>
   </data>
-  <data name="Auto" xml:space="preserve">
-    <value>سيارة</value>
-  </data>
   <data name="Settings" xml:space="preserve">
-    <value>اعدادات</value>
+    <value>إعدادات الوصف الصوتي</value>
   </data>
 </root>

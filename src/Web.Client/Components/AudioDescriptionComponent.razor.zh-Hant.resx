@@ -61,10 +61,7 @@
   <data name="Audio" xml:space="preserve">
     <value>音訊</value>
   </data>
-  <data name="Auto" xml:space="preserve">
-    <value>汽車</value>
-  </data>
   <data name="Settings" xml:space="preserve">
-    <value>設置</value>
+    <value>音訊描述設置</value>
   </data>
 </root>

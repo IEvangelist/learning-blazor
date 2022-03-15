@@ -61,10 +61,7 @@
   <data name="Audio" xml:space="preserve">
     <value>Lyd</value>
   </data>
-  <data name="Auto" xml:space="preserve">
-    <value>Bil</value>
-  </data>
   <data name="Settings" xml:space="preserve">
-    <value>Indstillinger</value>
+    <value>Indstillinger for lydbeskrivelse</value>
   </data>
 </root>

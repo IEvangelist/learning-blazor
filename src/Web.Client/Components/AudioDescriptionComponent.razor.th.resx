@@ -61,10 +61,7 @@
   <data name="Audio" xml:space="preserve">
     <value>เสียง</value>
   </data>
-  <data name="Auto" xml:space="preserve">
-    <value>รถ</value>
-  </data>
   <data name="Settings" xml:space="preserve">
-    <value>การตั้งค่า</value>
+    <value>การตั้งค่าคําอธิบายเสียง</value>
   </data>
 </root>

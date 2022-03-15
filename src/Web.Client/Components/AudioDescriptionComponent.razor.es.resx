@@ -61,10 +61,7 @@
   <data name="Audio" xml:space="preserve">
     <value>Audio</value>
   </data>
-  <data name="Auto" xml:space="preserve">
-    <value>Coche</value>
-  </data>
   <data name="Settings" xml:space="preserve">
-    <value>Configuración</value>
+    <value>Configuración de la descripción de audio</value>
   </data>
 </root>
