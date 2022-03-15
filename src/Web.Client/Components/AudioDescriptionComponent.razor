@@ -13,60 +13,8 @@
     </button>
 </span>
 
-<ModalComponent @ref="_modal" Dismissed=@OnDismissed>
-    <TitleContent>
-        <span class="icon pr-2">
-            <i class="fas fa-cogs"></i>
-        </span>
-        <span>@Localizer["Settings"]</span>
-    </TitleContent>
-
-    <BodyContent>
-        <form>
-            <div class="field">
-                <label for="range">Voice speed: @_voiceSpeed</label>
-                <input type="range" min="@_voiceSpeeds.Min()" max="@_voiceSpeeds.Max()"
-                       step=".25" class="slider is-fullwidth is-info" id="range" list="speeds"
-                       value="@_voiceSpeed"
-                       @onchange=@OnVoiceSpeedChange>
-                <datalist id="speeds">
-                    @foreach (var speed in _voiceSpeeds)
-                    {
-                        <option value="@speed">speed</option>
-                    }
-                </datalist>
-            </div>
-            <div class="field">
-                <p class="control has-icons-left">
-                    <span class="select is-medium is-fullwidth">
-                        <select id="voices" class="has-dotnet-scrollbar" @bind=_voice>
-                        <option selected>@Localizer["Auto"]</option>
-                        @if (_voices is { Count: > 0 })
-                        {
-                            @foreach (var voice in _voices)
-                            {
-                                <option selected="@voice.Default" value="@voice.Name">
-                                    @voice.Name
-                                </option>
-                            }
-                        }
-                        </select>
-                    </span>
-                    <span class="icon is-small is-left">
-                        <i class="fas fa-globe"></i>
-                    </span>
-                </p>
-            </div>
-        </form>
-    </BodyContent>
-
-    <ButtonContent>
-        <button class="button is-success is-large"
-            @onclick=ConfirmAsync>
-            <span class="icon">
-                <i class="fas fa-check"></i>
-            </span>
-            <span>@Localizer["Okay"]</span>
-        </button>
-    </ButtonContent>
-</ModalComponent>
+<AudioDescriptionModalComponent
+    @ref="_modal"
+    Title=@Localizer["Settings"]
+    Details=@_details
+    OnDetailsSaved=@OnDetailsSaved/>
