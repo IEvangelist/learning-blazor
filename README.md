@@ -65,7 +65,7 @@ I'm using several of my open-source projects within this repository.
 
 ## GitHub Actions
 
-Resource Translator: https://github.com/IEvangelist/resource-translator
+I'm also using my Resource Translator: https://github.com/IEvangelist/resource-translator, which translates _.resx_ resource files.
 
 > [💡 Ideas](https://gist.github.com/IEvangelist/d43abafb64d207bff25e60769e986bbd) for the application to include.
 
