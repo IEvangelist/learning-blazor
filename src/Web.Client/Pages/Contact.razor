@@ -1,55 +1,52 @@
 ﻿<!--  Copyright (c) 2021 David Pine. All rights reserved.
       Licensed under the MIT License.
 -->
-
 @page "/contact"
 @attribute [AllowAnonymous]
 @inherits LocalizableComponentBase<Contact>
 
-<PageTitle>
-    @Localizer["Contact"]
-</PageTitle>
+<PageTitle>@Localizer["Contact"]</PageTitle>
 
 <section class="section">
     <h1 class="is-size-3 pb-3">@Localizer["Contact"]</h1>
 
     <EditForm class="pb-4" Context="cxt" EditContext="_editContext"
-        OnValidSubmit="(async context => await OnValidSubmitAsync(context))">
-        <DataAnnotationsValidator  />
+              OnValidSubmit=@(async c => await OnValidSubmitAsync(c))>
+        <DataAnnotationsValidator />
 
         <!-- Email address -->
-        <div class="field is-horizontal">
-            <div class="field-label is-normal">
-                <label class="label">
-                    @Localizer["Email"]
-                    <i class="pl-4 far fa-lg @cxt.GetValidityCss(() => _model.EmailAddress)"></i>
-                </label>
-            </div>
-            <div class="field-body">
-                <div class="field">
-                    <p class="control is-expanded has-icons-left">
-                        <InputText @ref="_emailInput" @bind-Value="_model.EmailAddress" class="input"
-                            readonly=@_isEmailReadonly disabled=@_isEmailReadonly
-                            placeholder="@Localizer["EmailPlaceholder"]" />
-                        <span class="icon is-small is-left">
-                            <i class="fas fa-envelope"></i>
-                        </span>
-                    </p>
-                </div>
-            </div>
-        </div>
+        <FieldInput>
+            <FieldLabelContent>
+                @Localizer["Email"]
+                <i class="pl-4 far fa-lg
+                    @cxt.GetValidityCss(() => _model.EmailAddress)"></i>
+            </FieldLabelContent>
+            <FieldControlContent>
+                <InputText @ref="_emailInput"
+                    @bind-Value="_model.EmailAddress" class="input"
+                    readonly=@_isEmailReadonly disabled=@_isEmailReadonly
+                    placeholder="@Localizer["EmailPlaceholder"]" />
+                <span class="icon is-small is-left">
+                    <i class="fas fa-envelope"></i>
+                </span>
+            </FieldControlContent>
+        </FieldInput>
         <!-- First and last name -->
         <div class="field is-horizontal">
             <div class="field-label is-normal">
                 <label class="label">
                     @Localizer["From"]
-                    <i class="pl-4 far fa-lg @cxt.GetValidityCss(() => _model.FirstName, () => _model.LastName)"></i>
+                    <i class="pl-4 far fa-lg
+                        @cxt.GetValidityCss(
+                            () => _model.FirstName,
+                            () => _model.LastName)"></i>
                 </label>
             </div>
             <div class="field-body">
                 <div class="field">
                     <p class="control is-expanded has-icons-left">
-                        <InputText @ref="_firstNameInput" @bind-Value="_model.FirstName" class="input"
+                        <InputText @ref="_firstNameInput"
+                            @bind-Value="_model.FirstName" class="input"
                             placeholder="@Localizer["FirstName"]" />
                         <span class="icon is-small is-left">
                             <i class="fas fa-user"></i>
@@ -59,7 +56,7 @@
                 <div class="field">
                     <p class="control is-expanded has-icons-left">
                         <InputText @bind-Value="_model.LastName" class="input"
-                            placeholder="@Localizer["LastName"]" />
+                                   placeholder="@Localizer["LastName"]" />
                         <span class="icon is-small is-left">
                             <i class="fas fa-user"></i>
                         </span>
@@ -68,70 +65,56 @@
             </div>
         </div>
         <!-- Subject -->
-        <div class="field is-horizontal">
-            <div class="field-label is-normal">
-                <label class="label">
-                    @Localizer["Subject"]
-                    <i class="pl-4 far fa-lg @cxt.GetValidityCss(() => _model.Subject)"></i>
-                </label>
-            </div>
-            <div class="field-body">
-                <div class="field">
-                    <p class="control is-expanded has-icons-left">
-                        <InputText @bind-Value="_model.Subject" class="input"
-                            placeholder="@Localizer["SubjectPlaceholder"]" />
-                        <span class="icon is-small is-left">
-                            <i class="fas fa-info-circle"></i>
-                        </span>
-                    </p>
-                </div>
-            </div>
-        </div>
+        <FieldInput>
+            <FieldLabelContent>
+                @Localizer["Subject"]
+                <i class="pl-4 far fa-lg
+                    @cxt.GetValidityCss(() => _model.Subject)"></i>
+            </FieldLabelContent>
+            <FieldControlContent>
+                <InputText @bind-Value="_model.Subject" class="input"
+                    placeholder="@Localizer["SubjectPlaceholder"]" />
+                <span class="icon is-small is-left">
+                    <i class="fas fa-info-circle"></i>
+                </span>
+            </FieldControlContent>
+        </FieldInput>
         <!-- Message -->
-        <div class="field is-horizontal">
-            <div class="field-label is-normal">
-                <label class="label">
-                    @Localizer["Message"]
-                    <i class="pl-4 far fa-lg @cxt.GetValidityCss(() => _model.Message)"></i>
-                </label>
-            </div>
-            <div class="field-body">
-                <div class="field">
-                    <div class="control">
-                        <AdditiveSpeechRecognitionComponent
-                            SpeechRecognitionStarted=OnRecognitionStarted
-                            SpeechRecognitionStopped=OnRecognitionStopped
-                            SpeechRecognized=OnSpeechRecognized />
-                        <InputTextArea @bind-Value="_model.Message" class="textarea"
-                            readonly=@_isMessageReadonly disabled=@_isMessageReadonly
-                            placeholder="@Localizer["MessagePlaceholder"]" />
-                    </div>
-                </div>
-            </div>
-        </div>
+        <FieldInput ControlClasses=@(Array.Empty<string>())>
+            <FieldLabelContent>
+                @Localizer["Message"]
+                <i class="pl-4 far fa-lg
+                    @cxt.GetValidityCss(() => _model.Message)"></i>
+            </FieldLabelContent>
+            <FieldControlContent>
+                <AdditiveSpeechRecognitionComponent
+                    SpeechRecognitionStarted=OnRecognitionStarted
+                    SpeechRecognitionStopped=OnRecognitionStopped
+                    SpeechRecognized=OnSpeechRecognized />
+                <InputTextArea @bind-Value="_model.Message" class="textarea"
+                    readonly=@_isMessageReadonly disabled=@_isMessageReadonly
+                    placeholder="@Localizer["MessagePlaceholder"]" />
+            </FieldControlContent>
+        </FieldInput>
         <!-- Agree to terms -->
-        <div class="field is-horizontal">
-            <div class="field-label">
-                <label class="label">
-                    @Localizer["AgreeToTerms"]
-                    <i class="pl-4 far fa-lg @cxt.GetValidityCss(() => _model.AgreesToTerms)"></i>
+        <FieldInput ControlClasses=@(Array.Empty<string>())
+            ControlSpecifierClass="is-narrow">
+            <FieldLabelContent>
+                @Localizer["AgreeToTerms"]
+                <i class="pl-4 far fa-lg
+                    @cxt.GetValidityCss(() => _model.AgreesToTerms)"></i>
+            </FieldLabelContent>
+            <FieldControlContent>
+                <label class="checkbox">
+                    <InputCheckbox @bind-Value="_model.AgreesToTerms" />
+                    @Localizer["TermsAndConditions"]
+                    <a href="/termsandconditions" target="_blank"
+                        rel="noopener noreferrer">
+                        <i class="fas fa-external-link-alt"></i>
+                    </a>
                 </label>
-            </div>
-            <div class="field-body">
-                <div class="field is-narrow">
-                    <div class="control">
-                        <label class="checkbox">
-                            <InputCheckbox @bind-Value="_model.AgreesToTerms" />
-                            @Localizer["TermsAndConditions"]
-                            <a href="/termsandconditions" target="_blank"
-                                rel="noopener noreferrer">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
-                        </label>
-                    </div>
-                </div>
-            </div>
-        </div>
+            </FieldControlContent>
+        </FieldInput>
         <!-- Send button -->
         <div class="field is-horizontal">
             <div class="field-label">

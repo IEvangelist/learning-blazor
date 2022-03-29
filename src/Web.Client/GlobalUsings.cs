@@ -18,6 +18,7 @@ global using Learning.Blazor.Abstractions.RealTime;
 global using Learning.Blazor.BrowserModels;
 global using Learning.Blazor.ComponentModels;
 global using Learning.Blazor.Components;
+global using Learning.Blazor.Components.Forms;
 global using Learning.Blazor.DataAnnotations;
 global using Learning.Blazor.Extensions;
 global using Learning.Blazor.Handlers;
