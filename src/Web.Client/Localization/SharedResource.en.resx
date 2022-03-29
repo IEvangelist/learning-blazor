@@ -120,8 +120,14 @@
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="Chat" xml:space="preserve">
+    <value>Chat</value>
+  </data>
   <data name="Confirm" xml:space="preserve">
     <value>Confirm</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>Contact</value>
   </data>
   <data name="Dismiss" xml:space="preserve">
     <value>Dismiss</value>
@@ -131,6 +137,9 @@
   </data>
   <data name="FilterTweets" xml:space="preserve">
     <value>Filter Tweets</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Home</value>
   </data>
   <data name="Loading" xml:space="preserve">
     <value>Loading, please wait.</value>
@@ -155,6 +164,12 @@
   </data>
   <data name="Southwest" xml:space="preserve">
     <value>Southwest</value>
+  </data>
+  <data name="Tweets" xml:space="preserve">
+    <value>Tweets</value>
+  </data>
+  <data name="Twitter" xml:space="preserve">
+    <value>Twitter</value>
   </data>
   <data name="West" xml:space="preserve">
     <value>West</value>
