@@ -8,14 +8,14 @@ namespace Learning.Blazor.Components
 {
     public sealed partial class AdditiveSpeechRecognitionComponent : IDisposable
     {
-        private readonly Subject<(string Transcript, bool IsFinal)> _speechRecognitionSubject = new();
-        private readonly IObservable<string> _speechRecognitionObservable;
-        private readonly IDisposable _speechRecognitionSubscription;
+        readonly Subject<(string Transcript, bool IsFinal)> _speechRecognitionSubject = new();
+        readonly IObservable<string> _speechRecognitionObservable;
+        readonly IDisposable _speechRecognitionSubscription;
 
-        private SpeechRecognitionError? _error = null;
-        private bool _isRecognizing = false;
+        SpeechRecognitionError? _error = null;
+        bool _isRecognizing = false;
 
-        private string _dynamicCSS => _isRecognizing ? "is-flashing" : "";
+        string _dynamicCSS => _isRecognizing ? "is-flashing" : "";
 
         [Inject]
         private IJSInProcessRuntime JavaScriptRuntime { get; set; } = null!;

@@ -155,8 +155,8 @@ const recognizeSpeech =
         _recognition.start();
     };
 
-window.app = {
-    ...window.app,
+// Coalescing assignment, if non-existant create window.app.
+window.app = Object.assign({}, window.app, {
     getClientCoordinates,
     getClientVoices,
     getClientPrefersColorScheme,
@@ -164,7 +164,7 @@ window.app = {
     scrollIntoView,
     recognizeSpeech,
     cancelSpeechRecognition
-};
+});
 
 // Prevent client from speaking when user closes tab or window.
 window.addEventListener('beforeunload', _ => {

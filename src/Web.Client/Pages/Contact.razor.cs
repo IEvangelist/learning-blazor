@@ -26,7 +26,7 @@ namespace Learning.Blazor.Pages
 
         private void InitializeModelAndContext()
         {
-            if (User is { Identity: { IsAuthenticated: true } })
+            if (User is { Identity.IsAuthenticated: true })
             {
                 _model = _model with { EmailAddress = User.GetFirstEmailAddress() };
                 _isEmailReadonly = _model.EmailAddress is not null
