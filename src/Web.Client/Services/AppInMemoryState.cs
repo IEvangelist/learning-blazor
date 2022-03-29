@@ -5,12 +5,12 @@ namespace Learning.Blazor.Services;
 
 public sealed class AppInMemoryState
 {
-    private readonly IStorage _localStorage;
+    private readonly IStorageService _localStorage;
     private string? _frameworkDescription;
     private ClientVoicePreference? _clientVoicePreference;
     private bool? _isDarkTheme;
 
-    public AppInMemoryState(IStorage localStorage) =>
+    public AppInMemoryState(IStorageService localStorage) =>
         _localStorage = localStorage;
 
     public string? FrameworkDescription
