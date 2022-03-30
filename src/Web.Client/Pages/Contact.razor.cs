@@ -62,40 +62,28 @@ namespace Learning.Blazor.Pages
             _editContext.NotifyFieldChanged(
                 _editContext.Field(nameof(_model.Message)));
         }
+        
+        private Task OnValidSubmitAsync(EditContext _) =>
+            _modalComponent.PromptAsync();
 
-        private async ValueTask OnValidSubmitAsync(EditContext context) =>
-            await _modalComponent.PromptAsync(context);
-
-        private async Task OnVerificationAttempted((bool isVerified, object? state) tuple)
+        private async Task OnVerificationAttempted((bool IsVerified, object? State) attempt)
         {
-            try
+            if (attempt.IsVerified)
             {
-                var (isVerified, state) = tuple;
-                if (isVerified && state is EditContext context)
+                var client =
+                    HttpFactory.CreateClient(HttpClientNames.ServerApi);
+
+                using var response =
+                    await client.PostAsJsonAsync<ContactRequest>(
+                    "api/contact",
+                    _model,
+                    DefaultJsonSerialization.Options);
+
+                if (response.IsSuccessStatusCode)
                 {
-                    var client =
-                        HttpFactory.CreateClient(HttpClientNames.ServerApi);
-
-                    using var response =
-                        await client.PostAsJsonAsync<ContactRequest>(
-                        "api/contact",
-                        _model,
-                        DefaultJsonSerialization.Options);
-
-                    if (response.IsSuccessStatusCode)
-                    {
-                        context.MarkAsUnmodified();
-                    }
+                    InitializeModelAndContext();
+                    await InvokeAsync(StateHasChanged);
                 }
-            }
-            catch (Exception ex)
-            {
-                Logger.LogError(ex.Message);
-            }
-            finally
-            {
-                InitializeModelAndContext();
-                await InvokeAsync(StateHasChanged);
             }
         }
     }

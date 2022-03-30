@@ -113,6 +113,10 @@ const cancelSpeechRecognition = (isAborted) => {
 
 const recognizeSpeech =
     (dotnetObj, lang, onStartMethodName, onEndMethodName, onErrorMethodName, onResultMethodName) => {
+        if (!dotnetObj) {
+            return;
+        }
+        
         cancelSpeechRecognition(true);
 
         _recognition = new webkitSpeechRecognition() || new SpeechRecognition();
@@ -120,19 +124,13 @@ const recognizeSpeech =
         _recognition.interimResults = true;
         _recognition.lang = lang;
         _recognition.onstart = () => {
-            if (dotnetObj) {
-                dotnetObj.invokeMethodAsync(onStartMethodName);
-            }
+            dotnetObj.invokeMethodAsync(onStartMethodName);
         };
         _recognition.onend = () => {
-            if (dotnetObj) {
-                dotnetObj.invokeMethodAsync(onEndMethodName);
-            }
+            dotnetObj.invokeMethodAsync(onEndMethodName);
         };
         _recognition.onerror = (error) => {
-            if (dotnetObj) {
-                dotnetObj.invokeMethodAsync(onErrorMethodName, error);
-            }
+            dotnetObj.invokeMethodAsync(onErrorMethodName, error);
         };
         _recognition.onresult = (result) => {
             let transcript = '';
@@ -143,19 +141,17 @@ const recognizeSpeech =
                     isFinal = true;
                 }
             }
-            if (isFinal === true) {
+            if (isFinal) {
                 const punctuation = transcript.endsWith('.') ? '' : '.';
                 transcript =
                     `${transcript.replace(/\S/, str => str.toLocaleUpperCase())}${punctuation}`;
             }
-            if (dotnetObj) {
-                dotnetObj.invokeMethodAsync(onResultMethodName, transcript, isFinal);
-            }
+            dotnetObj.invokeMethodAsync(onResultMethodName, transcript, isFinal);
         };
         _recognition.start();
     };
 
-// Coalescing assignment, if non-existant create window.app.
+// Coalescing assignment, if non-existent create window.app.
 window.app = Object.assign({}, window.app, {
     getClientCoordinates,
     getClientVoices,

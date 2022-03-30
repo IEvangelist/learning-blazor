@@ -1,16 +1,11 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
-using System.Reactive.Linq;
-using System.Reactive.Subjects;
-
 namespace Learning.Blazor.Components
 {
     public sealed partial class AdditiveSpeechRecognitionComponent : IDisposable
     {
-        readonly Subject<(string Transcript, bool IsFinal)> _speechRecognitionSubject = new();
-        readonly IObservable<string> _speechRecognitionObservable;
-        readonly IDisposable _speechRecognitionSubscription;
+        readonly SpeechRecognitionService _speechRecognitionService;
 
         SpeechRecognitionError? _error = null;
         bool _isRecognizing = false;
@@ -29,15 +24,9 @@ namespace Learning.Blazor.Components
         [Parameter, EditorRequired]
         public EventCallback<string> SpeechRecognized { get; set; }
 
-        public AdditiveSpeechRecognitionComponent()
-        {
-            _speechRecognitionObservable =
-                _speechRecognitionSubject.AsObservable()
-                    .Where(recognition => recognition.IsFinal)
-                    .Select(recognition => recognition.Transcript);
-
-            _speechRecognitionSubscription =
-                _speechRecognitionObservable.Subscribe(
+        public AdditiveSpeechRecognitionComponent() =>
+            _speechRecognitionService =
+                new SpeechRecognitionService(
                     async speechRecognition =>
                     {
                         if (SpeechRecognized.HasDelegate)
@@ -45,7 +34,6 @@ namespace Learning.Blazor.Components
                             await SpeechRecognized.InvokeAsync(speechRecognition);
                         }
                     });
-        }
 
         void OnRecognizeButtonClick()
         {
@@ -107,11 +95,12 @@ namespace Learning.Blazor.Components
 
                 StateHasChanged();
             });
-
+        
         [JSInvokable]
         public void OnRecognized(string transcript, bool isFinal) =>
-            _speechRecognitionSubject.OnNext((transcript, isFinal));
+            _speechRecognitionService.RecognitionReceived(
+                new(transcript, isFinal));
 
-        void IDisposable.Dispose() => _speechRecognitionSubscription.Dispose();
+        void IDisposable.Dispose() => _speechRecognitionService.Dispose();
     }
 }

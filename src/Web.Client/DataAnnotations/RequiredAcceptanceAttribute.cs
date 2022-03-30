@@ -22,7 +22,7 @@ public sealed class RequiredAcceptanceAttribute : DataTypeAttribute
             return false;
         }
 
-        return bool.TryParse(value.ToString(), out var result)
-            && result;
+        return bool.TryParse(value.ToString(), out var isAccepted)
+            && isAccepted;
     }
 }

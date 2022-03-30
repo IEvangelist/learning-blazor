@@ -6,7 +6,7 @@
     </div>
     <div class="field-body">
         <div class="field @ControlSpecifierClass">
-            <p class="control @(string.Join(" ", ControlClasses ?? Array.Empty<string>()))">
+            <p class="control @ControlClasses.ToSpaceDelimitedString()">
                 @FieldControlContent
             </p>
         </div>

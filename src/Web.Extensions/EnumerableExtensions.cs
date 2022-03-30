@@ -16,4 +16,8 @@ public static class EnumerableExtensions
     public static IEnumerable<T> Random<T>(
         this IEnumerable<T> source, int count = 1) =>
         source?.OrderBy(_ => s_random.Next())?.Take(count) ?? Array.Empty<T>();
+
+    public static string? ToSpaceDelimitedString(
+        this string[]? source) =>
+        string.Join(" ", source ?? Array.Empty<string>());
 }
