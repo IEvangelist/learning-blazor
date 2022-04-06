@@ -104,8 +104,7 @@ window.app = Object.assign({}, window.app, {
     getClientVoices,
     getClientPrefersColorScheme,
     speak,
-    scrollIntoView,
-    recognizeSpeech
+    scrollIntoView
 });
 
 // Prevent client from speaking when user closes tab or window.
