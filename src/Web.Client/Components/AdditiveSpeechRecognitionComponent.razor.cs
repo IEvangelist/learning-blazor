@@ -5,6 +5,7 @@ namespace Learning.Blazor.Components
 {
     public sealed partial class AdditiveSpeechRecognitionComponent : IAsyncDisposable
     {
+        IDisposable? _recognitionSubscription;
         SpeechRecognitionErrorEvent? _error = null;
         bool _isRecognizing = false;
 
@@ -39,7 +40,8 @@ namespace Learning.Blazor.Components
             else
             {
                 var bcp47Tag = Culture.CurrentCulture.Name;
-                SpeechRecognition.RecognizeSpeech(
+                _recognitionSubscription?.Dispose();
+                _recognitionSubscription = SpeechRecognition.RecognizeSpeech(
                     bcp47Tag,
                     OnRecognized,
                     OnError,
@@ -87,7 +89,10 @@ namespace Learning.Blazor.Components
             StateHasChanged();
         }
 
-        ValueTask IAsyncDisposable.DisposeAsync() =>
-            SpeechRecognition.DisposeAsync();
+        ValueTask IAsyncDisposable.DisposeAsync()
+        {
+            _recognitionSubscription?.Dispose();
+            return SpeechRecognition.DisposeAsync();
+        }
     }
 }
