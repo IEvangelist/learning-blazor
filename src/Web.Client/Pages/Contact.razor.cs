@@ -49,7 +49,8 @@ namespace Learning.Blazor.Pages
 
         private void OnRecognitionStarted() => _isMessageReadonly = true;
 
-        private void OnRecognitionStopped(SpeechRecognitionError? error) => _isMessageReadonly = false;
+        private void OnRecognitionStopped(SpeechRecognitionErrorEvent? error) =>
+            _isMessageReadonly = false;
 
         private void OnSpeechRecognized(string transcript)
         {

@@ -80,6 +80,7 @@ internal static class WebAssemblyHostBuilderExtensions
         });
         services.AddJokeServices();
         services.AddLocalStorageServices();
+        services.AddSpeechRecognitionServices();
 
         return builder;
     }

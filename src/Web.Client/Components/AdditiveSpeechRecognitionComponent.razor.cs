@@ -3,104 +3,91 @@
 
 namespace Learning.Blazor.Components
 {
-    public sealed partial class AdditiveSpeechRecognitionComponent : IDisposable
+    public sealed partial class AdditiveSpeechRecognitionComponent : IAsyncDisposable
     {
-        readonly SpeechRecognitionService _speechRecognitionService;
-
-        SpeechRecognitionError? _error = null;
+        SpeechRecognitionErrorEvent? _error = null;
         bool _isRecognizing = false;
 
         string _dynamicCSS => _isRecognizing ? "is-flashing" : "";
 
         [Inject]
-        private IJSInProcessRuntime JavaScriptRuntime { get; set; } = null!;
+        private ISpeechRecognitionService SpeechRecognition { get; set; } = null!;
 
         [Parameter]
         public EventCallback SpeechRecognitionStarted { get; set; }
 
         [Parameter]
-        public EventCallback<SpeechRecognitionError?> SpeechRecognitionStopped { get; set; }
+        public EventCallback<SpeechRecognitionErrorEvent?> SpeechRecognitionStopped { get; set; }
 
         [Parameter, EditorRequired]
         public EventCallback<string> SpeechRecognized { get; set; }
 
-        public AdditiveSpeechRecognitionComponent() =>
-            _speechRecognitionService =
-                new SpeechRecognitionService(
-                    async speechRecognition =>
-                    {
-                        if (SpeechRecognized.HasDelegate)
-                        {
-                            await SpeechRecognized.InvokeAsync(speechRecognition);
-                        }
-                    });
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            if (firstRender)
+            {
+                await SpeechRecognition.InitializeModuleAsync();
+            }
+        }
 
         void OnRecognizeButtonClick()
         {
             if (_isRecognizing)
             {
-                JavaScriptRuntime.CancelSpeechRecognition(false);
+                SpeechRecognition.CancelSpeechRecognition(false);
             }
             else
             {
                 var bcp47Tag = Culture.CurrentCulture.Name;
-                JavaScriptRuntime.StartRecognizingSpeech(
-                    this,
+                SpeechRecognition.RecognizeSpeech(
                     bcp47Tag,
-                    nameof(OnStartedAsync),
-                    nameof(OnEndedAsync),
-                    nameof(OnErrorAsync),
-                    nameof(OnRecognized));
+                    OnRecognized,
+                    OnError,
+                    OnStarted,
+                    OnEnded);
             }
         }
 
-        [JSInvokable]
-        public Task OnStartedAsync() =>
-            InvokeAsync(async () =>
+        void OnRecognized(string transcript)
+        {
+            if (SpeechRecognized.HasDelegate)
             {
-                _isRecognizing = true;
+                SpeechRecognized.InvokeAsync(transcript);
+            }
+            StateHasChanged();
+        }
 
-                if (SpeechRecognitionStarted.HasDelegate)
-                {
-                    await SpeechRecognitionStarted.InvokeAsync();
-                }
-
-                StateHasChanged();
-            });
-
-        [JSInvokable]
-        public Task OnEndedAsync() =>
-            InvokeAsync(async () =>
+        void OnError(SpeechRecognitionErrorEvent recognitionError)
+        {
+            (_isRecognizing, _error) = (false, recognitionError);
+            if (SpeechRecognitionStopped.HasDelegate)
             {
-                _isRecognizing = false;
+                SpeechRecognitionStopped.InvokeAsync(_error);
+            }
+            StateHasChanged();
+        }
 
-                if (SpeechRecognitionStopped.HasDelegate)
-                {
-                    await SpeechRecognitionStopped.InvokeAsync(_error);
-                }
-
-                StateHasChanged();
-            });
-
-        [JSInvokable]
-        public Task OnErrorAsync(SpeechRecognitionError recognitionError) =>
-            InvokeAsync(async () =>
+        void OnStarted()
+        {
+            _isRecognizing = true;
+            if (SpeechRecognitionStarted.HasDelegate)
             {
-                (_isRecognizing, _error) = (false, recognitionError);
+                SpeechRecognitionStarted.InvokeAsync();
+            }
+            StateHasChanged();
+        }
 
-                if (SpeechRecognitionStopped.HasDelegate)
-                {
-                    await SpeechRecognitionStopped.InvokeAsync(_error);
-                }
+        public void OnEnded()
+        {
+            _isRecognizing = false;
+            if (SpeechRecognitionStopped.HasDelegate)
+            {
+                SpeechRecognitionStopped.InvokeAsync(_error);
+            }
+            StateHasChanged();
+        }
 
-                StateHasChanged();
-            });
-        
-        [JSInvokable]
-        public void OnRecognized(string transcript, bool isFinal) =>
-            _speechRecognitionService.RecognitionReceived(
-                new(transcript, isFinal));
-
-        void IDisposable.Dispose() => _speechRecognitionService.Dispose();
+        ValueTask IAsyncDisposable.DisposeAsync() =>
+            SpeechRecognition.DisposeAsync();
     }
 }
