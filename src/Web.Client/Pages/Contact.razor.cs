@@ -82,6 +82,14 @@ namespace Learning.Blazor.Pages
 
                 if (response.IsSuccessStatusCode)
                 {
+                    _model = _model with
+                    {
+                        FirstName = null,
+                        LastName = null,
+                        Message = null,
+                        Subject = null,
+                        AgreesToTerms = false
+                    };
                     InitializeModelAndContext();
                     await InvokeAsync(StateHasChanged);
                 }
