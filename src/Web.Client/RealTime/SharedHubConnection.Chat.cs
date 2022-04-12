@@ -6,8 +6,8 @@ namespace Learning.Blazor;
 public sealed partial class SharedHubConnection
 {
     /// <inheritdoc cref="HubClientMethodNames.JoinChat" />
-    public Task JoinChatAsync(string room) =>
-        _hubConnection.InvokeAsync(
+    public Task<int> JoinChatAsync(string room) =>
+        _hubConnection.InvokeAsync<int>(
             methodName: HubClientMethodNames.JoinChat, room);
 
     /// <inheritdoc cref="HubClientMethodNames.LeaveChat" />

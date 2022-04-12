@@ -9,6 +9,8 @@ namespace Learning.Blazor.Pages
 
         private readonly Stack<IDisposable> _subscriptions = new();
 
+        private int? _usersOnline;
+
         [Parameter]
         public string? Room { get; set; } = DefaultRoomName;
 
@@ -25,7 +27,7 @@ namespace Learning.Blazor.Pages
                 HubConnection.SubscribeToUserTyping(OnUserTypingAsync));
 
             await HubConnection.StartAsync();
-            await HubConnection.JoinChatAsync(Room ?? DefaultRoomName);
+            _usersOnline = await HubConnection.JoinChatAsync(Room ?? DefaultRoomName);
         }
 
         protected override async Task OnAfterRenderAsync(bool firstRender)

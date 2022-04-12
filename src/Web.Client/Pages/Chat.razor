@@ -42,6 +42,11 @@
                 <p class="panel-heading has-text-left">
                     <span>
                         @Localizer["Messages"]
+                        @if (_usersOnline is not null)
+                        { 
+                            <span class="pl-2">&bull;</span>
+                            <span>@Localizer["UserInChatFormat", _usersOnline]</span>
+                        }
                     </span>
                     <span class="is-pulled-right">
                     @if (TryGetUsersTypingText(out var text))

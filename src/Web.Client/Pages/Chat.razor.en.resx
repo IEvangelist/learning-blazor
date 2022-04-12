@@ -135,6 +135,9 @@
   <data name="TwoUsersAreTypingFormat" xml:space="preserve">
     <value>{0} and {1} are both typing.</value>
   </data>
+  <data name="UserInChatFormat" xml:space="preserve">
+    <value>Online {0:N0}</value>
+  </data>
   <data name="UserIsTypingFormat" xml:space="preserve">
     <value>{0} is typing.</value>
   </data>

@@ -5,6 +5,8 @@ namespace Learning.Blazor.Api.Hubs;
 
 public partial class NotificationHub
 {
+    private int _userOnline;
+
     public Task ToggleUserTyping(bool isTyping) =>
         Clients.Others.SendAsync(
             HubServerEventNames.UserTyping,
@@ -24,7 +26,7 @@ public partial class NotificationHub
                    UserName: _userName ?? "Unknown",
                    IsEdit: id.HasValue)));
 
-    public async Task JoinChat(string room)
+    public async Task<int> JoinChat(string room)
     {
         await Groups.AddToGroupAsync(
             Context.ConnectionId, room);
@@ -37,9 +39,11 @@ public partial class NotificationHub
                     Text: _localizer["WelcomeToChatRoom", room],
                     UserName: "🤖",
                     IsGreeting: true)));
+
+        return Interlocked.Increment(ref _userOnline);
     }
 
-    public async Task LeaveChat(string room)
+    public async Task<int> LeaveChat(string room)
     {
         await Groups.RemoveFromGroupAsync(
             Context.ConnectionId, room);
@@ -51,5 +55,7 @@ public partial class NotificationHub
                     Id: Guid.NewGuid(),
                     Text: _localizer["HasLeftTheChatRoom", _userName ?? "?"],
                     UserName: "🤖")));
+
+        return Interlocked.Decrement(ref _userOnline);
     }
 }
