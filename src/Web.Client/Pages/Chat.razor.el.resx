@@ -76,6 +76,9 @@
   <data name="TwoUsersAreTypingFormat" xml:space="preserve">
     <value>{0} και {1} πληκτρολογούν και οι δύο.</value>
   </data>
+  <data name="UserInChatFormat" xml:space="preserve">
+    <value>Σε απευθείας σύνδεση {0:N0}</value>
+  </data>
   <data name="UserIsTypingFormat" xml:space="preserve">
     <value>{0} δακτυλογραφεί.</value>
   </data>

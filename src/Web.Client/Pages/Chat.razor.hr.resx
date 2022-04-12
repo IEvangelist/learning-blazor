@@ -62,7 +62,7 @@
     <value>Učenje Blazora: Chat</value>
   </data>
   <data name="ChatMessage" xml:space="preserve">
-    <value>Poruka čavrljanja</value>
+    <value>Poruka chata</value>
   </data>
   <data name="Messages" xml:space="preserve">
     <value>Poruke</value>
@@ -75,6 +75,9 @@
   </data>
   <data name="TwoUsersAreTypingFormat" xml:space="preserve">
     <value>{0} i {1} tipkaju.</value>
+  </data>
+  <data name="UserInChatFormat" xml:space="preserve">
+    <value>Online {0:N0}</value>
   </data>
   <data name="UserIsTypingFormat" xml:space="preserve">
     <value>{0} tipka.</value>

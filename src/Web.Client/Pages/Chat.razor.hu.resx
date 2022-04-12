@@ -62,7 +62,7 @@
     <value>Tanulás Blazor: Chat</value>
   </data>
   <data name="ChatMessage" xml:space="preserve">
-    <value>Csevegőüzenet</value>
+    <value>Csevegési üzenet</value>
   </data>
   <data name="Messages" xml:space="preserve">
     <value>Üzenetek</value>
@@ -74,7 +74,10 @@
     <value>Küld</value>
   </data>
   <data name="TwoUsersAreTypingFormat" xml:space="preserve">
-    <value>{0} és {1} egyaránt gépelnek.</value>
+    <value>{0} és {1} is gépel.</value>
+  </data>
+  <data name="UserInChatFormat" xml:space="preserve">
+    <value>Online {0:N0}</value>
   </data>
   <data name="UserIsTypingFormat" xml:space="preserve">
     <value>{0} gépel.</value>

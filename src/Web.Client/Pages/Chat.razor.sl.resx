@@ -76,6 +76,9 @@
   <data name="TwoUsersAreTypingFormat" xml:space="preserve">
     <value>{0} in {1} tipkata.</value>
   </data>
+  <data name="UserInChatFormat" xml:space="preserve">
+    <value>V spletu {0:N0}</value>
+  </data>
   <data name="UserIsTypingFormat" xml:space="preserve">
     <value>{0} tipka.</value>
   </data>

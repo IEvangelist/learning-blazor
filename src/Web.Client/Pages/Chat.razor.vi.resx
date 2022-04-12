@@ -74,9 +74,12 @@
     <value>Gửi</value>
   </data>
   <data name="TwoUsersAreTypingFormat" xml:space="preserve">
-    <value>{0} và {1} đều đang gõ.</value>
+    <value>{0} và {1} đều đang đánh máy.</value>
+  </data>
+  <data name="UserInChatFormat" xml:space="preserve">
+    <value>Trực tuyến {0:N0}</value>
   </data>
   <data name="UserIsTypingFormat" xml:space="preserve">
-    <value>{0} đang gõ.</value>
+    <value>{0} đang đánh máy.</value>
   </data>
 </root>

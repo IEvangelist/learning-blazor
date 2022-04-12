@@ -74,7 +74,10 @@
     <value>Lähettää</value>
   </data>
   <data name="TwoUsersAreTypingFormat" xml:space="preserve">
-    <value>{0} ja {1} kirjoittavat molemmat.</value>
+    <value>{0} ja {1} kirjoittavat.</value>
+  </data>
+  <data name="UserInChatFormat" xml:space="preserve">
+    <value>Online-tilassa {0:n0}</value>
   </data>
   <data name="UserIsTypingFormat" xml:space="preserve">
     <value>{0} kirjoittaa.</value>

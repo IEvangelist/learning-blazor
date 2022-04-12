@@ -59,7 +59,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Chat" xml:space="preserve">
-    <value>Навчання Блейзор: Чат</value>
+    <value>Навчання Блазор: Чат</value>
   </data>
   <data name="ChatMessage" xml:space="preserve">
     <value>Повідомлення чату</value>
@@ -68,15 +68,18 @@
     <value>Повідомлення</value>
   </data>
   <data name="MultiplePeopleAreTyping" xml:space="preserve">
-    <value>Кілька людей вводять текст.</value>
+    <value>Кілька людей набирають текст.</value>
   </data>
   <data name="Send" xml:space="preserve">
     <value>Надіслати</value>
   </data>
   <data name="TwoUsersAreTypingFormat" xml:space="preserve">
-    <value>{0} і {1} обидва вводять текст.</value>
+    <value>{0} та {1} вводите текст.</value>
+  </data>
+  <data name="UserInChatFormat" xml:space="preserve">
+    <value>Онлайн {0:N0}</value>
   </data>
   <data name="UserIsTypingFormat" xml:space="preserve">
-    <value>{0} набирає.</value>
+    <value>{0} набирає текст.</value>
   </data>
 </root>

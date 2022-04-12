@@ -76,6 +76,9 @@
   <data name="TwoUsersAreTypingFormat" xml:space="preserve">
     <value>{0} et {1} sont tous deux en train de taper.</value>
   </data>
+  <data name="UserInChatFormat" xml:space="preserve">
+    <value>En ligne {0:N0}</value>
+  </data>
   <data name="UserIsTypingFormat" xml:space="preserve">
     <value>{0} est en train de taper.</value>
   </data>
