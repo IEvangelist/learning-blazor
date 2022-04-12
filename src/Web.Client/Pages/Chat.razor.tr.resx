@@ -59,7 +59,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Chat" xml:space="preserve">
-    <value>Blazor Öğrenme: Sohbet</value>
+    <value>Blazor'u Öğrenmek: Sohbet</value>
   </data>
   <data name="ChatMessage" xml:space="preserve">
     <value>Sohbet mesajı</value>
@@ -68,13 +68,16 @@
     <value>Ileti</value>
   </data>
   <data name="MultiplePeopleAreTyping" xml:space="preserve">
-    <value>Birden çok kişi yazıyor.</value>
+    <value>Birden fazla kişi yazıyor.</value>
   </data>
   <data name="Send" xml:space="preserve">
     <value>Gönder</value>
   </data>
   <data name="TwoUsersAreTypingFormat" xml:space="preserve">
-    <value>{0} ve {1} da yazıyor.</value>
+    <value>{0} ve {1} her ikisi de yazıyor.</value>
+  </data>
+  <data name="UserInChatFormat" xml:space="preserve">
+    <value>Çevrimiçi {0:N0}</value>
   </data>
   <data name="UserIsTypingFormat" xml:space="preserve">
     <value>{0} yazıyor.</value>

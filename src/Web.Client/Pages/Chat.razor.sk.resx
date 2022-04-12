@@ -68,13 +68,16 @@
     <value>Správy</value>
   </data>
   <data name="MultiplePeopleAreTyping" xml:space="preserve">
-    <value>Viac ľudí píše.</value>
+    <value>Píše viac ľudí.</value>
   </data>
   <data name="Send" xml:space="preserve">
     <value>Poslať</value>
   </data>
   <data name="TwoUsersAreTypingFormat" xml:space="preserve">
-    <value>{0} aj {1} píšu.</value>
+    <value>{0} a {1} píšu.</value>
+  </data>
+  <data name="UserInChatFormat" xml:space="preserve">
+    <value>Online {0:N0}</value>
   </data>
   <data name="UserIsTypingFormat" xml:space="preserve">
     <value>{0} píše.</value>

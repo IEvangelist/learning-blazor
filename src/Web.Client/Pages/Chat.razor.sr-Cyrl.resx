@@ -76,6 +76,9 @@
   <data name="TwoUsersAreTypingFormat" xml:space="preserve">
     <value>{0} и {1} обоје куцају.</value>
   </data>
+  <data name="UserInChatFormat" xml:space="preserve">
+    <value>Онлине {0:N0}</value>
+  </data>
   <data name="UserIsTypingFormat" xml:space="preserve">
     <value>{0} куца.</value>
   </data>

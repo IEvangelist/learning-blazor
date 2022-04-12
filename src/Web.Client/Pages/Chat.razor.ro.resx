@@ -74,9 +74,12 @@
     <value>Expedia</value>
   </data>
   <data name="TwoUsersAreTypingFormat" xml:space="preserve">
-    <value>{0} și {1} sunt ambele tastând.</value>
+    <value>{0} și {1} tastează ambele.</value>
+  </data>
+  <data name="UserInChatFormat" xml:space="preserve">
+    <value>Online {0:N0}</value>
   </data>
   <data name="UserIsTypingFormat" xml:space="preserve">
-    <value>{0} este tastarea.</value>
+    <value>{0} tastează.</value>
   </data>
 </root>

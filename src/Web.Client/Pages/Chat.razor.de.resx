@@ -62,7 +62,7 @@
     <value>Blazor lernen: Chat</value>
   </data>
   <data name="ChatMessage" xml:space="preserve">
-    <value>Chatnachricht</value>
+    <value>Chat-Nachricht</value>
   </data>
   <data name="Messages" xml:space="preserve">
     <value>Meldungen</value>
@@ -75,6 +75,9 @@
   </data>
   <data name="TwoUsersAreTypingFormat" xml:space="preserve">
     <value>{0} und {1} tippen beide.</value>
+  </data>
+  <data name="UserInChatFormat" xml:space="preserve">
+    <value>Online {0:N0}</value>
   </data>
   <data name="UserIsTypingFormat" xml:space="preserve">
     <value>{0} tippt.</value>

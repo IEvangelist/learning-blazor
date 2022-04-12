@@ -59,7 +59,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Chat" xml:space="preserve">
-    <value>Leer Blazor: Chat</value>
+    <value>Leer Blazor: Klets</value>
   </data>
   <data name="ChatMessage" xml:space="preserve">
     <value>Kletsboodskap</value>
@@ -76,7 +76,10 @@
   <data name="TwoUsersAreTypingFormat" xml:space="preserve">
     <value>{0} en {1} is albei tik.</value>
   </data>
+  <data name="UserInChatFormat" xml:space="preserve">
+    <value>Online {0:N0}</value>
+  </data>
   <data name="UserIsTypingFormat" xml:space="preserve">
-    <value>{0} is besig om te tik.</value>
+    <value>{0} tik.</value>
   </data>
 </root>

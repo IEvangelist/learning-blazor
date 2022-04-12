@@ -76,6 +76,9 @@
   <data name="TwoUsersAreTypingFormat" xml:space="preserve">
     <value>{0} en {1} typen allebei.</value>
   </data>
+  <data name="UserInChatFormat" xml:space="preserve">
+    <value>Online {0:N0}</value>
+  </data>
   <data name="UserIsTypingFormat" xml:space="preserve">
     <value>{0} typt.</value>
   </data>

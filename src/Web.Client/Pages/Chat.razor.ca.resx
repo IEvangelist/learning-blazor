@@ -76,6 +76,9 @@
   <data name="TwoUsersAreTypingFormat" xml:space="preserve">
     <value>{0} i {1} escriuen.</value>
   </data>
+  <data name="UserInChatFormat" xml:space="preserve">
+    <value>En línia {0:N0}</value>
+  </data>
   <data name="UserIsTypingFormat" xml:space="preserve">
     <value>{0} està escrivint.</value>
   </data>

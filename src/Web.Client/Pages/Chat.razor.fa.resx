@@ -74,7 +74,10 @@
     <value>ارسال</value>
   </data>
   <data name="TwoUsersAreTypingFormat" xml:space="preserve">
-    <value>{0} و {1} هر دو تایپ می کنند.</value>
+    <value>{0} و {1} هر دو تایپ هستند.</value>
+  </data>
+  <data name="UserInChatFormat" xml:space="preserve">
+    <value>آنلاین {0:N0}</value>
   </data>
   <data name="UserIsTypingFormat" xml:space="preserve">
     <value>{0} داره تایپ میکنه</value>

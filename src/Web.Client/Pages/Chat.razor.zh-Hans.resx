@@ -76,6 +76,9 @@
   <data name="TwoUsersAreTypingFormat" xml:space="preserve">
     <value>{0}和{1}都在打字。</value>
   </data>
+  <data name="UserInChatFormat" xml:space="preserve">
+    <value>在线 {0：N0}</value>
+  </data>
   <data name="UserIsTypingFormat" xml:space="preserve">
     <value>{0}正在打字。</value>
   </data>
