@@ -8,7 +8,7 @@ namespace Learning.Blazor.Components
     public sealed partial class AdditiveSpeechRecognitionComponent : IAsyncDisposable
     {
         IDisposable? _recognitionSubscription;
-        SpeechRecognitionErrorEvent? _error = null;
+        RecognitionError? _error = null;
         bool _isRecognizing = false;
 
         string _dynamicCSS => _isRecognizing ? "is-flashing" : "";

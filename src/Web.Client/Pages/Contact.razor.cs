@@ -32,9 +32,9 @@ namespace Learning.Blazor.Pages
                 _isEmailReadonly = _model.EmailAddress is not null
                     && RegexEmailAddressAttribute.EmailExpression.IsMatch(
                         _model.EmailAddress);
-
-                _editContext = new(_model);
             }
+
+            _editContext = new(_model);
         }
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -83,14 +83,7 @@ namespace Learning.Blazor.Pages
                 if (response.IsSuccessStatusCode)
                 {
                     AppState.ContactPageSubmitted(_model);
-                    _model = _model with
-                    {
-                        FirstName = null,
-                        LastName = null,
-                        Message = null,
-                        Subject = null,
-                        AgreesToTerms = false
-                    };
+                    _model = new();
                     InitializeModelAndContext();
                     await InvokeAsync(StateHasChanged);
                 }

@@ -28,7 +28,6 @@ internal static class AreYouHumanMathExtensions
 
         // Given:  "7 + 3 = ?"
         // Expect: "What does seven plus (➕) three equal?"
-        return $"What does {leftOperandPhrase} {operatorStr} {rightOperandPhrase} equal"
-            .Humanize(LetterCasing.Sentence) + "?";
+        return $"What does {leftOperandPhrase} {operatorStr} {rightOperandPhrase} equal?";
     }
 }
