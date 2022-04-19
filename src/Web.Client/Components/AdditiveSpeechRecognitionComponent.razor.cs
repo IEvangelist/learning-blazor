@@ -1,6 +1,8 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
+using RecognitionError = Microsoft.JSInterop.SpeechRecognitionErrorEvent;
+
 namespace Learning.Blazor.Components
 {
     public sealed partial class AdditiveSpeechRecognitionComponent : IAsyncDisposable
@@ -18,7 +20,7 @@ namespace Learning.Blazor.Components
         public EventCallback SpeechRecognitionStarted { get; set; }
 
         [Parameter]
-        public EventCallback<SpeechRecognitionErrorEvent?> SpeechRecognitionStopped { get; set; }
+        public EventCallback<RecognitionError?> SpeechRecognitionStopped { get; set; }
 
         [Parameter, EditorRequired]
         public EventCallback<string> SpeechRecognized { get; set; }
@@ -50,43 +52,25 @@ namespace Learning.Blazor.Components
             }
         }
 
-        void OnRecognized(string transcript)
-        {
-            if (SpeechRecognized.HasDelegate)
-            {
-                SpeechRecognized.InvokeAsync(transcript);
-            }
-            StateHasChanged();
-        }
+        void OnRecognized(string transcript) =>
+            _ = SpeechRecognized.TryInvokeAsync(this, transcript);
 
-        void OnError(SpeechRecognitionErrorEvent recognitionError)
+        void OnError(RecognitionError recognitionError)
         {
             (_isRecognizing, _error) = (false, recognitionError);
-            if (SpeechRecognitionStopped.HasDelegate)
-            {
-                SpeechRecognitionStopped.InvokeAsync(_error);
-            }
-            StateHasChanged();
+            _ = SpeechRecognitionStopped.TryInvokeAsync(this, _error);
         }
 
         void OnStarted()
         {
             _isRecognizing = true;
-            if (SpeechRecognitionStarted.HasDelegate)
-            {
-                SpeechRecognitionStarted.InvokeAsync();
-            }
-            StateHasChanged();
+            _ = SpeechRecognitionStarted.TryInvokeAsync(this);
         }
 
         public void OnEnded()
         {
             _isRecognizing = false;
-            if (SpeechRecognitionStopped.HasDelegate)
-            {
-                SpeechRecognitionStopped.InvokeAsync(_error);
-            }
-            StateHasChanged();
+            _ = SpeechRecognitionStopped.TryInvokeAsync(this, _error);
         }
 
         ValueTask IAsyncDisposable.DisposeAsync()

@@ -53,6 +53,7 @@ public sealed class AppInMemoryState
     }
 
     public Action<IList<Alert>>? WeatherAlertReceived { get; set; }
+    public Action<ContactComponentModel> ContactPageSubmitted { get; set; }
 
     public event Action? StateChanged;
 

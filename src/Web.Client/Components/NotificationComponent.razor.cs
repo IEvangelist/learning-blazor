@@ -38,8 +38,11 @@ namespace Learning.Blazor.Components
             await HubConnection.StartAsync();
         }
 
-        protected override void OnParametersSet() =>
+        protected override void OnParametersSet()
+        {
             AppState.WeatherAlertReceived ??= OnWeatherAlertReceived;
+            AppState.ContactPageSubmitted ??= OnContactPageSubmitted;
+        }
 
         private Task OnUserLoggedInAsync(Notification<Actor> notification) =>
             InvokeAsync(async () =>
@@ -109,6 +112,18 @@ namespace Learning.Blazor.Components
                     new(
                         text, NotificationType.Warning));
             }
+
+            StateHasChanged();
+        }
+
+        private void OnContactPageSubmitted(ContactComponentModel model)
+        {
+            var text =
+                $"Thank you for your message, {model!.FirstName}. We will get back to you as soon as possible.";
+
+            _ = _notifications.Add(
+                new(
+                    text, NotificationType.Alert));
 
             StateHasChanged();
         }

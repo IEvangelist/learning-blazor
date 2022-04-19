@@ -82,6 +82,7 @@ namespace Learning.Blazor.Pages
 
                 if (response.IsSuccessStatusCode)
                 {
+                    AppState.ContactPageSubmitted(_model);
                     _model = _model with
                     {
                         FirstName = null,

@@ -6,7 +6,9 @@ namespace Learning.Blazor.Extensions;
 public static class EditContextExtensions
 {
     /// <summary>
-    /// Maps the <paramref name="accessor"/> CSS to the foloowing:
+    /// Maps the given <paramref name="accessor"/> expression to the resulting
+    /// CSS returned from calling
+    /// <see cref="EditContextFieldClassExtensions.FieldCssClass"/> as follows:
     /// <list type="bullet">
     /// <item><c>"mofified valid"</c>: <c>"fa-check-circle has-text-success"</c></item>
     /// <item><c>"modified invalid"</c>: <c>"fa-times-circle has-text-danger"</c></item>
@@ -25,7 +27,10 @@ public static class EditContextExtensions
     }
 
     /// <summary>
-    /// Maps the <paramref name="accessor"/> CSS to the foloowing:
+    /// Maps the given <paramref name="accessorOne"/> and
+    /// <paramref name="accessorTwo"/> expressions to the resulting
+    /// CSS returned from calling
+    /// <see cref="EditContextFieldClassExtensions.FieldCssClass"/> as follows:
     /// <list type="bullet">
     /// <item><c>"mofified valid"</c>: <c>"fa-check-circle has-text-success"</c></item>
     /// <item><c>"modified invalid"</c>: <c>"fa-times-circle has-text-danger"</c></item>
@@ -46,7 +51,7 @@ public static class EditContextExtensions
     }
 
     /// <summary>
-    /// Maps the <paramref name="accessor"/> CSS to the foloowing:
+    /// Maps the given validation states into corresponding CSS classes.
     /// <list type="bullet">
     /// <item><c>"mofified valid"</c>: <c>"fa-check-circle has-text-success"</c></item>
     /// <item><c>"modified invalid"</c>: <c>"fa-times-circle has-text-danger"</c></item>
@@ -62,7 +67,7 @@ public static class EditContextExtensions
 
             _ => "fa-question-circle"
         };
-
+    
     private static bool IsValid(string? css) =>
         IsContainingClass(css, "valid") && !IsInvalid(css);
 

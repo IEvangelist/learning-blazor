@@ -3,7 +3,7 @@
 
 namespace Learning.Blazor.Components
 {
-    public class LocalizableComponentBase<T> : ComponentBase
+    public class LocalizableComponentBase<T> : AppComponentBase
     {
         [Inject]
         public CultureService Culture { get; set; } = null!;

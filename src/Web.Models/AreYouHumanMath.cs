@@ -83,9 +83,9 @@ public readonly record struct AreYouHumanMath(
 
         var (left, right) = mathOp switch
         {
-            MathOperator.Addition => (Next(), Next()),
-            MathOperator.Subtraction => (Next(120), Next(120)),
-            _ => (Next(30), Next(30)),
+            MathOperator.Addition => (Next(25), Next(25)),
+            MathOperator.Subtraction => (Next(50), Next(50)),
+            _ => (Next(5), Next(5)),
         };
 
         (left, right) = (Math.Max(left, right), Math.Min(left, right));
