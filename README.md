@@ -50,6 +50,7 @@ The app is packed with examples of how to do various things with Blazor, includi
 - Blazor WebAssembly Localization
 - Azure Cognitive Services Translator
 - Blazor Component Virtualization
+- Humanizer
 - Two-way JavaScript Interop (using both `IJSRuntime` and `IJsInProcessRuntime`)
   - As well as Blazorators, for source generation
 
