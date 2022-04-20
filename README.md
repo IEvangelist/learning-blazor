@@ -61,6 +61,7 @@ I'm using several of my open-source projects within this repository.
 |---------|------------|---------|
 | [IEvangelist.Azure.CosmosRepository](https://www.nuget.org/packages/IEvangelist.Azure.CosmosRepository) | [`./azure-cosmos-dotnet-repository`](https://github.com/IEvangelist/azure-cosmos-dotnet-repository) | `IRepository<TItem>` via DI for light-weight access to Azure Cosmos DB. |
 | [Blazor.LocalStorage.WebAssembly](https://www.nuget.org/packages/Blazor.LocalStorage.WebAssembly) | [`./blazorators`](https://github.com/IEvangelist/blazorators) | Source-generated `localStorage` API implementation class library from Blazorators: C# Source Generators for Blazor. |
+| [Blazor.SpeechRecognition.WebAssembly](https://www.nuget.org/packages/Blazor.SpeechRecognition.WebAssembly) | [`./blazorators`](https://github.com/IEvangelist/blazorators) | Hand-written custom library that wraps browser native `speechRecognition` API implementation. |
 | [HaveIBeenPwned.Client](https://www.nuget.org/packages/HaveIBeenPwned.Client) | [`./pwned-client`](https://github.com/IEvangelist/pwned-client) | A .NET HTTP client for the "have i been pwned" API service from Troy Hunt.  |
 
 ## GitHub Actions
