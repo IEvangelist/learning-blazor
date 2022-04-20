@@ -53,12 +53,12 @@ namespace Learning.Blazor.Components
         }
 
         void OnRecognized(string transcript) =>
-            _ = SpeechRecognized.TryInvokeAsync(this, transcript);
+            _ = SpeechRecognized.TryInvokeAsync(transcript, this);
 
         void OnError(RecognitionError recognitionError)
         {
             (_isRecognizing, _error) = (false, recognitionError);
-            _ = SpeechRecognitionStopped.TryInvokeAsync(this, _error);
+            _ = SpeechRecognitionStopped.TryInvokeAsync(_error, this);
         }
 
         void OnStarted()
@@ -70,7 +70,7 @@ namespace Learning.Blazor.Components
         public void OnEnded()
         {
             _isRecognizing = false;
-            _ = SpeechRecognitionStopped.TryInvokeAsync(this, _error);
+            _ = SpeechRecognitionStopped.TryInvokeAsync(_error, this);
         }
 
         ValueTask IAsyncDisposable.DisposeAsync()

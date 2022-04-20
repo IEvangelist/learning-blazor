@@ -23,14 +23,11 @@ namespace Learning.Blazor.Components
         private void Refresh() =>
             (_math, _attemptedAnswer) = (AreYouHumanMath.CreateNew(), null);
 
-        private async Task OnDismissed(DismissalReason reason)
-        {
-            if (VerificationAttempted.HasDelegate)
-            {
-                await VerificationAttempted.InvokeAsync(
-                    (reason is DismissalReason.Verified, _state));
-            }
-        }
+        private Task OnDismissed(DismissalReason reason) =>
+            VerificationAttempted.TryInvokeAsync
+                <(bool IsVerified, object? State), VerificationModalComponent>(
+                args: (reason is DismissalReason.Verified, _state),
+                componentBase: null);
 
         private async Task AttemptToVerify()
         {

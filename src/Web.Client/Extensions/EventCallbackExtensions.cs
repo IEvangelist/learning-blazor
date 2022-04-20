@@ -7,7 +7,7 @@ internal static class EventCallbackExtensions
 {
     internal static async Task TryInvokeAsync<TComponentBase>(
         this EventCallback eventCallback,
-        TComponentBase componentBase)
+        TComponentBase? componentBase = null)
         where TComponentBase : AppComponentBase
     {
         if (eventCallback is { HasDelegate: true })
@@ -20,9 +20,9 @@ internal static class EventCallbackExtensions
         }
     }
 
-    internal static async Task TryInvokeAsync<TComponentBase, T>(
+    internal static async Task TryInvokeAsync<T, TComponentBase>(
         this EventCallback<T> eventCallback,
-        TComponentBase componentBase)
+        TComponentBase? componentBase = null)
         where TComponentBase : AppComponentBase
     {
         if (eventCallback is { HasDelegate: true })
@@ -35,10 +35,10 @@ internal static class EventCallbackExtensions
         }
     }
 
-    internal static async Task TryInvokeAsync<TComponentBase, T>(
+    internal static async Task TryInvokeAsync<T, TComponentBase>(
         this EventCallback eventCallback,
-        TComponentBase componentBase,
-        T args)
+        T args,
+        TComponentBase? componentBase = null)
         where TComponentBase : AppComponentBase
     {
         if (eventCallback is { HasDelegate: true })
@@ -51,10 +51,10 @@ internal static class EventCallbackExtensions
         }
     }
     
-    internal static async Task TryInvokeAsync<TComponentBase, T>(
+    internal static async Task TryInvokeAsync<T, TComponentBase>(
         this EventCallback<T> eventCallback,
-        TComponentBase componentBase,
-        T args)
+        T args,
+        TComponentBase? componentBase = null)
         where TComponentBase : AppComponentBase
     {
         if (eventCallback is { HasDelegate: true })
