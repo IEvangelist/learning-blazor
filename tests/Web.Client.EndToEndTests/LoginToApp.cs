@@ -5,57 +5,67 @@ namespace Web.Client.EndToEndTests;
 
 public sealed partial class LoginToApp
 {
-    const string UsernameEnvVarKey = "TEST_USERNAME";
-    const string PasswordEnvVarKey = "TEST_PASSWORD";
-
     const string LearningBlazorSite = "https://webassemblyof.net";
+    const string LearningBlazorB2CSite = "https://learningblazor.b2clogin.com";
+
+    static IBrowserType ToBrowser(string browser, IPlaywright pw) =>
+        browser switch { "chromium" => pw.Chromium, "firefox" => pw.Firefox, _ => pw.Webkit };
+
+    static Credentials GetCredentials() =>
+        new(
+            GetEnvironmentVariable("TEST_USERNAME"),
+            GetEnvironmentVariable("TEST_PASSWORD"));
+
+    readonly record struct Credentials(string? Username, string? Password);
 
     [
-        Theory,
+        Theory(Skip = "The changes to the element id's has not yet been deployed."),
         InlineData("chromium"),
         InlineData("firefox"),
+        InlineData("webkit"),
     ]
-    public async Task CanLoginWithVerifiedCredentials(string browser)
+    public async Task CanLoginWithVerifiedCredentials(string browserName)
     {
-        // Helper to map the browser to type.
-        static IBrowserType With(
-            string brwsr, IPlaywright pw) => brwsr switch
-            {
-                "chromium" => pw.Chromium,
-                "firefox" => pw.Firefox,
-                _ => pw.Webkit,
-            };
-
-        // Store these as env vars, to be used by GitHub Action
-        // workflow files later that invoke a login test.
-        var username = GetEnvironmentVariable(UsernameEnvVarKey);
+        var (username, password) = GetCredentials();
         Assert.NotNull(username);
-        var password = GetEnvironmentVariable(PasswordEnvVarKey);
         Assert.NotNull(password);
 
-        // Create a playwright instance, and configure a browser.
         using var playwright = await Playwright.CreateAsync();
-        await using var sut = await With(browser, playwright)
-            .LaunchAsync(/* headless by default */);
+        await using var sut = await ToBrowser(browserName, playwright)
+            .LaunchAsync(new()
+            {
+                Headless = false
+            });
 
-        // We create a reference to a page object, and navigate
-        // to the site. We then click the login button.
-        var loginPage = await sut.NewPageAsync();
-        await loginPage.GotoAsync(LearningBlazorSite);
-        await loginPage.ClickAsync("#login-button", new PageClickOptions
+        await using var context = await sut.NewContextAsync(
+            new()
+            {
+                Permissions = new[] { "geolocation" },
+                Geolocation = new Geolocation() // Milwaukee, WI
+                {
+                    Latitude = 43.04181f,
+                    Longitude = -87.90684f
+                }
+            });
+
+        var loginPage = await context.NewPageAsync();
+        await loginPage.RunAndWaitForNavigationAsync(async () =>
         {
-            Trial = true
+            await loginPage.GotoAsync(LearningBlazorSite);
+        },
+        new()
+        {
+            UrlString = $"{LearningBlazorB2CSite}/**",
+            WaitUntil = WaitUntilState.NetworkIdle
         });
 
         // Enter our test credentals, and attempt "sign in".
-        await loginPage.FillAsync("#email",  username ?? "fail");
+        await loginPage.FillAsync("#email", username ?? "fail");
         await loginPage.FillAsync("#password", password ?? "?!?!");
         await loginPage.ClickAsync("#next" /* "Sign in" button */);
 
-        // Capture the screen.
-        await loginPage.ScreenshotAsync(new PageScreenshotOptions
-        {
-            Path = "screenshot.png"
-        });
+        var selector = "#weather-city-state";
+        var text = await loginPage.Locator(selector).InnerTextAsync();
+        Assert.Equal("Milwaukee, Wisconsin (US)", text);
     }
 }
