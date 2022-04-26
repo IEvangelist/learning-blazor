@@ -36,10 +36,7 @@ public sealed partial class LoginToApp
         // Create a playwright instance, and configure a browser.
         using var playwright = await Playwright.CreateAsync();
         await using var sut = await With(browser, playwright)
-            .LaunchAsync(new BrowserTypeLaunchOptions
-            {
-                Headless = false
-            });
+            .LaunchAsync(/* headless by default */);
 
         // We create a reference to a page object, and navigate
         // to the site. We then click the login button.
