@@ -19,10 +19,9 @@ public sealed partial class LoginToApp
     readonly record struct Credentials(string? Username, string? Password);
 
     [
-        Theory(Skip = "The changes to the element id's has not yet been deployed."),
+        Theory,
         InlineData("chromium"),
-        InlineData("firefox"),
-        InlineData("webkit"),
+        InlineData("firefox")
     ]
     public async Task CanLoginWithVerifiedCredentials(string browserName)
     {
