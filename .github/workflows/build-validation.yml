@@ -5,6 +5,10 @@ on:
     branches: [ main ]
     paths-ignore:
     - '**.md'
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+    branches:
+      - main  # only run on main branch
   workflow_dispatch:
     inputs:
       reason:
@@ -12,6 +16,10 @@ on:
         required: true
         default: 'Manual "Build" run'
 
+env:
+  TEST_USERNAME: ${{ secrets.TEST_USERNAME }}
+  TEST_PASSWORD: ${{ secrets.TEST_PASSWORD }}
+        
 jobs:
   build:
     name: build
@@ -36,6 +44,14 @@ jobs:
     - name: Build
       run: |
         dotnet build --configuration Release --no-restore
+
+    - uses: actions/setup-node@v1
+      name: 'Setup Node'
+
+      # Install Playwright browser dependencies
+      run: |
+        npx playwright install-deps
+
     - name: Test
       run: |
         dotnet test --no-restore --verbosity normal
