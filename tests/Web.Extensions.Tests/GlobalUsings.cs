@@ -2,3 +2,5 @@
 // Licensed under the MIT License.
 
 global using Blazor.Serialization.Extensions;
+global using System.Security.Claims;
+global using Xunit;
