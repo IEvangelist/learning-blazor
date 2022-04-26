@@ -1,4 +1,4 @@
-name: Build
+name: Build Validation
 
 on:
   push:
@@ -48,7 +48,7 @@ jobs:
     - uses: actions/setup-node@v1
       name: 'Setup Node'
 
-      # Install Playwright browser dependencies
+    - name: 'Install Playwright browser dependencies'
       run: |
         npx playwright install-deps
 
