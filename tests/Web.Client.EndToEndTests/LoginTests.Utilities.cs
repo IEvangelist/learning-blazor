@@ -18,18 +18,16 @@ public sealed partial class LoginTests
 
     static Credentials GetTestCredentials()
     {
-        var credentials = TryGetTestCredentials();
+        var credentials = new Credentials(
+            Username: GetEnvironmentVariable("TEST_USERNAME"),
+            Password: GetEnvironmentVariable("TEST_PASSWORD"));
+        
         Assert.NotNull(credentials.Username);
         Assert.NotNull(credentials.Password);
 
         return credentials;
     }
-
-    static Credentials TryGetTestCredentials() =>
-        new(
-            GetEnvironmentVariable("TEST_USERNAME"),
-            GetEnvironmentVariable("TEST_PASSWORD"));
-
+    
     readonly record struct Credentials(
         string? Username,
         string? Password);
@@ -38,6 +36,7 @@ public sealed partial class LoginTests
     {
         Unknown,
         Chromium,
-        Firefox
+        Firefox,
+        WebKit
     }
 }
