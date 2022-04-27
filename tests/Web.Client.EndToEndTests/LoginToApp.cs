@@ -31,10 +31,7 @@ public sealed partial class LoginToApp
 
         using var playwright = await Playwright.CreateAsync();
         await using var sut = await ToBrowser(browserName, playwright)
-            .LaunchAsync(new()
-            {
-                Headless = false
-            });
+            .LaunchAsync();
 
         await using var context = await sut.NewContextAsync(
             new()

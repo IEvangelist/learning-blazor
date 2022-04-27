@@ -52,11 +52,6 @@ jobs:
         cache: 'npm'
         cache-dependency-path: subdir/package-lock.json
 
-    # https://playwright.dev/dotnet/docs/ci#running-headed
-    - name: 'Install Xvfb for headed playwright'
-      run: |
-        npm i -g xvfb
-
     - name: 'Install Playwright browser dependencies'
       run: |
         npx playwright install-deps
