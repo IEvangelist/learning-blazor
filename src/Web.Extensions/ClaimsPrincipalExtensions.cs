@@ -6,6 +6,14 @@ namespace Learning.Blazor.Extensions;
 public static class ClaimsPrincipalExtensions
 {
     /// <summary>
+    /// Gets the first email address (if available) from the "emails" claim.
+    /// </summary>
+    /// <param name="user">The current user in context.</param>
+    /// <returns>An email address if found, else <c>null</c>.</returns>
+    public static string? GetFirstEmailAddress(this ClaimsPrincipal user) =>
+        user.GetEmailAddresses()?.FirstOrDefault();
+
+    /// <summary>
     /// Gets the email addresses (if available) from the "emails" claim.
     /// </summary>
     /// <param name="user">The current user in context.</param>
@@ -24,12 +32,4 @@ public static class ClaimsPrincipalExtensions
 
         return null;
     }
-
-    /// <summary>
-    /// Gets the first email address (if available) from the "emails" claim.
-    /// </summary>
-    /// <param name="user">The current user in context.</param>
-    /// <returns>An email address if found, else <c>null</c>.</returns>
-    public static string? GetFirstEmailAddress(this ClaimsPrincipal user) =>
-        user.GetEmailAddresses()?.FirstOrDefault();
 }

@@ -3,22 +3,53 @@
 
 namespace Learning.Blazor.Extensions.Tests;
 
-public class ClaimsPrincipalExtensionsTests
+public sealed partial class ClaimsPrincipalExtensionsTests
 {
-    [
-        Theory,
-        InlineData("emails", "test@email.org", "test@email.org"),
-        InlineData("emails", @"[""admin@email.org"",""test@email.org""]", "admin@email.org"),
-        InlineData("email", @"[""admin@email.org"",""test@email.org""]", null),
-        InlineData("emails", null, null),
-    ]
-    public void GetFirstEmailAddressCorrectlyGetsEmailValue(
-        string claimType, string claimValue, string? expected)
+    [Fact]
+    public void GetFirstEmailAddressNull()
     {
-        var user = new ClaimsPrinipalMockBuilder()
-            .WithClaim(claimType, claimValue)
+        var user = new ClaimsPrincipalMockBuilder()
+            .WithClaim(
+               claimType: "emails",
+               claimValue: null!)
             .Build();
 
+        Assert.Null(user.GetFirstEmailAddress());
+    }    
+
+    [Fact]
+    public void GetFirstEmailAddressKeyMismatch()
+    {
+        var user = new ClaimsPrincipalMockBuilder()
+            .WithClaim(
+               claimType: "email",
+               claimValue: @"[""admin@email.org"",""test@email.org""]")
+            .Build();
+
+        Assert.Null(user.GetFirstEmailAddress());
+    }
+
+    [Fact]
+    public void GetFirstEmailAddressArrayString()
+    {
+        var user = new ClaimsPrincipalMockBuilder()
+            .WithClaim(
+               claimType: "emails",
+               claimValue: @"[""admin@email.org"",""test@email.org""]")
+            .Build();
+
+        var expected = "admin@email.org";
+        Assert.Equal(expected, user.GetFirstEmailAddress());
+    }
+
+    [Fact]
+    public void GetFirstEmailAddressGetSimpleString()
+    {
+        var user = new ClaimsPrincipalMockBuilder()
+            .WithClaim("emails", "test@email.org")
+            .Build();
+
+        var expected = "test@email.org";
         Assert.Equal(expected, user.GetFirstEmailAddress());
     }
 
@@ -32,29 +63,10 @@ public class ClaimsPrincipalExtensionsTests
     public void GetEmailAddressesCorrectlyGetsEmails(
         string claimType, string claimValue, string[]? expected)
     {
-        var user = new ClaimsPrinipalMockBuilder()
+        var user = new ClaimsPrincipalMockBuilder()
             .WithClaim(claimType, claimValue)
             .Build();
 
         Assert.Equal(expected, user.GetEmailAddresses());
-    }
-}
-
-class ClaimsPrinipalMockBuilder
-{
-    readonly Dictionary<string, string> _claims = new(StringComparer.OrdinalIgnoreCase);
-
-    internal ClaimsPrinipalMockBuilder WithClaim(string claimType, string claimValue)
-    {
-        _claims[claimType] = claimValue ?? "";
-        return this;
-    }
-
-    internal ClaimsPrincipal Build()
-    {
-        var claims = _claims.Select(kvp => new Claim(kvp.Key, kvp.Value));
-        var identity = new ClaimsIdentity(claims, "TestIdentity");
-
-        return new ClaimsPrincipal(identity);
     }
 }
