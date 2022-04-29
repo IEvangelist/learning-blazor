@@ -21,13 +21,13 @@ public sealed partial class LoginTests
         var credentials = new Credentials(
             Username: GetEnvironmentVariable("TEST_USERNAME"),
             Password: GetEnvironmentVariable("TEST_PASSWORD"));
-        
+
         Assert.NotNull(credentials.Username);
         Assert.NotNull(credentials.Password);
 
         return credentials;
     }
-    
+
     readonly record struct Credentials(
         string? Username,
         string? Password);

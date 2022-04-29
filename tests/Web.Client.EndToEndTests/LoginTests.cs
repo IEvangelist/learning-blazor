@@ -5,6 +5,8 @@ namespace Web.Client.EndToEndTests;
 
 public sealed partial class LoginTests
 {
+    private static bool IsHeadless => !Debugger.IsAttached;
+
     [
         Theory,
         InlineData(BrowserType.Chromium),
@@ -16,7 +18,7 @@ public sealed partial class LoginTests
         
         using var playwright = await Playwright.CreateAsync();
         await using var browser = await ToBrowser(browserType, playwright)
-            .LaunchAsync();
+            .LaunchAsync(new() { Headless = IsHeadless });
 
         await using var context = await browser.NewContextAsync(
             new()
