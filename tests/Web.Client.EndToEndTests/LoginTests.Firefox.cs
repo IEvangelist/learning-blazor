@@ -19,6 +19,11 @@ public sealed partial class LoginTests
                 BrowserType.Firefox, 48.864716f, 2.349014f,
                 "Paris, Île-de-France (FR)", "fr-FR"
             };
+            yield return new object[]
+            {
+                BrowserType.Firefox, 20.666222f, -103.35209f,
+                "Guadalajara, Jalisco (MX)", "es-ES"
+            };
         }
     }
 }
