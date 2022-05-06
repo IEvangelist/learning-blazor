@@ -1,8 +1,6 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
-using Learning.Blazor.Models;
-
 namespace Learning.Blazor.Components
 {
     public sealed partial class WeatherComponent : IDisposable
@@ -22,6 +20,9 @@ namespace Learning.Blazor.Components
         public HttpClient Http { get; set; } = null!;
 
         [Inject]
+        public WeatherFunctionsClientService WeatherClient { get; set; } = null!;
+
+        [Inject]
         public GeoLocationService GeoLocationService { get; set; } = null!;
 
         protected override Task OnInitializedAsync() =>
@@ -34,10 +35,10 @@ namespace Learning.Blazor.Components
                 nameof(OnErrorRequestingCoordinatesAsync));
 
         [JSInvokable]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage(
-            "Trimming",
-            "IL2026:Methods annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code",
-            Justification = "Not an issue here.")]
+        //[System.Diagnostics.CodeAnalysis.SuppressMessage(
+        //    "Trimming",
+        //    "IL2026:Methods annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code",
+        //    Justification = "Not an issue here.")]
         public async Task OnCoordinatesPermittedAsync(
             decimal longitude, decimal latitude)
         {
@@ -69,7 +70,7 @@ namespace Learning.Blazor.Components
                 };
 
                 var latestWeatherTask =
-                    GetLatestWeatherAsync(weatherRequest);
+                    WeatherClient.GetWeatherAsync(weatherRequest);
 
                 var getGeoCodeTask = GetGeoCodeAsync(
                     longitude, latitude, requestLanguage);
@@ -79,7 +80,7 @@ namespace Learning.Blazor.Components
                 var weatherDetails = latestWeatherTask.Result;
                 if (weatherDetails is not null && _geoCode is not null)
                 {
-                    if (weatherDetails is { Alerts: { Count: > 0 } })
+                    if (weatherDetails is { Alerts.Count: > 0 })
                     {
                         AppState.WeatherAlertReceived?.Invoke(
                             weatherDetails.Alerts);
@@ -109,21 +110,6 @@ namespace Learning.Blazor.Components
                 await OnCoordinatesPermittedAsync(
                     _coordinates.Longitude, _coordinates.Latitude);
             }
-        }
-
-        private async Task<WeatherDetails?> GetLatestWeatherAsync(
-            WeatherRequest weatherRequest)
-        {
-            using var response =
-                await Http.PostAsJsonAsync("api/weather/latest",
-                    weatherRequest,
-                    DefaultJsonSerialization.Options);
-
-            var weatherDetails =
-                await response.Content.ReadFromJsonAsync<WeatherDetails>(
-                    DefaultJsonSerialization.Options);
-
-            return weatherDetails;
         }
 
         private async Task GetGeoCodeAsync(

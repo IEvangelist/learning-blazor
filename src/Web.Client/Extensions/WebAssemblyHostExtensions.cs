@@ -7,12 +7,15 @@ internal static class WebAssemblyHostExtensions
 {
     internal static void TrySetDefaultCulture(this WebAssemblyHost host)
     {
-        var localStorage = host.Services.GetRequiredService<ILocalStorageService>();
-        var clientCulture = localStorage.GetItem<string>(StorageKeys.ClientCulture);
-        clientCulture ??= "en-US";
-
         try
         {
+            var cache = host.Services.GetRequiredService<IMemoryCache>();
+            _ = cache.Set("Test", 7);
+
+            var localStorage = host.Services.GetRequiredService<ILocalStorageService>();
+            var clientCulture = localStorage.GetItem<string>(StorageKeys.ClientCulture);
+            clientCulture ??= "en-US";
+
             CultureInfo culture = new(clientCulture);
             CultureInfo.DefaultThreadCurrentCulture = culture;
             CultureInfo.DefaultThreadCurrentUICulture = culture;

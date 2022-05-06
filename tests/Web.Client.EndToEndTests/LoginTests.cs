@@ -5,14 +5,28 @@ namespace Web.Client.EndToEndTests;
 
 public sealed partial class LoginTests
 {
-    private static bool IsHeadless => !Debugger.IsAttached;
+    private static bool IsDebugging => Debugger.IsAttached;
+    private static bool IsHeadless => !IsDebugging;
 
     [
         Theory,
-        InlineData(BrowserType.Chromium),
-        InlineData(BrowserType.Firefox)
+        InlineData(
+            BrowserType.Chromium, 43.04181f, -87.90684f,
+            "Milwaukee, Wisconsin (US)"),
+        InlineData(
+            BrowserType.Chromium, 48.864716f, 2.349014f,
+            "Paris, Île-de-France (FR)", "fr-FR",
+            Skip = "Wait for app deployment to fix bug."),
+        InlineData(
+            BrowserType.Firefox, 43.04181f, -87.90684f,
+            "Milwaukee, Wisconsin (US)")
     ]
-    public async Task CanLoginWithVerifiedCredentials(BrowserType browserType)
+    public async Task CanLoginWithVerifiedCredentials(
+        BrowserType browserType,
+        float lat = 43.04181f,
+        float lng = -87.90684f,
+        string? expected = null,
+        string? locale = null)
     {
         var (username, password) = GetTestCredentials();
         
@@ -24,16 +38,28 @@ public sealed partial class LoginTests
             new()
             {
                 Permissions = new[] { "geolocation" },
-                Geolocation = new Geolocation() // Milwaukee, WI
+                Geolocation = new Geolocation()
                 {
-                    Latitude = 43.04181f,
-                    Longitude = -87.90684f
+                    Latitude = lat,
+                    Longitude = lng
                 }
             });
 
         var loginPage = await context.NewPageAsync();
         await loginPage.RunAndWaitForNavigationAsync(
-            () => loginPage.GotoAsync(LearningBlazorSite),
+            async () =>
+            {
+                await loginPage.GotoAsync(LearningBlazorSite);
+                if (locale is not null)
+                {
+                    await loginPage.AddInitScriptAsync(@"(locale => {
+    if (locale) {
+        window.localStorage.setItem(
+            'client-culture-preference', `""${locale}""`);
+    }
+})('" + locale + "')");
+                }
+            },
             new()
             {
                 UrlString = $"{LearningBlazorB2CSite}/**",
@@ -45,10 +71,15 @@ public sealed partial class LoginTests
         await loginPage.FillAsync("#password", password ?? "?!?!");
         await loginPage.ClickAsync("#next" /* "Sign in" button */);
 
+        if (IsDebugging)
+        {
+            loginPage.SetDefaultTimeout(0);
+        }
+
         // Ensure the real weather data loads.
         var text = await loginPage.Locator("#weather-city-state")
             .InnerTextAsync();
 
-        Assert.Equal("Milwaukee, Wisconsin (US)", text);
+        Assert.Equal(expected, text);
     }
 }

@@ -22,6 +22,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.github\workflows\deploy-az-pwnedapi.yml = .github\workflows\deploy-az-pwnedapi.yml
 		.github\workflows\deploy-az-static-webapp.yml = .github\workflows\deploy-az-static-webapp.yml
 		.github\workflows\deploy-az-webapi.yml = .github\workflows\deploy-az-webapi.yml
+		GET_STARTED.md = GET_STARTED.md
 		global.json = global.json
 		LICENSE = LICENSE
 		.github\workflows\machine-translation.yml = .github\workflows\machine-translation.yml
@@ -58,7 +59,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.CosmosData", "src\Web.C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Client.Tests", "tests\Web.Client.Tests\Web.Client.Tests.csproj", "{9A6BFB07-652E-4670-9979-AF61AAB2EC73}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.Client.EndToEndTests", "tests\Web.Client.EndToEndTests\Web.Client.EndToEndTests.csproj", "{7A9C0DC4-5D22-4ACB-9692-7587933E27BA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Client.EndToEndTests", "tests\Web.Client.EndToEndTests\Web.Client.EndToEndTests.csproj", "{7A9C0DC4-5D22-4ACB-9692-7587933E27BA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

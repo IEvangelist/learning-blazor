@@ -1,8 +1,6 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
-using Xunit;
-
 namespace Learning.Blazor.Extensions.Tests
 {
     public class NumberExtensionsTests
