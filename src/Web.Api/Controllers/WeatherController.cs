@@ -11,29 +11,6 @@ namespace Learning.Blazor.Api.Controllers;
 ]
 public class WeatherController : ControllerBase
 {
-    private readonly WeatherFunctionClientService _weatherFunctionClientService;
-    private readonly ILogger<WeatherController> _logger;
-
-    public WeatherController(
-        WeatherFunctionClientService weatherFunctionClientService,
-        ILogger<WeatherController> logger) =>
-        (_weatherFunctionClientService, _logger) =
-            (weatherFunctionClientService, logger);
-
-    [
-        HttpPost,
-        Route("latest"),
-        Produces(MediaTypeNames.Application.Json)
-    ]
-    public async Task<IActionResult> Post(
-        [FromBody] WeatherRequest request)
-    {
-        _logger.LogInformation("{DateTime}: Getting weather", DateTime.UtcNow);
-
-        var weatherDetails = await _weatherFunctionClientService.GetWeatherAsync(request);
-        return new JsonResult(weatherDetails, DefaultJsonSerialization.Options);
-    }
-
     [
         HttpGet,
         Route("languages"),

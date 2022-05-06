@@ -11,6 +11,7 @@ internal static class WebAssemblyHostBuilderExtensions
         var (services, configuration) =
             (builder.Services, builder.Configuration);
 
+        services.AddMemoryCache();
         services.AddScoped<ApiAccessAuthorizationMessageHandler>();
         services.Configure<WebApiOptions>(
             configuration.GetSection(nameof(WebApiOptions)));
@@ -44,6 +45,11 @@ internal static class WebAssemblyHostBuilderExtensions
         _ = addHttpClient(
             HttpClientNames.PwnedServerApi,
             options => options?.PwnedWebApiServerUrl);
+        _ = addHttpClient(
+            HttpClientNames.WebFunctionsApi,
+            options => options?.WebFunctionsUrl ?? builder.HostEnvironment.BaseAddress);
+
+        services.AddScoped<WeatherFunctionsClientService>();
 
         services.AddScoped(
             sp => sp.GetRequiredService<IHttpClientFactory>()

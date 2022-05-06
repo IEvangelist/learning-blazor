@@ -1,20 +1,18 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
-namespace Learning.Blazor.Api.Services;
+namespace Learning.Blazor.Services;
 
-public sealed class WeatherFunctionClientService : IDisposable
+public sealed class WeatherFunctionsClientService : IDisposable
 {
     private readonly HttpClient _httpClient;
     private readonly IMemoryCache _cache;
-    private readonly WebFunctionsOptions _functions;
 
-    public WeatherFunctionClientService(
+    public WeatherFunctionsClientService(
         IHttpClientFactory httpClientFactory,
-        IMemoryCache cache,
-        IOptions<WebFunctionsOptions> options) =>
-        (_httpClient, _cache, _functions) =
-            (httpClientFactory.CreateClient(HttpClientNames.WebFunctionsClient), cache, options.Value);
+        IMemoryCache cache) =>
+        (_httpClient, _cache) =
+            (httpClientFactory.CreateClient(HttpClientNames.WebFunctionsApi), cache);
 
     public Task<WeatherDetails?> GetWeatherAsync(WeatherRequest request) =>
         _cache.GetOrCreateAsync(
@@ -23,10 +21,11 @@ public sealed class WeatherFunctionClientService : IDisposable
             {
                 options.AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(9);
 
-                var requestUrl = request.ToFormattedUrl(_functions.WeatherFunctionUrlFormat);
+                var route = request.ToFormattedUrl();
                 var details =
                     await _httpClient.GetFromJsonAsync<WeatherDetails>(
-                        requestUrl, DefaultJsonSerialization.Options);
+                        $"/api/currentweather/{route}",
+                        DefaultJsonSerialization.Options);
 
                 return details is null ? null : details with { Units = request.Units };
             });

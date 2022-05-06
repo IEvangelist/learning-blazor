@@ -5,6 +5,7 @@ namespace Web.Client.EndToEndTests;
 
 public sealed partial class LoginTests
 {
+    const string LocalHostSite = "https://localhost:5001";
     const string LearningBlazorSite = "https://webassemblyof.net";
     const string LearningBlazorB2CSite = "https://learningblazor.b2clogin.com";
 

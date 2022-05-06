@@ -8,7 +8,6 @@ global using Learning.Blazor.Api.Extensions;
 global using Learning.Blazor.Api.Http;
 global using Learning.Blazor.Api.Hubs;
 global using Learning.Blazor.Api.Localization;
-global using Learning.Blazor.Api.Options;
 global using Learning.Blazor.Api.Resources;
 global using Learning.Blazor.Api.Services;
 global using Learning.Blazor.CosmosData;

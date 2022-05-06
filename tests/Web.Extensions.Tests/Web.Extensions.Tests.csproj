@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\Web.Extensions\Web.Extensions.csproj" />
+    <ProjectReference Include="..\..\src\Web.Models\Web.Models.csproj" />
   </ItemGroup>
 
 </Project>

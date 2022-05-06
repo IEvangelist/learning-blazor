@@ -16,13 +16,6 @@ internal static class ServiceCollectionExtensions
         //    options => options.Configuration =
         //        configuration["RedisCacheOptions:ConnectionString"]);
 
-        services.AddHttpClient(HttpClientNames.WebFunctionsClient)
-            .AddDefaultTransientHttpErrorPolicy();
-
-        services.AddScoped<WeatherFunctionClientService>();
-        services.Configure<WebFunctionsOptions>(
-            configuration.GetSection(nameof(WebFunctionsOptions)));
-
         services.AddSingleton<WeatherLanguageService>();
 
         services.AddLogicAppClient(

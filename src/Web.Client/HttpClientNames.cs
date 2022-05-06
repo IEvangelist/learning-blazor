@@ -5,6 +5,7 @@ namespace Learning.Blazor;
 
 internal static class HttpClientNames
 {
+    internal const string WebFunctionsApi = nameof(WebFunctionsApi);
     internal const string ServerApi = nameof(ServerApi);
     internal const string PwnedServerApi = nameof(PwnedServerApi);
 }

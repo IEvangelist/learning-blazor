@@ -7,4 +7,5 @@ public class WebApiOptions
 {
     public string? WebApiServerUrl { get; set; } = null!;
     public string? PwnedWebApiServerUrl { get; set; } = null!;
+    public string? WebFunctionsUrl { get; set; } = null!;
 }
