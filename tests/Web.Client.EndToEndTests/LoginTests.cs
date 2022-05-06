@@ -17,9 +17,9 @@ public sealed partial class LoginTests
     ]
     public async Task CanLoginWithVerifiedCredentials(
         BrowserType browserType,
-        float lat = 43.04181f,
-        float lon = -87.90684f,
-        string? expected = null,
+        float lat,
+        float lon,
+        string? expected,
         string? locale = null)
     {
         var (username, password) = GetTestCredentials();
