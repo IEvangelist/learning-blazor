@@ -8,23 +8,17 @@ public sealed partial class LoginTests
     private static bool IsDebugging => Debugger.IsAttached;
     private static bool IsHeadless => !IsDebugging;
 
+    public static IEnumerable<object[]> AllLoginTestInput =>
+        ChromiumLoginInputs.Concat(FirefoxLoginInputs);
+
     [
         Theory,
-        InlineData(
-            BrowserType.Chromium, 43.04181f, -87.90684f,
-            "Milwaukee, Wisconsin (US)"),
-        InlineData(
-            BrowserType.Chromium, 48.864716f, 2.349014f,
-            "Paris, Île-de-France (FR)", "fr-FR",
-            Skip = "Wait for app deployment to fix bug."),
-        InlineData(
-            BrowserType.Firefox, 43.04181f, -87.90684f,
-            "Milwaukee, Wisconsin (US)")
+        MemberData(nameof(AllLoginTestInput))
     ]
     public async Task CanLoginWithVerifiedCredentials(
         BrowserType browserType,
         float lat = 43.04181f,
-        float lng = -87.90684f,
+        float lon = -87.90684f,
         string? expected = null,
         string? locale = null)
     {
@@ -41,7 +35,7 @@ public sealed partial class LoginTests
                 Geolocation = new Geolocation()
                 {
                     Latitude = lat,
-                    Longitude = lng
+                    Longitude = lon
                 }
             });
 
