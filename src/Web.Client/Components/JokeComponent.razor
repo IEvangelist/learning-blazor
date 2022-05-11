@@ -6,7 +6,7 @@
 @inject ILogger<JokeComponent> Logger
 @inject IStringLocalizer<JokeComponent> Localizer
 
-<article class="blazor-tile-container">
+<article class="blazor-tile-container" @ondblclick=@RefreshJokeAsync>
     <div class="gradient-bg jokes-gradient"></div>
     <div class="icon-overlay circle-svg"></div>
     <div class="blaze-content">

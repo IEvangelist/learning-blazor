@@ -9,9 +9,6 @@ internal static class WebAssemblyHostExtensions
     {
         try
         {
-            var cache = host.Services.GetRequiredService<IMemoryCache>();
-            _ = cache.Set("Test", 7);
-
             var localStorage = host.Services.GetRequiredService<ILocalStorageService>();
             var clientCulture = localStorage.GetItem<string>(StorageKeys.ClientCulture);
             clientCulture ??= "en-US";
