@@ -3,6 +3,6 @@
 
 namespace Learning.Blazor.Models;
 
-public record class JokeSourceDetails(
+public readonly record struct JokeSourceDetails(
     JokeSource Source,
     Uri Site);

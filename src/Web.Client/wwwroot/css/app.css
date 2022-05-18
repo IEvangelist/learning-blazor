@@ -45,6 +45,7 @@ footer.footer {
 }
 
 .blazor-tile-container {
+    user-select: none;
     position: relative;
     width: 100%;
 }

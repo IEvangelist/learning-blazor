@@ -28,7 +28,7 @@ namespace Learning.Blazor.Shared
         {
             if (AppState is not null)
             {
-                AppState!.StateChanged -= StateHasChanged;
+                AppState.StateChanged -= StateHasChanged;
             }
         }
     }

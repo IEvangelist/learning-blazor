@@ -10,7 +10,9 @@ namespace Learning.Blazor.Components
         private WeatherComponentModel? _model = null!;
         private ComponentState _state = ComponentState.Loading;
         private bool? _isGeoLocationPermissionGranted = null;
+        private bool _isActive = false;
 
+        private readonly CancellationTokenSource _cancellation = new();
         private readonly PeriodicTimer _timer = new(TimeSpan.FromMinutes(10));
 
         [Inject]
@@ -44,72 +46,73 @@ namespace Learning.Blazor.Components
         {
             _isGeoLocationPermissionGranted = true;
             _coordinates = new(latitude, longitude);
+            if (_isActive) return;
 
-            try
+            do
             {
-                var lang = Culture.CurrentCulture.TwoLetterISOLanguageName;
-                var unit = Culture.MeasurementSystem;
+                _isActive = true;
 
-                var weatherLanguages =
-                    await Http.GetFromJsonAsync<WeatherLanguage[]>(
-                        "api/weather/languages",
-                        WeatherLanguagesJsonSerializerContext.DefaultTypeInfo);
-
-                var requestLanguage =
-                    weatherLanguages
-                        ?.FirstOrDefault(language => language.AzureCultureId == lang)
-                        ?.WeatherLanguageId
-                    ?? "en";
-
-                WeatherRequest weatherRequest = new()
+                try
                 {
-                    Language = requestLanguage,
-                    Latitude = latitude,
-                    Longitude = longitude,
-                    Units = (int)unit
-                };
+                    var lang = Culture.CurrentCulture.TwoLetterISOLanguageName;
+                    var unit = Culture.MeasurementSystem;
 
-                var latestWeatherTask =
-                    WeatherClient.GetWeatherAsync(weatherRequest);
+                    var weatherLanguages =
+                        await Http.GetFromJsonAsync<WeatherLanguage[]>(
+                            "api/weather/languages",
+                            WeatherLanguagesJsonSerializerContext.DefaultTypeInfo);
 
-                var getGeoCodeTask = GetGeoCodeAsync(
-                    longitude, latitude, requestLanguage);
+                    var requestLanguage =
+                        weatherLanguages
+                            ?.FirstOrDefault(language => language.AzureCultureId == lang)
+                            ?.WeatherLanguageId
+                        ?? "en";
 
-                await Task.WhenAll(latestWeatherTask, getGeoCodeTask);
-
-                var weatherDetails = latestWeatherTask.Result;
-                if (weatherDetails is not null && _geoCode is not null)
-                {
-                    if (weatherDetails is { Alerts.Count: > 0 })
+                    WeatherRequest weatherRequest = new()
                     {
-                        AppState.WeatherAlertReceived?.Invoke(
-                            weatherDetails.Alerts);
-                    }
+                        Language = requestLanguage,
+                        Latitude = latitude,
+                        Longitude = longitude,
+                        Units = (int)unit
+                    };
 
-                    _model = new WeatherComponentModel(
-                        weatherDetails, _geoCode, Formatter);
-                    _state = ComponentState.Loaded;
+                    var latestWeatherTask =
+                        WeatherClient.GetWeatherAsync(weatherRequest);
+
+                    var getGeoCodeTask = GetGeoCodeAsync(
+                        longitude, latitude, requestLanguage);
+
+                    await Task.WhenAll(latestWeatherTask, getGeoCodeTask);
+
+                    var weatherDetails = latestWeatherTask.Result;
+                    if (weatherDetails is not null && _geoCode is not null)
+                    {
+                        if (weatherDetails is { Alerts.Count: > 0 })
+                        {
+                            AppState.WeatherAlertReceived?.Invoke(
+                                weatherDetails.Alerts);
+                        }
+
+                        _model = new WeatherComponentModel(
+                            weatherDetails, _geoCode, Formatter);
+                        _state = ComponentState.Loaded;
+                    }
+                    else
+                    {
+                        _state = ComponentState.Error;
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
+                    Logger.LogError(ex, "{ErrorMessage}", ex.Message);
                     _state = ComponentState.Error;
                 }
+                finally
+                {
+                    await InvokeAsync(StateHasChanged);
+                }
             }
-            catch (Exception ex)
-            {
-                Logger.LogError(ex, ex.Message);
-                _state = ComponentState.Error;
-            }
-            finally
-            {
-                await InvokeAsync(StateHasChanged);
-            }
-
-            if (await _timer.WaitForNextTickAsync())
-            {
-                await OnCoordinatesPermittedAsync(
-                    _coordinates.Longitude, _coordinates.Latitude);
-            }
+            while (await _timer.WaitForNextTickAsync(_cancellation.Token));
         }
 
         private async Task GetGeoCodeAsync(
@@ -147,6 +150,11 @@ namespace Learning.Blazor.Components
             await InvokeAsync(StateHasChanged);
         }
 
-        void IDisposable.Dispose() => _timer?.Dispose();
+        void IDisposable.Dispose()
+        {
+            _cancellation.Cancel();
+            _cancellation.Dispose();
+            _timer.Dispose();
+        }
     }
 }

@@ -39,7 +39,6 @@ public sealed partial class TweetsComponent : IAsyncDisposable
             if (_twitterModule is not null)
             {
                 await _twitterModule.RenderTweetsAsync();
-                StateHasChanged();
             }
         });
 

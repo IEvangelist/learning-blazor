@@ -5,9 +5,8 @@ namespace Learning.Blazor.Components;
 
 public class AppComponentBase : ComponentBase
 {
-    public void ExternalStateHasChanged() => StateHasChanged();
-
-    public Task ExternalInvokeAsync() => InvokeAsync(() => StateHasChanged());
+    public Task ExternalInvokeAsync() =>
+        InvokeAsync(StateHasChanged);
 
     public Task ExternalInvokeAsync(Action<AppComponentBase> action) =>
         InvokeAsync(() =>

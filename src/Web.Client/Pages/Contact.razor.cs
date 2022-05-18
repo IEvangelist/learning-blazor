@@ -82,10 +82,9 @@ namespace Learning.Blazor.Pages
 
                 if (response.IsSuccessStatusCode)
                 {
-                    AppState.ContactPageSubmitted(_model);
+                    AppState?.ContactPageSubmitted?.Invoke(_model);
                     _model = new();
                     InitializeModelAndContext();
-                    await InvokeAsync(StateHasChanged);
                 }
             }
         }

@@ -25,12 +25,18 @@
                 <blockquote class="has-text-black">
                     <span id="joke" class="pb-4">@_jokeText</span>
                     <br>
-                    <cite>
-                        &mdash;
-                        <a href="@(_sourceDetails.Site.ToString())" target="_blank">
-                            @(_sourceDetails.Source.ToString())
-                        </a>
-                    </cite>
+                    @if (_sourceDetails is { Site: not null })
+                    {
+                        <cite>
+                            &mdash;
+                            @{
+                                var (site, source) = _sourceDetails.Value;
+                            }
+                            <a href="@(site.ToString())" target="_blank">
+                                @(source.ToString())
+                            </a>
+                        </cite>
+                    }
                 </blockquote>
             }
         </div>
@@ -39,7 +45,7 @@
 
 @code {
     private string? _jokeText = null;
-    private JokeSourceDetails _sourceDetails = null!;
+    private JokeSourceDetails? _sourceDetails;
     private bool _isLoadingJoke = false;
 
     protected override Task OnInitializedAsync() =>
@@ -51,11 +57,8 @@
 
         try
         {
-            var response = await JokeFactory.GetRandomJokeAsync();
-            if (response is { })
-            {
-                (_jokeText, _sourceDetails) = response;
-            }
+            (_jokeText, _sourceDetails) =
+                await JokeFactory.GetRandomJokeAsync();
         }
         catch (Exception ex)
         {
@@ -64,7 +67,6 @@
         finally
         {
             _isLoadingJoke = false;
-            await InvokeAsync(StateHasChanged);
         }
     }
 }

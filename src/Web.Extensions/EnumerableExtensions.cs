@@ -9,13 +9,30 @@ public static class EnumerableExtensions
 {
     static readonly SystemRandom s_random = SystemRandom.Shared;
 
-    public static T RandomElement<T>(
-        this IEnumerable<T> source) =>
-        source.ElementAt(s_random.Next(source.Count()));
+    public static async Task<TResult> UseRandomAsync<T, TResult>(
+        this IList<T> source,
+        Func<bool> hasMore,
+        Func<int, bool> tryVisit,
+        Func<T, Task<(bool UsedSuccessfully, TResult Result)>> tryUseAsync,
+        TResult defaultValue)
+    {
+        while (hasMore())
+        {
+            var index = s_random.Next(source.Count);
+            if (tryVisit(index) is false)
+            {
+                continue;
+            }
 
-    public static IEnumerable<T> Random<T>(
-        this IEnumerable<T> source, int count = 1) =>
-        source?.OrderBy(_ => s_random.Next())?.Take(count) ?? Array.Empty<T>();
+            var (usedSuccessfully, result) = await tryUseAsync(source[index]);
+            if (usedSuccessfully)
+            {
+                return result;
+            }
+        }
+
+        return await Task.FromResult(defaultValue);
+    }
 
     public static string? ToSpaceDelimitedString(
         this string[]? source) =>

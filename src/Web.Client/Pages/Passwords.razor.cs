@@ -33,7 +33,6 @@ namespace Learning.Blazor.Pages
         private void OnModelChanged(object? sender, FieldChangedEventArgs e)
         {
             _isFormInvalid = !_editContext?.Validate() ?? true;
-            StateHasChanged();
         }
 
         private void Reset()
@@ -64,10 +63,6 @@ namespace Learning.Blazor.Pages
             {
                 Logger.LogError(ex, ex.Message);
                 _state = ComponentState.Error;
-            }
-            finally
-            {
-                await InvokeAsync(StateHasChanged);
             }
         }
     }
