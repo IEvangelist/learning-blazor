@@ -5,6 +5,6 @@
 
 namespace Learning.Blazor.Api.Resources;
 
-public class Shared
+public sealed class Shared
 {
 }

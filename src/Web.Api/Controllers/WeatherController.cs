@@ -9,7 +9,7 @@ namespace Learning.Blazor.Api.Controllers;
     ApiController,
     Route("api/weather")
 ]
-public class WeatherController : ControllerBase
+public sealed class WeatherController : ControllerBase
 {
     [
         HttpGet,

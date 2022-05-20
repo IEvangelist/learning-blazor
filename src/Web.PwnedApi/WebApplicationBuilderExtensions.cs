@@ -30,11 +30,21 @@ static class WebApplicationBuilderExtensions
             options =>
                 options.TokenValidationParameters.NameClaimType = "name");
 
+        var hibpOptions = builder.Configuration.GetSection(nameof(HibpOptions));
         builder.Services.AddPwnedServices(
-            builder.Configuration.GetSection(nameof(HibpOptions)),
+            hibpOptions,
             HttpClientBuilderRetryPolicyExtensions.GetDefaultRetryPolicy);
 
-        builder.Services.AddSingleton<PwnedServices>();
+        if ("demo".Equals(
+            hibpOptions[nameof(HibpOptions.ApiKey)],
+            StringComparison.OrdinalIgnoreCase))
+        {
+            builder.Services.AddSingleton<IPwnedServices, DemoPwnedServices>();
+        }
+        else
+        {
+            builder.Services.AddSingleton<IPwnedServices, PwnedServices>();
+        }
 
         return builder;
     }

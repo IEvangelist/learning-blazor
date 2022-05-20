@@ -3,7 +3,7 @@
 
 namespace Learning.Blazor.ComponentModels;
 
-public class PasswordsComponentModel
+public sealed class PasswordsComponentModel
 {
     [Required]
     public string? PlainTextPassword { get; set; } = null!;

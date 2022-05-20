@@ -3,7 +3,7 @@
 
 namespace Learning.Blazor.Services;
 
-public class CultureService
+public sealed class CultureService
 {
     private readonly ILogger<CultureService> _logger;
 

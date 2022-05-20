@@ -3,7 +3,7 @@
 
 namespace Learning.Blazor.Handlers;
 
-public class ApiAccessAuthorizationMessageHandler : AuthorizationMessageHandler
+public sealed class ApiAccessAuthorizationMessageHandler : AuthorizationMessageHandler
 {
     public ApiAccessAuthorizationMessageHandler(
         IAccessTokenProvider provider,

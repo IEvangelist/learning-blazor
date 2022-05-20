@@ -7,7 +7,7 @@ namespace Learning.Blazor.Api.Controllers;
     ApiController,
     Route("api/contact")
 ]
-public class ContactController : ControllerBase
+public sealed class ContactController : ControllerBase
 {
     [HttpPost]
     public async Task<IActionResult> Contact(

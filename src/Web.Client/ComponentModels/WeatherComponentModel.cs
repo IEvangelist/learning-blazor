@@ -3,7 +3,7 @@
 
 namespace Learning.Blazor.ComponentModels;
 
-public class WeatherComponentModel
+public sealed class WeatherComponentModel
 {
     private readonly WeatherDetails _weatherDetails;
     private readonly CurrentWeather _currentWeather;

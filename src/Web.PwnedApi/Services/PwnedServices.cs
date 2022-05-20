@@ -3,7 +3,7 @@
 
 namespace Learning.Blazor.PwnedApi.Services;
 
-public class PwnedServices
+public sealed class PwnedServices : IPwnedServices
 {
     private readonly IPwnedBreachesClient _pwnedBreachesClient;
     private readonly ILogger<PwnedServices> _logger;

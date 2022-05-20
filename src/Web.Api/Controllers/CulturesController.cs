@@ -9,7 +9,7 @@ namespace Learning.Blazor.Api.Controllers;
     ApiController,
     Route("api/cultures")
 ]
-public class CulturesController : ControllerBase
+public sealed class CulturesController : ControllerBase
 {
     readonly IHttpClientFactory _httpClientFactory;
     readonly IMemoryCache _cache;

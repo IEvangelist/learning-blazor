@@ -6,7 +6,7 @@ namespace Learning.Blazor.Api.Services;
 /// <summary>
 /// See: https://openweathermap.org/api/one-call-api#multi
 /// </summary>
-public class WeatherLanguageService
+public sealed class WeatherLanguageService
 {
     /// <summary>
     /// See: https://openweathermap.org/api/one-call-api#multi

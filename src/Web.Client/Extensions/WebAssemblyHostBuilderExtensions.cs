@@ -21,11 +21,12 @@ internal static class WebAssemblyHostBuilderExtensions
                 ?.Value;
 
         var addHttpClient =
-            IHttpClientBuilder (
+            static IHttpClientBuilder (
+                IServiceCollection services,
                 string httpClientName,
                 Func<WebApiOptions?, string?> webApiOptionsUrlFactory) =>
                 services.AddHttpClient(
-            httpClientName, (serviceProvider, client) =>
+                    httpClientName, (serviceProvider, client) =>
             {
                 var options = GetWebApiOptions(serviceProvider);
                 var apiUrl = webApiOptionsUrlFactory(options);
@@ -40,13 +41,13 @@ internal static class WebAssemblyHostBuilderExtensions
             .AddHttpMessageHandler<ApiAccessAuthorizationMessageHandler>();
 
         _ = addHttpClient(
-            HttpClientNames.ServerApi,
+            services, HttpClientNames.ServerApi,
             options => options?.WebApiServerUrl);
         _ = addHttpClient(
-            HttpClientNames.PwnedServerApi,
+            services, HttpClientNames.PwnedServerApi,
             options => options?.PwnedWebApiServerUrl);
         _ = addHttpClient(
-            HttpClientNames.WebFunctionsApi,
+            services, HttpClientNames.WebFunctionsApi,
             options => options?.WebFunctionsUrl ?? builder.HostEnvironment.BaseAddress);
 
         services.AddScoped<WeatherFunctionsClientService>();

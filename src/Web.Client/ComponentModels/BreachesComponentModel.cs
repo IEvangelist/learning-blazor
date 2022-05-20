@@ -3,7 +3,7 @@
 
 namespace Learning.Blazor.ComponentModels;
 
-public class BreachesComponentModel
+public sealed class BreachesComponentModel
 {
     [RegexEmailAddress]
     public string? EmailAddress { get; set; } = null!;

@@ -3,7 +3,7 @@
 
 namespace Learning.Blazor.Functions;
 
-public class WeatherFunctions
+public sealed class WeatherFunctions
 {
     private readonly IWeatherService _weatherService;
     private readonly ILogger<WeatherFunctions> _logger;

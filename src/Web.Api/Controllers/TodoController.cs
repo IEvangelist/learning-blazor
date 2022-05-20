@@ -9,7 +9,7 @@ namespace Learning.Blazor.Api.Controllers;
     ApiController,
     Route("api/todo")
 ]
-public class TodoController : ControllerBase
+public sealed class TodoController : ControllerBase
 {
     private readonly ITodoRepository _todoRepository;
 

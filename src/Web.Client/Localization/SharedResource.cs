@@ -6,7 +6,7 @@ namespace Learning.Blazor.Localization
     /// <summary>
     /// Marker reference class for common localizable content.
     /// </summary>
-    public class SharedResource
+    public sealed class SharedResource
     {
     }
 }
