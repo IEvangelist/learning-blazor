@@ -25,6 +25,8 @@ There are a number of environment variables (or configuration) that is required 
 | `HibpOptions__ApiKey`    | `string`  | `null`                                     |
 | `HibpOptions__UserAgent` | `string`  | `".NET HIBP Client/{AssemblyFileVersion}"` |
 
+You can use `"demo"` for the API key, if you'd rather not sign up for a paid subscription.
+
 For more information, see [';-- have i been pwned? — .NET HTTP client.](https://github.com/IEvangelist/pwned-client).
 
 [![NuGet](https://img.shields.io/nuget/v/HaveIBeenPwned.Client.svg?style=flat)](https://www.nuget.org/packages/HaveIBeenPwned.Client)
