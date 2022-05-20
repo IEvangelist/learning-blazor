@@ -8,12 +8,12 @@ namespace Learning.Blazor.Models;
 
 public sealed record class Alert
 {
-    [JsonPropertyName("sender_name")] public string SenderName { get; init; } = null!;
-    [JsonPropertyName("event")] public string Event { get; init; } = null!;
-    [JsonPropertyName("start")] public double Start { get; init; }
-    [JsonPropertyName("end")] public double End { get; init; }
-    [JsonPropertyName("description")] public string Description { get; init; } = null!;
-    [JsonPropertyName("tag")] public string[] Tags { get; init; } = Array.Empty<string>();
+    [JsonPropertyName("sender_name")] public string SenderName { get; set; } = null!;
+    [JsonPropertyName("event")] public string Event { get; set; } = null!;
+    [JsonPropertyName("start")] public double Start { get; set; }
+    [JsonPropertyName("end")] public double End { get; set; }
+    [JsonPropertyName("description")] public string Description { get; set; } = null!;
+    [JsonPropertyName("tag")] public string[] Tags { get; set; } = Array.Empty<string>();
 
     [JsonIgnore]
     public DateTime StartDate => Start.FromUnixTimeStamp();

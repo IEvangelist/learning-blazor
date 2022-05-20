@@ -39,7 +39,7 @@ static class WebApplicationBuilderExtensions
             hibpOptions[nameof(HibpOptions.ApiKey)],
             StringComparison.OrdinalIgnoreCase))
         {
-            builder.Services.AddSingleton<IPwnedServices, DemoPwnedServices>();
+            builder.Services.AddSingleton<IPwnedServices, NullReturningPwnedServices>();
         }
         else
         {

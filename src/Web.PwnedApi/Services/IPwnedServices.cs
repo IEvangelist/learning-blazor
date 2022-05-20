@@ -5,7 +5,9 @@ namespace Learning.Blazor.PwnedApi.Services;
 
 public interface IPwnedServices
 {
-    Task<BreachHeader[]?> GetBreachHeadersAsync(string email);
+    Task<BreachHeader[]?> GetBreachHeadersAsync(string email) =>
+        Task.FromResult<BreachHeader[]?>(null);
 
-    Task<BreachDetails?> GetBreachDetailsAsync(string name);
+    Task<BreachDetails?> GetBreachDetailsAsync(string name) =>
+        Task.FromResult<BreachDetails?>(null);
 }
