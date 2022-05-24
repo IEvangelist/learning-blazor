@@ -3,7 +3,7 @@
 
 namespace Learning.Blazor.Shared
 {
-    public partial class LoginDisplay
+    public sealed partial class LoginDisplay
     {
         [Inject]
         public NavigationManager Navigation { get; set; } = null!;

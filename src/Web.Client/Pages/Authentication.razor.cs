@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Components.Rendering;
 
 namespace Learning.Blazor.Pages
 {
-    public partial class Authentication
+    public sealed partial class Authentication
     {
         [Parameter] public string? Action { get; set; } = null!;
 

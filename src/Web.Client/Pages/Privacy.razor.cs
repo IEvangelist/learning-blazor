@@ -3,7 +3,7 @@
 
 namespace Learning.Blazor.Pages
 {
-    public partial class Privacy
+    public sealed partial class Privacy
     {
     }
 }

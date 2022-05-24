@@ -3,14 +3,14 @@
 
 namespace Learning.Blazor.PwnedApi.Services;
 
-public sealed class PwnedServices : IPwnedServices
+public sealed class DefaultPwnedServices : IPwnedServices
 {
     private readonly IPwnedBreachesClient _pwnedBreachesClient;
-    private readonly ILogger<PwnedServices> _logger;
+    private readonly ILogger<DefaultPwnedServices> _logger;
 
-    public PwnedServices(
+    public DefaultPwnedServices(
         IPwnedBreachesClient pwnedBreachesClient,
-        ILogger<PwnedServices> logger) =>
+        ILogger<DefaultPwnedServices> logger) =>
         (_pwnedBreachesClient, _logger) = (pwnedBreachesClient, logger);
 
     public async Task<BreachHeader[]?> GetBreachHeadersAsync(string email)
@@ -40,7 +40,7 @@ public sealed class PwnedServices : IPwnedServices
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex.Message, ex);
+            _logger.LogError("{Erro} {Msg}", ex, ex.Message);
             return default;
         }
     }

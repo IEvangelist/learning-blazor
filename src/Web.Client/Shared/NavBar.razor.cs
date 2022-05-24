@@ -3,7 +3,7 @@
 
 namespace Learning.Blazor.Shared
 {
-    public partial class NavBar
+    public sealed partial class NavBar
     {
     }
 }

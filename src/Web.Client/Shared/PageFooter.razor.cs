@@ -3,7 +3,7 @@
 
 namespace Learning.Blazor.Shared
 {
-    public partial class PageFooter
+    public sealed partial class PageFooter
     {
         const string CodeUrl =
             "https://github.com/IEvangelist/learning-blazor";

@@ -43,7 +43,7 @@ static class WebApplicationBuilderExtensions
         }
         else
         {
-            builder.Services.AddSingleton<IPwnedServices, PwnedServices>();
+            builder.Services.AddSingleton<IPwnedServices, DefaultPwnedServices>();
         }
 
         return builder;

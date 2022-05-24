@@ -3,6 +3,6 @@
 
 namespace Learning.Blazor.PwnedApi.Services;
 
-public sealed class NullReturningPwnedServices : IPwnedServices
+internal sealed class NullReturningPwnedServices : IPwnedServices
 {
 }
