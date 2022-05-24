@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Blazor.Serialization" Version="2.0.9" />
+    <PackageReference Include="Blazor.Serialization" Version="2.0.10" />
     <PackageReference Include="System.Text.Json" Version="6.0.4" />
   </ItemGroup>
 
