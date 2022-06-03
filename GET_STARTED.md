@@ -4,9 +4,11 @@ In order to run this app locally, you'll need to configure a few things first.
 
 ## Environment Variables
 
-There are a number of environment variables (or configuration) that is required for the app to run.
+There are a number of environment variables (or configuration) that are optional and only one required for the app to run.The `HibpOptions__ApiKey` value is the only required configuration and it is detailed in the [**Have I Been Pwned** API](#configure-have-i-been-pwned-api) section.
 
 ## Configure **Open Weather Map** API
+
+This value is optional to configure. If you do not configure it, however; be sure not to run the `Web.Functions` as mentioned in the [Running the app](#running-the-app) section. The `WeatherComponent` in the `Web.Client` project will still attempt to request weather data, but it will be represented as unavailable. In order to use weather, sign up for an API account.
 
 - [Open Weather API](https://openweathermap.org/full-price#current)
 
@@ -16,7 +18,9 @@ There are a number of environment variables (or configuration) that is required 
 |---------------------------------|-----------|---------------|
 | `OpenWeatherMapOptions__ApiKey` | `string`  | `null`        |
 
-## Configre **Have I Been Pwned** API
+## Configure **Have I Been Pwned** API
+
+This configuration is required to run the app.
 
 - [**Have I Been Pwned** API](https://haveibeenpwned.com/api/key)
 
@@ -25,7 +29,16 @@ There are a number of environment variables (or configuration) that is required 
 | `HibpOptions__ApiKey`    | `string`  | `null`                                     |
 | `HibpOptions__UserAgent` | `string`  | `".NET HIBP Client/{AssemblyFileVersion}"` |
 
-You can use `"demo"` for the API key, if you'd rather not sign up for a paid subscription.
+**⚠️ NOTE:** <br>
+This specific API key isn't free, if you'd rather _not_ sign up for the API, you can use the following API key to enable a demo mode I've built into the application to show how a feature toggle might work in Blazor:
+
+```json
+"HibpOptions": {
+    "ApiKey": "demo"
+}
+```
+
+This could be configured in the _appsettings.json_ file of the Web.Client project. Alternatively, the demo mode can be enabled by setting the `HibpOptions__ApiKey` environment variable to `demo`.
 
 For more information, see [';-- have i been pwned? — .NET HTTP client.](https://github.com/IEvangelist/pwned-client).
 
@@ -33,7 +46,7 @@ For more information, see [';-- have i been pwned? — .NET HTTP client.](https:
 
 ## Configure Logic App
 
-The `/contact` uses a Logic App endpoint to send an email. In order for the app to correctly send this email, the app expects the following config value:
+These configurations are optional, but if you do not set them the Contact page in the `Web.Client` project will not be able to send email. The `/contact` uses a Logic App endpoint to send an email. In order for the app to correctly send this email, the app expects the following config value:
 
 | Key                           | Data type | Default value |
 |-------------------------------|-----------|---------------|

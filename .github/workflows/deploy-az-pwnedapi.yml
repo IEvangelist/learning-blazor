@@ -2,8 +2,9 @@ name: Deploy Pwned Web API
 
 on:
   push:
-    branches:
-    - main
+    branches: [ main ]
+    paths-ignore:
+    - '**.md'
   workflow_dispatch:
     inputs:
       reason:
