@@ -16,7 +16,7 @@ internal static class JSRuntimeExtensions
             successMethodName,
             errorMethodName);
 
-    internal static async ValueTask<string> GetClientVoices<T>(
+    internal static async ValueTask<string> GetClientVoicesAsync<T>(
         this IJSRuntime javaScript,
         T dotnetObj,
         string callbackMethodName) where T : class =>

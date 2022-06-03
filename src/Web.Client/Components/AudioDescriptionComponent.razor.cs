@@ -30,7 +30,7 @@ namespace Learning.Blazor.Components
                     _voiceSpeed);
 
                 await UpdateClientVoices(
-                    await JavaScript.GetClientVoices(
+                    await JavaScript.GetClientVoicesAsync(
                         this, nameof(UpdateClientVoices)));
             }
         }
