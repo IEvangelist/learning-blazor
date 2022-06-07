@@ -1,0 +1,422 @@
+[
+    {
+        "Id": 538,
+        "Joke": "Chuck Norris\u0027s log statements are always at the FATAL level."
+    },
+    {
+        "Id": 542,
+        "Joke": "Chuck Norris types with one finger. He points it at the keyboard and the keyboard does the rest."
+    },
+    {
+        "Id": 495,
+        "Joke": "Chuck Norris doesn\u0027t needs try-catch, exceptions are too afraid to raise."
+    },
+    {
+        "Id": 481,
+        "Joke": "For Chuck Norris, NP-Hard = O(1)."
+    },
+    {
+        "Id": 453,
+        "Joke": "Chuck Norris doesn\u0027t need garbage collection because he doesn\u0027t call .Dispose(), he calls .DropKick()."
+    },
+    {
+        "Id": 526,
+        "Joke": "No one has ever pair-programmed with Chuck Norris and lived to tell about it."
+    },
+    {
+        "Id": 492,
+        "Joke": "There is no Esc key on Chuck Norris\u0027 keyboard, because no one escapes Chuck Norris."
+    },
+    {
+        "Id": 459,
+        "Joke": "Chuck Norris can solve the Towers of Hanoi in one move."
+    },
+    {
+        "Id": 605,
+        "Joke": "Chuck Norris doesn\u0027t need a keyboard he tells the computer to write something and it does."
+    },
+    {
+        "Id": 584,
+        "Joke": "Only Chuck Norris shuts down websites without due process, not SOPA or PIPA."
+    },
+    {
+        "Id": 530,
+        "Joke": "Chuck Norris can dereference NULL."
+    },
+    {
+        "Id": 513,
+        "Joke": "Chuck Norris does not code in cycles, he codes in strikes."
+    },
+    {
+        "Id": 462,
+        "Joke": "Project managers never ask Chuck Norris for estimations... ever."
+    },
+    {
+        "Id": 450,
+        "Joke": "Chuck Norris doesn\u0027t have disk latency because the hard drive knows to hurry the hell up."
+    },
+    {
+        "Id": 566,
+        "Joke": "Chuck Norris could use anything in java.util.* to kill you, including the javadocs."
+    },
+    {
+        "Id": 552,
+        "Joke": "Chuck Norris knows the value of NULL, and he can sort by it too."
+    },
+    {
+        "Id": 535,
+        "Joke": "Chuck Norris uses canvas in IE."
+    },
+    {
+        "Id": 500,
+        "Joke": "Chuck Norris can access the DB from the UI."
+    },
+    {
+        "Id": 476,
+        "Joke": "Chuck Norris doesn\u0027t need a debugger, he just stares down the bug until the code confesses."
+    },
+    {
+        "Id": 457,
+        "Joke": "MySpace actually isn\u0027t your space, it\u0027s Chuck\u0027s (he just lets you use it)."
+    },
+    {
+        "Id": 554,
+        "Joke": "Chuck Norris can install a 64 bit OS on 32 bit machines."
+    },
+    {
+        "Id": 507,
+        "Joke": "Chuck Norris can install iTunes without installing Quicktime."
+    },
+    {
+        "Id": 487,
+        "Joke": "No statement can catch the ChuckNorrisException."
+    },
+    {
+        "Id": 466,
+        "Joke": "Chuck Norris doesn\u0027t do Burn Down charts, he does Smack Down charts."
+    },
+    {
+        "Id": 543,
+        "Joke": "Chuck Norris\u0027s programs can pass the Turing Test by staring at the interrogator."
+    },
+    {
+        "Id": 520,
+        "Joke": "With Chuck Norris P = NP. There\u0027s no nondeterminism with Chuck Norris decisions."
+    },
+    {
+        "Id": 497,
+        "Joke": "If Chuck Norris writes code with bugs, the bugs fix themselves."
+    },
+    {
+        "Id": 477,
+        "Joke": "Chuck Norris can access private methods."
+    },
+    {
+        "Id": 455,
+        "Joke": "Chuck Norris burst the dot com bubble."
+    },
+    {
+        "Id": 412,
+        "Joke": "Chuck Norris knows the last digit of pi."
+    },
+    {
+        "Id": 567,
+        "Joke": "Code runs faster when Chuck Norris watches it."
+    },
+    {
+        "Id": 544,
+        "Joke": "If you try to kill -9 Chuck Norris\u0027s programs, it backfires."
+    },
+    {
+        "Id": 525,
+        "Joke": "Chuck Norris can retrieve anything from /dev/null."
+    },
+    {
+        "Id": 509,
+        "Joke": "Chuck Norris\u0027s OSI network model has only one layer - Physical."
+    },
+    {
+        "Id": 491,
+        "Joke": "Chuck Norris doesn\u0027t use reflection, reflection asks politely for his help."
+    },
+    {
+        "Id": 472,
+        "Joke": "When Chuck Norris is web surfing websites get the message \u0026quot;Warning: Internet Explorer has deemed this user to be malicious or dangerous. Proceed?\u0026quot;."
+    },
+    {
+        "Id": 454,
+        "Joke": "Chuck Norris\u0027s first program was kill -9."
+    },
+    {
+        "Id": 506,
+        "Joke": "Chuck Norris programs do not accept input."
+    },
+    {
+        "Id": 449,
+        "Joke": "All arrays Chuck Norris declares are of infinite size, because Chuck Norris knows no bounds."
+    },
+    {
+        "Id": 69,
+        "Joke": "Scientists have estimated that the energy given off during the Big Bang is roughly equal to 1CNRhK (Chuck Norris Roundhouse Kick)."
+    },
+    {
+        "Id": 557,
+        "Joke": "Chuck Norris can read from an input stream."
+    },
+    {
+        "Id": 504,
+        "Joke": "Chuck Norris programs occupy 150% of CPU, even when they are not executing."
+    },
+    {
+        "Id": 486,
+        "Joke": "Chuck Norris solved the Travelling Salesman problem in O(1) time. Here\u0027s the pseudo-code: Break salesman into N pieces. Kick each piece to a different city."
+    },
+    {
+        "Id": 463,
+        "Joke": "Chuck Norris doesn\u0027t use web standards as the web will conform to him."
+    },
+    {
+        "Id": 452,
+        "Joke": "Chuck Norris can\u0027t test for equality because he has no equal."
+    },
+    {
+        "Id": 551,
+        "Joke": "Chuck Norris can over-write a locked variable."
+    },
+    {
+        "Id": 533,
+        "Joke": "The Chuck Norris Eclipse plugin made alien contact."
+    },
+    {
+        "Id": 510,
+        "Joke": "Chuck Norris can compile syntax errors."
+    },
+    {
+        "Id": 489,
+        "Joke": "Chuck Norris can write multi-threaded applications with a single thread."
+    },
+    {
+        "Id": 473,
+        "Joke": "Chuck Norris can overflow your stack just by looking at it."
+    },
+    {
+        "Id": 559,
+        "Joke": "Chuck Norris\u0027 unit tests don\u0027t run. They die."
+    },
+    {
+        "Id": 532,
+        "Joke": "A diff between your code and Chuck Norris\u0027s is infinite."
+    },
+    {
+        "Id": 502,
+        "Joke": "Chuck Norris insists on strongly-typed programming languages."
+    },
+    {
+        "Id": 460,
+        "Joke": "The only pattern Chuck Norris knows is God Object."
+    },
+    {
+        "Id": 541,
+        "Joke": "When Chuck Norris break the build, you can\u0027t fix it, because there is not a single line of code left."
+    },
+    {
+        "Id": 527,
+        "Joke": "No one has ever spoken during review of Chuck Norris\u0027 code and lived to tell about it."
+    },
+    {
+        "Id": 496,
+        "Joke": "Chuck Norris went out of an infinite loop."
+    },
+    {
+        "Id": 478,
+        "Joke": "Chuck Norris can instantiate an abstract class."
+    },
+    {
+        "Id": 556,
+        "Joke": "Chuck Norris can write to an output stream."
+    },
+    {
+        "Id": 529,
+        "Joke": "Chuck Norris doesn\u0027t use Oracle, he is the Oracle."
+    },
+    {
+        "Id": 508,
+        "Joke": "Chuck Norris doesn\u0027t need an OS."
+    },
+    {
+        "Id": 464,
+        "Joke": "\u0026quot;It works on my machine\u0026quot; always holds true for Chuck Norris."
+    },
+    {
+        "Id": 546,
+        "Joke": "Chuck Norris does infinite loops in 4 seconds."
+    },
+    {
+        "Id": 528,
+        "Joke": "Chuck Norris doesn\u0027t use GUI, he prefers COMMAND line."
+    },
+    {
+        "Id": 515,
+        "Joke": "Chuck Norris compresses his files by doing a flying round house kick to the hard drive."
+    },
+    {
+        "Id": 498,
+        "Joke": "Chuck Norris hosting is 101% uptime guaranteed."
+    },
+    {
+        "Id": 474,
+        "Joke": "To Chuck Norris, everything contains a vulnerability."
+    },
+    {
+        "Id": 565,
+        "Joke": "Chuck Norris can make a class that is both abstract and final."
+    },
+    {
+        "Id": 536,
+        "Joke": "Don\u0027t worry about tests, Chuck Norris\u0027s test cases cover your code too."
+    },
+    {
+        "Id": 467,
+        "Joke": "Chuck Norris can delete the Recycling Bin."
+    },
+    {
+        "Id": 558,
+        "Joke": "Chuck Norris never has to build his program to machine code. Machines have learnt to interpret Chuck Norris code."
+    },
+    {
+        "Id": 503,
+        "Joke": "Chuck Norris protocol design method has no status, requests or responses, only commands."
+    },
+    {
+        "Id": 488,
+        "Joke": "Chuck Norris doesn\u0027t pair program."
+    },
+    {
+        "Id": 469,
+        "Joke": "Chuck Norris can unit test entire applications with a single assert."
+    },
+    {
+        "Id": 26,
+        "Joke": "Chuck Norris is the only human being to display the Heisenberg uncertainty principle - you can never know both exactly where and how quickly he will roundhouse-kick you in the face."
+    },
+    {
+        "Id": 564,
+        "Joke": "Chuck Norris can download emails with his pick-up."
+    },
+    {
+        "Id": 548,
+        "Joke": "Product Owners never argue with Chuck Norris after he demonstrates the DropKick feature."
+    },
+    {
+        "Id": 501,
+        "Joke": "Chuck Norris\u0027 programs never exit, they terminate."
+    },
+    {
+        "Id": 479,
+        "Joke": "Chuck Norris does not need to know about class factory pattern. He can instantiate interfaces."
+    },
+    {
+        "Id": 547,
+        "Joke": "Product Owners never ask Chuck Norris for more features. They ask for mercy."
+    },
+    {
+        "Id": 517,
+        "Joke": "Chuck Norris solved the halting problem."
+    },
+    {
+        "Id": 499,
+        "Joke": "Chuck Norris\u0027s keyboard has the Any key."
+    },
+    {
+        "Id": 475,
+        "Joke": "Chuck Norris doesn\u0027t need sudo, he just types \u0026quot;Chuck Norris\u0026quot; before his commands."
+    },
+    {
+        "Id": 456,
+        "Joke": "All browsers support the hex definitions #chuck and #norris for the colors black and blue."
+    },
+    {
+        "Id": 534,
+        "Joke": "Chuck Norris is the ultimate mutex, all threads fear him."
+    },
+    {
+        "Id": 511,
+        "Joke": "Every SQL statement that Chuck Norris codes has an implicit \u0026quot;COMMIT\u0026quot; in its end."
+    },
+    {
+        "Id": 494,
+        "Joke": "Chuck Norris breaks RSA 128-bit encrypted codes in milliseconds."
+    },
+    {
+        "Id": 480,
+        "Joke": "The class object inherits from Chuck Norris"
+    },
+    {
+        "Id": 458,
+        "Joke": "Chuck Norris can write infinite recursion functions and have them return."
+    },
+    {
+        "Id": 36,
+        "Joke": "Chuck Norris originally appeared in the \u0026quot;Street Fighter II\u0026quot; video game, but was removed by Beta Testers because every button caused him to do a roundhouse kick. When asked about this glitch, Norris replied \u0026quot;That\u0027s no glitch.\u0026quot;"
+    },
+    {
+        "Id": 537,
+        "Joke": "Each hair in Chuck Norris\u0027s beard contributes to make the world\u0027s largest DDOS."
+    },
+    {
+        "Id": 512,
+        "Joke": "Chuck Norris does not need to type-cast. The Chuck-Norris Compiler (CNC) sees through things. All way down. Always."
+    },
+    {
+        "Id": 490,
+        "Joke": "Chuck Norris doesn\u0027t need to use AJAX because pages are too afraid to postback anyways."
+    },
+    {
+        "Id": 470,
+        "Joke": "Chuck Norris doesn\u0027t bug hunt as that signifies a probability of failure, he goes bug killing."
+    },
+    {
+        "Id": 461,
+        "Joke": "Chuck Norris finished World of Warcraft."
+    },
+    {
+        "Id": 448,
+        "Joke": "When Chuck Norris throws exceptions, it\u0027s across the room."
+    },
+    {
+        "Id": 505,
+        "Joke": "Chuck Norris can spawn threads that complete before they are started."
+    },
+    {
+        "Id": 485,
+        "Joke": "Chuck Norris\u0027 Internet connection is faster upstream than downstream because even data has more incentive to run from him than to him."
+    },
+    {
+        "Id": 468,
+        "Joke": "Chuck Norris\u0027s beard can type 140 wpm."
+    },
+    {
+        "Id": 563,
+        "Joke": "Chuck Norris causes the Windows Blue Screen of Death."
+    },
+    {
+        "Id": 493,
+        "Joke": "Chuck Norris can binary search unsorted data."
+    },
+    {
+        "Id": 471,
+        "Joke": "Chuck Norris\u0027s keyboard doesn\u0027t have a Ctrl key because nothing controls Chuck Norris."
+    },
+    {
+        "Id": 451,
+        "Joke": "Chuck Norris writes code that optimizes itself."
+    },
+    {
+        "Id": 539,
+        "Joke": "Chuck Norris\u0027s database has only one table, \u0027Kick\u0027, which he DROPs frequently."
+    },
+    {
+        "Id": 20,
+        "Joke": "The Chuck Norris military unit was not used in the game Civilization 4, because a single Chuck Norris could defeat the entire combined nations of the world in one turn."
+    }
+]

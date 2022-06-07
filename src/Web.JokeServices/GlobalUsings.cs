@@ -8,6 +8,7 @@ global using System.Net.Http.Json;
 global using System.Net.Mime;
 global using System.Threading.Tasks;
 global using Learning.Blazor.Extensions;
+global using Learning.Blazor.Extensions.Tasks;
 global using Learning.Blazor.JokeServices;
 global using Learning.Blazor.Models;
 global using Microsoft.Extensions.DependencyInjection;

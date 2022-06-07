@@ -3,11 +3,7 @@
 
 namespace Learning.Blazor.Models;
 
-public record class ChuckNorrisJoke(
-    string Type,
-    Value Value);
-
-public record Value(int Id)
+public record struct ChuckNorrisJoke
 {
     private string? _joke;
 
@@ -17,6 +13,8 @@ public record Value(int Id)
 
         // The _joke contains HTML with first-rate typesetting
         // replace the named entity with the double quote string.
-        set => _joke = value?.Replace("&quot;", "\"");
+        init => _joke = value?.Replace("&quot;", "\"");
     }
+
+    public int Id { get; init; }
 }
