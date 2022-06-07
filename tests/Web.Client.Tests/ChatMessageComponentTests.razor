@@ -1,10 +1,6 @@
-// Copyright (c) 2021 David Pine. All rights reserved.
-// Licensed under the MIT License.
-
-namespace Web.Client.Tests;
-
-public class ChatMessageComponentTests
-{
+﻿@using Learning.Blazor.Components
+@inherits TestContext
+@code {
     public static IEnumerable<object[]> ChatMessageInput
     {
         get
@@ -31,7 +27,8 @@ public class ChatMessageComponentTests
             {
                 Guid.Parse("b19ab8b4-7819-438e-a281-56246cd3cda7"),
                 null!,
-                "User" };
+                "User"
+            };
             yield return new object[]
             {
                 Guid.Parse("26ae3eae-b763-4ff1-8160-11aaad0cf078"),
@@ -41,39 +38,31 @@ public class ChatMessageComponentTests
         }
     }
 
-    [
-        Theory,
-        MemberData(nameof(ChatMessageInput))
-    ]
-    public void ChatMessageComponentRendersUserAndText(
-        Guid guid, string text, string user)
+    [Theory, MemberData(nameof(ChatMessageInput))]
+    public void ChatMessageComponentRendersUserAndText(Guid guid, string text, string user)
     {
-        using var ctx = new TestContext();
-
-        // Component parameters
+        // Arrange
         var message = new ActorMessage(
             Id: guid,
             Text: text,
             UserName: user);
 
-        var cut =
-            ctx.RenderComponent<ChatMessageComponent>(
-                parameters => parameters
-                    .Add(c => c.Message, message)
-                    .Add(c => c.IsEditable, true)
-                    .Add(c => c.EditMessage, OnEditMessage));
+        // Act
+        var cut = Render(
+            @<ChatMessageComponent Message="message"
+                IsEditable="true"
+                EditMessage="() => {}" />);
 
+        // Assert
         cut.MarkupMatches(
-            $@"<a id=""{guid}"" class=""panel-block is-size-5"">
-    <span>{user}</span>
-    <span class=""panel-icon px-4"">
-        <i class=""fas fa-chevron-right"" aria-hidden=""true""></i>
-    </span>
-    <span class=""pl-2"">
-        <span>{text}</span>
-    </span>
-</a>");
+            @<a id=@guid class="panel-block is-size-5">
+                <span>@user</span>
+                <span class="panel-icon px-4">
+                    <i class="fas fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <span class="pl-2">
+                    <span>@text</span>
+                </span>
+            </a>);
     }
-
-    void OnEditMessage(ActorMessage _) { }
 }
