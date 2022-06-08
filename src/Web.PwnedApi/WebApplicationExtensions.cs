@@ -46,7 +46,7 @@ static class WebApplicationExtensions
     [Authorize, RequiredScope("User.ApiAccess"), EnableCors]
     internal static async Task<IResult> GetBreachHeadersForAccountAsync(
         [FromRoute] string email,
-        DefaultPwnedServices pwnedServices)
+        [FromServices] DefaultPwnedServices pwnedServices)
     {
         var breaches = await pwnedServices.GetBreachHeadersAsync(email);
         return Results.Json(breaches, DefaultJsonSerialization.Options);
@@ -55,7 +55,7 @@ static class WebApplicationExtensions
     [Authorize, RequiredScope("User.ApiAccess"), EnableCors]
     internal static async Task<IResult> GetBreachAsync(
         [FromRoute] string name,
-        DefaultPwnedServices pwnedServices)
+        [FromServices] DefaultPwnedServices pwnedServices)
     {
         var breach = await pwnedServices.GetBreachDetailsAsync(name);
         return Results.Json(breach, DefaultJsonSerialization.Options);
@@ -64,7 +64,7 @@ static class WebApplicationExtensions
     [Authorize, RequiredScope("User.ApiAccess"), EnableCors]
     internal static async Task<IResult> GetPwnedPasswordAsync(
         [FromRoute] string password,
-        IPwnedPasswordsClient pwnedPasswordsClient)
+        [FromServices] IPwnedPasswordsClient pwnedPasswordsClient)
     {
         var pwnedPassword = await pwnedPasswordsClient.GetPwnedPasswordAsync(password);
         return Results.Json(pwnedPassword, DefaultJsonSerialization.Options);

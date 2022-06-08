@@ -1,10 +1,6 @@
 # Get Started
 
-In order to run this app locally, you'll need to configure a few things first.
-
-## Environment Variables
-
-There are a number of environment variables (or configuration) that are optional and only one required for the app to run.The `HibpOptions__ApiKey` value is the only required configuration and it is detailed in the [**Have I Been Pwned** API](#configure-have-i-been-pwned-api) section.
+In order to run this app locally, I encourage reading through this article. There are a few optional configuration values that can make the local developer experience much more enjoyable.
 
 ## Configure **Open Weather Map** API
 
@@ -38,7 +34,7 @@ This specific API key isn't free, if you'd rather _not_ sign up for the API, you
 }
 ```
 
-This could be configured in the _appsettings.json_ file of the Web.Client project. Alternatively, the demo mode can be enabled by setting the `HibpOptions__ApiKey` environment variable to `demo`.
+This could be configured in the _appsettings.Development.json_ file of the Web.PwnedApi project. Alternatively, the demo mode can be enabled by setting the `HibpOptions__ApiKey` environment variable to `demo`.
 
 For more information, see [';-- have i been pwned? — .NET HTTP client.](https://github.com/IEvangelist/pwned-client).
 
@@ -160,3 +156,12 @@ If you're using Visual Studio, right-click the solution file in the **Solution E
 context menu select **Set Startup Projects**.
 
 ![Visual Studio: Web.Client solution properties dialog.](images/visual-studio-client-solution-props.png)
+
+### Web Server, Services and Client apps
+
+If configured correctly, you'll have four console apps running:
+
+- `https://localost:5001`: Web.Client — ASP.NET Core Blazor WebAssembly project.
+- `https://localost:5002`: Web.Api — ASP.NET Core Web API project.
+- `https://localost:5003`: Web.PwnedApi — ASP.NET Core Minimal API project.
+- `https://localost:5004`: Web.Functions — Azure Functions, .NET & HTTP triggered project.

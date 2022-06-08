@@ -20,8 +20,6 @@ public static class ServiceCollectionExtensions
             .AddDefaultTransientHttpErrorPolicy();
         services.AddHttpClient<DadJokeService>()
             .AddDefaultTransientHttpErrorPolicy();
-        services.AddHttpClient<ChuckNorrisJokeService>()
-            .AddDefaultTransientHttpErrorPolicy();
 
         services.AddScoped<IJokeFactory, AggregateJokeFactory>();
 
