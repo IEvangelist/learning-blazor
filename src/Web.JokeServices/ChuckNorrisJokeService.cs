@@ -1,9 +1,6 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
-using System.Reflection;
-using Blazor.Serialization.Extensions;
-
 namespace Learning.Blazor.JokeServices;
 
 internal class ChuckNorrisJokeService : IJokeService
@@ -12,8 +9,8 @@ internal class ChuckNorrisJokeService : IJokeService
     private static readonly AsyncLazy<ChuckNorrisJoke[]?> s_embeddedJokes =
         new(async () =>
         {
-            var nmspc = typeof(ChuckNorrisJokeService).Namespace;
-            var resource = $"{nmspc}.Data.icndb-nerdy-jokes.json";
+            var @namespace = typeof(ChuckNorrisJokeService).Namespace;
+            var resource = $"{@namespace}.Data.icndb-nerdy-jokes.json";
 
             var json = await ReadResourceFileAsync(resource);
             var jokes = json.FromJson<ChuckNorrisJoke[]>();
@@ -34,11 +31,11 @@ internal class ChuckNorrisJokeService : IJokeService
             var jokes = await s_embeddedJokes;
             if (jokes is { Length: > 0 })
             {
-                var randomIndex = Random.Shared.Next(0, jokes.Length);
-                var joke = jokes[randomIndex];
+                var randomIndex = Random.Shared.Next(jokes.Length);
+                var random = jokes[randomIndex];
 
-                return joke.Joke;
-            }            
+                return random.Joke;
+            }
 
             return null;
         }
@@ -55,13 +52,9 @@ internal class ChuckNorrisJokeService : IJokeService
     /// </summary>
     private static async Task<string> ReadResourceFileAsync(string fileName)
     {
-        var thisAssembly = Assembly.GetExecutingAssembly();
-        using (var stream = thisAssembly.GetManifestResourceStream(fileName))
-        {
-            using (var reader = new StreamReader(stream!))
-            {
-                return await reader.ReadToEndAsync();
-            }
-        }
+        using var stream =
+            Assembly.GetExecutingAssembly().GetManifestResourceStream(fileName);
+        using var reader = new StreamReader(stream!);
+        return await reader.ReadToEndAsync();
     }
 }

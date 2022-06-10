@@ -15,23 +15,22 @@ It's not very funny...";
     
     async Task<(string, JokeSourceDetails)> IJokeFactory.GetRandomJokeAsync()
     {
-        var count = _jokeServices.Count;
-        var visited = new HashSet<int>(count);
+        string? joke = null;
+        JokeSourceDetails sourceDetails = default;
 
-        return await _jokeServices.UseRandomAsync(
-            () => visited.Count < count,
-            visited.Add,
-            async service =>
+        foreach (var service in _jokeServices.RandomOrder())
+        {
+            joke = await service.GetJokeAsync();
+            sourceDetails = service.SourceDetails;
+
+            if (joke is not null && sourceDetails != default)
             {
-                var joke = await service.GetJokeAsync();
-                var sourceDetails = service.SourceDetails;
+                break;
+            }
+        }
 
-                var result = (
-                    joke ?? NotFunny,
-                    sourceDetails);
-
-                return (joke is not null, result);
-            },
-            (NotFunny, default));
+        return (
+            joke ?? "There is nothing funny about this.",
+            sourceDetails);
     }
 }
