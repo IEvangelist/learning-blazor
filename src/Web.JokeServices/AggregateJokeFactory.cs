@@ -30,7 +30,7 @@ It's not very funny...";
         }
 
         return (
-            joke ?? "There is nothing funny about this.",
+            joke ?? NotFunny,
             sourceDetails);
     }
 }
