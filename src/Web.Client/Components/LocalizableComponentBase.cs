@@ -20,8 +20,16 @@ namespace Learning.Blazor.Components
         [Inject]
         public AppInMemoryState AppState { get; set; } = null!;
 
+        /// <summary>
+        /// Gets the localized content for the current subcomponent,
+        /// relying on the contextually appropriate <see cref="IStringLocalizer{T}"/> implementation.
+        /// </summary>
+        /// <remarks>
+        /// This is intended to be used from within HTML templates.
+        /// Example: <c>&lt;h1&gt;@Localizer["Important Title"]&lt;/h1&gt;</c>
+        /// </remarks>
         [Inject]
-        private CoalescingStringLocalizer<T> CoalescingStringLocalizer { get; set; } = null!;
+        internal CoalescingStringLocalizer<T> Localizer { get; set; } = null!;
 
         [CascadingParameter]
         private Task<AuthenticationState> AuthenticationStateTask { get; set; } = null!;
@@ -46,15 +54,5 @@ namespace Learning.Blazor.Components
                 }
             }
         }
-
-        /// <summary>
-        /// Gets the localized content for the current subcomponent,
-        /// relying on the contextually appropriate <see cref="IStringLocalizer{T}"/> implementation.
-        /// </summary>
-        /// <remarks>
-        /// This is intended to be used from within HTML templates only.
-        /// Example: <c>&lt;h1&gt;@Localizer["Important Title"]&lt;/h1&gt;</c>
-        /// </remarks>
-        internal CoalescingStringLocalizer<T> Localizer => CoalescingStringLocalizer;
     }
 }

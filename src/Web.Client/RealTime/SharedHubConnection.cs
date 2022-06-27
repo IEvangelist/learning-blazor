@@ -7,7 +7,6 @@ public sealed partial class SharedHubConnection : IAsyncDisposable
 {
     private readonly IServiceProvider _serviceProvider = null!;
     private readonly ILogger<SharedHubConnection> _logger = null!;
-    private readonly AsyncRetryPolicy _asyncRetryPolicy = null!;
     private readonly CultureService _cultureService = null!;
     private readonly HubConnection _hubConnection = null!;
     private readonly SemaphoreSlim _lock = new(1, 1);
@@ -46,11 +45,6 @@ public sealed partial class SharedHubConnection : IAsyncDisposable
         _hubConnection.Closed += OnHubConnectionClosedAsync;
         _hubConnection.Reconnected += OnHubConnectionReconnectedAsync;
         _hubConnection.Reconnecting += OnHubConnectionReconnectingAsync;
-
-        _asyncRetryPolicy = Policy.Handle<Exception>()
-            .WaitAndRetryForeverAsync(
-                attempt => TimeSpan.FromMilliseconds(5_000),
-                (ex, calculatedDuration) => _logger.LogError(ex.Message, ex));
     }
 
     Task OnHubConnectionClosedAsync(Exception? exception)
@@ -83,9 +77,6 @@ public sealed partial class SharedHubConnection : IAsyncDisposable
             await _hubConnection.DisposeAsync();
         }
 
-        if (_lock is not null)
-        {
-            _lock.Dispose();
-        }
+        _lock?.Dispose();
     }
 }
