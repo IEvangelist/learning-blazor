@@ -1,7 +1,6 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
-using Blazor.Serialization.Extensions;
 using Learning.Blazor.Models;
 
 namespace Learning.Blazor.Extensions.Tests;
