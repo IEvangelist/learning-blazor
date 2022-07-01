@@ -32,7 +32,6 @@ public sealed partial class Startup
         app.UseAuthentication();
         app.UseAuthorization();
         app.UseResponseCaching();
-        app.UseResponseCompression();
         app.UseEndpoints(endpoints =>
         {
             endpoints.MapControllers();
