@@ -45,16 +45,8 @@ jobs:
       run: |
         dotnet build --configuration Release --no-restore
 
-    - uses: actions/setup-node@v1
-      name: 'Setup Node'
-      with:
-        node-version: 18
-        cache: 'npm'
-        cache-dependency-path: subdir/package-lock.json
-
-    - name: 'Install Playwright browser dependencies'
-      run: |
-        npx playwright install --with-deps
+    - name: 'Install Playwright dependencies'
+      run: pwsh tests/Web.Client.Tests/bin/Debug/net6.0/playwright.ps1 install --with-deps
 
     - name: Test
       run: |
