@@ -46,7 +46,7 @@ jobs:
         dotnet build --configuration Release --no-restore
 
     - name: 'Install Playwright dependencies'
-      run: pwsh tests/Web.Client.Tests/bin/Debug/net6.0/playwright.ps1 install --with-deps
+      run: pwsh tests/Web.Client.EndToEndTests/bin/Release/net6.0/playwright.ps1 install --with-deps
 
     - name: Test
       run: |
