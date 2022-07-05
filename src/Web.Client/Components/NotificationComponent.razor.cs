@@ -14,6 +14,7 @@ namespace Learning.Blazor.Components
         private DateTime? _latestNotificationDateTime = null!;
 
         private string _showClass => _show ? "is-active" : "";
+        private string _themeClass => AppState.IsDarkTheme ? "-dark" : "";
 
         [Inject]
         public IHttpClientFactory HttpFactory { get; set; } = null!;

@@ -19,7 +19,7 @@ public sealed partial class LoginTests
         BrowserType browserType,
         float lat,
         float lon,
-        string? expected,
+        string expected,
         string? locale = null)
     {
         var (username, password) = GetTestCredentials();
@@ -71,9 +71,7 @@ public sealed partial class LoginTests
         }
 
         // Ensure the real weather data loads.
-        var text = await loginPage.Locator("#weather-city-state")
-            .InnerTextAsync();
-
-        Assert.Equal(expected, text);
+        await Assertions.Expect(loginPage.Locator("#weather-city-state"))
+            .ToHaveTextAsync(expected);
     }
 }

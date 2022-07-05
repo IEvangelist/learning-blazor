@@ -19,8 +19,8 @@
     }
 </span>
 
-<div class="quickview has-background-dark @_showClass">
-    <header class="quickview-header has-background-danger-dark">
+<div class="quickview has-background@_themeClass @_showClass">
+    <header class="quickview-header has-background-danger@_themeClass">
         <p class="title is-size-4 has-text-black">
             <span class="icon pr-2">
                 <i class="fas fa-bullhorn"></i>
@@ -38,7 +38,7 @@
             {
                 var style = notification.NotificationType switch
                 {
-                    NotificationType.Warning => "has-text-warning",
+                    NotificationType.Warning => "has-text-danger",
                     NotificationType.Alert => "has-text-info",
                     _ => ""
                 };
@@ -58,7 +58,7 @@
         </div>
     </div>
 
-    <footer class="quickview-footer has-text-dark has-background-danger-dark">
+    <footer class="quickview-footer has-text-dark has-background-danger@_themeClass">
         @{
             var (hasValue, dateTime) = _latestNotificationDateTime;
             if (hasValue)
@@ -70,4 +70,3 @@
         }
     </footer>
 </div>
-
