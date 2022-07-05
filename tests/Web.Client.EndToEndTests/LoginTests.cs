@@ -72,6 +72,9 @@ public sealed partial class LoginTests
 
         // Ensure the real weather data loads.
         await Assertions.Expect(loginPage.Locator("#weather-city-state"))
-            .ToHaveTextAsync(expected);
+            .ToHaveTextAsync(expected, new LocatorAssertionsToHaveTextOptions()
+            {
+                UseInnerText = true
+            });
     }
 }
