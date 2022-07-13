@@ -22,7 +22,7 @@ public sealed partial class LoginTests
             yield return new object[]
             {
                 BrowserType.Firefox, 20.666222f, -103.35209f,
-                "Guadalajara, Jalisco (MX)", "es-ES"
+                "Guadalajara, Jalisco (MX)", "es-MX"
             };
         }
     }

@@ -8,49 +8,53 @@ public sealed partial class ClaimsPrincipalExtensionsTests
     [Fact]
     public void GetFirstEmailAddressNull()
     {
-        var user = new ClaimsPrincipalMockBuilder()
+        var sut = new ClaimsPrincipalBuilder()
             .WithClaim(
                claimType: "emails",
                claimValue: null!)
             .Build();
 
-        Assert.Null(user.GetFirstEmailAddress());
+        var actual = sut.GetFirstEmailAddress();
+        Assert.Null(actual);
     }    
 
     [Fact]
     public void GetFirstEmailAddressKeyMismatch()
     {
-        var user = new ClaimsPrincipalMockBuilder()
+        var sut = new ClaimsPrincipalBuilder()
             .WithClaim(
                claimType: "email",
                claimValue: @"[""admin@email.org"",""test@email.org""]")
             .Build();
 
-        Assert.Null(user.GetFirstEmailAddress());
+        var actual = sut.GetFirstEmailAddress();
+        Assert.Null(actual);
     }
 
     [Fact]
     public void GetFirstEmailAddressArrayString()
     {
-        var user = new ClaimsPrincipalMockBuilder()
+        var sut = new ClaimsPrincipalBuilder()
             .WithClaim(
                claimType: "emails",
                claimValue: @"[""admin@email.org"",""test@email.org""]")
             .Build();
 
         var expected = "admin@email.org";
-        Assert.Equal(expected, user.GetFirstEmailAddress());
+        var actual = sut.GetFirstEmailAddress();
+        Assert.Equal(expected, actual);
     }
 
     [Fact]
     public void GetFirstEmailAddressGetSimpleString()
     {
-        var user = new ClaimsPrincipalMockBuilder()
+        var sut = new ClaimsPrincipalBuilder()
             .WithClaim("emails", "test@email.org")
             .Build();
 
         var expected = "test@email.org";
-        Assert.Equal(expected, user.GetFirstEmailAddress());
+        var actual = sut.GetFirstEmailAddress();
+        Assert.Equal(expected, actual);
     }
 
     [
@@ -63,10 +67,11 @@ public sealed partial class ClaimsPrincipalExtensionsTests
     public void GetEmailAddressesCorrectlyGetsEmails(
         string claimType, string claimValue, string[]? expected)
     {
-        var user = new ClaimsPrincipalMockBuilder()
+        var sut = new ClaimsPrincipalBuilder()
             .WithClaim(claimType, claimValue)
             .Build();
 
-        Assert.Equal(expected, user.GetEmailAddresses());
+        var actual = sut.GetEmailAddresses();
+        Assert.Equal(expected, actual);
     }
 }

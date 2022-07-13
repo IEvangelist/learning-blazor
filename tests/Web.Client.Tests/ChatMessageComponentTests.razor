@@ -41,19 +41,16 @@
     [Theory, MemberData(nameof(ChatMessageInput))]
     public void ChatMessageComponentRendersUserAndText(Guid guid, string text, string user)
     {
-        // Arrange
         var message = new ActorMessage(
             Id: guid,
             Text: text,
             UserName: user);
 
-        // Act
         var cut = Render(
             @<ChatMessageComponent Message="message"
                 IsEditable="true"
                 EditMessage="() => {}" />);
 
-        // Assert
         cut.MarkupMatches(
             @<a id=@guid class="panel-block is-size-5">
                 <span>@user</span>

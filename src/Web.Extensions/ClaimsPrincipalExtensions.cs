@@ -10,15 +10,15 @@ public static class ClaimsPrincipalExtensions
     /// </summary>
     /// <param name="user">The current user in context.</param>
     /// <returns>An email address if found, else <c>null</c>.</returns>
-    public static string? GetFirstEmailAddress(this ClaimsPrincipal user) =>
-        user.GetEmailAddresses()?.FirstOrDefault();
+    public static string? GetFirstEmailAddress(this ClaimsPrincipal? user) =>
+        user?.GetEmailAddresses()?.FirstOrDefault();
 
     /// <summary>
     /// Gets the email addresses (if available) from the "emails" claim.
     /// </summary>
     /// <param name="user">The current user in context.</param>
     /// <returns>An email address array if found, else <c>null</c>.</returns>
-    public static string[]? GetEmailAddresses(this ClaimsPrincipal user)
+    public static string[]? GetEmailAddresses(this ClaimsPrincipal? user)
     {
         if (user is null) return null;
 

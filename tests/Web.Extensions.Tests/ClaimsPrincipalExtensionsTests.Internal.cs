@@ -5,11 +5,11 @@ namespace Learning.Blazor.Extensions.Tests;
 
 public sealed partial class ClaimsPrincipalExtensionsTests
 {
-    class ClaimsPrincipalMockBuilder
+    class ClaimsPrincipalBuilder
     {
         readonly Dictionary<string, string> _claims = new(StringComparer.OrdinalIgnoreCase);
 
-        internal ClaimsPrincipalMockBuilder WithClaim(
+        internal ClaimsPrincipalBuilder WithClaim(
             string claimType, string claimValue)
         {
             _claims[claimType] = claimValue ?? "";
