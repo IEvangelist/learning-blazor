@@ -48,28 +48,37 @@ namespace Learning.Blazor.Pages
 
         private Task OnTweetReceivedAsync(Notification<TweetContents> tweet) =>
             InvokeAsync(() =>
-            {
-                if (!_tweets.ContainsKey(tweet.Payload.Id))
-                {
-                    _tweets[tweet.Payload.Id] = tweet;
-                    StateHasChanged();
-                }
-            });
+                _tweets.AddOrUpdate(
+                    tweet.Payload.Id, tweet,
+                    (long id, TweetContents currentTweet) =>
+                    {
+                        if (currentTweet != tweet)
+                        {
+                            StateHasChanged();
+                        }
+                        return tweet;
+                    }));
 
         private Task OnTweetsLoadedAsync(Notification<List<TweetContents>> tweets) =>
             InvokeAsync(() =>
             {
-                var stateChanged = false;
-                foreach (var tweet in tweets.Payload)
-                {
-                    if (!_tweets.ContainsKey(tweet.Id))
-                    {
-                        _tweets[tweet.Id] = tweet;
-                        stateChanged = true;
-                    }
-                }
+                var stateHasChanged = false;
 
-                if (stateChanged)
+                tweets.Payload.ForEach(
+                    (TweetContents tweet) =>
+                        _tweets.AddOrUpdate(
+                            tweet.Id, tweet,
+                            (long id, TweetContents currentTweet) =>
+                            {
+                                if (currentTweet != tweet)
+                                {
+                                    stateHasChanged = true;
+                                }
+                                
+                                return tweet;
+                            }));
+                
+                if (stateHasChanged)
                 {
                     StateHasChanged();
                 }

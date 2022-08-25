@@ -78,13 +78,16 @@
                 </span>
                 <span>@Localizer["Okay"]</span>
             </button>
-            <button class="button is-danger"
-                @onclick=@(() => _modal.CancelAsync())>
-                <span class="icon">
-                    <i class="fas fa-times"></i>
-                </span>
-                <span>@Localizer["Cancel"]</span>
-            </button>
+            @if (_modal is not null)
+            {
+                <button class="button is-danger"
+                    @onclick=@(() => _modal.CancelAsync())>
+                    <span class="icon">
+                        <i class="fas fa-times"></i>
+                    </span>
+                    <span>@Localizer["Cancel"]</span>
+                </button>
+            }
         </div>
     </ButtonContent>
 </ModalComponent>

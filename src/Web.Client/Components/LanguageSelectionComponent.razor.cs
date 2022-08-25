@@ -5,9 +5,9 @@ namespace Learning.Blazor.Components
 {
     public partial class LanguageSelectionComponent
     {
-        private IDictionary<CultureInfo, AzureCulture> _supportedCultures = null!;
-        private CultureInfo _selectedCulture = null!;
-        private ModalComponent _modal = null!;
+        private IDictionary<CultureInfo, AzureCulture>? _supportedCultures;
+        private CultureInfo? _selectedCulture = null!;
+        private ModalComponent? _modal = null!;
 
         [Inject] HttpClient Http { get; set; } = null!;
         [Inject] public NavigationManager Navigation { get; set; } = null!;
@@ -33,7 +33,7 @@ namespace Learning.Blazor.Components
                 $"{flagEmoji} {azureCulture.Name} ({culture.Name})");
         }
 
-        private Task ShowAsync() => _modal.ShowAsync();
+        private Task? ShowAsync() => _modal?.ShowAsync();
 
         private async Task ConfirmAsync()
         {
@@ -47,7 +47,7 @@ namespace Learning.Blazor.Components
                     StorageKeys.ClientCulture, _selectedCulture!.Name);
             }
 
-            await _modal.ConfirmAsync();
+            await (_modal?.ConfirmAsync() ?? Task.CompletedTask);
 
             if (forceRefresh)
             {
