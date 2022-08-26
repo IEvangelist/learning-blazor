@@ -33,7 +33,7 @@ namespace Learning.Blazor.Components
                 $"{flagEmoji} {azureCulture.Name} ({culture.Name})");
         }
 
-        private Task? ShowAsync() => _modal?.ShowAsync();
+        private Task ShowAsync() => _modal?.ShowAsync() ?? Task.CompletedTask;
 
         private async Task ConfirmAsync()
         {
