@@ -1,5 +1,15 @@
 # Learning Blazor: Build Single-Page Apps with WebAssembly and C#
 
+## Amazon Links
+
+| Media type                           | Site                                                   |
+|--------------------------------------|--------------------------------------------------------|
+| [**📖 Paperback (Print)**][paperback] | [**Check it out on Amazon today.**][paperback]         |
+| [**💻 eBook (Kindle)**][kindle]     | [**Also available on Amazon Kindle devices.**][kindle] |
+
+[paperback]: https://www.amazon.com/Learning-Blazor-Build-Single-Page-WebAssembly-dp-1098113241/dp/1098113241
+[kindle]: https://www.amazon.com/dp-B0BGJS7JBP/dp/B0BGJS7JBP
+
 | Book | Details |
 |--|--|
 | <a href="https://bit.ly/learning-blazor" target="_blank"><img title="Learning Blazor: Build Single-Page Apps with WebAssembly and C#" alt="Learning Blazor: Build Single-Page Apps with WebAssembly and C#" src="images/learning-blazor.png"></a> | This repository is the application detailed in the ["Learning Blazor: Build Single-Page Apps with WebAssembly and C#"][learning-blazor] O'Reilly Media book by David Pine. Take advantage of your C# skills to build UI components and client-side experiences with .NET. With this practical guide, you'll learn how to use Blazor WebAssembly to develop next-generation web experiences. Built on top of ASP.NET Core, Blazor represents the future of .NET single-page applications (SPA) investments. |
