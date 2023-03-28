@@ -61,8 +61,14 @@
   <data name="Cancel" xml:space="preserve">
     <value>لغو</value>
   </data>
+  <data name="Chat" xml:space="preserve">
+    <value>چت</value>
+  </data>
   <data name="Confirm" xml:space="preserve">
     <value>تایید</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>تماس</value>
   </data>
   <data name="Dismiss" xml:space="preserve">
     <value>اخراج</value>
@@ -72,6 +78,9 @@
   </data>
   <data name="FilterTweets" xml:space="preserve">
     <value>فیلتر توییت</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>خانه</value>
   </data>
   <data name="Loading" xml:space="preserve">
     <value>بارگیری، لطفا صبر کنید.</value>

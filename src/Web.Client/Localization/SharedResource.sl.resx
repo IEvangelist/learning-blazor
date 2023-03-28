@@ -61,8 +61,14 @@
   <data name="Cancel" xml:space="preserve">
     <value>Odpovedati</value>
   </data>
+  <data name="Chat" xml:space="preserve">
+    <value>Chat</value>
+  </data>
   <data name="Confirm" xml:space="preserve">
     <value>Potrditi</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>Stik</value>
   </data>
   <data name="Dismiss" xml:space="preserve">
     <value>Zavrne</value>
@@ -72,6 +78,9 @@
   </data>
   <data name="FilterTweets" xml:space="preserve">
     <value>Filtriraj tweete</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Doma</value>
   </data>
   <data name="Loading" xml:space="preserve">
     <value>Nalaganje, prosim počakajte.</value>

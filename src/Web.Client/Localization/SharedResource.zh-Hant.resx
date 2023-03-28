@@ -61,8 +61,14 @@
   <data name="Cancel" xml:space="preserve">
     <value>取消</value>
   </data>
+  <data name="Chat" xml:space="preserve">
+    <value>聊天</value>
+  </data>
   <data name="Confirm" xml:space="preserve">
     <value>確認</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>聯繫</value>
   </data>
   <data name="Dismiss" xml:space="preserve">
     <value>解僱</value>
@@ -71,10 +77,13 @@
     <value>東</value>
   </data>
   <data name="FilterTweets" xml:space="preserve">
-    <value>過濾推文</value>
+    <value>篩選推文</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>家</value>
   </data>
   <data name="Loading" xml:space="preserve">
-    <value>載入，請等待。</value>
+    <value>正在載入中，請稍候。</value>
   </data>
   <data name="North" xml:space="preserve">
     <value>北</value>

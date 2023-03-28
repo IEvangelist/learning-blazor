@@ -61,8 +61,14 @@
   <data name="Cancel" xml:space="preserve">
     <value>취소</value>
   </data>
+  <data name="Chat" xml:space="preserve">
+    <value>잡담</value>
+  </data>
   <data name="Confirm" xml:space="preserve">
     <value>확인하다</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>접촉</value>
   </data>
   <data name="Dismiss" xml:space="preserve">
     <value>해고하다</value>
@@ -73,8 +79,11 @@
   <data name="FilterTweets" xml:space="preserve">
     <value>트윗 필터링</value>
   </data>
+  <data name="Home" xml:space="preserve">
+    <value>집</value>
+  </data>
   <data name="Loading" xml:space="preserve">
-    <value>로딩, 기다려 주세요.</value>
+    <value>로드 중, 잠시 기다려 주십시오.</value>
   </data>
   <data name="North" xml:space="preserve">
     <value>북쪽</value>

@@ -61,8 +61,14 @@
   <data name="Cancel" xml:space="preserve">
     <value>Annullere</value>
   </data>
+  <data name="Chat" xml:space="preserve">
+    <value>Prate</value>
+  </data>
   <data name="Confirm" xml:space="preserve">
     <value>Bekrefte</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>Kontakt</value>
   </data>
   <data name="Dismiss" xml:space="preserve">
     <value>Avskjedige</value>
@@ -73,8 +79,11 @@
   <data name="FilterTweets" xml:space="preserve">
     <value>Filtrer tweets</value>
   </data>
+  <data name="Home" xml:space="preserve">
+    <value>Hjem</value>
+  </data>
   <data name="Loading" xml:space="preserve">
-    <value>Laster inn, vent litt.</value>
+    <value>Laster inn, vennligst vent.</value>
   </data>
   <data name="North" xml:space="preserve">
     <value>Nord</value>

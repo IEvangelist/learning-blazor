@@ -61,8 +61,14 @@
   <data name="Cancel" xml:space="preserve">
     <value>Annuleren</value>
   </data>
+  <data name="Chat" xml:space="preserve">
+    <value>Babbelen</value>
+  </data>
   <data name="Confirm" xml:space="preserve">
     <value>Bevestigen</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>Contact</value>
   </data>
   <data name="Dismiss" xml:space="preserve">
     <value>Ontslaan</value>
@@ -73,8 +79,11 @@
   <data name="FilterTweets" xml:space="preserve">
     <value>Tweets filteren</value>
   </data>
+  <data name="Home" xml:space="preserve">
+    <value>Thuis</value>
+  </data>
   <data name="Loading" xml:space="preserve">
-    <value>Bezig met laden, even geduld aub.</value>
+    <value>Laden, even geduld aub.</value>
   </data>
   <data name="North" xml:space="preserve">
     <value>Noorden</value>

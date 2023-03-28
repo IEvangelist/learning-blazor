@@ -61,8 +61,14 @@
   <data name="Cancel" xml:space="preserve">
     <value>İptal</value>
   </data>
+  <data name="Chat" xml:space="preserve">
+    <value>Sohbet</value>
+  </data>
   <data name="Confirm" xml:space="preserve">
     <value>Onaylamak</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>Temas</value>
   </data>
   <data name="Dismiss" xml:space="preserve">
     <value>Kapatmak</value>
@@ -71,7 +77,10 @@
     <value>Doğu</value>
   </data>
   <data name="FilterTweets" xml:space="preserve">
-    <value>Tweetleri Filtreleme</value>
+    <value>Tweetleri filtreleme</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Ev</value>
   </data>
   <data name="Loading" xml:space="preserve">
     <value>Yükleniyor, lütfen bekleyin.</value>

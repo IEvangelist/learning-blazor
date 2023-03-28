@@ -61,8 +61,14 @@
   <data name="Cancel" xml:space="preserve">
     <value>Скасувати</value>
   </data>
+  <data name="Chat" xml:space="preserve">
+    <value>Чат</value>
+  </data>
   <data name="Confirm" xml:space="preserve">
     <value>Підтвердити</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>Контакт</value>
   </data>
   <data name="Dismiss" xml:space="preserve">
     <value>Звільнити</value>
@@ -72,6 +78,9 @@
   </data>
   <data name="FilterTweets" xml:space="preserve">
     <value>Фільтрувати твіти</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Дім</value>
   </data>
   <data name="Loading" xml:space="preserve">
     <value>Завантаження, будь ласка, зачекайте.</value>
@@ -95,7 +104,7 @@
     <value>Південний схід</value>
   </data>
   <data name="Southwest" xml:space="preserve">
-    <value>Південно-західний</value>
+    <value>Південний захід</value>
   </data>
   <data name="West" xml:space="preserve">
     <value>Захід</value>

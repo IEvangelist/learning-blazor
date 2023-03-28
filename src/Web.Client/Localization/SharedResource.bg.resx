@@ -59,10 +59,16 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Cancel" xml:space="preserve">
-    <value>Задрасквам</value>
+    <value>Отмени</value>
+  </data>
+  <data name="Chat" xml:space="preserve">
+    <value>Чат</value>
   </data>
   <data name="Confirm" xml:space="preserve">
     <value>Потвърждавам</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>Контакт</value>
   </data>
   <data name="Dismiss" xml:space="preserve">
     <value>Отхвърли</value>
@@ -73,8 +79,11 @@
   <data name="FilterTweets" xml:space="preserve">
     <value>Филтриране на туитове</value>
   </data>
+  <data name="Home" xml:space="preserve">
+    <value>Дом</value>
+  </data>
   <data name="Loading" xml:space="preserve">
-    <value>Товаренето, моля изчакайте.</value>
+    <value>Зареждане, моля изчакайте.</value>
   </data>
   <data name="North" xml:space="preserve">
     <value>Север</value>
