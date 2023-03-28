@@ -3,7 +3,7 @@
 
 namespace Learning.Blazor.JokeServices;
 
-internal class AggregateJokeFactory : IJokeFactory
+internal sealed class AggregateJokeFactory : IJokeFactory
 {
     const string NotFunny = @"Did you hear the one about a joke service that failed to get jokes?
 It's not very funny...";

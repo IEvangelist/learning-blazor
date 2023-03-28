@@ -21,8 +21,10 @@ internal static class ServiceCollectionExtensions
         services.AddLogicAppClient(
             configuration.GetSection(nameof(LogicAppOptions)));
 
-        services.AddTwitterServices(configuration);
-        services.AddHostedService<TwitterWorkerService>();
+        // The Twitter API is no longer free for developers testing it out.
+        // Considering the switch to supporting Mastadon instead...
+        //services.AddTwitterServices(configuration);
+        //services.AddHostedService<TwitterWorkerService>();
 
         services.AddCosmosDataServices(configuration);
 
