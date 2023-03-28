@@ -87,6 +87,8 @@ namespace Learning.Blazor.Pages
                     InitializeModelAndContext();
                 }
             }
+
+            await InvokeAsync(StateHasChanged);
         }
     }
 }

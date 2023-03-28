@@ -170,6 +170,7 @@ csharp_space_between_parentheses = false
 csharp_space_between_square_brackets = false
 
 # CA1852: Seal internal types
+[*.{cs,vb}]
 dotnet_diagnostic.CA1852.severity = warning
 
 # Analyzers

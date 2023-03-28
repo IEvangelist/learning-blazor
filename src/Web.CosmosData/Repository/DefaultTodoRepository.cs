@@ -3,7 +3,7 @@
 
 namespace Learning.Blazor.CosmosData.Repository;
 
-internal class DefaultTodoRepository : ITodoRepository
+internal sealed class DefaultTodoRepository : ITodoRepository
 {
     private readonly IRepository<Todo> _repository;
 
