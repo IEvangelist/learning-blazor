@@ -15,12 +15,11 @@ on:
         description: 'The reason for running the workflow'
         required: true
         default: 'Manual "Deploy Static Web App" run'
-
+        
 jobs:
   build_and_deploy_job:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
-    #runs-on: ubuntu-latest # see: https://github.com/Azure/static-web-apps/issues/755
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     name: Build and Deploy Job
     steps:
       - uses: actions/checkout@v2
