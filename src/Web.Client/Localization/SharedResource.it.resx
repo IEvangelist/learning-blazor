@@ -61,8 +61,14 @@
   <data name="Cancel" xml:space="preserve">
     <value>Annulla</value>
   </data>
+  <data name="Chat" xml:space="preserve">
+    <value>Chiacchierare</value>
+  </data>
   <data name="Confirm" xml:space="preserve">
     <value>Confermare</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>Contatto</value>
   </data>
   <data name="Dismiss" xml:space="preserve">
     <value>Licenziare</value>
@@ -71,10 +77,13 @@
     <value>A est</value>
   </data>
   <data name="FilterTweets" xml:space="preserve">
-    <value>Filtra i tweet</value>
+    <value>Filtra i Tweet</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Casa</value>
   </data>
   <data name="Loading" xml:space="preserve">
-    <value>Caricamento, si prega di attendere.</value>
+    <value>Caricamento in corso, attendere.</value>
   </data>
   <data name="North" xml:space="preserve">
     <value>A nord</value>

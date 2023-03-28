@@ -61,8 +61,14 @@
   <data name="Cancel" xml:space="preserve">
     <value>रद्द करना</value>
   </data>
+  <data name="Chat" xml:space="preserve">
+    <value>गपशप</value>
+  </data>
   <data name="Confirm" xml:space="preserve">
     <value>पुष्टि</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>संपर्क</value>
   </data>
   <data name="Dismiss" xml:space="preserve">
     <value>हटा</value>
@@ -71,7 +77,10 @@
     <value>पूर्व</value>
   </data>
   <data name="FilterTweets" xml:space="preserve">
-    <value>फ़िल्टर ट्वीट्स</value>
+    <value>ट्वीट्स फ़िल्टर करें</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>घर</value>
   </data>
   <data name="Loading" xml:space="preserve">
     <value>लोड हो रहा है, कृपया प्रतीक्षा करें।</value>

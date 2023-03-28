@@ -61,8 +61,14 @@
   <data name="Cancel" xml:space="preserve">
     <value>Anula</value>
   </data>
+  <data name="Chat" xml:space="preserve">
+    <value>Conversație</value>
+  </data>
   <data name="Confirm" xml:space="preserve">
     <value>Confirma</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>Contact</value>
   </data>
   <data name="Dismiss" xml:space="preserve">
     <value>A concedia</value>
@@ -72,6 +78,9 @@
   </data>
   <data name="FilterTweets" xml:space="preserve">
     <value>Tweets Filtru</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Domiciliu</value>
   </data>
   <data name="Loading" xml:space="preserve">
     <value>Încărcare, vă rugăm să așteptați.</value>

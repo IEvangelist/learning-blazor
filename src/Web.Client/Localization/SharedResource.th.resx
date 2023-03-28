@@ -61,8 +61,14 @@
   <data name="Cancel" xml:space="preserve">
     <value>ยกเลิก</value>
   </data>
+  <data name="Chat" xml:space="preserve">
+    <value>สนทนา</value>
+  </data>
   <data name="Confirm" xml:space="preserve">
     <value>ยืนยัน</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>ติดต่อ</value>
   </data>
   <data name="Dismiss" xml:space="preserve">
     <value>ไล่ออก</value>
@@ -71,10 +77,13 @@
     <value>ตะวันออก</value>
   </data>
   <data name="FilterTweets" xml:space="preserve">
-    <value>ทวีตตัวกรอง</value>
+    <value>กรองทวีต</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>บ้าน</value>
   </data>
   <data name="Loading" xml:space="preserve">
-    <value>กําลังโหลด โปรดรอสักครู่</value>
+    <value>กําลังโหลดโปรดรอสักครู่</value>
   </data>
   <data name="North" xml:space="preserve">
     <value>เหนือ</value>
@@ -86,7 +95,7 @@
     <value>ทิศตะวันตกเฉียงเหนือ</value>
   </data>
   <data name="Okay" xml:space="preserve">
-    <value>โอเค</value>
+    <value>ตกลง</value>
   </data>
   <data name="South" xml:space="preserve">
     <value>ใต้</value>

@@ -61,8 +61,14 @@
   <data name="Cancel" xml:space="preserve">
     <value>Отмена</value>
   </data>
+  <data name="Chat" xml:space="preserve">
+    <value>Чат</value>
+  </data>
   <data name="Confirm" xml:space="preserve">
     <value>Подтверждать</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>Контакт</value>
   </data>
   <data name="Dismiss" xml:space="preserve">
     <value>Увольнять</value>
@@ -72,6 +78,9 @@
   </data>
   <data name="FilterTweets" xml:space="preserve">
     <value>Фильтрация твитов</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Дом</value>
   </data>
   <data name="Loading" xml:space="preserve">
     <value>Загрузка, пожалуйста, подождите.</value>

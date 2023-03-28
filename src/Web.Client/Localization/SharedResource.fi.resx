@@ -61,8 +61,14 @@
   <data name="Cancel" xml:space="preserve">
     <value>Perua</value>
   </data>
+  <data name="Chat" xml:space="preserve">
+    <value>Jutella</value>
+  </data>
   <data name="Confirm" xml:space="preserve">
     <value>Vahvistaa</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>Kontakti</value>
   </data>
   <data name="Dismiss" xml:space="preserve">
     <value>Erottaa</value>
@@ -71,10 +77,13 @@
     <value>Itä</value>
   </data>
   <data name="FilterTweets" xml:space="preserve">
-    <value>Suodata twiitit</value>
+    <value>Twiittien suodattaminen</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Koti</value>
   </data>
   <data name="Loading" xml:space="preserve">
-    <value>Lastaus, odottakaa.</value>
+    <value>Ladataan, odota.</value>
   </data>
   <data name="North" xml:space="preserve">
     <value>Pohjoinen</value>

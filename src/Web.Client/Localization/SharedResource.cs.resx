@@ -61,8 +61,14 @@
   <data name="Cancel" xml:space="preserve">
     <value>Zrušit</value>
   </data>
+  <data name="Chat" xml:space="preserve">
+    <value>Povídat si</value>
+  </data>
   <data name="Confirm" xml:space="preserve">
     <value>Potvrdit</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>Kontakt</value>
   </data>
   <data name="Dismiss" xml:space="preserve">
     <value>Propustit</value>
@@ -73,8 +79,11 @@
   <data name="FilterTweets" xml:space="preserve">
     <value>Filtrovat tweety</value>
   </data>
+  <data name="Home" xml:space="preserve">
+    <value>Domov</value>
+  </data>
   <data name="Loading" xml:space="preserve">
-    <value>Načítání, počkejte prosím.</value>
+    <value>Načítám, čekejte prosím.</value>
   </data>
   <data name="North" xml:space="preserve">
     <value>Sever</value>

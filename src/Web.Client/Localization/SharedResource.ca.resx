@@ -61,8 +61,14 @@
   <data name="Cancel" xml:space="preserve">
     <value>Cancel·lar</value>
   </data>
+  <data name="Chat" xml:space="preserve">
+    <value>Xat</value>
+  </data>
   <data name="Confirm" xml:space="preserve">
     <value>Confirmar</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>Contacte</value>
   </data>
   <data name="Dismiss" xml:space="preserve">
     <value>Acomiadar</value>
@@ -71,10 +77,13 @@
     <value>Est</value>
   </data>
   <data name="FilterTweets" xml:space="preserve">
-    <value>Filtra els tweets</value>
+    <value>Filtrar tweets</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Llar</value>
   </data>
   <data name="Loading" xml:space="preserve">
-    <value>Carregant, espereu.</value>
+    <value>Carregant, si us plau esperi.</value>
   </data>
   <data name="North" xml:space="preserve">
     <value>Nord</value>
@@ -86,7 +95,7 @@
     <value>Nord-oest</value>
   </data>
   <data name="Okay" xml:space="preserve">
-    <value>Bé</value>
+    <value>D'acord</value>
   </data>
   <data name="South" xml:space="preserve">
     <value>Sud</value>

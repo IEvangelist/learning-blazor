@@ -61,8 +61,14 @@
   <data name="Cancel" xml:space="preserve">
     <value>Atšaukti</value>
   </data>
+  <data name="Chat" xml:space="preserve">
+    <value>Pokalbių</value>
+  </data>
   <data name="Confirm" xml:space="preserve">
     <value>Patvirtinti</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>Liestis</value>
   </data>
   <data name="Dismiss" xml:space="preserve">
     <value>Atleisti</value>
@@ -71,10 +77,13 @@
     <value>Į rytus</value>
   </data>
   <data name="FilterTweets" xml:space="preserve">
-    <value>Filtruoti Tweets</value>
+    <value>Filtruokite "Twitter" žinutes</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Namon</value>
   </data>
   <data name="Loading" xml:space="preserve">
-    <value>Pakrovimas, palaukite.</value>
+    <value>Įkeliama, palaukite.</value>
   </data>
   <data name="North" xml:space="preserve">
     <value>Į šiaurę</value>

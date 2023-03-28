@@ -61,8 +61,14 @@
   <data name="Cancel" xml:space="preserve">
     <value>キャンセル</value>
   </data>
+  <data name="Chat" xml:space="preserve">
+    <value>チャット</value>
+  </data>
   <data name="Confirm" xml:space="preserve">
     <value>確認する</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>接触</value>
   </data>
   <data name="Dismiss" xml:space="preserve">
     <value>解任する</value>
@@ -71,10 +77,13 @@
     <value>東</value>
   </data>
   <data name="FilterTweets" xml:space="preserve">
-    <value>ツイートをフィルタする</value>
+    <value>ツイートを絞り込む</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>家</value>
   </data>
   <data name="Loading" xml:space="preserve">
-    <value>読み込み中、お待ちください。</value>
+    <value>読み込み中です。しばらくお待ちください。</value>
   </data>
   <data name="North" xml:space="preserve">
     <value>北</value>
