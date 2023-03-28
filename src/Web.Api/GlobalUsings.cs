@@ -19,7 +19,6 @@ global using Learning.Blazor.LogicAppServices.Extensions;
 global using Learning.Blazor.LogicAppServices.Options;
 global using Learning.Blazor.Models;
 global using Learning.Blazor.Models.Requests;
-global using Learning.Blazor.TwitterServices;
 global using Microsoft.AspNetCore.Authentication.JwtBearer;
 global using Microsoft.AspNetCore.Authorization;
 global using Microsoft.AspNetCore.Mvc;

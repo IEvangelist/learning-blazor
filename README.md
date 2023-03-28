@@ -44,7 +44,6 @@ The app is packed with examples of how to do various things with Blazor, includi
 
 - Blazor Third-Party Authentication providers:
   - Google
-  - Twitter
   - GitHub
   - "Sign up now"-based identity provider registration (with email verification).
 - Azure Functions &mdash; .NET
@@ -53,7 +52,6 @@ The app is packed with examples of how to do various things with Blazor, includi
 - Bulma (CSS)
 - Polly
 - Swagger / OpenAPI
-- Twitter API
 - OpenWeatherMap API
 - "Have I Been Pwned"
 - Client-Browser Native Speech Synthesis and Speech Recognition

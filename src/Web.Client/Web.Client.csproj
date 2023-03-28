@@ -46,7 +46,6 @@
     <ProjectReference Include="..\Web.Abstractions\Web.Abstractions.csproj" />
     <ProjectReference Include="..\Web.Extensions\Web.Extensions.csproj" />
     <ProjectReference Include="..\Web.JokeServices\Web.JokeServices.csproj" />
-    <!--<ProjectReference Include="..\Web.TwitterComponents\Web.TwitterComponents.csproj" />-->
   </ItemGroup>
 
   <ItemGroup>

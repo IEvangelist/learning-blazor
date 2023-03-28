@@ -165,12 +165,6 @@
   <data name="Southwest" xml:space="preserve">
     <value>Southwest</value>
   </data>
-  <data name="Tweets" xml:space="preserve">
-    <value>Tweets</value>
-  </data>
-  <data name="Twitter" xml:space="preserve">
-    <value>Twitter</value>
-  </data>
   <data name="West" xml:space="preserve">
     <value>West</value>
   </data>

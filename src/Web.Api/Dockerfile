@@ -13,7 +13,6 @@ COPY ["src/Web.Api/Web.Api.csproj", "src/Web.Api/"]
 COPY ["src/Web.JokeServices/Web.JokeServices.csproj", "src/Web.JokeServices/"]
 COPY ["src/Web.Models/Web.Models.csproj", "src/Web.Models/"]
 COPY ["src/Web.Extensions/Web.Extensions.csproj", "src/Web.Extensions/"]
-COPY ["src/Web.TwitterServices/Web.TwitterServices.csproj", "src/Web.TwitterServices/"]
 RUN dotnet restore "src/Web.Api/Web.Api.csproj"
 COPY . .
 WORKDIR "/src/src/Web.Api"

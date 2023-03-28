@@ -34,22 +34,4 @@ public static class HubServerEventNames
     /// Handlers should expect a <see cref="Notification{T}"/> where <c>T</c> is an <see cref="ActorMessage"/>.
     /// </summary>
     public const string MessageReceived = nameof(MessageReceived);
-
-    /// <summary>
-    /// Fires when the twitter streaming status changes.
-    /// Handlers should expect a <see cref="Notification{T}"/> where <c>T</c> is an <see cref="StreamingStatus"/>.
-    /// </summary>
-    public const string StatusUpdated = nameof(StatusUpdated);
-
-    /// <summary>
-    /// Fires when a tweet is received.
-    /// Handlers should expect a <see cref="Notification{T}"/> where <c>T</c> is an <see cref="TweetContents"/>.
-    /// </summary>
-    public const string TweetReceived = nameof(TweetReceived);
-
-    /// <summary>
-    /// Fires when tweets group is joined, loading the latest tweets.
-    /// Handlers should expect a <see cref="Notification{T}"/> where <c>T</c> is an <see cref="List{TweetContents}"/>.
-    /// </summary>
-    public const string InitialTweetsLoaded = nameof(InitialTweetsLoaded);
 }

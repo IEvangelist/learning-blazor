@@ -10,24 +10,6 @@ namespace Learning.Blazor.Abstractions.RealTime;
 public static class HubClientMethodNames
 {
     /// <summary>
-    /// A method on the "/notification" endpoint, invokable from a hub connection that expects no parameters.
-    /// The contextual users' connection will join the "Tweets" group.
-    /// </summary>
-    public const string JoinTweets = nameof(JoinTweets);
-
-    /// <summary>
-    /// A method on the "/notification" endpoint, invokable from a hub connection that expects no parameters.
-    /// The contextual users' connection will leave the "Tweets" group.
-    /// </summary>
-    public const string LeaveTweets = nameof(LeaveTweets); // StartTweetStream
-
-    /// <summary>
-    /// A method on the "/notification" endpoint, invokable from a hub connection that expects no parameters.
-    /// Starts the Tweet stream in the "Tweets" group.
-    /// </summary>
-    public const string StartTweetStream = nameof(StartTweetStream);
-
-    /// <summary>
     /// A method on the "/notification" endpoint, invokable from a hub connection that expects a "room" name.
     /// The contextual users' connection will join the given "room" named group.
     /// </summary>

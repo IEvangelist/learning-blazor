@@ -1,5 +1,4 @@
 ﻿:root {
-    --twitter-blue: #6cadde;
     --pwned-blue: rgba(58,154,196,0.5);
     --signalr-blue: #59b4d9;
     --contact-blue: rgba(58,154,196,0.5);
@@ -190,14 +189,6 @@ footer.footer {
     border-color: #f14668;
     -webkit-animation: shake .5s linear;
 }
-
-.twitter-tweet {
-    visibility: hidden !important;
-}
-
-    .twitter-tweet.twitter-tweet-rendered {
-        visibility: initial !important;
-    }
 
 input[type=checkbox].is-medium {
     height: 1.25rem;
