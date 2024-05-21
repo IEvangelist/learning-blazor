@@ -1,69 +1,68 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
-namespace Learning.Blazor.Pages
+namespace Learning.Blazor.Pages;
+
+public sealed partial class Passwords
 {
-    public sealed partial class Passwords
+    private readonly PasswordsComponentModel _model = new();
+
+    private EditContext? _editContext;
+    private InputText _passwordInput = null!;
+    private bool _isFormInvalid;
+    private PwnedPassword? _pwnedPassword = null!;
+    private ComponentState _state = ComponentState.Unknown;
+
+    [Inject]
+    public IHttpClientFactory HttpFactory { get; set; } = null!;
+
+    protected override void OnInitialized()
     {
-        private readonly PasswordsComponentModel _model = new();
+        _editContext = new(_model);
+        _editContext.OnFieldChanged += OnModelChanged;
+    }
 
-        private EditContext? _editContext;
-        private InputText _passwordInput = null!;
-        private bool _isFormInvalid;
-        private PwnedPassword? _pwnedPassword = null!;
-        private ComponentState _state = ComponentState.Unknown;
-
-        [Inject]
-        public IHttpClientFactory HttpFactory { get; set; } = null!;
-
-        protected override void OnInitialized()
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
         {
-            _editContext = new(_model);
-            _editContext.OnFieldChanged += OnModelChanged;
+            await (_passwordInput?.Element?.FocusAsync(preventScroll: true) ?? ValueTask.CompletedTask);
         }
+    }
 
-        protected override async Task OnAfterRenderAsync(bool firstRender)
+    private void OnModelChanged(object? sender, FieldChangedEventArgs e)
+    {
+        _isFormInvalid = !_editContext?.Validate() ?? true;
+    }
+
+    private void Reset()
+    {
+        _model.PlainTextPassword = null!;
+        _pwnedPassword = null!;
+        _state = ComponentState.Unknown;
+        _editContext?.MarkAsUnmodified();
+    }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage(
+        "Trimming",
+        "IL2026:Methods annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code",
+        Justification = "Not an issue here.")]
+    private async ValueTask OnValidSubmitAsync(EditContext _)
+    {
+        try
         {
-            if (firstRender)
-            {
-                await (_passwordInput?.Element?.FocusAsync(preventScroll: true) ?? ValueTask.CompletedTask);
-            }
+            _state = ComponentState.Loading;
+            var httpClient = HttpFactory.CreateClient(HttpClientNames.PwnedServerApi);
+            _pwnedPassword = await httpClient.GetFromJsonAsync<PwnedPassword>(
+                $"api/pwned/passwords/{_model.PlainTextPassword}",
+                DefaultJsonSerialization.Options);
+
+            _state = ComponentState.Loaded;
         }
-
-        private void OnModelChanged(object? sender, FieldChangedEventArgs e)
+        catch (Exception ex)
         {
-            _isFormInvalid = !_editContext?.Validate() ?? true;
-        }
-
-        private void Reset()
-        {
-            _model.PlainTextPassword = null!;
-            _pwnedPassword = null!;
-            _state = ComponentState.Unknown;
-            _editContext?.MarkAsUnmodified();
-        }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage(
-            "Trimming",
-            "IL2026:Methods annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code",
-            Justification = "Not an issue here.")]
-        private async ValueTask OnValidSubmitAsync(EditContext _)
-        {
-            try
-            {
-                _state = ComponentState.Loading;
-                var httpClient = HttpFactory.CreateClient(HttpClientNames.PwnedServerApi);
-                _pwnedPassword = await httpClient.GetFromJsonAsync<PwnedPassword>(
-                    $"api/pwned/passwords/{_model.PlainTextPassword}",
-                    DefaultJsonSerialization.Options);
-
-                _state = ComponentState.Loaded;
-            }
-            catch (Exception ex)
-            {
-                Logger.LogError(ex, ex.Message);
-                _state = ComponentState.Error;
-            }
+            Logger.LogError(ex, ex.Message);
+            _state = ComponentState.Error;
         }
     }
 }

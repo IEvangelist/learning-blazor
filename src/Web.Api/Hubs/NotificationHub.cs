@@ -3,19 +3,13 @@
 
 namespace Learning.Blazor.Api.Hubs;
 
-[Authorize, RequiredScope(new[] { "User.ApiAccess" })]
-public partial class NotificationHub : Hub
+[Authorize, RequiredScope(["User.ApiAccess"])]
+public partial class NotificationHub(
+    ITwitterService twitterService,
+    IStringLocalizer<Shared> localizer) : Hub
 {
-    private readonly ITwitterService _twitterService;
-    private readonly IStringLocalizer<Shared> _localizer;
-
     private string _userName => Context.User?.Identity?.Name ?? "Unknown";
     private string[]? _userEmail => Context.User?.GetEmailAddresses();
-
-    public NotificationHub(
-        ITwitterService twitterService,
-        IStringLocalizer<Shared> localizer) =>
-        (_twitterService, _localizer) = (twitterService, localizer);
 
     public override Task OnConnectedAsync() =>
         Clients.All.SendAsync(

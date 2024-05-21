@@ -3,14 +3,13 @@
 
 using System.Text.Json.Serialization.Metadata;
 
-namespace Learning.Blazor.Serialization
+namespace Learning.Blazor.Serialization;
+
+[JsonSerializable(typeof(AzureTranslationCultures))]
+internal partial class AzureTranslationCultureJsonSerializerContext
+     : JsonSerializerContext
 {
-    [JsonSerializable(typeof(AzureTranslationCultures))]
-    internal partial class AzureTranslationCultureJsonSerializerContext
-         : JsonSerializerContext
-    {
-        internal static JsonTypeInfo<AzureTranslationCultures> DefaultTypeInfo =>
-            new AzureTranslationCultureJsonSerializerContext(
-                DefaultJsonSerialization.Options).AzureTranslationCultures;
-    }
+    internal static JsonTypeInfo<AzureTranslationCultures> DefaultTypeInfo =>
+        new AzureTranslationCultureJsonSerializerContext(
+            DefaultJsonSerialization.Options).AzureTranslationCultures;
 }

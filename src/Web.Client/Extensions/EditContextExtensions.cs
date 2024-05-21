@@ -10,7 +10,7 @@ public static class EditContextExtensions
     /// CSS returned from calling
     /// <see cref="EditContextFieldClassExtensions.FieldCssClass"/> as follows:
     /// <list type="bullet">
-    /// <item><c>"mofified valid"</c>: <c>"fa-check-circle has-text-success"</c></item>
+    /// <item><c>"modified valid"</c>: <c>"fa-check-circle has-text-success"</c></item>
     /// <item><c>"modified invalid"</c>: <c>"fa-times-circle has-text-danger"</c></item>
     /// <item><c>""</c>: <c>"fa-question-circle"</c></item>
     /// </list>
@@ -32,7 +32,7 @@ public static class EditContextExtensions
     /// CSS returned from calling
     /// <see cref="EditContextFieldClassExtensions.FieldCssClass"/> as follows:
     /// <list type="bullet">
-    /// <item><c>"mofified valid"</c>: <c>"fa-check-circle has-text-success"</c></item>
+    /// <item><c>"modified valid"</c>: <c>"fa-check-circle has-text-success"</c></item>
     /// <item><c>"modified invalid"</c>: <c>"fa-times-circle has-text-danger"</c></item>
     /// <item><c>""</c>: <c>"fa-question-circle"</c></item>
     /// </list>
@@ -53,7 +53,7 @@ public static class EditContextExtensions
     /// <summary>
     /// Maps the given validation states into corresponding CSS classes.
     /// <list type="bullet">
-    /// <item><c>"mofified valid"</c>: <c>"fa-check-circle has-text-success"</c></item>
+    /// <item><c>"modified valid"</c>: <c>"fa-check-circle has-text-success"</c></item>
     /// <item><c>"modified invalid"</c>: <c>"fa-times-circle has-text-danger"</c></item>
     /// <item><c>""</c>: <c>"fa-question-circle"</c></item>
     /// </list>

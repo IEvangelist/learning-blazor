@@ -12,11 +12,11 @@
         </span>
     </button>
     @if (_notifications?.Any(notification => !notification.IsDismissed) ?? false)
-    {
-        <span class="badge is-info" style="right: .8rem; top: .8rem;">
+{
+    <span class="badge is-info" style="right: .8rem; top: .8rem;">
             @_notifications.Count(notification => !notification.IsDismissed)
         </span>
-    }
+}
 </span>
 
 <div class="quickview has-background-dark @_showClass">
@@ -33,17 +33,17 @@
     <div class="quickview-body has-dotnet-scrollbar">
         <div class="quickview-block p-4">
             @foreach (var notification in
-                _notifications?.Where(n => !n.IsDismissed) ??
-                Array.Empty<NotificationComponentModel>())
+            _notifications?.Where(n => !n.IsDismissed) ??
+            Array.Empty<NotificationComponentModel>())
+        {
+            var style = notification.NotificationType switch
             {
-                var style = notification.NotificationType switch
-                {
-                    NotificationType.Warning => "has-text-warning",
-                    NotificationType.Alert => "has-text-info",
-                    _ => ""
-                };
+                NotificationType.Warning => "has-text-warning",
+                NotificationType.Alert => "has-text-info",
+                _ => ""
+            };
 
-                <div class="notification @style">
+            <div class="notification @style">
                     <button class="delete"
                         @onclick=@(_ => DismissNotification(notification))>
                     </button>
@@ -54,20 +54,20 @@
                         NotificationType=notification.NotificationType
                         ActionLink=notification.ContextualUri />
                 </div>
-            }
+        }
         </div>
     </div>
 
     <footer class="quickview-footer has-text-dark has-background-danger-dark">
         @{
-            var (hasValue, dateTime) = _latestNotificationDateTime;
-            if (hasValue)
-            {
-                @Localizer["UpdatedOnFormat",
-                    dateTime.ToShortDateString(),
-                    dateTime.ToShortTimeString()]
-            }
+        var (hasValue, dateTime) = _latestNotificationDateTime;
+        if (hasValue)
+        {
+            @Localizer["UpdatedOnFormat",
+                dateTime.ToShortDateString(),
+                dateTime.ToShortTimeString()]
         }
+    }
     </footer>
 </div>
 

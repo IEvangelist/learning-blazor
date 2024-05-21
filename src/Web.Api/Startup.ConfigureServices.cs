@@ -13,7 +13,7 @@ public sealed partial class Startup
                 options.EnableForHttps = true;
                 options.MimeTypes =
                     ResponseCompressionDefaults.MimeTypes.Concat(
-                        new[] { MediaTypeNames.Application.Octet });
+                        [MediaTypeNames.Application.Octet]);
             });
 
         services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

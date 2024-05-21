@@ -3,13 +3,8 @@
 
 namespace Learning.Blazor.Services;
 
-internal class WeatherStringFormatterService : IWeatherStringFormatterService
+internal class WeatherStringFormatterService(CultureService cultureService) : IWeatherStringFormatterService
 {
-    private readonly CultureService _cultureService;
-
-    public WeatherStringFormatterService(CultureService cultureService) =>
-        _cultureService = cultureService;
-
     public object? GetFormat(Type? formatType) =>
         formatType == typeof(ICustomFormatter) ? this : null;
 
@@ -31,7 +26,7 @@ internal class WeatherStringFormatterService : IWeatherStringFormatterService
             "ww"    wind verbose
          */
 
-        var target = _cultureService.MeasurementSystem;
+        var target = cultureService.MeasurementSystem;
 
         return format switch
         {

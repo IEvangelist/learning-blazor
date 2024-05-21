@@ -36,7 +36,7 @@ public partial class NotificationHub
             Notification<ActorMessage>.FromChat(
                 new(
                     Id: Guid.NewGuid(),
-                    Text: _localizer["WelcomeToChatRoom", room],
+                    Text: localizer["WelcomeToChatRoom", room],
                     UserName: "🤖",
                     IsGreeting: true)));
 
@@ -53,7 +53,7 @@ public partial class NotificationHub
             Notification<ActorMessage>.FromChat(
                 new(
                     Id: Guid.NewGuid(),
-                    Text: _localizer["HasLeftTheChatRoom", _userName ?? "?"],
+                    Text: localizer["HasLeftTheChatRoom", _userName ?? "?"],
                     UserName: "🤖")));
 
         return Interlocked.Decrement(ref _userOnline);

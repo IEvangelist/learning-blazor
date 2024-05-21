@@ -10,11 +10,11 @@ public sealed class ApiAccessAuthorizationMessageHandler : AuthorizationMessageH
         NavigationManager navigation,
         IOptions<WebApiOptions> options) : base(provider, navigation) =>
         ConfigureHandler(
-            authorizedUrls: new[]
-            {
-                options.Value.WebApiServerUrl,
-                options.Value.PwnedWebApiServerUrl,
+            authorizedUrls:
+            [
+                options.Value.WebApiServerUrl!,
+                options.Value.PwnedWebApiServerUrl!,
                 "https://learningblazor.b2clogin.com"
-            },
-            scopes: new[] { AzureAuthenticationTenant.ScopeUrl });
+            ],
+            scopes: [AzureAuthenticationTenant.ScopeUrl]);
 }

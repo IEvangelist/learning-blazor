@@ -40,7 +40,7 @@ internal static class WeatherExtensions
     /// <summary>
     /// https://fontawesome.com/v5.15
     /// </summary>
-    private static Dictionary<string, string> s_iconTofontAwesomeMap =>
+    private static Dictionary<string, string> s_iconToFontAwesomeMap =>
         new(StringComparer.OrdinalIgnoreCase)
         {
             // Day                              Night
@@ -63,7 +63,7 @@ internal static class WeatherExtensions
         };
 
     internal static string ToFontAwesomeClass(this WeatherWordingAndIcon weather) =>
-        s_iconTofontAwesomeMap.TryGetValue(
+        s_iconToFontAwesomeMap.TryGetValue(
             weather.Icon, out var value)
             ? value : "";
 }

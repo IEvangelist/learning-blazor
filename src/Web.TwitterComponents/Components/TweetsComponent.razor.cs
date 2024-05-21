@@ -8,13 +8,13 @@ public sealed partial class TweetsComponent : IAsyncDisposable
     private IJSObjectReference? _twitterModule;
     private TweetContents[] _filteredTweets =>
         Tweets?.Where(TweetMatchesFilter).ToArray() ??
-        Array.Empty<TweetContents>();
+        [];
 
     [Inject]
     public IJSRuntime JavaScript { get; set; } = null!;
 
     [Parameter]
-    public TweetContents[] Tweets { get; set; } = Array.Empty<TweetContents>();
+    public TweetContents[] Tweets { get; set; } = [];
 
     [Parameter]
     public string? Filter { get; set; } = null!;

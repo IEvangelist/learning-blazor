@@ -1,20 +1,16 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
-namespace Learning.Blazor.Shared
+namespace Learning.Blazor.Shared;
+
+public sealed partial class LoginDisplay
 {
-    public sealed partial class LoginDisplay
-    {
-        [Inject]
-        public NavigationManager Navigation { get; set; } = null!;
+    [Inject]
+    public NavigationManager Navigation { get; set; } = null!;
 
-        void OnLogIn(MouseEventArgs args) =>
-            Navigation.NavigateTo("authentication/login", true);
+    void OnLogIn(MouseEventArgs args) =>
+        Navigation.NavigateTo("authentication/login", true);
 
-        async Task OnLogOut(MouseEventArgs args)
-        {
-            await SignOutManager.SetSignOutState();
-            Navigation.NavigateTo("authentication/logout");
-        }
-    }
+    void OnLogOut(MouseEventArgs args) =>
+        Navigation.NavigateToLogout("authentication/logout");
 }

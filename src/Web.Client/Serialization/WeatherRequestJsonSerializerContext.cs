@@ -3,14 +3,13 @@
 
 using System.Text.Json.Serialization.Metadata;
 
-namespace Learning.Blazor.Serialization
+namespace Learning.Blazor.Serialization;
+
+[JsonSerializable(typeof(WeatherRequest))]
+internal partial class WeatherRequestJsonSerializerContext
+    : JsonSerializerContext
 {
-    [JsonSerializable(typeof(WeatherRequest))]
-    internal partial class WeatherRequestJsonSerializerContext
-        : JsonSerializerContext
-    {
-        internal static JsonTypeInfo<WeatherRequest> DefaultTypeInfo =>
-            new WeatherRequestJsonSerializerContext(
-                DefaultJsonSerialization.Options).WeatherRequest;
-    }
+    internal static JsonTypeInfo<WeatherRequest> DefaultTypeInfo =>
+        new WeatherRequestJsonSerializerContext(
+            DefaultJsonSerialization.Options).WeatherRequest;
 }

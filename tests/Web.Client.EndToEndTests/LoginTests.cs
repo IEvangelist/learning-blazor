@@ -31,7 +31,7 @@ public sealed partial class LoginTests
         await using var context = await browser.NewContextAsync(
             new()
             {
-                Permissions = new[] { "geolocation" },
+                Permissions = ["geolocation"],
                 Geolocation = new Geolocation()
                 {
                     Latitude = lat,
@@ -40,28 +40,26 @@ public sealed partial class LoginTests
             });
 
         var loginPage = await context.NewPageAsync();
-        await loginPage.RunAndWaitForNavigationAsync(
-            async () =>
-            {
-                await loginPage.GotoAsync(LearningBlazorSite);
-                if (locale is not null)
-                {
-                    await loginPage.AddInitScriptAsync(@"(locale => {
-    if (locale) {
-        window.localStorage.setItem(
-            'client-culture-preference', `""${locale}""`);
-    }
-})('" + locale + "')");
-                }
-            },
+        await loginPage.WaitForURLAsync(
+            $"{LearningBlazorB2CSite}/**",            
             new()
             {
-                UrlString = $"{LearningBlazorB2CSite}/**",
                 WaitUntil = WaitUntilState.NetworkIdle
             });
 
-        // Enter the test credentals, and "sign in".
-        await loginPage.FillAsync("#email", username ?? "fail");
+        await loginPage.GotoAsync(LearningBlazorSite);
+        if (locale is not null)
+        {
+            await loginPage.AddInitScriptAsync(@"(locale => {
+                if (locale) {
+                    window.localStorage.setItem(
+                        'client-culture-preference', `""${locale}""`);
+                }
+            })('" + locale + "')");
+        }
+
+    // Enter the test credentials, and "sign in".
+    await loginPage.FillAsync("#email", username ?? "fail");
         await loginPage.FillAsync("#password", password ?? "?!?!");
         await loginPage.ClickAsync("#next" /* "Sign in" button */);
 

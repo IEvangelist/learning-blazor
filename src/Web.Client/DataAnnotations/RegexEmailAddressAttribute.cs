@@ -10,12 +10,8 @@ namespace Learning.Blazor.DataAnnotations;
         AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter,
         AllowMultiple = false)
 ]
-public sealed class RegexEmailAddressAttribute : DataTypeAttribute
+public sealed partial class RegexEmailAddressAttribute : DataTypeAttribute
 {
-    internal static readonly Regex EmailExpression =
-        new(@"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$",
-            RegexOptions.CultureInvariant | RegexOptions.Singleline);
-
     /// <summary>
     /// Gets or sets a value indicating if an email is required.
     /// </summary>
@@ -35,6 +31,9 @@ public sealed class RegexEmailAddressAttribute : DataTypeAttribute
         }
 
         return value is string valueAsString
-            && EmailExpression.IsMatch(valueAsString);
+            && EmailRegex().IsMatch(valueAsString);
     }
+
+    [GeneratedRegex(@"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$", RegexOptions.Singleline | RegexOptions.CultureInvariant)]
+    public static partial Regex EmailRegex();
 }

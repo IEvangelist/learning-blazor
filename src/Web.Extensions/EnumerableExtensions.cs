@@ -30,5 +30,5 @@ public static class EnumerableExtensions
 
     public static string? ToSpaceDelimitedString(
         this string[]? source) =>
-        string.Join(" ", source ?? Array.Empty<string>());
+        string.Join(" ", source ?? []);
 }

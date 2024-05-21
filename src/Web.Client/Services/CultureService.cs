@@ -3,10 +3,8 @@
 
 namespace Learning.Blazor.Services;
 
-public sealed class CultureService
+public sealed class CultureService(ILogger<CultureService> logger)
 {
-    private readonly ILogger<CultureService> _logger;
-
     public CultureInfo CurrentCulture { get; } = CultureInfo.CurrentCulture;
 
     public RegionInfo CurrentRegion { get; } = new(CultureInfo.CurrentCulture.LCID);
@@ -16,8 +14,6 @@ public sealed class CultureService
             ? MeasurementSystem.Metric
             : MeasurementSystem.Imperial;
 
-    public CultureService(ILogger<CultureService> logger) => _logger = logger;
-
     public string GetCultureTwoLetterRegionName(CultureInfo? culture = null) =>
         (culture is null ? CurrentRegion : new RegionInfo(culture.LCID))
             .TwoLetterISORegionName
@@ -26,7 +22,7 @@ public sealed class CultureService
     public IDictionary<CultureInfo, AzureCulture> MapClientSupportedCultures(
         IDictionary<string, AzureCulture>? azureCultures)
     {
-        HashSet<(CultureInfo Culture, AzureCulture AzureCulture)> supportedCultures = new();
+        HashSet<(CultureInfo Culture, AzureCulture AzureCulture)> supportedCultures = [];
 
         if (azureCultures is not null)
         {
@@ -61,7 +57,7 @@ public sealed class CultureService
                     }
                     else
                     {
-                        _logger.LogInformation(
+                        logger.LogInformation(
                             "Unable to find cultures for lang: {Key} - from: {Source}",
                             group.Key, string.Join(", ", cultures.Select(c => c.Name)));
                     }

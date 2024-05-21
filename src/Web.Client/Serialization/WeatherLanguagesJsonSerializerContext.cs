@@ -3,14 +3,13 @@
 
 using System.Text.Json.Serialization.Metadata;
 
-namespace Learning.Blazor.Serialization
+namespace Learning.Blazor.Serialization;
+
+[JsonSerializable(typeof(WeatherLanguage[]))]
+internal partial class WeatherLanguagesJsonSerializerContext
+    : JsonSerializerContext
 {
-    [JsonSerializable(typeof(WeatherLanguage[]))]
-    internal partial class WeatherLanguagesJsonSerializerContext
-        : JsonSerializerContext
-    {
-        internal static JsonTypeInfo<WeatherLanguage[]> DefaultTypeInfo =>
-            new WeatherLanguagesJsonSerializerContext(
-                DefaultJsonSerialization.Options).WeatherLanguageArray;
-    }
+    internal static JsonTypeInfo<WeatherLanguage[]> DefaultTypeInfo =>
+        new WeatherLanguagesJsonSerializerContext(
+            DefaultJsonSerialization.Options).WeatherLanguageArray;
 }

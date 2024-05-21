@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
+
 builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
@@ -15,4 +16,5 @@ builder.ConfigureServices();
 await using var host = builder.Build();
 
 host.TrySetDefaultCulture();
+
 await host.RunAsync();

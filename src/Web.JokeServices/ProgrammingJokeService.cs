@@ -3,16 +3,10 @@
 
 namespace Learning.Blazor.JokeServices;
 
-internal class ProgrammingJokeService : IJokeService
+internal class ProgrammingJokeService(
+    HttpClient httpClient,
+    ILogger<ProgrammingJokeService> logger) : IJokeService
 {
-    private readonly HttpClient _httpClient;
-    private readonly ILogger<ProgrammingJokeService> _logger;
-
-    public ProgrammingJokeService(
-        HttpClient httpClient,
-        ILogger<ProgrammingJokeService> logger) =>
-        (_httpClient, _logger) = (httpClient, logger);
-
     JokeSourceDetails IJokeService.SourceDetails =>
         new(JokeSource.RandomProgrammingJokeApi,
             new Uri("https://karljoke.herokuapp.com/"));
@@ -21,11 +15,11 @@ internal class ProgrammingJokeService : IJokeService
     {
         try
         {
-            _httpClient.DefaultRequestHeaders.Accept.ParseAdd(
+            httpClient.DefaultRequestHeaders.Accept.ParseAdd(
                 MediaTypeNames.Application.Json);
 
             // An array with a single joke is returned
-            var jokes = await _httpClient.GetFromJsonAsync<ProgrammingJoke[]>(
+            var jokes = await httpClient.GetFromJsonAsync<ProgrammingJoke[]>(
                 "https://karljoke.herokuapp.com/jokes/programming/random",
                 DefaultJsonSerialization.Options);
 
@@ -33,7 +27,7 @@ internal class ProgrammingJokeService : IJokeService
         }
         catch (Exception ex)
         {
-            _logger.LogError("Error getting something fun to say: {Error}", ex);
+            logger.LogError("Error getting something fun to say: {Error}", ex);
         }
 
         return null;

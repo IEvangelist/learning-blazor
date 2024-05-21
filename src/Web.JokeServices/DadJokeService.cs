@@ -3,16 +3,10 @@
 
 namespace Learning.Blazor.JokeServices;
 
-internal class DadJokeService : IJokeService
+internal sealed class DadJokeService(
+    HttpClient httpClient,
+    ILogger<DadJokeService> logger) : IJokeService
 {
-    private readonly HttpClient _httpClient;
-    private readonly ILogger<DadJokeService> _logger;
-
-    public DadJokeService(
-        HttpClient httpClient,
-        ILogger<DadJokeService> logger) =>
-        (_httpClient, _logger) = (httpClient, logger);
-
     JokeSourceDetails IJokeService.SourceDetails =>
         new(JokeSource.ICanHazDadJoke, new Uri("https://icanhazdadjoke.com/"));
 
@@ -20,17 +14,17 @@ internal class DadJokeService : IJokeService
     {
         try
         {
-            _httpClient.DefaultRequestHeaders.Accept.ParseAdd(
+            httpClient.DefaultRequestHeaders.Accept.ParseAdd(
                 MediaTypeNames.Application.Json);
 
-            var result = await _httpClient.GetFromJsonAsync<DadJoke>(
+            var result = await httpClient.GetFromJsonAsync<DadJoke>(
                 "https://icanhazdadjoke.com/", DefaultJsonSerialization.Options);
 
             return result?.Joke;
         }
         catch (Exception ex)
         {
-            _logger.LogError("Error getting something fun to say: {Error}", ex);
+            logger.LogError("Error getting something fun to say: {Error}", ex);
         }
 
         return null;

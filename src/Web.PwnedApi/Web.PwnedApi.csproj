@@ -2,18 +2,18 @@
 
   <PropertyGroup>
     <RootNamespace>Learning.Blazor.PwnedApi</RootNamespace>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="HaveIBeenPwned.Client" Version="2.0.2" />
-    <PackageReference Include="HaveIBeenPwned.Client.PollyExtensions" Version="2.0.2" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.5" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="6.0.5" />
-    <PackageReference Include="Microsoft.Identity.Web" Version="1.24.1" />
-    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.15.1" />
+    <PackageReference Include="HaveIBeenPwned.Client" Version="8.0.2" />
+    <PackageReference Include="HaveIBeenPwned.Client.PollyExtensions" Version="8.0.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="8.0.5" />
+    <PackageReference Include="Microsoft.Identity.Web" Version="2.18.1" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.20.1" />
   </ItemGroup>
 
   <ItemGroup>

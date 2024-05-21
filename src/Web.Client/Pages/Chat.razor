@@ -11,9 +11,9 @@
 
 <AuthorizeView>
     @if (User is { Identity: { } } user)
-    {
-        <div class="is-hidden">@user.Identity.Name</div>
-    }
+{
+    <div class="is-hidden">@user.Identity.Name</div>
+}
 </AuthorizeView>
 
     <div class="columns">
@@ -43,28 +43,28 @@
                     <span>
                         @Localizer["Messages"]
                         @if (_usersOnline is not null)
-                        { 
-                            <span class="pl-2">&bull;</span>
-                            <span>@Localizer["UserInChatFormat", _usersOnline]</span>
-                        }
+                    { 
+                        <span class="pl-2">&bull;</span>
+                        <span>@Localizer["UserInChatFormat", _usersOnline]</span>
+                    }
                     </span>
                     <span class="is-pulled-right">
                     @if (TryGetUsersTypingText(out var text))
-                    {
-                        MarkupString isTypingMarkup = new(text);
-                        <span class="has-text-grey-light is-strobing">
+                {
+                    MarkupString isTypingMarkup = new(text);
+                    <span class="has-text-grey-light is-strobing">
                             @isTypingMarkup
                         </span>
-                    }
+                }
                 </span>
             </p>
 
             @foreach (var (id, message) in _messages.Reverse())
-            {
-                <ChatMessageComponent Message=@message
+        {
+            <ChatMessageComponent Message=@message
                     IsEditable=@(OwnsMessage(message.UserName))
                     EditMessage=@OnEditMessageAsync />
-            }
+        }
         </article>
     </section>
 </div>

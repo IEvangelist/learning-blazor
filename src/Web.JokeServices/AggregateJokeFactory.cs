@@ -3,16 +3,15 @@
 
 namespace Learning.Blazor.JokeServices;
 
-internal class AggregateJokeFactory : IJokeFactory
+internal class AggregateJokeFactory(IEnumerable<IJokeService> jokeServices) : IJokeFactory
 {
-    const string NotFunny = @"Did you hear the one about a joke service that failed to get jokes?
-It's not very funny...";
+    const string NotFunny = """
+        Did you hear the one about a joke service that failed to get jokes?
+        It's not very funny...
+        """;
     
-    private readonly IList<IJokeService> _jokeServices;
+    private readonly IList<IJokeService> _jokeServices = jokeServices.ToList();
 
-    public AggregateJokeFactory(IEnumerable<IJokeService> jokeServices) =>
-        _jokeServices = jokeServices.ToList();
-    
     async Task<(string, JokeSourceDetails)> IJokeFactory.GetRandomJokeAsync()
     {
         string? joke = null;

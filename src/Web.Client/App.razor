@@ -10,13 +10,13 @@
                      DefaultLayout="@typeof(MainLayout)">
                     <NotAuthorized>
                         @if (context.User?.Identity?.IsAuthenticated ?? false)
-                        {
-                            <p>You are not authorized to access this resource.</p>
-                        }
-                        else
-                        {
-                            <RedirectToLogin />
-                        }
+                    {
+                        <p>You are not authorized to access this resource.</p>
+                    }
+                    else
+                    {
+                        <RedirectToLogin />
+                    }
                     </NotAuthorized>
                 </AuthorizeRouteView>
             </Found>
@@ -30,6 +30,6 @@
 </CascadingAuthenticationState>
 
 @code {
-    private AuthorizeRouteView _view = null!;
-    private RouteData RouteData => _view.RouteData;
+private AuthorizeRouteView _view = null!;
+private RouteData RouteData => _view.RouteData;
 }

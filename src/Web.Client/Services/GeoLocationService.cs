@@ -3,16 +3,10 @@
 
 namespace Learning.Blazor.Services;
 
-public sealed class GeoLocationService
+public sealed class GeoLocationService(
+    HttpClient httpClient,
+    ILogger<GeoLocationService> logger)
 {
-    private readonly HttpClient _httpClient = null!;
-    private readonly ILogger<GeoLocationService> _logger = null!;
-
-    public GeoLocationService(
-        HttpClient httpClient,
-        ILogger<GeoLocationService> logger) =>
-        (_httpClient, _logger) = (httpClient, logger);
-
     public async Task<GeoCode?> GetGeoCodeAsync(GeoCodeRequest request)
     {
         try
@@ -22,7 +16,7 @@ public sealed class GeoLocationService
                 $"?latitude={lat}&longitude={lon}&localityLanguage={lang}";
 
             var geoCode =
-                await _httpClient.GetFromJsonAsync<GeoCode>(
+                await httpClient.GetFromJsonAsync<GeoCode>(
                     queryString,
                     DefaultJsonSerialization.Options);
 
@@ -30,7 +24,7 @@ public sealed class GeoLocationService
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, ex.Message);
+            logger.LogError(ex, ex.Message);
         }
 
         return null!;

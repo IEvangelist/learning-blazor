@@ -3,12 +3,9 @@
 
 namespace Learning.Blazor.CosmosData.Repository;
 
-internal class DefaultTodoRepository : ITodoRepository
+internal class DefaultTodoRepository(IRepositoryFactory factory) : ITodoRepository
 {
-    private readonly IRepository<Todo> _repository;
-
-    public DefaultTodoRepository(IRepositoryFactory factory) =>
-        _repository = factory.RepositoryOf<Todo>();
+    private readonly IRepository<Todo> _repository = factory.RepositoryOf<Todo>();
 
     /// <inheritdoc />
     ValueTask<Todo> ITodoRepository.CreateTodoAsync(
@@ -33,5 +30,5 @@ internal class DefaultTodoRepository : ITodoRepository
     /// <inheritdoc />
     ValueTask<Todo> ITodoRepository.UpdateTodoAsync(
         Todo todo, CancellationToken cancellationToken) =>
-         _repository.UpdateAsync(todo, cancellationToken);
+         _repository.UpdateAsync(todo, cancellationToken: cancellationToken);
 }

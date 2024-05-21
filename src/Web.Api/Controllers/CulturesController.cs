@@ -5,21 +5,14 @@ namespace Learning.Blazor.Api.Controllers;
 
 [
     Authorize,
-    RequiredScope(new[] { "User.ApiAccess" }),
+    RequiredScope(["User.ApiAccess"]),
     ApiController,
     Route("api/cultures")
 ]
-public sealed class CulturesController : ControllerBase
+public sealed class CulturesController(
+    IHttpClientFactory httpClientFactory,
+    IMemoryCache cache) : ControllerBase
 {
-    readonly IHttpClientFactory _httpClientFactory;
-    readonly IMemoryCache _cache;
-
-    public CulturesController(
-        IHttpClientFactory httpClientFactory,
-        IMemoryCache cache,
-        ILogger<CulturesController> logger) =>
-        (_httpClientFactory, _cache) = (httpClientFactory, cache);
-
     [
         HttpGet,
         Route("all"),
@@ -28,17 +21,17 @@ public sealed class CulturesController : ControllerBase
     public async Task<IActionResult> Get(
         [FromServices] WeatherLanguageService languageService)
     {
-        var cultures = await _cache.GetOrCreateAsync(CacheKeys.AzureCultures,
+        var cultures = await cache.GetOrCreateAsync(CacheKeys.AzureCultures,
             async options =>
             {
                 // These rarely ever change, cache aggressively.
                 options.SetSlidingExpiration(TimeSpan.FromDays(1));
                 options.SetAbsoluteExpiration(TimeSpan.FromDays(3));
 
-                using var client = _httpClientFactory.CreateClient();
+                using var client = httpClientFactory.CreateClient();
                 client.BaseAddress = new Uri("https://api.cognitive.microsofttranslator.com");
 
-                var cultutes = await client.GetFromJsonAsync<AzureTranslationCultures>(
+                var cultures = await client.GetFromJsonAsync<AzureTranslationCultures>(
                     "languages?api-version=3.0&scope=translation",
                     DefaultJsonSerialization.Options);
 
@@ -46,10 +39,10 @@ public sealed class CulturesController : ControllerBase
                     languageService.GetWeatherLanguages();
 
                 var applicableCultures =
-                    cultutes!.Translation.Where(t => weatherLanguages.Any(wl => wl.WeatherLanguageId == t.Key))
+                    cultures!.Translation.Where(t => weatherLanguages.Any(wl => wl.WeatherLanguageId == t.Key))
                         .ToDictionary(t => t.Key, t => t.Value);
 
-                return cultutes! with
+                return cultures! with
                 {
                     Translation = applicableCultures
                 };

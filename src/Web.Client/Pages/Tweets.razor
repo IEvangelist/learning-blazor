@@ -35,13 +35,13 @@
             <div class="panel-block has-text-centered">
                 <div class="tags are-medium">
                     @if (_streamingStatus is { Tracks: { Length: > 0 } })
+                {
+                    foreach (var track in _streamingStatus.Tracks)
                     {
-                        foreach (var track in _streamingStatus.Tracks)
-                        {
-                            var style = track.StartsWith("@") ? "is-primary" : "is-link";
-                            <span class="tag @style">@track</span>
-                        }
+                        var style = track.StartsWith("@") ? "is-primary" : "is-link";
+                        <span class="tag @style">@track</span>
                     }
+                }
                 </div>
             </div>
         </div>

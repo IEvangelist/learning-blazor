@@ -3,14 +3,13 @@
 
 using System.Text.Json.Serialization.Metadata;
 
-namespace Learning.Blazor.Serialization
+namespace Learning.Blazor.Serialization;
+
+[JsonSerializable(typeof(PwnedPassword))]
+internal partial class PwnedPasswordJsonSerializerContext
+    : JsonSerializerContext
 {
-    [JsonSerializable(typeof(PwnedPassword))]
-    internal partial class PwnedPasswordJsonSerializerContext
-        : JsonSerializerContext
-    {
-        internal static JsonTypeInfo<PwnedPassword> DefaultTypeInfo =>
-            new PwnedPasswordJsonSerializerContext(
-                DefaultJsonSerialization.Options).PwnedPassword;
-    }
+    internal static JsonTypeInfo<PwnedPassword> DefaultTypeInfo =>
+        new PwnedPasswordJsonSerializerContext(
+            DefaultJsonSerialization.Options).PwnedPassword;
 }

@@ -5,7 +5,7 @@ namespace Learning.Blazor.Api.Controllers;
 
 [
     Authorize,
-    RequiredScope(new[] { "User.ApiAccess" }),
+    RequiredScope(["User.ApiAccess"]),
     ApiController,
     Route("api/weather")
 ]
@@ -18,6 +18,7 @@ public sealed class WeatherController : ControllerBase
             Duration = 259_200, /* three days in seconds */
             Location = ResponseCacheLocation.Client)
     ]
-    public IActionResult Languages([FromServices] WeatherLanguageService languageService) =>
+    public IActionResult Languages(
+        [FromServices] WeatherLanguageService languageService) =>
         new JsonResult(languageService.GetWeatherLanguages());
 }

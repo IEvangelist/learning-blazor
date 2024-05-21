@@ -5,18 +5,13 @@ namespace Learning.Blazor.Api.Controllers;
 
 [
     Authorize,
-    RequiredScope(new[] { "User.ApiAccess" }),
+    RequiredScope(["User.ApiAccess"]),
     ApiController,
     Route("api/todo")
 ]
-public sealed class TodoController : ControllerBase
+public sealed class TodoController(ITodoRepository todoRepository) : ControllerBase
 {
-    private readonly ITodoRepository _todoRepository;
-
     string? _emailAddress => User.GetFirstEmailAddress();
-
-    public TodoController(ITodoRepository todoRepository) =>
-        _todoRepository = todoRepository;
 
     [HttpGet]
     public async ValueTask<IEnumerable<TodoItem>> GetTodos(
@@ -24,7 +19,7 @@ public sealed class TodoController : ControllerBase
     {
         var emailAddress = _emailAddress;
         var todos =
-            await _todoRepository.ReadAllTodosAsync(
+            await todoRepository.ReadAllTodosAsync(
                 todo => todo.UserEmail == emailAddress,
                 cancellationToken);
 
@@ -36,7 +31,7 @@ public sealed class TodoController : ControllerBase
     public async ValueTask<TodoItem> GetTodoById(
         string id, CancellationToken cancellationToken)
     {
-        var item = await _todoRepository.ReadTodoAsync(id, cancellationToken);
+        var item = await todoRepository.ReadTodoAsync(id, cancellationToken);
         return (TodoItem)item;
     }
 
@@ -45,7 +40,7 @@ public sealed class TodoController : ControllerBase
         [FromBody] CreateTodoRequest request,
         CancellationToken cancellationToken)
     {
-        var item = await _todoRepository.CreateTodoAsync(new Todo
+        var item = await todoRepository.CreateTodoAsync(new Todo
         {
             Title = request.Title,
             UserEmail = request.UserEmail,
@@ -61,11 +56,11 @@ public sealed class TodoController : ControllerBase
         [FromBody] TodoItem todoItem,
         CancellationToken cancellationToken)
     {
-        var item = await _todoRepository.UpdateTodoAsync((Todo)todoItem, cancellationToken);
+        var item = await todoRepository.UpdateTodoAsync((Todo)todoItem, cancellationToken);
         return (TodoItem)item;
     }
 
     [HttpDelete("{id}", Name = nameof(DeleteTodo))]
     public ValueTask DeleteTodo(string id, CancellationToken cancellationToken) =>
-        _todoRepository.DeleteTodoAsync(id, cancellationToken);
+        todoRepository.DeleteTodoAsync(id, cancellationToken);
 }

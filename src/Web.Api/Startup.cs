@@ -3,10 +3,7 @@
 
 namespace Learning.Blazor.Api;
 
-public sealed partial class Startup
+public sealed partial class Startup(IConfiguration configuration)
 {
-    readonly IConfiguration _configuration;
-
-    public Startup(IConfiguration configuration) =>
-        _configuration = configuration;
+    readonly IConfiguration _configuration = configuration;
 }

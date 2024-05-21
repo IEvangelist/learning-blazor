@@ -20,8 +20,7 @@ internal static class WebAssemblyHostBuilderExtensions
             serviceProvider.GetService<IOptions<WebApiOptions>>()
                 ?.Value;
 
-        var addHttpClient =
-            static IHttpClientBuilder (
+        IHttpClientBuilder AddHttpClient(
                 IServiceCollection services,
                 string httpClientName,
                 Func<WebApiOptions?, string?> webApiOptionsUrlFactory) =>
@@ -40,13 +39,13 @@ internal static class WebAssemblyHostBuilderExtensions
             })
             .AddHttpMessageHandler<ApiAccessAuthorizationMessageHandler>();
 
-        _ = addHttpClient(
+        _ = AddHttpClient(
             services, HttpClientNames.ServerApi,
             options => options?.WebApiServerUrl);
-        _ = addHttpClient(
+        _ = AddHttpClient(
             services, HttpClientNames.PwnedServerApi,
             options => options?.PwnedWebApiServerUrl);
-        _ = addHttpClient(
+        _ = AddHttpClient(
             services, HttpClientNames.WebFunctionsApi,
             options => options?.WebFunctionsUrl ?? builder.HostEnvironment.BaseAddress);
 

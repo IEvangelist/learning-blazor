@@ -1,7 +1,6 @@
 ﻿// Copyright (c) 2021 David Pine. All rights reserved.
 // Licensed under the MIT License.
 
-using Blazor.Serialization.Extensions;
 using Learning.Blazor.Models;
 
 namespace Learning.Blazor.Extensions.Tests;
@@ -1360,14 +1359,14 @@ public class SerializationExtensionsTests
         {
             Name = "System",
             Number = 7,
-            Children = new[]
-            {
+            Children =
+            [
                 new TestObject
                 {
                     Name = "Product",
                     Number = 8,
-                    Children = new[]
-                    {
+                    Children =
+                    [
                         new TestObject
                         {
                             Name = "Part",
@@ -1378,9 +1377,9 @@ public class SerializationExtensionsTests
                             Name = "Accessory",
                             Number = 10
                         }
-                    }
+                    ]
                 }
-            }
+            ]
         };
 
         var json = expected.ToJson();
@@ -1396,5 +1395,5 @@ internal record TestObject
     public int Number { get; init; }
     public Guid Id { get; init; } = Guid.NewGuid();
     public DateTime Date { get; init; } = DateTime.Now;
-    public TestObject[] Children { get; init; } = Array.Empty<TestObject>();
+    public TestObject[] Children { get; init; } = [];
 }

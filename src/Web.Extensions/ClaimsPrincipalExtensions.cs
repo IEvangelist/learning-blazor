@@ -25,9 +25,9 @@ public static class ClaimsPrincipalExtensions
         var emails = user.FindFirst("emails");
         if (emails is { ValueType: ClaimValueTypes.String } and { Value.Length: > 0 })
         {
-            return emails.Value.StartsWith("[")
+            return emails.Value.StartsWith('[')
                 ? emails.Value.FromJson<string[]>()
-                : new[] { emails.Value };
+                : [emails.Value];
         }
 
         return null;

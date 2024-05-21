@@ -1,61 +1,61 @@
 ﻿@using Learning.Blazor.Components
 @inherits TestContext
 @code {
-    public static IEnumerable<object[]> ChatMessageInput
+public static IEnumerable<object[]> ChatMessageInput
+{
+    get
     {
-        get
+        yield return new object[]
         {
-            yield return new object[]
-            {
-                Guid.Parse("f08b0096-5301-4f4d-8e19-6cb1514991ea"),
-                "Test message... does this work?",
-                "David Pine"
-            };
-            yield return new object[]
-            {
-                Guid.Parse("379b3861-0c04-49e9-8287-e5de3a40dcb3"),
-                "...",
-                "Fake"
-            };
-            yield return new object[]
-            {
-                Guid.Parse("f68386bb-e4d9-4fed-86b3-0fe539640b60"),
-                "If a tree falls in the forest, does it make a sound?",
-                null!
-            };
-            yield return new object[]
-            {
-                Guid.Parse("b19ab8b4-7819-438e-a281-56246cd3cda7"),
-                null!,
-                "User"
-            };
-            yield return new object[]
-            {
-                Guid.Parse("26ae3eae-b763-4ff1-8160-11aaad0cf078"),
-                null!,
-                null!
-            };
-        }
+            Guid.Parse("f08b0096-5301-4f4d-8e19-6cb1514991ea"),
+            "Test message... does this work?",
+            "David Pine"
+        };
+        yield return new object[]
+        {
+            Guid.Parse("379b3861-0c04-49e9-8287-e5de3a40dcb3"),
+            "...",
+            "Fake"
+        };
+        yield return new object[]
+        {
+            Guid.Parse("f68386bb-e4d9-4fed-86b3-0fe539640b60"),
+            "If a tree falls in the forest, does it make a sound?",
+            null!
+        };
+        yield return new object[]
+        {
+            Guid.Parse("b19ab8b4-7819-438e-a281-56246cd3cda7"),
+            null!,
+            "User"
+        };
+        yield return new object[]
+        {
+            Guid.Parse("26ae3eae-b763-4ff1-8160-11aaad0cf078"),
+            null!,
+            null!
+        };
     }
+}
 
-    [Theory, MemberData(nameof(ChatMessageInput))]
-    public void ChatMessageComponentRendersUserAndText(Guid guid, string text, string user)
-    {
-        // Arrange
-        var message = new ActorMessage(
-            Id: guid,
-            Text: text,
-            UserName: user);
+[Theory, MemberData(nameof(ChatMessageInput))]
+public void ChatMessageComponentRendersUserAndText(Guid guid, string text, string user)
+{
+    // Arrange
+    var message = new ActorMessage(
+        Id: guid,
+        Text: text,
+        UserName: user);
 
-        // Act
-        var cut = Render(
-            @<ChatMessageComponent Message="message"
+    // Act
+    var cut = Render(
+        @<ChatMessageComponent Message="message"
                 IsEditable="true"
                 EditMessage="() => {}" />);
 
-        // Assert
-        cut.MarkupMatches(
-            @<a id=@guid class="panel-block is-size-5">
+    // Assert
+    cut.MarkupMatches(
+        @<a id=@guid class="panel-block is-size-5">
                 <span>@user</span>
                 <span class="panel-icon px-4">
                     <i class="fas fa-chevron-right" aria-hidden="true"></i>
@@ -64,5 +64,5 @@
                     <span>@text</span>
                 </span>
             </a>);
-    }
+}
 }

@@ -20,7 +20,7 @@ public sealed partial class SharedHubConnection
             }
 
             _logger.LogUnableToGetAccessToken(
-                result.Status, result.RedirectUrl);
+                result.Status, result.InteractiveRequestUrl);
 
             return null;
         }

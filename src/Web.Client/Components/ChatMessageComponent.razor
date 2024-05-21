@@ -12,52 +12,52 @@ TODO
     </span>
     <span class="pl-2">
     @{
-        MarkupString messageMarkup = new(Message.Text);
-        <span>
+    MarkupString messageMarkup = new(Message.Text);
+    <span>
             @messageMarkup
         </span>
-        @if (Message.IsEdit)
-        {
-            <span class="pl-2">
+    @if (Message.IsEdit)
+    {
+        <span class="pl-2">
                 <span class="tag is-success-dark">edited</span>
             </span>
-        }
+    }
     }
     </span>
 </a>
 
 @code {
-    private string _dynamicCss
+private string _dynamicCss
+{
+    get
     {
-        get
+        return string.Join(" ", GetStyles()).Trim();
+
+        IEnumerable<string> GetStyles()
         {
-            return string.Join(" ", GetStyles()).Trim();
+            if (!IsEditable)
+                yield return "is-unselectable";
 
-            IEnumerable<string> GetStyles()
-            {
-                if (!IsEditable)
-                    yield return "is-unselectable";
-
-                if (Message.IsGreeting)
-                    yield return "greeting";
-            };
-        }
+            if (Message.IsGreeting)
+                yield return "greeting";
+        };
     }
+}
 
-    [Parameter, EditorRequired]
-    public bool IsEditable { get; set; }
+[Parameter, EditorRequired]
+public bool IsEditable { get; set; }
 
-    [Parameter, EditorRequired]
-    public ActorMessage Message { get; set; } = null!;
+[Parameter, EditorRequired]
+public ActorMessage Message { get; set; } = null!;
 
-    [Parameter, EditorRequired]
-    public EventCallback<ActorMessage> EditMessage { get; set; }
+[Parameter, EditorRequired]
+public EventCallback<ActorMessage> EditMessage { get; set; }
 
-    private async Task StartEditAsync()
+private async Task StartEditAsync()
+{
+    if (IsEditable && EditMessage.HasDelegate)
     {
-        if (IsEditable && EditMessage.HasDelegate)
-        {
-            await EditMessage.InvokeAsync(Message);
-        }
+        await EditMessage.InvokeAsync(Message);
     }
+}
 }

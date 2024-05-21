@@ -13,7 +13,7 @@ public sealed record class Alert
     [JsonPropertyName("start")] public double Start { get; set; }
     [JsonPropertyName("end")] public double End { get; set; }
     [JsonPropertyName("description")] public string Description { get; set; } = null!;
-    [JsonPropertyName("tag")] public string[] Tags { get; set; } = Array.Empty<string>();
+    [JsonPropertyName("tag")] public string[] Tags { get; set; } = [];
 
     [JsonIgnore]
     public DateTime StartDate => Start.FromUnixTimeStamp();

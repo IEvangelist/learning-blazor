@@ -17,56 +17,56 @@
         <AdditiveSpeechComponent Message=@_jokeText />
         <div class="content">
             @if (_isLoadingJoke)
-            {
-                <SpinnerComponent />
-            }
-            else if (_jokeText is not null)
-            {
-                <blockquote class="has-text-black">
+        {
+            <SpinnerComponent />
+        }
+        else if (_jokeText is not null)
+        {
+            <blockquote class="has-text-black">
                     <span id="joke" class="pb-4">@_jokeText</span>
                     <br>
                     @if (_sourceDetails is { Site: not null })
-                    {
-                        <cite>
+                {
+                    <cite>
                             &mdash;
                             @{
-                                var (site, source) = _sourceDetails.Value;
-                            }
+                            var (site, source) = _sourceDetails.Value;
+                        }
                             <a href="@(site.ToString())" target="_blank">
                                 @(source.ToString())
                             </a>
                         </cite>
-                    }
+                }
                 </blockquote>
-            }
+        }
         </div>
     </div>
 </article>
 
 @code {
-    private string? _jokeText = null;
-    private JokeSourceDetails? _sourceDetails;
-    private bool _isLoadingJoke = false;
+private string? _jokeText = null;
+private JokeSourceDetails? _sourceDetails;
+private bool _isLoadingJoke = false;
 
-    protected override Task OnInitializedAsync() =>
-        RefreshJokeAsync();
+protected override Task OnInitializedAsync() =>
+    RefreshJokeAsync();
 
-    private async Task RefreshJokeAsync()
+private async Task RefreshJokeAsync()
+{
+    _isLoadingJoke = true;
+
+    try
     {
-        _isLoadingJoke = true;
-
-        try
-        {
-            (_jokeText, _sourceDetails) =
-                await JokeFactory.GetRandomJokeAsync();
-        }
-        catch (Exception ex)
-        {
-            Logger.LogError(ex, ex.Message);
-        }
-        finally
-        {
-            _isLoadingJoke = false;
-        }
+        (_jokeText, _sourceDetails) =
+            await JokeFactory.GetRandomJokeAsync();
     }
+    catch (Exception ex)
+    {
+        Logger.LogError(ex, ex.Message);
+    }
+    finally
+    {
+        _isLoadingJoke = false;
+    }
+}
 }

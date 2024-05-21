@@ -19,11 +19,10 @@ on:
 jobs:
   build_and_deploy_job:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
-    #runs-on: ubuntu-latest # see: https://github.com/Azure/static-web-apps/issues/755
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     name: Build and Deploy Job
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@main
         with:
           submodules: true
 
@@ -48,8 +47,7 @@ jobs:
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
-    #runs-on: ubuntu-latest # see: https://github.com/Azure/static-web-apps/issues/755
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     name: Close Pull Request Job
     steps:
       - name: Close Pull Request

@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <RootNamespace>Learning.Blazor.TwitterComponents</RootNamespace>
     <RazorLangVersion>5.0</RazorLangVersion>
     <Nullable>enable</Nullable>
@@ -9,8 +9,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components" Version="6.0.5" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Components" Version="8.0.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.5" />
   </ItemGroup>
 
   <ItemGroup>

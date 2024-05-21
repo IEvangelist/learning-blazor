@@ -30,8 +30,8 @@ static class LoggerMessageDefinitions
             "StartAsync called, unable to start. " +
             "Current connection state: {State}");
 
-    internal static readonly Action<ILogger, AccessTokenResultStatus, string, Exception?> UnableToGetAccessToken =
-        LoggerMessage.Define<AccessTokenResultStatus, string>(
+    internal static readonly Action<ILogger, AccessTokenResultStatus, string?, Exception?> UnableToGetAccessToken =
+        LoggerMessage.Define<AccessTokenResultStatus, string?>(
             LogLevel.Warning,
             EventIds.UnableToGetAccessToken,
             "Unable to get the access token. '{Status}' - Return URL: {Url}");

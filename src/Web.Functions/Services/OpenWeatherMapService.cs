@@ -3,15 +3,11 @@
 
 namespace Learning.Blazor.Functions.Services;
 
-internal class OpenWeatherMapService : IWeatherService
+internal class OpenWeatherMapService(
+    IHttpClientFactory httpClientFactory,
+    IOptions<OpenWeatherMapOptions> options) : IWeatherService
 {
-    private readonly IHttpClientFactory _httpClientFactory;
-    private readonly OpenWeatherMapOptions _openWeatherMapOptions;
-
-    public OpenWeatherMapService(
-        IHttpClientFactory httpClientFactory,
-        IOptions<OpenWeatherMapOptions> options) =>
-        (_httpClientFactory, _openWeatherMapOptions) = (httpClientFactory, options.Value);
+    private readonly OpenWeatherMapOptions _openWeatherMapOptions = options.Value;
 
     public Task<WeatherDetails?> GetWeatherAsync(
         Coordinates coordinates, string? units, string? lang)
@@ -39,7 +35,7 @@ internal class OpenWeatherMapService : IWeatherService
         var requestUrl =
             $"{baseApiUrl}onecall?{queryString}";
 
-        return _httpClientFactory.CreateClient()
+        return httpClientFactory.CreateClient()
                 .GetFromJsonAsync<WeatherDetails?>(
                     requestUrl, DefaultJsonSerialization.Options);
     }

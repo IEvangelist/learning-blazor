@@ -27,8 +27,8 @@
 </div>
 
 @code {
-    [Parameter] public DailyWeather Daily { get; set; } = null!;
-    [Parameter] public Func<DailyWeather, string>? GetDailyImagePath { get; set; }
-    [Parameter] public Func<DailyWeather, string>? GetDailyHigh { get; set; }
-    [Parameter] public Func<DailyWeather, string>? GetDailyLow { get; set; }
+[Parameter] public DailyWeather Daily { get; set; } = null!;
+[Parameter] public Func<DailyWeather, string>? GetDailyImagePath { get; set; }
+[Parameter] public Func<DailyWeather, string>? GetDailyHigh { get; set; }
+[Parameter] public Func<DailyWeather, string>? GetDailyLow { get; set; }
 }

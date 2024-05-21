@@ -7,8 +7,8 @@ internal static class Cultures
 {
     internal static string Default { get; } = "en-US";
 
-    internal static string[] Supported { get; } = new string[]
-    {
+    internal static string[] Supported { get; } =
+    [
             "af",
             "ar",
             "az",
@@ -52,5 +52,5 @@ internal static class Cultures
             "vi",
             "zh-Hans",
             "zh-Hant"
-    };
+    ];
 }

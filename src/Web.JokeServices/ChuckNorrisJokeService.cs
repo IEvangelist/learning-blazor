@@ -3,9 +3,9 @@
 
 namespace Learning.Blazor.JokeServices;
 
-internal class ChuckNorrisJokeService : IJokeService
+internal class ChuckNorrisJokeService(
+    ILogger<ChuckNorrisJokeService> logger) : IJokeService
 {
-    private readonly ILogger<ChuckNorrisJokeService> _logger;
     private static readonly AsyncLazy<ChuckNorrisJoke[]?> s_embeddedJokes =
         new(async () =>
         {
@@ -17,9 +17,6 @@ internal class ChuckNorrisJokeService : IJokeService
 
             return jokes;
         });
-
-    public ChuckNorrisJokeService(
-        ILogger<ChuckNorrisJokeService> logger) => _logger = logger;
 
     JokeSourceDetails IJokeService.SourceDetails =>
         new(JokeSource.InternetChuckNorrisDatabase, new Uri("https://www.icndb.com/"));
@@ -41,7 +38,7 @@ internal class ChuckNorrisJokeService : IJokeService
         }
         catch (Exception ex)
         {
-            _logger.LogError("Error getting something fun to say: {Error}", ex);
+            logger.LogError("Error getting something fun to say: {Error}", ex);
         }
 
         return null;
@@ -54,7 +51,9 @@ internal class ChuckNorrisJokeService : IJokeService
     {
         using var stream =
             Assembly.GetExecutingAssembly().GetManifestResourceStream(fileName);
+
         using var reader = new StreamReader(stream!);
+
         return await reader.ReadToEndAsync();
     }
 }

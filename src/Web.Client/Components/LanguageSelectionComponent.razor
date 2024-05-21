@@ -42,20 +42,20 @@
                     <span class="select is-medium is-fullwidth">
                         <select id="languages" class="has-dotnet-scrollbar" @bind=_selectedCulture>
                         @if (_supportedCultures?.Any() ?? false)
-                        {
-                            var lcid = Culture.CurrentCulture.LCID;
-                            Logger.LogInformation("Current culture LCID: {id}", lcid);
+                    {
+                        var lcid = Culture.CurrentCulture.LCID;
+                        Logger.LogInformation("Current culture LCID: {id}", lcid);
 
-                            @foreach (var kvp
-                                in _supportedCultures.OrderBy(c => c.Key.Name))
-                            {
-                                    var (culture, _) = kvp;
-                                    <option selected="@(lcid == culture.LCID)"
+                        @foreach (var kvp
+                            in _supportedCultures.OrderBy(c => c.Key.Name))
+                        {
+                                var (culture, _) = kvp;
+                                <option selected="@(lcid == culture.LCID)"
                                         value="@culture">
                                     @(ToDisplayName(kvp))
                                 </option>
-                            }
                         }
+                    }
                         </select>
                     </span>
                     <span class="icon is-small is-left">

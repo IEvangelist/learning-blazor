@@ -14,48 +14,48 @@
         <AdditiveSpeechComponent Message=@_model?.Message />
         <div class="columns has-text-centered">
             @switch (_state)
-            {
-                case ComponentState.Loaded:
+        {
+            case ComponentState.Loaded:
 
-                var weather = _model!;
-                <div class="column is-one-third">
+            var weather = _model!;
+            <div class="column is-one-third">
                     <WeatherCurrentComponent Weather=weather
                         Localizer=Localizer />
                 </div>
-                <div class="column">
+            <div class="column">
                     <div class="level">
                         @foreach (DailyWeather daily in weather.DailyWeather)
-                        {
-                            <WeatherDailyComponent Daily="daily"
+                    {
+                        <WeatherDailyComponent Daily="daily"
                                 GetDailyImagePath=weather.GetDailyImagePath
                                 GetDailyHigh=weather.GetDailyHigh
                                 GetDailyLow=weather.GetDailyLow />
-                        }
+                    }
                     </div>
                 </div>
 
-                break;
-                case ComponentState.Loading:
-                
-                <div class="column is-full">
+            break;
+            case ComponentState.Loading:
+            
+            <div class="column is-full">
                     <SpinnerComponent />
                 </div>
 
-                break;
-                default:
+            break;
+            default:
 
-                <div class="column is-full has-text-light">
+            <div class="column is-full has-text-light">
                 @if (_isGeoLocationPermissionGranted is false)
-                {
-                    @Localizer["PermissionDenined"]
-                }
-                else
-                {
-                    @Localizer["WeatherUnavailable"]
-                }
-                </div>
-                break;
+            {
+                @Localizer["PermissionDenined"]
             }
+            else
+            {
+                @Localizer["WeatherUnavailable"]
+            }
+                </div>
+            break;
+        }
         </div>
     </div>
 </article>

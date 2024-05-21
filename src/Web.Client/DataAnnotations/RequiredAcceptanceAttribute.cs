@@ -8,13 +8,8 @@ namespace Learning.Blazor.DataAnnotations;
         AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter,
         AllowMultiple = false)
 ]
-public sealed class RequiredAcceptanceAttribute : DataTypeAttribute
+public sealed class RequiredAcceptanceAttribute() : DataTypeAttribute(DataType.Custom)
 {
-    public RequiredAcceptanceAttribute()
-        : base(DataType.Custom)
-    {
-    }
-
     public override bool IsValid(object? value)
     {
         if (value is null)

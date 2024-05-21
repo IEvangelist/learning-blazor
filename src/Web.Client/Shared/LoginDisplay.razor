@@ -3,7 +3,6 @@
 -->
 
 @inherits LocalizableComponentBase<LoginDisplay>
-@inject SignOutSessionStateManager SignOutManager
 
 <span class="navbar-item">
     <AuthorizeView>
@@ -14,10 +13,10 @@
         </Authorizing>
         <Authorized>
             @{
-                var user = context.User!;
-                var userIdentity = user.Identity!;
-                var userToolTip = $"{userIdentity.Name} ({user.GetFirstEmailAddress()})";
-            }
+            var user = context.User!;
+            var userIdentity = user.Identity!;
+            var userToolTip = $"{userIdentity.Name} ({user.GetFirstEmailAddress()})";
+        }
             <button class="button is-rounded level-item has-tooltip-right has-tooltip-info"
                 data-tooltip=@(userToolTip) @onclick="OnLogOut">
                 <span class="icon">

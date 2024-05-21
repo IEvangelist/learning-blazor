@@ -5,7 +5,8 @@ namespace Learning.Blazor.Extensions;
 
 internal static class JSRuntimeExtensions
 {
-    internal static ValueTask GetCoordinatesAsync<T>(
+    internal static ValueTask GetCoordinatesAsync<
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicMethods)] T>(
         this IJSRuntime jsRuntime,
         T dotnetObj,
         string successMethodName,
@@ -16,7 +17,8 @@ internal static class JSRuntimeExtensions
             successMethodName,
             errorMethodName);
 
-    internal static async ValueTask<string> GetClientVoicesAsync<T>(
+    internal static async ValueTask<string> GetClientVoicesAsync<
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicMethods)] T>(
         this IJSRuntime javaScript,
         T dotnetObj,
         string callbackMethodName) where T : class =>
@@ -25,7 +27,8 @@ internal static class JSRuntimeExtensions
             DotNetObjectReference.Create(dotnetObj),
             callbackMethodName);
 
-    internal static async ValueTask<bool> GetCurrentDarkThemePreferenceAsync<T>(
+    internal static async ValueTask<bool> GetCurrentDarkThemePreferenceAsync<
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicMethods)] T>(
         this IJSRuntime javaScript,
         T dotnetObj,
         string callbackMethodName) where T : class =>
@@ -41,7 +44,8 @@ internal static class JSRuntimeExtensions
         await javaScript.InvokeVoidAsync(
             "app.scrollIntoView", selector);
 
-    internal static ValueTask SpeakMessageAsync<T>(
+    internal static ValueTask SpeakMessageAsync<
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicMethods)] T>(
         this IJSRuntime jsRuntime,
         T dotnetObj,
         string callbackMethodName,

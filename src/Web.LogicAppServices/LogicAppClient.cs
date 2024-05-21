@@ -3,15 +3,12 @@
 
 namespace Learning.Blazor.LogicAppServices;
 
-public sealed class LogicAppClient
+public sealed class LogicAppClient(
+    IOptions<LogicAppOptions> options,
+    HttpClient client,
+    ILogger<LogicAppClient> logger)
 {
-    readonly LogicAppOptions _settings;
-    readonly HttpClient _client;
-    readonly ILogger<LogicAppClient> _logger;
-
-    public LogicAppClient(
-        IOptions<LogicAppOptions> options, HttpClient client, ILogger<LogicAppClient> logger) =>
-        (_settings, _client, _logger) = (options.Value, client, logger);
+    readonly LogicAppOptions _settings = options.Value;
 
     public async ValueTask SendContactMessageAsync(
         string firstName,
@@ -30,7 +27,7 @@ public sealed class LogicAppClient
         },
         _settings.ContactUrl);
 
-        _logger.LogInformation(
+        logger.LogInformation(
             "Logic App Request Response: {Result}", result);
     }
 
@@ -41,7 +38,7 @@ public sealed class LogicAppClient
             var json = obj.ToJson()!;
             using var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-            var response = await _client.PostAsync(url, content);
+            var response = await client.PostAsync(url, content);
             if (response is not null)
             {
                 response.EnsureSuccessStatusCode();
@@ -50,7 +47,7 @@ public sealed class LogicAppClient
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex.Message);
+            logger.LogError(ex.Message);
         }
 
         return default!;

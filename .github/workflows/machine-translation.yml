@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@main
 
       - name: 'Print manual run reason'
         if: ${{ github.event_name == 'workflow_dispatch' }}
@@ -39,7 +39,7 @@ jobs:
           toLocales: '["af","ar","az","bg","ca","cs","da","de","el","fa","fi","fr","he","hi","hr","hu","id","it","ja","ko","la","lt","mk","nb","nl","pl","pt","ro","ru","sv","sk","sl","es","sr-Cyrl","sr-Latn","th","tr","uk","vi","zh-Hans","zh-Hant"]'
 
       - name: Create pull request
-        uses: peter-evans/create-pull-request@v3.4.1
+        uses: peter-evans/create-pull-request@main
         if: ${{ steps.resource-translator.outputs.has-new-translations }} == 'true'
         with:
           title: '${{ steps.resource-translator.outputs.summary-title }}'

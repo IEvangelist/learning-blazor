@@ -33,10 +33,10 @@ jobs:
       run: |
         echo 'Reason: ${{ github.event.inputs.reason }}'
 
-    - name: Setup .NET 6.0
-      uses: actions/setup-dotnet@v1
+    - name: Setup .NET
+      uses: actions/setup-dotnet@main
       with:
-        dotnet-version: 6.0.x
+        dotnet-version: 8.0.x
 
     - name: Install dependencies
       run: dotnet restore
@@ -45,10 +45,10 @@ jobs:
       run: |
         dotnet build --configuration Release --no-restore
 
-    - uses: actions/setup-node@v1
+    - uses: actions/setup-node@main
       name: 'Setup Node'
       with:
-        node-version: 18
+        node-version: 20
         cache: 'npm'
         cache-dependency-path: subdir/package-lock.json
 

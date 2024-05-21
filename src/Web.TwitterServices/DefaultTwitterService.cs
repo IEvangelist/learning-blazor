@@ -24,7 +24,7 @@ internal sealed class DefaultTwitterService : ITwitterService
         "@davidpine7"
     };
 
-    private HashSet<long> _tweetIds = new();
+    private HashSet<long> _tweetIds = [];
 
     public IReadOnlyCollection<TweetContents>? LastFiftyTweets => _latestTweets.ReadOnly;
     public StreamingStatus? CurrentStatus { get; private set; }

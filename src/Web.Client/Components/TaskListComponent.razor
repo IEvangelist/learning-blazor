@@ -12,11 +12,11 @@
         </span>
     </button>
     @if (_todos?.Any(idTodoPair => !idTodoPair.Value.IsCompleted) ?? false)
-    {
-        <span class="badge is-success" style="right: .8rem; top: .8rem;">
+{
+    <span class="badge is-success" style="right: .8rem; top: .8rem;">
             @_todos.Count(idTodoPair => !idTodoPair.Value.IsCompleted)
         </span>
-    }
+}
 </span>
 
 <div class="quickview has-background@_color @_showClass">
@@ -33,8 +33,8 @@
     <div class="quickview-body has-dotnet-scrollbar">
         <div class="quickview-block p-4">
             @if (_isAddingTodo && _newTodo is not null)
-            {
-                <div class="notification">
+        {
+            <div class="notification">
                     <button class="delete" @onclick=CancelNewTodo></button>
                     <div class="pb-4">
                         <div class="field">
@@ -66,10 +66,10 @@
                         </button>
                     </div>                    
                 </div>
-            }
-            else
-            {
-                <div class="pb-4">
+        }
+        else
+        {
+            <div class="pb-4">
                     <button class="button is-fullwidth is-large is-success"
                         @onclick=StartAddingTodo>
                         <span class="icon is-small">
@@ -78,57 +78,57 @@
                         <span>@Localizer["Add"]</span>
                     </button>
                 </div>
-            }
+        }
 
             @foreach (var todo in
-                _todos?.OrderByDescending(t => !t.Value.IsCompleted)
-                    .ThenBy(t => t.Value.DueDate)
-                    .Select(kvp => kvp.Value) ?? Enumerable.Empty<TodoItem>())
-            {
-                <div class="pb-4"> 
+            _todos?.OrderByDescending(t => !t.Value.IsCompleted)
+                .ThenBy(t => t.Value.DueDate)
+                .Select(kvp => kvp.Value) ?? Enumerable.Empty<TodoItem>())
+        {
+            <div class="pb-4"> 
                     <TaskCardComponent Todo=todo
                         TodoDeleted=OnTodoDeletedAsync
                         TodoUpdated=OnTodoUpdatedAsync />
                 </div>
-            }
+        }
         </div>
     </div>
 
     <footer class="quickview-footer has-background-primary@_color">
         @{
-            var totals = _todos?.Count ?? 0;
-            if (totals > 0)
+        var totals = _todos?.Count ?? 0;
+        if (totals > 0)
+        {
+            var completed = _todos!.Count(t => t.Value.IsCompleted);
+            var incomplete = totals - completed;
+
+            LocalizedString getTotalsContent(
+                int completed, int incomplete)
             {
-                var completed = _todos!.Count(t => t.Value.IsCompleted);
-                var incomplete = totals - completed;
+                var allTasksCompleted = incomplete is 0;
+                var noTasksCompleted = completed is 0;
 
-                LocalizedString getTotalsContent(
-                    int completed, int incomplete)
+                var content = (allTasksCompleted, noTasksCompleted) switch
                 {
-                    var allTasksCompleted = incomplete is 0;
-                    var noTasksCompleted = completed is 0;
+                    (true, false) => @Localizer["AllTasksCompleted"],
+                    (false, true) => @Localizer["NoTasksCompleted"],
+                    _ => @Localizer["TotalsFormat", completed, incomplete]
+                };
 
-                    var content = (allTasksCompleted, noTasksCompleted) switch
-                    {
-                        (true, false) => @Localizer["AllTasksCompleted"],
-                        (false, true) => @Localizer["NoTasksCompleted"],
-                        _ => @Localizer["TotalsFormat", completed, incomplete]
-                    };
+                return content;
+            }
 
-                    return content;
-                }
-
-                <div class="has-text-dark">
+            <div class="has-text-dark">
                     @getTotalsContent(completed, incomplete)
                 </div>
-            }
-            else
-            {
-                <div class="has-text-dark">
+        }
+        else
+        {
+            <div class="has-text-dark">
                     @Localizer["NoTasksCompleted"]
                 </div>                
-            }
         }
+    }
     </footer>
 </div>
 

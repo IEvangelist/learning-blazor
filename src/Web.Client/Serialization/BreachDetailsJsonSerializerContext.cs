@@ -3,14 +3,13 @@
 
 using System.Text.Json.Serialization.Metadata;
 
-namespace Learning.Blazor.Serialization
+namespace Learning.Blazor.Serialization;
+
+[JsonSerializable(typeof(BreachDetails[]))]
+internal partial class BreachDetailsJsonSerializerContext
+    : JsonSerializerContext
 {
-    [JsonSerializable(typeof(BreachDetails[]))]
-    internal partial class BreachDetailsJsonSerializerContext
-        : JsonSerializerContext
-    {
-        internal static JsonTypeInfo<BreachDetails[]> DefaultTypeInfo =>
-            new BreachDetailsJsonSerializerContext(
-                DefaultJsonSerialization.Options).BreachDetailsArray;
-    }
+    internal static JsonTypeInfo<BreachDetails[]> DefaultTypeInfo =>
+        new BreachDetailsJsonSerializerContext(
+            DefaultJsonSerialization.Options).BreachDetailsArray;
 }

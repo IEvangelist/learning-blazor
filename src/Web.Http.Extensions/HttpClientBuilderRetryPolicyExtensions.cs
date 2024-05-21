@@ -2,9 +2,7 @@
 // Licensed under the MIT License.
 
 using Microsoft.Extensions.DependencyInjection;
-using Polly;
-using Polly.Contrib.WaitAndRetry;
-using Polly.Retry;
+using Microsoft.Extensions.Http.Resilience;
 
 namespace Learning.Blazor.Http.Extensions;
 
@@ -16,9 +14,9 @@ public static class HttpClientBuilderRetryPolicyExtensions
     /// </summary>
     /// <param name="builder">The HTTP client builder instance to add to.</param>
     /// <returns>The same HTTP client builder instance with the added policy.</returns>
-    public static IHttpClientBuilder AddDefaultTransientHttpErrorPolicy(
+    public static IHttpStandardResiliencePipelineBuilder AddDefaultTransientHttpErrorPolicy(
         this IHttpClientBuilder builder) =>
-        builder.AddTransientHttpErrorPolicy(GetDefaultRetryPolicy);
+        builder.AddStandardResilienceHandler();
 
     /// <summary>
     /// Gets the default retry policy, using the "jitter" algorithm
@@ -26,13 +24,9 @@ public static class HttpClientBuilderRetryPolicyExtensions
     /// </summary>
     /// <param name="builder">The policy builder instance to apply the backoff to.</param>
     /// <returns>An async retry policy configured with the default retry policy.</returns>
-    public static AsyncRetryPolicy<HttpResponseMessage> GetDefaultRetryPolicy(
-        PolicyBuilder<HttpResponseMessage> builder) =>
-        builder.WaitAndRetryAsync(
-            // See: https://brooker.co.za/blog/2015/03/21/backoff.html
-            // Uses the "Jitter" algorithm
-            Backoff.DecorrelatedJitterBackoffV2(
-                medianFirstRetryDelay: TimeSpan.FromSeconds(1),
-                retryCount: 5));
+    public static HttpStandardResilienceOptions GetDefaultRetryPolicy() =>
+        new()
+        {
+        };
 }
 

@@ -17,11 +17,11 @@
         </span>
         <span>
             @if (_attemptedRoute is not null)
-            {
-                <code>
+        {
+            <code>
                     @_attemptedRoute.ToString();
                 </code>
-            }
+        }
         </span>
     </p>
     <button class="button is-rounded is-primary is-large" @onclick="GoHome">
@@ -35,23 +35,23 @@
 </div>
 
 @code {
-    private string? _attemptedRoute;
-    private Func<RouteData?, string?> _representRouteDataFactory =
-        string? (RouteData? routeData) =>
+private string? _attemptedRoute;
+private Func<RouteData?, string?> _representRouteDataFactory =
+    string? (RouteData? routeData) =>
+    {
+        if (routeData is { RouteValues: { Count: > 0 } })
         {
-            if (routeData is { RouteValues: { Count: > 0 } })
-            {
-                return "";
-            }
+            return "";
+        }
 
-            return default!;
-        };
+        return default!;
+    };
 
-    [Parameter]
-    public RouteData RouteData { get; set; } = null!;
+[Parameter]
+public RouteData RouteData { get; set; } = null!;
 
-    void GoHome() => Navigation.NavigateTo("/");
+void GoHome() => Navigation.NavigateTo("/");
 
-    protected override void OnParametersSet() =>
-        _attemptedRoute = _representRouteDataFactory(RouteData);
+protected override void OnParametersSet() =>
+    _attemptedRoute = _representRouteDataFactory(RouteData);
 }

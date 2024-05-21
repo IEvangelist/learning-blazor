@@ -42,6 +42,4 @@ global using Microsoft.Extensions.DependencyInjection;
 global using Microsoft.Extensions.Localization;
 global using Microsoft.Extensions.Options;
 global using Microsoft.JSInterop;
-global using Polly;
-global using Polly.Retry;
 global using SystemTimerAlias = System.Timers.Timer;

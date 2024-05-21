@@ -1,55 +1,55 @@
 ﻿@switch (NotificationType)
 {
-    case NotificationType.Alert:
-        <div @onclick=OnClick
+case NotificationType.Alert:
+    <div @onclick=OnClick
             class="icon-text button is-medium has-text-weight-bold @_buttonStyle">
             <span class="icon has-text-info">
                 <i class="fas fa-info-circle"></i>
             </span>
             <span>Information</span>
         </div>
-        break;
+    break;
 
-    case NotificationType.Warning:
-        <div @onclick=OnClick
+case NotificationType.Warning:
+    <div @onclick=OnClick
             class="icon-text button is-medium has-text-weight-bold @_buttonStyle">
             <span class="icon has-text-warning">
                 <i class="fas fa-exclamation-triangle"></i>
             </span>
             <span>Warning</span>
         </div>
-        break;
+    break;
 
-    default:
-        <div @onclick=OnClick
+default:
+    <div @onclick=OnClick
             class="icon-text button is-medium has-text-weight-bold @_buttonStyle">
             <span class="icon has-text-success">
                 <i class="fas fa-check-square"></i>
             </span>
             <span>Success</span>
         </div>
-        break;
+    break;
 }
 
 @code {
-    [Inject]
-    public NavigationManager Navigation { get; set; } = null!;
+[Inject]
+public NavigationManager Navigation { get; set; } = null!;
 
-    [Parameter]
-    public Uri? ActionLink { get; set; } = null!;
+[Parameter]
+public Uri? ActionLink { get; set; } = null!;
 
-    [Parameter, EditorRequired]
-    public NotificationType NotificationType { get; set; }
+[Parameter, EditorRequired]
+public NotificationType NotificationType { get; set; }
 
-    private string _buttonStyle => ActionLink is null ? "is-static" : "";
+private string _buttonStyle => ActionLink is null ? "is-static" : "";
 
-    void OnClick()
+void OnClick()
+{
+    if (ActionLink is null)
     {
-        if (ActionLink is null)
-        {
-            return;
-        }
-
-        Navigation?.NavigateTo(ActionLink.ToString(), false);
+        return;
     }
+
+    Navigation?.NavigateTo(ActionLink.ToString(), false);
+}
 }

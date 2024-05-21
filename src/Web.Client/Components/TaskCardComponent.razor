@@ -2,35 +2,35 @@
 
 @{
     var textStyle = Todo.IsCompleted ? "has-text-success" : "has-text-warning";
-    if (!AppState.IsDarkTheme)
-    {
-        textStyle += "-dark";
-    }
+if (!AppState.IsDarkTheme)
+{
+    textStyle += "-dark";
+}
 }
 
 <div class="card">
     <header class="card-header">
         <p class="card-header-title @textStyle">
             @if (Todo.IsCompleted)
-            {
-                @Localizer["Completed"]
-            }
-            else
-            {
-                @Localizer["Incomplete"]
-            }
+        {
+            @Localizer["Completed"]
+        }
+        else
+        {
+            @Localizer["Incomplete"]
+        }
         </p>
         <button class="card-header-icon" aria-label="more options"
             @onclick=@(() => Todo.IsCompleted = !Todo.IsCompleted)>
             <span class="icon @textStyle">
                 @if (Todo.IsCompleted)
-                {
-                    <i class="far fa-lg fa-check-square"></i>
-                }
-                else
-                {
-                    <i class="far fa-lg fa-square"></i>
-                }
+            {
+                <i class="far fa-lg fa-check-square"></i>
+            }
+            else
+            {
+                <i class="far fa-lg fa-square"></i>
+            }
             </span>
         </button>
     </header>
@@ -38,16 +38,16 @@
         <div class="content">
             @Todo.Title
             @if (Todo.DueDate.HasValue)
-            {
-                <span>Due on: @Todo.DueDate.Value.ToShortDateString()</span>
-            }
+        {
+            <span>Due on: @Todo.DueDate.Value.ToShortDateString()</span>
+        }
         </div>
     </div>
     <footer class="card-footer">
         @{
-            var (deleteStyle, saveStyle) =
-                (_isDeleting ? "is-loading" : "", _isSaving ? "is-loading" : "");
-        }
+        var (deleteStyle, saveStyle) =
+            (_isDeleting ? "is-loading" : "", _isSaving ? "is-loading" : "");
+    }
         <button disabled="@_isWorking"
             class="card-footer-item is-medium is-radiusless button @deleteStyle"
             @onclick=@(async _ => await OnClickAsync(true))>

@@ -3,15 +3,11 @@
 
 namespace Learning.Blazor.Services;
 
-public sealed class AppInMemoryState
+public sealed class AppInMemoryState(ILocalStorageService localStorage)
 {
-    private readonly ILocalStorageService _localStorage;
     private string? _frameworkDescription;
     private ClientVoicePreference? _clientVoicePreference;
     private bool? _isDarkTheme;
-
-    public AppInMemoryState(ILocalStorageService localStorage) =>
-        _localStorage = localStorage;
 
     public string? FrameworkDescription
     {
@@ -26,12 +22,12 @@ public sealed class AppInMemoryState
     public ClientVoicePreference ClientVoicePreference
     {
         get => _clientVoicePreference ??=
-            _localStorage.GetItem<ClientVoicePreference>(
+            localStorage.GetItem<ClientVoicePreference>(
                 StorageKeys.ClientVoice)
             ?? new("Auto", 1);
         set
         {
-            _localStorage.SetItem(
+            localStorage.SetItem(
                 StorageKeys.ClientVoice,
                 _clientVoicePreference = value ?? new("Auto", 1));
 
@@ -41,10 +37,10 @@ public sealed class AppInMemoryState
 
     public bool IsDarkTheme
     {
-        get => _isDarkTheme ??= _localStorage.GetItem<bool>(StorageKeys.PrefersDarkTheme);
+        get => _isDarkTheme ??= localStorage.GetItem<bool>(StorageKeys.PrefersDarkTheme);
         set
         {
-            _localStorage.SetItem(
+            localStorage.SetItem(
                 StorageKeys.PrefersDarkTheme,
                 _isDarkTheme = value);
 

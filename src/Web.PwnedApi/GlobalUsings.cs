@@ -5,7 +5,6 @@ global using HaveIBeenPwned.Client;
 global using HaveIBeenPwned.Client.Abstractions;
 global using HaveIBeenPwned.Client.Options;
 global using Learning.Blazor.Extensions;
-global using Learning.Blazor.Http.Extensions;
 global using Learning.Blazor.PwnedApi;
 global using Learning.Blazor.PwnedApi.Services;
 global using Microsoft.AspNetCore.Authentication.JwtBearer;

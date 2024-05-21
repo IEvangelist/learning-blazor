@@ -3,16 +3,10 @@
 
 namespace Learning.Blazor.Functions;
 
-public sealed class WeatherFunctions
+public sealed class WeatherFunctions(
+    IWeatherService weatherService,
+    ILogger<WeatherFunctions> logger)
 {
-    private readonly IWeatherService _weatherService;
-    private readonly ILogger<WeatherFunctions> _logger;
-
-    public WeatherFunctions(
-        IWeatherService weatherService,
-        ILogger<WeatherFunctions> logger) =>
-        (_weatherService, _logger) = (weatherService, logger);
-
     [FunctionName("currentweather")]
     public async Task<IActionResult> Current(
         [HttpTrigger(
@@ -23,21 +17,21 @@ public sealed class WeatherFunctions
         decimal longitude,
         string units)
     {
-        _logger.LogInformation(
+        logger.LogInformation(
             "Getting weather for: {Lat} {Lon} in {Units}",
             latitude, longitude, units);
 
         try
         {
             var weather =
-                await _weatherService.GetWeatherAsync(
+                await weatherService.GetWeatherAsync(
                     new(latitude, longitude), units, lang);
 
             return new OkObjectResult(weather?.ToJson());
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, ex.Message);
+            logger.LogError(ex, ex.Message);
 
             return new StatusCodeResult(500);
         }

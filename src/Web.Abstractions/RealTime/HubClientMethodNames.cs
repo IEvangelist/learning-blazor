@@ -4,7 +4,7 @@
 namespace Learning.Blazor.Abstractions.RealTime;
 
 /// <summary>
-/// A class that contains method names that are invokeable
+/// A class that contains method names that are invokable
 /// from a SignalR connected client on the SignalR server's hub.
 /// </summary>
 public static class HubClientMethodNames
@@ -46,7 +46,7 @@ public static class HubClientMethodNames
     /// <item>A <see cref="string"/> named <c>message</c>, representing the message to post.</item>
     /// <item>A nullable <see cref="Guid"/> named <c>id</c>, representing the message identifier.</item>
     /// </list>
-    /// Posts or updates the given messsage to the given room.
+    /// Posts or updates the given message to the given room.
     /// </summary>
     public const string PostOrUpdateMessage = nameof(PostOrUpdateMessage);
 

@@ -29,7 +29,7 @@ static class LoggerExtensions
     internal static void LogUnableToGetAccessToken(
         this ILogger logger,
         AccessTokenResultStatus status,
-        string url) =>
+        string? url) =>
         LoggerMessageDefinitions.UnableToGetAccessToken(
             logger, status, url, null);
 

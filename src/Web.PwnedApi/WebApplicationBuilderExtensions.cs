@@ -11,6 +11,7 @@ static class WebApplicationBuilderExtensions
         ArgumentNullException.ThrowIfNull(builder);
 
         var webClientOrigin = builder.Configuration["WebClientOrigin"];
+
         builder.Services.AddCors(
             options =>
                 options.AddDefaultPolicy(
@@ -33,7 +34,7 @@ static class WebApplicationBuilderExtensions
         var hibpOptions = builder.Configuration.GetSection(nameof(HibpOptions));
         builder.Services.AddPwnedServices(
             hibpOptions,
-            HttpClientBuilderRetryPolicyExtensions.GetDefaultRetryPolicy);
+            static options => { });
 
         if ("demo".Equals(
             hibpOptions[nameof(HibpOptions.ApiKey)],

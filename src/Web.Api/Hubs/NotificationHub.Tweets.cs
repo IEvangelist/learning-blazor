@@ -11,19 +11,19 @@ public partial class NotificationHub
             Context.ConnectionId,
             HubGroupNames.Tweets);
 
-        if (_twitterService.CurrentStatus is StreamingStatus status)
+        if (twitterService.CurrentStatus is StreamingStatus status)
         {
             await Clients.Caller.SendAsync(
                 HubServerEventNames.StatusUpdated,
                 Notification<StreamingStatus>.FromStatus(status));
         }
 
-        if (_twitterService.LastFiftyTweets is { Count: > 0 })
+        if (twitterService.LastFiftyTweets is { Count: > 0 })
         {
             await Clients.Caller.SendAsync(
                 HubServerEventNames.InitialTweetsLoaded,
                 Notification<List<TweetContents>>.FromTweets(
-                    _twitterService.LastFiftyTweets.ToList()));
+                    twitterService.LastFiftyTweets.ToList()));
         }
     }
 
@@ -33,5 +33,5 @@ public partial class NotificationHub
             HubGroupNames.Tweets);
 
     public Task StartTweetStream() =>
-        _twitterService.StartTweetStreamAsync();
+        twitterService.StartTweetStreamAsync();
 }

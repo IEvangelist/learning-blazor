@@ -2,14 +2,14 @@
 
   <PropertyGroup>
     <RootNamespace>Learning.Blazor.Extensions</RootNamespace>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Blazor.Serialization" Version="2.0.10" />
-    <PackageReference Include="System.Text.Json" Version="6.0.4" />
+    <PackageReference Include="Blazor.Serialization" Version="8.0.0" />
+    <PackageReference Include="System.Text.Json" Version="8.0.3" />
   </ItemGroup>
 
 </Project>

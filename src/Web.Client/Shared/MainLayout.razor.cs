@@ -3,33 +3,32 @@
 
 using System.Runtime.InteropServices;
 
-namespace Learning.Blazor.Shared
+namespace Learning.Blazor.Shared;
+
+public sealed partial class MainLayout : IDisposable
 {
-    public sealed partial class MainLayout : IDisposable
+    private bool _navbarBurgerClicked = false;
+
+    [Inject]
+    public AppInMemoryState AppState { get; set; } = null!;
+
+    protected override void OnInitialized()
     {
-        private bool _navbarBurgerClicked = false;
-
-        [Inject]
-        public AppInMemoryState AppState { get; set; } = null!;
-
-        protected override void OnInitialized()
+        if (AppState is not null)
         {
-            if (AppState is not null)
-            {
-                AppState.StateChanged += StateHasChanged;
-                AppState.FrameworkDescription =
-                    RuntimeInformation.FrameworkDescription;
-            }
-
-            base.OnInitialized();
+            AppState.StateChanged += StateHasChanged;
+            AppState.FrameworkDescription =
+                RuntimeInformation.FrameworkDescription;
         }
 
-        void IDisposable.Dispose()
+        base.OnInitialized();
+    }
+
+    void IDisposable.Dispose()
+    {
+        if (AppState is not null)
         {
-            if (AppState is not null)
-            {
-                AppState.StateChanged -= StateHasChanged;
-            }
+            AppState.StateChanged -= StateHasChanged;
         }
     }
 }

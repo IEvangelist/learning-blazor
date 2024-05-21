@@ -19,9 +19,9 @@
                     <div class="field">
                         <p class="control is-expanded has-icons-left">
                             @{
-                                var inputValidityClass = _answeredCorrectly is false ? " invalid" : "";
-                                var inputClasses = $"input{inputValidityClass}";
-                            }
+                            var inputValidityClass = _answeredCorrectly is false ? " invalid" : "";
+                            var inputClasses = $"input{inputValidityClass}";
+                        }
                             <input @bind="_attemptedAnswer"
                                 class=@inputClasses
                                 type="text"

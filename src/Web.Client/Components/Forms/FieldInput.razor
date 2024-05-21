@@ -14,18 +14,18 @@
 </div>
 
 @code {
-    [Parameter]
-    public string? LabelSpecifierClass { get; set; } = "is-normal";
+[Parameter]
+public string? LabelSpecifierClass { get; set; } = "is-normal";
 
-    [Parameter]
-    public string? ControlSpecifierClass { get; set; }
+[Parameter]
+public string? ControlSpecifierClass { get; set; }
 
-    [Parameter]
-    public RenderFragment? FieldLabelContent { get; set; }
+[Parameter]
+public RenderFragment? FieldLabelContent { get; set; }
 
-    [Parameter, EditorRequired]
-    public RenderFragment? FieldControlContent { get; set; }
+[Parameter, EditorRequired]
+public RenderFragment? FieldControlContent { get; set; }
 
-    [Parameter]
-    public string[]? ControlClasses { get; set; } = new string[] { "is-expanded", "has-icons-left" };
+[Parameter]
+public string[]? ControlClasses { get; set; } = new string[] { "is-expanded", "has-icons-left" };
 }

@@ -6,16 +6,13 @@ namespace Learning.Blazor.Extensions;
 public static class NumberExtensions
 {
     private static readonly string[] s_cardinals =
-        { "N", "NE", "E", "SE", "S", "SW", "W", "NW", "N" };
+        ["N", "NE", "E", "SE", "S", "SW", "W", "NW", "N"];
 
     private static readonly string[] s_verboseCardinals =
-        { "North", "Northeast", "East", "Southeast", "South", "Southwest", "West", "Northwest", "North" };
-
-    private static readonly DateTime s_epochDateTime =
-        new(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
+        ["North", "Northeast", "East", "Southeast", "South", "Southwest", "West", "Northwest", "North"];
 
     public static DateTime FromUnixTimeStamp(this double unixTimeStamp) =>
-        s_epochDateTime.AddSeconds(unixTimeStamp).ToLocalTime();
+        DateTime.UnixEpoch.AddSeconds(unixTimeStamp).ToLocalTime();
 
     public static string ToPositionalCardinal(this int degrees) =>
         s_cardinals[(int)Math.Round((double)degrees % 360 / 45)];

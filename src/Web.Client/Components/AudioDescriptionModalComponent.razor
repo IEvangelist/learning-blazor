@@ -22,9 +22,9 @@
                        @onchange=@OnVoiceSpeedChange>
                 <datalist id="speeds">
                     @foreach (var speed in Details.VoiceSpeeds)
-                    {
-                        <option value="@speed">speed</option>
-                    }
+                {
+                    <option value="@speed">speed</option>
+                }
                 </datalist>
             </div>
             <div class="field">
@@ -33,14 +33,14 @@
                         <select id="voices" class="has-dotnet-scrollbar" @bind=_voice>
                         <option selected>@Localizer["Auto"]</option>
                         @if (Details.Voices is { Count: > 0 })
+                    {
+                        @foreach (var voice in Details.Voices)
                         {
-                            @foreach (var voice in Details.Voices)
-                            {
-                                <option selected="@voice.Default" value="@voice.Name">
+                            <option selected="@voice.Default" value="@voice.Name">
                                     @voice.Name
                                 </option>
-                            }
                         }
+                    }
                         </select>
                     </span>
                     <span class="icon is-small is-left">

@@ -3,14 +3,13 @@
 
 using System.Text.Json.Serialization.Metadata;
 
-namespace Learning.Blazor.Serialization
+namespace Learning.Blazor.Serialization;
+
+[JsonSerializable(typeof(GeoCode))]
+internal partial class GeoCodeJsonSerializerContext
+    : JsonSerializerContext
 {
-    [JsonSerializable(typeof(GeoCode))]
-    internal partial class GeoCodeJsonSerializerContext
-        : JsonSerializerContext
-    {
-        internal static JsonTypeInfo<GeoCode> DefaultTypeInfo =>
-            new GeoCodeJsonSerializerContext(
-                DefaultJsonSerialization.Options).GeoCode;
-    }
+    internal static JsonTypeInfo<GeoCode> DefaultTypeInfo =>
+        new GeoCodeJsonSerializerContext(
+            DefaultJsonSerialization.Options).GeoCode;
 }

@@ -4,7 +4,7 @@
 namespace Learning.Blazor.BrowserModels;
 
 /// <summary>
-/// https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesisVoice
+/// https://developer.mozilla.org/docs/Web/API/SpeechSynthesisVoice
 /// </summary>
 public record class SpeechSynthesisVoice
 {
