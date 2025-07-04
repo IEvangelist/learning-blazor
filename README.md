@@ -17,7 +17,7 @@
 ## This app is deployed to: https://webassemblyof.net
 
 The app is a Blazor WebAssembly app, deployed to Azure as a Static Web app. It targets .NET 6, and it's packed full of C# 10 features.
-
+<!--
 | Status | Description |
 |--:|:--|
 | [![build](https://github.com/IEvangelist/learning-blazor/actions/workflows/build-validation.yml/badge.svg)](https://github.com/IEvangelist/learning-blazor/actions/workflows/build-validation.yml) | Wether the current source code builds successfully, and all tests pass. |
@@ -27,7 +27,7 @@ The app is a Blazor WebAssembly app, deployed to Azure as a Static Web app. It t
 | [![Deploy Weather Function](https://github.com/IEvangelist/learning-blazor/actions/workflows/deploy-az-func.yml/badge.svg)](https://github.com/IEvangelist/learning-blazor/actions/workflows/deploy-az-func.yml) | The status of the last deployment of the Azure Functions app. |
 | [![Deploy Web API](https://github.com/IEvangelist/learning-blazor/actions/workflows/deploy-az-webapi.yml/badge.svg)](https://github.com/IEvangelist/learning-blazor/actions/workflows/deploy-az-webapi.yml) | The status of the last deployment of the Azure Web API. |
 | [![Deploy Pwned Web API](https://github.com/IEvangelist/learning-blazor/actions/workflows/deploy-az-pwnedapi.yml/badge.svg)](https://github.com/IEvangelist/learning-blazor/actions/workflows/deploy-az-pwnedapi.yml) | The status of the last deployment of the Azure Pwned Web API. |
-
+-->
 Want to run this locally? See, the ["Get Started" article](GET_STARTED.md).
 
 ## Home screen (dark theme)
